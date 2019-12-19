@@ -1,0 +1,147 @@
+{
+    "name": "PayPal",
+    "description": "PayPal is the faster, safer way to send money, make an online payment, receive money or set up a merchant account.",
+    "image": "http:\/\/kinlane-productions.s3.amazonaws.com\/screen-capture-api\/237-paypal.jpg",
+    "tags": [
+        "billing",
+        "financial services",
+        "getting started example",
+        "have api",
+        "have swagger",
+        "hypermedia api",
+        "international",
+        "invoices",
+        "merchants",
+        "payments",
+        "relative data",
+        "service api",
+        "webhook implementations"
+    ],
+    "created": "2019-12-19",
+    "modified": "2019-12-19",
+    "url": "https:\/\/raw.githubusercontent.com\/api-evangelist\/paypal\/master\/apis.json",
+    "specificationVersion": "0.14",
+    "apis": [
+        {
+            "name": "PayPal API Sandbox Paths",
+            "description": null,
+            "image": "http:\/\/kinlane-productions.s3.amazonaws.com\/screen-capture-api\/237-paypal.jpg",
+            "humanURL": "https:\/\/paypal.com",
+            "baseURL": "",
+            "tags": [],
+            "properties": [
+                {
+                    "type": "x-openapi",
+                    "url": "https:\/\/raw.githubusercontent.com\/api-evangelist\/1forge\/master\/paypal-api-sandbox-openapi.json"
+                },
+                {
+                    "type": "x-openapi",
+                    "url": "http:\/\/kinlane-productions.s3.amazonaws.com\/api-evangelist-site\/company\/openapis\/paypal-api-sandbox-paths.json"
+                },
+                {
+                    "type": "x-postman-collecction",
+                    "url": "https:\/\/raw.githubusercontent.com\/api-evangelist\/1forge\/master\/paypal-api-sandbox-postman-collection.json"
+                }
+            ]
+        }
+    ],
+    "include": [],
+    "x-common": [
+        {
+            "type": "Base URL",
+            "url": "https:\/\/api.paypal.com"
+        },
+        {
+            "type": "Crunchbase",
+            "url": "https:\/\/crunchbase.com\/organization\/paypal"
+        },
+        {
+            "type": "Crunchbase",
+            "url": "http:\/\/www.crunchbase.com\/company\/paypal"
+        },
+        {
+            "type": "Developers",
+            "url": "https:\/\/developer.paypal.com\/"
+        },
+        {
+            "type": "FAQ",
+            "url": "https:\/\/developer.paypal.com\/docs\/faq\/"
+        },
+        {
+            "type": "Getting Started",
+            "url": "https:\/\/developer.paypal.com\/docs\/"
+        },
+        {
+            "type": "Github",
+            "url": "https:\/\/github.com\/paypal"
+        },
+        {
+            "type": "Swagger",
+            "url": "http:\/\/kinlane-productions.s3.amazonaws.com\/api-definitions\/swagger\/237-2019-09-04-06-23-24.json"
+        },
+        {
+            "type": "Swagger",
+            "url": "http:\/\/kinlane-productions.s3.amazonaws.com\/api-definitions\/swagger\/237-2019-09-03-16-02-39.json"
+        },
+        {
+            "type": "Swagger",
+            "url": "http:\/\/kinlane-productions.s3.amazonaws.com\/api-definitions\/swagger\/237-2019-09-03-16-02-44.json"
+        },
+        {
+            "type": "Swagger",
+            "url": "http:\/\/kinlane-productions.s3.amazonaws.com\/api-definitions\/swagger\/237-2019-09-04-06-27-18.json"
+        },
+        {
+            "type": "Swagger",
+            "url": "http:\/\/kinlane-productions.s3.amazonaws.com\/api-definitions\/swagger\/237-2019-09-04-06-27-29.json"
+        },
+        {
+            "type": "Swagger",
+            "url": "http:\/\/kinlane-productions.s3.amazonaws.com\/api-definitions\/swagger\/237-2019-09-04-03-08-29.json"
+        },
+        {
+            "type": "Swagger",
+            "url": "http:\/\/kinlane-productions.s3.amazonaws.com\/api-definitions\/swagger\/237-2019-09-04-06-32-16.json"
+        },
+        {
+            "type": "Swagger",
+            "url": "http:\/\/kinlane-productions.s3.amazonaws.com\/api-definitions\/swagger\/237-2019-09-04-03-11-25.json"
+        },
+        {
+            "type": "Swagger",
+            "url": "http:\/\/kinlane-productions.s3.amazonaws.com\/api-definitions\/swagger\/237-2019-09-04-00-20-28.json"
+        },
+        {
+            "type": "Swagger",
+            "url": "http:\/\/kinlane-productions.s3.amazonaws.com\/api-definitions\/swagger\/237-2019-09-04-06-59-39.json"
+        },
+        {
+            "type": "Playground",
+            "url": "https:\/\/devtools-paypal.com\/hateoas\/index.html"
+        },
+        {
+            "type": "Privacy",
+            "url": "https:\/\/www.paypal.com\/us\/cgi-bin\/webscr?cmd=p\/gen\/ua\/policy_privacy-outside"
+        },
+        {
+            "type": "Release Notes",
+            "url": "https:\/\/developer.paypal.com\/docs\/release-notes\/"
+        },
+        {
+            "type": "Terms Of Service",
+            "url": "https:\/\/cms.paypal.com\/us\/cgi-bin\/?cmd=_render-content&content_ID=ua\/Legal_Hub_full"
+        },
+        {
+            "type": "Twitter",
+            "url": "https:\/\/twitter.com\/paypal"
+        },
+        {
+            "type": "Website",
+            "url": "https:\/\/paypal.com"
+        },
+        {
+            "type": "Webhooks",
+            "url": "https:\/\/developer.paypal.com\/docs\/integration\/direct\/webhooks\/"
+        }
+    ]
+}
