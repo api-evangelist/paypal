@@ -1,5 +1,5 @@
 {
-    "id": "8f367436f116f832101738d62c7c0c8a",
+    "id": "2a125dbd6eb5098218208b7b85921cf1",
     "name": "PayPal API (Sandbox)",
     "description": null,
     "auth": null,
@@ -10,7 +10,7 @@
     "folders": [],
     "requests": [
         {
-            "id": "ddd22d8c34f96a6f4db4f27464a259a1",
+            "id": "638eeed561c8cdd744c817058027760d",
             "name": "Get Advanced Personal Data",
             "url": "http:\/\/svcs.sandbox.paypal.com\/\/Permissions\/GetAdvancedPersonalData",
             "description": "Use the GetAdvancedPersonalData API operation to obtain sensitive personal data for an account holder.",
@@ -29,11 +29,11 @@
             "responses": [],
             "currentHelper": null,
             "helperAttributes": null,
-            "collectionId": "8f367436f116f832101738d62c7c0c8a",
+            "collectionId": "2a125dbd6eb5098218208b7b85921cf1",
             "rawModeData": ""
         },
         {
-            "id": "866b2d5e67c51b2aea3a35f23d0bae5d",
+            "id": "917ff9acb65cc0b21eede32cc1748709",
             "name": "",
             "url": "http:\/\/svcs.sandbox.paypal.com\/\/Permissions\/GetAdvancedPersonalData",
             "description": "",
@@ -52,11 +52,11 @@
             "responses": [],
             "currentHelper": null,
             "helperAttributes": null,
-            "collectionId": "8f367436f116f832101738d62c7c0c8a",
+            "collectionId": "2a125dbd6eb5098218208b7b85921cf1",
             "rawModeData": ""
         },
         {
-            "id": "4e8dd4a19a535e2dbb6169a6c8634a6f",
+            "id": "439c6b1a2586c5f1a4b91563281bd49a",
             "name": "Get Basic Personal Data",
             "url": "http:\/\/svcs.sandbox.paypal.com\/\/Permissions\/GetBasicPersonalData",
             "description": "Use the GetBasicPersonalData API operation to obtain basic personal data for an account holder.",
@@ -75,11 +75,11 @@
             "responses": [],
             "currentHelper": null,
             "helperAttributes": null,
-            "collectionId": "8f367436f116f832101738d62c7c0c8a",
+            "collectionId": "2a125dbd6eb5098218208b7b85921cf1",
             "rawModeData": ""
         },
         {
-            "id": "fc6316da3507f405a91220f55162ff3b",
+            "id": "ca45ec1fade90239801607a1cabe8436",
             "name": "",
             "url": "http:\/\/svcs.sandbox.paypal.com\/\/Permissions\/GetBasicPersonalData",
             "description": "",
@@ -98,11 +98,11 @@
             "responses": [],
             "currentHelper": null,
             "helperAttributes": null,
-            "collectionId": "8f367436f116f832101738d62c7c0c8a",
+            "collectionId": "2a125dbd6eb5098218208b7b85921cf1",
             "rawModeData": ""
         },
         {
-            "id": "089c47834a33d0d53c6695599501458d",
+            "id": "f79bd1c22a20d683e011693c14c1bf57",
             "name": "Cancel Permissions",
             "url": "http:\/\/svcs.sandbox.paypal.com\/\/Permissions\/CancelPermissions",
             "description": "Use the CancelPermissions API operation to cancel access to a set of permissions.",
@@ -121,11 +121,11 @@
             "responses": [],
             "currentHelper": null,
             "helperAttributes": null,
-            "collectionId": "8f367436f116f832101738d62c7c0c8a",
+            "collectionId": "2a125dbd6eb5098218208b7b85921cf1",
             "rawModeData": ""
         },
         {
-            "id": "f8df164593a274c6d854635ed9d83916",
+            "id": "88c4425b161a5ba3776173a13d0eae0d",
             "name": "",
             "url": "http:\/\/svcs.sandbox.paypal.com\/\/Permissions\/CancelPermissions",
             "description": "",
@@ -144,11 +144,11 @@
             "responses": [],
             "currentHelper": null,
             "helperAttributes": null,
-            "collectionId": "8f367436f116f832101738d62c7c0c8a",
+            "collectionId": "2a125dbd6eb5098218208b7b85921cf1",
             "rawModeData": ""
         },
         {
-            "id": "34d41ea7a54e0975033758b0efe5089d",
+            "id": "6a6532634797711a61a7c719cbfb8dbc",
             "name": "Get Permissions",
             "url": "http:\/\/svcs.sandbox.paypal.com\/\/Permissions\/GetPermissions",
             "description": "Use the GetPermissons API operation to obtain the permissions associated with an access token.",
@@ -167,11 +167,11 @@
             "responses": [],
             "currentHelper": null,
             "helperAttributes": null,
-            "collectionId": "8f367436f116f832101738d62c7c0c8a",
+            "collectionId": "2a125dbd6eb5098218208b7b85921cf1",
             "rawModeData": ""
         },
         {
-            "id": "1d6c81a492bb76f495a13409eb2f804b",
+            "id": "9f31984231e84763bd717587e97c050e",
             "name": "",
             "url": "http:\/\/svcs.sandbox.paypal.com\/\/Permissions\/GetPermissions",
             "description": "",
@@ -190,11 +190,11 @@
             "responses": [],
             "currentHelper": null,
             "helperAttributes": null,
-            "collectionId": "8f367436f116f832101738d62c7c0c8a",
+            "collectionId": "2a125dbd6eb5098218208b7b85921cf1",
             "rawModeData": ""
         },
         {
-            "id": "6c0b178ceaa3ecc4a53ddf6a2b0fb513",
+            "id": "683946b884b544bf798396fb8e5afbfc",
             "name": "GetAccess Token",
             "url": "http:\/\/svcs.sandbox.paypal.com\/\/Permissions\/GetAccessToken",
             "description": "Use the GetAccessToken API operation to obtain an access token for a set of permissions.",
@@ -213,11 +213,11 @@
             "responses": [],
             "currentHelper": null,
             "helperAttributes": null,
-            "collectionId": "8f367436f116f832101738d62c7c0c8a",
+            "collectionId": "2a125dbd6eb5098218208b7b85921cf1",
             "rawModeData": ""
         },
         {
-            "id": "5aec16790f749dce69dcc435626c04d8",
+            "id": "b98b07b1ed25b1bca4776132d0497755",
             "name": "",
             "url": "http:\/\/svcs.sandbox.paypal.com\/\/Permissions\/GetAccessToken",
             "description": "",
@@ -236,11 +236,11 @@
             "responses": [],
             "currentHelper": null,
             "helperAttributes": null,
-            "collectionId": "8f367436f116f832101738d62c7c0c8a",
+            "collectionId": "2a125dbd6eb5098218208b7b85921cf1",
             "rawModeData": ""
         },
         {
-            "id": "c4545b621e7740d0d7e13a3f3ae862a6",
+            "id": "377983e2ca7f52a2c8fe391e42492698",
             "name": "Request Permissions",
             "url": "http:\/\/svcs.sandbox.paypal.com\/\/Permissions\/RequestPermissions",
             "description": "Use the RequestPermissions API operation to request permissions to execute API operations on a PayPal account holder???s behalf.",
@@ -259,11 +259,11 @@
             "responses": [],
             "currentHelper": null,
             "helperAttributes": null,
-            "collectionId": "8f367436f116f832101738d62c7c0c8a",
+            "collectionId": "2a125dbd6eb5098218208b7b85921cf1",
             "rawModeData": ""
         },
         {
-            "id": "c6407dbd74cf1f0b9a87efa8097d0605",
+            "id": "ca35aa8381aded832f91352fe2e442a7",
             "name": "",
             "url": "http:\/\/svcs.sandbox.paypal.com\/\/Permissions\/RequestPermissions",
             "description": "",
@@ -282,11 +282,11 @@
             "responses": [],
             "currentHelper": null,
             "helperAttributes": null,
-            "collectionId": "8f367436f116f832101738d62c7c0c8a",
+            "collectionId": "2a125dbd6eb5098218208b7b85921cf1",
             "rawModeData": ""
         },
         {
-            "id": "c56496d3bf405eaa6d391c2b35905499",
+            "id": "eb857c7471488b2532959baefc05b5a0",
             "name": "Search Invoices",
             "url": "http:\/\/svcs.sandbox.paypal.com\/\/Invoice\/SearchInvoices",
             "description": "Use the SearchInvoice API operation to search an invoice.",
@@ -305,11 +305,11 @@
             "responses": [],
             "currentHelper": null,
             "helperAttributes": null,
-            "collectionId": "8f367436f116f832101738d62c7c0c8a",
+            "collectionId": "2a125dbd6eb5098218208b7b85921cf1",
             "rawModeData": ""
         },
         {
-            "id": "fb7596dbdf8681355e8d879a29716402",
+            "id": "57de3c7c28b1314de6947c1589e69076",
             "name": "",
             "url": "http:\/\/svcs.sandbox.paypal.com\/\/Invoice\/SearchInvoices",
             "description": "",
@@ -328,11 +328,11 @@
             "responses": [],
             "currentHelper": null,
             "helperAttributes": null,
-            "collectionId": "8f367436f116f832101738d62c7c0c8a",
+            "collectionId": "2a125dbd6eb5098218208b7b85921cf1",
             "rawModeData": ""
         },
         {
-            "id": "b1663397a28360256076fe02fdc3a043",
+            "id": "971f8f1e43352da414e5cbc100cd5f93",
             "name": "Mark Invoice As Paid",
             "url": "http:\/\/svcs.sandbox.paypal.com\/\/Invoice\/MarkInvoiceAsPaid",
             "description": "Use the MarkInvoiceAsPaid API operation to mark an invoice as paid.",
@@ -351,11 +351,11 @@
             "responses": [],
             "currentHelper": null,
             "helperAttributes": null,
-            "collectionId": "8f367436f116f832101738d62c7c0c8a",
+            "collectionId": "2a125dbd6eb5098218208b7b85921cf1",
             "rawModeData": ""
         },
         {
-            "id": "a9973e8bf44453e94635cd0db06fb769",
+            "id": "4571c75dc6ed70a18adc9d4d937d028f",
             "name": "",
             "url": "http:\/\/svcs.sandbox.paypal.com\/\/Invoice\/MarkInvoiceAsPaid",
             "description": "",
@@ -374,11 +374,11 @@
             "responses": [],
             "currentHelper": null,
             "helperAttributes": null,
-            "collectionId": "8f367436f116f832101738d62c7c0c8a",
+            "collectionId": "2a125dbd6eb5098218208b7b85921cf1",
             "rawModeData": ""
         },
         {
-            "id": "33d3c863735874959b37f332fbbddc5e",
+            "id": "88961e8af341416c4487b633cf7b004a",
             "name": "Cancel Invoice",
             "url": "http:\/\/svcs.sandbox.paypal.com\/\/Invoice\/Cancel Invoice",
             "description": "Use the CancelInvoice API operation to cancel an invoice.",
@@ -397,11 +397,11 @@
             "responses": [],
             "currentHelper": null,
             "helperAttributes": null,
-            "collectionId": "8f367436f116f832101738d62c7c0c8a",
+            "collectionId": "2a125dbd6eb5098218208b7b85921cf1",
             "rawModeData": ""
         },
         {
-            "id": "805e18c96b0f7a19fccfba1f24cbbc2b",
+            "id": "fc6053095b6a7ebc218f94a0fdbd3914",
             "name": "Get Invoice Details",
             "url": "http:\/\/svcs.sandbox.paypal.com\/\/Invoice\/GetInvoiceDetails",
             "description": "Use the GetInvoiceDetails API operation to get detailed information about an invoice.",
@@ -420,11 +420,11 @@
             "responses": [],
             "currentHelper": null,
             "helperAttributes": null,
-            "collectionId": "8f367436f116f832101738d62c7c0c8a",
+            "collectionId": "2a125dbd6eb5098218208b7b85921cf1",
             "rawModeData": ""
         },
         {
-            "id": "931a100b828eb9420d1500f3ec6eba57",
+            "id": "4fcc9bc6acbf5f98b8fee2f8b5f7f4cd",
             "name": "",
             "url": "http:\/\/svcs.sandbox.paypal.com\/\/Invoice\/GetInvoiceDetails",
             "description": "",
@@ -443,11 +443,11 @@
             "responses": [],
             "currentHelper": null,
             "helperAttributes": null,
-            "collectionId": "8f367436f116f832101738d62c7c0c8a",
+            "collectionId": "2a125dbd6eb5098218208b7b85921cf1",
             "rawModeData": ""
         },
         {
-            "id": "187e0eb42f6f30add2c2b766817c3adb",
+            "id": "45719dfe38a518a0faeecb90ec7e8b18",
             "name": "Update Invoice",
             "url": "http:\/\/svcs.sandbox.paypal.com\/\/Invoice\/UpdateInvoice",
             "description": "Use the UpdateInvoice API operation to update an invoice.",
@@ -466,11 +466,11 @@
             "responses": [],
             "currentHelper": null,
             "helperAttributes": null,
-            "collectionId": "8f367436f116f832101738d62c7c0c8a",
+            "collectionId": "2a125dbd6eb5098218208b7b85921cf1",
             "rawModeData": ""
         },
         {
-            "id": "5934b14ff3b256b20484a3b58f919dab",
+            "id": "b87a2e90eaf344c32d8afd8b54f9d280",
             "name": "",
             "url": "http:\/\/svcs.sandbox.paypal.com\/\/Invoice\/UpdateInvoice",
             "description": "",
@@ -489,11 +489,11 @@
             "responses": [],
             "currentHelper": null,
             "helperAttributes": null,
-            "collectionId": "8f367436f116f832101738d62c7c0c8a",
+            "collectionId": "2a125dbd6eb5098218208b7b85921cf1",
             "rawModeData": ""
         },
         {
-            "id": "5fe416e48674ba2208d1f80865057cb5",
+            "id": "fdf060f741b6f4442ec60b1662201e89",
             "name": "Create And Send Invoice",
             "url": "http:\/\/svcs.sandbox.paypal.com\/\/Invoice\/CreateAndSendInvoice",
             "description": "Use the CreateAndSendInvoice API operation to create and send an invoice.",
@@ -512,11 +512,11 @@
             "responses": [],
             "currentHelper": null,
             "helperAttributes": null,
-            "collectionId": "8f367436f116f832101738d62c7c0c8a",
+            "collectionId": "2a125dbd6eb5098218208b7b85921cf1",
             "rawModeData": ""
         },
         {
-            "id": "09587c39a6d71c94968075c7ab610612",
+            "id": "7c925cf5610e9a5adb6a51d488de3499",
             "name": "",
             "url": "http:\/\/svcs.sandbox.paypal.com\/\/Invoice\/CreateAndSendInvoice",
             "description": "",
@@ -535,11 +535,11 @@
             "responses": [],
             "currentHelper": null,
             "helperAttributes": null,
-            "collectionId": "8f367436f116f832101738d62c7c0c8a",
+            "collectionId": "2a125dbd6eb5098218208b7b85921cf1",
             "rawModeData": ""
         },
         {
-            "id": "3f567d198527552589ab98f46a4ecf54",
+            "id": "46c2084a70f503f5f46d48c963a6fe63",
             "name": "Send Invoice",
             "url": "http:\/\/svcs.sandbox.paypal.com\/\/Invoice\/SendInvoice",
             "description": "Use the SendInvoice API operation to send an invoice to a payer, and notify the payer of the pending invoice.",
@@ -558,11 +558,11 @@
             "responses": [],
             "currentHelper": null,
             "helperAttributes": null,
-            "collectionId": "8f367436f116f832101738d62c7c0c8a",
+            "collectionId": "2a125dbd6eb5098218208b7b85921cf1",
             "rawModeData": ""
         },
         {
-            "id": "3f0f6553f904dc4e6c5ce235ce2bad3e",
+            "id": "6d1db5e33df1bd84b1effa7453de5045",
             "name": "",
             "url": "http:\/\/svcs.sandbox.paypal.com\/\/Invoice\/SendInvoice",
             "description": "",
@@ -581,11 +581,11 @@
             "responses": [],
             "currentHelper": null,
             "helperAttributes": null,
-            "collectionId": "8f367436f116f832101738d62c7c0c8a",
+            "collectionId": "2a125dbd6eb5098218208b7b85921cf1",
             "rawModeData": ""
         },
         {
-            "id": "5551f0e9891da9ba577b5b0d7e255294",
+            "id": "1318c1fa3436c956c8bbd0b3eb99823a",
             "name": "Create Invoice",
             "url": "http:\/\/svcs.sandbox.paypal.com\/\/Invoice\/CreateInvoice",
             "description": "Use the CreateInvoice API operation to create a new invoice. The call includes merchant, payer, and API caller information, in addition to invoice detail. The response to the call contains an invoice ID and URL.",
@@ -604,11 +604,11 @@
             "responses": [],
             "currentHelper": null,
             "helperAttributes": null,
-            "collectionId": "8f367436f116f832101738d62c7c0c8a",
+            "collectionId": "2a125dbd6eb5098218208b7b85921cf1",
             "rawModeData": ""
         },
         {
-            "id": "a3bc63067f8fdf9cf0161f447c6f599c",
+            "id": "5eac0ea5103d6107674b85ac08bd5c84",
             "name": "",
             "url": "http:\/\/svcs.sandbox.paypal.com\/\/Invoice\/CreateInvoice",
             "description": "",
@@ -627,11 +627,11 @@
             "responses": [],
             "currentHelper": null,
             "helperAttributes": null,
-            "collectionId": "8f367436f116f832101738d62c7c0c8a",
+            "collectionId": "2a125dbd6eb5098218208b7b85921cf1",
             "rawModeData": ""
         },
         {
-            "id": "a6bd72cad40b0192fe6a1964381ca2fc",
+            "id": "398d1defa5bcedbf6b8129e34b75586e",
             "name": "Get User Agreement",
             "url": "http:\/\/svcs.sandbox.paypal.com\/\/AdaptiveAccounts\/GetUserAgreement",
             "description": "The GetUserAgreement API operation lets you retrieve the user agreement for the customer to approve the new PayPal account.",
@@ -650,11 +650,11 @@
             "responses": [],
             "currentHelper": null,
             "helperAttributes": null,
-            "collectionId": "8f367436f116f832101738d62c7c0c8a",
+            "collectionId": "2a125dbd6eb5098218208b7b85921cf1",
             "rawModeData": ""
         },
         {
-            "id": "b0add455e2a06ac4ea2b79d28ef42844",
+            "id": "d429acdfc05f9b1e136146bf4b0b0245",
             "name": "",
             "url": "http:\/\/svcs.sandbox.paypal.com\/\/AdaptiveAccounts\/GetUserAgreement",
             "description": "",
@@ -673,11 +673,11 @@
             "responses": [],
             "currentHelper": null,
             "helperAttributes": null,
-            "collectionId": "8f367436f116f832101738d62c7c0c8a",
+            "collectionId": "2a125dbd6eb5098218208b7b85921cf1",
             "rawModeData": ""
         },
         {
-            "id": "e91513ce4ddf260380684204559e8e83",
+            "id": "8652399ccddcfc5de6fd6d542174b9c3",
             "name": "Get Verified Status",
             "url": "http:\/\/svcs.sandbox.paypal.com\/\/AdaptiveAccounts\/GetVerifiedStatus",
             "description": "The GetVerifiedStatus API operation lets you check if a PayPal account status is verified. A PayPal account gains verified status under a variety of circumstances, such as when an account is linked to a verified funding source. Verified status serves to indicate a trust relationship. For more information about account verified status, refer to PayPal.com.",
@@ -696,11 +696,11 @@
             "responses": [],
             "currentHelper": null,
             "helperAttributes": null,
-            "collectionId": "8f367436f116f832101738d62c7c0c8a",
+            "collectionId": "2a125dbd6eb5098218208b7b85921cf1",
             "rawModeData": ""
         },
         {
-            "id": "447327807ae398e83fd19b96daf03e76",
+            "id": "bd65c79ad8203ccf4d7eb94aa0164325",
             "name": "",
             "url": "http:\/\/svcs.sandbox.paypal.com\/\/AdaptiveAccounts\/GetVerifiedStatus",
             "description": "",
@@ -719,11 +719,11 @@
             "responses": [],
             "currentHelper": null,
             "helperAttributes": null,
-            "collectionId": "8f367436f116f832101738d62c7c0c8a",
+            "collectionId": "2a125dbd6eb5098218208b7b85921cf1",
             "rawModeData": ""
         },
         {
-            "id": "2dc3c4cc4a81c29ba4024b4e6e2f6ef7",
+            "id": "83110652e7e48775fdc39854b69e6ff7",
             "name": "Set Funding Source Confirmed",
             "url": "http:\/\/svcs.sandbox.paypal.com\/\/AdaptiveAccounts\/SetFundingSourceConfirmed",
             "description": "The SetFundingSourceConfirmed API operation lets your application set up bank accounts as funding sources for PayPal accounts.",
@@ -742,11 +742,11 @@
             "responses": [],
             "currentHelper": null,
             "helperAttributes": null,
-            "collectionId": "8f367436f116f832101738d62c7c0c8a",
+            "collectionId": "2a125dbd6eb5098218208b7b85921cf1",
             "rawModeData": ""
         },
         {
-            "id": "506dde3879ca0f1532383148f233b130",
+            "id": "089b5dc351c62ad3d23a020dd1315f92",
             "name": "",
             "url": "http:\/\/svcs.sandbox.paypal.com\/\/AdaptiveAccounts\/SetFundingSourceConfirmed",
             "description": "",
@@ -765,11 +765,11 @@
             "responses": [],
             "currentHelper": null,
             "helperAttributes": null,
-            "collectionId": "8f367436f116f832101738d62c7c0c8a",
+            "collectionId": "2a125dbd6eb5098218208b7b85921cf1",
             "rawModeData": ""
         },
         {
-            "id": "d1dd33baf9e541a1c8bf5cc42bf1b062",
+            "id": "2a6746ad258d557752075d79d84bbe10",
             "name": "Add Payment Card",
             "url": "http:\/\/svcs.sandbox.paypal.com\/\/AdaptiveAccounts\/AddPaymentCard",
             "description": "The AddPaymentCard API operation lets your application set up credit cards as funding sources for PayPal accounts.",
@@ -788,11 +788,11 @@
             "responses": [],
             "currentHelper": null,
             "helperAttributes": null,
-            "collectionId": "8f367436f116f832101738d62c7c0c8a",
+            "collectionId": "2a125dbd6eb5098218208b7b85921cf1",
             "rawModeData": ""
         },
         {
-            "id": "d5f624389a848cd691412764c60415db",
+            "id": "f86a842281b9e0350d2be7d4e5daa8d8",
             "name": "",
             "url": "http:\/\/svcs.sandbox.paypal.com\/\/AdaptiveAccounts\/AddPaymentCard",
             "description": "",
@@ -811,11 +811,11 @@
             "responses": [],
             "currentHelper": null,
             "helperAttributes": null,
-            "collectionId": "8f367436f116f832101738d62c7c0c8a",
+            "collectionId": "2a125dbd6eb5098218208b7b85921cf1",
             "rawModeData": ""
         },
         {
-            "id": "bd81b80cb5f5e9555008b5d92f99d472",
+            "id": "70b7c0bb59bab686b3de4d17f24aa8eb",
             "name": "Add Bank Account",
             "url": "http:\/\/svcs.sandbox.paypal.com\/\/AdaptiveAccounts\/AddBankAccount",
             "description": "The AddBankAccount API operation lets your application set up bank accounts as funding sources for PayPal accounts.",
@@ -834,11 +834,11 @@
             "responses": [],
             "currentHelper": null,
             "helperAttributes": null,
-            "collectionId": "8f367436f116f832101738d62c7c0c8a",
+            "collectionId": "2a125dbd6eb5098218208b7b85921cf1",
             "rawModeData": ""
         },
         {
-            "id": "d507113db7ee1dec98ed9b79c354109c",
+            "id": "f03bedd1dd05a41dd4b4dff9f24044f6",
             "name": "",
             "url": "http:\/\/svcs.sandbox.paypal.com\/\/AdaptiveAccounts\/AddBankAccount",
             "description": "",
@@ -857,11 +857,11 @@
             "responses": [],
             "currentHelper": null,
             "helperAttributes": null,
-            "collectionId": "8f367436f116f832101738d62c7c0c8a",
+            "collectionId": "2a125dbd6eb5098218208b7b85921cf1",
             "rawModeData": ""
         },
         {
-            "id": "d8b0014a6f3ff8a112b26d61cf4e8c9f",
+            "id": "1ba8cae127bf5f7ba49af6480547e745",
             "name": "Create Account",
             "url": "http:\/\/svcs.sandbox.paypal.com\/\/AdaptiveAccounts\/CreateAccount",
             "description": "The CreateAccount API operation enables you to create a PayPal account on behalf of a third party.",
@@ -895,11 +895,11 @@
             "responses": [],
             "currentHelper": null,
             "helperAttributes": null,
-            "collectionId": "8f367436f116f832101738d62c7c0c8a",
+            "collectionId": "2a125dbd6eb5098218208b7b85921cf1",
             "rawModeData": ""
         },
         {
-            "id": "62f448b53efaf4d42a6dbfa55e214dc2",
+            "id": "37a1d9c3269fefc5599582ffc9bb273e",
             "name": "",
             "url": "http:\/\/svcs.sandbox.paypal.com\/\/AdaptiveAccounts\/CreateAccount",
             "description": "",
@@ -918,11 +918,11 @@
             "responses": [],
             "currentHelper": null,
             "helperAttributes": null,
-            "collectionId": "8f367436f116f832101738d62c7c0c8a",
+            "collectionId": "2a125dbd6eb5098218208b7b85921cf1",
             "rawModeData": ""
         },
         {
-            "id": "7a755b59f4c0a5c7cea33eb8befc32d3",
+            "id": "674fed99bb6cfa20d2e84de0caeea92e",
             "name": "Get Funding Plans",
             "url": "http:\/\/svcs.sandbox.paypal.com\/\/AdaptivePayments\/GetFundingPlans",
             "description": "Use the GetFundingPlans API operation to determine the funding sources that are available for a specified payment, identified by its key, which takes into account the preferences and country of the receiver as well as the payment amount. You must be both the sender of the payment and the caller of this API operation",
@@ -941,11 +941,11 @@
             "responses": [],
             "currentHelper": null,
             "helperAttributes": null,
-            "collectionId": "8f367436f116f832101738d62c7c0c8a",
+            "collectionId": "2a125dbd6eb5098218208b7b85921cf1",
             "rawModeData": ""
         },
         {
-            "id": "9d128d8433b1df0ccf8958a2eda1c178",
+            "id": "dd4521f2198a8b3c1601c258553a58fe",
             "name": "",
             "url": "http:\/\/svcs.sandbox.paypal.com\/\/AdaptivePayments\/GetFundingPlans",
             "description": "",
@@ -964,11 +964,11 @@
             "responses": [],
             "currentHelper": null,
             "helperAttributes": null,
-            "collectionId": "8f367436f116f832101738d62c7c0c8a",
+            "collectionId": "2a125dbd6eb5098218208b7b85921cf1",
             "rawModeData": ""
         },
         {
-            "id": "5a17c62739a5a9653e70da412c10d0f2",
+            "id": "3a03359092c2f0f67c6400634581e1a2",
             "name": "Get Shipping Addresses",
             "url": "http:\/\/svcs.sandbox.paypal.com\/\/AdaptivePayments\/GetShippingAddresses",
             "description": "Use the GetShippingAddresses API operation to obtain the selected shipping address. You must have created the payment or preapproval key that identifies the account holder whose shipping address you want to obtain, or be the primary receiver of the payment or one of the parallel receivers of the payment. The shipping address is available only if it was provided during the embedded payment flow.",
@@ -987,11 +987,11 @@
             "responses": [],
             "currentHelper": null,
             "helperAttributes": null,
-            "collectionId": "8f367436f116f832101738d62c7c0c8a",
+            "collectionId": "2a125dbd6eb5098218208b7b85921cf1",
             "rawModeData": ""
         },
         {
-            "id": "fba1e4c7f85a7b9b72e71962a0023f19",
+            "id": "9ee0ab83e7e7562cd14783a38b8f2705",
             "name": "",
             "url": "http:\/\/svcs.sandbox.paypal.com\/\/AdaptivePayments\/GetShippingAddresses",
             "description": "",
@@ -1010,11 +1010,11 @@
             "responses": [],
             "currentHelper": null,
             "helperAttributes": null,
-            "collectionId": "8f367436f116f832101738d62c7c0c8a",
+            "collectionId": "2a125dbd6eb5098218208b7b85921cf1",
             "rawModeData": ""
         },
         {
-            "id": "495a6ec0bef2debdb72c648f71d5c4bc",
+            "id": "f996ab6251a8ccb58dbce336aed5e385",
             "name": "Execute Payment",
             "url": "http:\/\/svcs.sandbox.paypal.com\/\/AdaptivePayments\/ExecutePayment",
             "description": "The ExecutePayment API operation lets you execute a payment set up with the Pay API operation with the actionType CREATE. To pay receivers identified in the Pay call, set the pay key from the PayResponse message in the ExecutePaymentRequest message.",
@@ -1033,11 +1033,11 @@
             "responses": [],
             "currentHelper": null,
             "helperAttributes": null,
-            "collectionId": "8f367436f116f832101738d62c7c0c8a",
+            "collectionId": "2a125dbd6eb5098218208b7b85921cf1",
             "rawModeData": ""
         },
         {
-            "id": "5c9ef5f0af0c5e54bfd6be2746e395ec",
+            "id": "dba45fb7384ff84369eca1a1998b071d",
             "name": "",
             "url": "http:\/\/svcs.sandbox.paypal.com\/\/AdaptivePayments\/ExecutePayment",
             "description": "",
@@ -1056,11 +1056,11 @@
             "responses": [],
             "currentHelper": null,
             "helperAttributes": null,
-            "collectionId": "8f367436f116f832101738d62c7c0c8a",
+            "collectionId": "2a125dbd6eb5098218208b7b85921cf1",
             "rawModeData": ""
         },
         {
-            "id": "b97a199e04510c3851ae8d8af4fd01a5",
+            "id": "42f9e675d5ef9be6c74fb424b5dfb411",
             "name": "Set Payment Options",
             "url": "http:\/\/svcs.sandbox.paypal.com\/\/AdaptivePayments\/SetPaymentOptions",
             "description": "You use the SetPaymentOptions API operation to specify settings for a payment of the actionType CREATE. \n\t\t\t\t\tThis actionType is specified in the PayRequest message.",
@@ -1079,11 +1079,11 @@
             "responses": [],
             "currentHelper": null,
             "helperAttributes": null,
-            "collectionId": "8f367436f116f832101738d62c7c0c8a",
+            "collectionId": "2a125dbd6eb5098218208b7b85921cf1",
             "rawModeData": ""
         },
         {
-            "id": "bec69cfc32a67031fb1525cf014fff32",
+            "id": "8e8330eaf8095fc3aac3fd54133d6746",
             "name": "",
             "url": "http:\/\/svcs.sandbox.paypal.com\/\/AdaptivePayments\/SetPaymentOptions",
             "description": "",
@@ -1102,11 +1102,11 @@
             "responses": [],
             "currentHelper": null,
             "helperAttributes": null,
-            "collectionId": "8f367436f116f832101738d62c7c0c8a",
+            "collectionId": "2a125dbd6eb5098218208b7b85921cf1",
             "rawModeData": ""
         },
         {
-            "id": "9d6cb994a5476e5b683914c13551d48b",
+            "id": "44c5515eaa92e74014579ac7e26be106",
             "name": "Get Payment Options",
             "url": "http:\/\/svcs.sandbox.paypal.com\/\/AdaptivePayments\/GetPaymentOptions",
             "description": "You use the GetPaymentOptions API operation to retrieve the payment options passed with the SetPaymentOptionsRequest.",
@@ -1125,11 +1125,11 @@
             "responses": [],
             "currentHelper": null,
             "helperAttributes": null,
-            "collectionId": "8f367436f116f832101738d62c7c0c8a",
+            "collectionId": "2a125dbd6eb5098218208b7b85921cf1",
             "rawModeData": ""
         },
         {
-            "id": "404a5ca347af6295499a52ba86003140",
+            "id": "beb6f8644da06da2c16ccfb7b173e01d",
             "name": "",
             "url": "http:\/\/svcs.sandbox.paypal.com\/\/AdaptivePayments\/GetPaymentOptions",
             "description": "",
@@ -1148,11 +1148,11 @@
             "responses": [],
             "currentHelper": null,
             "helperAttributes": null,
-            "collectionId": "8f367436f116f832101738d62c7c0c8a",
+            "collectionId": "2a125dbd6eb5098218208b7b85921cf1",
             "rawModeData": ""
         },
         {
-            "id": "3f044b148298d412fd0b34e5a6466ae7",
+            "id": "290294977976f4b2345ccd67936b7750",
             "name": "Refund",
             "url": "http:\/\/svcs.sandbox.paypal.com\/\/AdaptivePayments\/Refund",
             "description": "Use the Refund API operation to refund all or part of a payment. You can specify the amount of the refund and identify the accounts to receive the refund by the payment key or tracking ID, and optionally, by transaction ID or the receivers of the original payment.",
@@ -1171,11 +1171,11 @@
             "responses": [],
             "currentHelper": null,
             "helperAttributes": null,
-            "collectionId": "8f367436f116f832101738d62c7c0c8a",
+            "collectionId": "2a125dbd6eb5098218208b7b85921cf1",
             "rawModeData": ""
         },
         {
-            "id": "66348a9a84f27ed3150ed4b07a07cc52",
+            "id": "bb1524eea8b78b5a59e0f1b998e88363",
             "name": "",
             "url": "http:\/\/svcs.sandbox.paypal.com\/\/AdaptivePayments\/Refund",
             "description": "",
@@ -1194,11 +1194,11 @@
             "responses": [],
             "currentHelper": null,
             "helperAttributes": null,
-            "collectionId": "8f367436f116f832101738d62c7c0c8a",
+            "collectionId": "2a125dbd6eb5098218208b7b85921cf1",
             "rawModeData": ""
         },
         {
-            "id": "561863dcc1f6d4a6ecd1ae9f7441d2d2",
+            "id": "bce026d365d69efe2497ffc0ef2857c4",
             "name": "Convert Currency",
             "url": "http:\/\/svcs.sandbox.paypal.com\/\/AdaptivePayments\/ConvertCurrency",
             "description": "Use the ConvertCurrency API operation to request the current foreign exchange (FX) rate for a specific amount and currency.",
@@ -1217,11 +1217,11 @@
             "responses": [],
             "currentHelper": null,
             "helperAttributes": null,
-            "collectionId": "8f367436f116f832101738d62c7c0c8a",
+            "collectionId": "2a125dbd6eb5098218208b7b85921cf1",
             "rawModeData": ""
         },
         {
-            "id": "02c901e08fa84994c93c6ac5f2e7dfba",
+            "id": "c81d65ce9a35a7662c0616d7da18a570",
             "name": "",
             "url": "http:\/\/svcs.sandbox.paypal.com\/\/AdaptivePayments\/ConvertCurrency",
             "description": "",
@@ -1240,11 +1240,11 @@
             "responses": [],
             "currentHelper": null,
             "helperAttributes": null,
-            "collectionId": "8f367436f116f832101738d62c7c0c8a",
+            "collectionId": "2a125dbd6eb5098218208b7b85921cf1",
             "rawModeData": ""
         },
         {
-            "id": "077df76e92f17bde3d52a934ffbd582d",
+            "id": "278da2c8f477944b6d283055b07c05c2",
             "name": "Cancel Pre-Approval",
             "url": "http:\/\/svcs.sandbox.paypal.com\/\/AdaptivePayments\/CancelPreapproval",
             "description": "Use the CancelPreapproval API operation to handle the canceling of preapprovals. Preapprovals can be canceled regardless of the state they are in, such as active, expired, deactivated, and previously canceled.",
@@ -1263,11 +1263,11 @@
             "responses": [],
             "currentHelper": null,
             "helperAttributes": null,
-            "collectionId": "8f367436f116f832101738d62c7c0c8a",
+            "collectionId": "2a125dbd6eb5098218208b7b85921cf1",
             "rawModeData": ""
         },
         {
-            "id": "f0e181bb71667adb4ecabc1deaac24d5",
+            "id": "e8370a4a726f31b81689b85db295b824",
             "name": "",
             "url": "http:\/\/svcs.sandbox.paypal.com\/\/AdaptivePayments\/CancelPreapproval",
             "description": "",
@@ -1286,11 +1286,11 @@
             "responses": [],
             "currentHelper": null,
             "helperAttributes": null,
-            "collectionId": "8f367436f116f832101738d62c7c0c8a",
+            "collectionId": "2a125dbd6eb5098218208b7b85921cf1",
             "rawModeData": ""
         },
         {
-            "id": "db22f4191482a24ae74fa7d8ec41521a",
+            "id": "5b30bc8ae6659585b1809cb2c916bbb1",
             "name": "Pre-Approval Details",
             "url": "http:\/\/svcs.sandbox.paypal.com\/\/AdaptivePayments\/PreapprovalDetails",
             "description": "Use the PreapprovalDetails API operation to obtain information about an agreement between you and a sender for making payments on the sender???s behalf.",
@@ -1309,11 +1309,11 @@
             "responses": [],
             "currentHelper": null,
             "helperAttributes": null,
-            "collectionId": "8f367436f116f832101738d62c7c0c8a",
+            "collectionId": "2a125dbd6eb5098218208b7b85921cf1",
             "rawModeData": ""
         },
         {
-            "id": "8f83e0460af511e54a7653d3e2861d3b",
+            "id": "9948b9fbbf3f03b7c803c36af22ccb2b",
             "name": "",
             "url": "http:\/\/svcs.sandbox.paypal.com\/\/AdaptivePayments\/PreapprovalDetails",
             "description": "",
@@ -1332,11 +1332,11 @@
             "responses": [],
             "currentHelper": null,
             "helperAttributes": null,
-            "collectionId": "8f367436f116f832101738d62c7c0c8a",
+            "collectionId": "2a125dbd6eb5098218208b7b85921cf1",
             "rawModeData": ""
         },
         {
-            "id": "463808403ae407857de2b24424a222eb",
+            "id": "b2982c04735ab39fb703b02f929a292b",
             "name": "Pre-Approval",
             "url": "http:\/\/svcs.sandbox.paypal.com\/\/AdaptivePayments\/Preapproval",
             "description": "Use the Preapproval API operation to set up an agreement between yourself and a sender for making payments on the sender???s behalf. You set up a preapprovals for a specific maximum amount over a specific period of time and, optionally, by any of the following constraints: the number of payments, a maximum per-payment amount, a specific day of the week or the month, and whether or not a PIN is required for each payment request.",
@@ -1355,11 +1355,11 @@
             "responses": [],
             "currentHelper": null,
             "helperAttributes": null,
-            "collectionId": "8f367436f116f832101738d62c7c0c8a",
+            "collectionId": "2a125dbd6eb5098218208b7b85921cf1",
             "rawModeData": ""
         },
         {
-            "id": "72ab9ff6ca5d7add48a1a793aa26cd45",
+            "id": "cbd4cadb9eef68113596b73239c1c6ff",
             "name": "",
             "url": "http:\/\/svcs.sandbox.paypal.com\/\/AdaptivePayments\/Preapproval",
             "description": "",
@@ -1378,11 +1378,11 @@
             "responses": [],
             "currentHelper": null,
             "helperAttributes": null,
-            "collectionId": "8f367436f116f832101738d62c7c0c8a",
+            "collectionId": "2a125dbd6eb5098218208b7b85921cf1",
             "rawModeData": ""
         },
         {
-            "id": "ce8cf173bc0d866e0e1ee995d8550d35",
+            "id": "538546a37fb8299834540939adfa7b9d",
             "name": "Payment Details",
             "url": "http:\/\/svcs.sandbox.paypal.com\/\/AdaptivePayments\/PaymentDetails",
             "description": "Use the PaymentDetails API operation to obtain information about a payment. You can identify the payment by your tracking ID, the PayPal transaction ID in an IPN message, or the pay key associated with the payment.",
@@ -1401,11 +1401,11 @@
             "responses": [],
             "currentHelper": null,
             "helperAttributes": null,
-            "collectionId": "8f367436f116f832101738d62c7c0c8a",
+            "collectionId": "2a125dbd6eb5098218208b7b85921cf1",
             "rawModeData": ""
         },
         {
-            "id": "2990e105ece7ceb03798101442a9051c",
+            "id": "24c0b82726498d815567183baac660f6",
             "name": "",
             "url": "http:\/\/svcs.sandbox.paypal.com\/\/AdaptivePayments\/PaymentDetails",
             "description": "",
@@ -1424,11 +1424,11 @@
             "responses": [],
             "currentHelper": null,
             "helperAttributes": null,
-            "collectionId": "8f367436f116f832101738d62c7c0c8a",
+            "collectionId": "2a125dbd6eb5098218208b7b85921cf1",
             "rawModeData": ""
         },
         {
-            "id": "0921b2d8d9b11f128b62e755b3637f1e",
+            "id": "cdc8526e822cb3d886521de3a954dbc3",
             "name": "Pay",
             "url": "http:\/\/svcs.sandbox.paypal.com\/\/AdaptivePayments\/Pay",
             "description": "Use the Pay API operation to transfer funds from a sender???s PayPal account to one or more receivers??? PayPal accounts. You can use the Pay API operation to make simple payments, chained payments, or parallel payments; these payments can be explicitly approved, preapproved, or implicitly approved.",
@@ -1447,11 +1447,11 @@
             "responses": [],
             "currentHelper": null,
             "helperAttributes": null,
-            "collectionId": "8f367436f116f832101738d62c7c0c8a",
+            "collectionId": "2a125dbd6eb5098218208b7b85921cf1",
             "rawModeData": ""
         },
         {
-            "id": "789005235cf4aba48c8e29782381f249",
+            "id": "8b83a1498f9872e9233e5fc4a4eb87ad",
             "name": "",
             "url": "http:\/\/svcs.sandbox.paypal.com\/\/AdaptivePayments\/Pay",
             "description": "",
@@ -1470,11 +1470,11 @@
             "responses": [],
             "currentHelper": null,
             "helperAttributes": null,
-            "collectionId": "8f367436f116f832101738d62c7c0c8a",
+            "collectionId": "2a125dbd6eb5098218208b7b85921cf1",
             "rawModeData": ""
         },
         {
-            "id": "00a20b3072952ab8d7107d256fa79f4c",
+            "id": "c19a3ae06718aad61bc9e14f69258048",
             "name": "Cancel Invoice",
             "url": "http:\/\/svcs.sandbox.paypal.com\/\/Invoice\/CancelInvoice",
             "description": "Use the CancelInvoice API operation to cancel an invoice.",
@@ -1493,11 +1493,11 @@
             "responses": [],
             "currentHelper": null,
             "helperAttributes": null,
-            "collectionId": "8f367436f116f832101738d62c7c0c8a",
+            "collectionId": "2a125dbd6eb5098218208b7b85921cf1",
             "rawModeData": ""
         },
         {
-            "id": "69fe87b1ac5a8bb80e9e9fbdcfe98806",
+            "id": "8a76906fa1c9870a0153f3b7524d1318",
             "name": "",
             "url": "http:\/\/svcs.sandbox.paypal.com\/\/Invoice\/CancelInvoice",
             "description": "",
@@ -1516,7 +1516,7 @@
             "responses": [],
             "currentHelper": null,
             "helperAttributes": null,
-            "collectionId": "8f367436f116f832101738d62c7c0c8a",
+            "collectionId": "2a125dbd6eb5098218208b7b85921cf1",
             "rawModeData": ""
         }
     ]
