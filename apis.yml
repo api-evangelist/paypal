@@ -70,3 +70,6 @@ maintainers:
     url: http://apievangelist.com
     email: info@apievangelist.com
 specificationVersion: '0.18'
+type: Index
+position: Consumer
+access: 3rd-Party
