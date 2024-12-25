@@ -57,9 +57,6 @@ tags:
 score: 25
 created: 2024/04/14
 modified: '2024-11-14'
-overlays:
-  - url: /overlays/api-evangelist-ratings.yml
-    type: API Evangelist Ratings
 description: >-
   PayPal allows any business or individual with an email address to securely,
   conveniently and cost-effectively send and receive payments online. Our
