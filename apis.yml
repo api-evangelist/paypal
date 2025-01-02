@@ -6,104 +6,106 @@ apis:
   - aid: paypal:paypal-billing-subscriptions-api
     name: Paypal Billing Subscriptions API
     tags: []
-    description: Needs description.
     properties:
-      - type: OpenAPI
-        url: openapi/paypal-billing-subscriptions-openapi-original.yml
+      - url: openapi/paypal-billing-subscriptions-openapi-original.yml
+        type: OpenAPI
+    description: Needs description.
   - aid: paypal:paypal-products-api
     name: Paypal Products API
     tags: []
-    description: Needs description.
     properties:
-      - type: OpenAPI
-        url: openapi/paypal-catalog-products-openapi-original.yml
+      - url: openapi/paypal-catalog-products-openapi-original.yml
+        type: OpenAPI
+    description: Needs description.
   - aid: paypal:paypal-orders-api
     name: Paypal Orders API
     tags: []
-    description: Needs description.
     properties:
-      - type: OpenAPI
-        url: openapi/paypal-checkout-orders-openapi-original.yml
+      - url: openapi/paypal-checkout-orders-openapi-original.yml
+        type: OpenAPI
+    description: Needs description.
   - aid: paypal:paypal-disputes-api
     name: Paypal Disputes API
     tags: []
-    description: Needs description.
     properties:
-      - type: OpenAPI
-        url: openapi/paypal-customer-disputes-openapi-original.yml
+      - url: openapi/paypal-customer-disputes-openapi-original.yml
+        type: OpenAPI
+    description: Needs description.
   - aid: paypal:paypal-partner-referrals-api
     name: Paypal Partner Referrals API
     tags: []
-    description: Needs description.
     properties:
-      - type: OpenAPI
-        url: openapi/paypal-customer-partner-referrals-openapi-original.yml
+      - url: openapi/paypal-customer-partner-referrals-openapi-original.yml
+        type: OpenAPI
+    description: Needs description.
   - aid: paypal:paypal-invoicing-api
     name: Paypal Invoicing API
     tags: []
-    description: Needs description.
     properties:
-      - type: OpenAPI
-        url: openapi/paypal-invoicing-openapi-original.yml
+      - url: openapi/paypal-invoicing-openapi-original.yml
+        type: OpenAPI
+    description: Needs description.
   - aid: paypal:paypal-notification-webhooks-api
     name: Paypal Notification Webhooks API
     tags: []
-    description: Needs description.
     properties:
-      - type: OpenAPI
-        url: openapi/paypal-notification-webhooks-openapi-original.yml
+      - url: openapi/paypal-notification-webhooks-openapi-original.yml
+        type: OpenAPI
+    description: Needs description.
   - aid: paypal:paypal-payment-experience-api
     name: Paypal Payment Experience API
     tags: []
-    description: Needs description.
     properties:
-      - type: OpenAPI
-        url: openapi/paypal-payment-experience-openapi-original.yml
+      - url: openapi/paypal-payment-experience-openapi-original.yml
+        type: OpenAPI
+    description: Needs description.
   - aid: paypal:paypal-payments-api
     name: Paypal Payments API
     tags: []
-    description: Needs description.
     properties:
-      - type: OpenAPI
-        url: openapi/paypal-payments-openapi-original.yml
+      - url: openapi/paypal-payments-openapi-original.yml
+        type: OpenAPI
+    description: Needs description.
   - aid: paypal:paypal-payouts-api
     name: Paypal Payouts API
     tags: []
-    description: Needs description.
     properties:
-      - type: OpenAPI
-        url: openapi/paypal-payouts-openapi-original.yml
+      - url: openapi/paypal-payouts-openapi-original.yml
+        type: OpenAPI
+    description: Needs description.
   - aid: paypal:paypal-reporting-transactions-api
     name: Paypal Reporting Transactions API
     tags: []
-    description: Needs description.
     properties:
-      - type: OpenAPI
-        url: openapi/paypal-reporting-transactions-openapi-original.yml
+      - url: openapi/paypal-reporting-transactions-openapi-original.yml
+        type: OpenAPI
+    description: Needs description.
   - aid: paypal:paypal-shipping-tracking-api
     name: Paypal Shipping Tracking API
     tags: []
-    description: Needs description.
     properties:
-      - type: OpenAPI
-        url: openapi/paypal-shipping-tracking-openapi-original.yml
+      - url: openapi/paypal-shipping-tracking-openapi-original.yml
+        type: OpenAPI
+    description: Needs description.
   - aid: paypal:paypal-payment-tokens-api
     name: Paypal Payment Tokens API
     tags: []
-    description: Needs description.
     properties:
-      - type: OpenAPI
-        url: openapi/paypal-vault-payment-tokens-openapi-original.yml
+      - url: openapi/paypal-vault-payment-tokens-openapi-original.yml
+        type: OpenAPI
+    description: Needs description.
 name: Paypal
 tags:
   - Payments
   - Invoices
-type: Index
+  - Billing
+  - Commerce
+type: Contract
 score: 25
 access: 3rd-Party
 created: 2024/04/14
 modified: '2025-01-02'
-position: Consumer
+position: Consuming
 description: |-
   PayPal allows any business or individual with an email address to securely,
   conveniently and cost-effectively send and receive payments online. Our
