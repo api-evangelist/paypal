@@ -1,47 +1,110 @@
 aid: paypal
 url: >-
+
   https://raw.githubusercontent.com/api-search/payments/main/_apis/paypal/apis.md
 apis:
   - aid: paypal:paypal-billing-subscriptions-api
     name: Paypal Billing Subscriptions API
     tags: []
-    description: >-
-      You can use billing plans and subscriptions to create subscriptions that
-      process recurring PayPal payments for physical or digital goods, or
-      services. A plan includes pricing and billing cycle information that
-      defines the amount and frequency of charge for a subscription. You can
-      also define a fixed plan, such as a $5 basic plan or a volume- or
-      graduated-based plan with pricing tiers based on the quantity purchased.
-      For more information, see <a href=\"/docs/subscriptions/\">Subscriptions
-      Overview</a>.
-  - aid: paypal:paypal-catalog-products-api
-    name: Paypal Catalog Products API
+    description: Needs description.
+    properties:
+      - type: OpenAPI
+        url: openapi/paypal-billing-subscriptions-openapi-original.yml
+  - aid: paypal:paypal-products-api
+    name: Paypal Products API
     tags: []
-    description: >-
-      Merchants can use the Catalog Products API to create products, which are
-      goods and services.
+    description: Needs description.
+    properties:
+      - type: OpenAPI
+        url: openapi/paypal-catalog-products-openapi-original.yml
   - aid: paypal:paypal-orders-api
     name: Paypal Orders API
     tags: []
-    description: >-
-      An order represents a payment between two or more parties. Use the Orders
-      API to create, update, retrieve, authorize, and capture orders.
+    description: Needs description.
+    properties:
+      - type: OpenAPI
+        url: openapi/paypal-checkout-orders-openapi-original.yml
   - aid: paypal:paypal-disputes-api
     name: Paypal Disputes API
     tags: []
-    description: >-
-      Occasionally, something goes wrong with a customer's order. To dispute a
-      charge, a customer can create a dispute with PayPal. PayPal merchants,
-      partners, and external developers can use the PayPal Disputes API to
-      manage customer disputes.
+    description: Needs description.
+    properties:
+      - type: OpenAPI
+        url: openapi/paypal-customer-disputes-openapi-original.yml
+  - aid: paypal:paypal-partner-referrals-api
+    name: Paypal Partner Referrals API
+    tags: []
+    description: Needs description.
+    properties:
+      - type: OpenAPI
+        url: openapi/paypal-customer-partner-referrals-openapi-original.yml
+  - aid: paypal:paypal-invoicing-api
+    name: Paypal Invoicing API
+    tags: []
+    description: Needs description.
+    properties:
+      - type: OpenAPI
+        url: openapi/paypal-invoicing-openapi-original.yml
+  - aid: paypal:paypal-notification-webhooks-api
+    name: Paypal Notification Webhooks API
+    tags: []
+    description: Needs description.
+    properties:
+      - type: OpenAPI
+        url: openapi/paypal-notification-webhooks-openapi-original.yml
+  - aid: paypal:paypal-payment-experience-api
+    name: Paypal Payment Experience API
+    tags: []
+    description: Needs description.
+    properties:
+      - type: OpenAPI
+        url: openapi/paypal-payment-experience-openapi-original.yml
+  - aid: paypal:paypal-payments-api
+    name: Paypal Payments API
+    tags: []
+    description: Needs description.
+    properties:
+      - type: OpenAPI
+        url: openapi/paypal-payments-openapi-original.yml
+  - aid: paypal:paypal-payouts-api
+    name: Paypal Payouts API
+    tags: []
+    description: Needs description.
+    properties:
+      - type: OpenAPI
+        url: openapi/paypal-payouts-openapi-original.yml
+  - aid: paypal:paypal-reporting-transactions-api
+    name: Paypal Reporting Transactions API
+    tags: []
+    description: Needs description.
+    properties:
+      - type: OpenAPI
+        url: openapi/paypal-reporting-transactions-openapi-original.yml
+  - aid: paypal:paypal-shipping-tracking-api
+    name: Paypal Shipping Tracking API
+    tags: []
+    description: Needs description.
+    properties:
+      - type: OpenAPI
+        url: openapi/paypal-shipping-tracking-openapi-original.yml
+  - aid: paypal:paypal-payment-tokens-api
+    name: Paypal Payment Tokens API
+    tags: []
+    description: Needs description.
+    properties:
+      - type: OpenAPI
+        url: openapi/paypal-vault-payment-tokens-openapi-original.yml
 name: Paypal
 tags:
   - Payments
   - Invoices
+type: Index
 score: 25
+access: 3rd-Party
 created: 2024/04/14
-modified: '2024-11-14'
-description: >-
+modified: '2025-01-02'
+position: Consumer
+description: |-
   PayPal allows any business or individual with an email address to securely,
   conveniently and cost-effectively send and receive payments online. Our
   network builds on the existing financial infrastructure of bank accounts and
@@ -51,6 +114,3 @@ maintainers:
     url: http://apievangelist.com
     email: info@apievangelist.com
 specificationVersion: '0.18'
-type: Index
-position: Consumer
-access: 3rd-Party
