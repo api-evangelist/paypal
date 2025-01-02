@@ -106,11 +106,16 @@ access: 3rd-Party
 created: 2024/04/14
 modified: '2025-01-02'
 position: Consuming
-description: |-
-  PayPal allows any business or individual with an email address to securely,
-  conveniently and cost-effectively send and receive payments online. Our
-  network builds on the existing financial infrastructure of bank accounts and
-  credit cards to create a global, real-time payment solution.
+description: >-
+  PayPal is an online payment system that allows individuals and businesses to
+  send and receive money electronically. It provides a convenient and secure way
+  to make transactions without the need to share sensitive financial information
+  with the other party. Users can link their bank accounts, credit cards, or
+  debit cards to their PayPal account to easily transfer funds. PayPal also
+  offers a range of additional services, such as shopping protection and fraud
+  prevention, to ensure a safe and reliable experience for its users. Overall,
+  PayPal simplifies the process of sending and receiving money online, making it
+  a popular choice for individuals and businesses alike.
 maintainers:
   - FN: API Evangelist
     url: http://apievangelist.com
