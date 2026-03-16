@@ -282,7 +282,6 @@ description: >-
   PayPal simplifies the process of sending and receiving money online, making it
   a popular choice for individuals and businesses alike.
 maintainers:
-  - FN: API Evangelist
-    url: http://apievangelist.com
-    email: info@apievangelist.com
+  - FN: Kin Lane
+    email: kin@apievangelist.com
 specificationVersion: '0.18'
