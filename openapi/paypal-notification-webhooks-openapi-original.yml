@@ -10,30 +10,18 @@ servers:
   - url: https://api-m.paypal.com
     description: PayPal Live Environment
 tags:
-  - name: webhooks
-    description: Use the `/webhooks` resource to subscribe your webhook listener to events, list webhooks for an app, show details for, update, delete, and list event subscriptions for webhooks.
-  - name: webhooks-lookup
-    description: Use the `/webhooks-lookup` resource to create, list, show details for, and delete webhook lookups.
-  - name: verify-webhook-signature
-    description: Use the `/verify-webhook-signature` resource to verify a webhook signature.
-  - name: webhooks-event-types
-    description: Use the `/webhooks-event-types` resource to list available events to which any webhook can subscribe.
-  - name: webhooks-events
-    description: Use the `/webhooks-events` resource to list, show details for, and resend event notifications.
-  - name: simulate-event
+  - name: Simulate-Event
     description: Use the `/simulate-event` resource to use a sample payload to simulate a webhook event. The events that this call generates only serve to validate the connection to the listener URL and to show how webhook events look. <blockquote><strong>Note:</strong> You can also use the <a href="/docs/api/notifications/webhooks/simulator/">Webhooks simulator</a> to simulate webhook events.</blockquote>
-  - name: publish-event-with-payload
-    description: Use the `/publish-event-with-payload` resource to publish an event with a specified payload.
-  - name: publish-event-with-reference
-    description: Use the `/publish-event-with-reference` resource to publish an event with a specified reference.
-  - name: webhook-event-delivery-status
-    description: Use the `/webhook-event-delivery-status` resource to show the webhook event send status.
-  - name: webhooks-error-types
-    description: Use the `/error-types` resource to create and list available webhook error types.
-  - name: webhooks-errors
-    description: Use the `/webhooks-errors` resource to create, list, show details for, and update webhook errors.
-  - name: batch-resend
-    description: Use the `/batch-resend` resource to send out IPN/Webhooks in batches.
+  - name: Verify-Webhook-Signature
+    description: Use the `/verify-webhook-signature` resource to verify a webhook signature.
+  - name: Webhooks
+    description: Use the `/webhooks` resource to subscribe your webhook listener to events, list webhooks for an app, show details for, update, delete, and list event subscriptions for webhooks.
+  - name: Webhooks-Event-Types
+    description: Use the `/webhooks-event-types` resource to list available events to which any webhook can subscribe.
+  - name: Webhooks-Events
+    description: Use the `/webhooks-events` resource to list, show details for, and resend event notifications.
+  - name: Webhooks-Lookup
+    description: Use the `/webhooks-lookup` resource to create, list, show details for, and delete webhook lookups.
 externalDocs:
   url: https://developer.paypal.com/docs/api/webhooks/v1/
 paths:
@@ -71,7 +59,7 @@ paths:
         - Oauth2:
             - https://uri.paypal.com/services/applications/webhooks
       tags:
-        - webhooks
+        - Webhooks
     get:
       summary: Paypal List webhooks
       description: Lists webhooks for an app.
@@ -95,7 +83,7 @@ paths:
         - Oauth2:
             - https://uri.paypal.com/services/applications/webhooks
       tags:
-        - webhooks
+        - Webhooks
   "/v1/notifications/webhooks/{webhook_id}":
     get:
       summary: Paypal Show webhook details
@@ -120,7 +108,7 @@ paths:
         - Oauth2:
             - https://uri.paypal.com/services/applications/webhooks
       tags:
-        - webhooks
+        - Webhooks
     patch:
       summary: Paypal Update webhook
       description: Updates a webhook to replace webhook fields with new values. Supports only the `replace` operation. Pass a `json_patch` object with `replace` operation and `path`, which is `/url` for a URL or `/event_types` for events. The `value` is either the URL or a list of events.
@@ -149,7 +137,7 @@ paths:
         - Oauth2:
             - https://uri.paypal.com/services/applications/webhooks
       tags:
-        - webhooks
+        - Webhooks
     delete:
       summary: Paypal Delete webhook
       description: Deletes a webhook, by ID.
@@ -169,7 +157,7 @@ paths:
         - Oauth2:
             - https://uri.paypal.com/services/applications/webhooks
       tags:
-        - webhooks
+        - Webhooks
   "/v1/notifications/webhooks/{webhook_id}/event-types":
     get:
       summary: Paypal List event subscriptions for webhook
@@ -194,7 +182,7 @@ paths:
         - Oauth2:
             - https://uri.paypal.com/services/applications/webhooks
       tags:
-        - webhooks
+        - Webhooks
   "/v1/notifications/webhooks-lookup":
     post:
       summary: Paypal Create webhook lookup
@@ -217,7 +205,7 @@ paths:
         - Oauth2:
             - https://uri.paypal.com/services/applications/webhooks
       tags:
-        - webhooks-lookup
+        - Webhooks-Lookup
     get:
       summary: Paypal List webhook lookups
       description: Lists webhook lookups.
@@ -239,7 +227,7 @@ paths:
         - Oauth2:
             - https://uri.paypal.com/services/applications/webhooks
       tags:
-        - webhooks-lookup
+        - Webhooks-Lookup
   "/v1/notifications/webhooks-lookup/{webhook_lookup_id}":
     get:
       summary: Paypal Show webhook lookup details
@@ -264,7 +252,7 @@ paths:
         - Oauth2:
             - https://uri.paypal.com/services/applications/webhooks
       tags:
-        - webhooks-lookup
+        - Webhooks-Lookup
     delete:
       summary: Paypal Delete webhook lookup
       description: Deletes a webhook lookup, by ID.
@@ -284,7 +272,7 @@ paths:
         - Oauth2:
             - https://uri.paypal.com/services/applications/webhooks
       tags:
-        - webhooks-lookup
+        - Webhooks-Lookup
   "/v1/notifications/verify-webhook-signature":
     post:
       summary: Paypal Verify webhook signature
@@ -353,7 +341,7 @@ paths:
             - https://uri.paypal.com/services/applications/webhooks
             - https://uri.paypal.com/services/applications/verify-webhook-signature
       tags:
-        - verify-webhook-signature
+        - Verify-Webhook-Signature
   "/v1/notifications/webhooks-event-types":
     get:
       summary: Paypal List available events
@@ -373,7 +361,7 @@ paths:
               schema:
                 "$ref": "#/components/schemas/error"
       tags:
-        - webhooks-event-types
+        - Webhooks-Event-Types
   "/v1/notifications/webhooks-events":
     get:
       summary: Paypal List event notifications
@@ -402,7 +390,7 @@ paths:
         - Oauth2:
             - https://uri.paypal.com/services/applications/webhooks
       tags:
-        - webhooks-events
+        - Webhooks-Events
   "/v1/notifications/webhooks-events/{event_id}":
     get:
       summary: Paypal Show event notification details
@@ -427,7 +415,7 @@ paths:
         - Oauth2:
             - https://uri.paypal.com/services/applications/webhooks
       tags:
-        - webhooks-events
+        - Webhooks-Events
   "/v1/notifications/webhooks-events/{event_id}/resend":
     post:
       summary: Paypal Resend event notification
@@ -457,7 +445,7 @@ paths:
         - Oauth2:
             - https://uri.paypal.com/services/applications/webhooks
       tags:
-        - webhooks-events
+        - Webhooks-Events
   "/v1/notifications/simulate-event":
     post:
       summary: Paypal Simulate webhook event
@@ -491,7 +479,7 @@ paths:
         - Oauth2:
             - https://uri.paypal.com/services/applications/webhooks
       tags:
-        - simulate-event
+        - Simulate-Event
 components:
   securitySchemes:
     Oauth2:

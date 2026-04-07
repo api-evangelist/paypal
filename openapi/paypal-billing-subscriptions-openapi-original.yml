@@ -10,9 +10,9 @@ servers:
   - url: https://api-m.paypal.com
     description: PayPal Live Environment
 tags:
-  - name: plans
+  - name: Plans
     description: Use the `/billing/plans` resource to create and manage plans.
-  - name: subscriptions
+  - name: Subscriptions
     description: Use the `/billing/subscriptions` resource to create and manage subscriptions.
 externalDocs:
   url: https://developer.paypal.com/docs/api/subscriptions/v1/
@@ -208,7 +208,7 @@ paths:
         - Oauth2:
             - https://uri.paypal.com/services/subscriptions
       tags:
-        - plans
+        - Plans
     get:
       summary: Paypal List plans
       description: Lists billing plans.
@@ -269,7 +269,7 @@ paths:
         - Oauth2:
             - https://uri.paypal.com/services/subscriptions
       tags:
-        - plans
+        - Plans
   "/v1/billing/plans/{id}":
     get:
       summary: Paypal Show plan details
@@ -320,7 +320,7 @@ paths:
         - Oauth2:
             - https://uri.paypal.com/services/subscriptions
       tags:
-        - plans
+        - Plans
     patch:
       summary: Paypal Update plan
       description: Updates a plan with the `CREATED` or `ACTIVE` status. For an `INACTIVE` plan, you can make only status updates.<br/>You can patch these attributes and objects:<table><thead><tr><th>Attribute or object</th><th>Operations</th></tr></thead><tbody><tr><td><code>description</code></td><td>replace</td></tr><tr><td><code>payment_preferences.auto_bill_outstanding</code></td><td>replace</td></tr><tr><td><code>taxes.percentage</code></td><td>replace</td></tr><tr><td><code>payment_preferences.payment_failure_threshold</code></td><td>replace</td></tr><tr><td><code>payment_preferences.setup_fee</code></td><td>replace</td></tr><tr><td><code>payment_preferences.setup_fee_failure_action</code></td><td>replace</td></tr><tr><td><code>name</code></td><td>replace</td></tr></tbody></table>
@@ -384,7 +384,7 @@ paths:
         - Oauth2:
             - https://uri.paypal.com/services/subscriptions
       tags:
-        - plans
+        - Plans
   "/v1/billing/plans/{id}/activate":
     post:
       summary: Paypal Activate plan
@@ -439,7 +439,7 @@ paths:
         - Oauth2:
             - https://uri.paypal.com/services/subscriptions
       tags:
-        - plans
+        - Plans
   "/v1/billing/plans/{id}/deactivate":
     post:
       summary: Paypal Deactivate plan
@@ -494,7 +494,7 @@ paths:
         - Oauth2:
             - https://uri.paypal.com/services/subscriptions
       tags:
-        - plans
+        - Plans
   "/v1/billing/plans/{id}/update-pricing-schemes":
     post:
       summary: Paypal Update pricing
@@ -587,7 +587,7 @@ paths:
         - Oauth2:
             - https://uri.paypal.com/services/subscriptions
       tags:
-        - plans
+        - Plans
   "/v1/billing/subscriptions":
     post:
       summary: Paypal Create subscription
@@ -772,7 +772,7 @@ paths:
         - Oauth2:
             - https://uri.paypal.com/services/subscriptions
       tags:
-        - subscriptions
+        - Subscriptions
   "/v1/billing/subscriptions/{id}":
     get:
       summary: Paypal Show subscription details
@@ -824,7 +824,7 @@ paths:
         - Oauth2:
             - https://uri.paypal.com/services/subscriptions
       tags:
-        - subscriptions
+        - Subscriptions
     patch:
       summary: Paypal Update subscription
       description: Updates a subscription which could be in <code>ACTIVE</code> or <code>SUSPENDED</code> status. You can override plan level default attributes by providing customised values for plan path in the patch request.<br /> <ul> <li>You cannot update attributes that have already completed (Example - trial cycles can’t be updated if completed).</li> <li>Once overridden, changes to plan resource will not impact subscription.</li> <li>Any price update will not impact billing cycles within next 10 days (Applicable only for subscriptions funded by PayPal account).</li> </ul> Following are the fields eligible for patch.<table><thead><tr><th>Attribute or object</th><th>Operations</th></tr></thead><tbody><tr><td><code>billing_info.outstanding_balance</code></td><td>replace</td></tr><tr><td><code>custom_id</code></td><td>add,replace</td></tr><tr><td><code>plan.billing_cycles[@sequence==n].<br/>pricing_scheme.fixed_price</code></td><td>add,replace</td></tr><tr><td><code>plan.billing_cycles[@sequence==n].<br/>pricing_scheme.tiers</code></td><td>replace</td></tr><tr><td><code>plan.billing_cycles[@sequence==n].<br/>total_cycles</code></td><td>replace</td></tr><tr><td><code>plan.payment_preferences.<br/>auto_bill_outstanding</code></td><td>replace</td></tr><tr><td><code>plan.payment_preferences.<br/>payment_failure_threshold</code></td><td>replace</td></tr><tr><td><code>plan.taxes.inclusive</code></td><td>add,replace</td></tr><tr><td><code>plan.taxes.percentage</code></td><td>add,replace</td></tr><tr><td><code>shipping_amount</code></td><td>add,replace</td></tr><tr><td><code>start_time</code></td><td>replace</td></tr><tr><td><code>subscriber.shipping_address</code></td><td>add,replace</td></tr><tr><td><code>subscriber.payment_source (for subscriptions funded<br/>by card payments)</code></td><td>replace</td></tr></tbody></table>
@@ -888,7 +888,7 @@ paths:
         - Oauth2:
             - https://uri.paypal.com/services/subscriptions
       tags:
-        - subscriptions
+        - Subscriptions
   "/v1/billing/subscriptions/{id}/revise":
     post:
       summary: Paypal Revise plan or quantity of subscription
@@ -1023,7 +1023,7 @@ paths:
         - Oauth2:
             - https://uri.paypal.com/services/subscriptions
       tags:
-        - subscriptions
+        - Subscriptions
   "/v1/billing/subscriptions/{id}/suspend":
     post:
       summary: Paypal Suspend subscription
@@ -1095,7 +1095,7 @@ paths:
         - Oauth2:
             - https://uri.paypal.com/services/subscriptions
       tags:
-        - subscriptions
+        - Subscriptions
   "/v1/billing/subscriptions/{id}/cancel":
     post:
       summary: Paypal Cancel subscription
@@ -1167,7 +1167,7 @@ paths:
         - Oauth2:
             - https://uri.paypal.com/services/subscriptions
       tags:
-        - subscriptions
+        - Subscriptions
   "/v1/billing/subscriptions/{id}/activate":
     post:
       summary: Paypal Activate subscription
@@ -1239,7 +1239,7 @@ paths:
         - Oauth2:
             - https://uri.paypal.com/services/subscriptions
       tags:
-        - subscriptions
+        - Subscriptions
   "/v1/billing/subscriptions/{id}/capture":
     post:
       summary: Paypal Capture authorized payment on subscription
@@ -1322,7 +1322,7 @@ paths:
         - Oauth2:
             - https://uri.paypal.com/services/subscriptions
       tags:
-        - subscriptions
+        - Subscriptions
   "/v1/billing/subscriptions/{id}/transactions":
     get:
       summary: Paypal List transactions for subscription
@@ -1383,7 +1383,7 @@ paths:
         - Oauth2:
             - https://uri.paypal.com/services/subscriptions
       tags:
-        - subscriptions
+        - Subscriptions
 components:
   requestBodies:
     patch_request:

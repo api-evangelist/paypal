@@ -10,7 +10,7 @@ servers:
   - url: https://api-m.paypal.com
     description: PayPal Live Environment
 tags:
-  - name: web-profiles
+  - name: Web-Profiles
     description: Use the `/payment-experience/web-profiles` resource to create, show details for, list, update, partially update, and delete web experience profiles.
 externalDocs:
   url: https://developer.paypal.com/docs/api/payment-experience/v1/
@@ -55,7 +55,7 @@ paths:
         - Oauth2:
             - https://uri.paypal.com/services/payments/realtimepayment
       tags:
-        - web-profiles
+        - Web-Profiles
     get:
       summary: Paypal List web experience profiles
       description: Lists the latest 20 web experience profiles for a merchant or subject. To show details for these or additional profiles, you can show web experience profile details by ID.
@@ -85,7 +85,7 @@ paths:
         - Oauth2:
             - https://uri.paypal.com/services/payments/realtimepayment
       tags:
-        - web-profiles
+        - Web-Profiles
   "/v1/payment-experience/web-profiles/{id}":
     put:
       summary: Paypal Update web experience profile
@@ -116,7 +116,7 @@ paths:
         - Oauth2:
             - https://uri.paypal.com/services/payments/realtimepayment
       tags:
-        - web-profiles
+        - Web-Profiles
     patch:
       summary: Paypal Partially update web experience profile
       description: Partially-updates a web experience profile, by ID. In the JSON request body, specify a patch object, the path of the profile location to update, and a new value.
@@ -157,7 +157,7 @@ paths:
         - Oauth2:
             - https://uri.paypal.com/services/payments/realtimepayment
       tags:
-        - web-profiles
+        - Web-Profiles
     get:
       summary: Paypal Show web experience profile details by ID
       description: Shows details for a web experience profile, by ID.
@@ -189,7 +189,7 @@ paths:
         - Oauth2:
             - https://uri.paypal.com/services/payments/realtimepayment
       tags:
-        - web-profiles
+        - Web-Profiles
     delete:
       summary: Paypal Delete web experience profile
       description: Deletes a web experience profile, by ID.
@@ -217,7 +217,7 @@ paths:
         - Oauth2:
             - https://uri.paypal.com/services/payments/realtimepayment
       tags:
-        - web-profiles
+        - Web-Profiles
 components:
   requestBodies:
     web_profile:

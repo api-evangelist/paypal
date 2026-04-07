@@ -74,7 +74,7 @@ paths:
         - Oauth2:
             - https://uri.paypal.com/services/invoicing/invoices/readwrite
       tags:
-        - invoices
+        - Invoices
     get:
       summary: Paypal List invoices
       description: Lists invoices. To filter the invoices that appear in the response, you can specify one or more optional query parameters.
@@ -122,7 +122,7 @@ paths:
         - Oauth2:
             - https://uri.paypal.com/services/invoicing/invoices/read
       tags:
-        - invoices
+        - Invoices
   "/v2/invoicing/invoices/{invoice_id}/send":
     post:
       summary: Paypal Send invoice
@@ -200,7 +200,7 @@ paths:
         - Oauth2:
             - https://uri.paypal.com/services/invoicing/invoices/readwrite
       tags:
-        - invoices
+        - Invoices
   "/v2/invoicing/invoices/{invoice_id}/remind":
     post:
       summary: Paypal Send invoice reminder
@@ -274,7 +274,7 @@ paths:
         - Oauth2:
             - https://uri.paypal.com/services/invoicing/invoices/readwrite
       tags:
-        - invoices
+        - Invoices
   "/v2/invoicing/invoices/{invoice_id}/cancel":
     post:
       summary: Paypal Cancel sent invoice
@@ -331,7 +331,7 @@ paths:
         - Oauth2:
             - https://uri.paypal.com/services/invoicing/invoices/readwrite
       tags:
-        - invoices
+        - Invoices
   "/v2/invoicing/invoices/{invoice_id}/payments":
     post:
       summary: Paypal Record payment for invoice
@@ -413,7 +413,7 @@ paths:
         - Oauth2:
             - https://uri.paypal.com/services/invoicing/invoices/readwrite
       tags:
-        - invoices
+        - Invoices
   "/v2/invoicing/invoices/{invoice_id}/payments/{transaction_id}":
     delete:
       summary: Paypal Delete external payment
@@ -453,7 +453,7 @@ paths:
         - Oauth2:
             - https://uri.paypal.com/services/invoicing/invoices/readwrite
       tags:
-        - invoices
+        - Invoices
   "/v2/invoicing/invoices/{invoice_id}/refunds":
     post:
       summary: Paypal Record refund for invoice
@@ -535,7 +535,7 @@ paths:
         - Oauth2:
             - https://uri.paypal.com/services/invoicing/invoices/readwrite
       tags:
-        - invoices
+        - Invoices
   "/v2/invoicing/invoices/{invoice_id}/refunds/{transaction_id}":
     delete:
       summary: Paypal Delete external refund
@@ -575,7 +575,7 @@ paths:
         - Oauth2:
             - https://uri.paypal.com/services/invoicing/invoices/readwrite
       tags:
-        - invoices
+        - Invoices
   "/v2/invoicing/invoices/{invoice_id}/generate-qr-code":
     post:
       summary: Paypal Generate QR code
@@ -623,7 +623,7 @@ paths:
         - Oauth2:
             - https://uri.paypal.com/services/invoicing/invoices/readwrite
       tags:
-        - invoices
+        - Invoices
   "/v2/invoicing/generate-next-invoice-number":
     post:
       summary: Paypal Generate invoice number
@@ -648,7 +648,7 @@ paths:
         - Oauth2:
             - https://uri.paypal.com/services/invoicing/invoices/readwrite
       tags:
-        - invoices
+        - Invoices
   "/v2/invoicing/invoices/{invoice_id}":
     get:
       summary: Paypal Show invoice details
@@ -695,7 +695,7 @@ paths:
         - Oauth2:
             - https://uri.paypal.com/services/invoicing/invoices/read
       tags:
-        - invoices
+        - Invoices
     put:
       summary: Paypal Fully update invoice
       description: Fully updates an invoice, by ID. In the JSON request body, include a complete `invoice` object. This call does not support partial updates.
@@ -775,7 +775,7 @@ paths:
         - Oauth2:
             - https://uri.paypal.com/services/invoicing/invoices/readwrite
       tags:
-        - invoices
+        - Invoices
     delete:
       summary: Paypal Delete invoice
       description: Deletes a draft or scheduled invoice, by ID. Deletes invoices in the draft or scheduled state only. For invoices that have already been sent, you can <a href="/docs/api/invoicing/v2/#invoices_cancel">cancel the invoice</a>. After you delete a draft or scheduled invoice, you can no longer use it or show its details. However, you can reuse its invoice number.
@@ -811,7 +811,7 @@ paths:
         - Oauth2:
             - https://uri.paypal.com/services/invoicing/invoices/readwrite
       tags:
-        - invoices
+        - Invoices
   "/v2/invoicing/search-invoices":
     post:
       summary: Paypal Search for invoices
@@ -868,7 +868,7 @@ paths:
         - Oauth2:
             - https://uri.paypal.com/services/invoicing/invoices/read
       tags:
-        - search-invoices
+        - Search-Invoices
   "/v2/invoicing/templates":
     get:
       summary: Paypal List templates
@@ -916,7 +916,7 @@ paths:
         - Oauth2:
             - https://uri.paypal.com/services/invoicing/invoices/read
       tags:
-        - templates
+        - Templates
     post:
       summary: Paypal Create template
       description: Creates an invoice template. You can use details from this template to create an invoice. You can create up to 50 templates.<blockquote><strong>Note:</strong> Every merchant starts with three PayPal system templates that are optimized for the unit type billed. The template includes `Quantity`, `Hours`, and `Amount`.</blockquote>
@@ -969,7 +969,7 @@ paths:
         - Oauth2:
             - https://uri.paypal.com/services/invoicing/invoices/readwrite
       tags:
-        - templates
+        - Templates
   "/v2/invoicing/templates/{template_id}":
     get:
       summary: Paypal Show template details
@@ -1020,7 +1020,7 @@ paths:
         - Oauth2:
             - https://uri.paypal.com/services/invoicing/invoices/read
       tags:
-        - templates
+        - Templates
     put:
       summary: Paypal Fully update template
       description: Fully updates a template, by ID. In the JSON request body, include a complete `template` object. This call does not support partial updates.
@@ -1077,7 +1077,7 @@ paths:
         - Oauth2:
             - https://uri.paypal.com/services/invoicing/invoices/readwrite
       tags:
-        - templates
+        - Templates
     delete:
       summary: Paypal Delete template
       description: Deletes a template, by ID.
@@ -1133,16 +1133,14 @@ paths:
         - Oauth2:
             - https://uri.paypal.com/services/invoicing/invoices/readwrite
       tags:
-        - templates
+        - Templates
 tags:
-  - name: invoices
+  - name: Invoices
     description: Use the `/invoices` resource to create, update, and send invoices and invoice reminders. To manage invoices, you can also list invoices, show details for invoices, delete draft invoices, and cancel sent invoices. You can also record payments for invoices to mark them as fully or partially paid, or record refunds for invoices to mark them as fully or partially refunded. You can create QR codes for invoices that can be scanned, viewed, and paid by a mobile phone.
-  - name: search-invoices
+  - name: Search-Invoices
     description: Use the `/search-invoices` resource to search for and list invoices that match search criteria.
-  - name: templates
+  - name: Templates
     description: Use the `/templates` resource to create, list, show details for, update, and delete invoice templates. Use the `/templates` resource when you create a third-party invoicing application. For instance, a business can create a template with predefined invoice data. Later, the business can select the template to populate the invoice data.<blockquote><strong>Note:</strong> To upload a logo to display on an invoice, you can use the <strong>Template Settings</strong> dashboard to <a href="https://www.paypal.com/invoice/settings/templates">create a template</a>. When you create an invoice, you can use the URI for that logo.</blockquote>
-  - name: merchant-config
-    description: Use the `/merchant-config` resource to create, update and show details of merchant configuration.
 externalDocs:
   url: https://developer.paypal.com/docs/api/invoicing/v2/
 servers:

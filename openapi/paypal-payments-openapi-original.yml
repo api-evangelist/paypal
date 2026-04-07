@@ -10,20 +10,12 @@ servers:
   - url: https://api-m.paypal.com
     description: PayPal Live Environment
 tags:
-  - name: authorizations
+  - name: Authorizations
     description: Use the `/authorizations` resource to show details for, capture payment for, reauthorize, and void authorized payments.
-  - name: captures
+  - name: Captures
     description: Use the `/captures` resource to show details for and refund a captured payment.
-  - name: refunds
+  - name: Refunds
     description: Use the `/refunds` resource to show refund details.
-  - name: assets
-    description: Assets APIs for Checkout
-  - name: cancel-payment
-    description: Use the <code>/cancel-payment</code> resource to cancel an order capture or order authorization by <code>PayPal-Request-Id</code>. The merchant triggers the cancel action.
-  - name: find-eligible-methods
-    description: Use the `/find-eligible-methods` resource to show list of eligible payment methods for given customer/order context.
-  - name: payment-resource-operations
-    description: Use the `/payment-resource-operations` resource to show verifications details.
 externalDocs:
   url: https://developer.paypal.com/docs/api/payments/v2/
 paths:
@@ -68,7 +60,7 @@ paths:
         default:
           "$ref": "#/components/responses/default"
       tags:
-        - authorizations
+        - Authorizations
       security:
         - Oauth2:
             - https://uri.paypal.com/services/payments/payment/authcapture
@@ -146,7 +138,7 @@ paths:
         default:
           "$ref": "#/components/responses/default"
       tags:
-        - authorizations
+        - Authorizations
       security:
         - Oauth2:
             - https://uri.paypal.com/services/payments/payment/authcapture
@@ -220,7 +212,7 @@ paths:
         default:
           "$ref": "#/components/responses/default"
       tags:
-        - authorizations
+        - Authorizations
       security:
         - Oauth2:
             - https://uri.paypal.com/services/payments/payment/authcapture
@@ -293,7 +285,7 @@ paths:
         default:
           "$ref": "#/components/responses/default"
       tags:
-        - authorizations
+        - Authorizations
       security:
         - Oauth2:
             - https://uri.paypal.com/services/payments/payment/authcapture
@@ -338,7 +330,7 @@ paths:
         default:
           "$ref": "#/components/responses/default"
       tags:
-        - captures
+        - Captures
       security:
         - Oauth2:
             - https://uri.paypal.com/services/payments/payment/authcapture
@@ -430,7 +422,7 @@ paths:
         default:
           "$ref": "#/components/responses/default"
       tags:
-        - captures
+        - Captures
       security:
         - Oauth2:
             - https://uri.paypal.com/services/payments/refund
@@ -477,7 +469,7 @@ paths:
         default:
           "$ref": "#/components/responses/default"
       tags:
-        - refunds
+        - Refunds
       security:
         - Oauth2:
             - https://uri.paypal.com/services/payments/refund

@@ -10,30 +10,10 @@ servers:
   - url: https://api-m.paypal.com
     description: PayPal Live Environment
 tags:
-  - name: disputes
+  - name: Disputes
     description: Use the `/disputes` resource to list disputes, create disputes, show dispute details, and partially a dispute. Normally, an agent at PayPal creates disputes but now you can run test cases in the sandbox that create disputes.
-  - name: disputes-actions
+  - name: Disputes-Actions
     description: Use the `/disputes` resource with a dispute ID and an action to:<ul><li>Accept a claim.</li><li>Accept an offer to resolve a dispute.</li><li>Acknowledge the return of an item related to a dispute.</li><li>Settle a dispute.</li><li>Appeal a dispute.</li><li>Cancel a dispute.</li><li>Change the reason for a dispute.</li><li>Deny an offer to resolve dispute.</li><li>Escalate a dispute to a claim.</li><li>Make an offer to resolve a dispute.</li><li>Make an offer to resolve a dispute.</li><li>Provide evidence for a dispute.</li><li>Provide supporting information for dispute.</li><li>In the sandbox, update the dispute status.</li><li>Send a message about a dispute to the other party in the dispute.</li><ul>
-  - name: referred-disputes
-    description: Use the `/customer/referred-disputes` resource to create a dispute for a referred case that was created by a partner or marketplace, show details for a referred dispute, by ID, notify referred refunds completed to PayPal, notify PayPal about referred dispute adjudication updates, and determine the dispute eligibility for referred disputes.
-  - name: validate-eligibility
-    description: Use the `/validate-eligibility/` resource to determine whether you can create a case for a transaction.
-  - name: compute-metrics
-    description: Use the `/compute-metrics` resource to provide metrics for all disputes.
-  - name: validate-referred-dispute-eligibility
-    description: Use the `/validate-referred-dispute-eligibility` resource to determine whether you can create a referred case for a transaction, by encrypted transaction ID.
-  - name: referred-disputes
-    description: Use the `/referred-disputes` resource to create a dispute for a referred case that was created by a partner or marketplace, show details for a referred dispute, by ID, notify referred refunds completed to PayPal, notify PayPal about referred dispute adjudication updates, and determine the dispute eligibility for referred disputes.
-  - name: referred-disputes-actions
-    description: Use the `/referred-disputes` resource with a dispute ID and an action to notify PayPal about adjudication updates for a referred dispute and notify PayPal about a refund for a referred dispute.
-  - name: partner-actions
-    description: Use the `/disputes/{id}/partner-actions/` resource to show dispute action details and partially update a dispute action.
-  - name: search-suggestions
-    description: Use the `/search-suggestions` resource to show search suggestions.
-  - name: dispute-events
-    description: Use the `/dispute-events` resource to send dispute events.
-  - name: refund-preference
-    description: Use the `/disputes/{id}/provide-refund-preference` resource to provide refund preferences for the dispute.
 externalDocs:
   url: https://developer.paypal.com/docs/api/customer-disputes/v1/
 paths:
@@ -81,7 +61,7 @@ paths:
         - Oauth2:
             - https://uri.paypal.com/services/disputes/read-partner
       tags:
-        - disputes
+        - Disputes
   "/v1/customer/disputes/{id}":
     get:
       summary: Paypal Show dispute details
@@ -120,7 +100,7 @@ paths:
         - Oauth2:
             - https://uri.paypal.com/services/disputes/read-partner
       tags:
-        - disputes
+        - Disputes
     patch:
       summary: Paypal Partially update dispute
       description: Partially updates a dispute, by ID. Seller can update the `communication_detail` value or The partner can add the `partner action` information.
@@ -178,7 +158,7 @@ paths:
         - Oauth2:
             - https://uri.paypal.com/services/disputes/update-seller
       tags:
-        - disputes
+        - Disputes
   "/v1/customer/disputes/{id}/provide-evidence":
     post:
       summary: Paypal Provide evidence
@@ -215,7 +195,7 @@ paths:
         - Oauth2:
             - https://uri.paypal.com/services/disputes/update-partner
       tags:
-        - disputes-actions
+        - Disputes-Actions
   "/v1/customer/disputes/{id}/appeal":
     post:
       summary: Paypal Appeal dispute
@@ -250,7 +230,7 @@ paths:
         - Oauth2:
             - https://uri.paypal.com/services/disputes/update-buyer
       tags:
-        - disputes-actions
+        - Disputes-Actions
   "/v1/customer/disputes/{id}/accept-claim":
     post:
       summary: Paypal Accept claim
@@ -291,7 +271,7 @@ paths:
         - Oauth2:
             - https://uri.paypal.com/services/disputes/update-seller
       tags:
-        - disputes-actions
+        - Disputes-Actions
   "/v1/customer/disputes/{id}/adjudicate":
     post:
       summary: Paypal Settle dispute
@@ -354,7 +334,7 @@ paths:
         - Oauth2:
             - https://uri.paypal.com/services/disputes/update-buyer
       tags:
-        - disputes-actions
+        - Disputes-Actions
   "/v1/customer/disputes/{id}/require-evidence":
     post:
       summary: Paypal Update dispute status
@@ -418,7 +398,7 @@ paths:
         - Oauth2:
             - https://uri.paypal.com/services/disputes/update-buyer
       tags:
-        - disputes-actions
+        - Disputes-Actions
   "/v1/customer/disputes/{id}/escalate":
     post:
       summary: Paypal Escalate dispute to claim
@@ -481,7 +461,7 @@ paths:
         - Oauth2:
             - https://uri.paypal.com/services/disputes/update-buyer
       tags:
-        - disputes-actions
+        - Disputes-Actions
   "/v1/customer/disputes/{id}/send-message":
     post:
       summary: Paypal Send message about dispute to other party
@@ -536,7 +516,7 @@ paths:
         - Oauth2:
             - https://uri.paypal.com/services/disputes/update-buyer
       tags:
-        - disputes-actions
+        - Disputes-Actions
   "/v1/customer/disputes/{id}/make-offer":
     post:
       summary: Paypal Make offer to resolve dispute
@@ -603,7 +583,7 @@ paths:
         - Oauth2:
             - https://uri.paypal.com/services/disputes/update-buyer
       tags:
-        - disputes-actions
+        - Disputes-Actions
   "/v1/customer/disputes/{id}/accept-offer":
     post:
       summary: Paypal Accept offer to resolve dispute
@@ -670,7 +650,7 @@ paths:
         - Oauth2:
             - https://uri.paypal.com/services/disputes/update-buyer
       tags:
-        - disputes-actions
+        - Disputes-Actions
   "/v1/customer/disputes/{id}/deny-offer":
     post:
       summary: Paypal Deny offer to resolve dispute
@@ -731,7 +711,7 @@ paths:
         - Oauth2:
             - https://uri.paypal.com/services/disputes/update-buyer
       tags:
-        - disputes-actions
+        - Disputes-Actions
   "/v1/customer/disputes/{id}/acknowledge-return-item":
     post:
       summary: Paypal Acknowledge returned item
@@ -784,7 +764,7 @@ paths:
         - Oauth2:
             - https://uri.paypal.com/services/disputes/update-seller
       tags:
-        - disputes-actions
+        - Disputes-Actions
   "/v1/customer/disputes/{id}/provide-supporting-info":
     post:
       summary: Paypal Provide supporting information for dispute
@@ -845,7 +825,7 @@ paths:
             - https://uri.paypal.com/services/disputes/update-buyer
             - https://uri.paypal.com/services/disputes/update-partner
       tags:
-        - disputes-actions
+        - Disputes-Actions
 components:
   requestBodies:
     evidences:

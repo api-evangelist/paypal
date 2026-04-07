@@ -6,17 +6,17 @@ apis:
   - aid: paypal:paypal-billing-subscriptions-api
     name: Paypal Billing Subscriptions API
     tags:
-      - Billing
-      - Plans
       - Activate
-      - Deactivate
-      - Pricing
-      - Schemes
-      - Subscriptions
-      - Revise
-      - Suspend
+      - Billing
       - Cancel
       - Capture
+      - Deactivate
+      - Plans
+      - Pricing
+      - Revise
+      - Schemes
+      - Subscriptions
+      - Suspend
       - Transactions
     properties:
       - url: properties/paypal-billing-subscriptions-api-openapi.yml
@@ -172,8 +172,7 @@ apis:
       - url: openapi/paypal-reporting-transactions-openapi-original.yml
         type: OpenAPI
       - type: Documentation
-        url: 
-          https://developer.paypal.com/api/nvp-soap/payflow/reports/use-the-api/
+        url: https://developer.paypal.com/api/nvp-soap/payflow/reports/use-the-api/
     description: >-
       Paypal Reporting Transactions API is a tool that allows users to retrieve detailed
       information about transactions processed through their Paypal account. The API
@@ -213,10 +212,10 @@ apis:
       reducing the risk of exposing customer financial information to potential threats.
 name: Paypal
 tags:
-  - Payments
-  - Invoices
   - Billing
   - Commerce
+  - Invoices
+  - Payments
 type: Contract
 score: 25
 access: 3rd-Party

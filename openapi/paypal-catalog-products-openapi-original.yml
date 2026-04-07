@@ -10,7 +10,7 @@ servers:
   - url: https://api-m.paypal.com
     description: PayPal Live Environment
 tags:
-  - name: products
+  - name: Products
     description: Use `/products` resource to create and manage products.
 externalDocs:
   url: https://developer.paypal.com/docs/api/catalog-products/v1/
@@ -94,7 +94,7 @@ paths:
         - Oauth2:
             - https://uri.paypal.com/services/subscriptions
       tags:
-        - products
+        - Products
     get:
       summary: Paypal List products
       description: Lists products.
@@ -146,7 +146,7 @@ paths:
         - Oauth2:
             - https://uri.paypal.com/services/subscriptions
       tags:
-        - products
+        - Products
   "/v1/catalogs/products/{product_id}":
     get:
       summary: Paypal Show product details
@@ -197,7 +197,7 @@ paths:
         - Oauth2:
             - https://uri.paypal.com/services/subscriptions
       tags:
-        - products
+        - Products
     patch:
       summary: Paypal Update product
       description: Updates a product, by ID. You can patch these attributes and objects:<table><thead><tr><th>Attribute or object</th><th>Operations</th></tr></thead><tbody><tr><td><code>description</code></td><td>add, replace, remove</td></tr><tr><td><code>category</code></td><td>add, replace, remove</td></tr><tr><td><code>image_url</code></td><td>add, replace, remove</td></tr><tr><td><code>home_url</code></td><td>add, replace, remove</td></tr></tbody></table>
@@ -270,7 +270,7 @@ paths:
         - Oauth2:
             - https://uri.paypal.com/services/subscriptions
       tags:
-        - products
+        - Products
 components:
   securitySchemes:
     Oauth2:

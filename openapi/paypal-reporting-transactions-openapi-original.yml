@@ -38,7 +38,7 @@ paths:
         - Oauth2:
             - https://uri.paypal.com/services/reporting/search/read
       tags:
-        - transactions
+        - Transactions
   "/v1/reporting/balances":
     get:
       summary: Paypal List all balances
@@ -78,14 +78,12 @@ paths:
         - Oauth2:
             - https://uri.paypal.com/services/reporting/balances/read
       tags:
-        - balances
+        - Balances
 tags:
-  - name: transactions
-    description: Use the `/transactions` resource to list transactions.
-  - name: partner-transactions
-    description: Use the `/partner-transactions` resource to list transactions.
-  - name: balances
+  - name: Balances
     description: Use the `/balances` resource to list balances.
+  - name: Transactions
+    description: Use the `/transactions` resource to list transactions.
 externalDocs:
   url: https://developer.paypal.com/docs/integration/direct/transaction-search/
 servers:

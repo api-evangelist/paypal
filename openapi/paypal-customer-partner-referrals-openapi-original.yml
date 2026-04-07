@@ -10,7 +10,7 @@ servers:
   - url: https://api-m.paypal.com
     description: PayPal Live Environment
 tags:
-  - name: partner-referrals
+  - name: Partner-Referrals
     description: Enables you to create and get information about shared customer data.
 externalDocs:
   url: https://developer.paypal.com/docs/platforms/seller-onboarding/before-payment/
@@ -77,7 +77,7 @@ paths:
         - Oauth2:
             - https://uri.paypal.com/services/customer/partner-referrals/readwrite
       tags:
-        - partner-referrals
+        - Partner-Referrals
   "/v2/customer/partner-referrals/{partner_referral_id}":
     get:
       summary: Paypal Show referral data
@@ -307,7 +307,7 @@ paths:
         - Oauth2:
             - https://uri.paypal.com/services/customer/partner-referrals
       tags:
-        - partner-referrals
+        - Partner-Referrals
 components:
   securitySchemes:
     Oauth2:

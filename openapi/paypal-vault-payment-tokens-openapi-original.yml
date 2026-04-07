@@ -10,14 +10,10 @@ servers:
   - url: https://api-m.paypal.com
     description: PayPal Live Environment
 tags:
-  - name: payment-tokens
+  - name: Payment-Tokens
     description: Use the `/vault/payment-tokens` resource to create, retrieve, and delete a payment token that may optionally be associated with a customer.
-  - name: setup-tokens
+  - name: Setup-Tokens
     description: Use the `/vault/setup-tokens` resource to create and retrieve temporary vault payment methods.
-  - name: tokens
-    description: Use the `/vault/tokens` resource to detokenize a vault token to retrieve details associated to the underlying payment source.
-  - name: customers
-    description: Use the `/vault/customers` resource to create, update, get and delete a customer.
 externalDocs:
   url: https://developer.paypal.com/docs/api/vault/v3/
 paths:
@@ -145,7 +141,7 @@ paths:
         - Oauth2:
             - https://uri.paypal.com/services/vault/payment-tokens/readwrite
       tags:
-        - payment-tokens
+        - Payment-Tokens
     get:
       description: Returns all payment tokens for a customer.
       summary: Paypal List all payment tokens
@@ -309,7 +305,7 @@ paths:
         - Oauth2:
             - https://uri.paypal.com/services/vault/payment-tokens/readwrite
       tags:
-        - payment-tokens
+        - Payment-Tokens
   "/v3/vault/payment-tokens/{id}":
     get:
       description: Returns a readable representation of vaulted payment source associated with the payment token id.
@@ -352,7 +348,7 @@ paths:
         - Oauth2:
             - https://uri.paypal.com/services/vault/payment-tokens/readwrite
       tags:
-        - payment-tokens
+        - Payment-Tokens
     delete:
       description: Delete the payment token associated with the payment token id.
       summary: Paypal Delete payment token
@@ -384,7 +380,7 @@ paths:
         - Oauth2:
             - https://uri.paypal.com/services/vault/payment-tokens/readwrite
       tags:
-        - payment-tokens
+        - Payment-Tokens
   "/v3/vault/setup-tokens":
     post:
       description: Creates a Setup Token from the given payment source and adds it to the Vault of the associated customer.
@@ -516,7 +512,7 @@ paths:
         - Oauth2:
             - https://uri.paypal.com/services/vault/payment-tokens/read
       tags:
-        - setup-tokens
+        - Setup-Tokens
   "/v3/vault/setup-tokens/{id}":
     get:
       description: Returns a readable representation of temporarily vaulted payment source associated with the setup token id.
@@ -559,7 +555,7 @@ paths:
         - Oauth2:
             - https://uri.paypal.com/services/vault/payment-tokens/read
       tags:
-        - setup-tokens
+        - Setup-Tokens
 components:
   securitySchemes:
     Oauth2:

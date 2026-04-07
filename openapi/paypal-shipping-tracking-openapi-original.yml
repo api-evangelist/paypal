@@ -10,20 +10,10 @@ servers:
   - url: https://api-m.paypal.com
     description: PayPal Live Environment
 tags:
-  - name: trackers
+  - name: Trackers
     description: Use the `/trackers` resource to create and manage tracking information for PayPal transactions.
-  - name: trackers-batch
+  - name: Trackers-Batch
     description: Use the `/trackers-batch` resource to add tracking information for multiple PayPal transactions.
-  - name: carriers-recommend
-    description: Use the `/carriers-recommendations` to detect the possible carriers corresponding the tracking info from tracking aggregator.
-  - name: carriers
-    description: Use the `/carriers` resource to list/detect all the carriers available for tracking in PayPal and its subsidiary.
-  - name: shipments
-    description: Use the `/shipments` resource to fetch all the shipments associated with a given Paypal Account Id.
-  - name: shipment-tracker
-    description: Use the `/shipment-tracker` resource to track the shipment.
-  - name: unsubscribe-shipment-tracking
-    description: Use the `/unsubscribe-shipment-tracking` resource to unsubscribe from multiple shipments.
 externalDocs:
   url: https://developer.paypal.com/docs/api/tracking/v1/
 paths:
@@ -59,7 +49,7 @@ paths:
         - Oauth2:
             - https://uri.paypal.com/services/shipping/trackers/readwrite
       tags:
-        - trackers-batch
+        - Trackers-Batch
   "/v1/shipping/trackers":
     post:
       summary: Add tracking information for PayPal transaction
@@ -84,7 +74,7 @@ paths:
         - Oauth2:
             - https://uri.paypal.com/services/shipping/trackers/readwrite
       tags:
-        - trackers
+        - Trackers
     get:
       summary: Paypal List tracking information
       description: Lists tracking information that meet search criteria. The tracking ID is required but the tracking number is optional.
@@ -110,7 +100,7 @@ paths:
         - Oauth2:
             - https://uri.paypal.com/services/shipping/trackers/read
       tags:
-        - trackers
+        - Trackers
   "/v1/shipping/trackers/{id}":
     put:
       summary: Update or cancel tracking information for PayPal transaction
@@ -136,7 +126,7 @@ paths:
         - Oauth2:
             - https://uri.paypal.com/services/shipping/trackers/readwrite
       tags:
-        - trackers
+        - Trackers
     get:
       summary: Paypal Show tracking information
       description: Shows tracking information, by tracker ID, for a PayPal transaction.
@@ -161,7 +151,7 @@ paths:
         - Oauth2:
             - https://uri.paypal.com/services/shipping/trackers/read
       tags:
-        - trackers
+        - Trackers
 components:
   requestBodies:
     tracker_collection:

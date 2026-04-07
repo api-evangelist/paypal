@@ -10,14 +10,10 @@ servers:
   - url: https://api-m.paypal.com
     description: PayPal Live Environment
 tags:
-  - name: payouts
+  - name: Payouts
     description: Use the `/payouts` resource to create a batch payout, update the status for a batch payout, show the status of a batch payout with the transaction status and other data for individual payout items, and request approval for a batch payout.
-  - name: payouts-item
+  - name: Payouts-Item
     description: Use the `/payouts-item` resource to show payout item details and cancel an unclaimed payout item.
-  - name: payouts-statistics
-    description: Use the `/payouts-statistics` resource to show statistics for a batch payout by date range.
-  - name: payouts-disbursement-notifications
-    description: Use the `payouts/disbursement-notifications` resource for status updates from <code>VENMO</code>
 externalDocs:
   url: https://developer.paypal.com/docs/api/payments.payouts-batch/v1/
 paths:
@@ -102,7 +98,7 @@ paths:
         - Oauth2:
             - https://uri.paypal.com/payments/payouts
       tags:
-        - payouts
+        - Payouts
   "/v1/payments/payouts/{id}":
     get:
       summary: Paypal Show payout batch details
@@ -143,7 +139,7 @@ paths:
         - Oauth2:
             - https://uri.paypal.com/payments/payouts
       tags:
-        - payouts
+        - Payouts
   "/v1/payments/payouts-item/{payout_item_id}":
     get:
       summary: Paypal Show payout item details
@@ -180,7 +176,7 @@ paths:
         - Oauth2:
             - https://uri.paypal.com/payments/payouts
       tags:
-        - payouts-item
+        - Payouts-Item
   "/v1/payments/payouts-item/{payout_item_id}/cancel":
     post:
       summary: Paypal Cancel unclaimed payout item
@@ -223,7 +219,7 @@ paths:
         - Oauth2:
             - https://uri.paypal.com/payments/payouts
       tags:
-        - payouts-item
+        - Payouts-Item
 components:
   securitySchemes:
     Oauth2:
