@@ -1,0 +1,139 @@
+specification: API Commons Plans
+specificationVersion: '0.1'
+schema: https://raw.githubusercontent.com/api-evangelist/interface-research/main/schema/api-commons.yml#/$defs/Plans
+provider: PayPal
+providerId: paypal
+created: '2026-05-04'
+modified: '2026-05-04'
+reconciled: true
+tags:
+  - Payments
+  - Online Checkout
+description: PayPal merchant fees per channel and product.
+sources:
+  - https://www.paypal.com/us/business/paypal-business-fees
+plans:
+  - id: paypal-checkout
+    name: PayPal Checkout (Online)
+    type: usage-based
+    description: 3.49% + $0.49 USD per transaction.
+    entries:
+      - label: Per transaction
+        name: tx
+        type: metered
+        metric: transaction
+        limit: -1
+        timeFrame: usage
+        geo: US
+        unit: 1
+        price: 3.49% + $0.49
+        userMultiplied: false
+    elements:
+      - name: Express Checkout
+      - name: Smart Payment Buttons
+      - name: 200+ markets, 25 currencies
+      - name: Buyer + Seller protection
+  - id: paypal-credit-debit
+    name: Standard Credit/Debit (Online)
+    type: usage-based
+    description: 2.99% + $0.49 USD per transaction.
+    entries:
+      - label: Per transaction
+        name: tx
+        type: metered
+        metric: transaction
+        limit: -1
+        timeFrame: usage
+        geo: US
+        unit: 1
+        price: 2.99% + $0.49
+        userMultiplied: false
+    elements:
+      - name: Hosted card fields
+      - name: Advanced Credit/Debit Card processing
+  - id: paypal-qr
+    name: QR Code Transactions
+    type: usage-based
+    description: 2.29% + $0.09 USD per transaction.
+    entries:
+      - label: Per transaction
+        name: tx
+        type: metered
+        metric: transaction
+        limit: -1
+        timeFrame: usage
+        geo: US
+        unit: 1
+        price: 2.29% + $0.09
+        userMultiplied: false
+    elements:
+      - name: In-person payments via QR
+  - id: paypal-pos-card-present
+    name: POS — Card Present
+    type: usage-based
+    description: 2.29% + $0.09 USD.
+    entries:
+      - label: Per transaction
+        name: tx
+        type: metered
+        metric: transaction
+        limit: -1
+        timeFrame: usage
+        geo: US
+        unit: 1
+        price: 2.29% + $0.09
+        userMultiplied: false
+    elements:
+      - name: Tap/dip/swipe
+      - name: PayPal Zettle hardware
+  - id: paypal-pos-manual
+    name: POS — Manual Card Entry
+    type: usage-based
+    description: 3.49% + $0.09 USD.
+    entries:
+      - label: Per transaction
+        name: tx
+        type: metered
+        metric: transaction
+        limit: -1
+        timeFrame: usage
+        geo: US
+        unit: 1
+        price: 3.49% + $0.09
+        userMultiplied: false
+    elements:
+      - name: Keyed-in transactions
+  - id: paypal-invoicing-ach
+    name: Invoicing — ACH
+    type: usage-based
+    description: 1% (capped at $10) per transaction.
+    entries:
+      - label: Per transaction
+        name: tx
+        type: metered
+        metric: transaction
+        limit: -1
+        timeFrame: usage
+        geo: US
+        unit: 1
+        price: 1% ($10 cap)
+        userMultiplied: false
+    elements:
+      - name: Bank transfer via invoice
+  - id: paypal-international
+    name: International Transactions
+    type: metered
+    description: +1.50% on top of base rate.
+    entries:
+      - label: International surcharge
+        name: intl
+        type: metered
+        metric: transaction
+        limit: -1
+        timeFrame: usage
+        geo: global
+        unit: 1
+        price: +1.50%
+        userMultiplied: false
+    elements:
+      - name: Cross-border surcharge

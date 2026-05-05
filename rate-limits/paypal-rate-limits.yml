@@ -1,0 +1,34 @@
+specification: API Commons Rate Limits
+specificationVersion: '0.1'
+schema: https://raw.githubusercontent.com/api-evangelist/interface-research/main/schema/api-commons.yml#/$defs/RateLimits
+provider: PayPal
+providerId: paypal
+created: '2026-05-04'
+modified: '2026-05-04'
+reconciled: true
+tags:
+  - Rate Limiting
+  - Payments
+description: PayPal REST API rate limits per app.
+sources:
+  - https://www.paypal.com/us/business/paypal-business-fees
+  - https://developer.paypal.com/api/rest/responses/
+headers:
+  retryAfter: Retry-After
+responseCodes:
+  throttled: 429
+limits:
+  - name: REST API (default)
+    scope: app
+    metric: requests_per_second
+    limit: soft; varies by endpoint
+  - name: Sandbox
+    scope: app
+    metric: requests_per_minute
+    limit: 20
+    timeFrame: minute
+  - name: OAuth /oauth2/token
+    scope: app
+    metric: requests_per_minute
+    limit: 10
+    timeFrame: minute
