@@ -4,7 +4,7 @@ description: PayPal is a global online payment system that lets individuals and 
   money electronically. PayPal exposes a broad surface of REST APIs covering payments, orders, subscriptions,
   invoicing, payouts, disputes, payment tokens, shipping tracking, transaction reporting, partner referrals,
   payment experience, and webhook notifications.
-type: Contract
+kind: contract
 position: Consuming
 access: 3rd-Party
 image: https://kinlane-productions.s3.amazonaws.com/apis-json/apis-json-logo.jpg
@@ -221,13 +221,13 @@ common:
     url: https://developer.paypal.com/api/rest/
   - type: Authentication
     url: https://developer.paypal.com/api/rest/authentication/
-  - type: Status
+  - type: StatusPage
     url: https://www.paypal-status.com/
   - type: Pricing
     url: https://www.paypal.com/us/business/paypal-business-fees
-  - type: Terms of Service
+  - type: TermsOfService
     url: https://www.paypal.com/us/legalhub/useragreement-full
-  - type: Privacy Policy
+  - type: PrivacyPolicy
     url: https://www.paypal.com/us/legalhub/privacy-full
   - type: Features
     data:
