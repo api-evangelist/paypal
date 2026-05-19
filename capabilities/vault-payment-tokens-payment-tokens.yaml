@@ -1,0 +1,162 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Paypal Payment Method Tokens — Payment-Tokens
+  description: 'Paypal Payment Method Tokens — Payment-Tokens. 4 operations. Lead operation: Paypal Create payment token for
+    a given payment source. Self-contained Naftiko capability covering one Paypal business surface.'
+  tags:
+  - Paypal
+  - Payment-Tokens
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    PAYPAL_API_KEY: PAYPAL_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: vault-payment-tokens-payment-tokens
+    baseUri: https://api-m.sandbox.paypal.com
+    description: Paypal Payment Method Tokens — Payment-Tokens business capability. Self-contained, no shared references.
+    resources:
+    - name: v3-vault-payment-tokens
+      path: /v3/vault/payment-tokens
+      operations:
+      - name: paymenttokenscreate
+        method: POST
+        description: Paypal Create payment token for a given payment source
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+      - name: customerpaymenttokensget
+        method: GET
+        description: Paypal List all payment tokens
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: v3-vault-payment-tokens-id
+      path: /v3/vault/payment-tokens/{id}
+      operations:
+      - name: paymenttokensget
+        method: GET
+        description: Paypal Retrieve a payment token
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: paymenttokensdelete
+        method: DELETE
+        description: Paypal Delete payment token
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    authentication:
+      type: bearer
+      token: '{{env.PAYPAL_API_KEY}}'
+  exposes:
+  - type: rest
+    namespace: vault-payment-tokens-payment-tokens-rest
+    port: 8080
+    description: REST adapter for Paypal Payment Method Tokens — Payment-Tokens. One Spectral-compliant resource per consumed
+      operation, prefixed with /v1.
+    resources:
+    - path: /v1/v3/vault/payment-tokens
+      name: v3-vault-payment-tokens
+      description: REST surface for v3-vault-payment-tokens.
+      operations:
+      - method: POST
+        name: paymenttokenscreate
+        description: Paypal Create payment token for a given payment source
+        call: vault-payment-tokens-payment-tokens.paymenttokenscreate
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: GET
+        name: customerpaymenttokensget
+        description: Paypal List all payment tokens
+        call: vault-payment-tokens-payment-tokens.customerpaymenttokensget
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/v3/vault/payment-tokens/{id}
+      name: v3-vault-payment-tokens-id
+      description: REST surface for v3-vault-payment-tokens-id.
+      operations:
+      - method: GET
+        name: paymenttokensget
+        description: Paypal Retrieve a payment token
+        call: vault-payment-tokens-payment-tokens.paymenttokensget
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: DELETE
+        name: paymenttokensdelete
+        description: Paypal Delete payment token
+        call: vault-payment-tokens-payment-tokens.paymenttokensdelete
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: vault-payment-tokens-payment-tokens-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for Paypal Payment Method Tokens — Payment-Tokens. One tool per consumed operation, routed inline
+      through this capability's consumes block.
+    tools:
+    - name: paypal-create-payment-token-given
+      description: Paypal Create payment token for a given payment source
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: vault-payment-tokens-payment-tokens.paymenttokenscreate
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: paypal-list-all-payment-tokens
+      description: Paypal List all payment tokens
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: vault-payment-tokens-payment-tokens.customerpaymenttokensget
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: paypal-retrieve-payment-token
+      description: Paypal Retrieve a payment token
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: vault-payment-tokens-payment-tokens.paymenttokensget
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: paypal-delete-payment-token
+      description: Paypal Delete payment token
+      hints:
+        readOnly: false
+        destructive: true
+        idempotent: true
+      call: vault-payment-tokens-payment-tokens.paymenttokensdelete
+      outputParameters:
+      - type: object
+        mapping: $.

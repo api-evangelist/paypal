@@ -1,0 +1,144 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Paypal Webhooks Management — Webhooks-Events
+  description: 'Paypal Webhooks Management — Webhooks-Events. 3 operations. Lead operation: Paypal List event notifications.
+    Self-contained Naftiko capability covering one Paypal business surface.'
+  tags:
+  - Paypal
+  - Webhooks-Events
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    PAYPAL_API_KEY: PAYPAL_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: notification-webhooks-webhooks-events
+    baseUri: https://api-m.sandbox.paypal.com
+    description: Paypal Webhooks Management — Webhooks-Events business capability. Self-contained, no shared references.
+    resources:
+    - name: v1-notifications-webhooks-events
+      path: /v1/notifications/webhooks-events
+      operations:
+      - name: webhookseventslist
+        method: GET
+        description: Paypal List event notifications
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: v1-notifications-webhooks-events-event_id
+      path: /v1/notifications/webhooks-events/{event_id}
+      operations:
+      - name: webhookseventsget
+        method: GET
+        description: Paypal Show event notification details
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: v1-notifications-webhooks-events-event_id-resend
+      path: /v1/notifications/webhooks-events/{event_id}/resend
+      operations:
+      - name: webhookseventsresend
+        method: POST
+        description: Paypal Resend event notification
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: false
+    authentication:
+      type: bearer
+      token: '{{env.PAYPAL_API_KEY}}'
+  exposes:
+  - type: rest
+    namespace: notification-webhooks-webhooks-events-rest
+    port: 8080
+    description: REST adapter for Paypal Webhooks Management — Webhooks-Events. One Spectral-compliant resource per consumed
+      operation, prefixed with /v1.
+    resources:
+    - path: /v1/v1/notifications/webhooks-events
+      name: v1-notifications-webhooks-events
+      description: REST surface for v1-notifications-webhooks-events.
+      operations:
+      - method: GET
+        name: webhookseventslist
+        description: Paypal List event notifications
+        call: notification-webhooks-webhooks-events.webhookseventslist
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/v1/notifications/webhooks-events/{event-id}
+      name: v1-notifications-webhooks-events-event-id
+      description: REST surface for v1-notifications-webhooks-events-event_id.
+      operations:
+      - method: GET
+        name: webhookseventsget
+        description: Paypal Show event notification details
+        call: notification-webhooks-webhooks-events.webhookseventsget
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/v1/notifications/webhooks-events/{event-id}/resend
+      name: v1-notifications-webhooks-events-event-id-resend
+      description: REST surface for v1-notifications-webhooks-events-event_id-resend.
+      operations:
+      - method: POST
+        name: webhookseventsresend
+        description: Paypal Resend event notification
+        call: notification-webhooks-webhooks-events.webhookseventsresend
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: notification-webhooks-webhooks-events-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for Paypal Webhooks Management — Webhooks-Events. One tool per consumed operation, routed inline
+      through this capability's consumes block.
+    tools:
+    - name: paypal-list-event-notifications
+      description: Paypal List event notifications
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: notification-webhooks-webhooks-events.webhookseventslist
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: paypal-show-event-notification-details
+      description: Paypal Show event notification details
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: notification-webhooks-webhooks-events.webhookseventsget
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: paypal-resend-event-notification
+      description: Paypal Resend event notification
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: notification-webhooks-webhooks-events.webhookseventsresend
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.

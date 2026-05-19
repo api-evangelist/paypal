@@ -1,0 +1,542 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Paypal Disputes — Disputes-Actions
+  description: 'Paypal Disputes — Disputes-Actions. 12 operations. Lead operation: Paypal Accept claim. Self-contained Naftiko
+    capability covering one Paypal business surface.'
+  tags:
+  - Paypal
+  - Disputes-Actions
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    PAYPAL_API_KEY: PAYPAL_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: customer-disputes-disputes-actions
+    baseUri: https://api-m.sandbox.paypal.com
+    description: Paypal Disputes — Disputes-Actions business capability. Self-contained, no shared references.
+    resources:
+    - name: v1-customer-disputes-id-accept-claim
+      path: /v1/customer/disputes/{id}/accept-claim
+      operations:
+      - name: disputesacceptclaim
+        method: POST
+        description: Paypal Accept claim
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: false
+    - name: v1-customer-disputes-id-accept-offer
+      path: /v1/customer/disputes/{id}/accept-offer
+      operations:
+      - name: disputesacceptoffer
+        method: POST
+        description: Paypal Accept offer to resolve dispute
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: false
+    - name: v1-customer-disputes-id-acknowledge-return-item
+      path: /v1/customer/disputes/{id}/acknowledge-return-item
+      operations:
+      - name: disputesacknowledgereturnitem
+        method: POST
+        description: Paypal Acknowledge returned item
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: false
+    - name: v1-customer-disputes-id-adjudicate
+      path: /v1/customer/disputes/{id}/adjudicate
+      operations:
+      - name: disputesadjudicate
+        method: POST
+        description: Paypal Settle dispute
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: false
+    - name: v1-customer-disputes-id-appeal
+      path: /v1/customer/disputes/{id}/appeal
+      operations:
+      - name: disputesappeal
+        method: POST
+        description: Paypal Appeal dispute
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: false
+    - name: v1-customer-disputes-id-deny-offer
+      path: /v1/customer/disputes/{id}/deny-offer
+      operations:
+      - name: disputesdenyoffer
+        method: POST
+        description: Paypal Deny offer to resolve dispute
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: false
+    - name: v1-customer-disputes-id-escalate
+      path: /v1/customer/disputes/{id}/escalate
+      operations:
+      - name: disputesescalate
+        method: POST
+        description: Paypal Escalate dispute to claim
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: false
+    - name: v1-customer-disputes-id-make-offer
+      path: /v1/customer/disputes/{id}/make-offer
+      operations:
+      - name: disputesmakeoffer
+        method: POST
+        description: Paypal Make offer to resolve dispute
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: false
+    - name: v1-customer-disputes-id-provide-evidence
+      path: /v1/customer/disputes/{id}/provide-evidence
+      operations:
+      - name: disputesprovideevidence
+        method: POST
+        description: Paypal Provide evidence
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: false
+    - name: v1-customer-disputes-id-provide-supporting-info
+      path: /v1/customer/disputes/{id}/provide-supporting-info
+      operations:
+      - name: disputesprovidesupportinginfo
+        method: POST
+        description: Paypal Provide supporting information for dispute
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: false
+    - name: v1-customer-disputes-id-require-evidence
+      path: /v1/customer/disputes/{id}/require-evidence
+      operations:
+      - name: disputesrequireevidence
+        method: POST
+        description: Paypal Update dispute status
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+    - name: v1-customer-disputes-id-send-message
+      path: /v1/customer/disputes/{id}/send-message
+      operations:
+      - name: disputessendmessage
+        method: POST
+        description: Paypal Send message about dispute to other party
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: false
+    authentication:
+      type: bearer
+      token: '{{env.PAYPAL_API_KEY}}'
+  exposes:
+  - type: rest
+    namespace: customer-disputes-disputes-actions-rest
+    port: 8080
+    description: REST adapter for Paypal Disputes — Disputes-Actions. One Spectral-compliant resource per consumed operation,
+      prefixed with /v1.
+    resources:
+    - path: /v1/v1/customer/disputes/{id}/accept-claim
+      name: v1-customer-disputes-id-accept-claim
+      description: REST surface for v1-customer-disputes-id-accept-claim.
+      operations:
+      - method: POST
+        name: disputesacceptclaim
+        description: Paypal Accept claim
+        call: customer-disputes-disputes-actions.disputesacceptclaim
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/v1/customer/disputes/{id}/accept-offer
+      name: v1-customer-disputes-id-accept-offer
+      description: REST surface for v1-customer-disputes-id-accept-offer.
+      operations:
+      - method: POST
+        name: disputesacceptoffer
+        description: Paypal Accept offer to resolve dispute
+        call: customer-disputes-disputes-actions.disputesacceptoffer
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/v1/customer/disputes/{id}/acknowledge-return-item
+      name: v1-customer-disputes-id-acknowledge-return-item
+      description: REST surface for v1-customer-disputes-id-acknowledge-return-item.
+      operations:
+      - method: POST
+        name: disputesacknowledgereturnitem
+        description: Paypal Acknowledge returned item
+        call: customer-disputes-disputes-actions.disputesacknowledgereturnitem
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/v1/customer/disputes/{id}/adjudicate
+      name: v1-customer-disputes-id-adjudicate
+      description: REST surface for v1-customer-disputes-id-adjudicate.
+      operations:
+      - method: POST
+        name: disputesadjudicate
+        description: Paypal Settle dispute
+        call: customer-disputes-disputes-actions.disputesadjudicate
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/v1/customer/disputes/{id}/appeal
+      name: v1-customer-disputes-id-appeal
+      description: REST surface for v1-customer-disputes-id-appeal.
+      operations:
+      - method: POST
+        name: disputesappeal
+        description: Paypal Appeal dispute
+        call: customer-disputes-disputes-actions.disputesappeal
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/v1/customer/disputes/{id}/deny-offer
+      name: v1-customer-disputes-id-deny-offer
+      description: REST surface for v1-customer-disputes-id-deny-offer.
+      operations:
+      - method: POST
+        name: disputesdenyoffer
+        description: Paypal Deny offer to resolve dispute
+        call: customer-disputes-disputes-actions.disputesdenyoffer
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/v1/customer/disputes/{id}/escalate
+      name: v1-customer-disputes-id-escalate
+      description: REST surface for v1-customer-disputes-id-escalate.
+      operations:
+      - method: POST
+        name: disputesescalate
+        description: Paypal Escalate dispute to claim
+        call: customer-disputes-disputes-actions.disputesescalate
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/v1/customer/disputes/{id}/make-offer
+      name: v1-customer-disputes-id-make-offer
+      description: REST surface for v1-customer-disputes-id-make-offer.
+      operations:
+      - method: POST
+        name: disputesmakeoffer
+        description: Paypal Make offer to resolve dispute
+        call: customer-disputes-disputes-actions.disputesmakeoffer
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/v1/customer/disputes/{id}/provide-evidence
+      name: v1-customer-disputes-id-provide-evidence
+      description: REST surface for v1-customer-disputes-id-provide-evidence.
+      operations:
+      - method: POST
+        name: disputesprovideevidence
+        description: Paypal Provide evidence
+        call: customer-disputes-disputes-actions.disputesprovideevidence
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/v1/customer/disputes/{id}/provide-supporting-info
+      name: v1-customer-disputes-id-provide-supporting-info
+      description: REST surface for v1-customer-disputes-id-provide-supporting-info.
+      operations:
+      - method: POST
+        name: disputesprovidesupportinginfo
+        description: Paypal Provide supporting information for dispute
+        call: customer-disputes-disputes-actions.disputesprovidesupportinginfo
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/v1/customer/disputes/{id}/require-evidence
+      name: v1-customer-disputes-id-require-evidence
+      description: REST surface for v1-customer-disputes-id-require-evidence.
+      operations:
+      - method: POST
+        name: disputesrequireevidence
+        description: Paypal Update dispute status
+        call: customer-disputes-disputes-actions.disputesrequireevidence
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/v1/customer/disputes/{id}/send-message
+      name: v1-customer-disputes-id-send-message
+      description: REST surface for v1-customer-disputes-id-send-message.
+      operations:
+      - method: POST
+        name: disputessendmessage
+        description: Paypal Send message about dispute to other party
+        call: customer-disputes-disputes-actions.disputessendmessage
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: customer-disputes-disputes-actions-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for Paypal Disputes — Disputes-Actions. One tool per consumed operation, routed inline through
+      this capability's consumes block.
+    tools:
+    - name: paypal-accept-claim
+      description: Paypal Accept claim
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: customer-disputes-disputes-actions.disputesacceptclaim
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: paypal-accept-offer-resolve-dispute
+      description: Paypal Accept offer to resolve dispute
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: customer-disputes-disputes-actions.disputesacceptoffer
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: paypal-acknowledge-returned-item
+      description: Paypal Acknowledge returned item
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: customer-disputes-disputes-actions.disputesacknowledgereturnitem
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: paypal-settle-dispute
+      description: Paypal Settle dispute
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: customer-disputes-disputes-actions.disputesadjudicate
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: paypal-appeal-dispute
+      description: Paypal Appeal dispute
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: customer-disputes-disputes-actions.disputesappeal
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: paypal-deny-offer-resolve-dispute
+      description: Paypal Deny offer to resolve dispute
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: customer-disputes-disputes-actions.disputesdenyoffer
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: paypal-escalate-dispute-claim
+      description: Paypal Escalate dispute to claim
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: customer-disputes-disputes-actions.disputesescalate
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: paypal-make-offer-resolve-dispute
+      description: Paypal Make offer to resolve dispute
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: customer-disputes-disputes-actions.disputesmakeoffer
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: paypal-provide-evidence
+      description: Paypal Provide evidence
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: customer-disputes-disputes-actions.disputesprovideevidence
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: paypal-provide-supporting-information-dispute
+      description: Paypal Provide supporting information for dispute
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: customer-disputes-disputes-actions.disputesprovidesupportinginfo
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: paypal-update-dispute-status
+      description: Paypal Update dispute status
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: customer-disputes-disputes-actions.disputesrequireevidence
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: paypal-send-message-about-dispute
+      description: Paypal Send message about dispute to other party
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: customer-disputes-disputes-actions.disputessendmessage
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.

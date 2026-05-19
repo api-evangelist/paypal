@@ -1,0 +1,112 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Paypal Payouts — Payouts
+  description: 'Paypal Payouts — Payouts. 2 operations. Lead operation: Paypal Create batch payout. Self-contained Naftiko
+    capability covering one Paypal business surface.'
+  tags:
+  - Paypal
+  - Payouts
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    PAYPAL_API_KEY: PAYPAL_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: payouts-payouts
+    baseUri: https://api-m.sandbox.paypal.com
+    description: Paypal Payouts — Payouts business capability. Self-contained, no shared references.
+    resources:
+    - name: v1-payments-payouts
+      path: /v1/payments/payouts
+      operations:
+      - name: payoutspost
+        method: POST
+        description: Paypal Create batch payout
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: false
+    - name: v1-payments-payouts-id
+      path: /v1/payments/payouts/{id}
+      operations:
+      - name: payoutsget
+        method: GET
+        description: Paypal Show payout batch details
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    authentication:
+      type: bearer
+      token: '{{env.PAYPAL_API_KEY}}'
+  exposes:
+  - type: rest
+    namespace: payouts-payouts-rest
+    port: 8080
+    description: REST adapter for Paypal Payouts — Payouts. One Spectral-compliant resource per consumed operation, prefixed
+      with /v1.
+    resources:
+    - path: /v1/v1/payments/payouts
+      name: v1-payments-payouts
+      description: REST surface for v1-payments-payouts.
+      operations:
+      - method: POST
+        name: payoutspost
+        description: Paypal Create batch payout
+        call: payouts-payouts.payoutspost
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/v1/payments/payouts/{id}
+      name: v1-payments-payouts-id
+      description: REST surface for v1-payments-payouts-id.
+      operations:
+      - method: GET
+        name: payoutsget
+        description: Paypal Show payout batch details
+        call: payouts-payouts.payoutsget
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: payouts-payouts-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for Paypal Payouts — Payouts. One tool per consumed operation, routed inline through this capability's
+      consumes block.
+    tools:
+    - name: paypal-create-batch-payout
+      description: Paypal Create batch payout
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: payouts-payouts.payoutspost
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: paypal-show-payout-batch-details
+      description: Paypal Show payout batch details
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: payouts-payouts.payoutsget
+      outputParameters:
+      - type: object
+        mapping: $.

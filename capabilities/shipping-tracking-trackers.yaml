@@ -1,0 +1,172 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Paypal Shipment Tracking — Trackers
+  description: 'Paypal Shipment Tracking — Trackers. 4 operations. Lead operation: Add tracking information for PayPal transaction.
+    Self-contained Naftiko capability covering one Paypal business surface.'
+  tags:
+  - Paypal
+  - Trackers
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    PAYPAL_API_KEY: PAYPAL_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: shipping-tracking-trackers
+    baseUri: https://api-m.sandbox.paypal.com
+    description: Paypal Shipment Tracking — Trackers business capability. Self-contained, no shared references.
+    resources:
+    - name: v1-shipping-trackers
+      path: /v1/shipping/trackers
+      operations:
+      - name: trackerspost
+        method: POST
+        description: Add tracking information for PayPal transaction
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: false
+      - name: trackersbatchget
+        method: GET
+        description: Paypal List tracking information
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: v1-shipping-trackers-id
+      path: /v1/shipping/trackers/{id}
+      operations:
+      - name: trackersput
+        method: PUT
+        description: Update or cancel tracking information for PayPal transaction
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: false
+      - name: trackersget
+        method: GET
+        description: Paypal Show tracking information
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    authentication:
+      type: bearer
+      token: '{{env.PAYPAL_API_KEY}}'
+  exposes:
+  - type: rest
+    namespace: shipping-tracking-trackers-rest
+    port: 8080
+    description: REST adapter for Paypal Shipment Tracking — Trackers. One Spectral-compliant resource per consumed operation,
+      prefixed with /v1.
+    resources:
+    - path: /v1/v1/shipping/trackers
+      name: v1-shipping-trackers
+      description: REST surface for v1-shipping-trackers.
+      operations:
+      - method: POST
+        name: trackerspost
+        description: Add tracking information for PayPal transaction
+        call: shipping-tracking-trackers.trackerspost
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: GET
+        name: trackersbatchget
+        description: Paypal List tracking information
+        call: shipping-tracking-trackers.trackersbatchget
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/v1/shipping/trackers/{id}
+      name: v1-shipping-trackers-id
+      description: REST surface for v1-shipping-trackers-id.
+      operations:
+      - method: PUT
+        name: trackersput
+        description: Update or cancel tracking information for PayPal transaction
+        call: shipping-tracking-trackers.trackersput
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: GET
+        name: trackersget
+        description: Paypal Show tracking information
+        call: shipping-tracking-trackers.trackersget
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: shipping-tracking-trackers-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for Paypal Shipment Tracking — Trackers. One tool per consumed operation, routed inline through
+      this capability's consumes block.
+    tools:
+    - name: add-tracking-information-paypal-transaction
+      description: Add tracking information for PayPal transaction
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: shipping-tracking-trackers.trackerspost
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: paypal-list-tracking-information
+      description: Paypal List tracking information
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: shipping-tracking-trackers.trackersbatchget
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: update-cancel-tracking-information-paypal
+      description: Update or cancel tracking information for PayPal transaction
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: true
+      call: shipping-tracking-trackers.trackersput
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: paypal-show-tracking-information
+      description: Paypal Show tracking information
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: shipping-tracking-trackers.trackersget
+      outputParameters:
+      - type: object
+        mapping: $.

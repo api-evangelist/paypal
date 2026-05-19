@@ -1,0 +1,229 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Paypal Webhooks Management — Webhooks
+  description: 'Paypal Webhooks Management — Webhooks. 6 operations. Lead operation: Paypal Create webhook. Self-contained
+    Naftiko capability covering one Paypal business surface.'
+  tags:
+  - Paypal
+  - Webhooks
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    PAYPAL_API_KEY: PAYPAL_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: notification-webhooks-webhooks
+    baseUri: https://api-m.sandbox.paypal.com
+    description: Paypal Webhooks Management — Webhooks business capability. Self-contained, no shared references.
+    resources:
+    - name: v1-notifications-webhooks
+      path: /v1/notifications/webhooks
+      operations:
+      - name: webhookspost
+        method: POST
+        description: Paypal Create webhook
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: false
+      - name: webhookslist
+        method: GET
+        description: Paypal List webhooks
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: v1-notifications-webhooks-webhook_id
+      path: /v1/notifications/webhooks/{webhook_id}
+      operations:
+      - name: webhooksget
+        method: GET
+        description: Paypal Show webhook details
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: webhooksupdate
+        method: PATCH
+        description: Paypal Update webhook
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: false
+      - name: webhooksdelete
+        method: DELETE
+        description: Paypal Delete webhook
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: v1-notifications-webhooks-webhook_id-event-types
+      path: /v1/notifications/webhooks/{webhook_id}/event-types
+      operations:
+      - name: eventtypeslist
+        method: GET
+        description: Paypal List event subscriptions for webhook
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    authentication:
+      type: bearer
+      token: '{{env.PAYPAL_API_KEY}}'
+  exposes:
+  - type: rest
+    namespace: notification-webhooks-webhooks-rest
+    port: 8080
+    description: REST adapter for Paypal Webhooks Management — Webhooks. One Spectral-compliant resource per consumed operation,
+      prefixed with /v1.
+    resources:
+    - path: /v1/v1/notifications/webhooks
+      name: v1-notifications-webhooks
+      description: REST surface for v1-notifications-webhooks.
+      operations:
+      - method: POST
+        name: webhookspost
+        description: Paypal Create webhook
+        call: notification-webhooks-webhooks.webhookspost
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: GET
+        name: webhookslist
+        description: Paypal List webhooks
+        call: notification-webhooks-webhooks.webhookslist
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/v1/notifications/webhooks/{webhook-id}
+      name: v1-notifications-webhooks-webhook-id
+      description: REST surface for v1-notifications-webhooks-webhook_id.
+      operations:
+      - method: GET
+        name: webhooksget
+        description: Paypal Show webhook details
+        call: notification-webhooks-webhooks.webhooksget
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: PATCH
+        name: webhooksupdate
+        description: Paypal Update webhook
+        call: notification-webhooks-webhooks.webhooksupdate
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: DELETE
+        name: webhooksdelete
+        description: Paypal Delete webhook
+        call: notification-webhooks-webhooks.webhooksdelete
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/v1/notifications/webhooks/{webhook-id}/event-types
+      name: v1-notifications-webhooks-webhook-id-event-types
+      description: REST surface for v1-notifications-webhooks-webhook_id-event-types.
+      operations:
+      - method: GET
+        name: eventtypeslist
+        description: Paypal List event subscriptions for webhook
+        call: notification-webhooks-webhooks.eventtypeslist
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: notification-webhooks-webhooks-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for Paypal Webhooks Management — Webhooks. One tool per consumed operation, routed inline through
+      this capability's consumes block.
+    tools:
+    - name: paypal-create-webhook
+      description: Paypal Create webhook
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: notification-webhooks-webhooks.webhookspost
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: paypal-list-webhooks
+      description: Paypal List webhooks
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: notification-webhooks-webhooks.webhookslist
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: paypal-show-webhook-details
+      description: Paypal Show webhook details
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: notification-webhooks-webhooks.webhooksget
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: paypal-update-webhook
+      description: Paypal Update webhook
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: true
+      call: notification-webhooks-webhooks.webhooksupdate
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: paypal-delete-webhook
+      description: Paypal Delete webhook
+      hints:
+        readOnly: false
+        destructive: true
+        idempotent: true
+      call: notification-webhooks-webhooks.webhooksdelete
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: paypal-list-event-subscriptions-webhook
+      description: Paypal List event subscriptions for webhook
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: notification-webhooks-webhooks.eventtypeslist
+      outputParameters:
+      - type: object
+        mapping: $.

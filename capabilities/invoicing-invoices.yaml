@@ -1,0 +1,545 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Paypal Invoices — Invoices
+  description: 'Paypal Invoices — Invoices. 14 operations. Lead operation: Paypal Generate invoice number. Self-contained
+    Naftiko capability covering one Paypal business surface.'
+  tags:
+  - Paypal
+  - Invoices
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    PAYPAL_API_KEY: PAYPAL_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: invoicing-invoices
+    baseUri: https://api-m.sandbox.paypal.com
+    description: Paypal Invoices — Invoices business capability. Self-contained, no shared references.
+    resources:
+    - name: v2-invoicing-generate-next-invoice-number
+      path: /v2/invoicing/generate-next-invoice-number
+      operations:
+      - name: invoicinggeneratenextinvoicenumber
+        method: POST
+        description: Paypal Generate invoice number
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: v2-invoicing-invoices
+      path: /v2/invoicing/invoices
+      operations:
+      - name: invoicescreate
+        method: POST
+        description: Paypal Create draft invoice
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+      - name: invoiceslist
+        method: GET
+        description: Paypal List invoices
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: v2-invoicing-invoices-invoice_id
+      path: /v2/invoicing/invoices/{invoice_id}
+      operations:
+      - name: invoicesget
+        method: GET
+        description: Paypal Show invoice details
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: invoicesupdate
+        method: PUT
+        description: Paypal Fully update invoice
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+      - name: invoicesdelete
+        method: DELETE
+        description: Paypal Delete invoice
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: v2-invoicing-invoices-invoice_id-cancel
+      path: /v2/invoicing/invoices/{invoice_id}/cancel
+      operations:
+      - name: invoicescancel
+        method: POST
+        description: Paypal Cancel sent invoice
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+    - name: v2-invoicing-invoices-invoice_id-generate-qr-code
+      path: /v2/invoicing/invoices/{invoice_id}/generate-qr-code
+      operations:
+      - name: invoicesgenerateqrcode
+        method: POST
+        description: Paypal Generate QR code
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: false
+    - name: v2-invoicing-invoices-invoice_id-payments
+      path: /v2/invoicing/invoices/{invoice_id}/payments
+      operations:
+      - name: invoicespayments
+        method: POST
+        description: Paypal Record payment for invoice
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+    - name: v2-invoicing-invoices-invoice_id-payments-transaction_id
+      path: /v2/invoicing/invoices/{invoice_id}/payments/{transaction_id}
+      operations:
+      - name: invoicespaymentsdelete
+        method: DELETE
+        description: Paypal Delete external payment
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: v2-invoicing-invoices-invoice_id-refunds
+      path: /v2/invoicing/invoices/{invoice_id}/refunds
+      operations:
+      - name: invoicesrefunds
+        method: POST
+        description: Paypal Record refund for invoice
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+    - name: v2-invoicing-invoices-invoice_id-refunds-transaction_id
+      path: /v2/invoicing/invoices/{invoice_id}/refunds/{transaction_id}
+      operations:
+      - name: invoicesrefundsdelete
+        method: DELETE
+        description: Paypal Delete external refund
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: v2-invoicing-invoices-invoice_id-remind
+      path: /v2/invoicing/invoices/{invoice_id}/remind
+      operations:
+      - name: invoicesremind
+        method: POST
+        description: Paypal Send invoice reminder
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: false
+    - name: v2-invoicing-invoices-invoice_id-send
+      path: /v2/invoicing/invoices/{invoice_id}/send
+      operations:
+      - name: invoicessend
+        method: POST
+        description: Paypal Send invoice
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: false
+    authentication:
+      type: bearer
+      token: '{{env.PAYPAL_API_KEY}}'
+  exposes:
+  - type: rest
+    namespace: invoicing-invoices-rest
+    port: 8080
+    description: REST adapter for Paypal Invoices — Invoices. One Spectral-compliant resource per consumed operation, prefixed
+      with /v1.
+    resources:
+    - path: /v1/v2/invoicing/generate-next-invoice-number
+      name: v2-invoicing-generate-next-invoice-number
+      description: REST surface for v2-invoicing-generate-next-invoice-number.
+      operations:
+      - method: POST
+        name: invoicinggeneratenextinvoicenumber
+        description: Paypal Generate invoice number
+        call: invoicing-invoices.invoicinggeneratenextinvoicenumber
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/v2/invoicing/invoices
+      name: v2-invoicing-invoices
+      description: REST surface for v2-invoicing-invoices.
+      operations:
+      - method: POST
+        name: invoicescreate
+        description: Paypal Create draft invoice
+        call: invoicing-invoices.invoicescreate
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: GET
+        name: invoiceslist
+        description: Paypal List invoices
+        call: invoicing-invoices.invoiceslist
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/v2/invoicing/invoices/{invoice-id}
+      name: v2-invoicing-invoices-invoice-id
+      description: REST surface for v2-invoicing-invoices-invoice_id.
+      operations:
+      - method: GET
+        name: invoicesget
+        description: Paypal Show invoice details
+        call: invoicing-invoices.invoicesget
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: PUT
+        name: invoicesupdate
+        description: Paypal Fully update invoice
+        call: invoicing-invoices.invoicesupdate
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: DELETE
+        name: invoicesdelete
+        description: Paypal Delete invoice
+        call: invoicing-invoices.invoicesdelete
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/v2/invoicing/invoices/{invoice-id}/cancel
+      name: v2-invoicing-invoices-invoice-id-cancel
+      description: REST surface for v2-invoicing-invoices-invoice_id-cancel.
+      operations:
+      - method: POST
+        name: invoicescancel
+        description: Paypal Cancel sent invoice
+        call: invoicing-invoices.invoicescancel
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/v2/invoicing/invoices/{invoice-id}/generate-qr-code
+      name: v2-invoicing-invoices-invoice-id-generate-qr-code
+      description: REST surface for v2-invoicing-invoices-invoice_id-generate-qr-code.
+      operations:
+      - method: POST
+        name: invoicesgenerateqrcode
+        description: Paypal Generate QR code
+        call: invoicing-invoices.invoicesgenerateqrcode
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/v2/invoicing/invoices/{invoice-id}/payments
+      name: v2-invoicing-invoices-invoice-id-payments
+      description: REST surface for v2-invoicing-invoices-invoice_id-payments.
+      operations:
+      - method: POST
+        name: invoicespayments
+        description: Paypal Record payment for invoice
+        call: invoicing-invoices.invoicespayments
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/v2/invoicing/invoices/{invoice-id}/payments/{transaction-id}
+      name: v2-invoicing-invoices-invoice-id-payments-transaction-id
+      description: REST surface for v2-invoicing-invoices-invoice_id-payments-transaction_id.
+      operations:
+      - method: DELETE
+        name: invoicespaymentsdelete
+        description: Paypal Delete external payment
+        call: invoicing-invoices.invoicespaymentsdelete
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/v2/invoicing/invoices/{invoice-id}/refunds
+      name: v2-invoicing-invoices-invoice-id-refunds
+      description: REST surface for v2-invoicing-invoices-invoice_id-refunds.
+      operations:
+      - method: POST
+        name: invoicesrefunds
+        description: Paypal Record refund for invoice
+        call: invoicing-invoices.invoicesrefunds
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/v2/invoicing/invoices/{invoice-id}/refunds/{transaction-id}
+      name: v2-invoicing-invoices-invoice-id-refunds-transaction-id
+      description: REST surface for v2-invoicing-invoices-invoice_id-refunds-transaction_id.
+      operations:
+      - method: DELETE
+        name: invoicesrefundsdelete
+        description: Paypal Delete external refund
+        call: invoicing-invoices.invoicesrefundsdelete
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/v2/invoicing/invoices/{invoice-id}/remind
+      name: v2-invoicing-invoices-invoice-id-remind
+      description: REST surface for v2-invoicing-invoices-invoice_id-remind.
+      operations:
+      - method: POST
+        name: invoicesremind
+        description: Paypal Send invoice reminder
+        call: invoicing-invoices.invoicesremind
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/v2/invoicing/invoices/{invoice-id}/send
+      name: v2-invoicing-invoices-invoice-id-send
+      description: REST surface for v2-invoicing-invoices-invoice_id-send.
+      operations:
+      - method: POST
+        name: invoicessend
+        description: Paypal Send invoice
+        call: invoicing-invoices.invoicessend
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: invoicing-invoices-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for Paypal Invoices — Invoices. One tool per consumed operation, routed inline through this capability's
+      consumes block.
+    tools:
+    - name: paypal-generate-invoice-number
+      description: Paypal Generate invoice number
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: invoicing-invoices.invoicinggeneratenextinvoicenumber
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: paypal-create-draft-invoice
+      description: Paypal Create draft invoice
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: invoicing-invoices.invoicescreate
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: paypal-list-invoices
+      description: Paypal List invoices
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: invoicing-invoices.invoiceslist
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: paypal-show-invoice-details
+      description: Paypal Show invoice details
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: invoicing-invoices.invoicesget
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: paypal-fully-update-invoice
+      description: Paypal Fully update invoice
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: true
+      call: invoicing-invoices.invoicesupdate
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: paypal-delete-invoice
+      description: Paypal Delete invoice
+      hints:
+        readOnly: false
+        destructive: true
+        idempotent: true
+      call: invoicing-invoices.invoicesdelete
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: paypal-cancel-sent-invoice
+      description: Paypal Cancel sent invoice
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: invoicing-invoices.invoicescancel
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: paypal-generate-qr-code
+      description: Paypal Generate QR code
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: invoicing-invoices.invoicesgenerateqrcode
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: paypal-record-payment-invoice
+      description: Paypal Record payment for invoice
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: invoicing-invoices.invoicespayments
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: paypal-delete-external-payment
+      description: Paypal Delete external payment
+      hints:
+        readOnly: false
+        destructive: true
+        idempotent: true
+      call: invoicing-invoices.invoicespaymentsdelete
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: paypal-record-refund-invoice
+      description: Paypal Record refund for invoice
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: invoicing-invoices.invoicesrefunds
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: paypal-delete-external-refund
+      description: Paypal Delete external refund
+      hints:
+        readOnly: false
+        destructive: true
+        idempotent: true
+      call: invoicing-invoices.invoicesrefundsdelete
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: paypal-send-invoice-reminder
+      description: Paypal Send invoice reminder
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: invoicing-invoices.invoicesremind
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: paypal-send-invoice
+      description: Paypal Send invoice
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: invoicing-invoices.invoicessend
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.

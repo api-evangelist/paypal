@@ -1,0 +1,70 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Paypal Transaction Search — Transactions
+  description: 'Paypal Transaction Search — Transactions. 1 operations. Lead operation: Paypal List transactions. Self-contained
+    Naftiko capability covering one Paypal business surface.'
+  tags:
+  - Paypal
+  - Transactions
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    PAYPAL_API_KEY: PAYPAL_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: reporting-transactions-transactions
+    baseUri: https://api-m.paypal.com/v1/reporting
+    description: Paypal Transaction Search — Transactions business capability. Self-contained, no shared references.
+    resources:
+    - name: v1-reporting-transactions
+      path: /v1/reporting/transactions
+      operations:
+      - name: searchget
+        method: GET
+        description: Paypal List transactions
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    authentication:
+      type: bearer
+      token: '{{env.PAYPAL_API_KEY}}'
+  exposes:
+  - type: rest
+    namespace: reporting-transactions-transactions-rest
+    port: 8080
+    description: REST adapter for Paypal Transaction Search — Transactions. One Spectral-compliant resource per consumed operation,
+      prefixed with /v1.
+    resources:
+    - path: /v1/v1/reporting/transactions
+      name: v1-reporting-transactions
+      description: REST surface for v1-reporting-transactions.
+      operations:
+      - method: GET
+        name: searchget
+        description: Paypal List transactions
+        call: reporting-transactions-transactions.searchget
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: reporting-transactions-transactions-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for Paypal Transaction Search — Transactions. One tool per consumed operation, routed inline
+      through this capability's consumes block.
+    tools:
+    - name: paypal-list-transactions
+      description: Paypal List transactions
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: reporting-transactions-transactions.searchget
+      outputParameters:
+      - type: object
+        mapping: $.

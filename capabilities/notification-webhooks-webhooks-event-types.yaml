@@ -1,0 +1,70 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Paypal Webhooks Management — Webhooks-Event-Types
+  description: 'Paypal Webhooks Management — Webhooks-Event-Types. 1 operations. Lead operation: Paypal List available events.
+    Self-contained Naftiko capability covering one Paypal business surface.'
+  tags:
+  - Paypal
+  - Webhooks-Event-Types
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    PAYPAL_API_KEY: PAYPAL_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: notification-webhooks-webhooks-event-types
+    baseUri: https://api-m.sandbox.paypal.com
+    description: Paypal Webhooks Management — Webhooks-Event-Types business capability. Self-contained, no shared references.
+    resources:
+    - name: v1-notifications-webhooks-event-types
+      path: /v1/notifications/webhooks-event-types
+      operations:
+      - name: webhookseventtypeslist
+        method: GET
+        description: Paypal List available events
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    authentication:
+      type: bearer
+      token: '{{env.PAYPAL_API_KEY}}'
+  exposes:
+  - type: rest
+    namespace: notification-webhooks-webhooks-event-types-rest
+    port: 8080
+    description: REST adapter for Paypal Webhooks Management — Webhooks-Event-Types. One Spectral-compliant resource per consumed
+      operation, prefixed with /v1.
+    resources:
+    - path: /v1/v1/notifications/webhooks-event-types
+      name: v1-notifications-webhooks-event-types
+      description: REST surface for v1-notifications-webhooks-event-types.
+      operations:
+      - method: GET
+        name: webhookseventtypeslist
+        description: Paypal List available events
+        call: notification-webhooks-webhooks-event-types.webhookseventtypeslist
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: notification-webhooks-webhooks-event-types-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for Paypal Webhooks Management — Webhooks-Event-Types. One tool per consumed operation, routed
+      inline through this capability's consumes block.
+    tools:
+    - name: paypal-list-available-events
+      description: Paypal List available events
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: notification-webhooks-webhooks-event-types.webhookseventtypeslist
+      outputParameters:
+      - type: object
+        mapping: $.

@@ -1,0 +1,152 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Paypal Webhooks Management — Webhooks-Lookup
+  description: 'Paypal Webhooks Management — Webhooks-Lookup. 4 operations. Lead operation: Paypal Create webhook lookup.
+    Self-contained Naftiko capability covering one Paypal business surface.'
+  tags:
+  - Paypal
+  - Webhooks-Lookup
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    PAYPAL_API_KEY: PAYPAL_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: notification-webhooks-webhooks-lookup
+    baseUri: https://api-m.sandbox.paypal.com
+    description: Paypal Webhooks Management — Webhooks-Lookup business capability. Self-contained, no shared references.
+    resources:
+    - name: v1-notifications-webhooks-lookup
+      path: /v1/notifications/webhooks-lookup
+      operations:
+      - name: webhookslookuppost
+        method: POST
+        description: Paypal Create webhook lookup
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: webhookslookuplist
+        method: GET
+        description: Paypal List webhook lookups
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: v1-notifications-webhooks-lookup-webhook_lookup_id
+      path: /v1/notifications/webhooks-lookup/{webhook_lookup_id}
+      operations:
+      - name: webhookslookupget
+        method: GET
+        description: Paypal Show webhook lookup details
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: webhookslookupdelete
+        method: DELETE
+        description: Paypal Delete webhook lookup
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    authentication:
+      type: bearer
+      token: '{{env.PAYPAL_API_KEY}}'
+  exposes:
+  - type: rest
+    namespace: notification-webhooks-webhooks-lookup-rest
+    port: 8080
+    description: REST adapter for Paypal Webhooks Management — Webhooks-Lookup. One Spectral-compliant resource per consumed
+      operation, prefixed with /v1.
+    resources:
+    - path: /v1/v1/notifications/webhooks-lookup
+      name: v1-notifications-webhooks-lookup
+      description: REST surface for v1-notifications-webhooks-lookup.
+      operations:
+      - method: POST
+        name: webhookslookuppost
+        description: Paypal Create webhook lookup
+        call: notification-webhooks-webhooks-lookup.webhookslookuppost
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: GET
+        name: webhookslookuplist
+        description: Paypal List webhook lookups
+        call: notification-webhooks-webhooks-lookup.webhookslookuplist
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/v1/notifications/webhooks-lookup/{webhook-lookup-id}
+      name: v1-notifications-webhooks-lookup-webhook-lookup-id
+      description: REST surface for v1-notifications-webhooks-lookup-webhook_lookup_id.
+      operations:
+      - method: GET
+        name: webhookslookupget
+        description: Paypal Show webhook lookup details
+        call: notification-webhooks-webhooks-lookup.webhookslookupget
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: DELETE
+        name: webhookslookupdelete
+        description: Paypal Delete webhook lookup
+        call: notification-webhooks-webhooks-lookup.webhookslookupdelete
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: notification-webhooks-webhooks-lookup-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for Paypal Webhooks Management — Webhooks-Lookup. One tool per consumed operation, routed inline
+      through this capability's consumes block.
+    tools:
+    - name: paypal-create-webhook-lookup
+      description: Paypal Create webhook lookup
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: false
+      call: notification-webhooks-webhooks-lookup.webhookslookuppost
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: paypal-list-webhook-lookups
+      description: Paypal List webhook lookups
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: notification-webhooks-webhooks-lookup.webhookslookuplist
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: paypal-show-webhook-lookup-details
+      description: Paypal Show webhook lookup details
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: notification-webhooks-webhooks-lookup.webhookslookupget
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: paypal-delete-webhook-lookup
+      description: Paypal Delete webhook lookup
+      hints:
+        readOnly: false
+        destructive: true
+        idempotent: true
+      call: notification-webhooks-webhooks-lookup.webhookslookupdelete
+      outputParameters:
+      - type: object
+        mapping: $.

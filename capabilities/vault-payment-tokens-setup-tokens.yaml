@@ -1,0 +1,112 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Paypal Payment Method Tokens — Setup-Tokens
+  description: 'Paypal Payment Method Tokens — Setup-Tokens. 2 operations. Lead operation: Paypal Create a setup token. Self-contained
+    Naftiko capability covering one Paypal business surface.'
+  tags:
+  - Paypal
+  - Setup-Tokens
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    PAYPAL_API_KEY: PAYPAL_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: vault-payment-tokens-setup-tokens
+    baseUri: https://api-m.sandbox.paypal.com
+    description: Paypal Payment Method Tokens — Setup-Tokens business capability. Self-contained, no shared references.
+    resources:
+    - name: v3-vault-setup-tokens
+      path: /v3/vault/setup-tokens
+      operations:
+      - name: setuptokenscreate
+        method: POST
+        description: Paypal Create a setup token
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+    - name: v3-vault-setup-tokens-id
+      path: /v3/vault/setup-tokens/{id}
+      operations:
+      - name: setuptokensget
+        method: GET
+        description: Paypal Retrieve a setup token
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    authentication:
+      type: bearer
+      token: '{{env.PAYPAL_API_KEY}}'
+  exposes:
+  - type: rest
+    namespace: vault-payment-tokens-setup-tokens-rest
+    port: 8080
+    description: REST adapter for Paypal Payment Method Tokens — Setup-Tokens. One Spectral-compliant resource per consumed
+      operation, prefixed with /v1.
+    resources:
+    - path: /v1/v3/vault/setup-tokens
+      name: v3-vault-setup-tokens
+      description: REST surface for v3-vault-setup-tokens.
+      operations:
+      - method: POST
+        name: setuptokenscreate
+        description: Paypal Create a setup token
+        call: vault-payment-tokens-setup-tokens.setuptokenscreate
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/v3/vault/setup-tokens/{id}
+      name: v3-vault-setup-tokens-id
+      description: REST surface for v3-vault-setup-tokens-id.
+      operations:
+      - method: GET
+        name: setuptokensget
+        description: Paypal Retrieve a setup token
+        call: vault-payment-tokens-setup-tokens.setuptokensget
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: vault-payment-tokens-setup-tokens-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for Paypal Payment Method Tokens — Setup-Tokens. One tool per consumed operation, routed inline
+      through this capability's consumes block.
+    tools:
+    - name: paypal-create-setup-token
+      description: Paypal Create a setup token
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: vault-payment-tokens-setup-tokens.setuptokenscreate
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: paypal-retrieve-setup-token
+      description: Paypal Retrieve a setup token
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: vault-payment-tokens-setup-tokens.setuptokensget
+      outputParameters:
+      - type: object
+        mapping: $.

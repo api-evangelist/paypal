@@ -1,0 +1,70 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Paypal Payments — Refunds
+  description: 'Paypal Payments — Refunds. 1 operations. Lead operation: Paypal Show refund details. Self-contained Naftiko
+    capability covering one Paypal business surface.'
+  tags:
+  - Paypal
+  - Refunds
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    PAYPAL_API_KEY: PAYPAL_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: payments-refunds
+    baseUri: https://api-m.sandbox.paypal.com
+    description: Paypal Payments — Refunds business capability. Self-contained, no shared references.
+    resources:
+    - name: v2-payments-refunds-refund_id
+      path: /v2/payments/refunds/{refund_id}
+      operations:
+      - name: refundsget
+        method: GET
+        description: Paypal Show refund details
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    authentication:
+      type: bearer
+      token: '{{env.PAYPAL_API_KEY}}'
+  exposes:
+  - type: rest
+    namespace: payments-refunds-rest
+    port: 8080
+    description: REST adapter for Paypal Payments — Refunds. One Spectral-compliant resource per consumed operation, prefixed
+      with /v1.
+    resources:
+    - path: /v1/v2/payments/refunds/{refund-id}
+      name: v2-payments-refunds-refund-id
+      description: REST surface for v2-payments-refunds-refund_id.
+      operations:
+      - method: GET
+        name: refundsget
+        description: Paypal Show refund details
+        call: payments-refunds.refundsget
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: payments-refunds-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for Paypal Payments — Refunds. One tool per consumed operation, routed inline through this capability's
+      consumes block.
+    tools:
+    - name: paypal-show-refund-details
+      description: Paypal Show refund details
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: payments-refunds.refundsget
+      outputParameters:
+      - type: object
+        mapping: $.

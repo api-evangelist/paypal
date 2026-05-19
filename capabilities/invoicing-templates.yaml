@@ -1,0 +1,197 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Paypal Invoices — Templates
+  description: 'Paypal Invoices — Templates. 5 operations. Lead operation: Paypal List templates. Self-contained Naftiko capability
+    covering one Paypal business surface.'
+  tags:
+  - Paypal
+  - Templates
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    PAYPAL_API_KEY: PAYPAL_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: invoicing-templates
+    baseUri: https://api-m.sandbox.paypal.com
+    description: Paypal Invoices — Templates business capability. Self-contained, no shared references.
+    resources:
+    - name: v2-invoicing-templates
+      path: /v2/invoicing/templates
+      operations:
+      - name: templateslist
+        method: GET
+        description: Paypal List templates
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: templatescreate
+        method: POST
+        description: Paypal Create template
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+    - name: v2-invoicing-templates-template_id
+      path: /v2/invoicing/templates/{template_id}
+      operations:
+      - name: templatesget
+        method: GET
+        description: Paypal Show template details
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: templatesupdate
+        method: PUT
+        description: Paypal Fully update template
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+      - name: templatesdelete
+        method: DELETE
+        description: Paypal Delete template
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    authentication:
+      type: bearer
+      token: '{{env.PAYPAL_API_KEY}}'
+  exposes:
+  - type: rest
+    namespace: invoicing-templates-rest
+    port: 8080
+    description: REST adapter for Paypal Invoices — Templates. One Spectral-compliant resource per consumed operation, prefixed
+      with /v1.
+    resources:
+    - path: /v1/v2/invoicing/templates
+      name: v2-invoicing-templates
+      description: REST surface for v2-invoicing-templates.
+      operations:
+      - method: GET
+        name: templateslist
+        description: Paypal List templates
+        call: invoicing-templates.templateslist
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: POST
+        name: templatescreate
+        description: Paypal Create template
+        call: invoicing-templates.templatescreate
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/v2/invoicing/templates/{template-id}
+      name: v2-invoicing-templates-template-id
+      description: REST surface for v2-invoicing-templates-template_id.
+      operations:
+      - method: GET
+        name: templatesget
+        description: Paypal Show template details
+        call: invoicing-templates.templatesget
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: PUT
+        name: templatesupdate
+        description: Paypal Fully update template
+        call: invoicing-templates.templatesupdate
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: DELETE
+        name: templatesdelete
+        description: Paypal Delete template
+        call: invoicing-templates.templatesdelete
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: invoicing-templates-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for Paypal Invoices — Templates. One tool per consumed operation, routed inline through this
+      capability's consumes block.
+    tools:
+    - name: paypal-list-templates
+      description: Paypal List templates
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: invoicing-templates.templateslist
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: paypal-create-template
+      description: Paypal Create template
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: invoicing-templates.templatescreate
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: paypal-show-template-details
+      description: Paypal Show template details
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: invoicing-templates.templatesget
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: paypal-fully-update-template
+      description: Paypal Fully update template
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: true
+      call: invoicing-templates.templatesupdate
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: paypal-delete-template
+      description: Paypal Delete template
+      hints:
+        readOnly: false
+        destructive: true
+        idempotent: true
+      call: invoicing-templates.templatesdelete
+      outputParameters:
+      - type: object
+        mapping: $.

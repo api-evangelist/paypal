@@ -1,0 +1,315 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Paypal Orders — Orders
+  description: 'Paypal Orders — Orders. 7 operations. Lead operation: Paypal Create order. Self-contained Naftiko capability
+    covering one Paypal business surface.'
+  tags:
+  - Paypal
+  - Orders
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    PAYPAL_API_KEY: PAYPAL_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: checkout-orders-orders
+    baseUri: https://api-m.sandbox.paypal.com
+    description: Paypal Orders — Orders business capability. Self-contained, no shared references.
+    resources:
+    - name: v2-checkout-orders
+      path: /v2/checkout/orders
+      operations:
+      - name: orderscreate
+        method: POST
+        description: Paypal Create order
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+    - name: v2-checkout-orders-id
+      path: /v2/checkout/orders/{id}
+      operations:
+      - name: ordersget
+        method: GET
+        description: Paypal Show order details
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: orderspatch
+        method: PATCH
+        description: Paypal Update order
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: false
+    - name: v2-checkout-orders-id-authorize
+      path: /v2/checkout/orders/{id}/authorize
+      operations:
+      - name: ordersauthorize
+        method: POST
+        description: Paypal Authorize payment for order
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: false
+    - name: v2-checkout-orders-id-capture
+      path: /v2/checkout/orders/{id}/capture
+      operations:
+      - name: orderscapture
+        method: POST
+        description: Paypal Capture payment for order
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: false
+    - name: v2-checkout-orders-id-confirm-payment-source
+      path: /v2/checkout/orders/{id}/confirm-payment-source
+      operations:
+      - name: ordersconfirm
+        method: POST
+        description: Paypal Confirm the Order
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: false
+    - name: v2-checkout-orders-id-track
+      path: /v2/checkout/orders/{id}/track
+      operations:
+      - name: orderstrackcreate
+        method: POST
+        description: Paypal Add tracking information for an Order.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+    authentication:
+      type: bearer
+      token: '{{env.PAYPAL_API_KEY}}'
+  exposes:
+  - type: rest
+    namespace: checkout-orders-orders-rest
+    port: 8080
+    description: REST adapter for Paypal Orders — Orders. One Spectral-compliant resource per consumed operation, prefixed
+      with /v1.
+    resources:
+    - path: /v1/v2/checkout/orders
+      name: v2-checkout-orders
+      description: REST surface for v2-checkout-orders.
+      operations:
+      - method: POST
+        name: orderscreate
+        description: Paypal Create order
+        call: checkout-orders-orders.orderscreate
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/v2/checkout/orders/{id}
+      name: v2-checkout-orders-id
+      description: REST surface for v2-checkout-orders-id.
+      operations:
+      - method: GET
+        name: ordersget
+        description: Paypal Show order details
+        call: checkout-orders-orders.ordersget
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: PATCH
+        name: orderspatch
+        description: Paypal Update order
+        call: checkout-orders-orders.orderspatch
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/v2/checkout/orders/{id}/authorize
+      name: v2-checkout-orders-id-authorize
+      description: REST surface for v2-checkout-orders-id-authorize.
+      operations:
+      - method: POST
+        name: ordersauthorize
+        description: Paypal Authorize payment for order
+        call: checkout-orders-orders.ordersauthorize
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/v2/checkout/orders/{id}/capture
+      name: v2-checkout-orders-id-capture
+      description: REST surface for v2-checkout-orders-id-capture.
+      operations:
+      - method: POST
+        name: orderscapture
+        description: Paypal Capture payment for order
+        call: checkout-orders-orders.orderscapture
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/v2/checkout/orders/{id}/confirm-payment-source
+      name: v2-checkout-orders-id-confirm-payment-source
+      description: REST surface for v2-checkout-orders-id-confirm-payment-source.
+      operations:
+      - method: POST
+        name: ordersconfirm
+        description: Paypal Confirm the Order
+        call: checkout-orders-orders.ordersconfirm
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/v2/checkout/orders/{id}/track
+      name: v2-checkout-orders-id-track
+      description: REST surface for v2-checkout-orders-id-track.
+      operations:
+      - method: POST
+        name: orderstrackcreate
+        description: Paypal Add tracking information for an Order.
+        call: checkout-orders-orders.orderstrackcreate
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: checkout-orders-orders-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for Paypal Orders — Orders. One tool per consumed operation, routed inline through this capability's
+      consumes block.
+    tools:
+    - name: paypal-create-order
+      description: Paypal Create order
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: checkout-orders-orders.orderscreate
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: paypal-show-order-details
+      description: Paypal Show order details
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: checkout-orders-orders.ordersget
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: paypal-update-order
+      description: Paypal Update order
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: true
+      call: checkout-orders-orders.orderspatch
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: paypal-authorize-payment-order
+      description: Paypal Authorize payment for order
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: checkout-orders-orders.ordersauthorize
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: paypal-capture-payment-order
+      description: Paypal Capture payment for order
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: checkout-orders-orders.orderscapture
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: paypal-confirm-order
+      description: Paypal Confirm the Order
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: checkout-orders-orders.ordersconfirm
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: paypal-add-tracking-information-order
+      description: Paypal Add tracking information for an Order.
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: checkout-orders-orders.orderstrackcreate
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.

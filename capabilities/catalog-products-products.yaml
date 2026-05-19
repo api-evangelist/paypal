@@ -1,0 +1,172 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Paypal Catalog Products — Products
+  description: 'Paypal Catalog Products — Products. 4 operations. Lead operation: Paypal Create product. Self-contained Naftiko
+    capability covering one Paypal business surface.'
+  tags:
+  - Paypal
+  - Products
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    PAYPAL_API_KEY: PAYPAL_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: catalog-products-products
+    baseUri: https://api-m.sandbox.paypal.com
+    description: Paypal Catalog Products — Products business capability. Self-contained, no shared references.
+    resources:
+    - name: v1-catalogs-products
+      path: /v1/catalogs/products
+      operations:
+      - name: productscreate
+        method: POST
+        description: Paypal Create product
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: false
+      - name: productslist
+        method: GET
+        description: Paypal List products
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: v1-catalogs-products-product_id
+      path: /v1/catalogs/products/{product_id}
+      operations:
+      - name: productsget
+        method: GET
+        description: Paypal Show product details
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: productspatch
+        method: PATCH
+        description: Paypal Update product
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: false
+    authentication:
+      type: bearer
+      token: '{{env.PAYPAL_API_KEY}}'
+  exposes:
+  - type: rest
+    namespace: catalog-products-products-rest
+    port: 8080
+    description: REST adapter for Paypal Catalog Products — Products. One Spectral-compliant resource per consumed operation,
+      prefixed with /v1.
+    resources:
+    - path: /v1/v1/catalogs/products
+      name: v1-catalogs-products
+      description: REST surface for v1-catalogs-products.
+      operations:
+      - method: POST
+        name: productscreate
+        description: Paypal Create product
+        call: catalog-products-products.productscreate
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: GET
+        name: productslist
+        description: Paypal List products
+        call: catalog-products-products.productslist
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/v1/catalogs/products/{product-id}
+      name: v1-catalogs-products-product-id
+      description: REST surface for v1-catalogs-products-product_id.
+      operations:
+      - method: GET
+        name: productsget
+        description: Paypal Show product details
+        call: catalog-products-products.productsget
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: PATCH
+        name: productspatch
+        description: Paypal Update product
+        call: catalog-products-products.productspatch
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: catalog-products-products-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for Paypal Catalog Products — Products. One tool per consumed operation, routed inline through
+      this capability's consumes block.
+    tools:
+    - name: paypal-create-product
+      description: Paypal Create product
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: catalog-products-products.productscreate
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: paypal-list-products
+      description: Paypal List products
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: catalog-products-products.productslist
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: paypal-show-product-details
+      description: Paypal Show product details
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: catalog-products-products.productsget
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: paypal-update-product
+      description: Paypal Update product
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: true
+      call: catalog-products-products.productspatch
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.

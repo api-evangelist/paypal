@@ -1,0 +1,80 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Paypal Invoices — Search-Invoices
+  description: 'Paypal Invoices — Search-Invoices. 1 operations. Lead operation: Paypal Search for invoices. Self-contained
+    Naftiko capability covering one Paypal business surface.'
+  tags:
+  - Paypal
+  - Search-Invoices
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    PAYPAL_API_KEY: PAYPAL_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: invoicing-search-invoices
+    baseUri: https://api-m.sandbox.paypal.com
+    description: Paypal Invoices — Search-Invoices business capability. Self-contained, no shared references.
+    resources:
+    - name: v2-invoicing-search-invoices
+      path: /v2/invoicing/search-invoices
+      operations:
+      - name: invoicessearchinvoices
+        method: POST
+        description: Paypal Search for invoices
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: false
+    authentication:
+      type: bearer
+      token: '{{env.PAYPAL_API_KEY}}'
+  exposes:
+  - type: rest
+    namespace: invoicing-search-invoices-rest
+    port: 8080
+    description: REST adapter for Paypal Invoices — Search-Invoices. One Spectral-compliant resource per consumed operation,
+      prefixed with /v1.
+    resources:
+    - path: /v1/v2/invoicing/search-invoices
+      name: v2-invoicing-search-invoices
+      description: REST surface for v2-invoicing-search-invoices.
+      operations:
+      - method: POST
+        name: invoicessearchinvoices
+        description: Paypal Search for invoices
+        call: invoicing-search-invoices.invoicessearchinvoices
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: invoicing-search-invoices-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for Paypal Invoices — Search-Invoices. One tool per consumed operation, routed inline through
+      this capability's consumes block.
+    tools:
+    - name: paypal-search-invoices
+      description: Paypal Search for invoices
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: false
+      call: invoicing-search-invoices.invoicessearchinvoices
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.

@@ -1,0 +1,278 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Paypal Subscriptions — Plans
+  description: 'Paypal Subscriptions — Plans. 7 operations. Lead operation: Paypal Create plan. Self-contained Naftiko capability
+    covering one Paypal business surface.'
+  tags:
+  - Paypal
+  - Plans
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    PAYPAL_API_KEY: PAYPAL_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: billing-subscriptions-plans
+    baseUri: https://api-m.sandbox.paypal.com
+    description: Paypal Subscriptions — Plans business capability. Self-contained, no shared references.
+    resources:
+    - name: v1-billing-plans
+      path: /v1/billing/plans
+      operations:
+      - name: planscreate
+        method: POST
+        description: Paypal Create plan
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: false
+      - name: planslist
+        method: GET
+        description: Paypal List plans
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: v1-billing-plans-id
+      path: /v1/billing/plans/{id}
+      operations:
+      - name: plansget
+        method: GET
+        description: Paypal Show plan details
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: planspatch
+        method: PATCH
+        description: Paypal Update plan
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: false
+    - name: v1-billing-plans-id-activate
+      path: /v1/billing/plans/{id}/activate
+      operations:
+      - name: plansactivate
+        method: POST
+        description: Paypal Activate plan
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: v1-billing-plans-id-deactivate
+      path: /v1/billing/plans/{id}/deactivate
+      operations:
+      - name: plansdeactivate
+        method: POST
+        description: Paypal Deactivate plan
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: v1-billing-plans-id-update-pricing-schemes
+      path: /v1/billing/plans/{id}/update-pricing-schemes
+      operations:
+      - name: plansupdatepricingschemes
+        method: POST
+        description: Paypal Update pricing
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: false
+    authentication:
+      type: bearer
+      token: '{{env.PAYPAL_API_KEY}}'
+  exposes:
+  - type: rest
+    namespace: billing-subscriptions-plans-rest
+    port: 8080
+    description: REST adapter for Paypal Subscriptions — Plans. One Spectral-compliant resource per consumed operation, prefixed
+      with /v1.
+    resources:
+    - path: /v1/v1/billing/plans
+      name: v1-billing-plans
+      description: REST surface for v1-billing-plans.
+      operations:
+      - method: POST
+        name: planscreate
+        description: Paypal Create plan
+        call: billing-subscriptions-plans.planscreate
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: GET
+        name: planslist
+        description: Paypal List plans
+        call: billing-subscriptions-plans.planslist
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/v1/billing/plans/{id}
+      name: v1-billing-plans-id
+      description: REST surface for v1-billing-plans-id.
+      operations:
+      - method: GET
+        name: plansget
+        description: Paypal Show plan details
+        call: billing-subscriptions-plans.plansget
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: PATCH
+        name: planspatch
+        description: Paypal Update plan
+        call: billing-subscriptions-plans.planspatch
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/v1/billing/plans/{id}/activate
+      name: v1-billing-plans-id-activate
+      description: REST surface for v1-billing-plans-id-activate.
+      operations:
+      - method: POST
+        name: plansactivate
+        description: Paypal Activate plan
+        call: billing-subscriptions-plans.plansactivate
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/v1/billing/plans/{id}/deactivate
+      name: v1-billing-plans-id-deactivate
+      description: REST surface for v1-billing-plans-id-deactivate.
+      operations:
+      - method: POST
+        name: plansdeactivate
+        description: Paypal Deactivate plan
+        call: billing-subscriptions-plans.plansdeactivate
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/v1/billing/plans/{id}/update-pricing-schemes
+      name: v1-billing-plans-id-update-pricing-schemes
+      description: REST surface for v1-billing-plans-id-update-pricing-schemes.
+      operations:
+      - method: POST
+        name: plansupdatepricingschemes
+        description: Paypal Update pricing
+        call: billing-subscriptions-plans.plansupdatepricingschemes
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: billing-subscriptions-plans-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for Paypal Subscriptions — Plans. One tool per consumed operation, routed inline through this
+      capability's consumes block.
+    tools:
+    - name: paypal-create-plan
+      description: Paypal Create plan
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: billing-subscriptions-plans.planscreate
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: paypal-list-plans
+      description: Paypal List plans
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: billing-subscriptions-plans.planslist
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: paypal-show-plan-details
+      description: Paypal Show plan details
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: billing-subscriptions-plans.plansget
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: paypal-update-plan
+      description: Paypal Update plan
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: true
+      call: billing-subscriptions-plans.planspatch
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: paypal-activate-plan
+      description: Paypal Activate plan
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: billing-subscriptions-plans.plansactivate
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: paypal-deactivate-plan
+      description: Paypal Deactivate plan
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: billing-subscriptions-plans.plansdeactivate
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: paypal-update-pricing
+      description: Paypal Update pricing
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: billing-subscriptions-plans.plansupdatepricingschemes
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
