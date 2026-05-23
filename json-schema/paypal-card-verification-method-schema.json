@@ -1,0 +1,10 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/card_verification_method",
+  "title": "Card Verification Method",
+  "type": "string",
+  "description": "The verification method of the card.",
+  "minLength": 1,
+  "maxLength": 255,
+  "pattern": "^[0-9A-Z_]+$"
+}

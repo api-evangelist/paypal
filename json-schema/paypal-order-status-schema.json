@@ -1,0 +1,18 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/order_status",
+  "title": "Order Status",
+  "type": "string",
+  "description": "The order status.",
+  "minLength": 1,
+  "maxLength": 255,
+  "pattern": "^[0-9A-Z_]+$",
+  "enum": [
+    "CREATED",
+    "SAVED",
+    "APPROVED",
+    "VOIDED",
+    "COMPLETED",
+    "PAYER_ACTION_REQUIRED"
+  ]
+}

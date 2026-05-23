@@ -1,0 +1,99 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/subscriptions.activate-422",
+  "title": "subscriptions.activate-422",
+  "properties": {
+    "details": {
+      "type": "array",
+      "items": {
+        "anyOf": [
+          {
+            "title": "USER_ACCOUNT_CLOSED",
+            "properties": {
+              "issue": {
+                "type": "string",
+                "enum": [
+                  "USER_ACCOUNT_CLOSED"
+                ]
+              },
+              "description": {
+                "type": "string",
+                "enum": [
+                  "User account locked or closed."
+                ]
+              }
+            }
+          },
+          {
+            "title": "SUBSCRIPTION_STATUS_INVALID",
+            "properties": {
+              "issue": {
+                "type": "string",
+                "enum": [
+                  "SUBSCRIPTION_STATUS_INVALID"
+                ]
+              },
+              "description": {
+                "type": "string",
+                "enum": [
+                  "Invalid subscription status for activate action; subscription status should be suspended."
+                ]
+              }
+            }
+          },
+          {
+            "title": "SUBSCRIPTION_CANNOT_BE_ACTIVATED",
+            "properties": {
+              "issue": {
+                "type": "string",
+                "enum": [
+                  "SUBSCRIPTION_CANNOT_BE_ACTIVATED"
+                ]
+              },
+              "description": {
+                "type": "string",
+                "enum": [
+                  "Subscription cannot be activated after payment failure threshold has reached."
+                ]
+              }
+            }
+          },
+          {
+            "title": "SUBSCRIPTION_CANNOT_BE_ACTIVATED",
+            "properties": {
+              "issue": {
+                "type": "string",
+                "enum": [
+                  "SUBSCRIPTION_CANNOT_BE_ACTIVATED"
+                ]
+              },
+              "description": {
+                "type": "string",
+                "enum": [
+                  "This subscription should be activated by the system."
+                ]
+              }
+            }
+          },
+          {
+            "title": "SUBSCRIPTION_CANNOT_BE_ACTIVATED",
+            "properties": {
+              "issue": {
+                "type": "string",
+                "enum": [
+                  "SUBSCRIPTION_CANNOT_BE_ACTIVATED"
+                ]
+              },
+              "description": {
+                "type": "string",
+                "enum": [
+                  "This subscription should be activated by the merchant."
+                ]
+              }
+            }
+          }
+        ]
+      }
+    }
+  }
+}

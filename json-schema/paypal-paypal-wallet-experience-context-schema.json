@@ -1,0 +1,80 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/paypal_wallet_experience_context",
+  "title": "PayPal Wallet Experience Context",
+  "type": "object",
+  "description": "Customizes the payer experience during the approval process for payment with PayPal.<blockquote><strong>Note:</strong> Partners and Marketplaces might configure <code>brand_name</code> and <code>shipping_preference</code> during partner account setup, which overrides the request values.</blockquote>",
+  "properties": {
+    "brand_name": {
+      "type": "string",
+      "description": "The label that overrides the business name in the PayPal account on the PayPal site. The pattern is defined by an external party and supports Unicode.",
+      "minLength": 1,
+      "maxLength": 127,
+      "pattern": "^.*$"
+    },
+    "locale": {
+      "description": "The BCP 47-formatted locale of pages that the PayPal payment experience shows. PayPal supports a five-character code. For example, `da-DK`, `he-IL`, `id-ID`, `ja-JP`, `no-NO`, `pt-BR`, `ru-RU`, `sv-SE`, `th-TH`, `zh-CN`, `zh-HK`, or `zh-TW`.",
+      "$ref": "#/components/schemas/language"
+    },
+    "shipping_preference": {
+      "type": "string",
+      "description": "The location from which the shipping address is derived.",
+      "minLength": 1,
+      "maxLength": 24,
+      "pattern": "^[A-Z_]+$",
+      "default": "GET_FROM_FILE",
+      "enum": [
+        "GET_FROM_FILE",
+        "NO_SHIPPING",
+        "SET_PROVIDED_ADDRESS"
+      ]
+    },
+    "return_url": {
+      "description": "The URL where the customer will be redirected upon approving a payment.",
+      "format": "uri",
+      "$ref": "#/components/schemas/url"
+    },
+    "cancel_url": {
+      "description": "The URL where the customer will be redirected upon cancelling the payment approval.",
+      "format": "uri",
+      "$ref": "#/components/schemas/url"
+    },
+    "landing_page": {
+      "type": "string",
+      "description": "The type of landing page to show on the PayPal site for customer checkout.",
+      "default": "NO_PREFERENCE",
+      "minLength": 1,
+      "maxLength": 13,
+      "pattern": "^[0-9A-Z_]+$",
+      "enum": [
+        "LOGIN",
+        "GUEST_CHECKOUT",
+        "NO_PREFERENCE"
+      ]
+    },
+    "user_action": {
+      "type": "string",
+      "description": "Configures a <strong>Continue</strong> or <strong>Pay Now</strong> checkout flow.",
+      "default": "CONTINUE",
+      "minLength": 1,
+      "maxLength": 8,
+      "pattern": "^[0-9A-Z_]+$",
+      "enum": [
+        "CONTINUE",
+        "PAY_NOW"
+      ]
+    },
+    "payment_method_preference": {
+      "type": "string",
+      "description": "The merchant-preferred payment methods.",
+      "minLength": 1,
+      "maxLength": 255,
+      "pattern": "^[0-9A-Z_]+$",
+      "default": "UNRESTRICTED",
+      "enum": [
+        "UNRESTRICTED",
+        "IMMEDIATE_PAYMENT_REQUIRED"
+      ]
+    }
+  }
+}

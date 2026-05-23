@@ -1,0 +1,14 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/refund_reference",
+  "title": "Refund Payment Reference",
+  "type": "object",
+  "description": "The reference to the refund payment detail.",
+  "properties": {
+    "refund_id": {
+      "type": "string",
+      "description": "The ID of the refund of an invoice payment.",
+      "readOnly": true
+    }
+  }
+}

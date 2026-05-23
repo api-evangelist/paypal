@@ -1,0 +1,19 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/person_document",
+  "title": "Person document",
+  "description": "The documents associated with the person.",
+  "allOf": [
+    {
+      "$ref": "#/components/schemas/document"
+    },
+    {
+      "properties": {
+        "type": {
+          "description": "The actual type of the document. It could be `ID_CARD`, `PASSPORT`, etc.",
+          "$ref": "#/components/schemas/person_document_type"
+        }
+      }
+    }
+  ]
+}

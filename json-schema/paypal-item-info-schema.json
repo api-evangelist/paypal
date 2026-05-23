@@ -1,0 +1,77 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/item_info",
+  "title": "Item Information",
+  "type": "object",
+  "description": "The information for a purchased item in a disputed transaction.",
+  "properties": {
+    "item_id": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 255,
+      "pattern": "^[A-Za-z0-9]+$",
+      "description": "The item ID. If the merchant provides multiple pieces of evidence and the transaction has multiple item IDs, the merchant can use this value to associate a piece of evidence with an item ID."
+    },
+    "item_name": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 2000,
+      "description": "The item name."
+    },
+    "item_description": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 2000,
+      "description": "The item description."
+    },
+    "item_quantity": {
+      "type": "string",
+      "description": "The count of the item in the dispute. Must be a whole number.",
+      "minLength": 1,
+      "maxLength": 10,
+      "pattern": "^[1-9][0-9]{0,9}$"
+    },
+    "partner_transaction_id": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 255,
+      "pattern": "^[A-Za-z0-9]+$",
+      "description": "The ID of the transaction in the partner system. The partner transaction ID is returned at an item level because the partner might show different transactions for different items in the cart."
+    },
+    "reason": {
+      "$ref": "#/components/schemas/dispute_reason"
+    },
+    "dispute_amount": {
+      "$ref": "#/components/schemas/money",
+      "description": "The amount of the item in the dispute.",
+      "readOnly": true
+    },
+    "notes": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 2000,
+      "description": "Any notes provided with the item."
+    },
+    "item_type": {
+      "$ref": "#/components/schemas/item_type"
+    },
+    "product_details": {
+      "$ref": "#/components/schemas/item_product_details"
+    },
+    "service_details": {
+      "$ref": "#/components/schemas/item_service_details"
+    },
+    "booking_details": {
+      "$ref": "#/components/schemas/item_booking_details"
+    },
+    "digital_download_details": {
+      "$ref": "#/components/schemas/item_digital_download_details"
+    },
+    "cancellation_details": {
+      "$ref": "#/components/schemas/item_cancellation_details"
+    },
+    "agreed_refund_details": {
+      "$ref": "#/components/schemas/item_agreed_refund_details"
+    }
+  }
+}

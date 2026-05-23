@@ -1,0 +1,21 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/billing_experience_preference",
+  "title": "Billing Experience Preference",
+  "type": "object",
+  "description": "The preference that customizes the billing experience of the customer.",
+  "additionalProperties": false,
+  "properties": {
+    "experience_id": {
+      "type": "string",
+      "description": "The ID of the payment web experience profile.",
+      "minLength": 1,
+      "maxLength": 20,
+      "pattern": "^[a-zA-Z0-9-]+$"
+    },
+    "billing_context_set": {
+      "type": "boolean",
+      "description": "Indicates whether the partner has already displayed the billing context to the seller."
+    }
+  }
+}

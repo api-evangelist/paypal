@@ -1,0 +1,14 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/template_display_preference",
+  "title": "Template Display Preference",
+  "type": "object",
+  "description": "The template display preference.",
+  "properties": {
+    "hidden": {
+      "type": "boolean",
+      "description": "Indicates whether to show or hide this field.",
+      "default": false
+    }
+  }
+}

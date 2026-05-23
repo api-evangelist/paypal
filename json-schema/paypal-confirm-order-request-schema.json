@@ -1,0 +1,20 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/confirm_order_request",
+  "title": "Confirm Order Request",
+  "description": "Payer confirms the intent to pay for the Order using the provided payment source.",
+  "properties": {
+    "payment_source": {
+      "$ref": "#/components/schemas/payment_source"
+    },
+    "processing_instruction": {
+      "$ref": "#/components/schemas/processing_instruction"
+    },
+    "application_context": {
+      "$ref": "#/components/schemas/order_confirm_application_context"
+    }
+  },
+  "required": [
+    "payment_source"
+  ]
+}

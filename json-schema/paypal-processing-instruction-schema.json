@@ -1,0 +1,15 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/processing_instruction",
+  "title": "Processing Instruction",
+  "type": "string",
+  "description": "The instruction to process an order.",
+  "default": "NO_INSTRUCTION",
+  "minLength": 1,
+  "maxLength": 36,
+  "pattern": "^[0-9A-Z_]+$",
+  "enum": [
+    "ORDER_COMPLETE_ON_PAYMENT_APPROVAL",
+    "NO_INSTRUCTION"
+  ]
+}

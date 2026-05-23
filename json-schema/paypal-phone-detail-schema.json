@@ -1,0 +1,22 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/phone_detail",
+  "title": "Phone Detail",
+  "type": "object",
+  "description": "The phone details. Includes the phone number and type.",
+  "required": [
+    "phone_type"
+  ],
+  "allOf": [
+    {
+      "$ref": "#/components/schemas/phone"
+    },
+    {
+      "properties": {
+        "phone_type": {
+          "$ref": "#/components/schemas/phone_type"
+        }
+      }
+    }
+  ]
+}

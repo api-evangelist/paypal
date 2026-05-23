@@ -1,0 +1,28 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/shipping_detail",
+  "title": "Shipping Details",
+  "type": "object",
+  "description": "The shipping details.",
+  "properties": {
+    "name": {
+      "description": "The name of the person to whom to ship the items. Supports only the `full_name` property.",
+      "$ref": "#/components/schemas/name"
+    },
+    "type": {
+      "description": "The method by which the payer wants to get their items from the payee e.g shipping, in-person pickup. Either type or options but not both may be present.",
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 255,
+      "pattern": "^[0-9A-Z_]+$",
+      "enum": [
+        "SHIPPING",
+        "PICKUP_IN_PERSON"
+      ]
+    },
+    "address": {
+      "description": "The address of the person to whom to ship the items. Supports only the `address_line_1`, `address_line_2`, `admin_area_1`, `admin_area_2`, `postal_code`, and `country_code` properties.",
+      "$ref": "#/components/schemas/address_portable"
+    }
+  }
+}

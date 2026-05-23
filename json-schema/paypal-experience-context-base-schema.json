@@ -1,0 +1,43 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/experience_context_base",
+  "title": "Experience Context",
+  "type": "object",
+  "description": "Customizes the payer experience during the approval process for the payment.",
+  "properties": {
+    "brand_name": {
+      "type": "string",
+      "description": "The label that overrides the business name in the PayPal account on the PayPal site. The pattern is defined by an external party and supports Unicode.",
+      "minLength": 1,
+      "maxLength": 127,
+      "pattern": "^.*$"
+    },
+    "locale": {
+      "description": "The BCP 47-formatted locale of pages that the PayPal payment experience shows. PayPal supports a five-character code. For example, `da-DK`, `he-IL`, `id-ID`, `ja-JP`, `no-NO`, `pt-BR`, `ru-RU`, `sv-SE`, `th-TH`, `zh-CN`, `zh-HK`, or `zh-TW`.",
+      "$ref": "#/components/schemas/language"
+    },
+    "shipping_preference": {
+      "type": "string",
+      "description": "The location from which the shipping address is derived.",
+      "minLength": 1,
+      "maxLength": 24,
+      "pattern": "^[A-Z_]+$",
+      "default": "GET_FROM_FILE",
+      "enum": [
+        "GET_FROM_FILE",
+        "NO_SHIPPING",
+        "SET_PROVIDED_ADDRESS"
+      ]
+    },
+    "return_url": {
+      "description": "The URL where the customer is redirected after the customer approves the payment.",
+      "format": "uri",
+      "$ref": "#/components/schemas/url"
+    },
+    "cancel_url": {
+      "description": "The URL where the customer is redirected after the customer cancels the payment.",
+      "format": "uri",
+      "$ref": "#/components/schemas/url"
+    }
+  }
+}

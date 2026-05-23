@@ -1,0 +1,29 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/dispute_search",
+  "title": "Dispute Search Response",
+  "type": "object",
+  "description": "An array of disputes. Includes links that enable you to navigate through the response.",
+  "properties": {
+    "items": {
+      "type": "array",
+      "minItems": 1,
+      "maxItems": 100,
+      "description": "An array of disputes that match the filter criteria. Sorted in latest to earliest creation time order.",
+      "items": {
+        "$ref": "#/components/schemas/dispute_info"
+      }
+    },
+    "links": {
+      "type": "array",
+      "minItems": 1,
+      "maxItems": 10,
+      "description": "An array of request-related [HATEOAS links](/docs/api/reference/api-responses/#hateoas-links/).",
+      "readOnly": true,
+      "items": {
+        "$ref": "#/components/schemas/link_description",
+        "readOnly": true
+      }
+    }
+  }
+}

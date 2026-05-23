@@ -1,0 +1,43 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/message",
+  "title": "Message",
+  "type": "object",
+  "description": "A customer- or merchant-posted message for the dispute.",
+  "properties": {
+    "posted_by": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 255,
+      "pattern": "^[0-9A-Z_]+$",
+      "description": "Indicates whether the customer, merchant, or dispute arbiter posted the message.",
+      "readOnly": true,
+      "enum": [
+        "BUYER",
+        "SELLER",
+        "ARBITER"
+      ]
+    },
+    "time_posted": {
+      "readOnly": true,
+      "$ref": "#/components/schemas/date_time",
+      "description": "The date and time when the message was posted, in [Internet date and time format](https://tools.ietf.org/html/rfc3339#section-5.6)."
+    },
+    "content": {
+      "type": "string",
+      "description": "The message text.",
+      "maxLength": 2000,
+      "minLength": 0
+    },
+    "documents": {
+      "type": "array",
+      "readOnly": true,
+      "description": "An array of metadata for the documents which contains any additional info about the message posted.",
+      "items": {
+        "$ref": "#/components/schemas/document"
+      },
+      "minItems": 1,
+      "maxItems": 10
+    }
+  }
+}

@@ -1,0 +1,42 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/vault_response",
+  "title": "Saved Payment Source Response",
+  "type": "object",
+  "description": "The details about a saved payment source.",
+  "properties": {
+    "id": {
+      "type": "string",
+      "description": "The PayPal-generated ID for the saved payment source.",
+      "minLength": 1,
+      "maxLength": 255
+    },
+    "status": {
+      "type": "string",
+      "description": "The vault status.",
+      "minLength": 1,
+      "maxLength": 255,
+      "pattern": "^[0-9A-Z_]+$",
+      "deprecated": true,
+      "enum": [
+        "VAULTED",
+        "CREATED",
+        "APPROVED"
+      ]
+    },
+    "customer": {
+      "$ref": "#/components/schemas/customer"
+    },
+    "links": {
+      "type": "array",
+      "description": "An array of request-related HATEOAS links.",
+      "readOnly": true,
+      "minItems": 1,
+      "maxItems": 10,
+      "items": {
+        "description": "A request-related [HATEOAS link](/docs/api/reference/api-responses/#hateoas-links).",
+        "$ref": "#/components/schemas/link_description"
+      }
+    }
+  }
+}

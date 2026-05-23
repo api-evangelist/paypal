@@ -1,0 +1,37 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/address",
+  "title": "Simple Postal Address (Coarse-Grained)",
+  "type": "object",
+  "description": "A simple postal address with coarse-grained fields. Do not use for an international address. Use for backward compatibility only. Does not contain phone.",
+  "properties": {
+    "line1": {
+      "type": "string",
+      "description": "The first line of the address. For example, number or street."
+    },
+    "line2": {
+      "type": "string",
+      "description": "The second line of the address. For example, suite or apartment number."
+    },
+    "city": {
+      "type": "string",
+      "description": "The city name."
+    },
+    "state": {
+      "type": "string",
+      "description": "The [code](/docs/api/reference/state-codes/) for a US state or the equivalent for other countries. Required for transactions if the address is in one of these countries: [Argentina](/docs/api/reference/state-codes/#argentina), [Brazil](/docs/api/reference/state-codes/#brazil), [Canada](/docs/api/reference/state-codes/#canada), [China](/docs/api/reference/state-codes/#china), [India](/docs/api/reference/state-codes/#india), [Italy](/docs/api/reference/state-codes/#italy), [Japan](/docs/api/reference/state-codes/#japan), [Mexico](/docs/api/reference/state-codes/#mexico), [Thailand](/docs/api/reference/state-codes/#thailand), or [United States](/docs/api/reference/state-codes/#usa). Maximum length is 40 single-byte characters."
+    },
+    "country_code": {
+      "$ref": "#/components/schemas/country_code"
+    },
+    "postal_code": {
+      "type": "string",
+      "description": "The postal code, which is the zip code or equivalent. Typically required for countries with a postal code or an equivalent. See [postal code](https://en.wikipedia.org/wiki/Postal_code)."
+    }
+  },
+  "required": [
+    "line1",
+    "city",
+    "country_code"
+  ]
+}

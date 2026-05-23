@@ -1,0 +1,18 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/currency_range",
+  "title": "Currency Range",
+  "type": "object",
+  "description": "The currency range, from the minimum inclusive amount to the maximum inclusive amount.",
+  "additionalProperties": false,
+  "properties": {
+    "minimum_amount": {
+      "description": "The minimum inclusive amount for the range.",
+      "$ref": "#/components/schemas/money"
+    },
+    "maximum_amount": {
+      "description": "The maximum inclusive amount for the range.",
+      "$ref": "#/components/schemas/money"
+    }
+  }
+}

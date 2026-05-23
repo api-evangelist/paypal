@@ -1,0 +1,35 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/refund_detail",
+  "title": "Refund Detail",
+  "type": "object",
+  "description": "The refund details of the invoice. Includes the refund type, date, amount, and method.",
+  "properties": {
+    "type": {
+      "description": "The PayPal refund type. Indicates whether the refund was paid through PayPal or externally in the invoicing flow. The record refund method supports the `EXTERNAL` refund type. The `PAYPAL` refund type is supported for backward compatibility.",
+      "$ref": "#/components/schemas/payment_type",
+      "readOnly": true
+    },
+    "refund_id": {
+      "type": "string",
+      "description": "The ID for a PayPal payment transaction. Required for the `PAYPAL` payment type.",
+      "maxLength": 22,
+      "readOnly": true
+    },
+    "refund_date": {
+      "$ref": "#/components/schemas/date_no_time",
+      "description": "The date when the invoice was refunded, in [Internet date format](https://tools.ietf.org/html/rfc3339#section-5.6). For example, `2014-02-27`."
+    },
+    "amount": {
+      "$ref": "#/components/schemas/money",
+      "description": "The amount to record as refunded. If you omit the amount, the total invoice paid amount is recorded as refunded."
+    },
+    "method": {
+      "description": "The payment mode or method through which the invoicer can accept the payments.",
+      "$ref": "#/components/schemas/payment_method"
+    }
+  },
+  "required": [
+    "method"
+  ]
+}

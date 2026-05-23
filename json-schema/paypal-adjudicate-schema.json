@@ -1,0 +1,23 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/adjudicate",
+  "title": "Settle Request",
+  "type": "object",
+  "description": "A request to settle a dispute in either the customer's or merchant's favor.",
+  "properties": {
+    "adjudication_outcome": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 255,
+      "pattern": "^[0-9A-Z_]+$",
+      "description": "The outcome of the adjudication.",
+      "enum": [
+        "BUYER_FAVOR",
+        "SELLER_FAVOR"
+      ]
+    }
+  },
+  "required": [
+    "adjudication_outcome"
+  ]
+}

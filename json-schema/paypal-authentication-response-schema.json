@@ -1,0 +1,15 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/authentication_response",
+  "title": "Authentication Response",
+  "type": "object",
+  "description": "Results of Authentication such as 3D Secure.",
+  "properties": {
+    "liability_shift": {
+      "$ref": "#/components/schemas/liability_shift"
+    },
+    "three_d_secure": {
+      "$ref": "#/components/schemas/three_d_secure_authentication_response"
+    }
+  }
+}

@@ -1,0 +1,26 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/create_payout_request",
+  "title": "Create Payout Request",
+  "type": "object",
+  "description": "The create payout request.",
+  "properties": {
+    "sender_batch_header": {
+      "description": "The sender-provided payout header for a payout request.",
+      "$ref": "#/components/schemas/sender_batch_header"
+    },
+    "items": {
+      "type": "array",
+      "description": "An array of individual payout items.",
+      "maxItems": 15000,
+      "minItems": 1,
+      "items": {
+        "$ref": "#/components/schemas/payout_item"
+      }
+    }
+  },
+  "required": [
+    "sender_batch_header",
+    "items"
+  ]
+}

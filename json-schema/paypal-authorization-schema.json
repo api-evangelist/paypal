@@ -1,0 +1,59 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/authorization",
+  "title": "Authorization",
+  "type": "object",
+  "description": "The authorized payment transaction.",
+  "allOf": [
+    {
+      "$ref": "#/components/schemas/authorization_status"
+    },
+    {
+      "properties": {
+        "id": {
+          "description": "The PayPal-generated ID for the authorized payment.",
+          "type": "string",
+          "readOnly": true
+        },
+        "amount": {
+          "description": "The amount for this authorized payment.",
+          "$ref": "#/components/schemas/money",
+          "readOnly": true
+        },
+        "invoice_id": {
+          "description": "The API caller-provided external invoice number for this order. Appears in both the payer's transaction history and the emails that the payer receives.",
+          "type": "string",
+          "readOnly": true
+        },
+        "custom_id": {
+          "type": "string",
+          "description": "The API caller-provided external ID. Used to reconcile API caller-initiated transactions with PayPal transactions. Appears in transaction and settlement reports.",
+          "maxLength": 127
+        },
+        "network_transaction_reference": {
+          "$ref": "#/components/schemas/network_transaction_reference"
+        },
+        "seller_protection": {
+          "$ref": "#/components/schemas/seller_protection",
+          "readOnly": true
+        },
+        "expiration_time": {
+          "description": "The date and time when the authorized payment expires, in [Internet date and time format](https://tools.ietf.org/html/rfc3339#section-5.6).",
+          "$ref": "#/components/schemas/date_time",
+          "readOnly": true
+        },
+        "links": {
+          "description": "An array of related [HATEOAS links](/docs/api/reference/api-responses/#hateoas-links).",
+          "type": "array",
+          "readOnly": true,
+          "items": {
+            "$ref": "#/components/schemas/link_description"
+          }
+        }
+      }
+    },
+    {
+      "$ref": "#/components/schemas/activity_timestamps"
+    }
+  ]
+}

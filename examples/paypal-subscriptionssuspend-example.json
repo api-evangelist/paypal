@@ -1,0 +1,16 @@
+{
+  "operationId": "subscriptions.suspend",
+  "method": "POST",
+  "path": "/v1/billing/subscriptions/{id}/suspend",
+  "summary": "Paypal Suspend subscription",
+  "requestExamples": [
+    {
+      "contentType": "application/json",
+      "name": "subscription_suspend_request",
+      "example": {
+        "reason": "Item out of stock"
+      }
+    }
+  ],
+  "responseExamples": []
+}

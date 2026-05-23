@@ -1,0 +1,13 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/payment_term",
+  "title": "Payment Term",
+  "type": "object",
+  "description": "The payment term of the invoice. Payment can be due upon receipt, a specified date, or in a set number of days.",
+  "properties": {
+    "term_type": {
+      "description": "The payment term. Payment can be due upon receipt, a specified date, or in a set number of days.",
+      "$ref": "#/components/schemas/payment_term_type"
+    }
+  }
+}

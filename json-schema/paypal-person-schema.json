@@ -1,0 +1,60 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/person",
+  "title": "Person",
+  "description": "Details of the person or party.",
+  "properties": {
+    "id": {
+      "description": "The encrypted party ID.",
+      "type": "string",
+      "readOnly": true,
+      "minLength": 1,
+      "maxLength": 20,
+      "pattern": "^[0-9A-Z]+$"
+    },
+    "names": {
+      "description": "The name of the person.",
+      "type": "array",
+      "items": {
+        "$ref": "#/components/schemas/person_name"
+      },
+      "minItems": 0,
+      "maxItems": 5
+    },
+    "citizenship": {
+      "description": "The citizenship country code of the person.",
+      "$ref": "#/components/schemas/country_code"
+    },
+    "addresses": {
+      "description": "The list of addresses associated with the person.",
+      "type": "array",
+      "items": {
+        "$ref": "#/components/schemas/person_address_detail"
+      },
+      "minItems": 0,
+      "maxItems": 5
+    },
+    "phones": {
+      "description": "The list of phone numbers associated with the person.",
+      "type": "array",
+      "items": {
+        "$ref": "#/components/schemas/person_phone_detail"
+      },
+      "minItems": 0,
+      "maxItems": 5
+    },
+    "birth_details": {
+      "description": "The person's birth details.",
+      "$ref": "#/components/schemas/birth_details"
+    },
+    "documents": {
+      "description": "A person's or party's related document data collected from the customer. For example SSN, ITIN, or business registration number collected from the user. <blockquote><strong>Note:</strong> This field is not applicable for POST [/v2/customer/partner-referrals](/docs/api/partner-referrals/v2/#partner-referrals_create) API calls.</blockquote>",
+      "type": "array",
+      "items": {
+        "$ref": "#/components/schemas/person_document"
+      },
+      "minItems": 0,
+      "maxItems": 20
+    }
+  }
+}

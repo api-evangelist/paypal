@@ -1,0 +1,20 @@
+{
+  "operationId": "products.patch",
+  "method": "PATCH",
+  "path": "/v1/catalogs/products/{product_id}",
+  "summary": "Paypal Update product",
+  "requestExamples": [
+    {
+      "contentType": "application/json",
+      "name": "patch_request",
+      "example": [
+        {
+          "op": "replace",
+          "path": "/description",
+          "value": "Premium video streaming service"
+        }
+      ]
+    }
+  ],
+  "responseExamples": []
+}

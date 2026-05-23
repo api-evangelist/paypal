@@ -1,0 +1,15 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/paypal_wallet_customer",
+  "title": "Customer information based on PayPal's system of record",
+  "type": "object",
+  "description": "The details about a customer in PayPal's system of record.",
+  "allOf": [
+    {
+      "$ref": "#/components/schemas/customer"
+    },
+    {
+      "properties": {}
+    }
+  ]
+}

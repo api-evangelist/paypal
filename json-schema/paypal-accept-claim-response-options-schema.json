@@ -1,0 +1,18 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/accept_claim_response_options",
+  "title": "Accept Claim Response Options",
+  "type": "object",
+  "description": "The allowed response options when the merchant is accepting the claim.",
+  "properties": {
+    "accept_claim_types": {
+      "type": "array",
+      "description": "The types of refund the merchant can provide the customer.",
+      "minItems": 1,
+      "maxItems": 10,
+      "items": {
+        "$ref": "#/components/schemas/accept_claim_type"
+      }
+    }
+  }
+}

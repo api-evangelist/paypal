@@ -1,0 +1,77 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/payout_batch_items",
+  "title": "Payout Item",
+  "type": "object",
+  "description": "The payout item status and other details.",
+  "properties": {
+    "payout_item_id": {
+      "type": "string",
+      "description": "The ID for the payout item. Viewable when you show details for a payout.",
+      "minLength": 0,
+      "maxLength": 30,
+      "pattern": "^.*$"
+    },
+    "transaction_id": {
+      "type": "string",
+      "description": "The PayPal-generated ID for the transaction.",
+      "minLength": 0,
+      "maxLength": 30,
+      "pattern": "^.*$"
+    },
+    "activity_id": {
+      "type": "string",
+      "description": "The unique PayPal-generated common ID created to link sender side and receiver side transaction. Used for tracking.",
+      "minLength": 0,
+      "maxLength": 30,
+      "pattern": "^.*$"
+    },
+    "transaction_status": {
+      "$ref": "#/components/schemas/transaction_enum"
+    },
+    "payout_item_fee": {
+      "description": "The fee, in U.S. dollars.",
+      "$ref": "#/components/schemas/currency"
+    },
+    "payout_batch_id": {
+      "type": "string",
+      "description": "The PayPal-generated ID for the payout.",
+      "minLength": 0,
+      "maxLength": 30,
+      "pattern": "^.*$"
+    },
+    "payout_item": {
+      "description": "The sender-provided information for the payout item.",
+      "$ref": "#/components/schemas/payout_item_detail"
+    },
+    "currency_conversion": {
+      "description": "The currency conversion applicable for this payout item.",
+      "$ref": "#/components/schemas/payout_currency_conversion"
+    },
+    "time_processed": {
+      "type": "string",
+      "format": "date-time",
+      "minLength": 0,
+      "maxLength": 100,
+      "description": "The date and time when this item was last processed, in [Internet date and time format](https://tools.ietf.org/html/rfc3339#section-5.6)."
+    },
+    "errors": {
+      "$ref": "#/components/schemas/error"
+    },
+    "links": {
+      "type": "array",
+      "description": "An array of request-related [HATEOAS links](/api/rest/responses/#hateoas-links).",
+      "readOnly": true,
+      "items": {
+        "$ref": "#/components/schemas/link_description"
+      },
+      "minItems": 0,
+      "maxItems": 15000
+    }
+  },
+  "required": [
+    "payout_item_id",
+    "payout_batch_id",
+    "payout_item"
+  ]
+}

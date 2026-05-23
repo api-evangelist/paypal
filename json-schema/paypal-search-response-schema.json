@@ -1,0 +1,66 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/search_response",
+  "title": "Search Response",
+  "type": "object",
+  "description": "The search response information.",
+  "properties": {
+    "transaction_details": {
+      "type": "array",
+      "maxItems": 2147483647,
+      "minItems": 1,
+      "items": {
+        "$ref": "#/components/schemas/transaction_detail"
+      },
+      "description": "An array of transaction detail objects."
+    },
+    "account_number": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 255,
+      "pattern": "^[a-zA-Z0-9]*$",
+      "description": "The merchant account number."
+    },
+    "start_date": {
+      "description": "The start date and time, in [Internet date and time format](https://tools.ietf.org/html/rfc3339#section-5.6).",
+      "$ref": "#/components/schemas/date_time"
+    },
+    "end_date": {
+      "description": "The end date and time or the last date when the data can be served, in [Internet date and time format](https://tools.ietf.org/html/rfc3339#section-5.6).",
+      "$ref": "#/components/schemas/date_time"
+    },
+    "last_refreshed_datetime": {
+      "description": "The date and time when the data was last refreshed, in [Internet date and time format](https://tools.ietf.org/html/rfc3339#section-5.6).",
+      "$ref": "#/components/schemas/date_time"
+    },
+    "page": {
+      "type": "integer",
+      "description": "A zero-relative index of transactions.",
+      "maximum": 2147483647,
+      "minimum": 0
+    },
+    "total_items": {
+      "type": "integer",
+      "description": "The total number of transactions as an integer beginning with the specified `page` in the full result and not just in this response.",
+      "maximum": 2147483647,
+      "minimum": 0
+    },
+    "total_pages": {
+      "type": "integer",
+      "description": "The total number of pages, as an `integer`, when the `total_items` is divided into pages of the specified `page_size`.",
+      "maximum": 2147483647,
+      "minimum": 0
+    },
+    "links": {
+      "type": "array",
+      "description": "An array of request-related [HATEOAS links](/api/rest/responses/#hateoas-links).",
+      "readOnly": true,
+      "items": {
+        "$ref": "#/components/schemas/link_description",
+        "readOnly": true
+      },
+      "maxItems": 32767,
+      "minItems": 1
+    }
+  }
+}

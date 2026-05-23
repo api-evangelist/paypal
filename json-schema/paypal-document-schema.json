@@ -1,0 +1,22 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/document",
+  "title": "Document",
+  "type": "object",
+  "description": "An uploaded document as a binary object that supports a dispute.",
+  "properties": {
+    "name": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 2000,
+      "pattern": "^[A-Za-z0-9-_,\\s]+[.]{1}[A-Za-z]+$",
+      "description": "The document name."
+    },
+    "url": {
+      "type": "string",
+      "format": "uri",
+      "readOnly": true,
+      "description": "The downloadable URL for the document for which the client has access.<br/><br/><blockquote><strong>Note:</strong> Document download may require some configuration setup and available as a limited release at this time. For more information, reach out to your PayPal account manager.</blockquote>."
+    }
+  }
+}

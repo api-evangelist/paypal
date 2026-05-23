@@ -1,0 +1,39 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/return_details",
+  "title": "Return Details",
+  "type": "object",
+  "description": "The return details for the product.",
+  "properties": {
+    "return_time": {
+      "$ref": "#/components/schemas/date_time",
+      "description": "The date and time when the product was returned, [Internet date and time format](http://tools.ietf.org/html/rfc3339#section-5.6)."
+    },
+    "mode": {
+      "description": "The method that the customer used to return the product.",
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 255,
+      "pattern": "^[A-Z_]+$",
+      "enum": [
+        "SHIPPED",
+        "IN_PERSON"
+      ]
+    },
+    "receipt": {
+      "type": "boolean",
+      "description": "Indicates whether customer has the return receipt."
+    },
+    "return_confirmation_number": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 255,
+      "pattern": "^[A-Za-z0-9:\\-]+$",
+      "description": "The confirmation number for the item return."
+    },
+    "returned": {
+      "description": "If `true`, indicates that the item was returned but the seller refused to accept the return and if `false`, indicates the item was not attempted to return.",
+      "type": "boolean"
+    }
+  }
+}

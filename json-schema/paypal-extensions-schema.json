@@ -1,0 +1,40 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/extensions",
+  "title": "Extensions",
+  "type": "object",
+  "description": "The extended properties for the dispute. Includes additional information for a dispute category, such as billing disputes, the original transaction ID, and the correct amount.",
+  "properties": {
+    "merchant_contacted": {
+      "type": "boolean",
+      "description": "Indicates that the merchant was contacted."
+    },
+    "merchant_contacted_outcome": {
+      "$ref": "#/components/schemas/merchant_contacted_outcome"
+    },
+    "merchant_contacted_time": {
+      "description": "The date and time when merchant was contacted.",
+      "$ref": "#/components/schemas/date_time"
+    },
+    "merchant_contacted_mode": {
+      "description": "The method used to contact the merchant.",
+      "$ref": "#/components/schemas/merchant_contacted_mode"
+    },
+    "buyer_contacted_time": {
+      "description": "The date and time when the buyer contacted the partner to file a dispute, in [Internet date and time format](https://tools.ietf.org/html/rfc3339#section-5.6). For example, *`yyyy`*-*`MM`*-*`dd`*`T`*`HH`*:*`mm`*:*`ss`*.*`SSS`*`Z`.",
+      "$ref": "#/components/schemas/date_time"
+    },
+    "buyer_contacted_channel": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 255,
+      "description": "The channel through which the buyer contacted the partner to file a dispute. Partners that allow buyers to create dispute from multiple channels can use this field to help identify which channel was used for each individual dispute."
+    },
+    "billing_dispute_properties": {
+      "$ref": "#/components/schemas/billing_disputes_properties"
+    },
+    "merchandize_dispute_properties": {
+      "$ref": "#/components/schemas/merchandize_dispute_properties"
+    }
+  }
+}

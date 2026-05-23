@@ -1,0 +1,22 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/configuration",
+  "title": "Configuration",
+  "type": "object",
+  "description": "The invoice configuration details. Includes partial payment, tip, and tax calculated after discount.",
+  "allOf": [
+    {
+      "$ref": "#/components/schemas/template_configuration"
+    },
+    {
+      "properties": {
+        "template_id": {
+          "type": "string",
+          "description": "The template ID. The template determines the layout of the invoice. Includes which fields to show and hide.",
+          "default": "PayPal system template",
+          "maxLength": 30
+        }
+      }
+    }
+  ]
+}

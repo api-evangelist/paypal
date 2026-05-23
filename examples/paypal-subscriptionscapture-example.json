@@ -1,0 +1,21 @@
+{
+  "operationId": "subscriptions.capture",
+  "method": "POST",
+  "path": "/v1/billing/subscriptions/{id}/capture",
+  "summary": "Paypal Capture authorized payment on subscription",
+  "requestExamples": [
+    {
+      "contentType": "application/json",
+      "name": "subscription_capture_request",
+      "example": {
+        "note": "Charging as the balance reached the limit",
+        "capture_type": "OUTSTANDING_BALANCE",
+        "amount": {
+          "currency_code": "USD",
+          "value": "100"
+        }
+      }
+    }
+  ],
+  "responseExamples": []
+}

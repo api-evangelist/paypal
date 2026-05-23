@@ -1,0 +1,25 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/card_experience_context",
+  "title": "Card Experience Context",
+  "type": "object",
+  "description": "Customizes the payer experience during the 3DS Approval for payment.",
+  "properties": {
+    "return_url": {
+      "description": "The URL where the customer will be redirected upon successfully completing the 3DS challenge.",
+      "type": "string",
+      "minLength": 10,
+      "maxLength": 4000,
+      "format": "uri",
+      "$ref": "#/components/schemas/url"
+    },
+    "cancel_url": {
+      "description": "The URL where the customer will be redirected upon cancelling the 3DS challenge.",
+      "type": "string",
+      "minLength": 10,
+      "maxLength": 4000,
+      "format": "uri",
+      "$ref": "#/components/schemas/url"
+    }
+  }
+}

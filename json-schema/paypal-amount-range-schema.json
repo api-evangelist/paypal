@@ -1,0 +1,21 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/amount_range",
+  "title": "Amount Range",
+  "type": "object",
+  "description": "The amount range.",
+  "properties": {
+    "lower_amount": {
+      "$ref": "#/components/schemas/money",
+      "description": "The lower limit of the amount range."
+    },
+    "upper_amount": {
+      "$ref": "#/components/schemas/money",
+      "description": "The upper limit of the amount range."
+    }
+  },
+  "required": [
+    "lower_amount",
+    "upper_amount"
+  ]
+}

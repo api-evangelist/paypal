@@ -1,0 +1,201 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/subscriptions.revise-422",
+  "title": "subscriptions.revise-422",
+  "properties": {
+    "details": {
+      "type": "array",
+      "items": {
+        "anyOf": [
+          {
+            "title": "USER_ACCOUNT_CLOSED",
+            "properties": {
+              "issue": {
+                "type": "string",
+                "enum": [
+                  "USER_ACCOUNT_CLOSED"
+                ]
+              },
+              "description": {
+                "type": "string",
+                "enum": [
+                  "User account locked or closed."
+                ]
+              }
+            }
+          },
+          {
+            "title": "PLAN_PRODUCT_NOT_COMPATIBLE",
+            "properties": {
+              "issue": {
+                "type": "string",
+                "enum": [
+                  "PLAN_PRODUCT_NOT_COMPATIBLE"
+                ]
+              },
+              "description": {
+                "type": "string",
+                "enum": [
+                  "The old and the new plans should be for the same product."
+                ]
+              }
+            }
+          },
+          {
+            "title": "INVALID_BILLING_CYCLE_SEQUENCE",
+            "properties": {
+              "issue": {
+                "type": "string",
+                "enum": [
+                  "INVALID_BILLING_CYCLE_SEQUENCE"
+                ]
+              },
+              "description": {
+                "type": "string",
+                "enum": [
+                  "The provided billing cycle sequence is not available."
+                ]
+              }
+            }
+          },
+          {
+            "title": "INVALID_PRICING_SCHEME",
+            "properties": {
+              "issue": {
+                "type": "string",
+                "enum": [
+                  "INVALID_PRICING_SCHEME"
+                ]
+              },
+              "description": {
+                "type": "string",
+                "enum": [
+                  "The override plan pricing scheme should be of the same type as that of the original plan."
+                ]
+              }
+            }
+          },
+          {
+            "title": "INVALID_PRICING_TIER_AMOUNT",
+            "properties": {
+              "issue": {
+                "type": "string",
+                "enum": [
+                  "INVALID_PRICING_TIER_AMOUNT"
+                ]
+              },
+              "description": {
+                "type": "string",
+                "enum": [
+                  "Free tiers are not supported."
+                ]
+              }
+            }
+          },
+          {
+            "title": "MISSING_PRICING_SCHEME_TIERS",
+            "properties": {
+              "issue": {
+                "type": "string",
+                "enum": [
+                  "MISSING_PRICING_SCHEME_TIERS"
+                ]
+              },
+              "description": {
+                "type": "string",
+                "enum": [
+                  "Tier(s) are missing for some quantities."
+                ]
+              }
+            }
+          },
+          {
+            "title": "OVERLAPPING_PRICING_SCHEME_TIERS",
+            "properties": {
+              "issue": {
+                "type": "string",
+                "enum": [
+                  "OVERLAPPING_PRICING_SCHEME_TIERS"
+                ]
+              },
+              "description": {
+                "type": "string",
+                "enum": [
+                  "The specified quantity overlaps with multiple pricing tiers."
+                ]
+              }
+            }
+          },
+          {
+            "title": "INVALID_PRICING_MODEL",
+            "properties": {
+              "issue": {
+                "type": "string",
+                "enum": [
+                  "INVALID_PRICING_MODEL"
+                ]
+              },
+              "description": {
+                "type": "string",
+                "enum": [
+                  "The specified pricing model is not supported for trial billing cycle."
+                ]
+              }
+            }
+          },
+          {
+            "title": "FIXED_PRICE_NOT_SUPPORTED",
+            "properties": {
+              "issue": {
+                "type": "string",
+                "enum": [
+                  "FIXED_PRICE_NOT_SUPPORTED"
+                ]
+              },
+              "description": {
+                "type": "string",
+                "enum": [
+                  "Fixed price is not supported for tiered pricing schemes."
+                ]
+              }
+            }
+          },
+          {
+            "title": "INVALID_PRICING_TIER_QUANTITY",
+            "properties": {
+              "issue": {
+                "type": "string",
+                "enum": [
+                  "INVALID_PRICING_TIER_QUANTITY"
+                ]
+              },
+              "description": {
+                "type": "string",
+                "enum": [
+                  "Tier starting quantity must be less than ending quantity."
+                ]
+              }
+            }
+          },
+          {
+            "title": "CURRENCY_MISMATCH",
+            "properties": {
+              "issue": {
+                "type": "string",
+                "enum": [
+                  "CURRENCY_MISMATCH"
+                ]
+              },
+              "description": {
+                "type": "string",
+                "enum": [
+                  "The currency code is different from the plan's currency code."
+                ]
+              }
+            }
+          }
+        ]
+      }
+    }
+  }
+}

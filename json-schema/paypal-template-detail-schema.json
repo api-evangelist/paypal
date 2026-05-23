@@ -1,0 +1,24 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/template_detail",
+  "title": "Template Detail",
+  "type": "object",
+  "description": "The template-related details. Includes notes, terms and conditions, memo, and attachments.",
+  "allOf": [
+    {
+      "$ref": "#/components/schemas/detail"
+    },
+    {
+      "properties": {
+        "payment_term": {
+          "$ref": "#/components/schemas/payment_term",
+          "description": "The payment due date for the invoice. Value is either but not both <code>term_type</code> or <code>due_date</code>."
+        },
+        "metadata": {
+          "$ref": "#/components/schemas/template_metadata",
+          "description": "The audit metadata. Captures all template actions on create and update."
+        }
+      }
+    }
+  ]
+}

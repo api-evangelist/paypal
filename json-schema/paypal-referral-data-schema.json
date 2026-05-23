@@ -1,0 +1,93 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/referral_data",
+  "title": "Customer Data",
+  "type": "object",
+  "description": "The customer's referral data that partners share with PayPal.",
+  "allOf": [
+    {
+      "description": "The common account model representing the basic account structure.",
+      "$ref": "#/components/schemas/account"
+    },
+    {
+      "properties": {
+        "email": {
+          "description": "Email address of the customer used to create the account.",
+          "$ref": "#/components/schemas/email_address"
+        },
+        "preferred_language_code": {
+          "description": "The preferred [locale code](/docs/api/reference/locale-codes/) to use in the onboarding flow for the customer.",
+          "$ref": "#/components/schemas/language"
+        },
+        "tracking_id": {
+          "type": "string",
+          "description": "The partner's unique identifier for this customer in their system which can be used to track user in PayPal.",
+          "minLength": 1,
+          "maxLength": 127
+        },
+        "partner_config_override": {
+          "description": "The configuration property that the partner intends to override for this onboarding request.",
+          "$ref": "#/components/schemas/partner_config_override"
+        },
+        "financial_instruments": {
+          "description": "Array of financial instruments attached to the customer's account.",
+          "$ref": "#/components/schemas/financial_instruments"
+        },
+        "operations": {
+          "type": "array",
+          "description": "An array of operations to perform for the customer while they share their data.",
+          "items": {
+            "$ref": "#/components/schemas/operation"
+          },
+          "minItems": 1,
+          "maxItems": 5
+        },
+        "products": {
+          "type": "array",
+          "description": "An array of PayPal products to which the partner wants to onboard the customer.",
+          "items": {
+            "$ref": "#/components/schemas/product"
+          },
+          "minItems": 1,
+          "maxItems": 5
+        },
+        "capabilities": {
+          "type": "array",
+          "description": "An array of capabilities which the partner wants to enable for the selected products. Supported only when products are specified.",
+          "items": {
+            "$ref": "#/components/schemas/capabilities"
+          },
+          "minItems": 1,
+          "maxItems": 5
+        },
+        "outside_process_dependencies": {
+          "type": "array",
+          "description": "An array of dependent processes.",
+          "items": {
+            "$ref": "#/components/schemas/dependent_process"
+          },
+          "minItems": 1,
+          "maxItems": 5
+        },
+        "legal_consents": {
+          "type": "array",
+          "description": "An array of all consents that the partner has received from this seller. If `SHARE_DATA_CONSENT` is not granted, PayPal does not store customer data.",
+          "items": {
+            "$ref": "#/components/schemas/legal_consent"
+          },
+          "minItems": 1,
+          "maxItems": 5
+        },
+        "payout_attributes": {
+          "description": "Payout specific attributes.",
+          "$ref": "#/components/schemas/payout_attributes"
+        }
+      }
+    }
+  ],
+  "additionalProperties": true,
+  "required": [
+    "operations",
+    "legal_consents"
+  ]
+}

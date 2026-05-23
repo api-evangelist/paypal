@@ -1,0 +1,11 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/payment_type",
+  "title": "Payment Type",
+  "type": "string",
+  "description": "The payment type. Can be PayPal or an external payment. Includes cash or a check.",
+  "enum": [
+    "PAYPAL",
+    "EXTERNAL"
+  ]
+}

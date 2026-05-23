@@ -1,0 +1,37 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/notification",
+  "title": "Notification",
+  "type": "object",
+  "description": "The email or SMS notification to send to the invoicer or payer on sending an invoice.",
+  "properties": {
+    "subject": {
+      "type": "string",
+      "description": "The subject of the email that is sent as a notification to the recipient.",
+      "maxLength": 4000
+    },
+    "note": {
+      "type": "string",
+      "description": "A note to the payer.",
+      "maxLength": 4000
+    },
+    "send_to_invoicer": {
+      "type": "boolean",
+      "description": "Indicates whether to send a copy of the email to the merchant.",
+      "default": false
+    },
+    "send_to_recipient": {
+      "type": "boolean",
+      "description": "Indicates whether to send a copy of the email to the recipient.",
+      "default": true
+    },
+    "additional_recipients": {
+      "type": "array",
+      "description": "An array of one or more CC: emails to which notifications are sent. If you omit this parameter, a notification is sent to all CC: email addresses that are part of the invoice.<blockquote><strong>Note:</strong> Valid values are email addresses in the `additional_recipients` value associated with the invoice.</blockquote>",
+      "maxItems": 100,
+      "items": {
+        "$ref": "#/components/schemas/email_address"
+      }
+    }
+  }
+}

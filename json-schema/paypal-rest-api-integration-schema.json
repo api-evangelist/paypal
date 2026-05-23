@@ -1,0 +1,80 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/rest_api_integration",
+  "title": "REST API Integration",
+  "type": "object",
+  "description": "The integration details for PayPal REST endpoints.",
+  "additionalProperties": false,
+  "properties": {
+    "integration_method": {
+      "type": "string",
+      "description": "The REST-credential integration method.",
+      "default": "PAYPAL",
+      "minLength": 1,
+      "maxLength": 255,
+      "pattern": "^[0-9A-Z_-]+$",
+      "enum": [
+        "BRAINTREE",
+        "PAYPAL"
+      ]
+    },
+    "integration_type": {
+      "type": "string",
+      "title": "Integration Type",
+      "description": "The type of REST-endpoint integration. To integrate with Braintree v.zero for PayPal REST endpoints, specify `third_party_details`.",
+      "minLength": 1,
+      "maxLength": 255,
+      "pattern": "^[0-9A-Z_-]+$",
+      "enum": [
+        "FIRST_PARTY",
+        "THIRD_PARTY"
+      ]
+    },
+    "first_party_details": {
+      "type": "object",
+      "title": "REST First-Party Details",
+      "description": "The integration details for PayPal first party REST endpoints.",
+      "additionalProperties": false,
+      "properties": {
+        "features": {
+          "type": "array",
+          "description": "An array of features that partner can access, or use, in PayPal on behalf of the seller. The seller grants permission for these features to the partner.",
+          "items": {
+            "$ref": "#/components/schemas/rest_endpoint_features_enum"
+          }
+        },
+        "seller_nonce": {
+          "type": "string",
+          "description": "S256 - The code verifier must be high-entropy cryptographic random string with a byte length of 43-128 range.",
+          "minLength": 44,
+          "maxLength": 128,
+          "pattern": "^[a-zA-Z0-9-_:]+$"
+        }
+      },
+      "required": [
+        "features",
+        "seller_nonce"
+      ]
+    },
+    "third_party_details": {
+      "type": "object",
+      "title": "REST Third-Party Details",
+      "description": "The integration details for PayPal REST endpoints.",
+      "additionalProperties": false,
+      "properties": {
+        "features": {
+          "type": "array",
+          "description": "An array of features that partner can access, or use, in PayPal on behalf of the seller. The seller grants permission for these features to the partner.",
+          "items": {
+            "$ref": "#/components/schemas/rest_endpoint_features_enum"
+          },
+          "minItems": 0,
+          "maxItems": 20
+        }
+      },
+      "required": [
+        "features"
+      ]
+    }
+  }
+}

@@ -1,0 +1,48 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/money_movement",
+  "title": "Money movement",
+  "type": "object",
+  "description": "The Money movement details with party.",
+  "properties": {
+    "affected_party": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 255,
+      "pattern": "^[0-9A-Z_]+$",
+      "description": "The affected party in the money movement.",
+      "enum": [
+        "SELLER",
+        "BUYER",
+        "PAYMENT_PROCESSOR"
+      ]
+    },
+    "amount": {
+      "description": "The amount transferred as part of the money movement.",
+      "$ref": "#/components/schemas/money"
+    },
+    "asset": {
+      "description": "The asset transferred as part of the money movement.",
+      "$ref": "#/components/schemas/cryptocurrency"
+    },
+    "initiated_time": {
+      "description": "The date and time when the money movement was initiated, in [Internet date and time format](https://tools.ietf.org/html/rfc3339#section-5.6).",
+      "$ref": "#/components/schemas/date_time"
+    },
+    "type": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 255,
+      "pattern": "^[0-9A-Z_]+$",
+      "description": "The type of the money movement.",
+      "enum": [
+        "DEBIT",
+        "CREDIT"
+      ]
+    },
+    "reason": {
+      "description": "The reason for the money movement.",
+      "$ref": "#/components/schemas/money_movement_reason"
+    }
+  }
+}

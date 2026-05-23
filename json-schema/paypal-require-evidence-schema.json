@@ -1,0 +1,23 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/require_evidence",
+  "title": "Require Evidence Request",
+  "type": "object",
+  "description": "Sandbox only. Updates the state of a dispute, by ID, to either <code>WAITING_FOR_BUYER_RESPONSE</code> or <code>WAITING_FOR_SELLER_RESPONSE</code>. This state change enables either the customer or merchant to submit evidence for the dispute. Specify an <code>action</code> value in the JSON request body to indicate whether the state change enables the customer or merchant to submit evidence.",
+  "properties": {
+    "action": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 255,
+      "pattern": "^[0-9A-Z_]+$",
+      "description": "The action. Indicates whether the state change enables the customer or merchant to submit evidence.",
+      "enum": [
+        "BUYER_EVIDENCE",
+        "SELLER_EVIDENCE"
+      ]
+    }
+  },
+  "required": [
+    "action"
+  ]
+}

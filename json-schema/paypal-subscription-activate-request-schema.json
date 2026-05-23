@@ -1,0 +1,15 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/subscription_activate_request",
+  "title": "Activate Subscription Request",
+  "description": "The activate subscription request details.",
+  "type": "object",
+  "properties": {
+    "reason": {
+      "type": "string",
+      "description": "The reason for activation of a subscription. Required to reactivate the subscription.",
+      "minLength": 1,
+      "maxLength": 128
+    }
+  }
+}

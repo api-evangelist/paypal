@@ -1,0 +1,45 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/seller_receivable_breakdown",
+  "title": "Seller Receivable Breakdown",
+  "type": "object",
+  "description": "The detailed breakdown of the capture activity. This is not available for transactions that are in pending state.",
+  "properties": {
+    "gross_amount": {
+      "description": "The amount for this captured payment in the currency of the transaction.",
+      "$ref": "#/components/schemas/money"
+    },
+    "paypal_fee": {
+      "description": "The applicable fee for this captured payment in the currency of the transaction.",
+      "$ref": "#/components/schemas/money"
+    },
+    "paypal_fee_in_receivable_currency": {
+      "description": "The applicable fee for this captured payment in the receivable currency. Returned only in cases the fee is charged in the receivable currency. Example 'CNY'.",
+      "$ref": "#/components/schemas/money"
+    },
+    "net_amount": {
+      "description": "The net amount that the payee receives for this captured payment in their PayPal account. The net amount is computed as <code>gross_amount</code> minus the <code>paypal_fee</code> minus the <code>platform_fees</code>.",
+      "$ref": "#/components/schemas/money"
+    },
+    "receivable_amount": {
+      "description": "The net amount that is credited to the payee's PayPal account. Returned only when the currency of the captured payment is different from the currency of the PayPal account where the payee wants to credit the funds. The amount is computed as <code>net_amount</code> times <code>exchange_rate</code>.",
+      "$ref": "#/components/schemas/money"
+    },
+    "exchange_rate": {
+      "description": "The exchange rate that determines the amount that is credited to the payee's PayPal account. Returned when the currency of the captured payment is different from the currency of the PayPal account where the payee wants to credit the funds.",
+      "$ref": "#/components/schemas/exchange_rate"
+    },
+    "platform_fees": {
+      "type": "array",
+      "description": "An array of platform or partner fees, commissions, or brokerage fees that associated with the captured payment.",
+      "minItems": 0,
+      "maxItems": 1,
+      "items": {
+        "$ref": "#/components/schemas/platform_fee"
+      }
+    }
+  },
+  "required": [
+    "gross_amount"
+  ]
+}

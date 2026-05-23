@@ -1,0 +1,19 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/status",
+  "title": "status",
+  "type": "string",
+  "minLength": 1,
+  "maxLength": 255,
+  "readOnly": true,
+  "pattern": "^[0-9A-Z_]+$",
+  "description": "The overall status of the dispute, constant for all the parties involved at anytime during the dispute lifecycle.",
+  "enum": [
+    "OPEN",
+    "WAITING_FOR_BUYER_RESPONSE",
+    "WAITING_FOR_SELLER_RESPONSE",
+    "UNDER_REVIEW",
+    "RESOLVED",
+    "OTHER"
+  ]
+}

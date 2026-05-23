@@ -1,0 +1,30 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/p24_request",
+  "title": "P24 payment object",
+  "type": "object",
+  "description": "Information needed to pay using P24 (Przelewy24).",
+  "properties": {
+    "name": {
+      "description": "The name of the account holder associated with this payment method.",
+      "$ref": "#/components/schemas/full_name"
+    },
+    "email": {
+      "description": "The email address of the account holder associated with this payment method.",
+      "$ref": "#/components/schemas/email_address"
+    },
+    "country_code": {
+      "description": "The two-character ISO 3166-1 country code.",
+      "$ref": "#/components/schemas/country_code"
+    },
+    "experience_context": {
+      "description": "Customizes the payer experience during the approval process for the payment.",
+      "$ref": "#/components/schemas/experience_context_base"
+    }
+  },
+  "required": [
+    "name",
+    "email",
+    "country_code"
+  ]
+}

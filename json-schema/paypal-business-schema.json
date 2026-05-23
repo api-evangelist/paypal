@@ -1,0 +1,71 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/business",
+  "title": "business",
+  "properties": {
+    "business_type": {
+      "description": "Information related to the business like the nature of business, started date etc.",
+      "$ref": "#/components/schemas/business_type_info"
+    },
+    "business_industry": {
+      "description": "Information related to the business like the nature of business, started date etc.",
+      "$ref": "#/components/schemas/business_industry"
+    },
+    "business_incorporation": {
+      "description": "Information related to the business like the nature of business, started date etc.",
+      "$ref": "#/components/schemas/business_incorporation"
+    },
+    "names": {
+      "description": "Name of the business.",
+      "type": "array",
+      "items": {
+        "$ref": "#/components/schemas/business_name_detail"
+      },
+      "minItems": 0,
+      "maxItems": 5
+    },
+    "emails": {
+      "description": "Email addresses of the business.",
+      "type": "array",
+      "items": {
+        "$ref": "#/components/schemas/email"
+      },
+      "minItems": 0,
+      "maxItems": 5
+    },
+    "website": {
+      "description": "Website of the business.",
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 50,
+      "format": "uri"
+    },
+    "addresses": {
+      "description": "List of addresses associated with the business entity.",
+      "type": "array",
+      "items": {
+        "$ref": "#/components/schemas/business_address_detail"
+      },
+      "minItems": 0,
+      "maxItems": 5
+    },
+    "phones": {
+      "description": "List of phone number associated with the business.",
+      "type": "array",
+      "items": {
+        "$ref": "#/components/schemas/business_phone_detail"
+      },
+      "minItems": 0,
+      "maxItems": 5
+    },
+    "documents": {
+      "description": "Business Party related Document data collected from the customer.. For example SSN, ITIN, Business registration number that were collected from the user.",
+      "type": "array",
+      "items": {
+        "$ref": "#/components/schemas/business_document"
+      },
+      "minItems": 0,
+      "maxItems": 20
+    }
+  }
+}

@@ -1,0 +1,150 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/subscriptions.capture-422",
+  "title": "subscriptions.capture-422",
+  "properties": {
+    "details": {
+      "type": "array",
+      "items": {
+        "anyOf": [
+          {
+            "title": "USER_ACCOUNT_CLOSED",
+            "properties": {
+              "issue": {
+                "type": "string",
+                "enum": [
+                  "USER_ACCOUNT_CLOSED"
+                ]
+              },
+              "description": {
+                "type": "string",
+                "enum": [
+                  "User account locked or closed."
+                ]
+              }
+            }
+          },
+          {
+            "title": "SUBSCRIBER_ACCOUNT_LOCKED",
+            "properties": {
+              "issue": {
+                "type": "string",
+                "enum": [
+                  "SUBSCRIBER_ACCOUNT_LOCKED"
+                ]
+              },
+              "description": {
+                "type": "string",
+                "enum": [
+                  "Subscriber Account Locked."
+                ]
+              }
+            }
+          },
+          {
+            "title": "SUBSCRIBER_ACCOUNT_CLOSED",
+            "properties": {
+              "issue": {
+                "type": "string",
+                "enum": [
+                  "SUBSCRIBER_ACCOUNT_CLOSED"
+                ]
+              },
+              "description": {
+                "type": "string",
+                "enum": [
+                  "Subscriber Account Closed."
+                ]
+              }
+            }
+          },
+          {
+            "title": "SUBSCRIBER_ACCOUNT_RESTRICTED",
+            "properties": {
+              "issue": {
+                "type": "string",
+                "enum": [
+                  "SUBSCRIBER_ACCOUNT_RESTRICTED"
+                ]
+              },
+              "description": {
+                "type": "string",
+                "enum": [
+                  "Subscriber Account Restricted."
+                ]
+              }
+            }
+          },
+          {
+            "title": "SUBSCRIPTION_STATUS_INVALID",
+            "properties": {
+              "issue": {
+                "type": "string",
+                "enum": [
+                  "SUBSCRIPTION_STATUS_INVALID"
+                ]
+              },
+              "description": {
+                "type": "string",
+                "enum": [
+                  "Invalid subscription status for capture action; subscription status should be active or suspended or expired."
+                ]
+              }
+            }
+          },
+          {
+            "title": "ZERO_OUTSTANDING_BALANCE",
+            "properties": {
+              "issue": {
+                "type": "string",
+                "enum": [
+                  "ZERO_OUTSTANDING_BALANCE"
+                ]
+              },
+              "description": {
+                "type": "string",
+                "enum": [
+                  "Current outstanding balance should be greater than zero."
+                ]
+              }
+            }
+          },
+          {
+            "title": "CURRENCY_MISMATCH",
+            "properties": {
+              "issue": {
+                "type": "string",
+                "enum": [
+                  "CURRENCY_MISMATCH"
+                ]
+              },
+              "description": {
+                "type": "string",
+                "enum": [
+                  "The currency code is different from the subscription's currency code."
+                ]
+              }
+            }
+          },
+          {
+            "title": "AMOUNT_GREATER_THAN_OUTSTANDING_BALANCE",
+            "properties": {
+              "issue": {
+                "type": "string",
+                "enum": [
+                  "AMOUNT_GREATER_THAN_OUTSTANDING_BALANCE"
+                ]
+              },
+              "description": {
+                "type": "string",
+                "enum": [
+                  "The capture amount can not be greater than the current outstanding balance."
+                ]
+              }
+            }
+          }
+        ]
+      }
+    }
+  }
+}

@@ -1,0 +1,9 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/full_name",
+  "title": "full_name",
+  "type": "string",
+  "description": "The full name representation like Mr J Smith.",
+  "minLength": 3,
+  "maxLength": 300
+}

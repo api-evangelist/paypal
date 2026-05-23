@@ -1,0 +1,54 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/template_info",
+  "title": "Template Information",
+  "type": "object",
+  "description": "The template details. Includes invoicer business information, invoice recipients, items, and configuration.",
+  "properties": {
+    "detail": {
+      "$ref": "#/components/schemas/template_detail",
+      "description": "The template-related details. Includes notes, terms and conditions, memo, and attachments."
+    },
+    "invoicer": {
+      "$ref": "#/components/schemas/invoicer_info",
+      "description": "The invoicer information. Includes business name, email, address, phone, fax, tax ID, additional notes, and logo URL."
+    },
+    "primary_recipients": {
+      "type": "array",
+      "items": {
+        "$ref": "#/components/schemas/recipient_info"
+      },
+      "maxItems": 100,
+      "description": "The billing and shipping information. Includes name, email, address, phone, and language."
+    },
+    "additional_recipients": {
+      "type": "array",
+      "maxItems": 100,
+      "description": "An array of one or more CC: emails to which notifications are sent. If you omit this parameter, a notification is sent to all CC: email addresses that are part of the invoice.<blockquote><strong>Note:</strong> Valid values are email addresses in the `additional_recipients` value associated with the invoice.</blockquote>",
+      "items": {
+        "$ref": "#/components/schemas/email_address"
+      }
+    },
+    "items": {
+      "type": "array",
+      "description": "An array of invoice line-item information.",
+      "maxItems": 100,
+      "items": {
+        "$ref": "#/components/schemas/item"
+      }
+    },
+    "configuration": {
+      "$ref": "#/components/schemas/template_configuration",
+      "description": "The template configuration details. Includes tax information, tip, and partial payment."
+    },
+    "amount": {
+      "$ref": "#/components/schemas/amount_summary_detail",
+      "description": "The invoice amount summary of the item total, discount, tax total, and shipping."
+    },
+    "due_amount": {
+      "$ref": "#/components/schemas/money",
+      "description": "The amount due for the invoice.",
+      "readOnly": true
+    }
+  }
+}

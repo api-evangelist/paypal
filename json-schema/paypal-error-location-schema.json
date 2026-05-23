@@ -1,0 +1,13 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/error_location",
+  "title": "error_location",
+  "type": "string",
+  "description": "The location of the field that caused the error. Value is `body`, `path`, or `query`.",
+  "enum": [
+    "body",
+    "path",
+    "query"
+  ],
+  "default": "body"
+}

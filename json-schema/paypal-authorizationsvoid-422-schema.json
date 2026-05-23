@@ -1,0 +1,65 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/authorizations.void-422",
+  "title": "authorizations.void-422",
+  "properties": {
+    "details": {
+      "type": "array",
+      "items": {
+        "anyOf": [
+          {
+            "title": "PREVIOUSLY_CAPTURED",
+            "properties": {
+              "issue": {
+                "type": "string",
+                "enum": [
+                  "PREVIOUSLY_CAPTURED"
+                ]
+              },
+              "description": {
+                "type": "string",
+                "enum": [
+                  "Authorization has been previously captured and hence cannot be voided."
+                ]
+              }
+            }
+          },
+          {
+            "title": "PREVIOUSLY_VOIDED",
+            "properties": {
+              "issue": {
+                "type": "string",
+                "enum": [
+                  "PREVIOUSLY_VOIDED"
+                ]
+              },
+              "description": {
+                "type": "string",
+                "enum": [
+                  "Authorization has been previously voided and hence cannot be voided again."
+                ]
+              }
+            }
+          },
+          {
+            "title": "CANNOT_BE_VOIDED",
+            "properties": {
+              "issue": {
+                "type": "string",
+                "enum": [
+                  "CANNOT_BE_VOIDED"
+                ]
+              },
+              "description": {
+                "type": "string",
+                "enum": [
+                  "A reauthorization cannot be voided. Please void the original parent authorization."
+                ]
+              }
+            }
+          }
+        ]
+      }
+    }
+  }
+}

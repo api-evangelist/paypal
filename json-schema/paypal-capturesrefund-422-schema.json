@@ -1,0 +1,421 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/captures.refund-422",
+  "title": "captures.refund-422",
+  "properties": {
+    "details": {
+      "type": "array",
+      "items": {
+        "anyOf": [
+          {
+            "title": "CANNOT_BE_ZERO_OR_NEGATIVE",
+            "properties": {
+              "issue": {
+                "type": "string",
+                "enum": [
+                  "CANNOT_BE_ZERO_OR_NEGATIVE"
+                ]
+              },
+              "description": {
+                "type": "string"
+              }
+            }
+          },
+          {
+            "title": "DECIMAL_PRECISION",
+            "properties": {
+              "issue": {
+                "type": "string",
+                "enum": [
+                  "DECIMAL_PRECISION"
+                ]
+              },
+              "description": {
+                "type": "string"
+              }
+            }
+          },
+          {
+            "title": "DECIMALS_NOT_SUPPORTED",
+            "properties": {
+              "issue": {
+                "type": "string",
+                "enum": [
+                  "DECIMALS_NOT_SUPPORTED"
+                ]
+              },
+              "description": {
+                "type": "string"
+              }
+            }
+          },
+          {
+            "title": "INVALID_CURRENCY_CODE",
+            "properties": {
+              "issue": {
+                "type": "string",
+                "enum": [
+                  "INVALID_CURRENCY_CODE"
+                ]
+              },
+              "description": {
+                "type": "string"
+              }
+            }
+          },
+          {
+            "title": "CURRENCY_MISMATCH",
+            "properties": {
+              "issue": {
+                "type": "string",
+                "enum": [
+                  "CURRENCY_MISMATCH"
+                ]
+              },
+              "description": {
+                "type": "string"
+              }
+            }
+          },
+          {
+            "title": "CANNOT_BE_NEGATIVE",
+            "properties": {
+              "issue": {
+                "type": "string",
+                "enum": [
+                  "CANNOT_BE_NEGATIVE"
+                ]
+              },
+              "description": {
+                "type": "string"
+              }
+            }
+          },
+          {
+            "title": "CAPTURE_FULLY_REFUNDED",
+            "properties": {
+              "issue": {
+                "type": "string",
+                "enum": [
+                  "CAPTURE_FULLY_REFUNDED"
+                ]
+              },
+              "description": {
+                "type": "string",
+                "enum": [
+                  "The capture has already been fully refunded"
+                ]
+              }
+            }
+          },
+          {
+            "title": "REFUND_CAPTURE_CURRENCY_MISMATCH",
+            "properties": {
+              "issue": {
+                "type": "string",
+                "enum": [
+                  "REFUND_CAPTURE_CURRENCY_MISMATCH"
+                ]
+              },
+              "description": {
+                "type": "string",
+                "enum": [
+                  "Refund must be in the same currency as the capture"
+                ]
+              }
+            }
+          },
+          {
+            "title": "REFUND_NOT_ALLOWED",
+            "properties": {
+              "issue": {
+                "type": "string",
+                "enum": [
+                  "REFUND_NOT_ALLOWED"
+                ]
+              },
+              "description": {
+                "type": "string",
+                "enum": [
+                  "Capture cannot be refunded."
+                ]
+              }
+            }
+          },
+          {
+            "title": "REFUND_TIME_LIMIT_EXCEEDED",
+            "properties": {
+              "issue": {
+                "type": "string",
+                "enum": [
+                  "REFUND_TIME_LIMIT_EXCEEDED"
+                ]
+              },
+              "description": {
+                "type": "string",
+                "enum": [
+                  "You are over the time limit to perform a refund on this capture"
+                ]
+              }
+            }
+          },
+          {
+            "title": "REFUND_AMOUNT_EXCEEDED",
+            "properties": {
+              "issue": {
+                "type": "string",
+                "enum": [
+                  "REFUND_AMOUNT_EXCEEDED"
+                ]
+              },
+              "description": {
+                "type": "string",
+                "enum": [
+                  "The refund amount must be less than or equal to the capture amount that has not yet been refunded."
+                ]
+              }
+            }
+          },
+          {
+            "title": "REFUND_AMOUNT_TOO_LOW",
+            "properties": {
+              "issue": {
+                "type": "string",
+                "enum": [
+                  "REFUND_AMOUNT_TOO_LOW"
+                ]
+              },
+              "description": {
+                "type": "string",
+                "enum": [
+                  "The amount after applying currency conversion is zero and hence the capture cannot be refunded. The currency conversion is required because the currency of the capture is different than the currency in which the amount was settled into the payee account."
+                ]
+              }
+            }
+          },
+          {
+            "title": "REFUND_FAILED_INSUFFICIENT_FUNDS",
+            "properties": {
+              "issue": {
+                "type": "string",
+                "enum": [
+                  "REFUND_FAILED_INSUFFICIENT_FUNDS"
+                ]
+              },
+              "description": {
+                "type": "string",
+                "enum": [
+                  "Capture could not be refunded due to insufficient funds. Please check to see if you have sufficient funds in your PayPal account or if the bank account linked to your PayPal account is verified and has sufficient funds."
+                ]
+              }
+            }
+          },
+          {
+            "title": "PARTIAL_REFUND_NOT_ALLOWED",
+            "properties": {
+              "issue": {
+                "type": "string",
+                "enum": [
+                  "PARTIAL_REFUND_NOT_ALLOWED"
+                ]
+              },
+              "description": {
+                "type": "string",
+                "enum": [
+                  "You cannot do a refund less than the original capture amount."
+                ]
+              }
+            }
+          },
+          {
+            "title": "MAX_NUMBER_OF_REFUNDS_EXCEEDED",
+            "properties": {
+              "issue": {
+                "type": "string",
+                "enum": [
+                  "MAX_NUMBER_OF_REFUNDS_EXCEEDED"
+                ]
+              },
+              "description": {
+                "type": "string",
+                "enum": [
+                  "You have exceeded the maximum number of refund attempts for this capture."
+                ]
+              }
+            }
+          },
+          {
+            "title": "PENDING_CAPTURE",
+            "properties": {
+              "issue": {
+                "type": "string",
+                "enum": [
+                  "PENDING_CAPTURE"
+                ]
+              },
+              "description": {
+                "type": "string",
+                "enum": [
+                  "Cannot initiate a refund as the capture is pending. Capture is typically pending when the payer has funded the transaction using e-check/bank funded."
+                ]
+              }
+            }
+          },
+          {
+            "title": "DUPLICATE_INVOICE_ID",
+            "properties": {
+              "issue": {
+                "type": "string",
+                "enum": [
+                  "DUPLICATE_INVOICE_ID"
+                ]
+              },
+              "description": {
+                "type": "string",
+                "enum": [
+                  "Invoice ID was previously used to refund a capture."
+                ]
+              }
+            }
+          },
+          {
+            "title": "PAYEE_ACCOUNT_LOCKED_OR_CLOSED",
+            "properties": {
+              "issue": {
+                "type": "string",
+                "enum": [
+                  "PAYEE_ACCOUNT_LOCKED_OR_CLOSED"
+                ]
+              },
+              "description": {
+                "type": "string",
+                "enum": [
+                  "Transaction could not complete because payee account is locked or closed."
+                ]
+              }
+            }
+          },
+          {
+            "title": "PAYER_ACCOUNT_LOCKED_OR_CLOSED",
+            "properties": {
+              "issue": {
+                "type": "string",
+                "enum": [
+                  "PAYER_ACCOUNT_LOCKED_OR_CLOSED"
+                ]
+              },
+              "description": {
+                "type": "string",
+                "enum": [
+                  "The payer account cannot be used for this transaction."
+                ]
+              }
+            }
+          },
+          {
+            "title": "PAYEE_ACCOUNT_RESTRICTED",
+            "properties": {
+              "issue": {
+                "type": "string",
+                "enum": [
+                  "PAYEE_ACCOUNT_RESTRICTED"
+                ]
+              },
+              "description": {
+                "type": "string",
+                "enum": [
+                  "Payee account is restricted."
+                ]
+              }
+            }
+          },
+          {
+            "title": "REFUND_NOT_PERMITTED_DUE_TO_CHARGEBACK",
+            "properties": {
+              "issue": {
+                "type": "string",
+                "enum": [
+                  "REFUND_NOT_PERMITTED_DUE_TO_CHARGEBACK"
+                ]
+              },
+              "description": {
+                "type": "string",
+                "enum": [
+                  "Refunds are not allowed on this capture due to a chargeback on the card or bank. Please contact the payee to resolve the chargeback."
+                ]
+              }
+            }
+          },
+          {
+            "title": "TRANSACTION_DISPUTED",
+            "properties": {
+              "issue": {
+                "type": "string",
+                "enum": [
+                  "TRANSACTION_DISPUTED"
+                ]
+              },
+              "description": {
+                "type": "string",
+                "enum": [
+                  "Partial refunds cannot be offered at this time because there is an open case on this transaction. Visit the PayPal Resolution Center to review this case."
+                ]
+              }
+            }
+          },
+          {
+            "title": "PLATFORM_FEE_EXCEEDED",
+            "properties": {
+              "issue": {
+                "type": "string",
+                "enum": [
+                  "PLATFORM_FEE_EXCEEDED"
+                ]
+              },
+              "description": {
+                "type": "string",
+                "enum": [
+                  "Platform fee amount specified exceeds the amount that is available for refund. You can only refund up to the available platform fee amount. This error is also returned when no platform_fee was specified or was zero when the payment was captured."
+                ]
+              }
+            }
+          },
+          {
+            "title": "REFUND_IS_RESTRICTED",
+            "properties": {
+              "issue": {
+                "type": "string",
+                "enum": [
+                  "REFUND_IS_RESTRICTED"
+                ]
+              },
+              "description": {
+                "type": "string",
+                "enum": [
+                  "This refund can only be processed by the API caller that had 'captured' the transaction. If you facilitate your transactions via a platform/partner, please initiate a refund through them."
+                ]
+              }
+            }
+          },
+          {
+            "title": "PLATFORM_FEE_NOT_ENABLED",
+            "properties": {
+              "issue": {
+                "type": "string",
+                "enum": [
+                  "PLATFORM_FEE_NOT_ENABLED"
+                ]
+              },
+              "description": {
+                "type": "string",
+                "enum": [
+                  "The API Caller account is not setup to be able to process refunds with 'platform_fees'. Please contact your Account Manager. This feature is useful when you want to contribute a portion of the 'platform_fees' you had capture as part of the refund being processed."
+                ]
+              }
+            }
+          }
+        ]
+      }
+    }
+  }
+}

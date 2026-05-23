@@ -1,0 +1,15 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/invoice_number",
+  "title": "Invoice Number",
+  "type": "object",
+  "description": "The invoice number.",
+  "properties": {
+    "invoice_number": {
+      "type": "string",
+      "description": "The invoice number. If you omit this value, the default is the auto-incremented number from the last number.",
+      "maxLength": 25,
+      "readOnly": true
+    }
+  }
+}

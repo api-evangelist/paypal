@@ -1,0 +1,15 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/disbursement_mode",
+  "title": "Disbursement Mode",
+  "type": "string",
+  "description": "The funds that are held on behalf of the merchant.",
+  "default": "INSTANT",
+  "minLength": 1,
+  "maxLength": 16,
+  "pattern": "^[A-Z_]+$",
+  "enum": [
+    "INSTANT",
+    "DELAYED"
+  ]
+}

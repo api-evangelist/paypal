@@ -1,0 +1,82 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/subscription",
+  "title": "Subscription",
+  "description": "The subscription details.",
+  "type": "object",
+  "allOf": [
+    {
+      "$ref": "#/components/schemas/subscription_status"
+    },
+    {
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "The PayPal-generated ID for the subscription.",
+          "minLength": 3,
+          "maxLength": 50,
+          "readOnly": true
+        },
+        "plan_id": {
+          "type": "string",
+          "description": "The ID of the plan.",
+          "minLength": 3,
+          "maxLength": 50
+        },
+        "start_time": {
+          "$ref": "#/components/schemas/date_time"
+        },
+        "quantity": {
+          "type": "string",
+          "description": "The quantity of the product in the subscription.",
+          "pattern": "^([0-9]+|([0-9]+)?[.][0-9]+)$",
+          "minLength": 1,
+          "maxLength": 32
+        },
+        "shipping_amount": {
+          "$ref": "#/components/schemas/money"
+        },
+        "subscriber": {
+          "$ref": "#/components/schemas/subscriber"
+        },
+        "billing_info": {
+          "readOnly": true,
+          "$ref": "#/components/schemas/subscription_billing_info"
+        },
+        "create_time": {
+          "readOnly": true,
+          "$ref": "#/components/schemas/date_time"
+        },
+        "update_time": {
+          "readOnly": true,
+          "$ref": "#/components/schemas/date_time"
+        },
+        "custom_id": {
+          "type": "string",
+          "description": "The custom id for the subscription. Can be invoice id.",
+          "minLength": 1,
+          "maxLength": 127,
+          "pattern": "^[\\x20-\\x7E]+"
+        },
+        "plan_overridden": {
+          "type": "boolean",
+          "description": "Indicates whether the subscription has overridden any plan attributes.",
+          "readOnly": true
+        },
+        "plan": {
+          "description": "Inline plan details.",
+          "$ref": "#/components/schemas/plan"
+        },
+        "links": {
+          "type": "array",
+          "description": "An array of request-related [HATEOAS links](/docs/api/reference/api-responses/#hateoas-links).",
+          "readOnly": true,
+          "items": {
+            "readOnly": true,
+            "$ref": "#/components/schemas/link_description"
+          }
+        }
+      }
+    }
+  ]
+}

@@ -1,0 +1,9 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/ordinal",
+  "title": "ordinal",
+  "type": "integer",
+  "description": "Ordinal number for sorting.",
+  "minimum": 1,
+  "maximum": 99
+}

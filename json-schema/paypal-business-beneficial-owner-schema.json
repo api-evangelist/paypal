@@ -1,0 +1,19 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/business_beneficial_owner",
+  "title": "Business_beneficial_owner",
+  "description": "The business beneficial owner of the account.",
+  "allOf": [
+    {
+      "$ref": "#/components/schemas/business"
+    },
+    {
+      "properties": {
+        "percentage_of_ownership": {
+          "description": "The percentage of shares this person owns in the company.",
+          "$ref": "#/components/schemas/percentage"
+        }
+      }
+    }
+  ]
+}

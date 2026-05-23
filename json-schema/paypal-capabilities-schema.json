@@ -1,0 +1,15 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/capabilities",
+  "title": "Capability",
+  "type": "string",
+  "description": "Optional capabilities of the selected PayPal product for which the customer is being onboarded.",
+  "minLength": 1,
+  "maxLength": 127,
+  "pattern": "^[A-Z0-9_]+$",
+  "enum": [
+    "PAYPAL_WALLET_VAULTING_ADVANCED",
+    "PAY_UPON_INVOICE",
+    "APPLE_PAY"
+  ]
+}

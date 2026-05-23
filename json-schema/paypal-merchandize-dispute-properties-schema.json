@@ -1,0 +1,33 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/merchandize_dispute_properties",
+  "title": "Merchandise Dispute Properties",
+  "type": "object",
+  "description": "The customer-provided merchandise issue details for the dispute.",
+  "properties": {
+    "issue_type": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 255,
+      "pattern": "^[0-9A-Z_]+$",
+      "description": "The issue type.",
+      "enum": [
+        "PRODUCT",
+        "SERVICE"
+      ]
+    },
+    "product_details": {
+      "$ref": "#/components/schemas/product_details"
+    },
+    "service_details": {
+      "$ref": "#/components/schemas/service_details"
+    },
+    "cancellation_details": {
+      "$ref": "#/components/schemas/cancellation_details"
+    },
+    "return_shipping_address": {
+      "description": "The return address for the item. Required when the customer must return an item to the merchant for the <a href=\"/docs/integration/direct/customer-disputes/integration-guide/#merchandise_or_service_not_as_described\"><code>MERCHANDISE_OR_SERVICE_NOT_AS_DESCRIBED</code></a> dispute reason.",
+      "$ref": "#/components/schemas/address_portable"
+    }
+  }
+}

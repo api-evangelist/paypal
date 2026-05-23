@@ -1,0 +1,15 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/payee",
+  "title": "Payee",
+  "type": "object",
+  "description": "The merchant who receives the funds and fulfills the order. The merchant is also known as the payee.",
+  "allOf": [
+    {
+      "$ref": "#/components/schemas/payee_base"
+    },
+    {
+      "properties": {}
+    }
+  ]
+}

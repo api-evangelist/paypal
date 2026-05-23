@@ -1,0 +1,65 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/invoices.generate-qr-code-400",
+  "title": "invoices.generate-qr-code-400",
+  "properties": {
+    "details": {
+      "type": "array",
+      "items": {
+        "anyOf": [
+          {
+            "title": "INVALID_INTEGER_MAX_VALUE",
+            "properties": {
+              "issue": {
+                "type": "string",
+                "enum": [
+                  "INVALID_INTEGER_MAX_VALUE"
+                ]
+              },
+              "description": {
+                "type": "string",
+                "enum": [
+                  "Value exceeds max value."
+                ]
+              }
+            }
+          },
+          {
+            "title": "INVALID_INTEGER_MIN_VALUE",
+            "properties": {
+              "issue": {
+                "type": "string",
+                "enum": [
+                  "INVALID_INTEGER_MIN_VALUE"
+                ]
+              },
+              "description": {
+                "type": "string",
+                "enum": [
+                  "Value less than minimum value."
+                ]
+              }
+            }
+          },
+          {
+            "title": "INVALID_PARAMETER_SYNTAX",
+            "properties": {
+              "issue": {
+                "type": "string",
+                "enum": [
+                  "INVALID_PARAMETER_SYNTAX"
+                ]
+              },
+              "description": {
+                "type": "string",
+                "enum": [
+                  "Value of the field does not conform to the expected format."
+                ]
+              }
+            }
+          }
+        ]
+      }
+    }
+  }
+}

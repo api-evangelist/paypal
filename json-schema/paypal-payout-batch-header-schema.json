@@ -1,0 +1,62 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/payout_batch_header",
+  "title": "Payout Batch Header",
+  "type": "object",
+  "description": "The payout header that is returned in response to a payout header request. Shows details for an entire payout request.",
+  "properties": {
+    "payout_batch_id": {
+      "type": "string",
+      "description": "The PayPal-generated ID for a payout.",
+      "minLength": 0,
+      "maxLength": 30,
+      "pattern": "^.*$"
+    },
+    "batch_status": {
+      "description": "The PayPal-generated payout status. If the payout passes preliminary checks, the status is `PENDING`.",
+      "$ref": "#/components/schemas/batch_enum"
+    },
+    "time_created": {
+      "type": "string",
+      "format": "date-time",
+      "minLength": 0,
+      "maxLength": 100,
+      "description": "The date and time when processing for the payout began, in [Internet date and time format](https://tools.ietf.org/html/rfc3339#section-5.6)."
+    },
+    "time_completed": {
+      "type": "string",
+      "format": "date-time",
+      "description": "The date and time when processing for the payout was completed, in [Internet date and time format](https://tools.ietf.org/html/rfc3339#section-5.6).",
+      "minLength": 0,
+      "maxLength": 100
+    },
+    "time_closed": {
+      "type": "string",
+      "format": "date-time",
+      "description": "The date and time when the payout was closed, in [Internet date and time format](https://tools.ietf.org/html/rfc3339#section-5.6). A payout is considered closed when all items in a batch are processed and the available balance from the temporary hold is released.",
+      "minLength": 0,
+      "maxLength": 100
+    },
+    "sender_batch_header": {
+      "description": "The original payout header, as provided by the payment sender.",
+      "$ref": "#/components/schemas/payout_sender_batch_header"
+    },
+    "funding_source": {
+      "description": "The ID to differentiate a PayPal balance-funded transaction from a PayPal treasury-funded transaction.",
+      "$ref": "#/components/schemas/funding_source"
+    },
+    "amount": {
+      "description": "The currency and total amount requested for the payouts.",
+      "$ref": "#/components/schemas/currency"
+    },
+    "fees": {
+      "description": "The currency and amount of the total estimate for the applicable payouts fees. Initially, the fee is `0`. The fee is populated after the payout moves to the `PROCESSING` state.",
+      "$ref": "#/components/schemas/currency"
+    }
+  },
+  "required": [
+    "payout_batch_id",
+    "batch_status",
+    "sender_batch_header"
+  ]
+}

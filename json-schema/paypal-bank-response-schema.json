@@ -1,0 +1,13 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/bank_response",
+  "title": "Bank Response",
+  "description": "Full representation of a Bank Payment Token.",
+  "type": "object",
+  "properties": {
+    "ach_debit": {
+      "description": "ACH Debit Response.",
+      "$ref": "#/components/schemas/ach_debit_response-2"
+    }
+  }
+}

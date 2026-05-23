@@ -1,0 +1,25 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/refund_status",
+  "title": "Refund Status",
+  "type": "object",
+  "description": "The refund status.",
+  "properties": {
+    "status": {
+      "description": "The status of the refund.",
+      "type": "string",
+      "readOnly": true,
+      "enum": [
+        "CANCELLED",
+        "FAILED",
+        "PENDING",
+        "COMPLETED"
+      ]
+    },
+    "status_details": {
+      "description": "The details of the refund status.",
+      "readOnly": true,
+      "$ref": "#/components/schemas/refund_status_details"
+    }
+  }
+}

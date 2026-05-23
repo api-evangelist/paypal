@@ -1,0 +1,30 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/card_request",
+  "title": "Card Request",
+  "type": "object",
+  "description": "The payment card to use to fund a payment. Can be a credit or debit card.<blockquote><strong>Note:</strong> Passing card number, cvv and expiry directly via the API requires <a href=\"https://www.pcisecuritystandards.org/pci_security/completing_self_assessment\"> PCI SAQ D compliance</a>. <br>*PayPal offers a mechanism by which you do not have to take on the <strong>PCI SAQ D</strong> burden by using hosted fields - refer to <a href=\"https://developer.paypal.com/docs/checkout/advanced/integrate/\">this Integration Guide</a>*.</blockquote>",
+  "allOf": [
+    {
+      "$ref": "#/components/schemas/card"
+    },
+    {
+      "properties": {
+        "vault_id": {
+          "description": "The PayPal-generated ID for the saved card payment source. Typically stored on the merchant's server.",
+          "$ref": "#/components/schemas/vault_id"
+        },
+        "stored_credential": {
+          "$ref": "#/components/schemas/card_stored_credential"
+        },
+        "network_token": {
+          "description": "A 3rd party network token refers to a network token that the merchant provisions from and vaults with an external TSP (Token Service Provider) other than PayPal.",
+          "$ref": "#/components/schemas/network_token_request"
+        },
+        "experience_context": {
+          "$ref": "#/components/schemas/card_experience_context"
+        }
+      }
+    }
+  ]
+}

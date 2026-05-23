@@ -1,0 +1,18 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/deny_offer",
+  "title": "Deny Offer Request",
+  "type": "object",
+  "description": "A customer request to deny the offer made by the merchant.",
+  "properties": {
+    "note": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 2000,
+      "description": "The customer notes about the denial of offer. PayPal can but the merchant cannot view these notes."
+    }
+  },
+  "required": [
+    "note"
+  ]
+}

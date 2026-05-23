@@ -1,0 +1,23 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/shipping_with_tracking_details",
+  "title": "Order Shipping Details",
+  "type": "object",
+  "description": "The order shipping details.",
+  "allOf": [
+    {
+      "$ref": "#/components/schemas/shipping_detail"
+    },
+    {
+      "properties": {
+        "trackers": {
+          "type": "array",
+          "description": "An array of trackers for a transaction.",
+          "items": {
+            "$ref": "#/components/schemas/tracker"
+          }
+        }
+      }
+    }
+  ]
+}

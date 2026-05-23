@@ -1,0 +1,34 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/auction_info",
+  "title": "Auction Information",
+  "type": "object",
+  "description": "The auction information.",
+  "properties": {
+    "auction_site": {
+      "type": "string",
+      "description": "The name of the auction site.",
+      "minLength": 1,
+      "maxLength": 200,
+      "pattern": "^[a-zA-Z0-9_'\\-., \":;\\!?]*$"
+    },
+    "auction_item_site": {
+      "type": "string",
+      "description": "The auction site URL.",
+      "minLength": 1,
+      "maxLength": 4000,
+      "pattern": "^[a-zA-Z0-9_'\\-., \":;\\!?]*$"
+    },
+    "auction_buyer_id": {
+      "type": "string",
+      "description": "The ID of the buyer who makes the purchase in the auction. This ID might be different from the payer ID provided for the payment.",
+      "minLength": 1,
+      "maxLength": 500,
+      "pattern": "^[a-zA-Z0-9_'\\-., \":;\\!?]*$"
+    },
+    "auction_closing_date": {
+      "description": "The date and time when the auction closes, in [Internet date and time format](https://tools.ietf.org/html/rfc3339#section-5.6).",
+      "$ref": "#/components/schemas/date_time"
+    }
+  }
+}

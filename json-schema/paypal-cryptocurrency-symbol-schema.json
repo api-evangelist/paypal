@@ -1,0 +1,16 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/cryptocurrency_symbol",
+  "title": "cryptocurrency_symbol",
+  "description": "The Cryptocurrency ticker symbol / code as assigned by liquidity providers (exchanges).",
+  "type": "string",
+  "minLength": 1,
+  "maxLength": 10,
+  "pattern": "^[0-9A-Za-z]{1,10}$",
+  "enum": [
+    "BTC",
+    "ETH",
+    "BCH",
+    "LTC"
+  ]
+}

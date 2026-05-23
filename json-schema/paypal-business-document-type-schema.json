@@ -1,0 +1,21 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/business_document_type",
+  "title": "Document type",
+  "type": "string",
+  "description": "The type of documents.",
+  "pattern": "^[0-9A-Z_]+$",
+  "minLength": 1,
+  "maxLength": 255,
+  "enum": [
+    "SOCIAL_SECURITY_NUMBER",
+    "EMPLOYMENT_IDENTIFICATION_NUMBER",
+    "TAX_IDENTIFICATION_NUMBER",
+    "PASSPORT_NUMBER",
+    "PENSION_FUND_ID",
+    "MEDICAL_INSURANCE_ID",
+    "CNPJ",
+    "CPF",
+    "PAN"
+  ]
+}

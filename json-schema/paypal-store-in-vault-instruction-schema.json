@@ -1,0 +1,13 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/store_in_vault_instruction",
+  "title": "store_in_vault_instruction",
+  "type": "string",
+  "description": "Defines how and when the payment source gets vaulted.",
+  "minLength": 1,
+  "maxLength": 255,
+  "pattern": "^[0-9A-Z_]+$",
+  "enum": [
+    "ON_SUCCESS"
+  ]
+}

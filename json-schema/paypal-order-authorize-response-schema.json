@@ -1,0 +1,56 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/order_authorize_response",
+  "title": "Order",
+  "type": "object",
+  "description": "The order authorize response.",
+  "allOf": [
+    {
+      "$ref": "#/components/schemas/activity_timestamps"
+    },
+    {
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "The ID of the order.",
+          "readOnly": true
+        },
+        "payment_source": {
+          "$ref": "#/components/schemas/payment_source_response"
+        },
+        "intent": {
+          "$ref": "#/components/schemas/checkout_payment_intent"
+        },
+        "processing_instruction": {
+          "$ref": "#/components/schemas/processing_instruction"
+        },
+        "payer": {
+          "$ref": "#/components/schemas/payer"
+        },
+        "purchase_units": {
+          "type": "array",
+          "description": "An array of purchase units. Each purchase unit establishes a contract between a customer and merchant. Each purchase unit represents either a full or partial order that the customer intends to purchase from the merchant.",
+          "minItems": 1,
+          "maxItems": 10,
+          "items": {
+            "$ref": "#/components/schemas/purchase_unit",
+            "description": "A purchase unit. Establishes a contract between a customer and merchant."
+          }
+        },
+        "status": {
+          "$ref": "#/components/schemas/order_status",
+          "readOnly": true
+        },
+        "links": {
+          "type": "array",
+          "description": "An array of request-related HATEOAS links. To complete payer approval, use the `approve` link to redirect the payer. The API caller has 3 hours (default setting, this which can be changed by your account manager to 24/48/72 hours to accommodate your use case) from the time the order is created, to redirect your payer. Once redirected, the API caller has 3 hours for the payer to approve the order and either authorize or capture the order. If you are not using the PayPal JavaScript SDK to initiate PayPal Checkout (in context) ensure that you include `application_context.return_url` is specified or you will get \"We're sorry, Things don't appear to be working at the moment\" after the payer approves the payment.",
+          "readOnly": true,
+          "items": {
+            "$ref": "#/components/schemas/link_description",
+            "description": "A request-related [HATEOAS link](/api/rest/responses/#hateoas-links). To complete payer approval, use the `approve` link with the `GET` method."
+          }
+        }
+      }
+    }
+  ]
+}

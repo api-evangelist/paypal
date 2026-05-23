@@ -1,0 +1,39 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/wallet_base",
+  "title": "Vaulted Digital Wallet Common Attributes",
+  "type": "object",
+  "description": "Resource consolidating common request and response attributes for vaulting a Digital Wallet.",
+  "properties": {
+    "description": {
+      "type": "string",
+      "description": "The description displayed to the consumer on the approval flow for a digital wallet, as well as on the merchant view of the payment token management experience. exp: PayPal.com.",
+      "minLength": 1,
+      "maxLength": 128,
+      "pattern": "^[a-zA-Z0-9_'\\-., :;\\!?\"]*$"
+    },
+    "shipping": {
+      "description": "The shipping address for the Payer.",
+      "$ref": "#/components/schemas/shipping_detail"
+    },
+    "permit_multiple_payment_tokens": {
+      "type": "boolean",
+      "description": "Create multiple payment tokens for the same payer, merchant/platform combination. Use this when the customer has not logged in at merchant/platform. The payment token thus generated, can then also be used to create the customer account at merchant/platform. Use this also when multiple payment tokens are required for the same payer, different customer at merchant/platform. This helps to identify customers distinctly even though they may share the same PayPal account. This only applies to PayPal payment source.",
+      "default": false
+    },
+    "usage_type": {
+      "type": "string",
+      "description": "The usage type associated with a digital wallet payment token.",
+      "minLength": 1,
+      "maxLength": 255,
+      "pattern": "^[0-9A-Z_]+$"
+    },
+    "customer_type": {
+      "type": "string",
+      "description": "The customer type associated with a digital wallet payment token. This is to indicate whether the customer acting on the merchant / platform is either a business or a consumer.",
+      "minLength": 1,
+      "maxLength": 255,
+      "pattern": "^[0-9A-Z_]+$"
+    }
+  }
+}

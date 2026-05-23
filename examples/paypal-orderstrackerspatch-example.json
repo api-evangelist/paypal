@@ -1,0 +1,27 @@
+{
+  "operationId": "orders.trackers.patch",
+  "method": "PATCH",
+  "path": "/v2/checkout/orders/{id}/trackers/{tracker_id}",
+  "summary": "Update or cancel tracking information for a PayPal order",
+  "requestExamples": [
+    {
+      "contentType": "application/json",
+      "name": "orders_patch_request",
+      "example": [
+        {
+          "op": "replace",
+          "path": "/purchase_units/@reference_id=='PUHF'/shipping/address",
+          "value": {
+            "address_line_1": "2211 N First Street",
+            "address_line_2": "Building 17",
+            "admin_area_2": "San Jose",
+            "admin_area_1": "CA",
+            "postal_code": "95131",
+            "country_code": "US"
+          }
+        }
+      ]
+    }
+  ],
+  "responseExamples": []
+}

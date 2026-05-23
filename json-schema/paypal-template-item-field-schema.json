@@ -1,0 +1,14 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/template_item_field",
+  "title": "Template Item Field",
+  "type": "string",
+  "description": "The field names for the invoice line items in the template.",
+  "enum": [
+    "ITEMS_QUANTITY",
+    "ITEMS_DESCRIPTION",
+    "ITEMS_DATE",
+    "ITEMS_DISCOUNT",
+    "ITEMS_TAX"
+  ]
+}

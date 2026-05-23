@@ -1,0 +1,23 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/checkout_option",
+  "title": "Checkout Option",
+  "type": "object",
+  "description": "A checkout option as a name-and-value pair.",
+  "properties": {
+    "checkout_option_name": {
+      "type": "string",
+      "description": "The checkout option name, such as `color` or `texture`.",
+      "minLength": 1,
+      "maxLength": 200,
+      "pattern": "^[a-zA-Z0-9_'\\-., \":;\\!?]*$"
+    },
+    "checkout_option_value": {
+      "type": "string",
+      "description": "The checkout option value. For example, the checkout option `color` might be `blue` or `red` while the checkout option `texture` might be `smooth` or `rippled`.",
+      "minLength": 1,
+      "maxLength": 200,
+      "pattern": "^[a-zA-Z0-9_'\\-., \":;\\!?]*$"
+    }
+  }
+}

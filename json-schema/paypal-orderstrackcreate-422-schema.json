@@ -1,0 +1,82 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/orders.track.create-422",
+  "title": "orders.track.create-422",
+  "properties": {
+    "details": {
+      "type": "array",
+      "items": {
+        "anyOf": [
+          {
+            "title": "CAPTURE_STATUS_NOT_VALID",
+            "properties": {
+              "issue": {
+                "type": "string",
+                "enum": [
+                  "CAPTURE_STATUS_NOT_VALID"
+                ]
+              },
+              "description": {
+                "type": "string",
+                "enum": [
+                  "Invalid capture status. Tracker information can only be added to captures in `COMPLETED` state."
+                ]
+              }
+            }
+          },
+          {
+            "title": "ITEM_SKU_MISMATCH",
+            "properties": {
+              "issue": {
+                "type": "string",
+                "enum": [
+                  "ITEM_SKU_MISMATCH"
+                ]
+              },
+              "description": {
+                "type": "string",
+                "enum": [
+                  "Item sku must match one of the items sku that was provided during order creation."
+                ]
+              }
+            }
+          },
+          {
+            "title": "CAPTURE_ID_NOT_FOUND",
+            "properties": {
+              "issue": {
+                "type": "string",
+                "enum": [
+                  "CAPTURE_ID_NOT_FOUND"
+                ]
+              },
+              "description": {
+                "type": "string",
+                "enum": [
+                  "Specified capture ID does not exist. Check the capture ID and try again."
+                ]
+              }
+            }
+          },
+          {
+            "title": "MSP_NOT_SUPPORTED",
+            "properties": {
+              "issue": {
+                "type": "string",
+                "enum": [
+                  "MSP_NOT_SUPPORTED"
+                ]
+              },
+              "description": {
+                "type": "string",
+                "enum": [
+                  "Multiple purchase units are not supported for this operation."
+                ]
+              }
+            }
+          }
+        ]
+      }
+    }
+  }
+}

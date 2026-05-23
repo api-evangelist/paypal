@@ -1,0 +1,16 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/adjudication_type",
+  "title": "adjudication_type",
+  "type": "string",
+  "minLength": 1,
+  "maxLength": 255,
+  "pattern": "^[0-9A-Z_]+$",
+  "description": "The type of adjudication.",
+  "enum": [
+    "DENY_BUYER",
+    "PAYOUT_TO_BUYER",
+    "PAYOUT_TO_SELLER",
+    "RECOVER_FROM_SELLER"
+  ]
+}

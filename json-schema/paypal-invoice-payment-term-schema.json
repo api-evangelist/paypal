@@ -1,0 +1,20 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/invoice_payment_term",
+  "title": "Invoice Payment Term",
+  "type": "object",
+  "description": "The payment term of the invoice. Payment can be due upon receipt, a specified date, or in a set number of days.",
+  "allOf": [
+    {
+      "$ref": "#/components/schemas/payment_term"
+    },
+    {
+      "properties": {
+        "due_date": {
+          "$ref": "#/components/schemas/date_no_time",
+          "description": "The date when the invoice payment is due, in [Internet date and time format](https://tools.ietf.org/html/rfc3339#section-5.6). For example, *yyyy*-*MM*-*dd*T*z*."
+        }
+      }
+    }
+  ]
+}

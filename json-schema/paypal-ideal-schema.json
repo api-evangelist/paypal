@@ -1,0 +1,28 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/ideal",
+  "title": "The iDEAL payment object",
+  "type": "object",
+  "description": "Information used to pay using iDEAL.",
+  "properties": {
+    "name": {
+      "description": "The name of the account holder associated with this payment method.",
+      "$ref": "#/components/schemas/full_name"
+    },
+    "country_code": {
+      "description": "The two-character ISO 3166-1 country code.",
+      "$ref": "#/components/schemas/country_code"
+    },
+    "bic": {
+      "description": "The bank identification code (BIC).",
+      "$ref": "#/components/schemas/bic"
+    },
+    "iban_last_chars": {
+      "$ref": "#/components/schemas/iban_last_chars"
+    },
+    "attributes": {
+      "description": "Attributes for SEPA direct debit object.",
+      "$ref": "#/components/schemas/altpay_recurring_attributes"
+    }
+  }
+}

@@ -1,0 +1,30 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/webhooks_lookup",
+  "title": "Webhook Lookup",
+  "type": "object",
+  "description": "The webhook lookup details.",
+  "properties": {
+    "id": {
+      "type": "string",
+      "description": "The ID of the webhook lookup.",
+      "readOnly": true
+    },
+    "client_id": {
+      "type": "string",
+      "pattern": "^(?!\\d+$)\\w+\\S+",
+      "maxLength": 128,
+      "description": "The application client ID.",
+      "readOnly": true
+    },
+    "links": {
+      "type": "array",
+      "description": "An array of request-related [HATEOAS links](/docs/api/reference/api-responses/#hateoas-links/).",
+      "readOnly": true,
+      "items": {
+        "$ref": "#/components/schemas/link_description",
+        "readOnly": true
+      }
+    }
+  }
+}

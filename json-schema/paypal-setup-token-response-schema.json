@@ -1,0 +1,49 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/setup_token_response",
+  "title": "Minimal Setup Token",
+  "description": "Minimal representation of a cached setup token.",
+  "type": "object",
+  "properties": {
+    "id": {
+      "description": "The PayPal-generated ID for the vault token.",
+      "$ref": "#/components/schemas/vault_id"
+    },
+    "ordinal": {
+      "description": "The ordinal number of customers' payment source for sorting.",
+      "$ref": "#/components/schemas/ordinal"
+    },
+    "customer": {
+      "description": "Customer in merchant's or partner's system of records.",
+      "$ref": "#/components/schemas/customer"
+    },
+    "status": {
+      "description": "The status of the payment token.",
+      "$ref": "#/components/schemas/payment_token_status"
+    },
+    "payment_source": {
+      "description": "The setup payment method details.",
+      "properties": {
+        "card": {
+          "$ref": "#/components/schemas/card_response"
+        },
+        "paypal": {
+          "$ref": "#/components/schemas/paypal_wallet_response"
+        },
+        "venmo": {
+          "$ref": "#/components/schemas/venmo_response"
+        }
+      }
+    },
+    "links": {
+      "description": "An array of related [HATEOAS links](/api/rest/responses/#hateoas).",
+      "readOnly": true,
+      "type": "array",
+      "minItems": 1,
+      "maxItems": 32,
+      "items": {
+        "$ref": "#/components/schemas/link_description"
+      }
+    }
+  }
+}

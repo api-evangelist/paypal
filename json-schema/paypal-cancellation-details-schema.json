@@ -1,0 +1,39 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/cancellation_details",
+  "title": "Cancellation Details",
+  "type": "object",
+  "description": "The cancellation details.",
+  "properties": {
+    "cancellation_date": {
+      "description": "The date and time of the cancellation, in [Internet date and time format](http://tools.ietf.org/html/rfc3339#section-5.6).",
+      "$ref": "#/components/schemas/date_time"
+    },
+    "cancellation_number": {
+      "description": "The cancellation number.",
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 127,
+      "pattern": "^[A-Za-z0-9]+$"
+    },
+    "cancelled": {
+      "type": "boolean",
+      "description": "Indicates whether the dispute was canceled."
+    },
+    "cancellation_mode": {
+      "description": "Indicates the mode used for order cancellation.",
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 255,
+      "pattern": "^[0-9A-Z_]+$",
+      "enum": [
+        "CANCELLED_PAYPAL_BILLING_AGREEMENT",
+        "WEBSITE",
+        "PHONE",
+        "EMAIL",
+        "WRITTEN",
+        "IN_PERSON"
+      ]
+    }
+  }
+}

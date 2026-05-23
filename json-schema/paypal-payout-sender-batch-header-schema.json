@@ -1,0 +1,33 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/payout_sender_batch_header",
+  "title": "Payout Sender Batch Header",
+  "type": "object",
+  "description": "The sender-provided header for a payout request.",
+  "properties": {
+    "sender_batch_id": {
+      "type": "string",
+      "description": "The sender-specified ID number. Tracks the payout in an accounting system.<blockquote><strong>Note:</strong> <p>PayPal does not process duplicate payouts. If you specify a <code>sender_batch_id</code> that was used in the last 30 days, the API rejects the request with an error message that shows the duplicate <code>sender_batch_id</code> and includes a HATEOAS link to the original payout with the same <code>sender_batch_id</code>.</p><p>If you receive an HTTP <code>5<i>nn</i></code> status code, you can safely retry the request with the same <code>sender_batch_id</code>. The API completes a payment only once for a <code>sender_batch_id</code> that is used within 30 days.</p></blockquote>",
+      "minLength": 0,
+      "maxLength": 256,
+      "pattern": "^.*$"
+    },
+    "recipient_type": {
+      "$ref": "#/components/schemas/recipient_enum"
+    },
+    "email_subject": {
+      "type": "string",
+      "description": "The subject line for the email that PayPal sends when payment for a payout item completes. The subject line is the same for all recipients. Value is an alphanumeric string with a maximum length of 255 single-byte characters.",
+      "minLength": 0,
+      "maxLength": 255,
+      "pattern": "^.*$"
+    },
+    "email_message": {
+      "type": "string",
+      "description": "The email message that PayPal sends when the payout item completes. The message is the same for all recipients.",
+      "minLength": 0,
+      "maxLength": 1000,
+      "pattern": "^.*$"
+    }
+  }
+}

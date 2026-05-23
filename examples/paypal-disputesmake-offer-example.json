@@ -1,0 +1,21 @@
+{
+  "operationId": "disputes.make-offer",
+  "method": "POST",
+  "path": "/v1/customer/disputes/{id}/make-offer",
+  "summary": "Paypal Make offer to resolve dispute",
+  "requestExamples": [
+    {
+      "contentType": "application/json",
+      "name": "make_offer",
+      "example": {
+        "note": "Offer refund with replacement item.",
+        "offer_amount": {
+          "currency_code": "USD",
+          "value": "23"
+        },
+        "offer_type": "REFUND_WITH_REPLACEMENT"
+      }
+    }
+  ],
+  "responseExamples": []
+}

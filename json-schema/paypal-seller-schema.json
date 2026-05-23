@@ -1,0 +1,27 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/seller",
+  "title": "Merchant",
+  "type": "object",
+  "description": "The details for the merchant who receives the funds and fulfills the order. For example, merchant ID, and contact email address.",
+  "properties": {
+    "email": {
+      "$ref": "#/components/schemas/email_address",
+      "description": "The email address for the merchant's PayPal account."
+    },
+    "merchant_id": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 255,
+      "description": "The PayPal account ID for the merchant.",
+      "pattern": "^[0-9A-Za-z]+$"
+    },
+    "name": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 2000,
+      "pattern": "^[^~!@#$%^*()_{}:|\\t\\n/]+$",
+      "description": "The name of the merchant."
+    }
+  }
+}

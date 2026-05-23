@@ -1,0 +1,21 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/update_pricing_schemes_list_request",
+  "title": "Update Pricing Scheme Request",
+  "description": "The update pricing scheme request details.",
+  "type": "object",
+  "properties": {
+    "pricing_schemes": {
+      "type": "array",
+      "description": "An array of pricing schemes.",
+      "minItems": 1,
+      "maxItems": 99,
+      "items": {
+        "$ref": "#/components/schemas/update_pricing_scheme_request"
+      }
+    }
+  },
+  "required": [
+    "pricing_schemes"
+  ]
+}

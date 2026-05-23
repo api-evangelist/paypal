@@ -1,0 +1,66 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/application_context",
+  "title": "Application Context",
+  "description": "The application context, which customizes the payer experience during the subscription approval process with PayPal.",
+  "type": "object",
+  "properties": {
+    "brand_name": {
+      "type": "string",
+      "description": "The label that overrides the business name in the PayPal account on the PayPal site.",
+      "minLength": 1,
+      "maxLength": 127
+    },
+    "locale": {
+      "description": "The BCP 47-formatted locale of pages that the PayPal payment experience shows. PayPal supports a five-character code. For example, `da-DK`, `he-IL`, `id-ID`, `ja-JP`, `no-NO`, `pt-BR`, `ru-RU`, `sv-SE`, `th-TH`, `zh-CN`, `zh-HK`, or `zh-TW`.",
+      "$ref": "#/components/schemas/language"
+    },
+    "shipping_preference": {
+      "type": "string",
+      "description": "The location from which the shipping address is derived.",
+      "minLength": 1,
+      "maxLength": 24,
+      "pattern": "^[A-Z_]+$",
+      "default": "GET_FROM_FILE",
+      "enum": [
+        "GET_FROM_FILE",
+        "NO_SHIPPING",
+        "SET_PROVIDED_ADDRESS"
+      ]
+    },
+    "user_action": {
+      "type": "string",
+      "description": "Configures the label name to `Continue` or `Subscribe Now` for subscription consent experience.",
+      "minLength": 1,
+      "maxLength": 24,
+      "pattern": "^[A-Z_]+$",
+      "default": "SUBSCRIBE_NOW",
+      "enum": [
+        "CONTINUE",
+        "SUBSCRIBE_NOW"
+      ]
+    },
+    "payment_method": {
+      "description": "The customer and merchant payment preferences. Currently only PAYPAL payment method is supported.",
+      "$ref": "#/components/schemas/payment_method"
+    },
+    "return_url": {
+      "type": "string",
+      "format": "uri",
+      "description": "The URL where the customer is redirected after the customer approves the payment.",
+      "minLength": 10,
+      "maxLength": 4000
+    },
+    "cancel_url": {
+      "type": "string",
+      "format": "uri",
+      "description": "The URL where the customer is redirected after the customer cancels the payment.",
+      "minLength": 10,
+      "maxLength": 4000
+    }
+  },
+  "required": [
+    "return_url",
+    "cancel_url"
+  ]
+}

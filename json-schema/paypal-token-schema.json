@@ -1,0 +1,30 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/token",
+  "title": "Token",
+  "type": "object",
+  "description": "The tokenized payment source to fund a payment.",
+  "properties": {
+    "id": {
+      "type": "string",
+      "description": "The PayPal-generated ID for the token.",
+      "pattern": "^[0-9a-zA-Z_-]+$",
+      "minLength": 1,
+      "maxLength": 255
+    },
+    "type": {
+      "type": "string",
+      "description": "The tokenization method that generated the ID.",
+      "minLength": 1,
+      "maxLength": 255,
+      "pattern": "^[0-9A-Z_-]+$",
+      "enum": [
+        "BILLING_AGREEMENT"
+      ]
+    }
+  },
+  "required": [
+    "id",
+    "type"
+  ]
+}

@@ -1,0 +1,36 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/billing_info",
+  "title": "Billing Information",
+  "type": "object",
+  "description": "The billing information of the invoice recipient. Includes name, address, email, phone, and language.",
+  "allOf": [
+    {
+      "$ref": "#/components/schemas/contact_name_address"
+    },
+    {
+      "properties": {
+        "email_address": {
+          "$ref": "#/components/schemas/email_address",
+          "description": "The invoice recipient email address. If you omit this value, the invoice is payable and a notification email is not sent."
+        },
+        "phones": {
+          "type": "array",
+          "items": {
+            "$ref": "#/components/schemas/phone_detail"
+          },
+          "description": "The invoice recipient's phone numbers. Extension number is not supported."
+        },
+        "additional_info": {
+          "type": "string",
+          "description": "Any additional information about the recipient.",
+          "maxLength": 40
+        },
+        "language": {
+          "$ref": "#/components/schemas/language",
+          "description": "The language in which to show the invoice recipient's email message. Used only when the recipient does not have a PayPal account. If you omit the language and the recipient does not have a PayPal account, the email message is sent in the language of the merchant's PayPal account."
+        }
+      }
+    }
+  ]
+}

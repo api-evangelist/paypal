@@ -1,0 +1,34 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/invoice_detail",
+  "title": "Invoice Detail",
+  "type": "object",
+  "description": "The details of the invoice. Includes invoice number, date, payment terms, and audit metadata.",
+  "allOf": [
+    {
+      "$ref": "#/components/schemas/detail"
+    },
+    {
+      "properties": {
+        "invoice_number": {
+          "type": "string",
+          "description": "The invoice number. Default is the number that is auto-incremented number from the last number.",
+          "maxLength": 127
+        },
+        "invoice_date": {
+          "$ref": "#/components/schemas/date_no_time",
+          "description": "The invoice date as specificed by the sender, in [Internet date and time format](https://tools.ietf.org/html/rfc3339#section-5.6). Only UTC is supported in response. For example, *yyyy*-*MM*-*dd*T*z*."
+        },
+        "payment_term": {
+          "$ref": "#/components/schemas/invoice_payment_term",
+          "description": "The payment due date for the invoice. Value is either but not both <code>term_type</code> or <code>due_date</code>."
+        },
+        "metadata": {
+          "$ref": "#/components/schemas/metadata",
+          "description": "The audit metadata. Captures all invoicing actions on create, send, update, and cancel.",
+          "readOnly": true
+        }
+      }
+    }
+  ]
+}

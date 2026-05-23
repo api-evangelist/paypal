@@ -1,0 +1,19 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/authorization_status_details",
+  "title": "Auhorization Status Details",
+  "description": "The details of the authorized payment status.",
+  "type": "object",
+  "properties": {
+    "reason": {
+      "description": "The reason why the authorized status is `PENDING`.",
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 24,
+      "pattern": "^[A-Z_]+$",
+      "enum": [
+        "PENDING_REVIEW"
+      ]
+    }
+  }
+}

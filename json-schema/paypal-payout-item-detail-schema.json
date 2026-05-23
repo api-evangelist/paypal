@@ -1,0 +1,53 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/payout_item_detail",
+  "title": "Payout Item Detail",
+  "type": "object",
+  "description": "The details for a sender-created payout to a single recipient.",
+  "properties": {
+    "recipient_type": {
+      "$ref": "#/components/schemas/recipient_enum"
+    },
+    "amount": {
+      "description": "The currency and amount of payout item. Might be an integer for currencies like `JPY` that are not typically fractional or a decimal fraction for currencies like `TND` that are subdivided into thousandths. For the required number of decimal places for a currency code, see [Currency codes - ISO 4217](https://www.iso.org/iso-4217-currency-codes.html).",
+      "$ref": "#/components/schemas/currency"
+    },
+    "note": {
+      "type": "string",
+      "description": "The sender-specified note for notifications. Supports up to 4000 ASCII characters and 1000 non-ASCII characters.",
+      "minLength": 0,
+      "maxLength": 4000,
+      "pattern": "^.*$"
+    },
+    "receiver": {
+      "type": "string",
+      "description": "The receiver of the payment. Corresponds to the `recipient_type` value in the request.",
+      "minLength": 0,
+      "maxLength": 127,
+      "pattern": "^.*$"
+    },
+    "sender_item_id": {
+      "type": "string",
+      "description": "A sender-specified ID number. Tracks the payout in an accounting system.",
+      "minLength": 0,
+      "maxLength": 63,
+      "pattern": "^.*$"
+    },
+    "recipient_name": {
+      "description": "The name of the recipient where money is credited. For `UNCLAIMED` payments, the recipient name is populated after the payment is claimed.",
+      "$ref": "#/components/schemas/name"
+    },
+    "recipient_wallet": {
+      "description": "The recipient wallet.",
+      "$ref": "#/components/schemas/recipient_wallet_enum"
+    },
+    "purpose": {
+      "description": "The purpose of the transaction.",
+      "$ref": "#/components/schemas/purpose_enum"
+    }
+  },
+  "required": [
+    "amount",
+    "receiver"
+  ]
+}

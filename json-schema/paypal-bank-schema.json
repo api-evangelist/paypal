@@ -1,0 +1,60 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/bank",
+  "title": "Bank Account",
+  "type": "object",
+  "additionalProperties": false,
+  "description": "The bank account information.",
+  "properties": {
+    "nick_name": {
+      "type": "string",
+      "description": "The user-provided short name for the user's bank account.",
+      "minLength": 1,
+      "maxLength": 50,
+      "pattern": "^[0-9A-Za-z_-]+$"
+    },
+    "account_number": {
+      "type": "string",
+      "description": "The bank account number.",
+      "pattern": "\\d+",
+      "minLength": 1,
+      "maxLength": 50
+    },
+    "account_type": {
+      "type": "string",
+      "description": "The type of bank account.",
+      "minLength": 1,
+      "maxLength": 50,
+      "pattern": "^[0-9A-Z_]+$",
+      "enum": [
+        "CHECKING",
+        "SAVINGS"
+      ]
+    },
+    "currency_code": {
+      "description": "The primary currency code of the bank account.",
+      "$ref": "#/components/schemas/currency_code"
+    },
+    "identifiers": {
+      "type": "array",
+      "description": "An array of instrument institute attributes. Used with the account number to uniquely identify the instrument. Value is:<ul><li>For banks with IBAN information, the IBAN number.</li><li>For banks with BBAN information, the BBAN number.</li><li>For banks with both IBAN and BBAN information, the IBAN number.</li></ul>",
+      "items": {
+        "$ref": "#/components/schemas/identifier"
+      },
+      "minItems": 0,
+      "maxItems": 20
+    },
+    "branch_location": {
+      "description": "The branch location, if applicable.",
+      "$ref": "#/components/schemas/address_portable-2"
+    },
+    "mandate": {
+      "description": "Mandate for this bank account.",
+      "$ref": "#/components/schemas/mandate"
+    }
+  },
+  "required": [
+    "account_number",
+    "account_type"
+  ]
+}

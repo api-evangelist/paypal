@@ -1,0 +1,32 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/payment_token_request",
+  "title": "Payment Token Request",
+  "description": "Payment Token Request where the `source` defines the type of instrument to be stored.",
+  "type": "object",
+  "properties": {
+    "customer": {
+      "description": "Customer in merchant's or partner's system of records.",
+      "$ref": "#/components/schemas/customer"
+    },
+    "payment_source": {
+      "title": "Payment source request",
+      "description": "The payment method to vault with the instrument details.",
+      "type": "object",
+      "properties": {
+        "card": {
+          "$ref": "#/components/schemas/card_request"
+        },
+        "token": {
+          "$ref": "#/components/schemas/token_id_request"
+        }
+      }
+    },
+    "metadata": {
+      "$ref": "#/components/schemas/metadata"
+    }
+  },
+  "required": [
+    "payment_source"
+  ]
+}

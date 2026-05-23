@@ -1,0 +1,60 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/product_details",
+  "title": "Product Details",
+  "type": "object",
+  "description": "The product information.",
+  "properties": {
+    "description": {
+      "description": "The product description.",
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 2000
+    },
+    "product_received": {
+      "description": "Indicates whether the product was, or was not, received or returned.",
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 255,
+      "pattern": "^[0-9A-Z_]+$",
+      "enum": [
+        "YES",
+        "NO",
+        "RETURNED"
+      ]
+    },
+    "product_received_time": {
+      "description": "The date and time when product was delivered.",
+      "$ref": "#/components/schemas/date_time"
+    },
+    "expected_delivery_date": {
+      "description": "The expected delivery date and time of the product.",
+      "$ref": "#/components/schemas/date_time"
+    },
+    "sub_reasons": {
+      "description": "An array of sub-reasons for the product issue.",
+      "type": "array",
+      "items": {
+        "type": "string",
+        "minLength": 1,
+        "maxLength": 255,
+        "pattern": "^[0-9A-Z_]+$",
+        "description": "The sub-reason for the product issue.",
+        "enum": [
+          "DAMAGED",
+          "DIFFERENT",
+          "MISSING_PARTS",
+          "OTHER"
+        ]
+      }
+    },
+    "purchase_url": {
+      "type": "string",
+      "format": "uri",
+      "description": "The URL where the customer purchased the product."
+    },
+    "return_details": {
+      "$ref": "#/components/schemas/return_details"
+    }
+  }
+}

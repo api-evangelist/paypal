@@ -1,0 +1,19 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/business_sub_type",
+  "title": "The business sub type.",
+  "description": "Sub classification of the business type",
+  "type": "string",
+  "pattern": "^[0-9A-Z_]+$",
+  "minLength": 1,
+  "maxLength": 255,
+  "enum": [
+    "ASSO_TYPE_INCORPORATED",
+    "ASSO_TYPE_NON_INCORPORATED",
+    "GOVT_TYPE_ENTITY",
+    "GOVT_TYPE_EMANATION",
+    "GOVT_TYPE_ESTD_COMM",
+    "GOVT_TYPE_ESTD_FC",
+    "GOVT_TYPE_ESTD_ST_TR"
+  ]
+}

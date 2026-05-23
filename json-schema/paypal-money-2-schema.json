@@ -1,0 +1,22 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/money-2",
+  "title": "Money",
+  "type": "object",
+  "description": "The currency and amount for a financial transaction, such as a balance or payment due.",
+  "properties": {
+    "currency_code": {
+      "$ref": "#/components/schemas/currency_code-2"
+    },
+    "value": {
+      "type": "string",
+      "description": "The value, which might be:<ul><li>An integer for currencies like `JPY` that are not typically fractional.</li><li>A decimal fraction for currencies like `TND` that are subdivided into thousandths.</li></ul>For the required number of decimal places for a currency code, see [Currency Codes](/api/rest/reference/currency-codes/).",
+      "maxLength": 32,
+      "pattern": "^((-?[0-9]+)|(-?([0-9]+)?[.][0-9]+))$"
+    }
+  },
+  "required": [
+    "currency_code",
+    "value"
+  ]
+}

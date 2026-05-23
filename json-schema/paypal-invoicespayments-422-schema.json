@@ -1,0 +1,65 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/invoices.payments-422",
+  "title": "invoices.payments-422",
+  "properties": {
+    "details": {
+      "type": "array",
+      "items": {
+        "anyOf": [
+          {
+            "title": "PAYMENT_AMOUNT_GREATER_THAN_AMOUNT_DUE",
+            "properties": {
+              "issue": {
+                "type": "string",
+                "enum": [
+                  "PAYMENT_AMOUNT_GREATER_THAN_AMOUNT_DUE"
+                ]
+              },
+              "description": {
+                "type": "string",
+                "enum": [
+                  "Payment amount is greater than the amount due."
+                ]
+              }
+            }
+          },
+          {
+            "title": "INVALID_INVOICE_TYPE",
+            "properties": {
+              "issue": {
+                "type": "string",
+                "enum": [
+                  "INVALID_INVOICE_TYPE"
+                ]
+              },
+              "description": {
+                "type": "string",
+                "enum": [
+                  "The invoice type is not valid for paying an invoice."
+                ]
+              }
+            }
+          },
+          {
+            "title": "CANNOT_PROCESS_PAYMENTS",
+            "properties": {
+              "issue": {
+                "type": "string",
+                "enum": [
+                  "CANNOT_PROCESS_PAYMENTS"
+                ]
+              },
+              "description": {
+                "type": "string",
+                "enum": [
+                  "Current invoice state does not support payment processing."
+                ]
+              }
+            }
+          }
+        ]
+      }
+    }
+  }
+}

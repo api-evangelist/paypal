@@ -1,0 +1,36 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/patch",
+  "title": "Patch",
+  "type": "object",
+  "description": "The JSON patch object to apply partial updates to resources.",
+  "properties": {
+    "op": {
+      "type": "string",
+      "description": "The operation.",
+      "enum": [
+        "add",
+        "remove",
+        "replace",
+        "move",
+        "copy",
+        "test"
+      ]
+    },
+    "path": {
+      "type": "string",
+      "description": "The <a href=\"https://tools.ietf.org/html/rfc6901\">JSON Pointer</a> to the target document location at which to complete the operation."
+    },
+    "value": {
+      "title": "Patch Value",
+      "description": "The value to apply. The <code>remove</code> operation does not require a value."
+    },
+    "from": {
+      "type": "string",
+      "description": "The <a href=\"https://tools.ietf.org/html/rfc6901\">JSON Pointer</a> to the target document location from which to move the value. Required for the <code>move</code> operation."
+    }
+  },
+  "required": [
+    "op"
+  ]
+}

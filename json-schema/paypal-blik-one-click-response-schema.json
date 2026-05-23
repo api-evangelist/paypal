@@ -1,0 +1,16 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/blik_one_click_response",
+  "title": "BLIK one-click payment object",
+  "type": "object",
+  "description": "Information used to pay using BLIK one-click flow.",
+  "properties": {
+    "consumer_reference": {
+      "type": "string",
+      "description": "The merchant generated, unique reference serving as a primary identifier for accounts connected between Blik and a merchant.",
+      "minLength": 3,
+      "maxLength": 64,
+      "pattern": "^[ -~]{3,64}$"
+    }
+  }
+}

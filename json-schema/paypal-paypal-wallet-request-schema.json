@@ -1,0 +1,19 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/paypal_wallet_request",
+  "title": "PayPal Wallet Request",
+  "type": "object",
+  "description": "A resource representing a request to vault PayPal Wallet.",
+  "allOf": [
+    {
+      "$ref": "#/components/schemas/wallet_base"
+    },
+    {
+      "properties": {
+        "experience_context": {
+          "$ref": "#/components/schemas/experience_context"
+        }
+      }
+    }
+  ]
+}

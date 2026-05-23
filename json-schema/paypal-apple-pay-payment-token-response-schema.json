@@ -1,0 +1,13 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/apple_pay_payment_token_response",
+  "title": "Apple Pay Response",
+  "type": "object",
+  "description": "A resource representing a response for Apple Pay.",
+  "properties": {
+    "card": {
+      "description": "Card data for the card linked to the apple pay token.",
+      "$ref": "#/components/schemas/apple_pay_card"
+    }
+  }
+}

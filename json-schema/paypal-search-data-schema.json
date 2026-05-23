@@ -1,0 +1,87 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/search_data",
+  "title": "Search Data",
+  "type": "object",
+  "description": "The invoice search parameters.",
+  "properties": {
+    "recipient_email": {
+      "type": "string",
+      "maxLength": 254,
+      "description": "Filters the search by the email address."
+    },
+    "recipient_first_name": {
+      "type": "string",
+      "description": "Filters the search by the recipient first name.",
+      "maxLength": 140
+    },
+    "recipient_last_name": {
+      "type": "string",
+      "description": "Filters the search by the recipient last name.",
+      "maxLength": 140
+    },
+    "recipient_business_name": {
+      "type": "string",
+      "description": "Filters the search by the recipient business name.",
+      "maxLength": 300
+    },
+    "invoice_number": {
+      "type": "string",
+      "maxLength": 25,
+      "description": "Filters the search by the invoice number."
+    },
+    "status": {
+      "type": "array",
+      "description": "An array of status values.",
+      "items": {
+        "$ref": "#/components/schemas/invoice_status"
+      },
+      "maxItems": 5
+    },
+    "reference": {
+      "type": "string",
+      "description": "The reference data, such as a PO number.",
+      "maxLength": 120
+    },
+    "currency_code": {
+      "$ref": "#/components/schemas/currency_code",
+      "description": "The [three-character ISO-4217 currency code](/docs/integration/direct/rest/currency-codes/) that identifies the currency."
+    },
+    "memo": {
+      "type": "string",
+      "description": "A private bookkeeping memo for the user.",
+      "maxLength": 500
+    },
+    "total_amount_range": {
+      "$ref": "#/components/schemas/amount_range",
+      "description": "Filters the search by the total amount."
+    },
+    "invoice_date_range": {
+      "$ref": "#/components/schemas/date_range",
+      "description": "Filters the search by a date range for the invoice, in [Internet date and time format](https://tools.ietf.org/html/rfc3339#section-5.6)."
+    },
+    "due_date_range": {
+      "$ref": "#/components/schemas/date_range",
+      "description": "Filters the search by a due date range for the invoice, in [Internet date and time format](https://tools.ietf.org/html/rfc3339#section-5.6)."
+    },
+    "payment_date_range": {
+      "$ref": "#/components/schemas/date_time_range"
+    },
+    "creation_date_range": {
+      "$ref": "#/components/schemas/date_time_range",
+      "description": "Filters the search by a creation date range for the invoice, in [Internet date and time format](https://tools.ietf.org/html/rfc3339#section-5.6)."
+    },
+    "archived": {
+      "type": "boolean",
+      "description": "Indicates whether to list merchant-archived invoices in the response. Value is:<ul><li><code>true</code>. Response lists only merchant-archived invoices.</li><li><code>false</code>. Response lists only unarchived invoices.</li><li><code>null</code>. Response lists all invoices.</li></ul>"
+    },
+    "fields": {
+      "description": "A CSV file of fields to return for the user, if available. Because the invoice object can be very large, field filtering is required. Valid collection fields are <code>items</code>, <code>payments</code>, <code>refunds</code>, <code>additional_recipients_info</code>, and <code>attachments</code>.",
+      "type": "array",
+      "items": {
+        "type": "string",
+        "description": "The name of the field."
+      }
+    }
+  }
+}

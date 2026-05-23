@@ -1,0 +1,31 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/pricing_tier",
+  "title": "Pricing Tier",
+  "description": "The pricing tier details.",
+  "type": "object",
+  "properties": {
+    "starting_quantity": {
+      "type": "string",
+      "description": "The starting quantity for the tier.",
+      "pattern": "^([0-9]+|([0-9]+)?[.][0-9]+)$",
+      "minLength": 1,
+      "maxLength": 32
+    },
+    "ending_quantity": {
+      "type": "string",
+      "description": "The ending quantity for the tier. Optional for the last tier.",
+      "pattern": "^([0-9]+|([0-9]+)?[.][0-9]+)$",
+      "minLength": 1,
+      "maxLength": 32
+    },
+    "amount": {
+      "description": "The pricing amount for the tier.",
+      "$ref": "#/components/schemas/money"
+    }
+  },
+  "required": [
+    "starting_quantity",
+    "amount"
+  ]
+}

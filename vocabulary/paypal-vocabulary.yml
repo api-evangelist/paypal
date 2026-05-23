@@ -1,0 +1,9 @@
+name: PayPal Domain Vocabulary
+provider: PayPal
+providerId: paypal
+description: Tag-derived vocabulary for the PayPal API surface; sourced from openapi/ tags.
+terms:
+- term: Orders
+  description: Use the `/orders` resource to create, update, retrieve, authorize, capture and track orders.
+- term: Trackers
+  description: Use the `/trackers` resource to update and retrieve tracking information for PayPal orders.

@@ -1,0 +1,28 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/EventList",
+  "title": "Event List",
+  "type": "object",
+  "description": "A list of webhooks events.",
+  "properties": {
+    "events": {
+      "type": "array",
+      "description": "An array of webhooks events.",
+      "items": {
+        "$ref": "#/components/schemas/event"
+      }
+    },
+    "count": {
+      "type": "integer",
+      "description": "The number of items in each range of results. Note that the response might have fewer items than the requested `page_size` value."
+    },
+    "links": {
+      "type": "array",
+      "description": "An array of request-related [HATEOAS links](/docs/api/reference/api-responses/#hateoas-links).",
+      "readOnly": true,
+      "items": {
+        "$ref": "#/components/schemas/link_description"
+      }
+    }
+  }
+}

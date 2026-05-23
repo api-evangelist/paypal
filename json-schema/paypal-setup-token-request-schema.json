@@ -1,0 +1,36 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/setup_token_request",
+  "title": "Setup Token",
+  "description": "Setup Token Request where the `source` defines the type of instrument to be stored.",
+  "type": "object",
+  "properties": {
+    "customer": {
+      "description": "Customer in merchant's or partner's system of records.",
+      "$ref": "#/components/schemas/customer"
+    },
+    "payment_source": {
+      "description": "The payment method to vault with the instrument details.",
+      "properties": {
+        "card": {
+          "$ref": "#/components/schemas/card_request"
+        },
+        "paypal": {
+          "$ref": "#/components/schemas/paypal_wallet_request"
+        },
+        "venmo": {
+          "$ref": "#/components/schemas/venmo_request"
+        },
+        "token": {
+          "$ref": "#/components/schemas/token_id_request"
+        }
+      }
+    },
+    "metadata": {
+      "$ref": "#/components/schemas/metadata"
+    }
+  },
+  "required": [
+    "payment_source"
+  ]
+}

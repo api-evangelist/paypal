@@ -1,0 +1,19 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/business_document",
+  "title": "Business document",
+  "description": "The documents associated with the business.",
+  "allOf": [
+    {
+      "$ref": "#/components/schemas/document"
+    },
+    {
+      "properties": {
+        "type": {
+          "description": "The actual type of the document.",
+          "$ref": "#/components/schemas/business_document_type"
+        }
+      }
+    }
+  ]
+}

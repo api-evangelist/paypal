@@ -1,0 +1,47 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/error",
+  "title": "Error",
+  "type": "object",
+  "description": "The error details.",
+  "properties": {
+    "name": {
+      "type": "string",
+      "description": "The human-readable, unique name of the error."
+    },
+    "message": {
+      "type": "string",
+      "description": "The message that describes the error."
+    },
+    "debug_id": {
+      "type": "string",
+      "description": "The PayPal internal ID. Used for correlation purposes."
+    },
+    "information_link": {
+      "type": "string",
+      "description": "The information link, or URI, that shows detailed information about this error for the developer.",
+      "readOnly": true
+    },
+    "details": {
+      "type": "array",
+      "description": "An array of additional details about the error.",
+      "items": {
+        "$ref": "#/components/schemas/error_details-2"
+      }
+    },
+    "links": {
+      "type": "array",
+      "description": "An array of request-related [HATEOAS links](/docs/api/reference/api-responses/#hateoas-links).",
+      "readOnly": true,
+      "items": {
+        "$ref": "#/components/schemas/link_description",
+        "readOnly": true
+      }
+    }
+  },
+  "required": [
+    "name",
+    "message",
+    "debug_id"
+  ]
+}

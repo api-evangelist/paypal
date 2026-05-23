@@ -1,0 +1,57 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/event",
+  "title": "Event",
+  "type": "object",
+  "description": "A webhook event notification.",
+  "properties": {
+    "id": {
+      "type": "string",
+      "description": "The ID of the webhook event notification.",
+      "readOnly": true
+    },
+    "create_time": {
+      "type": "string",
+      "format": "date-time",
+      "description": "The date and time when the webhook event notification was created, in [Internet date and time format](https://tools.ietf.org/html/rfc3339#section-5.6).",
+      "readOnly": true
+    },
+    "resource_type": {
+      "type": "string",
+      "description": "The name of the resource related to the webhook notification event.",
+      "readOnly": true
+    },
+    "event_version": {
+      "$ref": "#/components/schemas/event_version"
+    },
+    "event_type": {
+      "type": "string",
+      "description": "The event that triggered the webhook event notification.",
+      "readOnly": true
+    },
+    "summary": {
+      "type": "string",
+      "description": "A summary description for the event notification.",
+      "readOnly": true
+    },
+    "resource_version": {
+      "$ref": "#/components/schemas/resource_version"
+    },
+    "resource": {
+      "type": "object",
+      "title": "Resource",
+      "description": "The resource that triggered the webhook event notification.",
+      "readOnly": true,
+      "additionalProperties": true
+    },
+    "links": {
+      "type": "array",
+      "description": "An array of request-related [HATEOAS links](/docs/api/reference/api-responses/#hateoas-links).",
+      "readOnly": true,
+      "items": {
+        "$ref": "#/components/schemas/link_description",
+        "readOnly": true
+      }
+    }
+  }
+}

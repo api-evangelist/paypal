@@ -1,0 +1,44 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/name",
+  "title": "Name",
+  "type": "object",
+  "description": "The name of the party.",
+  "properties": {
+    "prefix": {
+      "type": "string",
+      "description": "The prefix, or title, to the party's name.",
+      "maxLength": 140
+    },
+    "given_name": {
+      "type": "string",
+      "description": "When the party is a person, the party's given, or first, name.",
+      "maxLength": 140
+    },
+    "surname": {
+      "type": "string",
+      "description": "When the party is a person, the party's surname or family name. Also known as the last name. Required when the party is a person. Use also to store multiple surnames including the matronymic, or mother's, surname.",
+      "maxLength": 140
+    },
+    "middle_name": {
+      "type": "string",
+      "description": "When the party is a person, the party's middle name. Use also to store multiple middle names including the patronymic, or father's, middle name.",
+      "maxLength": 140
+    },
+    "suffix": {
+      "type": "string",
+      "description": "The suffix for the party's name.",
+      "maxLength": 140
+    },
+    "alternate_full_name": {
+      "type": "string",
+      "description": "DEPRECATED. The party's alternate name. Can be a business name, nickname, or any other name that cannot be split into first, last name. Required when the party is a business.",
+      "maxLength": 300
+    },
+    "full_name": {
+      "type": "string",
+      "description": "When the party is a person, the party's full name.",
+      "maxLength": 300
+    }
+  }
+}

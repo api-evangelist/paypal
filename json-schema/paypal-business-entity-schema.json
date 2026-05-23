@@ -1,0 +1,50 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/business_entity",
+  "title": "Business_entity",
+  "description": "The business entity of the account.",
+  "allOf": [
+    {
+      "description": "Common business information section.",
+      "$ref": "#/components/schemas/business"
+    },
+    {
+      "description": "Additional business information section.",
+      "properties": {
+        "beneficial_owners": {
+          "description": "List of beneficial owners part of the entity. They can be either a Person or a business entity.",
+          "$ref": "#/components/schemas/beneficial_owners"
+        },
+        "office_bearers": {
+          "description": "List of Directors present as part of the business entity.",
+          "type": "array",
+          "items": {
+            "$ref": "#/components/schemas/office_bearer"
+          },
+          "minItems": 0,
+          "maxItems": 5
+        },
+        "annual_sales_volume_range": {
+          "description": "The range for the total annual sales volume of the business.",
+          "$ref": "#/components/schemas/currency_range"
+        },
+        "average_monthly_volume_range": {
+          "description": "The range for the average monthly volume of the business.",
+          "$ref": "#/components/schemas/currency_range"
+        },
+        "purpose_code": {
+          "description": "The account's purpose code.",
+          "items": {
+            "$ref": "#/components/schemas/purpose_code_enum"
+          }
+        },
+        "business_description": {
+          "type": "string",
+          "description": "The business goals description. For example, a mission statement.",
+          "minLength": 1,
+          "maxLength": 256
+        }
+      }
+    }
+  ]
+}

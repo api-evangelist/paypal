@@ -1,0 +1,18 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/payer_base",
+  "title": "Payer Base",
+  "type": "object",
+  "description": "The customer who approves and pays for the order. The customer is also known as the payer.",
+  "properties": {
+    "email_address": {
+      "description": "The email address of the payer.",
+      "$ref": "#/components/schemas/email"
+    },
+    "payer_id": {
+      "description": "The PayPal-assigned ID for the payer.",
+      "readOnly": true,
+      "$ref": "#/components/schemas/account_id"
+    }
+  }
+}

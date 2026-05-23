@@ -1,0 +1,18 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/office_bearer_role",
+  "title": "Role type",
+  "description": "Role of the person party played in the business.",
+  "type": "string",
+  "pattern": "^[0-9A-Z_]+$",
+  "minLength": 1,
+  "maxLength": 255,
+  "enum": [
+    "CEO",
+    "CHAIRMAN",
+    "DIRECTOR",
+    "SECRETARY",
+    "TREASURER",
+    "TRUSTEE"
+  ]
+}

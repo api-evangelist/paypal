@@ -1,0 +1,16 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/refund_status_details",
+  "title": "Refund Status Details",
+  "description": "The details of the refund status.",
+  "type": "object",
+  "properties": {
+    "reason": {
+      "description": "The reason why the refund has the `PENDING` or `FAILED` status.",
+      "type": "string",
+      "enum": [
+        "ECHECK"
+      ]
+    }
+  }
+}

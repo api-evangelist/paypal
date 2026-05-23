@@ -1,0 +1,18 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/subscription_cancel_request",
+  "title": "Cancel Subscription Request",
+  "description": "The cancel subscription request details.",
+  "type": "object",
+  "properties": {
+    "reason": {
+      "type": "string",
+      "description": "The reason for the cancellation of a subscription.",
+      "minLength": 1,
+      "maxLength": 128
+    }
+  },
+  "required": [
+    "reason"
+  ]
+}

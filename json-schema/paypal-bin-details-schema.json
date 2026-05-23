@@ -1,0 +1,38 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/bin_details",
+  "title": "Bin Details",
+  "type": "object",
+  "description": "Bank Identification Number (BIN) details used to fund a payment.",
+  "properties": {
+    "bin": {
+      "type": "string",
+      "description": "The Bank Identification Number (BIN) signifies the number that is being used to identify the granular level details (except the PII information) of the card.",
+      "pattern": "^[0-9]+$",
+      "maxLength": 25,
+      "minLength": 1
+    },
+    "issuing_bank": {
+      "type": "string",
+      "description": "The issuer of the card instrument.",
+      "minLength": 1,
+      "maxLength": 64
+    },
+    "bin_country_code": {
+      "description": "The [two-character ISO-3166-1 country code](/docs/integration/direct/rest/country-codes/) of the bank.",
+      "$ref": "#/components/schemas/country_code"
+    },
+    "products": {
+      "type": "array",
+      "description": "The type of card product assigned to the BIN by the issuer. These values are defined by the issuer and may change over time. Some examples include: PREPAID_GIFT, CONSUMER, CORPORATE.",
+      "items": {
+        "type": "string",
+        "description": "This value provides the category of the BIN.",
+        "minLength": 1,
+        "maxLength": 255
+      },
+      "minItems": 1,
+      "maxItems": 256
+    }
+  }
+}

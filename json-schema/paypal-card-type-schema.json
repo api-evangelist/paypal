@@ -1,0 +1,17 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/card_type",
+  "title": "Card Type",
+  "type": "string",
+  "description": "Type of card. i.e Credit, Debit and so on.",
+  "minLength": 1,
+  "maxLength": 255,
+  "pattern": "^[A-Z_]+$",
+  "enum": [
+    "CREDIT",
+    "DEBIT",
+    "PREPAID",
+    "STORE",
+    "UNKNOWN"
+  ]
+}

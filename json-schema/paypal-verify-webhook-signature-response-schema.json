@@ -1,0 +1,20 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/verify_webhook_signature_response",
+  "title": "Verify Webhook Signature Response",
+  "type": "object",
+  "description": "The verify webhook signature response.",
+  "properties": {
+    "verification_status": {
+      "type": "string",
+      "description": "The status of the signature verification.",
+      "enum": [
+        "SUCCESS",
+        "FAILURE"
+      ]
+    }
+  },
+  "required": [
+    "verification_status"
+  ]
+}

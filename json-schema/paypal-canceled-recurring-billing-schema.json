@@ -1,0 +1,15 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/canceled_recurring_billing",
+  "title": "Canceled Recurring Billing",
+  "type": "object",
+  "description": "The recurring billing canceled details.",
+  "properties": {
+    "expected_refund": {
+      "$ref": "#/components/schemas/money"
+    },
+    "cancellation_details": {
+      "$ref": "#/components/schemas/cancellation_details"
+    }
+  }
+}

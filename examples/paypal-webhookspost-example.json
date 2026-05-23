@@ -1,0 +1,24 @@
+{
+  "operationId": "webhooks.post",
+  "method": "POST",
+  "path": "/v1/notifications/webhooks",
+  "summary": "Paypal Create webhook",
+  "requestExamples": [
+    {
+      "contentType": "application/json",
+      "name": "webhook",
+      "example": {
+        "url": "https://example.com/example_webhook",
+        "event_types": [
+          {
+            "name": "PAYMENT.AUTHORIZATION.CREATED"
+          },
+          {
+            "name": "PAYMENT.AUTHORIZATION.VOIDED"
+          }
+        ]
+      }
+    }
+  ],
+  "responseExamples": []
+}

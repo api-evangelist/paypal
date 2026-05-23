@@ -1,0 +1,167 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/orders.patch-400",
+  "title": "orders.patch-400",
+  "properties": {
+    "details": {
+      "type": "array",
+      "items": {
+        "anyOf": [
+          {
+            "title": "FIELD_NOT_PATCHABLE",
+            "properties": {
+              "issue": {
+                "type": "string",
+                "enum": [
+                  "FIELD_NOT_PATCHABLE"
+                ]
+              },
+              "description": {
+                "type": "string",
+                "enum": [
+                  "Field cannot be patched."
+                ]
+              }
+            }
+          },
+          {
+            "title": "INVALID_ARRAY_MAX_ITEMS",
+            "properties": {
+              "issue": {
+                "type": "string",
+                "enum": [
+                  "INVALID_ARRAY_MAX_ITEMS"
+                ]
+              },
+              "description": {
+                "type": "string",
+                "enum": [
+                  "The number of items in an array parameter is too large."
+                ]
+              }
+            }
+          },
+          {
+            "title": "INVALID_PARAMETER_SYNTAX",
+            "properties": {
+              "issue": {
+                "type": "string",
+                "enum": [
+                  "INVALID_PARAMETER_SYNTAX"
+                ]
+              },
+              "description": {
+                "type": "string",
+                "enum": [
+                  "The value of a field does not conform to the expected format."
+                ]
+              }
+            }
+          },
+          {
+            "title": "INVALID_STRING_LENGTH",
+            "properties": {
+              "issue": {
+                "type": "string",
+                "enum": [
+                  "INVALID_STRING_LENGTH"
+                ]
+              },
+              "description": {
+                "type": "string",
+                "enum": [
+                  "The value of a field is either too short or too long"
+                ]
+              }
+            }
+          },
+          {
+            "title": "INVALID_PARAMETER_VALUE",
+            "properties": {
+              "issue": {
+                "type": "string",
+                "enum": [
+                  "INVALID_PARAMETER_VALUE"
+                ]
+              },
+              "description": {
+                "type": "string",
+                "enum": [
+                  "The value of a field is invalid."
+                ]
+              }
+            }
+          },
+          {
+            "title": "MISSING_REQUIRED_PARAMETER",
+            "properties": {
+              "issue": {
+                "type": "string",
+                "enum": [
+                  "MISSING_REQUIRED_PARAMETER"
+                ]
+              },
+              "description": {
+                "type": "string",
+                "enum": [
+                  "A required field / parameter is missing."
+                ]
+              }
+            }
+          },
+          {
+            "title": "AMOUNT_NOT_PATCHABLE",
+            "properties": {
+              "issue": {
+                "type": "string",
+                "enum": [
+                  "AMOUNT_NOT_PATCHABLE"
+                ]
+              },
+              "description": {
+                "type": "string",
+                "enum": [
+                  "The amount cannot be updated as the 'payer' has chosen and approved a specific financing offer for a given amount. Please Create a new Order with the updated Order amount and have the 'payer' approve the new payment terms."
+                ]
+              }
+            }
+          },
+          {
+            "title": "INVALID_PATCH_OPERATION",
+            "properties": {
+              "issue": {
+                "type": "string",
+                "enum": [
+                  "INVALID_PATCH_OPERATION"
+                ]
+              },
+              "description": {
+                "type": "string",
+                "enum": [
+                  "The operation cannot be honored. Cannot add a property that's already present, use replace. Cannot remove a property thats not present, use add. Cannot replace a property thats not present, use add."
+                ]
+              }
+            }
+          },
+          {
+            "title": "MALFORMED_REQUEST_JSON",
+            "properties": {
+              "issue": {
+                "type": "string",
+                "enum": [
+                  "MALFORMED_REQUEST_JSON"
+                ]
+              },
+              "description": {
+                "type": "string",
+                "enum": [
+                  "The request JSON is not well formed."
+                ]
+              }
+            }
+          }
+        ]
+      }
+    }
+  }
+}

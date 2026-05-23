@@ -1,0 +1,28 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/card_brand",
+  "title": "Card Brand",
+  "type": "string",
+  "description": "The card network or brand. Applies to credit, debit, gift, and payment cards.",
+  "minLength": 1,
+  "maxLength": 255,
+  "pattern": "^[A-Z_]+$",
+  "enum": [
+    "VISA",
+    "MASTERCARD",
+    "DISCOVER",
+    "AMEX",
+    "SOLO",
+    "JCB",
+    "STAR",
+    "DELTA",
+    "SWITCH",
+    "MAESTRO",
+    "CB_NATIONALE",
+    "CONFIGOGA",
+    "CONFIDIS",
+    "ELECTRON",
+    "CETELEM",
+    "CHINA_UNION_PAY"
+  ]
+}

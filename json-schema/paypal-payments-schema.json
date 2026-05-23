@@ -1,0 +1,23 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/payments",
+  "title": "Payments",
+  "type": "object",
+  "description": "An array of payments registered against the invoice.",
+  "properties": {
+    "paid_amount": {
+      "$ref": "#/components/schemas/money",
+      "readOnly": true,
+      "description": "The aggregated payment amounts against this invoice."
+    },
+    "transactions": {
+      "type": "array",
+      "description": "An array of payment details for the invoice. The payment details of the invoice like payment type, method, date, discount and transaction type.",
+      "maxItems": 100,
+      "items": {
+        "$ref": "#/components/schemas/payment_detail"
+      },
+      "readOnly": true
+    }
+  }
+}

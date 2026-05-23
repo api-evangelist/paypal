@@ -1,0 +1,46 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/transaction",
+  "title": "Transaction Details",
+  "description": "The transaction details.",
+  "type": "object",
+  "allOf": [
+    {
+      "$ref": "#/components/schemas/capture_status"
+    },
+    {
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "The PayPal-generated transaction ID.",
+          "minLength": 3,
+          "maxLength": 50,
+          "readOnly": true
+        },
+        "amount_with_breakdown": {
+          "$ref": "#/components/schemas/amount_with_breakdown"
+        },
+        "payer_name": {
+          "description": "The name of the customer.",
+          "readOnly": true,
+          "$ref": "#/components/schemas/name"
+        },
+        "payer_email": {
+          "description": "The email ID of the customer.",
+          "readOnly": true,
+          "$ref": "#/components/schemas/email_address"
+        },
+        "time": {
+          "description": "The date and time when the transaction was processed, in [Internet date and time format](https://tools.ietf.org/html/rfc3339#section-5.6).",
+          "readOnly": true,
+          "$ref": "#/components/schemas/date_time"
+        }
+      }
+    }
+  ],
+  "required": [
+    "id",
+    "amount_with_breakdown",
+    "time"
+  ]
+}

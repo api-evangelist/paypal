@@ -1,0 +1,18 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/make_offer_response_options",
+  "title": "Make Offer Response Options",
+  "type": "object",
+  "description": "The allowed response options when the merchant makes offer to the customer.",
+  "properties": {
+    "offer_types": {
+      "type": "array",
+      "description": "The types of offer the merchant can offer the customer.",
+      "minItems": 1,
+      "maxItems": 10,
+      "items": {
+        "$ref": "#/components/schemas/offer_type"
+      }
+    }
+  }
+}

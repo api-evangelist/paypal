@@ -1,0 +1,46 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/templates",
+  "title": "Templates",
+  "type": "object",
+  "minItems": 1,
+  "description": "An array of merchant-created templates with associated details that include the emails, addresses, and phone numbers from the user's PayPal profile.",
+  "properties": {
+    "addresses": {
+      "type": "array",
+      "description": "An array of addresses in the user's PayPal profile.",
+      "items": {
+        "$ref": "#/components/schemas/address_portable"
+      },
+      "readOnly": true
+    },
+    "emails": {
+      "description": "An array of emails in the user's PayPal profile.",
+      "$ref": "#/components/schemas/email_address",
+      "readOnly": true
+    },
+    "phones": {
+      "type": "array",
+      "description": "An array of phone numbers in the user's PayPal profile.",
+      "items": {
+        "$ref": "#/components/schemas/phone_detail"
+      }
+    },
+    "templates": {
+      "type": "array",
+      "description": "An array of details for each template. If `fields` is `none`, returns only the template name, ID, and default status.",
+      "items": {
+        "$ref": "#/components/schemas/template"
+      }
+    },
+    "links": {
+      "type": "array",
+      "description": "An array of request-related [HATEOAS links](/docs/api/reference/api-responses/#hateoas-links).",
+      "readOnly": true,
+      "items": {
+        "$ref": "#/components/schemas/link_description",
+        "readOnly": true
+      }
+    }
+  }
+}

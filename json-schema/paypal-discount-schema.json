@@ -1,0 +1,17 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/discount",
+  "title": "Discount",
+  "type": "object",
+  "description": "The discount as a percent or amount at invoice level. The invoice discount amount is subtracted from the item total.",
+  "properties": {
+    "percent": {
+      "$ref": "#/components/schemas/percentage",
+      "description": "The discount as a percentage value. Value is from `0` to `100`. Supports up to five decimal places."
+    },
+    "amount": {
+      "$ref": "#/components/schemas/money",
+      "description": "The invoice level discount amount. Value is from `0` to `1000000`. Supports up to two decimal places."
+    }
+  }
+}

@@ -1,0 +1,29 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/balances_response",
+  "title": "Balances Response",
+  "type": "object",
+  "description": "The balances response information.",
+  "properties": {
+    "balances": {
+      "type": "array",
+      "description": "An array of balance detail objects.",
+      "maxItems": 200,
+      "minItems": 0,
+      "items": {
+        "$ref": "#/components/schemas/balance_detail"
+      }
+    },
+    "account_id": {
+      "$ref": "#/components/schemas/account_id"
+    },
+    "as_of_time": {
+      "description": "The requested date and time or the last date and time when the balances can be served, in [Internet date and time format](https://tools.ietf.org/html/rfc3339#section-5.6).",
+      "$ref": "#/components/schemas/date_time"
+    },
+    "last_refresh_time": {
+      "description": "The date and time when the balances was last refreshed, in [Internet date and time format](https://tools.ietf.org/html/rfc3339#section-5.6).",
+      "$ref": "#/components/schemas/date_time"
+    }
+  }
+}

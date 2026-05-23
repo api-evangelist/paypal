@@ -1,0 +1,40 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/error_503",
+  "title": "Service Unavailable Error",
+  "type": "object",
+  "description": "The server is temporarily unable to handle the request, for example, because of planned maintenance or downtime.",
+  "properties": {
+    "name": {
+      "type": "string",
+      "enum": [
+        "SERVICE_UNAVAILABLE"
+      ]
+    },
+    "message": {
+      "type": "string",
+      "enum": [
+        "Service Unavailable."
+      ]
+    },
+    "debug_id": {
+      "type": "string",
+      "description": "The PayPal internal ID. Used for correlation purposes."
+    },
+    "links": {
+      "description": "An array of request-related [HATEOAS links](https://en.wikipedia.org/wiki/HATEOAS).",
+      "type": "array",
+      "minItems": 0,
+      "maxItems": 10000,
+      "items": {
+        "$ref": "#/components/schemas/error_link_description"
+      }
+    }
+  },
+  "example": {
+    "name": "SERVICE_UNAVAILABLE",
+    "message": "Service Unavailable.",
+    "debug_id": "90957fca61718",
+    "information_link": "https://developer.paypal.com/docs/api/orders/v2/#error-SERVICE_UNAVAILABLE"
+  }
+}

@@ -1,0 +1,18 @@
+{
+  "operationId": "simulate-event.post",
+  "method": "POST",
+  "path": "/v1/notifications/simulate-event",
+  "summary": "Paypal Simulate webhook event",
+  "requestExamples": [
+    {
+      "contentType": "application/json",
+      "name": "simulate_event",
+      "example": {
+        "url": "https://example.com/example_webhook",
+        "event_type": "PAYMENT.AUTHORIZATION.CREATED",
+        "resource_version": "1.0"
+      }
+    }
+  ],
+  "responseExamples": []
+}

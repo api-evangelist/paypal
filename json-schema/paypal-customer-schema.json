@@ -1,0 +1,20 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/customer",
+  "title": "Customer information based on PayPal's system of record",
+  "type": "object",
+  "description": "The details about a customer in PayPal's system of record.",
+  "properties": {
+    "id": {
+      "$ref": "#/components/schemas/merchant_partner_customer_id"
+    },
+    "email_address": {
+      "description": "Email address of the buyer as provided to the merchant or on file with the merchant. Email Address is required if you are processing the transaction using PayPal Guest Processing which is offered to select partners and merchants. For all other use cases we do not expect partners/merchant to send email_address of their customer.",
+      "$ref": "#/components/schemas/email"
+    },
+    "phone": {
+      "description": "The phone number of the buyer as provided to the merchant or on file with the merchant. The `phone.phone_number` supports only `national_number`.",
+      "$ref": "#/components/schemas/phone_with_type"
+    }
+  }
+}

@@ -1,0 +1,26 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/capture_status",
+  "title": "Capture Status",
+  "type": "object",
+  "description": "The status of a captured payment.",
+  "properties": {
+    "status": {
+      "description": "The status of the captured payment.",
+      "type": "string",
+      "readOnly": true,
+      "enum": [
+        "COMPLETED",
+        "DECLINED",
+        "PARTIALLY_REFUNDED",
+        "PENDING",
+        "REFUNDED"
+      ]
+    },
+    "status_details": {
+      "description": "The details of the captured payment status.",
+      "readOnly": true,
+      "$ref": "#/components/schemas/capture_status_details"
+    }
+  }
+}

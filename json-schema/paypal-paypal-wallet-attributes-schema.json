@@ -1,0 +1,16 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/paypal_wallet_attributes",
+  "title": "PayPal Wallet Attributes",
+  "type": "object",
+  "description": "Additional attributes associated with the use of this PayPal Wallet.",
+  "properties": {
+    "customer": {
+      "$ref": "#/components/schemas/paypal_wallet_customer"
+    },
+    "vault": {
+      "description": "Attributes used to provide the instructions during vaulting of the PayPal Wallet.",
+      "$ref": "#/components/schemas/vault_paypal_wallet_base"
+    }
+  }
+}

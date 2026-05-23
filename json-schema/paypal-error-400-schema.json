@@ -1,0 +1,40 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/error_400",
+  "title": "Bad Request Error",
+  "type": "object",
+  "description": "Request is not well-formed, syntactically incorrect, or violates schema.",
+  "properties": {
+    "name": {
+      "type": "string",
+      "enum": [
+        "INVALID_REQUEST"
+      ]
+    },
+    "message": {
+      "type": "string",
+      "enum": [
+        "Request is not well-formed, syntactically incorrect, or violates schema."
+      ]
+    },
+    "details": {
+      "type": "array",
+      "items": {
+        "$ref": "#/components/schemas/error_details"
+      }
+    },
+    "debug_id": {
+      "type": "string",
+      "description": "The PayPal internal ID. Used for correlation purposes."
+    },
+    "links": {
+      "description": "An array of request-related [HATEOAS links](https://en.wikipedia.org/wiki/HATEOAS).",
+      "type": "array",
+      "minItems": 0,
+      "maxItems": 10000,
+      "items": {
+        "$ref": "#/components/schemas/error_link_description"
+      }
+    }
+  }
+}

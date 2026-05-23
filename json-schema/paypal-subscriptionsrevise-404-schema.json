@@ -1,0 +1,31 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/subscriptions.revise-404",
+  "title": "subscriptions.revise-404",
+  "properties": {
+    "details": {
+      "type": "array",
+      "items": {
+        "anyOf": [
+          {
+            "title": "INVALID_RESOURCE_ID",
+            "properties": {
+              "issue": {
+                "type": "string",
+                "enum": [
+                  "INVALID_RESOURCE_ID"
+                ]
+              },
+              "description": {
+                "type": "string",
+                "enum": [
+                  "Requested resource ID was not found."
+                ]
+              }
+            }
+          }
+        ]
+      }
+    }
+  }
+}

@@ -1,0 +1,38 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/simulate_event",
+  "title": "Simulate Event",
+  "type": "object",
+  "description": "Simulates a mock webhook event.",
+  "properties": {
+    "webhook_id": {
+      "type": "string",
+      "description": "The ID of the webhook. If omitted, the URL is required.",
+      "readOnly": false,
+      "pattern": "^[a-zA-Z0-9]+$",
+      "maxLength": 50
+    },
+    "url": {
+      "type": "string",
+      "format": "uri",
+      "description": "The URL for the webhook endpoint. If omitted, the webhook ID is required.",
+      "readOnly": false,
+      "maxLength": 2048
+    },
+    "event_type": {
+      "type": "string",
+      "description": "The event name. Specify one of the subscribed events. For each request, provide only one event.",
+      "readOnly": false,
+      "maxLength": 50,
+      "pattern": "^[a-zA-Z0-9.]+$"
+    },
+    "resource_version": {
+      "type": "string",
+      "description": "The identifier for event type ex: 1.0/2.0 etc.",
+      "readOnly": false
+    }
+  },
+  "required": [
+    "event_type"
+  ]
+}

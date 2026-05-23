@@ -1,0 +1,11 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/payment_token_status",
+  "title": "Payment Token Status",
+  "type": "string",
+  "description": "The status of the payment token.",
+  "minLength": 1,
+  "maxLength": 255,
+  "pattern": "^[0-9A-Z_]+$",
+  "default": "CREATED"
+}

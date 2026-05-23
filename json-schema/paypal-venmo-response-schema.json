@@ -1,0 +1,27 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/venmo_response",
+  "title": "Venmo Response",
+  "description": "Full representation of a Venmo Payment Token.",
+  "type": "object",
+  "allOf": [
+    {
+      "$ref": "#/components/schemas/wallet_base"
+    },
+    {
+      "readOnly": true,
+      "$ref": "#/components/schemas/payer"
+    },
+    {
+      "properties": {
+        "user_name": {
+          "description": "The Venmo username, as chosen by the user.",
+          "type": "string",
+          "pattern": "^[-a-zA-Z0-9_]*$",
+          "minLength": 1,
+          "maxLength": 50
+        }
+      }
+    }
+  ]
+}

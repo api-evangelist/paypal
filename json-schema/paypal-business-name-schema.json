@@ -1,0 +1,14 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/business_name",
+  "title": "Business Name",
+  "type": "object",
+  "description": "The business name of the party.",
+  "properties": {
+    "business_name": {
+      "type": "string",
+      "description": "Required. The business name of the party.",
+      "maxLength": 300
+    }
+  }
+}

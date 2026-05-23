@@ -1,0 +1,22 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/subscriber_request",
+  "title": "Subscriber Request Information",
+  "description": "The subscriber request information .",
+  "type": "object",
+  "allOf": [
+    {
+      "$ref": "#/components/schemas/payer"
+    },
+    {
+      "properties": {
+        "shipping_address": {
+          "$ref": "#/components/schemas/shipping_detail"
+        },
+        "payment_source": {
+          "$ref": "#/components/schemas/payment_source"
+        }
+      }
+    }
+  ]
+}

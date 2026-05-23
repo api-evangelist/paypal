@@ -1,0 +1,16 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/integration_details",
+  "title": "Integration Details",
+  "type": "object",
+  "description": "The integration details for the partner and customer relationship. Required if `operation` is `API_INTEGRATION`.",
+  "additionalProperties": false,
+  "properties": {
+    "classic_api_integration": {
+      "$ref": "#/components/schemas/classic_api_integration"
+    },
+    "rest_api_integration": {
+      "$ref": "#/components/schemas/rest_api_integration"
+    }
+  }
+}

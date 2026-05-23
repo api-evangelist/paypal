@@ -1,0 +1,82 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/subscriptions.capture-400",
+  "title": "subscriptions.capture-400",
+  "properties": {
+    "details": {
+      "type": "array",
+      "items": {
+        "anyOf": [
+          {
+            "title": "MISSING_REQUEST_BODY",
+            "properties": {
+              "issue": {
+                "type": "string",
+                "enum": [
+                  "MISSING_REQUEST_BODY"
+                ]
+              },
+              "description": {
+                "type": "string",
+                "enum": [
+                  "Request body is missing."
+                ]
+              }
+            }
+          },
+          {
+            "title": "INVALID_PARAMETER_VALUE",
+            "properties": {
+              "issue": {
+                "type": "string",
+                "enum": [
+                  "INVALID_PARAMETER_VALUE"
+                ]
+              },
+              "description": {
+                "type": "string",
+                "enum": [
+                  "The value of a field is invalid."
+                ]
+              }
+            }
+          },
+          {
+            "title": "INVALID_STRING_MAX_LENGTH",
+            "properties": {
+              "issue": {
+                "type": "string",
+                "enum": [
+                  "INVALID_STRING_MAX_LENGTH"
+                ]
+              },
+              "description": {
+                "type": "string",
+                "enum": [
+                  "The value of a field is too long."
+                ]
+              }
+            }
+          },
+          {
+            "title": "MISSING_REQUIRED_PARAMETER",
+            "properties": {
+              "issue": {
+                "type": "string",
+                "enum": [
+                  "MISSING_REQUIRED_PARAMETER"
+                ]
+              },
+              "description": {
+                "type": "string",
+                "enum": [
+                  "A required field is missing."
+                ]
+              }
+            }
+          }
+        ]
+      }
+    }
+  }
+}

@@ -1,0 +1,17 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/shipping_cost",
+  "title": "Shipping Cost",
+  "type": "object",
+  "description": "The shipping fee for all items. Includes tax on shipping.",
+  "properties": {
+    "amount": {
+      "$ref": "#/components/schemas/money",
+      "description": "The shipping amount. Value is from `0` to `1000000`. Supports up to two decimal places."
+    },
+    "tax": {
+      "$ref": "#/components/schemas/tax",
+      "description": "The tax associated with the shipping."
+    }
+  }
+}

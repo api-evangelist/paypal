@@ -1,0 +1,48 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/payment_token_response",
+  "title": "Payment Token Response",
+  "description": "Full representation of a saved payment token.",
+  "type": "object",
+  "properties": {
+    "id": {
+      "description": "The PayPal-generated ID for the vault token.",
+      "$ref": "#/components/schemas/vault_id"
+    },
+    "customer": {
+      "description": "Customer in merchant's or partner's system of records.",
+      "$ref": "#/components/schemas/customer"
+    },
+    "payment_source": {
+      "description": "The vaulted payment method details.",
+      "type": "object",
+      "properties": {
+        "card": {
+          "$ref": "#/components/schemas/card_response"
+        },
+        "paypal": {
+          "$ref": "#/components/schemas/paypal_wallet_response"
+        },
+        "venmo": {
+          "$ref": "#/components/schemas/venmo_response"
+        },
+        "apple_pay": {
+          "$ref": "#/components/schemas/apple_pay_payment_token_response"
+        },
+        "bank": {
+          "$ref": "#/components/schemas/bank_response"
+        }
+      }
+    },
+    "links": {
+      "description": "An array of related [HATEOAS links](/api/rest/responses/#hateoas).",
+      "readOnly": true,
+      "type": "array",
+      "minItems": 1,
+      "maxItems": 32,
+      "items": {
+        "$ref": "#/components/schemas/link_description"
+      }
+    }
+  }
+}

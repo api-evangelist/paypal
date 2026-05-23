@@ -1,0 +1,16 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/venmo_wallet_attributes",
+  "title": "Venmo Wallet Attributes",
+  "type": "object",
+  "description": "Additional attributes associated with the use of this Venmo Wallet.",
+  "properties": {
+    "customer": {
+      "$ref": "#/components/schemas/customer"
+    },
+    "vault": {
+      "description": "Attributes used to provide the instructions during vaulting of the Venmo Wallet.",
+      "$ref": "#/components/schemas/vault_venmo_wallet_base"
+    }
+  }
+}

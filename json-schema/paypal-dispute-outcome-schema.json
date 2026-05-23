@@ -1,0 +1,33 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/dispute_outcome",
+  "title": "Dispute Outcome",
+  "type": "object",
+  "description": "The outcome of a dispute.",
+  "properties": {
+    "outcome_code": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 255,
+      "pattern": "^[0-9A-Z_]+$",
+      "description": "The outcome of a resolved dispute.",
+      "enum": [
+        "RESOLVED_BUYER_FAVOUR",
+        "RESOLVED_SELLER_FAVOUR",
+        "RESOLVED_WITH_PAYOUT",
+        "CANCELED_BY_BUYER",
+        "ACCEPTED",
+        "DENIED",
+        "NONE"
+      ]
+    },
+    "amount_refunded": {
+      "$ref": "#/components/schemas/money",
+      "description": "The amount that either the merchant or PayPal refunds the customer."
+    },
+    "asset_refunded": {
+      "description": "The asset that either the merchant or PayPal refunds the customer.",
+      "$ref": "#/components/schemas/cryptocurrency"
+    }
+  }
+}

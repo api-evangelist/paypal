@@ -1,0 +1,35 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/credit_not_processed",
+  "title": "Credit Not Processed",
+  "type": "object",
+  "description": "The credit not processed details.",
+  "properties": {
+    "issue_type": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 255,
+      "pattern": "^[0-9A-Z_]+$",
+      "description": "The issue type.",
+      "enum": [
+        "PRODUCT",
+        "SERVICE"
+      ]
+    },
+    "expected_refund": {
+      "$ref": "#/components/schemas/money"
+    },
+    "cancellation_details": {
+      "$ref": "#/components/schemas/cancellation_details"
+    },
+    "product_details": {
+      "$ref": "#/components/schemas/product_details"
+    },
+    "service_details": {
+      "$ref": "#/components/schemas/service_details"
+    },
+    "agreed_refund_details": {
+      "$ref": "#/components/schemas/agreed_refund_details"
+    }
+  }
+}

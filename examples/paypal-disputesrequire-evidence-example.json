@@ -1,0 +1,16 @@
+{
+  "operationId": "disputes.require-evidence",
+  "method": "POST",
+  "path": "/v1/customer/disputes/{id}/require-evidence",
+  "summary": "Paypal Update dispute status",
+  "requestExamples": [
+    {
+      "contentType": "application/json",
+      "name": "escalate",
+      "example": {
+        "note": "Escalating to PayPal claim for resolution."
+      }
+    }
+  ],
+  "responseExamples": []
+}

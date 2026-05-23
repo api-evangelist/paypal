@@ -1,0 +1,48 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/plans.update-pricing-schemes-400",
+  "title": "plans.update-pricing-schemes-400",
+  "properties": {
+    "details": {
+      "type": "array",
+      "items": {
+        "anyOf": [
+          {
+            "title": "INVALID_PARAMETER_VALUE",
+            "properties": {
+              "issue": {
+                "type": "string",
+                "enum": [
+                  "INVALID_PARAMETER_VALUE"
+                ]
+              },
+              "description": {
+                "type": "string",
+                "enum": [
+                  "The value of a field is invalid."
+                ]
+              }
+            }
+          },
+          {
+            "title": "MISSING_REQUIRED_PARAMETER",
+            "properties": {
+              "issue": {
+                "type": "string",
+                "enum": [
+                  "MISSING_REQUIRED_PARAMETER"
+                ]
+              },
+              "description": {
+                "type": "string",
+                "enum": [
+                  "A required field is missing."
+                ]
+              }
+            }
+          }
+        ]
+      }
+    }
+  }
+}

@@ -1,0 +1,21 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/date_range",
+  "title": "Date Range",
+  "type": "object",
+  "description": "The date range. Filters invoices by creation date, invoice date, due date, and payment date.",
+  "properties": {
+    "start": {
+      "$ref": "#/components/schemas/date_no_time",
+      "description": "The start date of the range. Filters invoices by creation date, invoice date, due date, and payment date."
+    },
+    "end": {
+      "$ref": "#/components/schemas/date_no_time",
+      "description": "The end date of the range. Filters invoices by creation date, invoice date, due date, and payment date."
+    }
+  },
+  "required": [
+    "start",
+    "end"
+  ]
+}

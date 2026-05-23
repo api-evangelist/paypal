@@ -1,0 +1,10 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/iban_last_chars",
+  "title": "iban_last_chars",
+  "type": "string",
+  "description": "The last characters of the IBAN used to pay.",
+  "minLength": 4,
+  "maxLength": 34,
+  "pattern": "[a-zA-Z0-9]{4}"
+}

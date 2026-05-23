@@ -1,0 +1,34 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/card_response_with_billing_address",
+  "title": "Card Response with billing address and name",
+  "type": "object",
+  "description": "The payment card used to fund the payment. Card can be a credit or debit card.",
+  "allOf": [
+    {
+      "$ref": "#/components/schemas/card_response"
+    },
+    {
+      "properties": {
+        "name": {
+          "type": "string",
+          "description": "The card holder's name as it appears on the card.",
+          "minLength": 2,
+          "maxLength": 300
+        },
+        "billing_address": {
+          "$ref": "#/components/schemas/address_portable",
+          "description": "The billing address for this card. Supports only the `address_line_1`, `address_line_2`, `admin_area_1`, `admin_area_2`, `postal_code`, and `country_code` properties."
+        },
+        "expiry": {
+          "description": "The card expiration year and month, in [Internet date format](https://tools.ietf.org/html/rfc3339#section-5.6).",
+          "$ref": "#/components/schemas/date_year_month"
+        },
+        "currency_code": {
+          "description": "Currency code of the given instrument",
+          "$ref": "#/components/schemas/currency_code"
+        }
+      }
+    }
+  ]
+}

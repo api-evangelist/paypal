@@ -1,0 +1,27 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/tracker_identifier_collection",
+  "title": "Tracker Identifier Collection",
+  "type": "object",
+  "description": "The add tracking information for a PayPal transaction response details.",
+  "properties": {
+    "tracker_identifiers": {
+      "type": "array",
+      "description": "An array of tracking IDs.",
+      "items": {
+        "$ref": "#/components/schemas/tracker_identifier"
+      },
+      "minItems": 1,
+      "maxItems": 100
+    },
+    "links": {
+      "type": "array",
+      "description": "An array of request-related [HATEOAS links](/docs/api/reference/api-responses/#hateoas-links).",
+      "readOnly": true,
+      "items": {
+        "$ref": "#/components/schemas/link_description",
+        "readOnly": true
+      }
+    }
+  }
+}

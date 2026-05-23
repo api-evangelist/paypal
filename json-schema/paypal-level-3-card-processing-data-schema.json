@@ -1,0 +1,41 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/level_3_card_processing_data",
+  "title": "Level 3 Card Processing Data",
+  "type": "object",
+  "description": "The level 3 card processing data collections, If your merchant account has been configured for Level 3 processing this field will be passed to the processor on your behalf. Please contact your PayPal Technical Account Manager to define level 3 data for your business.",
+  "properties": {
+    "shipping_amount": {
+      "description": "Use this field to break down the shipping cost included in the total purchase amount. The value provided here will not add to the total purchase amount. The value cannot be negative.",
+      "$ref": "#/components/schemas/money"
+    },
+    "duty_amount": {
+      "description": "Use this field to break down the duty amount included in the total purchase amount. The value provided here will not add to the total purchase amount. The value cannot be negative.",
+      "$ref": "#/components/schemas/money"
+    },
+    "discount_amount": {
+      "description": "Use this field to break down the discount amount included in the total purchase amount. The value provided here will not add to the total purchase amount. The value cannot be negative.",
+      "$ref": "#/components/schemas/money"
+    },
+    "shipping_address": {
+      "description": "The address of the person to whom to ship the items. Supports only the `address_line_1`, `address_line_2`, `admin_area_1`, `admin_area_2`, `postal_code`, and `country_code` properties.",
+      "$ref": "#/components/schemas/address_portable"
+    },
+    "ships_from_postal_code": {
+      "type": "string",
+      "description": "Use this field to specify the postal code of the shipping location.",
+      "minLength": 1,
+      "maxLength": 60,
+      "pattern": "^[a-zA-Z0-9_'.-]*$"
+    },
+    "line_items": {
+      "type": "array",
+      "description": "A list of the items that were purchased with this payment. If your merchant account has been configured for Level 3 processing this field will be passed to the processor on your behalf.",
+      "minItems": 1,
+      "maxItems": 100,
+      "items": {
+        "$ref": "#/components/schemas/line_item"
+      }
+    }
+  }
+}

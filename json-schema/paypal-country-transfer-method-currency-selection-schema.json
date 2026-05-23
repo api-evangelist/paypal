@@ -1,0 +1,23 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/country_transfer_method_currency_selection",
+  "title": "Requested country, transfer method and currency",
+  "type": "object",
+  "additionalProperties": false,
+  "description": "Requested country, transfer method and currency.",
+  "properties": {
+    "country": {
+      "description": "Country.",
+      "$ref": "#/components/schemas/country_code"
+    },
+    "transfer_methods": {
+      "type": "array",
+      "description": "Requested transfer method and currency for a country.",
+      "minItems": 1,
+      "maxItems": 50,
+      "items": {
+        "$ref": "#/components/schemas/transfer_method"
+      }
+    }
+  }
+}

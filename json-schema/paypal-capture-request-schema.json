@@ -1,0 +1,43 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/capture_request",
+  "title": "Capture Request",
+  "type": "object",
+  "description": "Captures either a portion or the full authorized amount of an authorized payment.",
+  "allOf": [
+    {
+      "$ref": "#/components/schemas/supplementary_purchase_data"
+    },
+    {
+      "properties": {
+        "amount": {
+          "description": "The amount to capture. To capture a portion of the full authorized amount, specify an amount. If amount is not specified, the full authorized amount is captured. The amount must be a positive number and in the same currency as the authorization against which the payment is being captured.",
+          "$ref": "#/components/schemas/money"
+        },
+        "invoice_id": {
+          "description": "The API caller-provided external invoice number for this order. Appears in both the payer's transaction history and the emails that the payer receives.",
+          "type": "string",
+          "maxLength": 127
+        },
+        "final_capture": {
+          "description": "Indicates whether you can make additional captures against the authorized payment. Set to `true` if you do not intend to capture additional payments against the authorization. Set to `false` if you intend to capture additional payments against the authorization.",
+          "type": "boolean",
+          "default": false
+        },
+        "payment_instruction": {
+          "$ref": "#/components/schemas/payment_instruction"
+        },
+        "note_to_payer": {
+          "description": "An informational note about this settlement. Appears in both the payer's transaction history and the emails that the payer receives.",
+          "type": "string",
+          "maxLength": 255
+        },
+        "soft_descriptor": {
+          "description": "The payment descriptor on the payer's account statement.",
+          "type": "string",
+          "maxLength": 22
+        }
+      }
+    }
+  ]
+}

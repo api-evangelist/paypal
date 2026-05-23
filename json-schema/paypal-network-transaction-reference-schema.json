@@ -1,0 +1,37 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/network_transaction_reference",
+  "title": "Network Transaction Reference",
+  "type": "object",
+  "description": "Reference values used by the card network to identify a transaction.",
+  "properties": {
+    "id": {
+      "type": "string",
+      "minLength": 9,
+      "maxLength": 36,
+      "pattern": "^[a-zA-Z0-9-_@.:&+=*^'~#!$%()]+$",
+      "description": "Transaction reference id returned by the scheme. For Visa and Amex, this is the \"Tran id\" field in response. For MasterCard, this is the \"BankNet reference id\" field in response. For Discover, this is the \"NRID\" field in response. The pattern we expect for this field from Visa/Amex/CB/Discover is numeric, Mastercard/BNPP is alphanumeric and Paysecure is alphanumeric with special character -."
+    },
+    "date": {
+      "type": "string",
+      "minLength": 4,
+      "maxLength": 4,
+      "pattern": "^[0-9]+$",
+      "description": "The date that the transaction was authorized by the scheme. This field may not be returned for all networks. MasterCard refers to this field as \"BankNet reference date."
+    },
+    "network": {
+      "description": "Name of the card network through which the transaction was routed.",
+      "$ref": "#/components/schemas/card_brand"
+    },
+    "acquirer_reference_number": {
+      "type": "string",
+      "description": "Reference ID issued for the card transaction. This ID can be used to track the transaction across processors, card brands and issuing banks.",
+      "minLength": 1,
+      "maxLength": 36,
+      "pattern": "^[a-zA-Z0-9]+$"
+    }
+  },
+  "required": [
+    "id"
+  ]
+}

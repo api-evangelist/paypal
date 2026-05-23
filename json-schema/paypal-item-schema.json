@@ -1,0 +1,55 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/item",
+  "title": "Item",
+  "type": "object",
+  "description": "The details for the items to be purchased.",
+  "properties": {
+    "name": {
+      "type": "string",
+      "description": "The item name or title.",
+      "minLength": 1,
+      "maxLength": 127
+    },
+    "unit_amount": {
+      "description": "The item price or rate per unit. If you specify <code>unit_amount</code>, <code>purchase_units[].amount.breakdown.item_total</code> is required. Must equal <code>unit_amount * quantity</code> for all items. <code>unit_amount.value</code> can not be a negative number.",
+      "$ref": "#/components/schemas/money"
+    },
+    "tax": {
+      "description": "The item tax for each unit. If <code>tax</code> is specified, <code>purchase_units[].amount.breakdown.tax_total</code> is required. Must equal <code>tax * quantity</code> for all items. <code>tax.value</code> can not be a negative number.",
+      "$ref": "#/components/schemas/money"
+    },
+    "quantity": {
+      "type": "string",
+      "description": "The item quantity. Must be a whole number.",
+      "maxLength": 10,
+      "pattern": "^[1-9][0-9]{0,9}$"
+    },
+    "description": {
+      "type": "string",
+      "description": "The detailed item description.",
+      "maxLength": 127
+    },
+    "sku": {
+      "type": "string",
+      "description": "The stock keeping unit (SKU) for the item.",
+      "maxLength": 127
+    },
+    "category": {
+      "type": "string",
+      "description": "The item category type.",
+      "minLength": 1,
+      "maxLength": 20,
+      "enum": [
+        "DIGITAL_GOODS",
+        "PHYSICAL_GOODS",
+        "DONATION"
+      ]
+    }
+  },
+  "required": [
+    "name",
+    "unit_amount",
+    "quantity"
+  ]
+}

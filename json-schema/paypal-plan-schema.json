@@ -1,0 +1,87 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/plan",
+  "title": "Plan",
+  "description": "The plan details.",
+  "type": "object",
+  "properties": {
+    "id": {
+      "type": "string",
+      "description": "The unique PayPal-generated ID for the plan.",
+      "minLength": 3,
+      "maxLength": 50,
+      "readOnly": true
+    },
+    "product_id": {
+      "type": "string",
+      "description": "The ID for the product.",
+      "minLength": 6,
+      "maxLength": 50
+    },
+    "name": {
+      "type": "string",
+      "description": "The plan name.",
+      "minLength": 1,
+      "maxLength": 127
+    },
+    "status": {
+      "type": "string",
+      "description": "The plan status.",
+      "minLength": 1,
+      "maxLength": 24,
+      "pattern": "^[A-Z_]+$",
+      "enum": [
+        "CREATED",
+        "INACTIVE",
+        "ACTIVE"
+      ]
+    },
+    "description": {
+      "type": "string",
+      "description": "The detailed description of the plan.",
+      "minLength": 1,
+      "maxLength": 127
+    },
+    "billing_cycles": {
+      "type": "array",
+      "description": "An array of billing cycles for trial billing and regular billing. A plan can have at most two trial cycles and only one regular cycle.",
+      "minItems": 1,
+      "maxItems": 12,
+      "items": {
+        "$ref": "#/components/schemas/billing_cycle"
+      }
+    },
+    "payment_preferences": {
+      "$ref": "#/components/schemas/payment_preferences"
+    },
+    "taxes": {
+      "$ref": "#/components/schemas/taxes"
+    },
+    "quantity_supported": {
+      "type": "boolean",
+      "description": "Indicates whether you can subscribe to this plan by providing a quantity for the goods or service.",
+      "default": false
+    },
+    "create_time": {
+      "description": "The date and time when the plan was created, in [Internet date and time format](https://tools.ietf.org/html/rfc3339#section-5.6).",
+      "readOnly": true,
+      "$ref": "#/components/schemas/date_time"
+    },
+    "update_time": {
+      "description": "The date and time when the plan was last updated, in [Internet date and time format](https://tools.ietf.org/html/rfc3339#section-5.6).",
+      "readOnly": true,
+      "$ref": "#/components/schemas/date_time"
+    },
+    "links": {
+      "type": "array",
+      "description": "An array of request-related [HATEOAS links](/docs/api/reference/api-responses/#hateoas-links).",
+      "readOnly": true,
+      "minItems": 1,
+      "maxItems": 10,
+      "items": {
+        "$ref": "#/components/schemas/link_description",
+        "readOnly": true
+      }
+    }
+  }
+}

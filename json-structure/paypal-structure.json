@@ -1,0 +1,1450 @@
+{
+  "provider": "PayPal",
+  "providerId": "paypal",
+  "kind": "json-structure",
+  "description": "Structural overview of the PayPal API surface; extracted from openapi/.",
+  "schemaCount": 210,
+  "operationCount": 8,
+  "schemas": [
+    {
+      "name": "400",
+      "type": "object",
+      "propertyCount": 1,
+      "required": []
+    },
+    {
+      "name": "401",
+      "type": "object",
+      "propertyCount": 1,
+      "required": []
+    },
+    {
+      "name": "403",
+      "type": "object",
+      "propertyCount": 1,
+      "required": []
+    },
+    {
+      "name": "404",
+      "type": "object",
+      "propertyCount": 1,
+      "required": []
+    },
+    {
+      "name": "422",
+      "type": "object",
+      "propertyCount": 1,
+      "required": []
+    },
+    {
+      "name": "error_details",
+      "type": "object",
+      "propertyCount": 5,
+      "required": [
+        "issue"
+      ]
+    },
+    {
+      "name": "error_location",
+      "type": "string",
+      "propertyCount": 0,
+      "required": []
+    },
+    {
+      "name": "error_default",
+      "type": null,
+      "propertyCount": 0,
+      "required": []
+    },
+    {
+      "name": "error_link_description",
+      "type": "object",
+      "propertyCount": 3,
+      "required": [
+        "href",
+        "rel"
+      ]
+    },
+    {
+      "name": "error_400",
+      "type": "object",
+      "propertyCount": 5,
+      "required": []
+    },
+    {
+      "name": "error_401",
+      "type": "object",
+      "propertyCount": 5,
+      "required": []
+    },
+    {
+      "name": "error_403",
+      "type": "object",
+      "propertyCount": 5,
+      "required": []
+    },
+    {
+      "name": "error_404",
+      "type": "object",
+      "propertyCount": 5,
+      "required": []
+    },
+    {
+      "name": "error_409",
+      "type": "object",
+      "propertyCount": 5,
+      "required": []
+    },
+    {
+      "name": "error_415",
+      "type": "object",
+      "propertyCount": 5,
+      "required": []
+    },
+    {
+      "name": "error_422",
+      "type": "object",
+      "propertyCount": 5,
+      "required": []
+    },
+    {
+      "name": "error_500",
+      "type": "object",
+      "propertyCount": 4,
+      "required": []
+    },
+    {
+      "name": "error_503",
+      "type": "object",
+      "propertyCount": 4,
+      "required": []
+    },
+    {
+      "name": "checkout_payment_intent",
+      "type": "string",
+      "propertyCount": 0,
+      "required": []
+    },
+    {
+      "name": "email",
+      "type": "string",
+      "propertyCount": 0,
+      "required": []
+    },
+    {
+      "name": "account_id",
+      "type": "string",
+      "propertyCount": 0,
+      "required": []
+    },
+    {
+      "name": "payer_base",
+      "type": "object",
+      "propertyCount": 2,
+      "required": []
+    },
+    {
+      "name": "name",
+      "type": "object",
+      "propertyCount": 7,
+      "required": []
+    },
+    {
+      "name": "phone_type",
+      "type": "string",
+      "propertyCount": 0,
+      "required": []
+    },
+    {
+      "name": "phone",
+      "type": "object",
+      "propertyCount": 3,
+      "required": [
+        "country_code",
+        "national_number"
+      ]
+    },
+    {
+      "name": "phone_with_type",
+      "type": "object",
+      "propertyCount": 2,
+      "required": [
+        "phone_number"
+      ]
+    },
+    {
+      "name": "date_no_time",
+      "type": "string",
+      "propertyCount": 0,
+      "required": []
+    },
+    {
+      "name": "tax_info",
+      "type": "object",
+      "propertyCount": 2,
+      "required": [
+        "tax_id",
+        "tax_id_type"
+      ]
+    },
+    {
+      "name": "country_code",
+      "type": "string",
+      "propertyCount": 0,
+      "required": []
+    },
+    {
+      "name": "address_portable",
+      "type": "object",
+      "propertyCount": 10,
+      "required": [
+        "country_code"
+      ]
+    },
+    {
+      "name": "payer",
+      "type": "object",
+      "propertyCount": 0,
+      "required": []
+    },
+    {
+      "name": "currency_code",
+      "type": "string",
+      "propertyCount": 0,
+      "required": []
+    },
+    {
+      "name": "money",
+      "type": "object",
+      "propertyCount": 2,
+      "required": [
+        "currency_code",
+        "value"
+      ]
+    },
+    {
+      "name": "amount_breakdown",
+      "type": "object",
+      "propertyCount": 7,
+      "required": []
+    },
+    {
+      "name": "amount_with_breakdown",
+      "type": "object",
+      "propertyCount": 0,
+      "required": []
+    },
+    {
+      "name": "payee_base",
+      "type": "object",
+      "propertyCount": 2,
+      "required": []
+    },
+    {
+      "name": "payee",
+      "type": "object",
+      "propertyCount": 0,
+      "required": []
+    },
+    {
+      "name": "platform_fee",
+      "type": "object",
+      "propertyCount": 2,
+      "required": [
+        "amount"
+      ]
+    },
+    {
+      "name": "disbursement_mode",
+      "type": "string",
+      "propertyCount": 0,
+      "required": []
+    },
+    {
+      "name": "payment_instruction",
+      "type": "object",
+      "propertyCount": 4,
+      "required": []
+    },
+    {
+      "name": "item",
+      "type": "object",
+      "propertyCount": 7,
+      "required": [
+        "name",
+        "unit_amount",
+        "quantity"
+      ]
+    },
+    {
+      "name": "shipping_type",
+      "type": "string",
+      "propertyCount": 0,
+      "required": []
+    },
+    {
+      "name": "shipping_option",
+      "type": "object",
+      "propertyCount": 5,
+      "required": [
+        "id",
+        "label",
+        "selected"
+      ]
+    },
+    {
+      "name": "shipping_detail",
+      "type": "object",
+      "propertyCount": 4,
+      "required": []
+    },
+    {
+      "name": "level_2_card_processing_data",
+      "type": "object",
+      "propertyCount": 2,
+      "required": []
+    },
+    {
+      "name": "line_item",
+      "type": "object",
+      "propertyCount": 0,
+      "required": []
+    },
+    {
+      "name": "level_3_card_processing_data",
+      "type": "object",
+      "propertyCount": 6,
+      "required": []
+    },
+    {
+      "name": "card_supplementary_data",
+      "type": "object",
+      "propertyCount": 2,
+      "required": []
+    },
+    {
+      "name": "supplementary_data",
+      "type": "object",
+      "propertyCount": 1,
+      "required": []
+    },
+    {
+      "name": "purchase_unit_request",
+      "type": "object",
+      "propertyCount": 11,
+      "required": [
+        "amount"
+      ]
+    },
+    {
+      "name": "instrument_id",
+      "type": "string",
+      "propertyCount": 0,
+      "required": []
+    },
+    {
+      "name": "date_year_month",
+      "type": "string",
+      "propertyCount": 0,
+      "required": []
+    },
+    {
+      "name": "card_brand",
+      "type": "string",
+      "propertyCount": 0,
+      "required": []
+    },
+    {
+      "name": "card_type",
+      "type": "string",
+      "propertyCount": 0,
+      "required": []
+    },
+    {
+      "name": "merchant_partner_customer_id",
+      "type": "string",
+      "propertyCount": 0,
+      "required": []
+    },
+    {
+      "name": "customer",
+      "type": "object",
+      "propertyCount": 3,
+      "required": []
+    },
+    {
+      "name": "store_in_vault_instruction",
+      "type": "string",
+      "propertyCount": 0,
+      "required": []
+    },
+    {
+      "name": "vault_instruction_base",
+      "type": "object",
+      "propertyCount": 1,
+      "required": []
+    },
+    {
+      "name": "card_attributes",
+      "type": "object",
+      "propertyCount": 2,
+      "required": []
+    },
+    {
+      "name": "card",
+      "type": "object",
+      "propertyCount": 11,
+      "required": []
+    },
+    {
+      "name": "vault_id",
+      "type": "string",
+      "propertyCount": 0,
+      "required": []
+    },
+    {
+      "name": "payment_initiator",
+      "type": "string",
+      "propertyCount": 0,
+      "required": []
+    },
+    {
+      "name": "stored_payment_source_payment_type",
+      "type": "string",
+      "propertyCount": 0,
+      "required": []
+    },
+    {
+      "name": "stored_payment_source_usage_type",
+      "type": "string",
+      "propertyCount": 0,
+      "required": []
+    },
+    {
+      "name": "network_transaction_reference",
+      "type": "object",
+      "propertyCount": 4,
+      "required": [
+        "id"
+      ]
+    },
+    {
+      "name": "card_stored_credential",
+      "type": "object",
+      "propertyCount": 4,
+      "required": [
+        "payment_initiator",
+        "payment_type"
+      ]
+    },
+    {
+      "name": "eci_flag",
+      "type": "string",
+      "propertyCount": 0,
+      "required": []
+    },
+    {
+      "name": "network_token_request",
+      "type": "object",
+      "propertyCount": 5,
+      "required": [
+        "number",
+        "expiry"
+      ]
+    },
+    {
+      "name": "url",
+      "type": "string",
+      "propertyCount": 0,
+      "required": []
+    },
+    {
+      "name": "card_experience_context",
+      "type": "object",
+      "propertyCount": 2,
+      "required": []
+    },
+    {
+      "name": "card_request",
+      "type": "object",
+      "propertyCount": 0,
+      "required": []
+    },
+    {
+      "name": "token",
+      "type": "object",
+      "propertyCount": 2,
+      "required": [
+        "id",
+        "type"
+      ]
+    },
+    {
+      "name": "name-2",
+      "type": "object",
+      "propertyCount": 6,
+      "required": []
+    },
+    {
+      "name": "country_code-2",
+      "type": "string",
+      "propertyCount": 0,
+      "required": []
+    },
+    {
+      "name": "address_portable-2",
+      "type": "object",
+      "propertyCount": 10,
+      "required": [
+        "country_code"
+      ]
+    },
+    {
+      "name": "paypal_wallet_customer",
+      "type": "object",
+      "propertyCount": 0,
+      "required": []
+    },
+    {
+      "name": "vault_owner_id",
+      "type": null,
+      "propertyCount": 0,
+      "required": []
+    },
+    {
+      "name": "vault_paypal_wallet_base",
+      "type": "object",
+      "propertyCount": 0,
+      "required": [
+        "usage_type"
+      ]
+    },
+    {
+      "name": "paypal_wallet_attributes",
+      "type": "object",
+      "propertyCount": 2,
+      "required": []
+    },
+    {
+      "name": "language",
+      "type": "string",
+      "propertyCount": 0,
+      "required": []
+    },
+    {
+      "name": "paypal_wallet_experience_context",
+      "type": "object",
+      "propertyCount": 8,
+      "required": []
+    },
+    {
+      "name": "billing_agreement_id",
+      "type": "string",
+      "propertyCount": 0,
+      "required": []
+    },
+    {
+      "name": "paypal_wallet",
+      "type": "object",
+      "propertyCount": 10,
+      "required": []
+    },
+    {
+      "name": "full_name",
+      "type": "string",
+      "propertyCount": 0,
+      "required": []
+    },
+    {
+      "name": "experience_context_base",
+      "type": "object",
+      "propertyCount": 5,
+      "required": []
+    },
+    {
+      "name": "altpay_recurring_attributes_request",
+      "type": null,
+      "propertyCount": 0,
+      "required": []
+    },
+    {
+      "name": "bancontact_request",
+      "type": "object",
+      "propertyCount": 4,
+      "required": [
+        "name",
+        "country_code"
+      ]
+    },
+    {
+      "name": "email_address",
+      "type": "string",
+      "propertyCount": 0,
+      "required": []
+    },
+    {
+      "name": "ip_address",
+      "type": "string",
+      "propertyCount": 0,
+      "required": []
+    },
+    {
+      "name": "blik_experience_context",
+      "type": "object",
+      "propertyCount": 0,
+      "required": []
+    },
+    {
+      "name": "blik_seamless",
+      "type": "object",
+      "propertyCount": 1,
+      "required": [
+        "auth_code"
+      ]
+    },
+    {
+      "name": "blik_one_click",
+      "type": "object",
+      "propertyCount": 4,
+      "required": [
+        "consumer_reference"
+      ]
+    },
+    {
+      "name": "blik_request",
+      "type": "object",
+      "propertyCount": 6,
+      "required": [
+        "name",
+        "country_code"
+      ]
+    },
+    {
+      "name": "eps_request",
+      "type": "object",
+      "propertyCount": 3,
+      "required": [
+        "name",
+        "country_code"
+      ]
+    },
+    {
+      "name": "giropay_request",
+      "type": "object",
+      "propertyCount": 3,
+      "required": [
+        "name",
+        "country_code"
+      ]
+    },
+    {
+      "name": "bic",
+      "type": "string",
+      "propertyCount": 0,
+      "required": []
+    },
+    {
+      "name": "ideal_request",
+      "type": "object",
+      "propertyCount": 5,
+      "required": [
+        "name",
+        "country_code"
+      ]
+    },
+    {
+      "name": "mybank_request",
+      "type": "object",
+      "propertyCount": 3,
+      "required": [
+        "name",
+        "country_code"
+      ]
+    },
+    {
+      "name": "p24_request",
+      "type": "object",
+      "propertyCount": 4,
+      "required": [
+        "name",
+        "email",
+        "country_code"
+      ]
+    },
+    {
+      "name": "sofort_request",
+      "type": "object",
+      "propertyCount": 3,
+      "required": [
+        "name",
+        "country_code"
+      ]
+    },
+    {
+      "name": "trustly_request",
+      "type": "object",
+      "propertyCount": 3,
+      "required": [
+        "name",
+        "country_code"
+      ]
+    },
+    {
+      "name": "currency_code-2",
+      "type": "string",
+      "propertyCount": 0,
+      "required": []
+    },
+    {
+      "name": "money-2",
+      "type": "object",
+      "propertyCount": 2,
+      "required": [
+        "currency_code",
+        "value"
+      ]
+    },
+    {
+      "name": "apple_pay_payment_data",
+      "type": "object",
+      "propertyCount": 4,
+      "required": []
+    },
+    {
+      "name": "apple_pay_decrypted_token_data",
+      "type": "object",
+      "propertyCount": 5,
+      "required": [
+        "tokenized_card"
+      ]
+    },
+    {
+      "name": "apple_pay_attributes",
+      "type": null,
+      "propertyCount": 0,
+      "required": []
+    },
+    {
+      "name": "apple_pay_request",
+      "type": "object",
+      "propertyCount": 8,
+      "required": []
+    },
+    {
+      "name": "google_pay_request",
+      "type": null,
+      "propertyCount": 0,
+      "required": []
+    },
+    {
+      "name": "venmo_wallet_experience_context",
+      "type": "object",
+      "propertyCount": 2,
+      "required": []
+    },
+    {
+      "name": "v3_vault_instruction_base",
+      "type": "object",
+      "propertyCount": 1,
+      "required": [
+        "store_in_vault"
+      ]
+    },
+    {
+      "name": "vault_venmo_wallet_base",
+      "type": "object",
+      "propertyCount": 0,
+      "required": [
+        "usage_type"
+      ]
+    },
+    {
+      "name": "venmo_wallet_attributes",
+      "type": "object",
+      "propertyCount": 2,
+      "required": []
+    },
+    {
+      "name": "venmo_wallet_request",
+      "type": "object",
+      "propertyCount": 4,
+      "required": []
+    },
+    {
+      "name": "payment_source",
+      "type": "object",
+      "propertyCount": 15,
+      "required": []
+    },
+    {
+      "name": "payee_payment_method_preference",
+      "type": "string",
+      "propertyCount": 0,
+      "required": []
+    },
+    {
+      "name": "payment_method",
+      "type": "object",
+      "propertyCount": 2,
+      "required": []
+    },
+    {
+      "name": "stored_payment_source",
+      "type": "object",
+      "propertyCount": 4,
+      "required": [
+        "payment_initiator",
+        "payment_type"
+      ]
+    },
+    {
+      "name": "order_application_context",
+      "type": "object",
+      "propertyCount": 9,
+      "required": []
+    },
+    {
+      "name": "order_request",
+      "type": "object",
+      "propertyCount": 5,
+      "required": [
+        "intent",
+        "purchase_units"
+      ]
+    },
+    {
+      "name": "date_time",
+      "type": "string",
+      "propertyCount": 0,
+      "required": []
+    },
+    {
+      "name": "activity_timestamps",
+      "type": "object",
+      "propertyCount": 2,
+      "required": []
+    },
+    {
+      "name": "liability_shift",
+      "type": "string",
+      "propertyCount": 0,
+      "required": []
+    },
+    {
+      "name": "pares_status",
+      "type": "string",
+      "propertyCount": 0,
+      "required": []
+    },
+    {
+      "name": "enrolled",
+      "type": "string",
+      "propertyCount": 0,
+      "required": []
+    },
+    {
+      "name": "three_d_secure_authentication_response",
+      "type": "object",
+      "propertyCount": 2,
+      "required": []
+    },
+    {
+      "name": "authentication_flow",
+      "type": null,
+      "propertyCount": 0,
+      "required": []
+    },
+    {
+      "name": "exemption_details",
+      "type": null,
+      "propertyCount": 0,
+      "required": []
+    },
+    {
+      "name": "authentication_response",
+      "type": "object",
+      "propertyCount": 4,
+      "required": []
+    },
+    {
+      "name": "link_description",
+      "type": "object",
+      "propertyCount": 3,
+      "required": [
+        "href",
+        "rel"
+      ]
+    },
+    {
+      "name": "vault_response",
+      "type": "object",
+      "propertyCount": 4,
+      "required": []
+    },
+    {
+      "name": "card_attributes_response",
+      "type": "object",
+      "propertyCount": 1,
+      "required": []
+    },
+    {
+      "name": "card_from_request",
+      "type": "object",
+      "propertyCount": 2,
+      "required": []
+    },
+    {
+      "name": "bin_details",
+      "type": "object",
+      "propertyCount": 4,
+      "required": []
+    },
+    {
+      "name": "card_response",
+      "type": "object",
+      "propertyCount": 10,
+      "required": []
+    },
+    {
+      "name": "account_id-2",
+      "type": "string",
+      "propertyCount": 0,
+      "required": []
+    },
+    {
+      "name": "phone_type-2",
+      "type": "string",
+      "propertyCount": 0,
+      "required": []
+    },
+    {
+      "name": "phone-2",
+      "type": "object",
+      "propertyCount": 1,
+      "required": [
+        "national_number"
+      ]
+    },
+    {
+      "name": "paypal_wallet_vault_response",
+      "type": "object",
+      "propertyCount": 0,
+      "required": []
+    },
+    {
+      "name": "cobranded_card",
+      "type": "object",
+      "propertyCount": 3,
+      "required": []
+    },
+    {
+      "name": "paypal_wallet_attributes_response",
+      "type": "object",
+      "propertyCount": 2,
+      "required": []
+    },
+    {
+      "name": "paypal_wallet_response",
+      "type": "object",
+      "propertyCount": 10,
+      "required": []
+    },
+    {
+      "name": "iban_last_chars",
+      "type": "string",
+      "propertyCount": 0,
+      "required": []
+    },
+    {
+      "name": "altpay_recurring_attributes",
+      "type": null,
+      "propertyCount": 0,
+      "required": []
+    },
+    {
+      "name": "bancontact",
+      "type": "object",
+      "propertyCount": 6,
+      "required": []
+    },
+    {
+      "name": "blik_one_click_response",
+      "type": "object",
+      "propertyCount": 1,
+      "required": []
+    },
+    {
+      "name": "blik",
+      "type": "object",
+      "propertyCount": 4,
+      "required": []
+    },
+    {
+      "name": "eps",
+      "type": "object",
+      "propertyCount": 3,
+      "required": []
+    },
+    {
+      "name": "giropay",
+      "type": "object",
+      "propertyCount": 3,
+      "required": []
+    },
+    {
+      "name": "ideal",
+      "type": "object",
+      "propertyCount": 5,
+      "required": []
+    },
+    {
+      "name": "mybank",
+      "type": "object",
+      "propertyCount": 4,
+      "required": []
+    },
+    {
+      "name": "p24",
+      "type": "object",
+      "propertyCount": 6,
+      "required": []
+    },
+    {
+      "name": "sofort",
+      "type": "object",
+      "propertyCount": 4,
+      "required": []
+    },
+    {
+      "name": "trustly",
+      "type": "object",
+      "propertyCount": 4,
+      "required": []
+    },
+    {
+      "name": "venmo_wallet_attributes_response",
+      "type": "object",
+      "propertyCount": 1,
+      "required": []
+    },
+    {
+      "name": "venmo_wallet_response",
+      "type": "object",
+      "propertyCount": 7,
+      "required": []
+    },
+    {
+      "name": "payment_source_response",
+      "type": "object",
+      "propertyCount": 12,
+      "required": []
+    },
+    {
+      "name": "processing_instruction",
+      "type": "string",
+      "propertyCount": 0,
+      "required": []
+    },
+    {
+      "name": "tracker_status",
+      "type": null,
+      "propertyCount": 0,
+      "required": []
+    },
+    {
+      "name": "universal_product_code",
+      "type": null,
+      "propertyCount": 0,
+      "required": []
+    },
+    {
+      "name": "tracker_item",
+      "type": "object",
+      "propertyCount": 6,
+      "required": []
+    },
+    {
+      "name": "tracker",
+      "type": "object",
+      "propertyCount": 0,
+      "required": []
+    },
+    {
+      "name": "shipping_with_tracking_details",
+      "type": "object",
+      "propertyCount": 0,
+      "required": []
+    },
+    {
+      "name": "authorization_status_details",
+      "type": "object",
+      "propertyCount": 1,
+      "required": []
+    },
+    {
+      "name": "authorization_status",
+      "type": "object",
+      "propertyCount": 2,
+      "required": []
+    },
+    {
+      "name": "seller_protection",
+      "type": "object",
+      "propertyCount": 2,
+      "required": []
+    },
+    {
+      "name": "authorization",
+      "type": "object",
+      "propertyCount": 0,
+      "required": []
+    },
+    {
+      "name": "processor_response",
+      "type": "object",
+      "propertyCount": 4,
+      "required": []
+    },
+    {
+      "name": "authorization_with_additional_data",
+      "type": "object",
+      "propertyCount": 0,
+      "required": []
+    },
+    {
+      "name": "capture_status_details",
+      "type": "object",
+      "propertyCount": 1,
+      "required": []
+    },
+    {
+      "name": "capture_status",
+      "type": "object",
+      "propertyCount": 2,
+      "required": []
+    },
+    {
+      "name": "exchange_rate",
+      "type": "object",
+      "propertyCount": 3,
+      "required": []
+    },
+    {
+      "name": "seller_receivable_breakdown",
+      "type": "object",
+      "propertyCount": 7,
+      "required": [
+        "gross_amount"
+      ]
+    },
+    {
+      "name": "capture",
+      "type": "object",
+      "propertyCount": 0,
+      "required": []
+    },
+    {
+      "name": "refund_status_details",
+      "type": "object",
+      "propertyCount": 1,
+      "required": []
+    },
+    {
+      "name": "refund_status",
+      "type": "object",
+      "propertyCount": 2,
+      "required": []
+    },
+    {
+      "name": "net_amount_breakdown_item",
+      "type": "object",
+      "propertyCount": 3,
+      "required": []
+    },
+    {
+      "name": "refund",
+      "type": "object",
+      "propertyCount": 0,
+      "required": []
+    },
+    {
+      "name": "payment_collection",
+      "type": "object",
+      "propertyCount": 3,
+      "required": []
+    },
+    {
+      "name": "purchase_unit",
+      "type": "object",
+      "propertyCount": 13,
+      "required": []
+    },
+    {
+      "name": "order_status",
+      "type": "string",
+      "propertyCount": 0,
+      "required": []
+    },
+    {
+      "name": "order",
+      "type": "object",
+      "propertyCount": 0,
+      "required": []
+    },
+    {
+      "name": "patch",
+      "type": "object",
+      "propertyCount": 4,
+      "required": [
+        "op"
+      ]
+    },
+    {
+      "name": "patch_request",
+      "type": "array",
+      "propertyCount": 0,
+      "required": []
+    },
+    {
+      "name": "orders.patch-400",
+      "type": "object",
+      "propertyCount": 1,
+      "required": []
+    },
+    {
+      "name": "orders.patch-422",
+      "type": "object",
+      "propertyCount": 1,
+      "required": []
+    },
+    {
+      "name": "order_confirm_application_context",
+      "type": "object",
+      "propertyCount": 5,
+      "required": []
+    },
+    {
+      "name": "confirm_order_request",
+      "type": "object",
+      "propertyCount": 3,
+      "required": [
+        "payment_source"
+      ]
+    },
+    {
+      "name": "orders.confirm-400",
+      "type": "object",
+      "propertyCount": 1,
+      "required": []
+    },
+    {
+      "name": "orders.confirm-422",
+      "type": "object",
+      "propertyCount": 1,
+      "required": []
+    },
+    {
+      "name": "order_authorize_request",
+      "type": "object",
+      "propertyCount": 1,
+      "required": []
+    },
+    {
+      "name": "order_authorize_response",
+      "type": "object",
+      "propertyCount": 0,
+      "required": []
+    },
+    {
+      "name": "orders.authorize-400",
+      "type": "object",
+      "propertyCount": 1,
+      "required": []
+    },
+    {
+      "name": "orders.authorize-403",
+      "type": "object",
+      "propertyCount": 1,
+      "required": []
+    },
+    {
+      "name": "orders.authorize-422",
+      "type": "object",
+      "propertyCount": 1,
+      "required": []
+    },
+    {
+      "name": "order_capture_request",
+      "type": "object",
+      "propertyCount": 1,
+      "required": []
+    },
+    {
+      "name": "orders.capture-400",
+      "type": "object",
+      "propertyCount": 1,
+      "required": []
+    },
+    {
+      "name": "orders.capture-403",
+      "type": "object",
+      "propertyCount": 1,
+      "required": []
+    },
+    {
+      "name": "orders.capture-422",
+      "type": "object",
+      "propertyCount": 1,
+      "required": []
+    },
+    {
+      "name": "shipment_tracking_number_type",
+      "type": "string",
+      "propertyCount": 0,
+      "required": []
+    },
+    {
+      "name": "shipment_tracking_status",
+      "type": "string",
+      "propertyCount": 0,
+      "required": []
+    },
+    {
+      "name": "shipment_carrier",
+      "type": "string",
+      "propertyCount": 0,
+      "required": []
+    },
+    {
+      "name": "shipment_tracker",
+      "type": "object",
+      "propertyCount": 14,
+      "required": [
+        "transaction_id",
+        "status"
+      ]
+    },
+    {
+      "name": "order_tracker_request",
+      "type": "object",
+      "propertyCount": 0,
+      "required": []
+    },
+    {
+      "name": "orders.track.create-400",
+      "type": "object",
+      "propertyCount": 1,
+      "required": []
+    },
+    {
+      "name": "orders.track.create-403",
+      "type": "object",
+      "propertyCount": 1,
+      "required": []
+    },
+    {
+      "name": "orders.track.create-422",
+      "type": "object",
+      "propertyCount": 1,
+      "required": []
+    },
+    {
+      "name": "orders.trackers.patch-400",
+      "type": "object",
+      "propertyCount": 1,
+      "required": []
+    },
+    {
+      "name": "orders.trackers.patch-403",
+      "type": "object",
+      "propertyCount": 1,
+      "required": []
+    },
+    {
+      "name": "orders.trackers.patch-404",
+      "type": "object",
+      "propertyCount": 1,
+      "required": []
+    },
+    {
+      "name": "orders.trackers.patch-422",
+      "type": "object",
+      "propertyCount": 1,
+      "required": []
+    }
+  ],
+  "operations": [
+    {
+      "method": "POST",
+      "path": "/v2/checkout/orders",
+      "operationId": "orders.create",
+      "summary": "Paypal Create order",
+      "tags": [
+        "Orders"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/v2/checkout/orders/{id}",
+      "operationId": "orders.get",
+      "summary": "Paypal Show order details",
+      "tags": [
+        "Orders"
+      ]
+    },
+    {
+      "method": "PATCH",
+      "path": "/v2/checkout/orders/{id}",
+      "operationId": "orders.patch",
+      "summary": "Paypal Update order",
+      "tags": [
+        "Orders"
+      ]
+    },
+    {
+      "method": "POST",
+      "path": "/v2/checkout/orders/{id}/confirm-payment-source",
+      "operationId": "orders.confirm",
+      "summary": "Paypal Confirm the Order",
+      "tags": [
+        "Orders"
+      ]
+    },
+    {
+      "method": "POST",
+      "path": "/v2/checkout/orders/{id}/authorize",
+      "operationId": "orders.authorize",
+      "summary": "Paypal Authorize payment for order",
+      "tags": [
+        "Orders"
+      ]
+    },
+    {
+      "method": "POST",
+      "path": "/v2/checkout/orders/{id}/capture",
+      "operationId": "orders.capture",
+      "summary": "Paypal Capture payment for order",
+      "tags": [
+        "Orders"
+      ]
+    },
+    {
+      "method": "POST",
+      "path": "/v2/checkout/orders/{id}/track",
+      "operationId": "orders.track.create",
+      "summary": "Paypal Add tracking information for an Order.",
+      "tags": [
+        "Orders"
+      ]
+    },
+    {
+      "method": "PATCH",
+      "path": "/v2/checkout/orders/{id}/trackers/{tracker_id}",
+      "operationId": "orders.trackers.patch",
+      "summary": "Update or cancel tracking information for a PayPal order",
+      "tags": [
+        "Trackers"
+      ]
+    }
+  ]
+}

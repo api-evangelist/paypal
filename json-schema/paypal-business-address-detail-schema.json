@@ -1,0 +1,32 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/business_address_detail",
+  "title": "Business_address_detail",
+  "type": "object",
+  "description": "A simple postal address with coarse-grained fields.",
+  "allOf": [
+    {
+      "$ref": "#/components/schemas/address_portable"
+    },
+    {
+      "properties": {
+        "type": {
+          "description": "The address type under which this is classified. For example, shipping or dropoff.",
+          "$ref": "#/components/schemas/business_address_type"
+        },
+        "primary": {
+          "type": "boolean",
+          "description": "Whether this is the primary address of the user. This cannot be directly set to `false`, but rather it is toggled `false` in the datastore when another address is set to primary."
+        },
+        "inactive": {
+          "type": "boolean",
+          "description": "Whether this address has been inactivated.",
+          "readOnly": true
+        }
+      }
+    }
+  ],
+  "required": [
+    "type"
+  ]
+}

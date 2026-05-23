@@ -1,0 +1,116 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/templates.update-400",
+  "title": "templates.update-400",
+  "properties": {
+    "details": {
+      "type": "array",
+      "items": {
+        "anyOf": [
+          {
+            "title": "TEMPLATE_NAME_ALREADY_EXISTS",
+            "properties": {
+              "issue": {
+                "type": "string",
+                "enum": [
+                  "TEMPLATE_NAME_ALREADY_EXISTS"
+                ]
+              },
+              "description": {
+                "type": "string",
+                "enum": [
+                  "Template name already exists."
+                ]
+              }
+            }
+          },
+          {
+            "title": "INVALID_STRING_LENGTH",
+            "properties": {
+              "issue": {
+                "type": "string",
+                "enum": [
+                  "INVALID_STRING_LENGTH"
+                ]
+              },
+              "description": {
+                "type": "string",
+                "enum": [
+                  "Template name length should be between 1 and 500."
+                ]
+              }
+            }
+          },
+          {
+            "title": "INVALID_STRING_LENGTH",
+            "properties": {
+              "issue": {
+                "type": "string",
+                "enum": [
+                  "INVALID_STRING_LENGTH"
+                ]
+              },
+              "description": {
+                "type": "string",
+                "enum": [
+                  "Currency code length should be 3 characters."
+                ]
+              }
+            }
+          },
+          {
+            "title": "INVALID_STRING_LENGTH",
+            "properties": {
+              "issue": {
+                "type": "string",
+                "enum": [
+                  "INVALID_STRING_LENGTH"
+                ]
+              },
+              "description": {
+                "type": "string",
+                "enum": [
+                  "Value of the field is either too short or too long."
+                ]
+              }
+            }
+          },
+          {
+            "title": "INVALID_STRING_MAX_LENGTH",
+            "properties": {
+              "issue": {
+                "type": "string",
+                "enum": [
+                  "INVALID_STRING_MAX_LENGTH"
+                ]
+              },
+              "description": {
+                "type": "string",
+                "enum": [
+                  "Value of the field is too long."
+                ]
+              }
+            }
+          },
+          {
+            "title": "INVALID_PARAMETER_SYNTAX",
+            "properties": {
+              "issue": {
+                "type": "string",
+                "enum": [
+                  "INVALID_PARAMETER_SYNTAX"
+                ]
+              },
+              "description": {
+                "type": "string",
+                "enum": [
+                  "Value of the field does not conform to the expected format."
+                ]
+              }
+            }
+          }
+        ]
+      }
+    }
+  }
+}

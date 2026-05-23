@@ -1,0 +1,31 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/404",
+  "title": "404",
+  "properties": {
+    "details": {
+      "type": "array",
+      "items": {
+        "anyOf": [
+          {
+            "title": "INVALID_RESOURCE_ID",
+            "properties": {
+              "issue": {
+                "type": "string",
+                "enum": [
+                  "INVALID_RESOURCE_ID"
+                ]
+              },
+              "description": {
+                "type": "string",
+                "enum": [
+                  "Specified resource ID does not exist. Please check the resource ID and try again."
+                ]
+              }
+            }
+          }
+        ]
+      }
+    }
+  }
+}

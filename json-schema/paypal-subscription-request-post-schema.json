@@ -1,0 +1,57 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/subscription_request_post",
+  "title": "Create Subscription Request",
+  "description": "The create subscription request details.",
+  "type": "object",
+  "properties": {
+    "plan_id": {
+      "type": "string",
+      "description": "The ID of the plan.",
+      "minLength": 3,
+      "maxLength": 50
+    },
+    "start_time": {
+      "description": "The date and time when the subscription started, in [Internet date and time format](https://tools.ietf.org/html/rfc3339#section-5.6).",
+      "default": "Current time",
+      "$ref": "#/components/schemas/date_time"
+    },
+    "quantity": {
+      "type": "string",
+      "description": "The quantity of the product in the subscription.",
+      "pattern": "^([0-9]+|([0-9]+)?[.][0-9]+)$",
+      "minLength": 1,
+      "maxLength": 32
+    },
+    "shipping_amount": {
+      "description": "The shipping charges.",
+      "$ref": "#/components/schemas/money"
+    },
+    "subscriber": {
+      "$ref": "#/components/schemas/subscriber_request"
+    },
+    "auto_renewal": {
+      "type": "boolean",
+      "description": "DEPRECATED. Indicates whether the subscription auto-renews after the billing cycles complete.",
+      "default": false,
+      "deprecated": true
+    },
+    "application_context": {
+      "$ref": "#/components/schemas/application_context"
+    },
+    "custom_id": {
+      "type": "string",
+      "description": "The custom id for the subscription. Can be invoice id.",
+      "minLength": 1,
+      "maxLength": 127,
+      "pattern": "^[\\x20-\\x7E]+"
+    },
+    "plan": {
+      "description": "An inline plan object to customise the subscription. You can override plan level default attributes by providing customised values for the subscription in this object.",
+      "$ref": "#/components/schemas/plan_override"
+    }
+  },
+  "required": [
+    "plan_id"
+  ]
+}

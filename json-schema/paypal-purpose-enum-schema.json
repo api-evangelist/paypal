@@ -1,0 +1,21 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/purpose_enum",
+  "title": "Purpose",
+  "type": "string",
+  "description": "The purpose of the transaction.",
+  "minLength": 1,
+  "maxLength": 40,
+  "pattern": "^[A-Z0-9_]+$",
+  "enum": [
+    "AWARDS",
+    "PRIZES",
+    "DONATIONS",
+    "GOODS",
+    "SERVICES",
+    "REBATES",
+    "CASHBACK",
+    "DISCOUNTS",
+    "NON_GOODS_OR_SERVICES"
+  ]
+}

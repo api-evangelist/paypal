@@ -1,0 +1,32 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/card_verification_details",
+  "title": "Card Verification Details",
+  "type": "object",
+  "description": "Card Verification details including the authorization details and 3D SECURE details.",
+  "properties": {
+    "network_transaction_id": {
+      "description": "Transaction Identifier as given by the network to indicate a previously executed CIT authorization. Only present when authorization is successful for a verification.",
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 1024,
+      "pattern": "^[a-zA-Z0-9-_@.:&+=*^'~#!$%()]+$"
+    },
+    "time": {
+      "description": "The date and time when the instrument was verified.",
+      "readOnly": true,
+      "$ref": "#/components/schemas/date_time"
+    },
+    "amount": {
+      "description": "The amount used for card verification.",
+      "$ref": "#/components/schemas/money"
+    },
+    "processor_response": {
+      "description": "The processor information.",
+      "$ref": "#/components/schemas/processor_response"
+    },
+    "three_d_secure": {
+      "$ref": "#/components/schemas/3ds_result"
+    }
+  }
+}

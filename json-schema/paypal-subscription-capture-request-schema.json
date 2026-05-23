@@ -1,0 +1,34 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/subscription_capture_request",
+  "title": "Charge Amount from Subscriber",
+  "description": "The charge amount from the subscriber.",
+  "type": "object",
+  "properties": {
+    "note": {
+      "type": "string",
+      "description": "The reason or note for the subscription charge.",
+      "minLength": 1,
+      "maxLength": 128
+    },
+    "capture_type": {
+      "type": "string",
+      "description": "The type of capture.",
+      "minLength": 1,
+      "maxLength": 24,
+      "pattern": "^[A-Z_]+$",
+      "enum": [
+        "OUTSTANDING_BALANCE"
+      ]
+    },
+    "amount": {
+      "$ref": "#/components/schemas/money",
+      "description": "The amount of the outstanding balance. This value cannot be greater than the current outstanding balance amount."
+    }
+  },
+  "required": [
+    "note",
+    "capture_type",
+    "amount"
+  ]
+}

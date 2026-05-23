@@ -1,0 +1,17 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/duplicate_transaction",
+  "title": "Duplicate Transaction",
+  "type": "object",
+  "description": "The duplicate transaction details.",
+  "properties": {
+    "received_duplicate": {
+      "type": "boolean",
+      "description": "If `true`, indicates that a duplicate transaction was received."
+    },
+    "original_transaction": {
+      "$ref": "#/components/schemas/transaction_info",
+      "description": "The transaction details for the original transaction, when the dispute reason is `DUPLICATE_TRANSACTION`. Currently, contains only the date and amount."
+    }
+  }
+}

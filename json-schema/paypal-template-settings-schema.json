@@ -1,0 +1,23 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/template_settings",
+  "title": "Template Settings",
+  "type": "object",
+  "description": "The template settings. Sets a template as the default template or edit template.",
+  "properties": {
+    "template_item_settings": {
+      "type": "array",
+      "description": "The template item headers display preference.",
+      "items": {
+        "$ref": "#/components/schemas/template_item_setting"
+      }
+    },
+    "template_subtotal_settings": {
+      "type": "array",
+      "description": "The template subtotal headers display preference.",
+      "items": {
+        "$ref": "#/components/schemas/template_subtotal_setting"
+      }
+    }
+  }
+}

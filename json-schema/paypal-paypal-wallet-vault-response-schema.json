@@ -1,0 +1,22 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/paypal_wallet_vault_response",
+  "title": "Saved PayPal Wallet Payment Source Response",
+  "type": "object",
+  "description": "The details about a saved PayPal Wallet payment source.",
+  "allOf": [
+    {
+      "$ref": "#/components/schemas/vault_response"
+    },
+    {
+      "properties": {
+        "customer": {
+          "$ref": "#/components/schemas/paypal_wallet_customer"
+        },
+        "owner_id": {
+          "$ref": "#/components/schemas/vault_owner_id"
+        }
+      }
+    }
+  ]
+}

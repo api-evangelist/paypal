@@ -1,0 +1,24 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/payout_currency_conversion",
+  "title": "Currency conversion resource",
+  "type": "object",
+  "description": "The currency conversion resource.",
+  "properties": {
+    "from_amount": {
+      "$ref": "#/components/schemas/currency",
+      "description": "The amount that is converted from."
+    },
+    "to_amount": {
+      "$ref": "#/components/schemas/currency",
+      "description": "The amount that is converted to."
+    },
+    "exchange_rate": {
+      "type": "string",
+      "description": "The exchange rate that is applied for this payout.",
+      "pattern": "^.*$",
+      "minLength": 0,
+      "maxLength": 30
+    }
+  }
+}

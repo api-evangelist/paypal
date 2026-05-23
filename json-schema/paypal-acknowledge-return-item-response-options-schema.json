@@ -1,0 +1,18 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/acknowledge_return_item_response_options",
+  "title": "Acknowledge Return Item Response Options",
+  "type": "object",
+  "description": "The allowed response options when the seller acknowledges that the buyer has returned an item for the dispute.",
+  "properties": {
+    "acknowledgement_types": {
+      "type": "array",
+      "description": "The types of response when the merchant acknowledges a returned item.",
+      "minItems": 1,
+      "maxItems": 10,
+      "items": {
+        "$ref": "#/components/schemas/acknowledgement_type"
+      }
+    }
+  }
+}

@@ -1,0 +1,19 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/office_bearer",
+  "title": "Office Bearers",
+  "description": "The office bearer associated to the account.",
+  "allOf": [
+    {
+      "$ref": "#/components/schemas/person"
+    },
+    {
+      "properties": {
+        "role": {
+          "description": "The role of the office bearer in the company.",
+          "$ref": "#/components/schemas/office_bearer_role"
+        }
+      }
+    }
+  ]
+}

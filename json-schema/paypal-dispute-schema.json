@@ -1,0 +1,158 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/dispute",
+  "title": "Dispute Details",
+  "type": "object",
+  "description": "The dispute details.",
+  "properties": {
+    "dispute_id": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 255,
+      "pattern": "^[A-Za-z0-9-]+$",
+      "readOnly": true,
+      "description": "The ID of the dispute."
+    },
+    "create_time": {
+      "readOnly": true,
+      "$ref": "#/components/schemas/date_time",
+      "description": "The date and time when the dispute was created, in [Internet date and time format](https://tools.ietf.org/html/rfc3339#section-5.6). For example, *`yyyy`*-*`MM`*-*`dd`*`T`*`HH`*:*`mm`*:*`ss`*.*`SSS`*`Z`."
+    },
+    "update_time": {
+      "readOnly": true,
+      "$ref": "#/components/schemas/date_time",
+      "description": "The date and time when the dispute was last updated, in [Internet date and time format](https://tools.ietf.org/html/rfc3339#section-5.6). For example, *`yyyy`*-*`MM`*-*`dd`*`T`*`HH`*:*`mm`*:*`ss`*.*`SSS`*`Z`."
+    },
+    "disputed_transactions": {
+      "type": "array",
+      "minItems": 1,
+      "maxItems": 1000,
+      "description": "An array of transactions for which disputes were created.",
+      "items": {
+        "$ref": "#/components/schemas/transaction_info"
+      }
+    },
+    "reason": {
+      "$ref": "#/components/schemas/dispute_reason"
+    },
+    "status": {
+      "readOnly": true,
+      "$ref": "#/components/schemas/status"
+    },
+    "dispute_amount": {
+      "$ref": "#/components/schemas/money",
+      "description": "The amount in the transaction that the customer originally disputed. Because customers can sometimes dispute only part of the payment, the disputed amount might be different from the total gross or net amount of the original transaction."
+    },
+    "dispute_asset": {
+      "description": "The asset in the transaction that the customer disputed.",
+      "$ref": "#/components/schemas/cryptocurrency"
+    },
+    "fee_policy": {
+      "readOnly": true,
+      "description": "Policy that determines whether the fee needs to be charged, retained or returned while moving the money as part of dispute process.",
+      "$ref": "#/components/schemas/fee_policy"
+    },
+    "external_reason_code": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 2000,
+      "description": "The code that identifies the reason for the credit card chargeback. Each card issuer follows their own standards for defining reason type, code, and its format. For more details about the external reason code, see the card issue site. Available for only unbranded transactions."
+    },
+    "dispute_outcome": {
+      "readOnly": true,
+      "$ref": "#/components/schemas/dispute_outcome"
+    },
+    "adjudications": {
+      "type": "array",
+      "minItems": 1,
+      "maxItems": 10,
+      "description": "The Teammate Adjudication details for the dispute.",
+      "items": {
+        "$ref": "#/components/schemas/adjudication"
+      }
+    },
+    "money_movements": {
+      "type": "array",
+      "minItems": 1,
+      "maxItems": 50,
+      "description": "The Money movement details for the dispute.",
+      "items": {
+        "$ref": "#/components/schemas/money_movement"
+      }
+    },
+    "dispute_life_cycle_stage": {
+      "readOnly": true,
+      "$ref": "#/components/schemas/dispute_lifecycle_stage"
+    },
+    "dispute_channel": {
+      "$ref": "#/components/schemas/dispute_channel"
+    },
+    "messages": {
+      "type": "array",
+      "minItems": 1,
+      "maxItems": 1000,
+      "description": "An array of customer- or merchant-posted messages for the dispute.",
+      "items": {
+        "$ref": "#/components/schemas/message"
+      }
+    },
+    "extensions": {
+      "$ref": "#/components/schemas/extensions"
+    },
+    "evidences": {
+      "type": "array",
+      "minItems": 1,
+      "maxItems": 100,
+      "description": "An array of evidence documents.",
+      "items": {
+        "$ref": "#/components/schemas/evidence"
+      }
+    },
+    "buyer_response_due_date": {
+      "readOnly": true,
+      "$ref": "#/components/schemas/date_time",
+      "description": "The date and time by when the customer must respond to the dispute, in [Internet date and time format](https://tools.ietf.org/html/rfc3339#section-5.6). If the customer does not respond by this date and time, the dispute is closed in the merchant's favor. For example, *`yyyy`*-*`MM`*-*`dd`*`T`*`HH`*:*`mm`*:*`ss`*.*`SSS`*`Z`."
+    },
+    "seller_response_due_date": {
+      "readOnly": true,
+      "$ref": "#/components/schemas/date_time",
+      "description": "The date and time by when the merchant must respond to the dispute, in [Internet date and time format](https://tools.ietf.org/html/rfc3339#section-5.6). If the merchant does not respond by this date and time, the dispute is closed in the customer's favor. For example, *`yyyy`*-*`MM`*-*`dd`*`T`*`HH`*:*`mm`*:*`ss`*.*`SSS`*`Z`."
+    },
+    "offer": {
+      "readOnly": true,
+      "$ref": "#/components/schemas/offer"
+    },
+    "refund_details": {
+      "readOnly": true,
+      "$ref": "#/components/schemas/refund_details"
+    },
+    "communication_details": {
+      "$ref": "#/components/schemas/communication_details"
+    },
+    "supporting_info": {
+      "type": "array",
+      "readOnly": true,
+      "minItems": 1,
+      "maxItems": 100,
+      "description": "An array of all the supporting information that are associated to this dispute.",
+      "items": {
+        "$ref": "#/components/schemas/supporting_info"
+      }
+    },
+    "allowed_response_options": {
+      "readOnly": true,
+      "$ref": "#/components/schemas/allowed_response_options"
+    },
+    "links": {
+      "type": "array",
+      "minItems": 1,
+      "maxItems": 10,
+      "description": "An array of request-related [HATEOAS links](/docs/api/reference/api-responses/#hateoas-links/).",
+      "readOnly": true,
+      "items": {
+        "$ref": "#/components/schemas/link_description",
+        "readOnly": true
+      }
+    }
+  }
+}

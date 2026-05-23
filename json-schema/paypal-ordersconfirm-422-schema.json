@@ -1,0 +1,1017 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/orders.confirm-422",
+  "title": "orders.confirm-422",
+  "properties": {
+    "details": {
+      "type": "array",
+      "items": {
+        "anyOf": [
+          {
+            "title": "ORDER_ALREADY_CAPTURED",
+            "properties": {
+              "issue": {
+                "type": "string",
+                "enum": [
+                  "ORDER_ALREADY_CAPTURED"
+                ]
+              },
+              "description": {
+                "type": "string",
+                "enum": [
+                  "Order already captured. If 'intent=CAPTURE' only one capture per order is allowed."
+                ]
+              }
+            }
+          },
+          {
+            "title": "ORDER_ALREADY_AUTHORIZED",
+            "properties": {
+              "issue": {
+                "type": "string",
+                "enum": [
+                  "ORDER_ALREADY_AUTHORIZED"
+                ]
+              },
+              "description": {
+                "type": "string",
+                "enum": [
+                  "Order already captured. If 'intent=CAPTURE' only one capture per order is allowed."
+                ]
+              }
+            }
+          },
+          {
+            "title": "ORDER_CANNOT_BE_CONFIRMED",
+            "properties": {
+              "issue": {
+                "type": "string",
+                "enum": [
+                  "ORDER_CANNOT_BE_CONFIRMED"
+                ]
+              },
+              "description": {
+                "type": "string",
+                "enum": [
+                  "An order with status = 'COMPLETED' cannot be confirmed again."
+                ]
+              }
+            }
+          },
+          {
+            "title": "MISSING_PREVIOUS_REFERENCE",
+            "properties": {
+              "issue": {
+                "type": "string",
+                "enum": [
+                  "MISSING_PREVIOUS_REFERENCE"
+                ]
+              },
+              "description": {
+                "type": "string",
+                "enum": [
+                  "For Merchant initiated network token transactions, either the payment_source.card.stored_credential.previous_network_transaction_reference or payment_source.card.stored_credential.previous_transaction_reference must be included in the request."
+                ]
+              }
+            }
+          },
+          {
+            "title": "MISSING_CRYPTOGRAM",
+            "properties": {
+              "issue": {
+                "type": "string",
+                "enum": [
+                  "MISSING_CRYPTOGRAM"
+                ]
+              },
+              "description": {
+                "type": "string",
+                "enum": [
+                  "Cryptogram is mandatory for any customer initiated network token transactions."
+                ]
+              }
+            }
+          },
+          {
+            "title": "CURRENCY_NOT_SUPPORTED_FOR_COUNTRY",
+            "properties": {
+              "issue": {
+                "type": "string",
+                "enum": [
+                  "CURRENCY_NOT_SUPPORTED_FOR_COUNTRY"
+                ]
+              },
+              "description": {
+                "type": "string",
+                "enum": [
+                  " For the payment_source specified, the currency of the Order is restricted by the country in which the payee account is based. Please refer https://developer.paypal.com/api/rest/reference/currency-codes/ for list of supported currency codes."
+                ]
+              }
+            }
+          },
+          {
+            "title": "CARD_EXPIRED",
+            "properties": {
+              "issue": {
+                "type": "string",
+                "enum": [
+                  "CARD_EXPIRED"
+                ]
+              },
+              "description": {
+                "type": "string",
+                "enum": [
+                  "The card is expired"
+                ]
+              }
+            }
+          },
+          {
+            "title": "CARD_TYPE_NOT_SUPPORTED",
+            "properties": {
+              "issue": {
+                "type": "string",
+                "enum": [
+                  "CARD_TYPE_NOT_SUPPORTED"
+                ]
+              },
+              "description": {
+                "type": "string",
+                "enum": [
+                  "Processing of this card type is not supported. Use another card type."
+                ]
+              }
+            }
+          },
+          {
+            "title": "CURRENCY_NOT_SUPPORTED_FOR_CARD_TYPE",
+            "properties": {
+              "issue": {
+                "type": "string",
+                "enum": [
+                  "CURRENCY_NOT_SUPPORTED_FOR_CARD_TYPE"
+                ]
+              },
+              "description": {
+                "type": "string",
+                "enum": [
+                  "The issued currency code of this card is not supported for direct card payments. Please refer https://developer.paypal.com/api/rest/reference/currency-codes/ for list of supported currency codes."
+                ]
+              }
+            }
+          },
+          {
+            "title": "ONLY_ONE_PAYMENT_SOURCE_ALLOWED",
+            "properties": {
+              "issue": {
+                "type": "string",
+                "enum": [
+                  "ONLY_ONE_PAYMENT_SOURCE_ALLOWED"
+                ]
+              },
+              "description": {
+                "type": "string",
+                "enum": [
+                  "More than one payment method within the payment source is not supported."
+                ]
+              }
+            }
+          },
+          {
+            "title": "NO_PAYMENT_SOURCE_PROVIDED",
+            "properties": {
+              "issue": {
+                "type": "string",
+                "enum": [
+                  "NO_PAYMENT_SOURCE_PROVIDED"
+                ]
+              },
+              "description": {
+                "type": "string",
+                "enum": [
+                  "At least one payment method is required within the payment source."
+                ]
+              }
+            }
+          },
+          {
+            "title": "PAYMENT_ALREADY_APPROVED",
+            "properties": {
+              "issue": {
+                "type": "string",
+                "enum": [
+                  "PAYMENT_ALREADY_APPROVED"
+                ]
+              },
+              "description": {
+                "type": "string",
+                "enum": [
+                  "The payment has already been approved.  Please capture the order, or create and confirm a new order with this payment source."
+                ]
+              }
+            }
+          },
+          {
+            "title": "UNSUPPORTED_PROCESSING_INSTRUCTION",
+            "properties": {
+              "issue": {
+                "type": "string",
+                "enum": [
+                  "UNSUPPORTED_PROCESSING_INSTRUCTION"
+                ]
+              },
+              "description": {
+                "type": "string",
+                "enum": [
+                  "The specified processing_instruction is not supported for the given payment_source. Please refer to https://developer.paypal.com/api/orders/v2/#definition-processing_instruction for the list of payment_source that can be specified with this value."
+                ]
+              }
+            }
+          },
+          {
+            "title": "ORDER_COMPLETE_ON_PAYMENT_APPROVAL",
+            "properties": {
+              "issue": {
+                "type": "string",
+                "enum": [
+                  "ORDER_COMPLETE_ON_PAYMENT_APPROVAL"
+                ]
+              },
+              "description": {
+                "type": "string",
+                "enum": [
+                  "A processing_instruction of `ORDER_COMPLETE_ON_PAYMENT_APPROVAL` is required for the specified payment_source."
+                ]
+              }
+            }
+          },
+          {
+            "title": "INVALID_EXPIRY_DATE",
+            "properties": {
+              "issue": {
+                "type": "string",
+                "enum": [
+                  "INVALID_EXPIRY_DATE"
+                ]
+              },
+              "description": {
+                "type": "string",
+                "enum": [
+                  "Expiry date is invalid. Expiry date should be a date in future and within the threshold for the payment source."
+                ]
+              }
+            }
+          },
+          {
+            "title": "TOKEN_EXPIRED",
+            "properties": {
+              "issue": {
+                "type": "string",
+                "enum": [
+                  "TOKEN_EXPIRED"
+                ]
+              },
+              "description": {
+                "type": "string",
+                "enum": [
+                  "The token is expired and cannot be used for payment."
+                ]
+              }
+            }
+          },
+          {
+            "title": "INVALID_GOOGLE_PAY_TOKEN",
+            "properties": {
+              "issue": {
+                "type": "string",
+                "enum": [
+                  "INVALID_GOOGLE_PAY_TOKEN"
+                ]
+              },
+              "description": {
+                "type": "string",
+                "enum": [
+                  "The google pay token is invalid. PayPal was not able to decrypt the googlepay token or PayPal was not able to find the necessary data in the token after decryption."
+                ]
+              }
+            }
+          },
+          {
+            "title": "GOOGLE_PAY_GATEWAY_MERCHANT_ID_MISMATCH",
+            "properties": {
+              "issue": {
+                "type": "string",
+                "enum": [
+                  "GOOGLE_PAY_GATEWAY_MERCHANT_ID_MISMATCH"
+                ]
+              },
+              "description": {
+                "type": "string",
+                "enum": [
+                  "The gateway merchant ID in Google Pay token is not valid. This could be because the gateway merchant Id that was authorized by payer/buyer on Google Pay does not match with the API caller of the order."
+                ]
+              }
+            }
+          },
+          {
+            "title": "CRYPTOGRAM_REQUIRED",
+            "properties": {
+              "issue": {
+                "type": "string",
+                "enum": [
+                  "CRYPTOGRAM_REQUIRED"
+                ]
+              },
+              "description": {
+                "type": "string",
+                "enum": [
+                  "Cryptogram is required if authentication method is CRYPTOGRAM 3DS."
+                ]
+              }
+            }
+          },
+          {
+            "title": "ONE_OF_PARAMETERS_REQUIRED",
+            "properties": {
+              "issue": {
+                "type": "string",
+                "enum": [
+                  "ONE_OF_PARAMETERS_REQUIRED"
+                ]
+              },
+              "description": {
+                "type": "string",
+                "enum": [
+                  "One or more field is required to continue with this request."
+                ]
+              }
+            }
+          },
+          {
+            "title": "RETURN_URL_REQUIRED",
+            "properties": {
+              "issue": {
+                "type": "string",
+                "enum": [
+                  "RETURN_URL_REQUIRED"
+                ]
+              },
+              "description": {
+                "type": "string",
+                "enum": [
+                  "The return url is required when attempting to vault this source."
+                ]
+              }
+            }
+          },
+          {
+            "title": "CANCEL_URL_REQUIRED",
+            "properties": {
+              "issue": {
+                "type": "string",
+                "enum": [
+                  "CANCEL_URL_REQUIRED"
+                ]
+              },
+              "description": {
+                "type": "string",
+                "enum": [
+                  "The cancel url is required when attempting to vault this source."
+                ]
+              }
+            }
+          },
+          {
+            "title": "COUNTRY_NOT_SUPPORTED_BY_PAYMENT_SOURCE",
+            "properties": {
+              "issue": {
+                "type": "string",
+                "enum": [
+                  "COUNTRY_NOT_SUPPORTED_BY_PAYMENT_SOURCE"
+                ]
+              },
+              "description": {
+                "type": "string",
+                "enum": [
+                  "Country code provided is not supported by the provided payment source."
+                ]
+              }
+            }
+          },
+          {
+            "title": "REQUIRED_PARAMETER_FOR_PAYMENT_SOURCE",
+            "properties": {
+              "issue": {
+                "type": "string",
+                "enum": [
+                  "REQUIRED_PARAMETER_FOR_PAYMENT_SOURCE"
+                ]
+              },
+              "description": {
+                "type": "string",
+                "enum": [
+                  "The parameter is required for provided payment source."
+                ]
+              }
+            }
+          },
+          {
+            "title": "REQUIRED_PARAMETER_FOR_CUSTOMER_INITIATED_PAYMENT",
+            "properties": {
+              "issue": {
+                "type": "string",
+                "enum": [
+                  "REQUIRED_PARAMETER_FOR_CUSTOMER_INITIATED_PAYMENT"
+                ]
+              },
+              "description": {
+                "type": "string",
+                "enum": [
+                  "This parameter is required when the customer is present. If the customer is not present, indicate so by sending payment_initiator=`MERCHANT`. For details, see <a href=\"https://developer.paypal.com/docs/api/orders/v2/#definition-card_stored_credential\">Stored Credential</a>."
+                ]
+              }
+            }
+          },
+          {
+            "title": "ITEM_CATEGORY_NOT_SUPPORTED_BY_PAYMENT_SOURCE",
+            "properties": {
+              "issue": {
+                "type": "string",
+                "enum": [
+                  "ITEM_CATEGORY_NOT_SUPPORTED_BY_PAYMENT_SOURCE"
+                ]
+              },
+              "description": {
+                "type": "string",
+                "enum": [
+                  "The provided payment source does not support provided item category."
+                ]
+              }
+            }
+          },
+          {
+            "title": "PAYMENT_SOURCE_INFO_CANNOT_BE_VERIFIED",
+            "properties": {
+              "issue": {
+                "type": "string",
+                "enum": [
+                  "PAYMENT_SOURCE_INFO_CANNOT_BE_VERIFIED"
+                ]
+              },
+              "description": {
+                "type": "string",
+                "enum": [
+                  "The combination of the payment_source name, billing address, shipping name and shipping address could not be verified. Please correct this information and try again by creating a new order."
+                ]
+              }
+            }
+          },
+          {
+            "title": "PAYMENT_SOURCE_DECLINED_BY_PROCESSOR",
+            "properties": {
+              "issue": {
+                "type": "string",
+                "enum": [
+                  "PAYMENT_SOURCE_DECLINED_BY_PROCESSOR"
+                ]
+              },
+              "description": {
+                "type": "string",
+                "enum": [
+                  "The provided payment source is declined by the processor. Please try again with a different payment source by creating a new order."
+                ]
+              }
+            }
+          },
+          {
+            "title": "PAYMENT_SOURCE_CANNOT_BE_USED",
+            "properties": {
+              "issue": {
+                "type": "string",
+                "enum": [
+                  "PAYMENT_SOURCE_CANNOT_BE_USED"
+                ]
+              },
+              "description": {
+                "type": "string",
+                "enum": [
+                  "The provided payment source cannot be used to pay for the order. Please try again with a different payment source by creating a new order."
+                ]
+              }
+            }
+          },
+          {
+            "title": "SETUP_ERROR_FOR_BANK",
+            "properties": {
+              "issue": {
+                "type": "string",
+                "enum": [
+                  "SETUP_ERROR_FOR_BANK"
+                ]
+              },
+              "description": {
+                "type": "string",
+                "enum": [
+                  "The API Caller account setup, for bank payments, is incomplete or incorrect. Please contact your PayPal account manager."
+                ]
+              }
+            }
+          },
+          {
+            "title": "BANK_NOT_SUPPORTED_FOR_VERIFICATION",
+            "properties": {
+              "issue": {
+                "type": "string",
+                "enum": [
+                  "BANK_NOT_SUPPORTED_FOR_VERIFICATION"
+                ]
+              },
+              "description": {
+                "type": "string",
+                "enum": [
+                  "Verification for this bank account is not supported."
+                ]
+              }
+            }
+          },
+          {
+            "title": "APPLE_PAY_AMOUNT_MISMATCH",
+            "properties": {
+              "issue": {
+                "type": "string",
+                "enum": [
+                  "APPLE_PAY_AMOUNT_MISMATCH"
+                ]
+              },
+              "description": {
+                "type": "string",
+                "enum": [
+                  "The 'amount' specified in the Order should match the amount that was viewed and authorized by the payer/buyer on Apple Pay. If the amount has changed, please redirect the buyer to authorize the order again via Apple Pay."
+                ]
+              }
+            }
+          },
+          {
+            "title": "ONE_OF_THE_PARAMETERS_REQUIRED",
+            "properties": {
+              "issue": {
+                "type": "string",
+                "enum": [
+                  "ONE_OF_THE_PARAMETERS_REQUIRED"
+                ]
+              },
+              "description": {
+                "type": "string",
+                "enum": [
+                  "One or more field is required to continue with this request."
+                ]
+              }
+            }
+          },
+          {
+            "title": "BILLING_ADDRESS_INVALID",
+            "properties": {
+              "issue": {
+                "type": "string",
+                "enum": [
+                  "BILLING_ADDRESS_INVALID"
+                ]
+              },
+              "description": {
+                "type": "string",
+                "enum": [
+                  "Provided billing address is invalid."
+                ]
+              }
+            }
+          },
+          {
+            "title": "SHIPPING_ADDRESS_INVALID",
+            "properties": {
+              "issue": {
+                "type": "string",
+                "enum": [
+                  "SHIPPING_ADDRESS_INVALID"
+                ]
+              },
+              "description": {
+                "type": "string",
+                "enum": [
+                  "Provided shipping address is invalid."
+                ]
+              }
+            }
+          },
+          {
+            "title": "ORDER_IS_PENDING_APPROVAL",
+            "properties": {
+              "issue": {
+                "type": "string",
+                "enum": [
+                  "ORDER_IS_PENDING_APPROVAL"
+                ]
+              },
+              "description": {
+                "type": "string",
+                "enum": [
+                  "The order was confirmed and payer action completed but order approval processing from PayPal is pending. No action is needed from Payee or Payer. Please wait until order status changes to 'APPROVED'."
+                ]
+              }
+            }
+          },
+          {
+            "title": "DEVICE_DATA_NOT_AVAILABLE",
+            "properties": {
+              "issue": {
+                "type": "string",
+                "enum": [
+                  "DEVICE_DATA_NOT_AVAILABLE"
+                ]
+              },
+              "description": {
+                "type": "string",
+                "enum": [
+                  "Device Data is not available for processing this order. The PayPal-Client-Metadata-Id header value sent during `Create Order` api call is either missing or incorrect or there was an error in collecting required data. Please verify if appropriate value for PayPal-Client-Metadata-Id header is being sent during 'Create Order' api call. Please note this error only applies to payment_source.pay_upon_invoice at the moment."
+                ]
+              }
+            }
+          },
+          {
+            "title": "CURRENCY_NOT_SUPPORTED_FOR_BANK",
+            "properties": {
+              "issue": {
+                "type": "string",
+                "enum": [
+                  "CURRENCY_NOT_SUPPORTED_FOR_BANK"
+                ]
+              },
+              "description": {
+                "type": "string",
+                "enum": [
+                  "The payment_source does not support the currency of the Order. For ACH debit, only USD is supported and for SEPA debit, only EUR is supported."
+                ]
+              }
+            }
+          },
+          {
+            "title": "ONLY_ONE_BANK_SOURCE_ALLOWED",
+            "properties": {
+              "issue": {
+                "type": "string",
+                "enum": [
+                  "ONLY_ONE_BANK_SOURCE_ALLOWED"
+                ]
+              },
+              "description": {
+                "type": "string",
+                "enum": [
+                  "More than one payment method within the bank payment object is not supported."
+                ]
+              }
+            }
+          },
+          {
+            "title": "INVALID_IBAN",
+            "properties": {
+              "issue": {
+                "type": "string",
+                "enum": [
+                  "INVALID_IBAN"
+                ]
+              },
+              "description": {
+                "type": "string",
+                "enum": [
+                  "IBAN provided is not a valid bank account number."
+                ]
+              }
+            }
+          },
+          {
+            "title": "IBAN_COUNTRY_NOT_SUPPORTED",
+            "properties": {
+              "issue": {
+                "type": "string",
+                "enum": [
+                  "IBAN_COUNTRY_NOT_SUPPORTED"
+                ]
+              },
+              "description": {
+                "type": "string",
+                "enum": [
+                  "Country code of issuer bank for the provided IBAN is not supported for SEPA debit payments."
+                ]
+              }
+            }
+          },
+          {
+            "title": "PAYEE_COUNTRY_NOT_SUPPORTED_FOR_PAYMENT_SOURCE",
+            "properties": {
+              "issue": {
+                "type": "string",
+                "enum": [
+                  "PAYEE_COUNTRY_NOT_SUPPORTED_FOR_PAYMENT_SOURCE"
+                ]
+              },
+              "description": {
+                "type": "string",
+                "enum": [
+                  "Payee country code is not supported by the provided payment source."
+                ]
+              }
+            }
+          },
+          {
+            "title": "CARD_NUMBER_REQUIRED",
+            "properties": {
+              "issue": {
+                "type": "string",
+                "enum": [
+                  "CARD_NUMBER_REQUIRED"
+                ]
+              },
+              "description": {
+                "type": "string",
+                "enum": [
+                  "The card number is required when attempting to process payment with card."
+                ]
+              }
+            }
+          },
+          {
+            "title": "CARD_EXPIRY_REQUIRED",
+            "properties": {
+              "issue": {
+                "type": "string",
+                "enum": [
+                  "CARD_EXPIRY_REQUIRED"
+                ]
+              },
+              "description": {
+                "type": "string",
+                "enum": [
+                  "The card expiry is required when attempting to process payment with card."
+                ]
+              }
+            }
+          },
+          {
+            "title": "INCOMPATIBLE_PARAMETER_VALUE",
+            "properties": {
+              "issue": {
+                "type": "string",
+                "enum": [
+                  "INCOMPATIBLE_PARAMETER_VALUE"
+                ]
+              },
+              "description": {
+                "type": "string",
+                "enum": [
+                  "The value of the field is incompatible/redundant with other fields in the order."
+                ]
+              }
+            }
+          },
+          {
+            "title": "VAULT_INSTRUCTION_DUPLICATED",
+            "properties": {
+              "issue": {
+                "type": "string",
+                "enum": [
+                  "VAULT_INSTRUCTION_DUPLICATED"
+                ]
+              },
+              "description": {
+                "type": "string",
+                "enum": [
+                  "Only one vault instruction is allowed. Please use `vault.store_in_vault` to provide vault instruction."
+                ]
+              }
+            }
+          },
+          {
+            "title": "VAULT_INSTRUCTION_REQUIRED",
+            "properties": {
+              "issue": {
+                "type": "string",
+                "enum": [
+                  "VAULT_INSTRUCTION_REQUIRED"
+                ]
+              },
+              "description": {
+                "type": "string",
+                "enum": [
+                  "Vault instruction is required. Please use `vault.store_in_vault` to provide vault instruction."
+                ]
+              }
+            }
+          },
+          {
+            "title": "MISMATCHED_VAULT_ID_TO_PAYMENT_SOURCE",
+            "properties": {
+              "issue": {
+                "type": "string",
+                "enum": [
+                  "MISMATCHED_VAULT_ID_TO_PAYMENT_SOURCE"
+                ]
+              },
+              "description": {
+                "type": "string",
+                "enum": [
+                  "The vault_id does not match the payment_source provided. Please verify that the vault_id token used refers to the matching payment_source and try again. For example, a PayPal token cannot be passed in the vault_id field in the payment_source.card object."
+                ]
+              }
+            }
+          },
+          {
+            "title": "NOT_ELIGIBLE_FOR_PNREF_PROCESSING",
+            "properties": {
+              "issue": {
+                "type": "string",
+                "enum": [
+                  "NOT_ELIGIBLE_FOR_PNREF_PROCESSING"
+                ]
+              },
+              "description": {
+                "type": "string",
+                "enum": [
+                  "API caller is not enabled to process payments with the `pnref`. Please contact customer support to request permissions to process transactions with PNREF."
+                ]
+              }
+            }
+          },
+          {
+            "title": "NOT_ELIGIBLE_FOR_PAYPAL_TRANSACTION_ID_PROCESSING",
+            "properties": {
+              "issue": {
+                "type": "string",
+                "enum": [
+                  "NOT_ELIGIBLE_FOR_PAYPAL_TRANSACTION_ID_PROCESSING"
+                ]
+              },
+              "description": {
+                "type": "string",
+                "enum": [
+                  "API caller is not enable to process payments using `paypal_transaction_id`. Please contact customer support to request permissions to process transactions with PayPal transaction ID."
+                ]
+              }
+            }
+          },
+          {
+            "title": "PAYPAL_TRANSACTION_ID_NOT_FOUND",
+            "properties": {
+              "issue": {
+                "type": "string",
+                "enum": [
+                  "PAYPAL_TRANSACTION_ID_NOT_FOUND"
+                ]
+              },
+              "description": {
+                "type": "string",
+                "enum": [
+                  "Specified `paypal_transaction_id` was not found. Verify the value and try the request again."
+                ]
+              }
+            }
+          },
+          {
+            "title": "PNREF_NOT_FOUND",
+            "properties": {
+              "issue": {
+                "type": "string",
+                "enum": [
+                  "PNREF_NOT_FOUND"
+                ]
+              },
+              "description": {
+                "type": "string",
+                "enum": [
+                  "Specified `pnref` was not found. Verify the value and try the request again."
+                ]
+              }
+            }
+          },
+          {
+            "title": "INVALID_SECURITY_CODE_LENGTH",
+            "properties": {
+              "issue": {
+                "type": "string",
+                "enum": [
+                  "INVALID_SECURITY_CODE_LENGTH"
+                ]
+              },
+              "description": {
+                "type": "string",
+                "enum": [
+                  "The security_code length is invalid for the specified card brand."
+                ]
+              }
+            }
+          },
+          {
+            "title": "NOT_ENABLED_TO_VAULT_PAYMENT_SOURCE",
+            "properties": {
+              "issue": {
+                "type": "string",
+                "enum": [
+                  "NOT_ENABLED_TO_VAULT_PAYMENT_SOURCE"
+                ]
+              },
+              "description": {
+                "type": "string",
+                "enum": [
+                  "The API caller or the merchant on whose behalf the API call is initiated is not allowed to vault the given source. Please contact PayPal customer support for assistance."
+                ]
+              }
+            }
+          },
+          {
+            "title": "CRYPTOGRAM_REQUIRED",
+            "properties": {
+              "issue": {
+                "type": "string",
+                "enum": [
+                  "CRYPTOGRAM_REQUIRED"
+                ]
+              },
+              "description": {
+                "type": "string",
+                "enum": [
+                  "Cryptogram is required if authentication method is CRYPTOGRAM 3DS."
+                ]
+              }
+            }
+          },
+          {
+            "title": "EMV_DATA_REQUIRED",
+            "properties": {
+              "issue": {
+                "type": "string",
+                "enum": [
+                  "EMV_DATA_REQUIRED"
+                ]
+              },
+              "description": {
+                "type": "string",
+                "enum": [
+                  "EMV Data is required if authentication method is EMV."
+                ]
+              }
+            }
+          },
+          {
+            "title": "ALIAS_DECLINED_BY_PROCESSOR",
+            "properties": {
+              "issue": {
+                "type": "string",
+                "enum": [
+                  "ALIAS_DECLINED_BY_PROCESSOR"
+                ]
+              },
+              "description": {
+                "type": "string",
+                "enum": [
+                  "The provided alias was declined by the processor. Please create a new order with a different alias_key and/or alias_label and try again."
+                ]
+              }
+            }
+          },
+          {
+            "title": "BLIK_ONE_CLICK_MISSING_REQUIRED_PARAMETER",
+            "properties": {
+              "issue": {
+                "type": "string",
+                "enum": [
+                  "BLIK_ONE_CLICK_MISSING_REQUIRED_PARAMETER"
+                ]
+              },
+              "description": {
+                "type": "string",
+                "enum": [
+                  "Blik's one_click flow requires one_click.auth_code and one_click.alias_label parameters for the buyer's first transaction. For all subsequent transactions,only the one_click.alias_key parameter is required."
+                ]
+              }
+            }
+          },
+          {
+            "title": "TRANSACTION_LIMIT_EXCEEDED",
+            "properties": {
+              "issue": {
+                "type": "string",
+                "enum": [
+                  "TRANSACTION_LIMIT_EXCEEDED"
+                ]
+              },
+              "description": {
+                "type": "string",
+                "enum": [
+                  "Total payment amount exceeded transaction limit."
+                ]
+              }
+            }
+          }
+        ]
+      }
+    }
+  }
+}

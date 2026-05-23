@@ -1,0 +1,15 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/recipient_enum",
+  "title": "Recipient type",
+  "description": "The ID type that identifies the payment receiver.",
+  "type": "string",
+  "minLength": 1,
+  "maxLength": 36,
+  "pattern": "^[0-9A-Z_]+$",
+  "enum": [
+    "EMAIL",
+    "PHONE",
+    "PAYPAL_ID"
+  ]
+}

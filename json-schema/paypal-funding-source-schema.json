@@ -1,0 +1,13 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/funding_source",
+  "title": "Funding source",
+  "description": "Identifies a funding source type.",
+  "type": "string",
+  "minLength": 1,
+  "maxLength": 36,
+  "pattern": "^[0-9A-Z_]+$",
+  "enum": [
+    "BALANCE"
+  ]
+}

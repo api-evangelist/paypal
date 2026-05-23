@@ -1,0 +1,31 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/subscriptions.cancel-400",
+  "title": "subscriptions.cancel-400",
+  "properties": {
+    "details": {
+      "type": "array",
+      "items": {
+        "anyOf": [
+          {
+            "title": "INVALID_STRING_MAX_LENGTH",
+            "properties": {
+              "issue": {
+                "type": "string",
+                "enum": [
+                  "INVALID_STRING_MAX_LENGTH"
+                ]
+              },
+              "description": {
+                "type": "string",
+                "enum": [
+                  "The value of a field is too long."
+                ]
+              }
+            }
+          }
+        ]
+      }
+    }
+  }
+}

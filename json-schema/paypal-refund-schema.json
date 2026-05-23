@@ -1,0 +1,120 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/refund",
+  "title": "Refund",
+  "type": "object",
+  "description": "The refund information.",
+  "allOf": [
+    {
+      "$ref": "#/components/schemas/refund_status"
+    },
+    {
+      "properties": {
+        "id": {
+          "description": "The PayPal-generated ID for the refund.",
+          "type": "string",
+          "readOnly": true
+        },
+        "amount": {
+          "description": "The amount that the payee refunded to the payer.",
+          "$ref": "#/components/schemas/money",
+          "readOnly": true
+        },
+        "invoice_id": {
+          "description": "The API caller-provided external invoice number for this order. Appears in both the payer's transaction history and the emails that the payer receives.",
+          "type": "string",
+          "readOnly": true
+        },
+        "custom_id": {
+          "type": "string",
+          "description": "The API caller-provided external ID. Used to reconcile API caller-initiated transactions with PayPal transactions. Appears in transaction and settlement reports.",
+          "minLength": 1,
+          "maxLength": 127,
+          "pattern": "^[A-Za-z0-9-_.,]*$"
+        },
+        "acquirer_reference_number": {
+          "type": "string",
+          "description": "Reference ID issued for the card transaction. This ID can be used to track the transaction across processors, card brands and issuing banks.",
+          "minLength": 1,
+          "maxLength": 36,
+          "pattern": "^[a-zA-Z0-9]+$"
+        },
+        "note_to_payer": {
+          "description": "The reason for the refund. Appears in both the payer's transaction history and the emails that the payer receives.",
+          "type": "string",
+          "readOnly": true
+        },
+        "seller_payable_breakdown": {
+          "description": "The breakdown of the refund.",
+          "type": "object",
+          "title": "Merchant Payable Breakdown",
+          "properties": {
+            "gross_amount": {
+              "description": "The amount that the payee refunded to the payer.",
+              "$ref": "#/components/schemas/money",
+              "readOnly": true
+            },
+            "paypal_fee": {
+              "description": "The PayPal fee that was refunded to the payer in the currency of the transaction. This fee might not match the PayPal fee that the payee paid when the payment was captured.",
+              "$ref": "#/components/schemas/money",
+              "readOnly": true
+            },
+            "paypal_fee_in_receivable_currency": {
+              "description": "The PayPal fee that was refunded to the payer in the receivable currency. Returned only in cases when the receivable currency is different from transaction currency. Example 'CNY'.",
+              "$ref": "#/components/schemas/money",
+              "readOnly": true
+            },
+            "net_amount": {
+              "description": "The net amount that the payee's account is debited in the transaction currency. The net amount is calculated as <code>gross_amount</code> minus <code>paypal_fee</code> minus <code>platform_fees</code>.",
+              "$ref": "#/components/schemas/money",
+              "readOnly": true
+            },
+            "net_amount_in_receivable_currency": {
+              "description": "The net amount that the payee's account is debited in the receivable currency. Returned only in cases when the receivable currency is different from transaction currency. Example 'CNY'.",
+              "$ref": "#/components/schemas/money",
+              "readOnly": true
+            },
+            "platform_fees": {
+              "type": "array",
+              "description": "An array of platform or partner fees, commissions, or brokerage fees for the refund.",
+              "minItems": 0,
+              "maxItems": 1,
+              "items": {
+                "$ref": "#/components/schemas/platform_fee"
+              }
+            },
+            "net_amount_breakdown": {
+              "type": "array",
+              "description": "An array of breakdown values for the net amount. Returned when the currency of the refund is different from the currency of the PayPal account where the payee holds their funds.",
+              "items": {
+                "$ref": "#/components/schemas/net_amount_breakdown_item"
+              },
+              "readOnly": true
+            },
+            "total_refunded_amount": {
+              "description": "The total amount refunded from the original capture to date. For example, if a payer makes a $100 purchase and was refunded $20 a week ago and was refunded $30 in this refund, the `gross_amount` is $30 for this refund and the `total_refunded_amount` is $50.",
+              "$ref": "#/components/schemas/money"
+            }
+          },
+          "readOnly": true
+        },
+        "payer": {
+          "description": "The details associated with the merchant for this transaction.",
+          "$ref": "#/components/schemas/payee_base",
+          "readOnly": true
+        },
+        "links": {
+          "description": "An array of related [HATEOAS links](/docs/api/reference/api-responses/#hateoas-links).",
+          "type": "array",
+          "readOnly": true,
+          "items": {
+            "$ref": "#/components/schemas/link_description"
+          }
+        }
+      }
+    },
+    {
+      "$ref": "#/components/schemas/activity_timestamps"
+    }
+  ]
+}

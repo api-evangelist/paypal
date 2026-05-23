@@ -1,0 +1,14 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/payment_reference",
+  "title": "Payment Reference",
+  "type": "object",
+  "description": "The reference to the payment detail.",
+  "properties": {
+    "payment_id": {
+      "type": "string",
+      "description": "The ID for the invoice payment.",
+      "readOnly": true
+    }
+  }
+}

@@ -1,0 +1,12 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/invoice_creation_flow",
+  "title": "Invoice Creation Flow",
+  "type": "string",
+  "description": "The frequency at which the invoice is sent:<ul><li>Multiple recipient. Sent to multiple recipients.</li><li>Batch. Sent in a batch.</li><li>Regular single. Sent one time to a single recipient.</li></ul>",
+  "enum": [
+    "MULTIPLE_RECIPIENTS_GROUP",
+    "BATCH",
+    "REGULAR_SINGLE"
+  ]
+}

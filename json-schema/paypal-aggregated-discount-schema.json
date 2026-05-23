@@ -1,0 +1,17 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/aggregated_discount",
+  "title": "Aggregated Discount",
+  "type": "object",
+  "description": "The discount. Can be an item- or invoice-level discount, or both. Can be applied as a percent or amount. If you provide both amount and percent, amount takes precedent.",
+  "properties": {
+    "invoice_discount": {
+      "$ref": "#/components/schemas/discount",
+      "description": "The discount as a percent or amount at invoice level. The invoice discount amount is subtracted from the item total."
+    },
+    "item_discount": {
+      "$ref": "#/components/schemas/money",
+      "description": "The discount as a percent or amount at item level. The item discount amount is subtracted from each item amount."
+    }
+  }
+}

@@ -1,0 +1,13 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/business_address_type",
+  "title": "Business address type",
+  "description": "Address type under which the provided address is tagged",
+  "type": "string",
+  "pattern": "^[0-9A-Z_]+$",
+  "minLength": 1,
+  "maxLength": 255,
+  "enum": [
+    "WORK"
+  ]
+}

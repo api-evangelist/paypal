@@ -1,0 +1,99 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/orders.trackers.patch-422",
+  "title": "orders.trackers.patch-422",
+  "properties": {
+    "details": {
+      "type": "array",
+      "items": {
+        "anyOf": [
+          {
+            "title": "INVALID_JSON_POINTER_FORMAT",
+            "properties": {
+              "issue": {
+                "type": "string",
+                "enum": [
+                  "INVALID_JSON_POINTER_FORMAT"
+                ]
+              },
+              "description": {
+                "type": "string",
+                "enum": [
+                  "Path should be a valid [JSON Pointer](https://tools.ietf.org/html/rfc6901) that references a location within the request where the operation is performed."
+                ]
+              }
+            }
+          },
+          {
+            "title": "NOT_PATCHABLE",
+            "properties": {
+              "issue": {
+                "type": "string",
+                "enum": [
+                  "NOT_PATCHABLE"
+                ]
+              },
+              "description": {
+                "type": "string",
+                "enum": [
+                  "Cannot be patched."
+                ]
+              }
+            }
+          },
+          {
+            "title": "PATCH_VALUE_REQUIRED",
+            "properties": {
+              "issue": {
+                "type": "string",
+                "enum": [
+                  "PATCH_VALUE_REQUIRED"
+                ]
+              },
+              "description": {
+                "type": "string",
+                "enum": [
+                  "Specify a `value` for the field being patched."
+                ]
+              }
+            }
+          },
+          {
+            "title": "PATCH_PATH_REQUIRED",
+            "properties": {
+              "issue": {
+                "type": "string",
+                "enum": [
+                  "PATCH_PATH_REQUIRED"
+                ]
+              },
+              "description": {
+                "type": "string",
+                "enum": [
+                  "Specify a `value` for the field in which the operation needs to be performed."
+                ]
+              }
+            }
+          },
+          {
+            "title": "ITEM_SKU_MISMATCH",
+            "properties": {
+              "issue": {
+                "type": "string",
+                "enum": [
+                  "ITEM_SKU_MISMATCH"
+                ]
+              },
+              "description": {
+                "type": "string",
+                "enum": [
+                  "Item sku must match one of the items sku that was provided during order creation."
+                ]
+              }
+            }
+          }
+        ]
+      }
+    }
+  }
+}

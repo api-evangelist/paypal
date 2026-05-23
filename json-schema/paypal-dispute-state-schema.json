@@ -1,0 +1,18 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/dispute_state",
+  "title": "Dispute State",
+  "type": "string",
+  "minLength": 1,
+  "maxLength": 255,
+  "pattern": "^[0-9A-Z_]+$",
+  "description": "The user specific state of the dispute, could vary between parties during the dispute lifecycle.",
+  "enum": [
+    "OPEN_INQUIRIES",
+    "REQUIRED_ACTION",
+    "REQUIRED_OTHER_PARTY_ACTION",
+    "UNDER_PAYPAL_REVIEW",
+    "APPEALABLE",
+    "RESOLVED"
+  ]
+}

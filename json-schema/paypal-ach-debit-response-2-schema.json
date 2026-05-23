@@ -1,0 +1,19 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/ach_debit_response-2",
+  "title": "ACH Debit Response",
+  "description": "A Resource representing a response of vaulted a ACH Debit Account.",
+  "allOf": [
+    {
+      "$ref": "#/components/schemas/ach_debit_response"
+    },
+    {
+      "properties": {
+        "verification_status": {
+          "description": "ACH Debit Verification Status",
+          "$ref": "#/components/schemas/ach_debit_verification_status"
+        }
+      }
+    }
+  ]
+}

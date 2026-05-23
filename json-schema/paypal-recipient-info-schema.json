@@ -1,0 +1,17 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/recipient_info",
+  "title": "Recipient Information",
+  "type": "object",
+  "description": "The billing and shipping information. Includes name, email, address, phone, and language.",
+  "properties": {
+    "billing_info": {
+      "$ref": "#/components/schemas/billing_info",
+      "description": "The billing information for the invoice recipient. Includes name, address, email, phone, and language."
+    },
+    "shipping_info": {
+      "$ref": "#/components/schemas/contact_name_address",
+      "description": "The recipient's shipping information. Includes the user's contact information, which includes name and address."
+    }
+  }
+}

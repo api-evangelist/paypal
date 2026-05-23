@@ -1,0 +1,235 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/authorizations.reauthorize-422",
+  "title": "authorizations.reauthorize-422",
+  "properties": {
+    "details": {
+      "type": "array",
+      "items": {
+        "anyOf": [
+          {
+            "title": "INVALID_CURRENCY_CODE",
+            "properties": {
+              "issue": {
+                "type": "string",
+                "enum": [
+                  "INVALID_CURRENCY_CODE"
+                ]
+              },
+              "description": {
+                "type": "string",
+                "enum": [
+                  "Currency code is invalid or is not currently supported. Please refer https://developer.paypal.com/docs/api/reference/currency-codes/ for list of supported currency codes."
+                ]
+              }
+            }
+          },
+          {
+            "title": "CANNOT_BE_ZERO_OR_NEGATIVE",
+            "properties": {
+              "issue": {
+                "type": "string",
+                "enum": [
+                  "CANNOT_BE_ZERO_OR_NEGATIVE"
+                ]
+              },
+              "description": {
+                "type": "string",
+                "enum": [
+                  "Must be greater than zero. If the currency supports decimals, only two decimal place precision is supported."
+                ]
+              }
+            }
+          },
+          {
+            "title": "DECIMAL_PRECISION",
+            "properties": {
+              "issue": {
+                "type": "string",
+                "enum": [
+                  "DECIMAL_PRECISION"
+                ]
+              },
+              "description": {
+                "type": "string",
+                "enum": [
+                  "If the currency supports decimals, only two decimal place precision is supported."
+                ]
+              }
+            }
+          },
+          {
+            "title": "DECIMALS_NOT_SUPPORTED",
+            "properties": {
+              "issue": {
+                "type": "string",
+                "enum": [
+                  "DECIMALS_NOT_SUPPORTED"
+                ]
+              },
+              "description": {
+                "type": "string",
+                "enum": [
+                  "Currency does not support decimals. Please refer to https://developer.paypal.com/docs/api/reference/currency-codes/ for more information."
+                ]
+              }
+            }
+          },
+          {
+            "title": "TRANSACTION_REFUSED",
+            "properties": {
+              "issue": {
+                "type": "string",
+                "enum": [
+                  "TRANSACTION_REFUSED"
+                ]
+              },
+              "description": {
+                "type": "string",
+                "enum": [
+                  "PayPal's internal controls prevent authorization from being captured."
+                ]
+              }
+            }
+          },
+          {
+            "title": "AUTHORIZATION_VOIDED",
+            "properties": {
+              "issue": {
+                "type": "string",
+                "enum": [
+                  "AUTHORIZATION_VOIDED"
+                ]
+              },
+              "description": {
+                "type": "string",
+                "enum": [
+                  "A voided authorization cannot be captured or reauthorized. "
+                ]
+              }
+            }
+          },
+          {
+            "title": "PAYER_CANNOT_PAY",
+            "properties": {
+              "issue": {
+                "type": "string",
+                "enum": [
+                  "PAYER_CANNOT_PAY"
+                ]
+              },
+              "description": {
+                "type": "string",
+                "enum": [
+                  "Payer cannot pay for this transaction. Please contact the payer to find other ways to pay for this transaction."
+                ]
+              }
+            }
+          },
+          {
+            "title": "AUTHORIZATION_ALREADY_CAPTURED",
+            "properties": {
+              "issue": {
+                "type": "string",
+                "enum": [
+                  "AUTHORIZATION_ALREADY_CAPTURED"
+                ]
+              },
+              "description": {
+                "type": "string",
+                "enum": [
+                  "Authorization has previously been captured."
+                ]
+              }
+            }
+          },
+          {
+            "title": "PAYEE_ACCOUNT_LOCKED_OR_CLOSED",
+            "properties": {
+              "issue": {
+                "type": "string",
+                "enum": [
+                  "PAYEE_ACCOUNT_LOCKED_OR_CLOSED"
+                ]
+              },
+              "description": {
+                "type": "string",
+                "enum": [
+                  "Transaction could not complete because payee account is locked or closed."
+                ]
+              }
+            }
+          },
+          {
+            "title": "PAYER_ACCOUNT_LOCKED_OR_CLOSED",
+            "properties": {
+              "issue": {
+                "type": "string",
+                "enum": [
+                  "PAYER_ACCOUNT_LOCKED_OR_CLOSED"
+                ]
+              },
+              "description": {
+                "type": "string",
+                "enum": [
+                  "The payer account cannot be used for this transaction."
+                ]
+              }
+            }
+          },
+          {
+            "title": "PAYEE_ACCOUNT_RESTRICTED",
+            "properties": {
+              "issue": {
+                "type": "string",
+                "enum": [
+                  "PAYEE_ACCOUNT_RESTRICTED"
+                ]
+              },
+              "description": {
+                "type": "string",
+                "enum": [
+                  "Payee account is restricted."
+                ]
+              }
+            }
+          },
+          {
+            "title": "REAUTHORIZATION_NOT_SUPPORTED",
+            "properties": {
+              "issue": {
+                "type": "string",
+                "enum": [
+                  "REAUTHORIZATION_NOT_SUPPORTED"
+                ]
+              },
+              "description": {
+                "type": "string",
+                "enum": [
+                  "A reauthorize cannot be attempted on an authorization_id that is the result of a prior reauthorization or on an authorization made on an Order saved using the `v2/orders/id/save` API."
+                ]
+              }
+            }
+          },
+          {
+            "title": "AUTH_CURRENCY_MISMATCH",
+            "properties": {
+              "issue": {
+                "type": "string",
+                "enum": [
+                  "AUTH_CURRENCY_MISMATCH"
+                ]
+              },
+              "description": {
+                "type": "string",
+                "enum": [
+                  "The currency specified during reauthorization should be the same as the currency specified in the original authorization. Please check the currency of the authorization for which you are trying to reauthorize and try again."
+                ]
+              }
+            }
+          }
+        ]
+      }
+    }
+  }
+}

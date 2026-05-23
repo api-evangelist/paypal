@@ -1,0 +1,13 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/tracking_number_type",
+  "title": "Tracking Number Type",
+  "type": "string",
+  "description": "The tracking number type.",
+  "minLength": 1,
+  "maxLength": 64,
+  "enum": [
+    "CARRIER_PROVIDED",
+    "E2E_PARTNER_PROVIDED"
+  ]
+}

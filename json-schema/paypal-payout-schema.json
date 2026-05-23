@@ -1,0 +1,23 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/payout",
+  "title": "Create Payout Response",
+  "type": "object",
+  "description": "The create payout response.",
+  "properties": {
+    "batch_header": {
+      "description": "The payout header.",
+      "$ref": "#/components/schemas/payout_header"
+    },
+    "links": {
+      "type": "array",
+      "description": "An array of request-related [HATEOAS links](/api/rest/responses/#hateoas-links).",
+      "readOnly": true,
+      "items": {
+        "$ref": "#/components/schemas/link_description"
+      },
+      "minItems": 1,
+      "maxItems": 15000
+    }
+  }
+}

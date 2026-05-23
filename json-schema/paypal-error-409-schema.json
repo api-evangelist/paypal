@@ -1,0 +1,40 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/error_409",
+  "title": "Resource Conflict Error",
+  "type": "object",
+  "description": "The server has detected a conflict while processing this request.",
+  "properties": {
+    "name": {
+      "type": "string",
+      "enum": [
+        "RESOURCE_CONFLICT"
+      ]
+    },
+    "message": {
+      "type": "string",
+      "enum": [
+        "The server has detected a conflict while processing this request."
+      ]
+    },
+    "details": {
+      "type": "array",
+      "items": {
+        "$ref": "#/components/schemas/error_details"
+      }
+    },
+    "debug_id": {
+      "type": "string",
+      "description": "The PayPal internal ID. Used for correlation purposes."
+    },
+    "links": {
+      "description": "An array of request-related [HATEOAS links](https://en.wikipedia.org/wiki/HATEOAS).",
+      "type": "array",
+      "minItems": 0,
+      "maxItems": 10000,
+      "items": {
+        "$ref": "#/components/schemas/error_link_description"
+      }
+    }
+  }
+}

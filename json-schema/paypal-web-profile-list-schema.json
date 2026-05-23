@@ -1,0 +1,12 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/web_profile_list",
+  "title": "Web Profile List",
+  "type": "array",
+  "description": "An array of web profiles.",
+  "minItems": 1,
+  "maxItems": 20,
+  "items": {
+    "$ref": "#/components/schemas/web_profile"
+  }
+}

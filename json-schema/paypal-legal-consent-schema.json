@@ -1,0 +1,28 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/legal_consent",
+  "title": "Legal Consent",
+  "type": "object",
+  "description": "The customer-provided consent.",
+  "additionalProperties": false,
+  "properties": {
+    "type": {
+      "type": "string",
+      "description": "The type of consent. `SHARE_DATA_CONSENT` gives consent to you to share your customer's data with PayPal.",
+      "pattern": "^[0-9A-Z_-]+$",
+      "minLength": 1,
+      "maxLength": 127,
+      "enum": [
+        "SHARE_DATA_CONSENT"
+      ]
+    },
+    "granted": {
+      "type": "boolean",
+      "description": "Indicates whether the customer agreed to share this type of data. To give consent, specify `true`. To withhold consent, specify `false`."
+    }
+  },
+  "required": [
+    "type",
+    "granted"
+  ]
+}

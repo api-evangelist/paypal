@@ -1,0 +1,76 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/product",
+  "title": "Product Details",
+  "description": "The product details.",
+  "type": "object",
+  "properties": {
+    "id": {
+      "type": "string",
+      "description": "The ID of the product.",
+      "minLength": 6,
+      "maxLength": 50
+    },
+    "name": {
+      "type": "string",
+      "description": "The product name.",
+      "minLength": 1,
+      "maxLength": 127
+    },
+    "description": {
+      "type": "string",
+      "description": "The product description.",
+      "minLength": 1,
+      "maxLength": 256
+    },
+    "type": {
+      "type": "string",
+      "description": "The product type. Indicates whether the product is physical or digital goods, or a service.",
+      "minLength": 1,
+      "maxLength": 24,
+      "pattern": "^[A-Z_]+$",
+      "default": "PHYSICAL",
+      "enum": [
+        "PHYSICAL",
+        "DIGITAL",
+        "SERVICE"
+      ]
+    },
+    "category": {
+      "$ref": "#/components/schemas/product_category"
+    },
+    "image_url": {
+      "type": "string",
+      "format": "uri",
+      "minLength": 1,
+      "maxLength": 2000,
+      "description": "The image URL for the product."
+    },
+    "home_url": {
+      "type": "string",
+      "format": "uri",
+      "minLength": 1,
+      "maxLength": 2000,
+      "description": "The home page URL for the product."
+    },
+    "create_time": {
+      "description": "The date and time when the product was created, in [Internet date and time format](https://tools.ietf.org/html/rfc3339#section-5.6).",
+      "readOnly": true,
+      "$ref": "#/components/schemas/date_time"
+    },
+    "update_time": {
+      "description": "The date and time when the product was last updated, in [Internet date and time format](https://tools.ietf.org/html/rfc3339#section-5.6).",
+      "readOnly": true,
+      "$ref": "#/components/schemas/date_time"
+    },
+    "links": {
+      "type": "array",
+      "description": "An array of request-related [HATEOAS links](/docs/api/overview/#hateoas-links).",
+      "readOnly": true,
+      "items": {
+        "$ref": "#/components/schemas/link_description",
+        "readOnly": true
+      }
+    }
+  }
+}

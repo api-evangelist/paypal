@@ -1,0 +1,17 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/template_item_setting",
+  "title": "Template Item Setting",
+  "type": "object",
+  "description": "The template item setting. Sets a template as the default template or edit template.",
+  "properties": {
+    "field_name": {
+      "description": "The field name in `template_data` for which to map corresponding display preferences.",
+      "$ref": "#/components/schemas/template_item_field"
+    },
+    "display_preference": {
+      "description": "The display preference.",
+      "$ref": "#/components/schemas/template_display_preference"
+    }
+  }
+}

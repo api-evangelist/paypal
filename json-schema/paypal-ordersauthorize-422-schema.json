@@ -1,0 +1,1068 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/orders.authorize-422",
+  "title": "orders.authorize-422",
+  "properties": {
+    "details": {
+      "type": "array",
+      "items": {
+        "anyOf": [
+          {
+            "title": "ACTION_DOES_NOT_MATCH_INTENT",
+            "properties": {
+              "issue": {
+                "type": "string",
+                "enum": [
+                  "ACTION_DOES_NOT_MATCH_INTENT"
+                ]
+              },
+              "description": {
+                "type": "string",
+                "enum": [
+                  "Order was created with an intent to 'CAPTURE'. Please use v2/checkout/orders/order_id/capture to complete the transaction or alternately Create an order with an intent of 'AUTHORIZE'."
+                ]
+              }
+            }
+          },
+          {
+            "title": "AGREEMENT_ALREADY_CANCELLED",
+            "properties": {
+              "issue": {
+                "type": "string",
+                "enum": [
+                  "AGREEMENT_ALREADY_CANCELLED"
+                ]
+              },
+              "description": {
+                "type": "string",
+                "enum": [
+                  "The requested agreement is already canceled."
+                ]
+              }
+            }
+          },
+          {
+            "title": "BILLING_AGREEMENT_NOT_FOUND",
+            "properties": {
+              "issue": {
+                "type": "string",
+                "enum": [
+                  "BILLING_AGREEMENT_NOT_FOUND"
+                ]
+              },
+              "description": {
+                "type": "string",
+                "enum": [
+                  "The requested Billing Agreement token was not found."
+                ]
+              }
+            }
+          },
+          {
+            "title": "MISSING_PREVIOUS_REFERENCE",
+            "properties": {
+              "issue": {
+                "type": "string",
+                "enum": [
+                  "MISSING_PREVIOUS_REFERENCE"
+                ]
+              },
+              "description": {
+                "type": "string",
+                "enum": [
+                  "For Merchant initiated network token transactions, either the payment_source.card.stored_credential.previous_network_transaction_reference or payment_source.card.stored_credential.previous_transaction_reference must be included in the request."
+                ]
+              }
+            }
+          },
+          {
+            "title": "MISSING_CRYPTOGRAM",
+            "properties": {
+              "issue": {
+                "type": "string",
+                "enum": [
+                  "MISSING_CRYPTOGRAM"
+                ]
+              },
+              "description": {
+                "type": "string",
+                "enum": [
+                  "Cryptogram is mandatory for any customer initiated network token transactions."
+                ]
+              }
+            }
+          },
+          {
+            "title": "CARD_BRAND_NOT_SUPPORTED",
+            "properties": {
+              "issue": {
+                "type": "string",
+                "enum": [
+                  "CARD_BRAND_NOT_SUPPORTED"
+                ]
+              },
+              "description": {
+                "type": "string",
+                "enum": [
+                  "Processing of this card brand is not supported. Please use another card to continue with this transaction."
+                ]
+              }
+            }
+          },
+          {
+            "title": "DECLINED_DUE_TO_RELATED_TXN",
+            "properties": {
+              "issue": {
+                "type": "string",
+                "enum": [
+                  "DECLINED_DUE_TO_RELATED_TXN"
+                ]
+              },
+              "description": {
+                "type": "string",
+                "enum": [
+                  "One or more transactions in this Order did not succeed. Since this Order is being processed as an All or None Order, if one or more transactions in this Order do not succeed, then all purchase units are marked declined and will not be processed."
+                ]
+              }
+            }
+          },
+          {
+            "title": "DOMESTIC_TRANSACTION_REQUIRED",
+            "properties": {
+              "issue": {
+                "type": "string",
+                "enum": [
+                  "DOMESTIC_TRANSACTION_REQUIRED"
+                ]
+              },
+              "description": {
+                "type": "string",
+                "enum": [
+                  "This transaction requires the payee and payer to be resident in the same country, a domestic transaction is required to create this payment."
+                ]
+              }
+            }
+          },
+          {
+            "title": "DUPLICATE_INVOICE_ID",
+            "properties": {
+              "issue": {
+                "type": "string",
+                "enum": [
+                  "DUPLICATE_INVOICE_ID"
+                ]
+              },
+              "description": {
+                "type": "string",
+                "enum": [
+                  "Duplicate Invoice ID detected. To avoid a potential duplicate transaction your account setting requires that Invoice Id be unique for each transaction."
+                ]
+              }
+            }
+          },
+          {
+            "title": "ORDER_NOT_APPROVED",
+            "properties": {
+              "issue": {
+                "type": "string",
+                "enum": [
+                  "ORDER_NOT_APPROVED"
+                ]
+              },
+              "description": {
+                "type": "string",
+                "enum": [
+                  "Payer has not yet approved the Order for payment. Please redirect the payer to the 'rel':'approve' url returned as part of the HATEOAS links within the Create Order call."
+                ]
+              }
+            }
+          },
+          {
+            "title": "MAX_NUMBER_OF_PAYMENT_ATTEMPTS_EXCEEDED",
+            "properties": {
+              "issue": {
+                "type": "string",
+                "enum": [
+                  "MAX_NUMBER_OF_PAYMENT_ATTEMPTS_EXCEEDED"
+                ]
+              },
+              "description": {
+                "type": "string",
+                "enum": [
+                  "You have exceeded the maximum number of payment attempts."
+                ]
+              }
+            }
+          },
+          {
+            "title": "PAYEE_BLOCKED_TRANSACTION",
+            "properties": {
+              "issue": {
+                "type": "string",
+                "enum": [
+                  "PAYEE_BLOCKED_TRANSACTION"
+                ]
+              },
+              "description": {
+                "type": "string",
+                "enum": [
+                  "The Fraud settings for this seller are such that this payment cannot be executed."
+                ]
+              }
+            }
+          },
+          {
+            "title": "PAYEE_FX_RATE_ID_EXPIRED",
+            "properties": {
+              "issue": {
+                "type": "string",
+                "enum": [
+                  "PAYEE_FX_RATE_ID_EXPIRED"
+                ]
+              },
+              "description": {
+                "type": "string",
+                "enum": [
+                  "The specified FX Rate ID has expired. Please specify a different FX Rate Id and try the request again. Alternately, remove the FX Rate ID to process the request using the default exchange rate."
+                ]
+              }
+            }
+          },
+          {
+            "title": "UNSUPPORTED_INTENT_FOR_PAYMENT_SOURCE",
+            "properties": {
+              "issue": {
+                "type": "string",
+                "enum": [
+                  "UNSUPPORTED_INTENT_FOR_PAYMENT_SOURCE"
+                ]
+              },
+              "description": {
+                "type": "string",
+                "enum": [
+                  "`intent=AUTHORIZE` is not supported for the specified payment_source. Only `intent=CAPTURE` is supported."
+                ]
+              }
+            }
+          },
+          {
+            "title": "PAYER_ACCOUNT_LOCKED_OR_CLOSED",
+            "properties": {
+              "issue": {
+                "type": "string",
+                "enum": [
+                  "PAYER_ACCOUNT_LOCKED_OR_CLOSED"
+                ]
+              },
+              "description": {
+                "type": "string",
+                "enum": [
+                  "The payer account cannot be used for this transaction."
+                ]
+              }
+            }
+          },
+          {
+            "title": "PAYER_ACCOUNT_RESTRICTED",
+            "properties": {
+              "issue": {
+                "type": "string",
+                "enum": [
+                  "PAYER_ACCOUNT_RESTRICTED"
+                ]
+              },
+              "description": {
+                "type": "string",
+                "enum": [
+                  "PAYER_ACCOUNT_RESTRICTED"
+                ]
+              }
+            }
+          },
+          {
+            "title": "PAYER_CANNOT_PAY",
+            "properties": {
+              "issue": {
+                "type": "string",
+                "enum": [
+                  "PAYER_CANNOT_PAY"
+                ]
+              },
+              "description": {
+                "type": "string",
+                "enum": [
+                  "Payer cannot pay for this transaction. Please contact the payer to find other ways to pay for this transaction."
+                ]
+              }
+            }
+          },
+          {
+            "title": "PAYPAL_TRANSACTION_ID_EXPIRED",
+            "properties": {
+              "issue": {
+                "type": "string",
+                "enum": [
+                  "PAYPAL_TRANSACTION_ID_EXPIRED"
+                ]
+              },
+              "description": {
+                "type": "string",
+                "enum": [
+                  "Specified `paypal_transaction_id` has expired. PayPal transaction ID expires 4 years after the date of the initial transaction."
+                ]
+              }
+            }
+          },
+          {
+            "title": "PNREF_EXPIRED",
+            "properties": {
+              "issue": {
+                "type": "string",
+                "enum": [
+                  "PNREF_EXPIRED"
+                ]
+              },
+              "description": {
+                "type": "string",
+                "enum": [
+                  "Specified `pnref` has expired. PNREF expires 15 months after the date of the initial transaction."
+                ]
+              }
+            }
+          },
+          {
+            "title": "REFERENCED_CARD_EXPIRED",
+            "properties": {
+              "issue": {
+                "type": "string",
+                "enum": [
+                  "REFERENCED_CARD_EXPIRED"
+                ]
+              },
+              "description": {
+                "type": "string",
+                "enum": [
+                  "The card underlying the token has expired and hence cannot be used to process a payment."
+                ]
+              }
+            }
+          },
+          {
+            "title": "TOKEN_EXPIRED",
+            "properties": {
+              "issue": {
+                "type": "string",
+                "enum": [
+                  "TOKEN_EXPIRED"
+                ]
+              },
+              "description": {
+                "type": "string",
+                "enum": [
+                  "The token is expired and cannot be used for payment."
+                ]
+              }
+            }
+          },
+          {
+            "title": "TOKEN_ID_NOT_FOUND",
+            "properties": {
+              "issue": {
+                "type": "string",
+                "enum": [
+                  "TOKEN_ID_NOT_FOUND"
+                ]
+              },
+              "description": {
+                "type": "string",
+                "enum": [
+                  "Specified token was not found. Verify the token and try the request again."
+                ]
+              }
+            }
+          },
+          {
+            "title": "TRANSACTION_LIMIT_EXCEEDED",
+            "properties": {
+              "issue": {
+                "type": "string",
+                "enum": [
+                  "TRANSACTION_LIMIT_EXCEEDED"
+                ]
+              },
+              "description": {
+                "type": "string",
+                "enum": [
+                  "Total payment amount exceeded transaction limit."
+                ]
+              }
+            }
+          },
+          {
+            "title": "TRANSACTION_RECEIVING_LIMIT_EXCEEDED",
+            "properties": {
+              "issue": {
+                "type": "string",
+                "enum": [
+                  "TRANSACTION_RECEIVING_LIMIT_EXCEEDED"
+                ]
+              },
+              "description": {
+                "type": "string",
+                "enum": [
+                  "The transaction exceeds the receiver's receiving limit."
+                ]
+              }
+            }
+          },
+          {
+            "title": "TRANSACTION_REFUSED",
+            "properties": {
+              "issue": {
+                "type": "string",
+                "enum": [
+                  "TRANSACTION_REFUSED"
+                ]
+              },
+              "description": {
+                "type": "string",
+                "enum": [
+                  "The request was refused."
+                ]
+              }
+            }
+          },
+          {
+            "title": "ORDER_ALREADY_AUTHORIZED",
+            "properties": {
+              "issue": {
+                "type": "string",
+                "enum": [
+                  "ORDER_ALREADY_AUTHORIZED"
+                ]
+              },
+              "description": {
+                "type": "string",
+                "enum": [
+                  "Order already authorized.If 'intent=AUTHORIZE' only one authorization per order is allowed."
+                ]
+              }
+            }
+          },
+          {
+            "title": "AUTH_CAPTURE_NOT_ENABLED",
+            "properties": {
+              "issue": {
+                "type": "string",
+                "enum": [
+                  "AUTH_CAPTURE_NOT_ENABLED"
+                ]
+              },
+              "description": {
+                "type": "string",
+                "enum": [
+                  "Authorization and Capture feature is not enabled for the merchant. Make sure that the recipient of the funds is a verified business account."
+                ]
+              }
+            }
+          },
+          {
+            "title": "AMOUNT_CANNOT_BE_SPECIFIED",
+            "properties": {
+              "issue": {
+                "type": "string",
+                "enum": [
+                  "AMOUNT_CANNOT_BE_SPECIFIED"
+                ]
+              },
+              "description": {
+                "type": "string",
+                "enum": [
+                  "An authorization amount can only be specified if an Order has been saved by calling /v2/checkout/orders/{order_id}/save.  Please save the order and try again."
+                ]
+              }
+            }
+          },
+          {
+            "title": "AUTHORIZATION_AMOUNT_EXCEEDED",
+            "properties": {
+              "issue": {
+                "type": "string",
+                "enum": [
+                  "AUTHORIZATION_AMOUNT_EXCEEDED"
+                ]
+              },
+              "description": {
+                "type": "string",
+                "enum": [
+                  "Authorization amount specified exceeded allowable limit. Specify a different amount and try the request again. Alternately, contact Customer Support to increase your limits. Local regulations (e.g. in PSD2 countries) prohibit overages above the amount authorized by the payer."
+                ]
+              }
+            }
+          },
+          {
+            "title": "AUTHORIZATION_CURRENCY_MISMATCH",
+            "properties": {
+              "issue": {
+                "type": "string",
+                "enum": [
+                  "AUTHORIZATION_CURRENCY_MISMATCH"
+                ]
+              },
+              "description": {
+                "type": "string",
+                "enum": [
+                  "The currency of the authorization should be same as that in which the Order was created and approved by the Payer. Please check the 'currency_code' and try again."
+                ]
+              }
+            }
+          },
+          {
+            "title": "MAX_AUTHORIZATION_COUNT_EXCEEDED",
+            "properties": {
+              "issue": {
+                "type": "string",
+                "enum": [
+                  "MAX_AUTHORIZATION_COUNT_EXCEEDED"
+                ]
+              },
+              "description": {
+                "type": "string",
+                "enum": [
+                  "Maximum number of authorization allowed for the order is reached. Please contact Customer Support if you need to increase your limit."
+                ]
+              }
+            }
+          },
+          {
+            "title": "ORDER_COMPLETED_OR_VOIDED",
+            "properties": {
+              "issue": {
+                "type": "string",
+                "enum": [
+                  "ORDER_COMPLETED_OR_VOIDED"
+                ]
+              },
+              "description": {
+                "type": "string",
+                "enum": [
+                  "Order is voided or completed and hence cannot be authorized."
+                ]
+              }
+            }
+          },
+          {
+            "title": "ORDER_EXPIRED",
+            "properties": {
+              "issue": {
+                "type": "string",
+                "enum": [
+                  "ORDER_EXPIRED"
+                ]
+              },
+              "description": {
+                "type": "string",
+                "enum": [
+                  "Order is expired and hence cannot be authorized. Please contact Customer Support if you need to increase your order validity period."
+                ]
+              }
+            }
+          },
+          {
+            "title": "INVALID_PICKUP_ADDRESS",
+            "properties": {
+              "issue": {
+                "type": "string",
+                "enum": [
+                  "INVALID_PICKUP_ADDRESS"
+                ]
+              },
+              "description": {
+                "type": "string",
+                "enum": [
+                  "If the 'shipping_option.type' is set as 'PICKUP' then the 'shipping_detail.name.full_name' should start with 'S2S' meaning Ship To Store. Example: 'S2S My Store'."
+                ]
+              }
+            }
+          },
+          {
+            "title": "SHIPPING_ADDRESS_INVALID",
+            "properties": {
+              "issue": {
+                "type": "string",
+                "enum": [
+                  "SHIPPING_ADDRESS_INVALID"
+                ]
+              },
+              "description": {
+                "type": "string",
+                "enum": [
+                  "Provided shipping address is invalid."
+                ]
+              }
+            }
+          },
+          {
+            "title": "PAYMENT_TYPE_NOT_SUPPORTED_FOR_INTENT",
+            "properties": {
+              "issue": {
+                "type": "string",
+                "enum": [
+                  "PAYMENT_TYPE_NOT_SUPPORTED_FOR_INTENT"
+                ]
+              },
+              "description": {
+                "type": "string",
+                "enum": [
+                  "Provided payment type not supported for order intent. Payment authorizations are supported only for order with `intent=AUTHORIZE` and payment captures are supported only for order with `intent=CAPTURE`."
+                ]
+              }
+            }
+          },
+          {
+            "title": "BILLING_AGREEMENT_ID_MISMATCH",
+            "properties": {
+              "issue": {
+                "type": "string",
+                "enum": [
+                  "BILLING_AGREEMENT_ID_MISMATCH"
+                ]
+              },
+              "description": {
+                "type": "string",
+                "enum": [
+                  "Billing Agreement ID must exactly match the Billing Agreement ID that was provided during order creation."
+                ]
+              }
+            }
+          },
+          {
+            "title": "PREFERRED_PAYMENT_SOURCE_MISMATCH",
+            "properties": {
+              "issue": {
+                "type": "string",
+                "enum": [
+                  "PREFERRED_PAYMENT_SOURCE_MISMATCH"
+                ]
+              },
+              "description": {
+                "type": "string",
+                "enum": [
+                  "Payment Source must exactly match the Preferred Payment Source that was provided during order creation."
+                ]
+              }
+            }
+          },
+          {
+            "title": "INCOMPATIBLE_PARAMETER_VALUE",
+            "properties": {
+              "issue": {
+                "type": "string",
+                "enum": [
+                  "INCOMPATIBLE_PARAMETER_VALUE"
+                ]
+              },
+              "description": {
+                "type": "string",
+                "enum": [
+                  "The value of the field is incompatible/redundant with other fields in the order."
+                ]
+              }
+            }
+          },
+          {
+            "title": "INVALID_PREVIOUS_TRANSACTION_REFERENCE",
+            "properties": {
+              "issue": {
+                "type": "string",
+                "enum": [
+                  "INVALID_PREVIOUS_TRANSACTION_REFERENCE"
+                ]
+              },
+              "description": {
+                "type": "string",
+                "enum": [
+                  "The authorization or capture referenced by `previous_transaction_reference` is not valid. This could be either because the previous_transaction_reference is not found or doesn't belong to the payee. Please use a valid `previous_transaction_reference`."
+                ]
+              }
+            }
+          },
+          {
+            "title": "PREVIOUS_TRANSACTION_REFERENCE_HAS_CHARGEBACK",
+            "properties": {
+              "issue": {
+                "type": "string",
+                "enum": [
+                  "PREVIOUS_TRANSACTION_REFERENCE_HAS_CHARGEBACK"
+                ]
+              },
+              "description": {
+                "type": "string",
+                "enum": [
+                  "The capture referenced by `previous_transaction_reference` has a chargeback and hence cannot be used for this order. Please use a `previous_transaction_reference` which does not have a chargeback."
+                ]
+              }
+            }
+          },
+          {
+            "title": "PREVIOUS_TRANSACTION_REFERENCE_VOIDED",
+            "properties": {
+              "issue": {
+                "type": "string",
+                "enum": [
+                  "PREVIOUS_TRANSACTION_REFERENCE_VOIDED"
+                ]
+              },
+              "description": {
+                "type": "string",
+                "enum": [
+                  "The status of authorization referenced by `previous_transaction_reference` is `VOIDED` and hence cannot be used for this order. Please use a `previous_transaction_reference` whose status is not `VOIDED`."
+                ]
+              }
+            }
+          },
+          {
+            "title": "PAYMENT_SOURCE_MISMATCH",
+            "properties": {
+              "issue": {
+                "type": "string",
+                "enum": [
+                  "PAYMENT_SOURCE_MISMATCH"
+                ]
+              },
+              "description": {
+                "type": "string",
+                "enum": [
+                  "The `payment_source` in the request must match the `payment_source` used for the authorization or capture referenced by `previous_transaction_reference`. Please use `previous_transaction_reference` whose `payment_source` matches with the `payment_source` specified in the order."
+                ]
+              }
+            }
+          },
+          {
+            "title": "MERCHANT_INITIATED_WITH_SECURITY_CODE",
+            "properties": {
+              "issue": {
+                "type": "string",
+                "enum": [
+                  "MERCHANT_INITIATED_WITH_SECURITY_CODE"
+                ]
+              },
+              "description": {
+                "type": "string",
+                "enum": [
+                  "`stored_payment_source.payment_initiator` = `MERCHANT` is not supported if `payment_source.card.security_code` is present in the order. `security_code` can be present in the order only when customer is the payment initiator. It is semantically incorrect to perform a merchant initiated payment with `security_code` is the order."
+                ]
+              }
+            }
+          },
+          {
+            "title": "MERCHANT_INITIATED_WITH_AUTHENTICATION_RESULTS",
+            "properties": {
+              "issue": {
+                "type": "string",
+                "enum": [
+                  "MERCHANT_INITIATED_WITH_AUTHENTICATION_RESULTS"
+                ]
+              },
+              "description": {
+                "type": "string",
+                "enum": [
+                  "`stored_payment_source.payment_initiator` = `MERCHANT` is not supported if 3D-Secure authentication results are present in the order. 3D-Secure authentication results can be present in the order only when customer is the payment initiator. It is semantically incorrect to perform a merchant initiated payment with 3D-Secure authentication results is the order."
+                ]
+              }
+            }
+          },
+          {
+            "title": "MERCHANT_INITIATED_WITH_MULTIPLE_PURCHASE_UNITS",
+            "properties": {
+              "issue": {
+                "type": "string",
+                "enum": [
+                  "MERCHANT_INITIATED_WITH_MULTIPLE_PURCHASE_UNITS"
+                ]
+              },
+              "description": {
+                "type": "string",
+                "enum": [
+                  "`stored_payment_source.payment_initiator` = `MERCHANT` is not supported if more than one purchase_unit is present in the Order. Merchant initiated payments are not supported from orders with more than one purchase_unit. Please retry the request with multiple Order requests (one for each purchase_unit)."
+                ]
+              }
+            }
+          },
+          {
+            "title": "RETURN_URL_REQUIRED",
+            "properties": {
+              "issue": {
+                "type": "string",
+                "enum": [
+                  "RETURN_URL_REQUIRED"
+                ]
+              },
+              "description": {
+                "type": "string",
+                "enum": [
+                  "The return url is required when attempting to vault this source."
+                ]
+              }
+            }
+          },
+          {
+            "title": "CANCEL_URL_REQUIRED",
+            "properties": {
+              "issue": {
+                "type": "string",
+                "enum": [
+                  "CANCEL_URL_REQUIRED"
+                ]
+              },
+              "description": {
+                "type": "string",
+                "enum": [
+                  "The cancel url is required when attempting to vault this source."
+                ]
+              }
+            }
+          },
+          {
+            "title": "PAYER_ACTION_REQUIRED",
+            "properties": {
+              "issue": {
+                "type": "string",
+                "enum": [
+                  "PAYER_ACTION_REQUIRED"
+                ]
+              },
+              "description": {
+                "type": "string",
+                "enum": [
+                  "Transaction cannot complete successfully, instruct the buyer to return to PayPal."
+                ]
+              }
+            }
+          },
+          {
+            "title": "APPLE_PAY_AMOUNT_MISMATCH",
+            "properties": {
+              "issue": {
+                "type": "string",
+                "enum": [
+                  "APPLE_PAY_AMOUNT_MISMATCH"
+                ]
+              },
+              "description": {
+                "type": "string",
+                "enum": [
+                  "The 'amount' specified in the Order should match the amount that was viewed and authorized by the payer/buyer on Apple Pay. If the amount has changed, please redirect the buyer to authorize the order again via Apple Pay."
+                ]
+              }
+            }
+          },
+          {
+            "title": "CARD_NUMBER_REQUIRED",
+            "properties": {
+              "issue": {
+                "type": "string",
+                "enum": [
+                  "CARD_NUMBER_REQUIRED"
+                ]
+              },
+              "description": {
+                "type": "string",
+                "enum": [
+                  "The card number is required when attempting to process payment with card."
+                ]
+              }
+            }
+          },
+          {
+            "title": "CARD_EXPIRY_REQUIRED",
+            "properties": {
+              "issue": {
+                "type": "string",
+                "enum": [
+                  "CARD_EXPIRY_REQUIRED"
+                ]
+              },
+              "description": {
+                "type": "string",
+                "enum": [
+                  "The card expiry is required when attempting to process payment with card."
+                ]
+              }
+            }
+          },
+          {
+            "title": "VAULT_INSTRUCTION_REQUIRED",
+            "properties": {
+              "issue": {
+                "type": "string",
+                "enum": [
+                  "VAULT_INSTRUCTION_REQUIRED"
+                ]
+              },
+              "description": {
+                "type": "string",
+                "enum": [
+                  "Vault instruction is required. Please use `vault.store_in_vault` to provide vault instruction."
+                ]
+              }
+            }
+          },
+          {
+            "title": "MISMATCHED_VAULT_ID_TO_PAYMENT_SOURCE",
+            "properties": {
+              "issue": {
+                "type": "string",
+                "enum": [
+                  "MISMATCHED_VAULT_ID_TO_PAYMENT_SOURCE"
+                ]
+              },
+              "description": {
+                "type": "string",
+                "enum": [
+                  "The vault_id does not match the payment_source provided. Please verify that the vault_id token used refers to the matching payment_source and try again. For example, a PayPal token cannot be passed in the vault_id field in the payment_source.card object."
+                ]
+              }
+            }
+          },
+          {
+            "title": "ORDER_CANNOT_BE_SAVED",
+            "properties": {
+              "issue": {
+                "type": "string",
+                "enum": [
+                  "ORDER_CANNOT_BE_SAVED"
+                ]
+              },
+              "description": {
+                "type": "string",
+                "enum": [
+                  "The option to save an order is only available if the `intent` is AUTHORIZE and `processing_instruction` uses one of the `ORDER_SAVED` options. For example, `intent`=AUTHORIZE, `processing_instruction`=ORDER_SAVED_EXPLICITLY. Please change the intent and/or processing_instruction` and try again."
+                ]
+              }
+            }
+          },
+          {
+            "title": "SAVE_ORDER_NOT_SUPPORTED",
+            "properties": {
+              "issue": {
+                "type": "string",
+                "enum": [
+                  "SAVE_ORDER_NOT_SUPPORTED"
+                ]
+              },
+              "description": {
+                "type": "string",
+                "enum": [
+                  "The API caller account is setup in a way that does not allow it to be used for saving the order. This functionality is not available for PayPal Commerce Platform for Platforms & Marketplaces."
+                ]
+              }
+            }
+          },
+          {
+            "title": "NOT_ELIGIBLE_FOR_PNREF_PROCESSING",
+            "properties": {
+              "issue": {
+                "type": "string",
+                "enum": [
+                  "NOT_ELIGIBLE_FOR_PNREF_PROCESSING"
+                ]
+              },
+              "description": {
+                "type": "string",
+                "enum": [
+                  "API caller is not enabled to process payments with the `pnref`. Please contact customer support to request permissions to process transactions with PNREF."
+                ]
+              }
+            }
+          },
+          {
+            "title": "NOT_ELIGIBLE_FOR_PAYPAL_TRANSACTION_ID_PROCESSING",
+            "properties": {
+              "issue": {
+                "type": "string",
+                "enum": [
+                  "NOT_ELIGIBLE_FOR_PAYPAL_TRANSACTION_ID_PROCESSING"
+                ]
+              },
+              "description": {
+                "type": "string",
+                "enum": [
+                  "API caller is not enable to process payments using `paypal_transaction_id`. Please contact customer support to request permissions to process transactions with PayPal transaction ID."
+                ]
+              }
+            }
+          },
+          {
+            "title": "PAYPAL_TRANSACTION_ID_NOT_FOUND",
+            "properties": {
+              "issue": {
+                "type": "string",
+                "enum": [
+                  "PAYPAL_TRANSACTION_ID_NOT_FOUND"
+                ]
+              },
+              "description": {
+                "type": "string",
+                "enum": [
+                  "Specified `paypal_transaction_id` was not found. Verify the value and try the request again."
+                ]
+              }
+            }
+          },
+          {
+            "title": "PNREF_NOT_FOUND",
+            "properties": {
+              "issue": {
+                "type": "string",
+                "enum": [
+                  "PNREF_NOT_FOUND"
+                ]
+              },
+              "description": {
+                "type": "string",
+                "enum": [
+                  "Specified `pnref` was not found. Verify the value and try the request again."
+                ]
+              }
+            }
+          },
+          {
+            "title": "INVALID_SECURITY_CODE_LENGTH",
+            "properties": {
+              "issue": {
+                "type": "string",
+                "enum": [
+                  "INVALID_SECURITY_CODE_LENGTH"
+                ]
+              },
+              "description": {
+                "type": "string",
+                "enum": [
+                  "The security_code length is invalid for the specified card brand."
+                ]
+              }
+            }
+          },
+          {
+            "title": "REQUIRED_PARAMETER_FOR_CUSTOMER_INITIATED_PAYMENT",
+            "properties": {
+              "issue": {
+                "type": "string",
+                "enum": [
+                  "REQUIRED_PARAMETER_FOR_CUSTOMER_INITIATED_PAYMENT"
+                ]
+              },
+              "description": {
+                "type": "string",
+                "enum": [
+                  "This parameter is required when the customer is present. If the customer is not present, indicate so by sending payment_initiator=`MERCHANT`. For details, see <a href=\"https://developer.paypal.com/docs/api/orders/v2/#definition-card_stored_credential\">Stored Credential</a>."
+                ]
+              }
+            }
+          }
+        ]
+      }
+    }
+  }
+}

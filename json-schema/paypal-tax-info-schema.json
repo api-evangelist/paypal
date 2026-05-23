@@ -1,0 +1,26 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/tax_info",
+  "title": "Tax Information",
+  "type": "object",
+  "description": "The tax ID of the customer. The customer is also known as the payer. Both `tax_id` and `tax_id_type` are required.",
+  "properties": {
+    "tax_id": {
+      "type": "string",
+      "description": "The customer's tax ID value.",
+      "maxLength": 14
+    },
+    "tax_id_type": {
+      "type": "string",
+      "description": "The customer's tax ID type.",
+      "enum": [
+        "BR_CPF",
+        "BR_CNPJ"
+      ]
+    }
+  },
+  "required": [
+    "tax_id",
+    "tax_id_type"
+  ]
+}

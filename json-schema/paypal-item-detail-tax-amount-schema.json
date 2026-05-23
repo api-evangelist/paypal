@@ -1,0 +1,13 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/item_detail_tax_amount",
+  "title": "Tax Amount",
+  "type": "object",
+  "description": "The tax levied by a government on the purchase of goods or services.",
+  "properties": {
+    "tax_amount": {
+      "$ref": "#/components/schemas/money",
+      "description": "The tax levied by a government on the purchase of goods or services."
+    }
+  }
+}

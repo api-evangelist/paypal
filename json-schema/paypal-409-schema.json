@@ -1,0 +1,31 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/409",
+  "title": "409",
+  "properties": {
+    "details": {
+      "type": "array",
+      "items": {
+        "anyOf": [
+          {
+            "title": "PREVIOUS_REQUEST_IN_PROGRESS",
+            "properties": {
+              "issue": {
+                "type": "string",
+                "enum": [
+                  "PREVIOUS_REQUEST_IN_PROGRESS"
+                ]
+              },
+              "description": {
+                "type": "string",
+                "enum": [
+                  "A previous request on this resource is currently in progress. Please wait for sometime and try again. It is best to space out the initial and the subsequent request(s) to avoid receiving this error."
+                ]
+              }
+            }
+          }
+        ]
+      }
+    }
+  }
+}

@@ -1,0 +1,12 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/order_capture_request",
+  "title": "Order Capture Request",
+  "type": "object",
+  "description": "Completes an capture payment for an order.",
+  "properties": {
+    "payment_source": {
+      "$ref": "#/components/schemas/payment_source"
+    }
+  }
+}

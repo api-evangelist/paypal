@@ -1,0 +1,18 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/partial_payment",
+  "title": "Partial Payment",
+  "type": "object",
+  "description": "The partial payment details. Includes the minimum amount that the invoicer expects from the payer.",
+  "properties": {
+    "allow_partial_payment": {
+      "type": "boolean",
+      "description": "Indicates whether the invoice allows a partial payment. If `false`, the invoice must be paid in full. If `true`, the invoice allows partial payments.<blockquote><strong>Note:</strong> This feature is not available for users in `India`, `Brazil`, or `Israel`.</blockquote>",
+      "default": false
+    },
+    "minimum_amount_due": {
+      "$ref": "#/components/schemas/money",
+      "description": "The minimum amount allowed for a partial payment. Valid only when `allow_partial_payment` is `true`."
+    }
+  }
+}

@@ -1,0 +1,201 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/invoices.refunds-400",
+  "title": "invoices.refunds-400",
+  "properties": {
+    "details": {
+      "type": "array",
+      "items": {
+        "anyOf": [
+          {
+            "title": "MISSING_REQUIRED_PARAMETER",
+            "properties": {
+              "issue": {
+                "type": "string",
+                "enum": [
+                  "MISSING_REQUIRED_PARAMETER"
+                ]
+              },
+              "description": {
+                "type": "string",
+                "enum": [
+                  "Payment method is missing. Please provide a valid payment method."
+                ]
+              }
+            }
+          },
+          {
+            "title": "INVALID_REFUND_METHOD",
+            "properties": {
+              "issue": {
+                "type": "string",
+                "enum": [
+                  "INVALID_REFUND_METHOD"
+                ]
+              },
+              "description": {
+                "type": "string",
+                "enum": [
+                  "The value provided is not an acceptable method of refund."
+                ]
+              }
+            }
+          },
+          {
+            "title": "INVALID_PARAMETER_SYNTAX",
+            "properties": {
+              "issue": {
+                "type": "string",
+                "enum": [
+                  "INVALID_PARAMETER_SYNTAX"
+                ]
+              },
+              "description": {
+                "type": "string",
+                "enum": [
+                  "The value provided is not an acceptable method of refund."
+                ]
+              }
+            }
+          },
+          {
+            "title": "INVALID_STRING_LENGTH",
+            "properties": {
+              "issue": {
+                "type": "string",
+                "enum": [
+                  "INVALID_STRING_LENGTH"
+                ]
+              },
+              "description": {
+                "type": "string",
+                "enum": [
+                  "Currency code length should be 3 characters."
+                ]
+              }
+            }
+          },
+          {
+            "title": "NOT_SUPPORTED",
+            "properties": {
+              "issue": {
+                "type": "string",
+                "enum": [
+                  "NOT_SUPPORTED"
+                ]
+              },
+              "description": {
+                "type": "string",
+                "enum": [
+                  "Currency code is not supported. Please provide a valid currency code."
+                ]
+              }
+            }
+          },
+          {
+            "title": "MISSING_REQUIRED_PARAMETER",
+            "properties": {
+              "issue": {
+                "type": "string",
+                "enum": [
+                  "MISSING_REQUIRED_PARAMETER"
+                ]
+              },
+              "description": {
+                "type": "string",
+                "enum": [
+                  "Amount value is missing. Please provide a valid amount."
+                ]
+              }
+            }
+          },
+          {
+            "title": "INVALID_PARAMETER_SYNTAX",
+            "properties": {
+              "issue": {
+                "type": "string",
+                "enum": [
+                  "INVALID_PARAMETER_SYNTAX"
+                ]
+              },
+              "description": {
+                "type": "string",
+                "enum": [
+                  "Amount value is invalid. Should be a numeric value."
+                ]
+              }
+            }
+          },
+          {
+            "title": "INVALID_STRING_MAX_LENGTH",
+            "properties": {
+              "issue": {
+                "type": "string",
+                "enum": [
+                  "INVALID_STRING_MAX_LENGTH"
+                ]
+              },
+              "description": {
+                "type": "string",
+                "enum": [
+                  "Amount value cannot be greater than the maximum limit of 32 characters length."
+                ]
+              }
+            }
+          },
+          {
+            "title": "VALUE_CANNOT_BE_ZERO",
+            "properties": {
+              "issue": {
+                "type": "string",
+                "enum": [
+                  "VALUE_CANNOT_BE_ZERO"
+                ]
+              },
+              "description": {
+                "type": "string",
+                "enum": [
+                  "Refund amount cannot be zero."
+                ]
+              }
+            }
+          },
+          {
+            "title": "INVALID_INTEGER_VALUE",
+            "properties": {
+              "issue": {
+                "type": "string",
+                "enum": [
+                  "INVALID_INTEGER_VALUE"
+                ]
+              },
+              "description": {
+                "type": "string",
+                "enum": [
+                  "Refund amount value is invalid. Can have non-negative value with maximum 6 digits."
+                ]
+              }
+            }
+          },
+          {
+            "title": "INVALID_DECIMAL_VALUE",
+            "properties": {
+              "issue": {
+                "type": "string",
+                "enum": [
+                  "INVALID_DECIMAL_VALUE"
+                ]
+              },
+              "description": {
+                "type": "string",
+                "enum": [
+                  "Refund amount value is invalid. Can have non-negative value with maximum 7 digits and upto 2 fractions."
+                ]
+              }
+            }
+          }
+        ]
+      }
+    }
+  }
+}

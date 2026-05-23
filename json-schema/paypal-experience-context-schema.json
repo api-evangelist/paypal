@@ -1,0 +1,46 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/experience_context",
+  "title": "Experience Context",
+  "type": "object",
+  "description": "Customizes the Vault creation flow experience for your customers.",
+  "properties": {
+    "brand_name": {
+      "type": "string",
+      "description": "The label that overrides the business name in the PayPal account on the PayPal site. The pattern is defined by an external party and supports Unicode.",
+      "minLength": 1,
+      "maxLength": 300,
+      "pattern": "^.*$"
+    },
+    "locale": {
+      "description": "The BCP 47-formatted locale of pages that the PayPal vaulting experience shows. PayPal supports a five-character code. For example, `DA-DK`, `HE-IL`, `ID-ID`, `JA-JP`, `NO-NO`, `PT-BR`, `RU-RU`, `SV-SE`, `TH-TH`, `ZH-CN`, `ZH-HK`, or `ZH-TW`.",
+      "$ref": "#/components/schemas/language"
+    },
+    "return_url": {
+      "type": "string",
+      "format": "uri",
+      "minLength": 1,
+      "maxLength": 4000,
+      "description": "The URL where the customer is redirected after customer approves leaves the flow. It is a required field for contingency flows like PayPal wallet, 3DS."
+    },
+    "cancel_url": {
+      "type": "string",
+      "format": "uri",
+      "minLength": 1,
+      "maxLength": 4000,
+      "description": "The URL where the customer is redirected after customer cancels or leaves the flow. It is a required field for contingency flows like PayPal wallet, 3DS."
+    },
+    "shipping_preference": {
+      "type": "string",
+      "description": "The shipping preference. This only applies to PayPal payment source.",
+      "default": "GET_FROM_FILE",
+      "minLength": 1,
+      "maxLength": 255,
+      "pattern": "^[0-9A-Z_]+$"
+    },
+    "vault_instruction": {
+      "description": "Vault Instruction on action to be performed after a successful payer approval.",
+      "$ref": "#/components/schemas/vault_instruction"
+    }
+  }
+}

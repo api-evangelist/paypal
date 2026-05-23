@@ -1,0 +1,40 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/error_404",
+  "title": "Not found Error",
+  "type": "object",
+  "description": "The server has not found anything matching the request URI. This either means that the URI is incorrect or the resource is not available.",
+  "properties": {
+    "name": {
+      "type": "string",
+      "enum": [
+        "RESOURCE_NOT_FOUND"
+      ]
+    },
+    "message": {
+      "type": "string",
+      "enum": [
+        "The specified resource does not exist."
+      ]
+    },
+    "details": {
+      "type": "array",
+      "items": {
+        "$ref": "#/components/schemas/error_details"
+      }
+    },
+    "debug_id": {
+      "type": "string",
+      "description": "The PayPal internal ID. Used for correlation purposes."
+    },
+    "links": {
+      "description": "An array of request-related [HATEOAS links](https://en.wikipedia.org/wiki/HATEOAS).",
+      "type": "array",
+      "minItems": 0,
+      "maxItems": 10000,
+      "items": {
+        "$ref": "#/components/schemas/error_link_description"
+      }
+    }
+  }
+}

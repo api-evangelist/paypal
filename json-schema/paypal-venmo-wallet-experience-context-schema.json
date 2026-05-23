@@ -1,0 +1,29 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/venmo_wallet_experience_context",
+  "title": "Venmo Wallet Experience Context",
+  "type": "object",
+  "description": "Customizes the buyer experience during the approval process for payment with Venmo.<blockquote><strong>Note:</strong> Partners and Marketplaces might configure <code>shipping_preference</code> during partner account setup, which overrides the request values.</blockquote>",
+  "properties": {
+    "brand_name": {
+      "type": "string",
+      "description": "The business name of the merchant. The pattern is defined by an external party and supports Unicode.",
+      "minLength": 1,
+      "maxLength": 127,
+      "pattern": "^.*$"
+    },
+    "shipping_preference": {
+      "type": "string",
+      "description": "The location from which the shipping address is derived.",
+      "minLength": 1,
+      "maxLength": 24,
+      "pattern": "^[A-Z_]+$",
+      "default": "GET_FROM_FILE",
+      "enum": [
+        "GET_FROM_FILE",
+        "NO_SHIPPING",
+        "SET_PROVIDED_ADDRESS"
+      ]
+    }
+  }
+}

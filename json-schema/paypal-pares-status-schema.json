@@ -1,0 +1,20 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/pares_status",
+  "title": "pares_status",
+  "type": "string",
+  "minLength": 1,
+  "maxLength": 255,
+  "pattern": "^[0-9A-Z_]+$",
+  "description": "Transactions status result identifier. The outcome of the issuer's authentication.",
+  "enum": [
+    "Y",
+    "N",
+    "U",
+    "A",
+    "C",
+    "R",
+    "D",
+    "I"
+  ]
+}

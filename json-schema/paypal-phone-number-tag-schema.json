@@ -1,0 +1,14 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/phone_number_tag",
+  "title": "Phone number tag",
+  "description": "Tag associated with the phone number.",
+  "type": "string",
+  "pattern": "^[0-9A-Z_]+$",
+  "minLength": 1,
+  "maxLength": 255,
+  "enum": [
+    "MOBILE",
+    "LANDLINE"
+  ]
+}

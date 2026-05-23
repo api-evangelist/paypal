@@ -1,0 +1,49 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/invoicer_info",
+  "title": "Invoicer Information",
+  "type": "object",
+  "description": "The invoicer business information that appears on the invoice.",
+  "allOf": [
+    {
+      "$ref": "#/components/schemas/contact_name_address"
+    },
+    {
+      "properties": {
+        "email_address": {
+          "$ref": "#/components/schemas/email_address",
+          "description": "The invoicer email address, which must be listed in the user's PayPal profile. If you omit this value, notifications are sent from and to the primary email address but do not appear on the invoice."
+        },
+        "phones": {
+          "type": "array",
+          "items": {
+            "$ref": "#/components/schemas/phone_detail"
+          },
+          "description": "An array of invoicer's phone numbers. The invoicer can choose to hide the phone number on the invoice."
+        },
+        "website": {
+          "type": "string",
+          "format": "uri",
+          "description": "The invoicer's website.",
+          "maxLength": 2048
+        },
+        "tax_id": {
+          "type": "string",
+          "description": "The invoicer's tax ID.",
+          "maxLength": 100
+        },
+        "additional_notes": {
+          "type": "string",
+          "description": "Any additional information. Includes business hours.",
+          "maxLength": 400
+        },
+        "logo_url": {
+          "type": "string",
+          "format": "uri",
+          "description": "The full URL to an external logo image. The logo image must not be larger than 250 pixels wide by 90 pixels high.",
+          "maxLength": 2000
+        }
+      }
+    }
+  ]
+}

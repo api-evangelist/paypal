@@ -1,0 +1,18 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/allowed_response_options",
+  "title": "Allowed Response Options",
+  "type": "object",
+  "description": "The allowed response options for the buyer/seller update actions.",
+  "properties": {
+    "acknowledge_return_item": {
+      "$ref": "#/components/schemas/acknowledge_return_item_response_options"
+    },
+    "accept_claim": {
+      "$ref": "#/components/schemas/accept_claim_response_options"
+    },
+    "make_offer": {
+      "$ref": "#/components/schemas/make_offer_response_options"
+    }
+  }
+}

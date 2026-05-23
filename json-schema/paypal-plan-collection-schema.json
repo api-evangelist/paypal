@@ -1,0 +1,41 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/plan_collection",
+  "title": "Plan Collection",
+  "description": "The list of plans with details.",
+  "type": "object",
+  "properties": {
+    "plans": {
+      "type": "array",
+      "minItems": 0,
+      "maxItems": 32767,
+      "description": "An array of plans.",
+      "items": {
+        "$ref": "#/components/schemas/plan"
+      }
+    },
+    "total_items": {
+      "type": "integer",
+      "description": "The total number of items.",
+      "minimum": 0,
+      "maximum": 500000000
+    },
+    "total_pages": {
+      "type": "integer",
+      "description": "The total number of pages.",
+      "minimum": 0,
+      "maximum": 100000000
+    },
+    "links": {
+      "type": "array",
+      "description": "An array of request-related [HATEOAS links](/docs/api/reference/api-responses/#hateoas-links).",
+      "readOnly": true,
+      "minItems": 1,
+      "maxItems": 10,
+      "items": {
+        "readOnly": true,
+        "$ref": "#/components/schemas/link_description"
+      }
+    }
+  }
+}

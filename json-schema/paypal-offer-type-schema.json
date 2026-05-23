@@ -1,0 +1,16 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/offer_type",
+  "title": "Offer Type",
+  "type": "string",
+  "minLength": 1,
+  "maxLength": 255,
+  "pattern": "^[0-9A-Z_]+$",
+  "description": "The merchant-proposed offer type for the dispute.",
+  "enum": [
+    "REFUND",
+    "REFUND_WITH_RETURN",
+    "REFUND_WITH_REPLACEMENT",
+    "REPLACEMENT_WITHOUT_REFUND"
+  ]
+}

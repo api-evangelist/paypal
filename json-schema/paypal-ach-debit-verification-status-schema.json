@@ -1,0 +1,10 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/ach_debit_verification_status",
+  "title": "ach_debit_verification_status",
+  "description": "The ach debit verification status.",
+  "type": "string",
+  "default": "NOT_VERIFIED",
+  "minLength": 1,
+  "maxLength": 255
+}

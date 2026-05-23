@@ -1,0 +1,19 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/phone_with_type",
+  "title": "Phone With Type",
+  "type": "object",
+  "description": "The phone information.",
+  "properties": {
+    "phone_type": {
+      "$ref": "#/components/schemas/phone_type"
+    },
+    "phone_number": {
+      "description": "The phone number, in its canonical international [E.164 numbering plan format](https://www.itu.int/rec/T-REC-E.164/en). Supports only the `national_number` property.",
+      "$ref": "#/components/schemas/phone"
+    }
+  },
+  "required": [
+    "phone_number"
+  ]
+}

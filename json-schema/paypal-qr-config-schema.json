@@ -1,0 +1,30 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/qr_config",
+  "title": "QR Configuration",
+  "type": "object",
+  "description": "The configuration for a QR code.",
+  "properties": {
+    "width": {
+      "type": "integer",
+      "description": "The width, in pixels, of the QR code image. Value is from `150` to `500`.",
+      "default": 500,
+      "minimum": 150,
+      "maximum": 500
+    },
+    "height": {
+      "type": "integer",
+      "description": "The height, in pixels, of the QR code image. Value is from `150` to `500`.",
+      "default": 500,
+      "minimum": 150,
+      "maximum": 500
+    },
+    "action": {
+      "type": "string",
+      "description": "The type of URL for which to generate a QR code. Valid values are `pay` and `details`.",
+      "default": "pay",
+      "pattern": "(?i)^(pay|details)$",
+      "maxLength": 7
+    }
+  }
+}

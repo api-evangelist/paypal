@@ -1,0 +1,22 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/create_referral_data_response",
+  "title": "Create Referral Data Response",
+  "type": "object",
+  "description": "The shared referral data.",
+  "properties": {
+    "links": {
+      "type": "array",
+      "title": "Links",
+      "description": "An array of request-related [HATEOAS links](/docs/api/overview/#hateoas-links).",
+      "readOnly": true,
+      "additionalProperties": true,
+      "minItems": 2,
+      "maxItems": 10,
+      "items": {
+        "description": "The request-related [HATEOAS link](/docs/api/reference/api-responses/#hateoas-links) information.",
+        "$ref": "#/components/schemas/link_description"
+      }
+    }
+  }
+}

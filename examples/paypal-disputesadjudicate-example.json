@@ -1,0 +1,16 @@
+{
+  "operationId": "disputes.adjudicate",
+  "method": "POST",
+  "path": "/v1/customer/disputes/{id}/adjudicate",
+  "summary": "Paypal Settle dispute",
+  "requestExamples": [
+    {
+      "contentType": "application/json",
+      "name": "adjudicate",
+      "example": {
+        "adjudication_outcome": "BUYER_FAVOR"
+      }
+    }
+  ],
+  "responseExamples": []
+}

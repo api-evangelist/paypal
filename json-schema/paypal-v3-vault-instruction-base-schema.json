@@ -1,0 +1,15 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/v3_vault_instruction_base",
+  "title": "Base Vault Instruction Parameters",
+  "type": "object",
+  "description": "Base vaulting specification. The object can be extended for specific use cases within each payment_source that supports vaulting.",
+  "properties": {
+    "store_in_vault": {
+      "$ref": "#/components/schemas/store_in_vault_instruction"
+    }
+  },
+  "required": [
+    "store_in_vault"
+  ]
+}

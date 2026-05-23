@@ -1,0 +1,22 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/exchange_rate",
+  "title": "Exchange Rate",
+  "description": "The exchange rate that determines the amount to convert from one currency to another currency.",
+  "type": "object",
+  "properties": {
+    "source_currency": {
+      "description": "The source currency from which to convert an amount.",
+      "$ref": "#/components/schemas/currency_code"
+    },
+    "target_currency": {
+      "description": "The target currency to which to convert an amount.",
+      "$ref": "#/components/schemas/currency_code"
+    },
+    "value": {
+      "description": "The target currency amount. Equivalent to one unit of the source currency. Formatted as integer or decimal value with one to 15 digits to the right of the decimal point.",
+      "type": "string"
+    }
+  },
+  "readOnly": true
+}

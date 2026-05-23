@@ -1,0 +1,30 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/business_name_detail",
+  "title": "Business name",
+  "type": "object",
+  "description": "Name of the business provided.",
+  "allOf": [
+    {
+      "$ref": "#/components/schemas/business_name"
+    },
+    {
+      "properties": {
+        "id": {
+          "description": "The encrypted ID for the business name.",
+          "type": "string",
+          "readOnly": true,
+          "minLength": 1,
+          "maxLength": 20
+        },
+        "type": {
+          "description": "The type of business name. For example, trading name.",
+          "$ref": "#/components/schemas/business_name_type"
+        }
+      }
+    }
+  ],
+  "required": [
+    "type"
+  ]
+}

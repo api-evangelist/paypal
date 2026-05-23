@@ -1,0 +1,31 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/shipping_info",
+  "title": "Shipping Information",
+  "type": "object",
+  "description": "The shipping information.",
+  "properties": {
+    "name": {
+      "type": "string",
+      "description": "The recipient's name.",
+      "minLength": 1,
+      "maxLength": 500,
+      "pattern": "^[a-zA-Z0-9_'\\-., \":;\\!?]*$"
+    },
+    "method": {
+      "type": "string",
+      "description": "The shipping method that is associated with this order.",
+      "minLength": 1,
+      "maxLength": 500,
+      "pattern": "^[a-zA-Z0-9_'\\-., \":;\\!?]*$"
+    },
+    "address": {
+      "$ref": "#/components/schemas/address",
+      "description": "The shipping address that is associated with this order."
+    },
+    "secondary_shipping_address": {
+      "$ref": "#/components/schemas/address",
+      "description": "The secondary shipping address that is associated with this order."
+    }
+  }
+}

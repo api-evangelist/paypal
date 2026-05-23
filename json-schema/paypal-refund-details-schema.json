@@ -1,0 +1,13 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/refund_details",
+  "title": "Refund Details",
+  "type": "object",
+  "description": "The refund details.",
+  "properties": {
+    "allowed_refund_amount": {
+      "$ref": "#/components/schemas/money",
+      "description": "The maximum refundable amount."
+    }
+  }
+}

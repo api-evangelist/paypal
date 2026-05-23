@@ -1,0 +1,27 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/beneficial_owners",
+  "title": "Beneficial_owners",
+  "type": "object",
+  "description": "Beneficial owners of the entity.",
+  "properties": {
+    "individual_beneficial_owners": {
+      "description": "Individual beneficial owners.",
+      "type": "array",
+      "items": {
+        "$ref": "#/components/schemas/individual_beneficial_owner"
+      },
+      "minItems": 0,
+      "maxItems": 5
+    },
+    "business_beneficial_owners": {
+      "description": "Business beneficial owners.",
+      "type": "array",
+      "items": {
+        "$ref": "#/components/schemas/business_beneficial_owner"
+      },
+      "minItems": 0,
+      "maxItems": 5
+    }
+  }
+}

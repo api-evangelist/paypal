@@ -1,0 +1,14 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/phone_type",
+  "title": "Phone Type",
+  "type": "string",
+  "description": "The phone type.",
+  "enum": [
+    "FAX",
+    "HOME",
+    "MOBILE",
+    "OTHER",
+    "PAGER"
+  ]
+}

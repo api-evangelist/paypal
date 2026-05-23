@@ -1,0 +1,16 @@
+{
+  "operationId": "disputes.deny-offer",
+  "method": "POST",
+  "path": "/v1/customer/disputes/{id}/deny-offer",
+  "summary": "Paypal Deny offer to resolve dispute",
+  "requestExamples": [
+    {
+      "contentType": "application/json",
+      "name": "deny_offer",
+      "example": {
+        "note": "refund offer is very low."
+      }
+    }
+  ],
+  "responseExamples": []
+}

@@ -1,0 +1,43 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/detail",
+  "title": "Invoice_Detail",
+  "description": "The details of the invoice like notes, terms and conditions, memo, attachments.",
+  "required": [
+    "currency_code"
+  ],
+  "properties": {
+    "reference": {
+      "type": "string",
+      "description": "The reference data. Includes a post office (PO) number.",
+      "maxLength": 120
+    },
+    "currency_code": {
+      "$ref": "#/components/schemas/currency_code",
+      "description": "The [three-character ISO-4217 currency code](/docs/integration/direct/rest/currency-codes/) that identifies the currency."
+    },
+    "note": {
+      "type": "string",
+      "description": "A note to the invoice recipient. Also appears on the invoice notification email.",
+      "maxLength": 4000
+    },
+    "terms_and_conditions": {
+      "type": "string",
+      "description": "The general terms of the invoice. Can include return or cancellation policy and other terms and conditions.",
+      "maxLength": 4000
+    },
+    "memo": {
+      "type": "string",
+      "description": "A private bookkeeping memo for the user.",
+      "maxLength": 500
+    },
+    "attachments": {
+      "type": "array",
+      "description": "An array of PayPal IDs for the files that are attached to an invoice.",
+      "maximum": 5,
+      "items": {
+        "$ref": "#/components/schemas/file_reference"
+      }
+    }
+  }
+}

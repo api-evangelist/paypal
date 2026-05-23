@@ -1,0 +1,22 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/dispute_reason",
+  "title": "Dispute Reason",
+  "type": "string",
+  "minLength": 1,
+  "maxLength": 255,
+  "pattern": "^[0-9A-Z_]+$",
+  "description": "The reason for the item-level dispute. For information about the required information for each dispute reason and associated evidence type, see <a href=\"/docs/integration/direct/customer-disputes/integration-guide/#dispute-reasons\">dispute reasons</a>.",
+  "enum": [
+    "MERCHANDISE_OR_SERVICE_NOT_RECEIVED",
+    "MERCHANDISE_OR_SERVICE_NOT_AS_DESCRIBED",
+    "UNAUTHORISED",
+    "CREDIT_NOT_PROCESSED",
+    "DUPLICATE_TRANSACTION",
+    "INCORRECT_AMOUNT",
+    "PAYMENT_BY_OTHER_MEANS",
+    "CANCELED_RECURRING_BILLING",
+    "PROBLEM_WITH_REMITTANCE",
+    "OTHER"
+  ]
+}

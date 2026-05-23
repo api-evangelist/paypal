@@ -1,0 +1,13 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/alternate_notification_method",
+  "title": "Alternate Notification Method",
+  "type": "object",
+  "description": "Captures additional notification modes to reach out to the receiver regarding this payment.",
+  "properties": {
+    "phone": {
+      "description": "The mobile phone number of the receiver.",
+      "$ref": "#/components/schemas/phone"
+    }
+  }
+}

@@ -1,0 +1,29 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/cobranded_card",
+  "title": "cobranded card object",
+  "type": "object",
+  "description": "Details about the merchant cobranded card used for order purchase.",
+  "properties": {
+    "labels": {
+      "type": "array",
+      "description": "Array of labels for the cobranded card.",
+      "minItems": 1,
+      "maxItems": 25,
+      "items": {
+        "type": "string",
+        "description": "Label for the cobranded card.",
+        "minLength": 1,
+        "maxLength": 256
+      }
+    },
+    "payee": {
+      "description": "Merchant associated with the purchase.",
+      "$ref": "#/components/schemas/payee_base"
+    },
+    "amount": {
+      "description": "Amount that was charged to the cobranded card.",
+      "$ref": "#/components/schemas/money"
+    }
+  }
+}

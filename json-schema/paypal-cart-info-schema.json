@@ -1,0 +1,30 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/cart_info",
+  "title": "Cart Information",
+  "type": "object",
+  "description": "The cart information.",
+  "properties": {
+    "item_details": {
+      "type": "array",
+      "description": "An array of item details.",
+      "maxItems": 32767,
+      "minItems": 1,
+      "items": {
+        "$ref": "#/components/schemas/item_detail"
+      }
+    },
+    "tax_inclusive": {
+      "type": "boolean",
+      "description": "Indicates whether the item amount or the shipping amount already includes tax.",
+      "default": false
+    },
+    "paypal_invoice_id": {
+      "type": "string",
+      "description": "The ID of the invoice. Appears for only PayPal-generated invoices.",
+      "minLength": 1,
+      "maxLength": 127,
+      "pattern": "^[a-zA-Z0-9_'\\-., \":;\\!?]*$"
+    }
+  }
+}

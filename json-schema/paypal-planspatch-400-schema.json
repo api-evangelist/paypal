@@ -1,0 +1,116 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/plans.patch-400",
+  "title": "plans.patch-400",
+  "properties": {
+    "details": {
+      "type": "array",
+      "items": {
+        "anyOf": [
+          {
+            "title": "UNSUPPORTED_PATCH_OPERATION",
+            "properties": {
+              "issue": {
+                "type": "string",
+                "enum": [
+                  "UNSUPPORTED_PATCH_OPERATION"
+                ]
+              },
+              "description": {
+                "type": "string",
+                "enum": [
+                  "The specified patch operation not supported for this field."
+                ]
+              }
+            }
+          },
+          {
+            "title": "INVALID_PATCH_PATH",
+            "properties": {
+              "issue": {
+                "type": "string",
+                "enum": [
+                  "INVALID_PATCH_PATH"
+                ]
+              },
+              "description": {
+                "type": "string",
+                "enum": [
+                  "The specified field cannot be patched."
+                ]
+              }
+            }
+          },
+          {
+            "title": "INVALID_PATCH_PATH",
+            "properties": {
+              "issue": {
+                "type": "string",
+                "enum": [
+                  "INVALID_PATCH_PATH"
+                ]
+              },
+              "description": {
+                "type": "string",
+                "enum": [
+                  "Multiple operations on the same field are not allowed."
+                ]
+              }
+            }
+          },
+          {
+            "title": "INVALID_PARAMETER_SYNTAX",
+            "properties": {
+              "issue": {
+                "type": "string",
+                "enum": [
+                  "INVALID_PARAMETER_SYNTAX"
+                ]
+              },
+              "description": {
+                "type": "string",
+                "enum": [
+                  "The value of a field does not conform to the expected format."
+                ]
+              }
+            }
+          },
+          {
+            "title": "INVALID_PARAMETER_VALUE",
+            "properties": {
+              "issue": {
+                "type": "string",
+                "enum": [
+                  "INVALID_PARAMETER_VALUE"
+                ]
+              },
+              "description": {
+                "type": "string",
+                "enum": [
+                  "The value of a field is invalid."
+                ]
+              }
+            }
+          },
+          {
+            "title": "INVALID_PARAMETER_VALUE",
+            "properties": {
+              "issue": {
+                "type": "string",
+                "enum": [
+                  "INVALID_PARAMETER_VALUE"
+                ]
+              },
+              "description": {
+                "type": "string",
+                "enum": [
+                  "The field is not eligible for '$value' patch operation."
+                ]
+              }
+            }
+          }
+        ]
+      }
+    }
+  }
+}

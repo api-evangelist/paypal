@@ -1,0 +1,36 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/action_info",
+  "title": "Evidence Extensions",
+  "type": "object",
+  "description": "The extended properties for a evidence. Includes additional information such as the action for which the evidence was requested/submitted, and whether the evidence is mandatory.",
+  "properties": {
+    "action": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 255,
+      "pattern": "^[A-Z_]+$",
+      "description": "The action for which the evidence was requested or submitted.",
+      "enum": [
+        "ACKNOWLEDGE_RETURN_ITEM",
+        "ACCEPT_CLAIM",
+        "PROVIDE_EVIDENCE",
+        "APPEAL",
+        "CANCEL",
+        "CHANGE_REASON",
+        "ESCALATE"
+      ]
+    },
+    "response_option": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 255,
+      "pattern": "^[A-Z_]+$",
+      "description": "The response option for the corresponding action. Possible values:<ul><li><a href=\"/docs/api/customer-disputes/v1/#definition-acknowledgement_type\">Acknowledgement Types</a></li><li><a href=\"/docs/api/customer-disputes/v1/#definition-response-accept_claim_type\">Accept Claim types</a></li></ul>."
+    },
+    "mandatory": {
+      "type": "boolean",
+      "description": "Indicates whether the evidence is mandatory for the corresponding action and response option."
+    }
+  }
+}

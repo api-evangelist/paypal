@@ -1,0 +1,21 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/paypal_wallet_attributes_response",
+  "title": "PayPal Wallet Attributes Response",
+  "type": "object",
+  "description": "Additional attributes associated with the use of a PayPal Wallet.",
+  "properties": {
+    "vault": {
+      "$ref": "#/components/schemas/paypal_wallet_vault_response"
+    },
+    "cobranded_cards": {
+      "type": "array",
+      "description": "An array of merchant cobranded cards used by buyer to complete an order. This array will be present if a merchant has onboarded their cobranded card with PayPal and provided corresponding label(s).",
+      "minItems": 0,
+      "maxItems": 25,
+      "items": {
+        "$ref": "#/components/schemas/cobranded_card"
+      }
+    }
+  }
+}

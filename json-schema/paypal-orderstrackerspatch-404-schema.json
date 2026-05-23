@@ -1,0 +1,31 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/orders.trackers.patch-404",
+  "title": "orders.trackers.patch-404",
+  "properties": {
+    "details": {
+      "type": "array",
+      "items": {
+        "anyOf": [
+          {
+            "title": "TRACKER_ID_NOT_FOUND",
+            "properties": {
+              "issue": {
+                "type": "string",
+                "enum": [
+                  "TRACKER_ID_NOT_FOUND"
+                ]
+              },
+              "description": {
+                "type": "string",
+                "enum": [
+                  "Specified tracker ID does not exist. Check the tracker ID and try again."
+                ]
+              }
+            }
+          }
+        ]
+      }
+    }
+  }
+}

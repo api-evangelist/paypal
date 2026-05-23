@@ -1,0 +1,30 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/rest_endpoint_features_enum",
+  "title": "REST Endpoint Features",
+  "type": "string",
+  "description": "The REST endpoint.",
+  "minLength": 1,
+  "maxLength": 100,
+  "pattern": "^[0-9A-Z_-]+$",
+  "enum": [
+    "PAYOUTS",
+    "PAYMENT",
+    "REFUND",
+    "FUTURE_PAYMENT",
+    "DIRECT_PAYMENT",
+    "PARTNER_FEE",
+    "DELAY_FUNDS_DISBURSEMENT",
+    "READ_SELLER_DISPUTE",
+    "UPDATE_SELLER_DISPUTE",
+    "ADVANCED_TRANSACTIONS_SEARCH",
+    "SWEEP_FUNDS_EXTERNAL_SINK",
+    "ACCESS_MERCHANT_INFORMATION",
+    "TRACKING_SHIPMENT_READWRITE",
+    "INVOICE_READ_WRITE",
+    "DISPUTE_READ_BUYER",
+    "UPDATE_CUSTOMER_DISPUTES",
+    "VAULT",
+    "BILLING_AGREEMENT"
+  ]
+}

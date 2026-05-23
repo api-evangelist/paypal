@@ -1,0 +1,37 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/make_offer",
+  "title": "Make Offer Request",
+  "type": "object",
+  "description": "A merchant request to make an offer to resolve a dispute.",
+  "properties": {
+    "note": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 2000,
+      "description": "The merchant's notes about the offer."
+    },
+    "offer_amount": {
+      "description": "The amount proposed to resolve the dispute.",
+      "$ref": "#/components/schemas/money"
+    },
+    "return_shipping_address": {
+      "description": "The return address for the item. Required when the customer must return an item to the merchant for the <code>MERCHANDISE_OR_SERVICE_NOT_AS_DESCRIBED</code> dispute reason, especially if the refund amount is less than the dispute amount.",
+      "$ref": "#/components/schemas/address_portable"
+    },
+    "invoice_id": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 127,
+      "description": "The merchant-provided ID of the invoice for the refund. This optional value maps the refund to an invoice ID in the merchant's system.",
+      "pattern": "^[A-Za-z0-9:\\-|]+$"
+    },
+    "offer_type": {
+      "$ref": "#/components/schemas/offer_type"
+    }
+  },
+  "required": [
+    "note",
+    "offer_type"
+  ]
+}

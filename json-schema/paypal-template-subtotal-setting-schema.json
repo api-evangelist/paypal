@@ -1,0 +1,17 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/template_subtotal_setting",
+  "title": "Template Subtotal Setting",
+  "type": "object",
+  "description": "The template subtotal setting. Includes the field name and display preference.",
+  "properties": {
+    "field_name": {
+      "description": "The field name in `template_data` for which to map corresponding display preferences.",
+      "$ref": "#/components/schemas/template_subtotal_field"
+    },
+    "display_preference": {
+      "description": "The display preference.",
+      "$ref": "#/components/schemas/template_display_preference"
+    }
+  }
+}

@@ -1,0 +1,16 @@
+{
+  "operationId": "disputes.escalate",
+  "method": "POST",
+  "path": "/v1/customer/disputes/{id}/escalate",
+  "summary": "Paypal Escalate dispute to claim",
+  "requestExamples": [
+    {
+      "contentType": "application/json",
+      "name": "require_evidence",
+      "example": {
+        "action": "BUYER_EVIDENCE"
+      }
+    }
+  ],
+  "responseExamples": []
+}

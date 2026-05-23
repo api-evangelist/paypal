@@ -1,0 +1,26 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/capture_status_details",
+  "title": "Capture Status Details",
+  "description": "The details of the captured payment status.",
+  "type": "object",
+  "properties": {
+    "reason": {
+      "description": "The reason why the captured payment status is `PENDING` or `DENIED`.",
+      "type": "string",
+      "enum": [
+        "BUYER_COMPLAINT",
+        "CHARGEBACK",
+        "ECHECK",
+        "INTERNATIONAL_WITHDRAWAL",
+        "OTHER",
+        "PENDING_REVIEW",
+        "RECEIVING_PREFERENCE_MANDATES_MANUAL_ACTION",
+        "REFUNDED",
+        "TRANSACTION_APPROVED_AWAITING_FUNDING",
+        "UNILATERAL",
+        "VERIFICATION_REQUIRED"
+      ]
+    }
+  }
+}

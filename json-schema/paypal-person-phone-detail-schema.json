@@ -1,0 +1,51 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/person_phone_detail",
+  "title": "Phone details",
+  "type": "object",
+  "description": "The phone number, in its canonical international [E.164 numbering plan format](https://www.itu.int/rec/T-REC-E.164/en).",
+  "allOf": [
+    {
+      "$ref": "#/components/schemas/phone"
+    },
+    {
+      "properties": {
+        "contact_name": {
+          "type": "string",
+          "description": "The name that the phone number is connected to.",
+          "minLength": 1,
+          "maxLength": 900
+        },
+        "inactive": {
+          "type": "boolean",
+          "description": "Whether this phone number has been inactivated by the user.",
+          "readOnly": true
+        },
+        "primary": {
+          "type": "boolean",
+          "description": "Whether this is the primary contact phone number of the user."
+        },
+        "primary_mobile": {
+          "type": "boolean",
+          "description": "Whether this is the primary mobile phone number of the user."
+        },
+        "type": {
+          "$ref": "#/components/schemas/phone_type",
+          "description": "The type of phone number provided. For example, home, work, or mobile."
+        },
+        "tags": {
+          "type": "array",
+          "description": "Array of tags for this phone number.",
+          "items": {
+            "$ref": "#/components/schemas/phone_number_tag"
+          },
+          "minItems": 0,
+          "maxItems": 20
+        }
+      }
+    }
+  ],
+  "required": [
+    "type"
+  ]
+}

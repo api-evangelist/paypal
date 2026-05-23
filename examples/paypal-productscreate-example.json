@@ -1,0 +1,21 @@
+{
+  "operationId": "products.create",
+  "method": "POST",
+  "path": "/v1/catalogs/products",
+  "summary": "Paypal Create product",
+  "requestExamples": [
+    {
+      "contentType": "application/json",
+      "name": "product_request_POST",
+      "example": {
+        "name": "Video Streaming Service",
+        "description": "Video streaming service",
+        "type": "SERVICE",
+        "category": "SOFTWARE",
+        "image_url": "https://example.com/streaming.jpg",
+        "home_url": "https://example.com/home"
+      }
+    }
+  ],
+  "responseExamples": []
+}

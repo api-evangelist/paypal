@@ -1,0 +1,35 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/error_default",
+  "title": "error_default",
+  "description": "The default error response.",
+  "oneOf": [
+    {
+      "$ref": "#/components/schemas/error_400"
+    },
+    {
+      "$ref": "#/components/schemas/error_401"
+    },
+    {
+      "$ref": "#/components/schemas/error_403"
+    },
+    {
+      "$ref": "#/components/schemas/error_404"
+    },
+    {
+      "$ref": "#/components/schemas/error_409"
+    },
+    {
+      "$ref": "#/components/schemas/error_415"
+    },
+    {
+      "$ref": "#/components/schemas/error_422"
+    },
+    {
+      "$ref": "#/components/schemas/error_500"
+    },
+    {
+      "$ref": "#/components/schemas/error_503"
+    }
+  ]
+}

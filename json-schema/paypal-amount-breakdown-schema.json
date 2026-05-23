@@ -1,0 +1,37 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/amount_breakdown",
+  "title": "Amount Breakdown",
+  "type": "object",
+  "description": "The breakdown of the amount. Breakdown provides details such as total item amount, total tax amount, shipping, handling, insurance, and discounts, if any.",
+  "properties": {
+    "item_total": {
+      "description": "The subtotal for all items. Required if the request includes `purchase_units[].items[].unit_amount`. Must equal the sum of `(items[].unit_amount * items[].quantity)` for all items. <code>item_total.value</code> can not be a negative number.",
+      "$ref": "#/components/schemas/money"
+    },
+    "shipping": {
+      "description": "The shipping fee for all items within a given `purchase_unit`. <code>shipping.value</code> can not be a negative number.",
+      "$ref": "#/components/schemas/money"
+    },
+    "handling": {
+      "description": "The handling fee for all items within a given `purchase_unit`. <code>handling.value</code> can not be a negative number.",
+      "$ref": "#/components/schemas/money"
+    },
+    "tax_total": {
+      "description": "The total tax for all items. Required if the request includes `purchase_units.items.tax`. Must equal the sum of `(items[].tax * items[].quantity)` for all items. <code>tax_total.value</code> can not be a negative number.",
+      "$ref": "#/components/schemas/money"
+    },
+    "insurance": {
+      "description": "The insurance fee for all items within a given `purchase_unit`. <code>insurance.value</code> can not be a negative number.",
+      "$ref": "#/components/schemas/money"
+    },
+    "shipping_discount": {
+      "description": "The shipping discount for all items within a given `purchase_unit`. <code>shipping_discount.value</code> can not be a negative number.",
+      "$ref": "#/components/schemas/money"
+    },
+    "discount": {
+      "description": "The discount for all items within a given `purchase_unit`. <code>discount.value</code> can not be a negative number.",
+      "$ref": "#/components/schemas/money"
+    }
+  }
+}

@@ -1,0 +1,48 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/products.patch-422",
+  "title": "products.patch-422",
+  "properties": {
+    "details": {
+      "type": "array",
+      "items": {
+        "anyOf": [
+          {
+            "title": "USER_ACCOUNT_CLOSED",
+            "properties": {
+              "issue": {
+                "type": "string",
+                "enum": [
+                  "USER_ACCOUNT_CLOSED"
+                ]
+              },
+              "description": {
+                "type": "string",
+                "enum": [
+                  "User account locked or closed."
+                ]
+              }
+            }
+          },
+          {
+            "title": "DUPLICATE_RESOURCE_IDENTIFIER",
+            "properties": {
+              "issue": {
+                "type": "string",
+                "enum": [
+                  "DUPLICATE_RESOURCE_IDENTIFIER"
+                ]
+              },
+              "description": {
+                "type": "string",
+                "enum": [
+                  "Identifier must be unique."
+                ]
+              }
+            }
+          }
+        ]
+      }
+    }
+  }
+}

@@ -1,0 +1,21 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/custom_amount",
+  "title": "Custom Amount",
+  "type": "object",
+  "description": "The custom amount to apply to an invoice. If you include a label, you must include a custom amount.",
+  "required": [
+    "label"
+  ],
+  "properties": {
+    "label": {
+      "type": "string",
+      "description": "The label to the custom amount of the invoice.",
+      "maxLength": 50
+    },
+    "amount": {
+      "$ref": "#/components/schemas/money",
+      "description": "The custom amount value. Value is from `-1000000` to `1000000`. Supports up to two decimal places."
+    }
+  }
+}

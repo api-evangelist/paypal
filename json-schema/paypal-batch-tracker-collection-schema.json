@@ -1,0 +1,36 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/batch_tracker_collection",
+  "title": "Batch Tracker Collection",
+  "type": "object",
+  "description": "The add tracking information for multiple PayPal transactions response details.",
+  "properties": {
+    "tracker_identifiers": {
+      "type": "array",
+      "description": "The batch header.",
+      "items": {
+        "$ref": "#/components/schemas/tracker_identifier"
+      },
+      "minItems": 1,
+      "maxItems": 100
+    },
+    "errors": {
+      "type": "array",
+      "description": "An array of error responses.",
+      "items": {
+        "$ref": "#/components/schemas/error"
+      },
+      "minItems": 1,
+      "maxItems": 100
+    },
+    "links": {
+      "type": "array",
+      "description": "An array of request-related [HATEOAS links](/docs/api/reference/api-responses/#hateoas-links).",
+      "readOnly": true,
+      "items": {
+        "$ref": "#/components/schemas/link_description",
+        "readOnly": true
+      }
+    }
+  }
+}

@@ -1,0 +1,48 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/invoices.remind-400",
+  "title": "invoices.remind-400",
+  "properties": {
+    "details": {
+      "type": "array",
+      "items": {
+        "anyOf": [
+          {
+            "title": "INVALID_STRING_MAX_LENGTH",
+            "properties": {
+              "issue": {
+                "type": "string",
+                "enum": [
+                  "INVALID_STRING_MAX_LENGTH"
+                ]
+              },
+              "description": {
+                "type": "string",
+                "enum": [
+                  "the value of a field is too long."
+                ]
+              }
+            }
+          },
+          {
+            "title": "INVALID_ARRAY_MAX_ITEMS",
+            "properties": {
+              "issue": {
+                "type": "string",
+                "enum": [
+                  "INVALID_ARRAY_MAX_ITEMS"
+                ]
+              },
+              "description": {
+                "type": "string",
+                "enum": [
+                  "Only maximum of 100 email address is supported in additional recipients."
+                ]
+              }
+            }
+          }
+        ]
+      }
+    }
+  }
+}

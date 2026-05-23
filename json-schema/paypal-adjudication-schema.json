@@ -1,0 +1,29 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/adjudication",
+  "title": "Adjudication",
+  "type": "object",
+  "description": "The Adjudication details for the dispute.",
+  "properties": {
+    "type": {
+      "description": "The type of adjudication.",
+      "$ref": "#/components/schemas/adjudication_type"
+    },
+    "adjudication_time": {
+      "description": "The date and time when the adjudication was done, in [Internet date and time format](https://tools.ietf.org/html/rfc3339#section-5.6).",
+      "$ref": "#/components/schemas/date_time"
+    },
+    "reason": {
+      "description": "The reason for the adjudication type.",
+      "$ref": "#/components/schemas/adjudication_reason"
+    },
+    "dispute_life_cycle_stage": {
+      "description": "The dispute life cycle stage during the adjudication.",
+      "$ref": "#/components/schemas/dispute_lifecycle_stage"
+    }
+  },
+  "required": [
+    "type",
+    "adjudication_time"
+  ]
+}

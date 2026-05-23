@@ -1,0 +1,41 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/network_token_request",
+  "title": "Network Token",
+  "type": "object",
+  "description": "The Third Party Network token used to fund a payment.",
+  "properties": {
+    "number": {
+      "type": "string",
+      "description": "Third party network token number.",
+      "pattern": "^[0-9]{13,19}$",
+      "minLength": 13,
+      "maxLength": 19
+    },
+    "expiry": {
+      "description": "The card expiration year and month, in [Internet date format](https://tools.ietf.org/html/rfc3339#section-5.6).",
+      "$ref": "#/components/schemas/date_year_month"
+    },
+    "cryptogram": {
+      "type": "string",
+      "description": "An Encrypted one-time use value that's sent along with Network Token. This field is not required to be present for recurring transactions.",
+      "pattern": "^.*$",
+      "minLength": 28,
+      "maxLength": 32
+    },
+    "eci_flag": {
+      "$ref": "#/components/schemas/eci_flag"
+    },
+    "token_requestor_id": {
+      "type": "string",
+      "description": "A TRID, or a Token Requestor ID, is an identifier used by merchants to request network tokens from card networks. A TRID is a precursor to obtaining a network token for a credit card primary account number (PAN), and will aid in enabling secure card on file (COF) payments and reducing fraud.",
+      "pattern": "^[0-9A-Z_]+$",
+      "minLength": 1,
+      "maxLength": 11
+    }
+  },
+  "required": [
+    "number",
+    "expiry"
+  ]
+}

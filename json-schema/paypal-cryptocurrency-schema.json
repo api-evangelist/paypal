@@ -1,0 +1,19 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/cryptocurrency",
+  "title": "Cryptocurrency",
+  "type": "object",
+  "description": "Representation of a specific amount of Cryptocurrency, denoted by its symbol and quantity.",
+  "properties": {
+    "asset_symbol": {
+      "$ref": "#/components/schemas/cryptocurrency_symbol"
+    },
+    "quantity": {
+      "$ref": "#/components/schemas/cryptocurrency_quantity"
+    }
+  },
+  "required": [
+    "asset_symbol",
+    "quantity"
+  ]
+}

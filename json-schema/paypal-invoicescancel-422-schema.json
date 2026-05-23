@@ -1,0 +1,99 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/invoices.cancel-422",
+  "title": "invoices.cancel-422",
+  "properties": {
+    "details": {
+      "type": "array",
+      "items": {
+        "anyOf": [
+          {
+            "title": "CANNOT_CANCEL_DRAFT_INVOICE",
+            "properties": {
+              "issue": {
+                "type": "string",
+                "enum": [
+                  "CANNOT_CANCEL_DRAFT_INVOICE"
+                ]
+              },
+              "description": {
+                "type": "string",
+                "enum": [
+                  "Draft invoice cannot be canceled."
+                ]
+              }
+            }
+          },
+          {
+            "title": "CANNOT_CANCEL_PAID_INVOICE",
+            "properties": {
+              "issue": {
+                "type": "string",
+                "enum": [
+                  "CANNOT_CANCEL_PAID_INVOICE"
+                ]
+              },
+              "description": {
+                "type": "string",
+                "enum": [
+                  "Cannot cancel a paid or partially paid invoice."
+                ]
+              }
+            }
+          },
+          {
+            "title": "CANNOT_CANCEL_REFUNDED_INVOICE",
+            "properties": {
+              "issue": {
+                "type": "string",
+                "enum": [
+                  "CANNOT_CANCEL_REFUNDED_INVOICE"
+                ]
+              },
+              "description": {
+                "type": "string",
+                "enum": [
+                  "Cannot cancel a refunded or partially refunded invoice."
+                ]
+              }
+            }
+          },
+          {
+            "title": "CANNOT_CANCEL_SCHEDULED_INVOICE",
+            "properties": {
+              "issue": {
+                "type": "string",
+                "enum": [
+                  "CANNOT_CANCEL_SCHEDULED_INVOICE"
+                ]
+              },
+              "description": {
+                "type": "string",
+                "enum": [
+                  "Cannot cancel a scheduled invoice."
+                ]
+              }
+            }
+          },
+          {
+            "title": "INVOICE_CANCELED_ALREADY",
+            "properties": {
+              "issue": {
+                "type": "string",
+                "enum": [
+                  "INVOICE_CANCELED_ALREADY"
+                ]
+              },
+              "description": {
+                "type": "string",
+                "enum": [
+                  "Invoice is already cancelled."
+                ]
+              }
+            }
+          }
+        ]
+      }
+    }
+  }
+}

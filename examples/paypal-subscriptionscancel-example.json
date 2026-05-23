@@ -1,0 +1,16 @@
+{
+  "operationId": "subscriptions.cancel",
+  "method": "POST",
+  "path": "/v1/billing/subscriptions/{id}/cancel",
+  "summary": "Paypal Cancel subscription",
+  "requestExamples": [
+    {
+      "contentType": "application/json",
+      "name": "subscription_cancel_request",
+      "example": {
+        "reason": "Not satisfied with the service"
+      }
+    }
+  ],
+  "responseExamples": []
+}

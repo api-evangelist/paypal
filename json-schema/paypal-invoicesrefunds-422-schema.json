@@ -1,0 +1,48 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/invoices.refunds-422",
+  "title": "invoices.refunds-422",
+  "properties": {
+    "details": {
+      "type": "array",
+      "items": {
+        "anyOf": [
+          {
+            "title": "INVALID_REFUND_AMOUNT",
+            "properties": {
+              "issue": {
+                "type": "string",
+                "enum": [
+                  "INVALID_REFUND_AMOUNT"
+                ]
+              },
+              "description": {
+                "type": "string",
+                "enum": [
+                  "Recorded refunds cannot exceed recorded payments."
+                ]
+              }
+            }
+          },
+          {
+            "title": "CANNOT_PROCESS_REFUNDS",
+            "properties": {
+              "issue": {
+                "type": "string",
+                "enum": [
+                  "CANNOT_PROCESS_REFUNDS"
+                ]
+              },
+              "description": {
+                "type": "string",
+                "enum": [
+                  "Current invoice state does not support refunds."
+                ]
+              }
+            }
+          }
+        ]
+      }
+    }
+  }
+}

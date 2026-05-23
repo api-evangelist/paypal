@@ -1,0 +1,16 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/recipient_wallet_enum",
+  "title": "Recipient wallet",
+  "description": "The wallet where the recipient receives the payout. Payouts to Venmo recipients require a 'note' string and a US mobile phone number.",
+  "type": "string",
+  "default": "PAYPAL",
+  "minLength": 1,
+  "maxLength": 36,
+  "pattern": "^[0-9A-Z_]+$",
+  "enum": [
+    "PAYPAL",
+    "VENMO",
+    "RECIPIENT_SELECTED"
+  ]
+}

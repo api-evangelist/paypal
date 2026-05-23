@@ -1,0 +1,36 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/shipping_option",
+  "title": "Shipping Option",
+  "type": "object",
+  "description": "The options that the payee or merchant offers to the payer to ship or pick up their items.",
+  "properties": {
+    "id": {
+      "type": "string",
+      "description": "A unique ID that identifies a payer-selected shipping option.",
+      "maxLength": 127
+    },
+    "label": {
+      "type": "string",
+      "description": "A description that the payer sees, which helps them choose an appropriate shipping option. For example, `Free Shipping`, `USPS Priority Shipping`, `Exp\u00e9dition prioritaire USPS`, or `USPS y\u014duxi\u0101n f\u0101 hu\u00f2`. Localize this description to the payer's locale.",
+      "maxLength": 127
+    },
+    "type": {
+      "description": "A classification for the method of purchase fulfillment.",
+      "$ref": "#/components/schemas/shipping_type"
+    },
+    "amount": {
+      "description": "The shipping cost for the selected option.",
+      "$ref": "#/components/schemas/money"
+    },
+    "selected": {
+      "type": "boolean",
+      "description": "If the API request sets `selected = true`, it represents the shipping option that the payee or merchant expects to be pre-selected for the payer when they first view the `shipping.options` in the PayPal Checkout experience. As part of the response if a `shipping.option` contains `selected=true`, it represents the shipping option that the payer selected during the course of checkout with PayPal. Only one `shipping.option` can be set to `selected=true`."
+    }
+  },
+  "required": [
+    "id",
+    "label",
+    "selected"
+  ]
+}

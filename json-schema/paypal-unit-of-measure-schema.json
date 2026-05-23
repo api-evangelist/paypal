@@ -1,0 +1,12 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/unit_of_measure",
+  "title": "unit_of_measure",
+  "type": "string",
+  "description": "The unit of measure for the invoiced item.",
+  "enum": [
+    "QUANTITY",
+    "HOURS",
+    "AMOUNT"
+  ]
+}

@@ -1,0 +1,27 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/blik_experience_context",
+  "title": "BLIK Experience Context",
+  "type": "object",
+  "description": "Customizes the payer experience during the approval process for the BLIK payment.",
+  "allOf": [
+    {
+      "$ref": "#/components/schemas/experience_context_base"
+    },
+    {
+      "properties": {
+        "consumer_ip": {
+          "description": "The IP address of the consumer. It could be either IPv4 or IPv6.",
+          "$ref": "#/components/schemas/ip_address"
+        },
+        "consumer_user_agent": {
+          "type": "string",
+          "description": "The payer's User Agent. For example, Mozilla/5.0 (Macintosh; Intel Mac OS X x.y; rv:42.0).",
+          "minLength": 1,
+          "maxLength": 256,
+          "pattern": "^.*$"
+        }
+      }
+    }
+  ]
+}

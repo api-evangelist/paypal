@@ -1,0 +1,24 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/net_amount_breakdown_item",
+  "title": "Net Amount Breakdown Item",
+  "type": "object",
+  "description": "The net amount. Returned when the currency of the refund is different from the currency of the PayPal account where the merchant holds their funds.",
+  "properties": {
+    "payable_amount": {
+      "description": "The net amount debited from the merchant's PayPal account.",
+      "readOnly": true,
+      "$ref": "#/components/schemas/money"
+    },
+    "converted_amount": {
+      "description": "The converted payable amount.",
+      "readOnly": true,
+      "$ref": "#/components/schemas/money"
+    },
+    "exchange_rate": {
+      "description": "The exchange rate that determines the amount that was debited from the merchant's PayPal account.",
+      "readOnly": true,
+      "$ref": "#/components/schemas/exchange_rate"
+    }
+  }
+}

@@ -1,0 +1,14 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/business_phone_type",
+  "title": "Phone type",
+  "type": "string",
+  "description": "The type of phone number provided. For example, home, work, or mobile.",
+  "pattern": "^[0-9A-Z_]+$",
+  "minLength": 1,
+  "maxLength": 255,
+  "enum": [
+    "CUSTOMER_SERVICE",
+    "BUSINESS"
+  ]
+}

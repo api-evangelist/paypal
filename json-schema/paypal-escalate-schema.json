@@ -1,0 +1,21 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/escalate",
+  "title": "Escalate Claim Request",
+  "type": "object",
+  "description": "A merchant request to escalate a dispute, by ID, to a PayPal claim.",
+  "properties": {
+    "note": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 2000,
+      "description": "The notes about the escalation of the dispute to a claim."
+    },
+    "buyer_escalation_reason": {
+      "$ref": "#/components/schemas/buyer_escalation_reason"
+    }
+  },
+  "required": [
+    "note"
+  ]
+}

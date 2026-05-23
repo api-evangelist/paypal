@@ -1,0 +1,18 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/eci_flag",
+  "title": "eci_flag",
+  "type": "string",
+  "minLength": 1,
+  "maxLength": 255,
+  "pattern": "^[0-9A-Z_]+$",
+  "description": "Electronic Commerce Indicator (ECI). The ECI value is part of the 2 data elements that indicate the transaction was processed electronically. This should be passed on the authorization transaction to the Gateway/Processor.",
+  "enum": [
+    "MASTERCARD_NON_3D_SECURE_TRANSACTION",
+    "MASTERCARD_ATTEMPTED_AUTHENTICATION_TRANSACTION",
+    "MASTERCARD_FULLY_AUTHENTICATED_TRANSACTION",
+    "FULLY_AUTHENTICATED_TRANSACTION",
+    "ATTEMPTED_AUTHENTICATION_TRANSACTION",
+    "NON_3D_SECURE_TRANSACTION"
+  ]
+}

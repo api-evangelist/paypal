@@ -1,0 +1,55 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/offer_history",
+  "title": "Offer History",
+  "type": "object",
+  "description": "The offer history.",
+  "properties": {
+    "offer_time": {
+      "$ref": "#/components/schemas/date_time",
+      "description": "The date and time when the event occurred, in [Internet date and time format](http://tools.ietf.org/html/rfc3339#section-5.6)."
+    },
+    "actor": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 255,
+      "pattern": "^[0-9A-Z_]+$",
+      "description": "The event-related actor.",
+      "enum": [
+        "BUYER",
+        "SELLER"
+      ]
+    },
+    "event_type": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 255,
+      "pattern": "^[0-9A-Z_]+$",
+      "description": "The type of the history event.",
+      "enum": [
+        "PROPOSED",
+        "ACCEPTED",
+        "DENIED"
+      ]
+    },
+    "offer_type": {
+      "$ref": "#/components/schemas/offer_type"
+    },
+    "offer_amount": {
+      "description": "The offer amount.",
+      "$ref": "#/components/schemas/money"
+    },
+    "notes": {
+      "type": "string",
+      "readOnly": true,
+      "description": "The user submitted notes.",
+      "minLength": 1,
+      "maxLength": 2000
+    },
+    "dispute_life_cycle_stage": {
+      "readOnly": true,
+      "description": "The dispute life cycle stage during the offer event.",
+      "$ref": "#/components/schemas/dispute_lifecycle_stage"
+    }
+  }
+}

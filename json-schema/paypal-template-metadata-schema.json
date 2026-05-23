@@ -1,0 +1,29 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/template_metadata",
+  "title": "Template Metadata",
+  "type": "object",
+  "description": "The audit metadata. Captures all template actions on create and update.",
+  "properties": {
+    "create_time": {
+      "$ref": "#/components/schemas/date_time",
+      "description": "The date and time when the resource was created, in [Internet date and time format](https://tools.ietf.org/html/rfc3339#section-5.6).",
+      "readOnly": true
+    },
+    "created_by": {
+      "type": "string",
+      "description": "The email address of the account that created the resource.",
+      "readOnly": true
+    },
+    "last_update_time": {
+      "$ref": "#/components/schemas/date_time",
+      "description": "The date and time when the resource was last edited, in [Internet date and time format](https://tools.ietf.org/html/rfc3339#section-5.6).",
+      "readOnly": true
+    },
+    "last_updated_by": {
+      "type": "string",
+      "description": "The email address of the account that last edited the resource.",
+      "readOnly": true
+    }
+  }
+}

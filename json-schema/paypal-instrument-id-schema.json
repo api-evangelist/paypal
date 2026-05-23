@@ -1,0 +1,10 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/instrument_id",
+  "title": "instrument_id",
+  "type": "string",
+  "description": "The identifier of the instrument.",
+  "minLength": 1,
+  "maxLength": 256,
+  "pattern": "^[A-Za-z0-9-_.+=]+$"
+}

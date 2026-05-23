@@ -1,0 +1,18 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/subscription_suspend_request",
+  "title": "Suspend Subscription",
+  "description": "The suspend subscription request details.",
+  "type": "object",
+  "properties": {
+    "reason": {
+      "type": "string",
+      "description": "The reason for suspenson of the subscription.",
+      "minLength": 1,
+      "maxLength": 128
+    }
+  },
+  "required": [
+    "reason"
+  ]
+}

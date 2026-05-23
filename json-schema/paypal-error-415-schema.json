@@ -1,0 +1,40 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/error_415",
+  "title": "Unsupported Media Type Error",
+  "type": "object",
+  "description": "The server does not support the request payload's media type.",
+  "properties": {
+    "name": {
+      "type": "string",
+      "enum": [
+        "UNSUPPORTED_MEDIA_TYPE"
+      ]
+    },
+    "message": {
+      "type": "string",
+      "enum": [
+        "The server does not support the request payload's media type."
+      ]
+    },
+    "details": {
+      "type": "array",
+      "items": {
+        "$ref": "#/components/schemas/error_details"
+      }
+    },
+    "debug_id": {
+      "type": "string",
+      "description": "The PayPal internal ID. Used for correlation purposes."
+    },
+    "links": {
+      "description": "An array of request-related [HATEOAS links](https://en.wikipedia.org/wiki/HATEOAS).",
+      "type": "array",
+      "minItems": 0,
+      "maxItems": 10000,
+      "items": {
+        "$ref": "#/components/schemas/error_link_description"
+      }
+    }
+  }
+}

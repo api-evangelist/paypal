@@ -1,0 +1,16 @@
+{
+  "operationId": "disputes.accept-offer",
+  "method": "POST",
+  "path": "/v1/customer/disputes/{id}/accept-offer",
+  "summary": "Paypal Accept offer to resolve dispute",
+  "requestExamples": [
+    {
+      "contentType": "application/json",
+      "name": "accept_offer",
+      "example": {
+        "note": "I am ok with the refund offered."
+      }
+    }
+  ],
+  "responseExamples": []
+}

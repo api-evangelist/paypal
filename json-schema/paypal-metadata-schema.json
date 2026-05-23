@@ -1,0 +1,58 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/metadata",
+  "title": "Metadata",
+  "type": "object",
+  "description": "The audit metadata. Captures all invoicing actions on create, send, update, and cancel.",
+  "allOf": [
+    {
+      "$ref": "#/components/schemas/template_metadata"
+    },
+    {
+      "properties": {
+        "cancel_time": {
+          "$ref": "#/components/schemas/date_time",
+          "description": "The date and time when the resource was canceled, in [Internet date and time format](https://tools.ietf.org/html/rfc3339#section-5.6).",
+          "readOnly": true
+        },
+        "cancelled_by": {
+          "type": "string",
+          "description": "The actor who canceled the resource.",
+          "readOnly": true
+        },
+        "first_sent_time": {
+          "$ref": "#/components/schemas/date_time",
+          "description": "The date and time when the resource was first sent, in [Internet date and time format](https://tools.ietf.org/html/rfc3339#section-5.6).",
+          "readOnly": true
+        },
+        "last_sent_time": {
+          "$ref": "#/components/schemas/date_time",
+          "description": "The date and time when the resource was last sent, in [Internet date and time format](https://tools.ietf.org/html/rfc3339#section-5.6).",
+          "readOnly": true
+        },
+        "last_sent_by": {
+          "type": "string",
+          "description": "The email address of the account that last sent the resource.",
+          "readOnly": true
+        },
+        "created_by_flow": {
+          "description": "The flow variation that created this invoice.",
+          "$ref": "#/components/schemas/invoice_creation_flow",
+          "readOnly": true
+        },
+        "recipient_view_url": {
+          "type": "string",
+          "readOnly": true,
+          "format": "uri",
+          "description": "The URL for the invoice payer view hosted on paypal.com."
+        },
+        "invoicer_view_url": {
+          "type": "string",
+          "readOnly": true,
+          "format": "uri",
+          "description": "The URL for the invoice merchant view hosted on paypal.com."
+        }
+      }
+    }
+  ]
+}

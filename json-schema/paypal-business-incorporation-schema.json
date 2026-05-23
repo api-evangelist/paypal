@@ -1,0 +1,24 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/business_incorporation",
+  "title": "Business_incorporation",
+  "type": "object",
+  "description": "Business incorporation information.",
+  "properties": {
+    "incorporation_country_code": {
+      "description": "The incorporation country code.",
+      "$ref": "#/components/schemas/country_code"
+    },
+    "incorporation_date": {
+      "description": "date of incorporation",
+      "$ref": "#/components/schemas/date_no_time"
+    },
+    "incorporation_province_code": {
+      "description": "The province of incorporation.",
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 50,
+      "pattern": "^[A-Z]{2}-([A-Z]{2,3}|[0-9]{2,3})$"
+    }
+  }
+}

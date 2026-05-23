@@ -1,0 +1,31 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/invoices.remind-422",
+  "title": "invoices.remind-422",
+  "properties": {
+    "details": {
+      "type": "array",
+      "items": {
+        "anyOf": [
+          {
+            "title": "CANNOT_REMIND_INVOICE",
+            "properties": {
+              "issue": {
+                "type": "string",
+                "enum": [
+                  "CANNOT_REMIND_INVOICE"
+                ]
+              },
+              "description": {
+                "type": "string",
+                "enum": [
+                  "You cannot remind an invoice which is in DRAFT status. Only UNPAID, SENT and PARTIALLY_PAID invoices can be reminded."
+                ]
+              }
+            }
+          }
+        ]
+      }
+    }
+  }
+}

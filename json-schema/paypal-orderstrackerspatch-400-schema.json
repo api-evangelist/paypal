@@ -1,0 +1,116 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/orders.trackers.patch-400",
+  "title": "orders.trackers.patch-400",
+  "properties": {
+    "details": {
+      "type": "array",
+      "items": {
+        "anyOf": [
+          {
+            "title": "FIELD_NOT_PATCHABLE",
+            "properties": {
+              "issue": {
+                "type": "string",
+                "enum": [
+                  "FIELD_NOT_PATCHABLE"
+                ]
+              },
+              "description": {
+                "type": "string",
+                "enum": [
+                  "Field cannot be patched."
+                ]
+              }
+            }
+          },
+          {
+            "title": "INVALID_PARAMETER_VALUE",
+            "properties": {
+              "issue": {
+                "type": "string",
+                "enum": [
+                  "INVALID_PARAMETER_VALUE"
+                ]
+              },
+              "description": {
+                "type": "string",
+                "enum": [
+                  "The value of a field is invalid."
+                ]
+              }
+            }
+          },
+          {
+            "title": "MISSING_REQUIRED_PARAMETER",
+            "properties": {
+              "issue": {
+                "type": "string",
+                "enum": [
+                  "MISSING_REQUIRED_PARAMETER"
+                ]
+              },
+              "description": {
+                "type": "string",
+                "enum": [
+                  "A required field or parameter is missing."
+                ]
+              }
+            }
+          },
+          {
+            "title": "INVALID_STRING_LENGTH",
+            "properties": {
+              "issue": {
+                "type": "string",
+                "enum": [
+                  "INVALID_STRING_LENGTH"
+                ]
+              },
+              "description": {
+                "type": "string",
+                "enum": [
+                  "The value of a field is either too short or too long."
+                ]
+              }
+            }
+          },
+          {
+            "title": "INVALID_PATCH_OPERATION",
+            "properties": {
+              "issue": {
+                "type": "string",
+                "enum": [
+                  "INVALID_PATCH_OPERATION"
+                ]
+              },
+              "description": {
+                "type": "string",
+                "enum": [
+                  "The operation cannot be honored. Cannot add a property that's already present, use replace. Cannot remove a property thats not present, use add. Cannot replace a property thats not present, use add."
+                ]
+              }
+            }
+          },
+          {
+            "title": "MALFORMED_REQUEST_JSON",
+            "properties": {
+              "issue": {
+                "type": "string",
+                "enum": [
+                  "MALFORMED_REQUEST_JSON"
+                ]
+              },
+              "description": {
+                "type": "string",
+                "enum": [
+                  "The request JSON is not well formed."
+                ]
+              }
+            }
+          }
+        ]
+      }
+    }
+  }
+}

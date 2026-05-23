@@ -1,0 +1,21 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/transaction_enum",
+  "title": "Transaction status",
+  "description": "The item transaction status.<blockquote><strong>Note:</strong> For <code>POST/v1/payments/payouts-item/{payout_item_id}/cancel</code>, the only possible <code>transaction_status</code> value is <code>RETURNED</code>.</blockquote>",
+  "type": "string",
+  "minLength": 1,
+  "maxLength": 36,
+  "pattern": "^[0-9A-Z_]+$",
+  "enum": [
+    "SUCCESS",
+    "FAILED",
+    "PENDING",
+    "UNCLAIMED",
+    "RETURNED",
+    "ONHOLD",
+    "BLOCKED",
+    "REFUNDED",
+    "REVERSED"
+  ]
+}

@@ -1,0 +1,19 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/individual_owner",
+  "title": "Individual_owner",
+  "description": "The individual owner of the account.",
+  "allOf": [
+    {
+      "$ref": "#/components/schemas/person"
+    },
+    {
+      "properties": {
+        "type": {
+          "description": "The actual role of this user on the account, PRIMARY/SECONDARY.",
+          "$ref": "#/components/schemas/individual_owner_type"
+        }
+      }
+    }
+  ]
+}

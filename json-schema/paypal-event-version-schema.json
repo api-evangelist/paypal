@@ -1,0 +1,9 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/event_version",
+  "title": "Event Version",
+  "type": "string",
+  "description": "The event version in the webhook notification.",
+  "deprecated": true,
+  "pattern": "^([0-9]+.[0-9]+)$"
+}

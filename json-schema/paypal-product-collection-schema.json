@@ -1,0 +1,39 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/product_collection",
+  "title": "Product Collection",
+  "description": "The list of products, with details.",
+  "type": "object",
+  "properties": {
+    "products": {
+      "type": "array",
+      "description": "An array of products.",
+      "minItems": 1,
+      "maxItems": 32767,
+      "items": {
+        "$ref": "#/components/schemas/product_collection_element"
+      }
+    },
+    "total_items": {
+      "type": "integer",
+      "description": "The total number of items.",
+      "minimum": 0,
+      "maximum": 500000000
+    },
+    "total_pages": {
+      "type": "integer",
+      "description": "The total number of pages.",
+      "minimum": 0,
+      "maximum": 100000000
+    },
+    "links": {
+      "type": "array",
+      "description": "An array of request-related [HATEOAS links](/docs/api/overview/#hateoas-links).",
+      "readOnly": true,
+      "items": {
+        "$ref": "#/components/schemas/link_description",
+        "readOnly": true
+      }
+    }
+  }
+}

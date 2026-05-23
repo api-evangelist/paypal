@@ -1,0 +1,16 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/item_type",
+  "title": "Item Type",
+  "type": "string",
+  "minLength": 1,
+  "maxLength": 255,
+  "pattern": "^[0-9A-Z_]+$",
+  "description": "The type of the item which has the issue.",
+  "enum": [
+    "PRODUCT",
+    "SERVICE",
+    "BOOKING",
+    "DIGITAL_DOWNLOAD"
+  ]
+}

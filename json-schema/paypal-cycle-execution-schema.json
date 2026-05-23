@@ -1,0 +1,60 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/cycle_execution",
+  "title": "Billing Cycle Execution Details",
+  "description": "The regular and trial execution details for a billing cycle.",
+  "type": "object",
+  "properties": {
+    "tenure_type": {
+      "type": "string",
+      "description": "The type of the billing cycle.",
+      "minLength": 1,
+      "maxLength": 24,
+      "pattern": "^[A-Z_]+$",
+      "readOnly": true,
+      "enum": [
+        "REGULAR",
+        "TRIAL"
+      ]
+    },
+    "sequence": {
+      "type": "integer",
+      "description": "The order in which to run this cycle among other billing cycles.",
+      "minimum": 0,
+      "maximum": 99
+    },
+    "cycles_completed": {
+      "type": "integer",
+      "description": "The number of billing cycles that have completed.",
+      "minimum": 0,
+      "maximum": 9999,
+      "readOnly": true
+    },
+    "cycles_remaining": {
+      "type": "integer",
+      "description": "For a finite billing cycle, cycles_remaining is the number of remaining cycles. For an infinite billing cycle, cycles_remaining is set as 0.",
+      "minimum": 0,
+      "maximum": 9999,
+      "readOnly": true
+    },
+    "current_pricing_scheme_version": {
+      "type": "integer",
+      "description": "The active pricing scheme version for the billing cycle.",
+      "minimum": 1,
+      "maximum": 99,
+      "readOnly": true
+    },
+    "total_cycles": {
+      "type": "integer",
+      "description": "The number of times this billing cycle gets executed. Trial billing cycles can only be executed a finite number of times (value between <code>1</code> and <code>999</code> for <code>total_cycles</code>). Regular billing cycles can be executed infinite times (value of <code>0</code> for <code>total_cycles</code>) or a finite number of times (value between <code>1</code> and <code>999</code> for <code>total_cycles</code>).",
+      "minimum": 0,
+      "maximum": 999,
+      "readOnly": true
+    }
+  },
+  "required": [
+    "tenure_type",
+    "sequence",
+    "cycles_completed"
+  ]
+}

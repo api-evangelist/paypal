@@ -1,0 +1,98 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/shipment_tracker",
+  "title": "Shipment Tracker.",
+  "type": "object",
+  "description": "The tracking information for a shipment.",
+  "properties": {
+    "transaction_id": {
+      "type": "string",
+      "description": "The PayPal transaction ID.",
+      "minLength": 1,
+      "maxLength": 50,
+      "pattern": "^[a-zA-Z0-9]*$"
+    },
+    "tracking_number": {
+      "type": "string",
+      "description": "The tracking number for the shipment. This property supports Unicode.",
+      "minLength": 1,
+      "maxLength": 64
+    },
+    "tracking_number_type": {
+      "description": "The type of tracking number.",
+      "$ref": "#/components/schemas/shipment_tracking_number_type"
+    },
+    "status": {
+      "$ref": "#/components/schemas/shipment_tracking_status"
+    },
+    "shipment_date": {
+      "description": "The date when the shipment occurred, in [Internet date and time format](https://tools.ietf.org/html/rfc3339#section-5.6).",
+      "$ref": "#/components/schemas/date_no_time"
+    },
+    "carrier": {
+      "$ref": "#/components/schemas/shipment_carrier"
+    },
+    "carrier_name_other": {
+      "type": "string",
+      "description": "The name of the carrier for the shipment. Provide this value only if the carrier parameter is OTHER. This property supports Unicode.",
+      "minLength": 1,
+      "maxLength": 64
+    },
+    "postage_payment_id": {
+      "type": "string",
+      "description": "The postage payment ID. This property supports Unicode.",
+      "readOnly": true,
+      "minLength": 1,
+      "maxLength": 64
+    },
+    "notify_buyer": {
+      "type": "boolean",
+      "description": "If true, sends an email notification to the buyer of the PayPal transaction. The email contains the tracking information that was uploaded through the API.",
+      "default": false
+    },
+    "quantity": {
+      "type": "integer",
+      "description": "The quantity of items shipped.",
+      "readOnly": true,
+      "minimum": 1,
+      "maximum": 100
+    },
+    "tracking_number_validated": {
+      "type": "boolean",
+      "description": "Indicates whether the carrier validated the tracking number.",
+      "readOnly": true
+    },
+    "last_updated_time": {
+      "description": "The date and time when the tracking information was last updated, in [Internet date and time format](https://tools.ietf.org/html/rfc3339#section-5.6).",
+      "$ref": "#/components/schemas/date_time"
+    },
+    "shipment_direction": {
+      "type": "string",
+      "description": "To denote whether the shipment is sent forward to the receiver or returned back.",
+      "minLength": 1,
+      "maxLength": 50,
+      "pattern": "^[0-9A-Z_]+$",
+      "enum": [
+        "FORWARD",
+        "RETURN"
+      ]
+    },
+    "shipment_uploader": {
+      "readOnly": true,
+      "type": "string",
+      "description": "To denote which party uploaded the shipment tracking info.",
+      "minLength": 1,
+      "maxLength": 50,
+      "pattern": "^[0-9A-Z_]+$",
+      "enum": [
+        "MERCHANT",
+        "CONSUMER",
+        "PARTNER"
+      ]
+    }
+  },
+  "required": [
+    "transaction_id",
+    "status"
+  ]
+}

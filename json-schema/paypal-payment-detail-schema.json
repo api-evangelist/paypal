@@ -1,0 +1,43 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/payment_detail",
+  "title": "Payment Detail",
+  "type": "object",
+  "description": "The payment details of the invoice. Includes payment type, method, date, discount, and transaction type.",
+  "properties": {
+    "type": {
+      "description": "The payment type in an invoicing flow which can be PayPal or an external cash or check payment.",
+      "$ref": "#/components/schemas/payment_type",
+      "readOnly": true
+    },
+    "payment_id": {
+      "type": "string",
+      "description": "The ID for a PayPal payment transaction. Required for the `PAYPAL` payment type.",
+      "maxLength": 22
+    },
+    "payment_date": {
+      "$ref": "#/components/schemas/date_no_time",
+      "description": "The date when the invoice was paid, in [Internet date and time format](https://tools.ietf.org/html/rfc3339#section-5.6). For example, *yyyy*-*MM*-*dd* *z*."
+    },
+    "method": {
+      "description": "The payment mode or method through which the invoicer can accept the payment.",
+      "$ref": "#/components/schemas/payment_method"
+    },
+    "note": {
+      "type": "string",
+      "description": "A note associated with an external cash or check payment.",
+      "maxLength": 2000
+    },
+    "amount": {
+      "$ref": "#/components/schemas/money",
+      "description": "The payment amount to record against the invoice. If you omit this parameter, the total invoice amount is marked as paid. This amount cannot exceed the amount due."
+    },
+    "shipping_info": {
+      "$ref": "#/components/schemas/contact_name_address",
+      "description": "The recipient's shipping information. Includes the user's contact information, which includes name and address."
+    }
+  },
+  "required": [
+    "method"
+  ]
+}

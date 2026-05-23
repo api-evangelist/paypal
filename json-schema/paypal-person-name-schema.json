@@ -1,0 +1,23 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/person_name",
+  "title": "Person name",
+  "type": "object",
+  "description": "The name of the person.",
+  "allOf": [
+    {
+      "$ref": "#/components/schemas/name"
+    },
+    {
+      "properties": {
+        "type": {
+          "description": "The type of name. Currently supported values are: `LEGAL`.",
+          "$ref": "#/components/schemas/person_name_type"
+        }
+      }
+    }
+  ],
+  "required": [
+    "type"
+  ]
+}

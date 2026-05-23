@@ -1,0 +1,16 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/buyer",
+  "title": "Customer",
+  "type": "object",
+  "description": "The details for the customer who funds the payment. For example, the customer's first name, last name, and email address.",
+  "properties": {
+    "name": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 2000,
+      "pattern": "^[^~!@#$%^*()_{}:|\\t\\n/]+$",
+      "description": "The customer's name."
+    }
+  }
+}

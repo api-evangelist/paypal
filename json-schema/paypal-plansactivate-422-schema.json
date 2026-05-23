@@ -1,0 +1,48 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/plans.activate-422",
+  "title": "plans.activate-422",
+  "properties": {
+    "details": {
+      "type": "array",
+      "items": {
+        "anyOf": [
+          {
+            "title": "USER_ACCOUNT_CLOSED",
+            "properties": {
+              "issue": {
+                "type": "string",
+                "enum": [
+                  "USER_ACCOUNT_CLOSED"
+                ]
+              },
+              "description": {
+                "type": "string",
+                "enum": [
+                  "User account locked or closed."
+                ]
+              }
+            }
+          },
+          {
+            "title": "PLAN_STATUS_INVALID",
+            "properties": {
+              "issue": {
+                "type": "string",
+                "enum": [
+                  "PLAN_STATUS_INVALID"
+                ]
+              },
+              "description": {
+                "type": "string",
+                "enum": [
+                  "Invalid plan status for activate action; plan status should be either created or inactive."
+                ]
+              }
+            }
+          }
+        ]
+      }
+    }
+  }
+}

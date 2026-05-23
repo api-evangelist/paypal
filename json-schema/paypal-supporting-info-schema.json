@@ -1,0 +1,49 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/supporting_info",
+  "title": "Supporting Info",
+  "type": "object",
+  "description": "A merchant- or customer-submitted supporting information.",
+  "properties": {
+    "notes": {
+      "type": "string",
+      "readOnly": true,
+      "description": "Any supporting notes.",
+      "minLength": 1,
+      "maxLength": 2000
+    },
+    "documents": {
+      "type": "array",
+      "minItems": 1,
+      "maxItems": 100,
+      "readOnly": true,
+      "description": "An array of metadata for the documents which were uploaded as supporting information for the dispute.",
+      "items": {
+        "$ref": "#/components/schemas/document"
+      }
+    },
+    "source": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 255,
+      "readOnly": true,
+      "pattern": "^[0-9A-Z_]+$",
+      "description": "The source of the Information.",
+      "enum": [
+        "SUBMITTED_BY_BUYER",
+        "SUBMITTED_BY_SELLER",
+        "SUBMITTED_BY_PARTNER"
+      ]
+    },
+    "provided_time": {
+      "readOnly": true,
+      "$ref": "#/components/schemas/date_time",
+      "description": "The date and time when the information was received, in [Internet date and time format](http://tools.ietf.org/html/rfc3339#section-5.6)."
+    },
+    "dispute_life_cycle_stage": {
+      "readOnly": true,
+      "description": "The dispute life cycle stage for the supporting info.",
+      "$ref": "#/components/schemas/dispute_lifecycle_stage"
+    }
+  }
+}

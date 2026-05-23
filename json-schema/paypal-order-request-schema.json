@@ -1,0 +1,38 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/order_request",
+  "title": "Order Request",
+  "type": "object",
+  "description": "The order request details.",
+  "properties": {
+    "intent": {
+      "$ref": "#/components/schemas/checkout_payment_intent"
+    },
+    "payer": {
+      "description": "DEPRECATED. The customer is also known as the payer. The Payer object was intended to only be used with the `payment_source.paypal` object. In order to make this design more clear, the details in the `payer` object are now available under `payment_source.paypal`. Please use `payment_source.paypal`.",
+      "$ref": "#/components/schemas/payer",
+      "deprecated": true
+    },
+    "purchase_units": {
+      "type": "array",
+      "description": "An array of purchase units. Each purchase unit establishes a contract between a payer and the payee. Each purchase unit represents either a full or partial order that the payer intends to purchase from the payee.",
+      "minItems": 1,
+      "maxItems": 10,
+      "items": {
+        "description": "The purchase unit. Establishes a contract between a payer and the payee.",
+        "$ref": "#/components/schemas/purchase_unit_request"
+      }
+    },
+    "payment_source": {
+      "$ref": "#/components/schemas/payment_source"
+    },
+    "application_context": {
+      "description": "Customize the payer experience during the approval process for the payment with PayPal.",
+      "$ref": "#/components/schemas/order_application_context"
+    }
+  },
+  "required": [
+    "intent",
+    "purchase_units"
+  ]
+}

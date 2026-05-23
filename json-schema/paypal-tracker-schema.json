@@ -1,0 +1,41 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/tracker",
+  "title": "Order Tracker Response.",
+  "type": "object",
+  "description": "The tracking response on creation of tracker.",
+  "allOf": [
+    {
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "The tracker id.",
+          "readOnly": true
+        },
+        "status": {
+          "$ref": "#/components/schemas/tracker_status"
+        },
+        "items": {
+          "type": "array",
+          "description": "An array of details of items in the shipment.",
+          "items": {
+            "description": "Items in a shipment.",
+            "$ref": "#/components/schemas/tracker_item"
+          }
+        },
+        "links": {
+          "type": "array",
+          "description": "An array of request-related HATEOAS links.",
+          "readOnly": true,
+          "items": {
+            "$ref": "#/components/schemas/link_description",
+            "description": "A request-related [HATEOAS link](/api/rest/responses/#hateoas-links)."
+          }
+        }
+      }
+    },
+    {
+      "$ref": "#/components/schemas/activity_timestamps"
+    }
+  ]
+}

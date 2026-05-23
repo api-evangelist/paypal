@@ -1,0 +1,26 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/authorization-2",
+  "title": "Authorization",
+  "type": "object",
+  "description": "The authorized payment transaction.",
+  "allOf": [
+    {
+      "$ref": "#/components/schemas/authorization"
+    },
+    {
+      "properties": {
+        "supplementary_data": {
+          "description": "An object that provides supplementary/additional data related to a payment transaction.",
+          "readOnly": true,
+          "$ref": "#/components/schemas/supplementary_data"
+        },
+        "payee": {
+          "description": "The details associated with the merchant for this transaction.",
+          "$ref": "#/components/schemas/payee_base",
+          "readOnly": true
+        }
+      }
+    }
+  ]
+}

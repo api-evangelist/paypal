@@ -1,0 +1,50 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/payer_info",
+  "title": "Payer Information",
+  "type": "object",
+  "description": "The payer information.",
+  "properties": {
+    "account_id": {
+      "type": "string",
+      "description": "The PayPal` customer account ID.",
+      "minLength": 1,
+      "maxLength": 13,
+      "pattern": "^[a-zA-Z0-9]*$"
+    },
+    "email_address": {
+      "description": "The email address of the payer.",
+      "$ref": "#/components/schemas/email_address"
+    },
+    "phone_number": {
+      "description": "The primary phone number of the payer.",
+      "$ref": "#/components/schemas/phone"
+    },
+    "address_status": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 1,
+      "pattern": "^[N|Y]$",
+      "description": "The address status of the payer. Value is either:<ul><li><code>Y</code>. Verified.</li><li><code>N</code>. Not verified.</li></ul>"
+    },
+    "payer_status": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 1,
+      "pattern": "^[N|Y]$",
+      "description": "The status of the payer. Value is `Y` or `N`."
+    },
+    "payer_name": {
+      "description": "The payer name.",
+      "$ref": "#/components/schemas/name"
+    },
+    "country_code": {
+      "description": "The [two-character ISO 3166-1 code](/api/rest/reference/country-codes/) that identifies the country or region of the payer.<blockquote><strong>Note:</strong> The country code for Great Britain is <code>GB</code> and not <code>UK</code> as used in the top-level domain names for that country. Use the `C2` country code for China worldwide for comparable uncontrolled price (CUP) method, bank card, and cross-border transactions.</blockquote>",
+      "$ref": "#/components/schemas/country_code"
+    },
+    "address": {
+      "description": "The payer address.",
+      "$ref": "#/components/schemas/address"
+    }
+  }
+}

@@ -1,0 +1,11 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/account_id",
+  "title": "PayPal Account Identifier",
+  "type": "string",
+  "description": "The account identifier for a PayPal account.",
+  "format": "ppaas_payer_id_v3",
+  "minLength": 13,
+  "maxLength": 13,
+  "pattern": "^[2-9A-HJ-NP-Z]{13}$"
+}

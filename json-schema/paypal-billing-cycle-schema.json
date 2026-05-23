@@ -1,0 +1,46 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/billing_cycle",
+  "title": "Billing Cycle",
+  "description": "The billing cycle details.",
+  "type": "object",
+  "properties": {
+    "pricing_scheme": {
+      "description": "The active pricing scheme for this billing cycle. A free trial billing cycle does not require a pricing scheme.",
+      "$ref": "#/components/schemas/pricing_scheme"
+    },
+    "frequency": {
+      "description": "The frequency details for this billing cycle.",
+      "$ref": "#/components/schemas/frequency"
+    },
+    "tenure_type": {
+      "type": "string",
+      "description": "The tenure type of the billing cycle. In case of a plan having trial cycle, only 2 trial cycles are allowed per plan.",
+      "minLength": 1,
+      "maxLength": 24,
+      "pattern": "^[A-Z_]+$",
+      "enum": [
+        "REGULAR",
+        "TRIAL"
+      ]
+    },
+    "sequence": {
+      "type": "integer",
+      "description": "The order in which this cycle is to run among other billing cycles. For example, a trial billing cycle has a `sequence` of `1` while a regular billing cycle has a `sequence` of `2`, so that trial cycle runs before the regular cycle.",
+      "minimum": 1,
+      "maximum": 99
+    },
+    "total_cycles": {
+      "type": "integer",
+      "description": "The number of times this billing cycle gets executed. Trial billing cycles can only be executed a finite number of times (value between <code>1</code> and <code>999</code> for <code>total_cycles</code>). Regular billing cycles can be executed infinite times (value of <code>0</code> for <code>total_cycles</code>) or a finite number of times (value between <code>1</code> and <code>999</code> for <code>total_cycles</code>).",
+      "minimum": 0,
+      "maximum": 999,
+      "default": 1
+    }
+  },
+  "required": [
+    "frequency",
+    "tenure_type",
+    "sequence"
+  ]
+}

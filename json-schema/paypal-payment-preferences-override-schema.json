@@ -1,0 +1,34 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/payment_preferences_override",
+  "title": "Payment Preferences Override",
+  "description": "The payment preferences to override at subscription level.",
+  "type": "object",
+  "properties": {
+    "auto_bill_outstanding": {
+      "type": "boolean",
+      "description": "Indicates whether to automatically bill the outstanding amount in the next billing cycle."
+    },
+    "setup_fee": {
+      "description": "The initial set-up fee for the service.",
+      "$ref": "#/components/schemas/money"
+    },
+    "setup_fee_failure_action": {
+      "type": "string",
+      "description": "The action to take on the subscription if the initial payment for the setup fails.",
+      "minLength": 1,
+      "maxLength": 24,
+      "pattern": "^[A-Z_]+$",
+      "enum": [
+        "CONTINUE",
+        "CANCEL"
+      ]
+    },
+    "payment_failure_threshold": {
+      "type": "integer",
+      "description": "The maximum number of payment failures before a subscription is suspended. For example, if `payment_failure_threshold` is `2`, the subscription automatically updates to the `SUSPEND` state if two consecutive payments fail.",
+      "minimum": 0,
+      "maximum": 999
+    }
+  }
+}

@@ -1,0 +1,69 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/payout_item",
+  "title": "Payout Item",
+  "type": "object",
+  "description": "The sender-created payout to a recipient.",
+  "properties": {
+    "recipient_type": {
+      "type": "string",
+      "description": "The recipient type. Value is:<ul><li><p><code>EMAIL</code>. The unencrypted email. Value is a string of up to 127 single-byte characters.</p></li><li><p><code>PHONE</code>. The unencrypted phone number.</p><blockquote><strong>Note:</strong> The PayPal sandbox does not support the <code>PHONE</code> recipient type.</blockquote></li><li><p><code>PAYPAL_ID</code>. The encrypted PayPal account number.</p></li><li><p><code>USER_HANDLE</code>. User handle (or) Username associated with Venmo account.</p></li></ul><br/>If the <code>sender_batch_header</code> includes the <code>recipient_type</code> attribute, payout items use the <code>recipient_type</code> of the <code>sender_batch_header</code>, unless a payout item has its own <code>recipient_type</code> attribute. If the <code>sender_batch_header</code> omits the <code>recipient_type</code> attribute, each payout item must include its own <code>recipient_type</code> value.",
+      "minLength": 0,
+      "maxLength": 13,
+      "pattern": "^.*$"
+    },
+    "amount": {
+      "description": "The currency and amount to pay the receiver.",
+      "$ref": "#/components/schemas/currency"
+    },
+    "note": {
+      "type": "string",
+      "description": "The sender-specified note for notifications. Supports up to 4000 ASCII characters and 1000 non-ASCII characters.",
+      "minLength": 0,
+      "maxLength": 4000,
+      "pattern": "^.*$"
+    },
+    "receiver": {
+      "type": "string",
+      "description": "The receiver of the payment. Corresponds to the `recipient_type` value in the request. Max value of up to 127 single-byte characters.",
+      "minLength": 0,
+      "maxLength": 127,
+      "pattern": "^.*$"
+    },
+    "sender_item_id": {
+      "type": "string",
+      "description": "The sender-specified ID number. Tracks the payout in an accounting system.",
+      "minLength": 0,
+      "maxLength": 63,
+      "pattern": "^.*$"
+    },
+    "recipient_wallet": {
+      "type": "string",
+      "description": "The recipient wallet.",
+      "default": "PAYPAL",
+      "minLength": 0,
+      "maxLength": 36,
+      "pattern": "^.*$"
+    },
+    "alternate_notification_method": {
+      "description": "Captures additional notification modes to reach out to the receiver regarding this payment.",
+      "$ref": "#/components/schemas/alternate_notification_method"
+    },
+    "notification_language": {
+      "$ref": "#/components/schemas/language",
+      "description": "The language in which to show the payout recipient's email message. Used only when the recipient does not have a PayPal account. If you omit the language or provide invalid language and the recipient does not have a PayPal account, the email message is sent in the language of the merchant's PayPal account."
+    },
+    "application_context": {
+      "description": "Metadata for accepting additional information from merchants to Venmo.",
+      "$ref": "#/components/schemas/application_context"
+    },
+    "purpose": {
+      "description": "The purpose of the transaction.",
+      "$ref": "#/components/schemas/purpose_enum"
+    }
+  },
+  "required": [
+    "amount",
+    "receiver"
+  ]
+}

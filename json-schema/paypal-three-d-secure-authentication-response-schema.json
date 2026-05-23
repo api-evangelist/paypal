@@ -1,0 +1,17 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/three_d_secure_authentication_response",
+  "title": "The 3D Secure Authentication Response",
+  "type": "object",
+  "description": "Results of 3D Secure Authentication.",
+  "properties": {
+    "authentication_status": {
+      "description": "The outcome of the issuer's authentication.",
+      "$ref": "#/components/schemas/pares_status"
+    },
+    "enrollment_status": {
+      "description": "Status of authentication eligibility.",
+      "$ref": "#/components/schemas/enrolled"
+    }
+  }
+}

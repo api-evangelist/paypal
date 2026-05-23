@@ -1,0 +1,23 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/refunds",
+  "title": "Refunds",
+  "type": "object",
+  "description": "The invoicing refund details. Includes the refund type, date, amount, and method.",
+  "properties": {
+    "refund_amount": {
+      "$ref": "#/components/schemas/money",
+      "readOnly": true,
+      "description": "The aggregated refund amounts."
+    },
+    "transactions": {
+      "type": "array",
+      "description": "An array of refund details for the invoice. Includes the refund type, date, amount, and method.",
+      "maxItems": 100,
+      "items": {
+        "$ref": "#/components/schemas/refund_detail"
+      },
+      "readOnly": true
+    }
+  }
+}

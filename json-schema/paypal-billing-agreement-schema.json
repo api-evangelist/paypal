@@ -1,0 +1,41 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/billing_agreement",
+  "title": "Billing Agreement",
+  "type": "object",
+  "description": "The details of the billing agreement between the partner and a seller.",
+  "additionalProperties": false,
+  "properties": {
+    "description": {
+      "type": "string",
+      "description": "The billing agreement description.",
+      "minLength": 1,
+      "maxLength": 125,
+      "pattern": "^.+$"
+    },
+    "billing_experience_preference": {
+      "$ref": "#/components/schemas/billing_experience_preference"
+    },
+    "merchant_custom_data": {
+      "type": "string",
+      "description": "The custom data for the billing agreement.",
+      "minLength": 1,
+      "maxLength": 125,
+      "pattern": "^[a-zA-Z0-9-]+$"
+    },
+    "approval_url": {
+      "type": "string",
+      "format": "uri",
+      "description": "The URL to which to redirect seller to accept the billing agreement.",
+      "minLength": 1,
+      "maxLength": 125
+    },
+    "ec_token": {
+      "type": "string",
+      "description": "The billing agreement token for the agreement.",
+      "minLength": 1,
+      "maxLength": 50,
+      "pattern": "^[0-9A-Z_-]+$"
+    }
+  }
+}

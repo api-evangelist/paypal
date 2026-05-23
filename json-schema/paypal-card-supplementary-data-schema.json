@@ -1,0 +1,15 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/card_supplementary_data",
+  "title": "Card Supplementary Data",
+  "type": "object",
+  "description": "Merchants and partners can add Level 2 and 3 data to payments to reduce risk and payment processing costs. For more information about processing payments, see <a href=\"https://developer.paypal.com/docs/checkout/advanced/processing/\">checkout</a> or <a href=\"https://developer.paypal.com/docs/multiparty/checkout/advanced/processing/\">multiparty checkout</a>.",
+  "properties": {
+    "level_2": {
+      "$ref": "#/components/schemas/level_2_card_processing_data"
+    },
+    "level_3": {
+      "$ref": "#/components/schemas/level_3_card_processing_data"
+    }
+  }
+}

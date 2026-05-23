@@ -1,0 +1,11 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/checkout_payment_intent",
+  "title": "Checkout Payment Intent",
+  "type": "string",
+  "description": "The intent to either capture payment immediately or authorize a payment for an order after order creation.",
+  "enum": [
+    "CAPTURE",
+    "AUTHORIZE"
+  ]
+}

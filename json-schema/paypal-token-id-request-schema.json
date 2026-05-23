@@ -1,0 +1,34 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/token_id_request",
+  "title": "Token Request",
+  "type": "object",
+  "description": "The Tokenized Payment Source representing a Request to Vault a Token.",
+  "properties": {
+    "id": {
+      "type": "string",
+      "description": "The PayPal-generated ID for the token.",
+      "minLength": 1,
+      "maxLength": 255,
+      "pattern": "^[0-9A-Z_-]+$"
+    },
+    "type": {
+      "type": "string",
+      "description": "The tokenization method that generated the ID.",
+      "minLength": 1,
+      "maxLength": 255,
+      "pattern": "^[0-9A-Z_-]+$",
+      "enum": [
+        "BILLING_AGREEMENT"
+      ]
+    },
+    "attributes": {
+      "description": "The auxiliary details of the token.",
+      "$ref": "#/components/schemas/token_attributes"
+    }
+  },
+  "required": [
+    "id",
+    "type"
+  ]
+}

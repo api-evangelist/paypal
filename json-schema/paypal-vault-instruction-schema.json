@@ -1,0 +1,11 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/vault_instruction",
+  "title": "Vault Instruction",
+  "type": "string",
+  "description": "Vault Instruction on action to be performed after a successful payer approval.",
+  "minLength": 1,
+  "maxLength": 255,
+  "pattern": "^[A-Z_]+$",
+  "default": "ON_CREATE_PAYMENT_TOKENS"
+}

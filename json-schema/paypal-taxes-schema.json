@@ -1,0 +1,21 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/taxes",
+  "title": "Taxes",
+  "description": "The tax details.",
+  "type": "object",
+  "properties": {
+    "percentage": {
+      "description": "The tax percentage on the billing amount.",
+      "$ref": "#/components/schemas/percentage"
+    },
+    "inclusive": {
+      "type": "boolean",
+      "description": "Indicates whether the tax was already included in the billing amount.",
+      "default": true
+    }
+  },
+  "required": [
+    "percentage"
+  ]
+}

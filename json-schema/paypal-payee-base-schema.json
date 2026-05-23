@@ -1,0 +1,17 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/payee_base",
+  "title": "Merchant Base",
+  "type": "object",
+  "description": "The details for the merchant who receives the funds and fulfills the order. The merchant is also known as the payee.",
+  "properties": {
+    "email_address": {
+      "description": "The email address of merchant.",
+      "$ref": "#/components/schemas/email"
+    },
+    "merchant_id": {
+      "description": "The encrypted PayPal account ID of the merchant.",
+      "$ref": "#/components/schemas/account_id"
+    }
+  }
+}

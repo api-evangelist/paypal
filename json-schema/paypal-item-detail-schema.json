@@ -1,0 +1,117 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/item_detail",
+  "title": "Item Details",
+  "type": "object",
+  "description": "The item details.",
+  "properties": {
+    "item_code": {
+      "type": "string",
+      "description": "An item code that identifies a merchant's goods or service.",
+      "minLength": 1,
+      "maxLength": 1000,
+      "pattern": "^[a-zA-Z0-9_'\\-., \":;\\!?]*$"
+    },
+    "item_name": {
+      "type": "string",
+      "description": "The item name.",
+      "minLength": 1,
+      "maxLength": 200,
+      "pattern": "^[a-zA-Z0-9_'\\-., \":;\\!?]*$"
+    },
+    "item_description": {
+      "type": "string",
+      "description": "The item description.",
+      "minLength": 1,
+      "maxLength": 2000,
+      "pattern": "^[a-zA-Z0-9_'\\-., \":;\\!?]*$"
+    },
+    "item_options": {
+      "type": "string",
+      "description": "The item options. Describes option choices on the purchase of the item in some detail.",
+      "minLength": 1,
+      "maxLength": 4000,
+      "pattern": "^[a-zA-Z0-9_'\\-., \":;\\!?]*$"
+    },
+    "item_quantity": {
+      "type": "string",
+      "description": "The number of purchased units of goods or a service.",
+      "minLength": 1,
+      "maxLength": 4000,
+      "pattern": "^[a-zA-Z0-9_'\\-., \":;\\!?]*$"
+    },
+    "item_unit_price": {
+      "$ref": "#/components/schemas/money",
+      "description": "The cost for each instance of goods or a service."
+    },
+    "item_amount": {
+      "$ref": "#/components/schemas/money",
+      "description": "The amount of the payment for the item."
+    },
+    "discount_amount": {
+      "$ref": "#/components/schemas/money",
+      "description": "The reduction in price associated with goods or a service."
+    },
+    "adjustment_amount": {
+      "$ref": "#/components/schemas/money",
+      "description": "An increment or decrement to a purchase amount."
+    },
+    "gift_wrap_amount": {
+      "$ref": "#/components/schemas/money",
+      "description": "The amount of money charged for gift wrapping an item."
+    },
+    "tax_percentage": {
+      "$ref": "#/components/schemas/percentage",
+      "description": "A rate, expressed in hundreds, that is used to calculate a levy for the purchase of goods or services.",
+      "maxLength": 10,
+      "pattern": "^((-?[0-9]+)|(-?([0-9]+)?[.][0-9]+))$"
+    },
+    "tax_amounts": {
+      "type": "array",
+      "description": "An array of tax amounts levied by a government on the purchase of goods or services.",
+      "maxItems": 32767,
+      "minItems": 1,
+      "items": {
+        "$ref": "#/components/schemas/item_detail_tax_amount",
+        "description": "A tax levied by a government on the purchase of goods or services."
+      }
+    },
+    "basic_shipping_amount": {
+      "$ref": "#/components/schemas/money",
+      "description": "The delivery cost."
+    },
+    "extra_shipping_amount": {
+      "$ref": "#/components/schemas/money",
+      "description": "The cost for expedited delivery of the goods."
+    },
+    "handling_amount": {
+      "$ref": "#/components/schemas/money",
+      "description": "A charge for processing the purchase of goods or services."
+    },
+    "insurance_amount": {
+      "$ref": "#/components/schemas/money",
+      "description": "A charge for guaranteeing the quality of a product or delivery of a product."
+    },
+    "total_item_amount": {
+      "$ref": "#/components/schemas/money",
+      "description": "The sum of all factors, item cost, discounts, tax, shipping, and so on, that goes into the cost of an item."
+    },
+    "invoice_number": {
+      "type": "string",
+      "description": "The invoice number. An alphanumeric string that identifies a billing for a merchant.",
+      "minLength": 1,
+      "maxLength": 200,
+      "pattern": "^[a-zA-Z0-9_'\\-., \":;\\!?]*$"
+    },
+    "checkout_options": {
+      "type": "array",
+      "description": "An array of checkout options. Each option has a name and value.",
+      "items": {
+        "$ref": "#/components/schemas/checkout_option",
+        "description": "A checkout option as a name-and-value pair."
+      },
+      "minItems": 1,
+      "maxItems": 32767
+    }
+  }
+}

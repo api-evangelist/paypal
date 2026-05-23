@@ -1,0 +1,9 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/classic_api_integration",
+  "title": "CLASSIC API integration",
+  "type": "object",
+  "description": "The integration details for PayPal CLASSIC endpoints.",
+  "additionalProperties": false,
+  "properties": {}
+}

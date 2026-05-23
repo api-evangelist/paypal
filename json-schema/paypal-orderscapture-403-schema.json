@@ -1,0 +1,82 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/orders.capture-403",
+  "title": "orders.capture-403",
+  "properties": {
+    "details": {
+      "type": "array",
+      "items": {
+        "anyOf": [
+          {
+            "title": "CONSENT_NEEDED",
+            "properties": {
+              "issue": {
+                "type": "string",
+                "enum": [
+                  "CONSENT_NEEDED"
+                ]
+              },
+              "description": {
+                "type": "string",
+                "enum": [
+                  "CONSENT_NEEDED"
+                ]
+              }
+            }
+          },
+          {
+            "title": "NOT_ELIGIBLE_FOR_TOKEN_PROCESSING",
+            "properties": {
+              "issue": {
+                "type": "string",
+                "enum": [
+                  "NOT_ELIGIBLE_FOR_TOKEN_PROCESSING"
+                ]
+              },
+              "description": {
+                "type": "string",
+                "enum": [
+                  "API caller is not enabled to process payments with the specified type of token. Please contact customer support to request permissions to process transactions with this type of token."
+                ]
+              }
+            }
+          },
+          {
+            "title": "PERMISSION_DENIED",
+            "properties": {
+              "issue": {
+                "type": "string",
+                "enum": [
+                  "PERMISSION_DENIED"
+                ]
+              },
+              "description": {
+                "type": "string",
+                "enum": [
+                  "You do not have permission to access or perform operations on this resource."
+                ]
+              }
+            }
+          },
+          {
+            "title": "PERMISSION_DENIED_FOR_DONATION_ITEMS",
+            "properties": {
+              "issue": {
+                "type": "string",
+                "enum": [
+                  "PERMISSION_DENIED_FOR_DONATION_ITEMS"
+                ]
+              },
+              "description": {
+                "type": "string",
+                "enum": [
+                  "The API Caller or Payee have not been granted appropriate permissions to send 'items.category' as 'DONATION'. Please speak to your account manager if you want to process these type of items."
+                ]
+              }
+            }
+          }
+        ]
+      }
+    }
+  }
+}

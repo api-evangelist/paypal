@@ -1,0 +1,47 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/tracker_item",
+  "title": "Tracker Item",
+  "type": "object",
+  "description": "The details of the items in the shipment.",
+  "properties": {
+    "name": {
+      "type": "string",
+      "description": "The item name or title.",
+      "minLength": 1,
+      "maxLength": 127
+    },
+    "quantity": {
+      "type": "string",
+      "description": "The item quantity. Must be a whole number.",
+      "minLength": 1,
+      "maxLength": 10,
+      "pattern": "^[1-9][0-9]{0,9}$"
+    },
+    "sku": {
+      "type": "string",
+      "description": "The stock keeping unit (SKU) for the item. This can contain unicode characters.",
+      "minLength": 1,
+      "maxLength": 127
+    },
+    "url": {
+      "type": "string",
+      "format": "uri",
+      "minLength": 1,
+      "maxLength": 2048,
+      "description": "The URL to the item being purchased. Visible to buyer and used in buyer experiences."
+    },
+    "image_url": {
+      "type": "string",
+      "format": "uri",
+      "description": "The URL of the item's image. File type and size restrictions apply. An image that violates these restrictions will not be honored.",
+      "minLength": 1,
+      "maxLength": 2048,
+      "pattern": "^(https:)([/|.|\\w|\\s|-])*\\.(?:jpg|gif|png|jpeg|JPG|GIF|PNG|JPEG)"
+    },
+    "upc": {
+      "description": "The Universal Product Code of the item.",
+      "$ref": "#/components/schemas/universal_product_code"
+    }
+  }
+}

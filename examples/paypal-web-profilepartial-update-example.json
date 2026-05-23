@@ -1,0 +1,24 @@
+{
+  "operationId": "web-profile.partial-update",
+  "method": "PATCH",
+  "path": "/v1/payment-experience/web-profiles/{id}",
+  "summary": "Paypal Partially update web experience profile",
+  "requestExamples": [
+    {
+      "contentType": "application/json",
+      "name": "patch_request",
+      "example": [
+        {
+          "op": "add",
+          "path": "/presentation/brand_name",
+          "value": "new_brand_name"
+        },
+        {
+          "op": "remove",
+          "path": "/flow_config/landing_page_type"
+        }
+      ]
+    }
+  ],
+  "responseExamples": []
+}

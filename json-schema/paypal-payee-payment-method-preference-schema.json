@@ -1,0 +1,15 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/payee_payment_method_preference",
+  "title": "payee_payment_method_preference",
+  "type": "string",
+  "description": "The merchant-preferred payment methods.",
+  "minLength": 1,
+  "maxLength": 255,
+  "pattern": "^[0-9A-Z_]+$",
+  "default": "UNRESTRICTED",
+  "enum": [
+    "UNRESTRICTED",
+    "IMMEDIATE_PAYMENT_REQUIRED"
+  ]
+}

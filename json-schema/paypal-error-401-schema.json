@@ -1,0 +1,40 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/error_401",
+  "title": "Unauthorized Error",
+  "type": "object",
+  "description": "Authentication failed due to missing Authorization header, or invalid authentication credentials.",
+  "properties": {
+    "name": {
+      "type": "string",
+      "enum": [
+        "AUTHENTICATION_FAILURE"
+      ]
+    },
+    "message": {
+      "type": "string",
+      "enum": [
+        "Authentication failed due to missing authorization header, or invalid authentication credentials."
+      ]
+    },
+    "details": {
+      "type": "array",
+      "items": {
+        "$ref": "#/components/schemas/error_details"
+      }
+    },
+    "debug_id": {
+      "type": "string",
+      "description": "The PayPal internal ID. Used for correlation purposes."
+    },
+    "links": {
+      "description": "An array of request-related [HATEOAS links](https://en.wikipedia.org/wiki/HATEOAS).",
+      "type": "array",
+      "minItems": 0,
+      "maxItems": 10000,
+      "items": {
+        "$ref": "#/components/schemas/error_link_description"
+      }
+    }
+  }
+}

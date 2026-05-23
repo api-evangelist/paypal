@@ -1,0 +1,30 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/evidence_info",
+  "title": "Evidence Information",
+  "type": "object",
+  "description": "The evidence-related information.",
+  "properties": {
+    "tracking_info": {
+      "type": "array",
+      "minItems": 1,
+      "maxItems": 10,
+      "description": "An array of relevant tracking information for the transaction involved in this dispute.",
+      "items": {
+        "$ref": "#/components/schemas/tracking_info"
+      }
+    },
+    "refund_ids": {
+      "type": "array",
+      "minItems": 1,
+      "maxItems": 100,
+      "description": "An array of refund IDs for the transaction involved in this dispute.",
+      "items": {
+        "type": "string",
+        "minLength": 1,
+        "maxLength": 255,
+        "description": "The ID of the refunded transaction."
+      }
+    }
+  }
+}

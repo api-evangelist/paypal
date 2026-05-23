@@ -1,0 +1,26 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/capture-2",
+  "title": "Capture",
+  "type": "object",
+  "description": "A captured payment.",
+  "allOf": [
+    {
+      "$ref": "#/components/schemas/capture"
+    },
+    {
+      "properties": {
+        "supplementary_data": {
+          "description": "An object that provides supplementary/additional data related to a payment transaction.",
+          "readOnly": true,
+          "$ref": "#/components/schemas/supplementary_data"
+        },
+        "payee": {
+          "description": "The details associated with the merchant for this transaction.",
+          "$ref": "#/components/schemas/payee_base",
+          "readOnly": true
+        }
+      }
+    }
+  ]
+}

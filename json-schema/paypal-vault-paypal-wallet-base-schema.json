@@ -1,0 +1,74 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/vault_paypal_wallet_base",
+  "title": "Vaulted PayPal Wallet Common Attributes",
+  "type": "object",
+  "description": "Resource consolidating common request and response attributes for vaulting PayPal Wallet.",
+  "allOf": [
+    {
+      "$ref": "#/components/schemas/vault_instruction_base"
+    },
+    {
+      "properties": {
+        "description": {
+          "type": "string",
+          "description": "The description displayed to PayPal consumer on the approval flow for PayPal, as well as on the PayPal payment token management experience on PayPal.com.",
+          "minLength": 1,
+          "maxLength": 128
+        },
+        "usage_pattern": {
+          "type": "string",
+          "description": "Expected business/pricing model for the billing agreement.",
+          "minLength": 1,
+          "maxLength": 30,
+          "enum": [
+            "IMMEDIATE",
+            "DEFERRED",
+            "RECURRING_PREPAID",
+            "RECURRING_POSTPAID",
+            "THRESHOLD_PREPAID",
+            "THRESHOLD_POSTPAID"
+          ]
+        },
+        "shipping": {
+          "description": "The shipping address for the Payer.",
+          "$ref": "#/components/schemas/shipping_detail"
+        },
+        "usage_type": {
+          "type": "string",
+          "description": "The usage type associated with the PayPal payment token.",
+          "minLength": 1,
+          "maxLength": 255,
+          "pattern": "^[0-9A-Z_]+$",
+          "enum": [
+            "MERCHANT",
+            "PLATFORM"
+          ]
+        },
+        "owner_id": {
+          "$ref": "#/components/schemas/vault_owner_id"
+        },
+        "customer_type": {
+          "type": "string",
+          "description": "The customer type associated with the PayPal payment token. This is to indicate whether the customer acting on the merchant / platform is either a business or a consumer.",
+          "minLength": 1,
+          "maxLength": 255,
+          "pattern": "^[0-9A-Z_]+$",
+          "default": "CONSUMER",
+          "enum": [
+            "CONSUMER",
+            "BUSINESS"
+          ]
+        },
+        "permit_multiple_payment_tokens": {
+          "type": "boolean",
+          "description": "Create multiple payment tokens for the same payer, merchant/platform combination. Use this when the customer has not logged in at merchant/platform. The payment token thus generated, can then also be used to create the customer account at merchant/platform. Use this also when multiple payment tokens are required for the same payer, different customer at merchant/platform. This helps to identify customers distinctly even though they may share the same PayPal account. This only applies to PayPal payment source.",
+          "default": false
+        }
+      }
+    }
+  ],
+  "required": [
+    "usage_type"
+  ]
+}

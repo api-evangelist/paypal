@@ -1,0 +1,34 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/incentive_detail",
+  "title": "Incentive Details",
+  "type": "object",
+  "description": "The incentive details.",
+  "properties": {
+    "incentive_type": {
+      "type": "string",
+      "description": "The type of incentive, such as a special offer or coupon.",
+      "minLength": 1,
+      "maxLength": 500,
+      "pattern": "^[a-zA-Z0-9_'\\-., \":;\\!?]*$"
+    },
+    "incentive_code": {
+      "type": "string",
+      "description": "The code that identifies an incentive, such as a coupon.",
+      "minLength": 1,
+      "maxLength": 200,
+      "pattern": "^[a-zA-Z0-9_'\\-., \":;\\!?]*$"
+    },
+    "incentive_amount": {
+      "$ref": "#/components/schemas/money",
+      "description": "The incentive amount."
+    },
+    "incentive_program_code": {
+      "type": "string",
+      "description": "The incentive program code that identifies a merchant loyalty or incentive program.",
+      "minLength": 1,
+      "maxLength": 100,
+      "pattern": "^[a-zA-Z0-9_'\\-., \":;\\!?]*$"
+    }
+  }
+}

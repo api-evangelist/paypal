@@ -1,0 +1,32 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/transfer_method",
+  "title": "Requested transfer method and currency for a country",
+  "type": "object",
+  "additionalProperties": false,
+  "description": "Requested transfer method and currency for a country.",
+  "properties": {
+    "transfer_method_type": {
+      "type": "string",
+      "description": "Transfer Method type.",
+      "pattern": "^[0-9A-Z_-]+$",
+      "minLength": 1,
+      "maxLength": 50,
+      "enum": [
+        "BANK_ACCOUNT",
+        "PAYPAL",
+        "VENMO",
+        "WIRE_ACCOUNT"
+      ]
+    },
+    "currencies": {
+      "type": "array",
+      "description": "Requested Currencies for a Transfer Method.",
+      "minItems": 1,
+      "maxItems": 50,
+      "items": {
+        "$ref": "#/components/schemas/currency_code-2"
+      }
+    }
+  }
+}

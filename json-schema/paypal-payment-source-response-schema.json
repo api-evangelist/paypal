@@ -1,0 +1,12 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/payment_source_response",
+  "title": "Payment Source Response",
+  "type": "object",
+  "description": "The payment source used to fund the payment.",
+  "properties": {
+    "card": {
+      "$ref": "#/components/schemas/card_response_with_billing_address"
+    }
+  }
+}

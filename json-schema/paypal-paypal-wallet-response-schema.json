@@ -1,0 +1,56 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/paypal_wallet_response",
+  "title": "PayPal Wallet Response",
+  "type": "object",
+  "description": "The PayPal Wallet response.",
+  "properties": {
+    "email_address": {
+      "description": "The email address of the PayPal account holder.",
+      "$ref": "#/components/schemas/email"
+    },
+    "account_id": {
+      "description": "The PayPal-assigned ID for the PayPal account holder.",
+      "readOnly": true,
+      "$ref": "#/components/schemas/account_id-2"
+    },
+    "account_status": {
+      "type": "string",
+      "description": "The account status indicates whether the buyer has verified the financial details associated with their PayPal account.",
+      "readOnly": true,
+      "minLength": 1,
+      "maxLength": 255,
+      "pattern": "^[A-Z_]+$",
+      "enum": [
+        "VERIFIED",
+        "UNVERIFIED"
+      ]
+    },
+    "name": {
+      "description": "The name of the PayPal account holder. Supports only the `given_name` and `surname` properties.",
+      "$ref": "#/components/schemas/name-2"
+    },
+    "phone_type": {
+      "$ref": "#/components/schemas/phone_type-2"
+    },
+    "phone_number": {
+      "description": "The phone number, in its canonical international [E.164 numbering plan format](https://www.itu.int/rec/T-REC-E.164/en). Available only when you enable the **Contact Telephone Number** option in the <a href=\"https://www.paypal.com/cgi-bin/customerprofileweb?cmd=_profile-website-payments\">**Profile & Settings**</a> for the merchant's PayPal account. Supports only the `national_number` property.",
+      "$ref": "#/components/schemas/phone-2"
+    },
+    "birth_date": {
+      "description": "The birth date of the PayPal account holder in `YYYY-MM-DD` format.",
+      "$ref": "#/components/schemas/date_no_time"
+    },
+    "tax_info": {
+      "description": "The tax information of the PayPal account holder. Required only for Brazilian PayPal account holder's. Both `tax_id` and `tax_id_type` are required.",
+      "$ref": "#/components/schemas/tax_info"
+    },
+    "address": {
+      "description": "The address of the PayPal account holder. Supports only the `address_line_1`, `address_line_2`, `admin_area_1`, `admin_area_2`, `postal_code`, and `country_code` properties. Also referred to as the billing address of the customer.",
+      "$ref": "#/components/schemas/address_portable-2"
+    },
+    "attributes": {
+      "$ref": "#/components/schemas/paypal_wallet_attributes_response"
+    }
+  }
+}

@@ -1,0 +1,19 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/blik_seamless",
+  "title": "BLIK level_0 payment object",
+  "type": "object",
+  "description": "Information used to pay using BLIK level_0 flow.",
+  "properties": {
+    "auth_code": {
+      "type": "string",
+      "description": "The 6-digit code used to authenticate a consumer within BLIK.",
+      "minLength": 6,
+      "maxLength": 6,
+      "pattern": "^[0-9]{6}$"
+    }
+  },
+  "required": [
+    "auth_code"
+  ]
+}

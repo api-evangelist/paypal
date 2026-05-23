@@ -1,0 +1,42 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/apple_pay_request",
+  "title": "ApplePay payment request object",
+  "type": "object",
+  "description": "Information needed to pay using ApplePay.",
+  "properties": {
+    "id": {
+      "description": "ApplePay transaction identifier, this will be the unique identifier for this transaction provided by Apple. The pattern is defined by an external party and supports Unicode.",
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 250,
+      "pattern": "^.*$"
+    },
+    "name": {
+      "description": "Name on the account holder associated with apple pay.",
+      "$ref": "#/components/schemas/full_name"
+    },
+    "email_address": {
+      "description": "The email address of the account holder associated with apple pay.",
+      "$ref": "#/components/schemas/email_address"
+    },
+    "phone_number": {
+      "description": "The phone number, in its canonical international [E.164 numbering plan format](https://www.itu.int/rec/T-REC-E.164/en). Supports only the `national_number` property.",
+      "$ref": "#/components/schemas/phone"
+    },
+    "decrypted_token": {
+      "description": "The decrypted payload details for the apple pay token.",
+      "$ref": "#/components/schemas/apple_pay_decrypted_token_data"
+    },
+    "stored_credential": {
+      "$ref": "#/components/schemas/card_stored_credential"
+    },
+    "vault_id": {
+      "description": "The PayPal-generated ID for the saved apple pay payment_source. This ID should be stored on the merchant's server so the saved payment source can be used for future transactions.",
+      "$ref": "#/components/schemas/vault_id"
+    },
+    "attributes": {
+      "$ref": "#/components/schemas/apple_pay_attributes"
+    }
+  }
+}

@@ -1,0 +1,188 @@
+{
+  "operationId": "customer.payment-tokens.get",
+  "method": "GET",
+  "path": "/v3/vault/payment-tokens",
+  "summary": "Paypal List all payment tokens",
+  "requestExamples": [],
+  "responseExamples": [
+    {
+      "status": "200",
+      "contentType": "application/json",
+      "name": "customer_vault_payment_tokens_response",
+      "example": {
+        "customer": {
+          "id": "customer_4029352050"
+        },
+        "payment_tokens": [
+          {
+            "id": "8kk8451t",
+            "customer": {
+              "id": "customer_4029352050"
+            },
+            "payment_source": {
+              "card": {
+                "brand": "VISA",
+                "last_digits": "1111",
+                "expiry": "2027-02",
+                "name": "John Doe",
+                "billing_address": {
+                  "address_line_1": "2211 N First Street",
+                  "address_line_2": "17.3.160",
+                  "admin_area_2": "San Jose",
+                  "admin_area_1": "CA",
+                  "postal_code": "95131",
+                  "country_code": "US"
+                }
+              }
+            },
+            "links": [
+              {
+                "rel": "self",
+                "href": "https://api-m.paypal.com/v3/vault/payment-tokens/8kk8451t",
+                "method": "GET",
+                "encType": "application/json"
+              },
+              {
+                "rel": "delete",
+                "href": "https://api-m.paypal.com/v3/vault/payment-tokens/8kk8451t",
+                "method": "DELETE",
+                "encType": "application/json"
+              }
+            ]
+          },
+          {
+            "id": "fgh6561t",
+            "customer": {
+              "id": "customer_4029352050"
+            },
+            "payment_source": {
+              "paypal": {
+                "description": "Description for PayPal to be shown to PayPal payer",
+                "email_address": "john.doe@example.com",
+                "account_id": "VYYFH3WJ4JPJQ",
+                "shipping": {
+                  "name": {
+                    "full_name": "John Doe"
+                  },
+                  "address": {
+                    "address_line_1": "2211 N First Street",
+                    "address_line_2": "17.3.160",
+                    "admin_area_2": "San Jose",
+                    "admin_area_1": "CA",
+                    "postal_code": "95131",
+                    "country_code": "US"
+                  }
+                },
+                "usage_pattern": "IMMEDIATE",
+                "usage_type": "MERCHANT",
+                "customer_type": "CONSUMER",
+                "name": {
+                  "given_name": "John",
+                  "surname": "Doe"
+                },
+                "address": {
+                  "address_line_1": "2211 N First Street",
+                  "address_line_2": "17.3.160",
+                  "admin_area_2": "San Jose",
+                  "admin_area_1": "CA",
+                  "postal_code": "95131",
+                  "country_code": "US"
+                }
+              }
+            },
+            "links": [
+              {
+                "rel": "self",
+                "href": "https://api-m.paypal.com/v3/vault/payment-tokens/fgh6561t",
+                "method": "GET",
+                "encType": "application/json"
+              },
+              {
+                "rel": "delete",
+                "href": "https://api-m.paypal.com/v3/vault/payment-tokens/fgh6561t",
+                "method": "DELETE",
+                "encType": "application/json"
+              }
+            ]
+          },
+          {
+            "id": "hg654s1t",
+            "customer": {
+              "id": "customer_4029352050"
+            },
+            "payment_source": {
+              "venmo": {
+                "description": "Description for Venmo to be shown to Venmo payer",
+                "shipping": {
+                  "name": {
+                    "full_name": "John Doe"
+                  },
+                  "address": {
+                    "address_line_1": "2211 N First Street",
+                    "address_line_2": "17.3.160",
+                    "admin_area_2": "San Jose",
+                    "admin_area_1": "CA",
+                    "postal_code": "95131",
+                    "country_code": "US"
+                  }
+                },
+                "usage_pattern": "IMMEDIATE",
+                "usage_type": "MERCHANT",
+                "customer_type": "CONSUMER",
+                "email_address": "john.doe@example.com",
+                "user_name": "johndoe",
+                "name": {
+                  "given_name": "John",
+                  "surname": "Doe"
+                },
+                "account_id": "VYYFH3WJ4JPJQ",
+                "address": {
+                  "address_line_1": "PayPal",
+                  "address_line_2": "2211 North 1st Street",
+                  "admin_area_1": "CA",
+                  "admin_area_2": "San Jose",
+                  "postal_code": "96112",
+                  "country_code": "US"
+                }
+              }
+            },
+            "links": [
+              {
+                "rel": "self",
+                "href": "https://api-m.paypal.com/v3/vault/payment-tokens/hg654s1t",
+                "method": "GET",
+                "encType": "application/json"
+              },
+              {
+                "rel": "delete",
+                "href": "https://api-m.paypal.com/v3/vault/payment-tokens/hg654s1t",
+                "method": "DELETE",
+                "encType": "application/json"
+              }
+            ]
+          }
+        ],
+        "links": [
+          {
+            "rel": "self",
+            "href": "https://api-m.paypal.com/v3/vault/payment-tokens?customer_id=customer_4029352050&page=1&page_size=5&total_required=false",
+            "method": "GET",
+            "encType": "application/json"
+          },
+          {
+            "rel": "first",
+            "href": "https://api-m.paypal.com/v3/vault/payment-tokens?customer_id=customer_4029352050&page=1&page_size=5&total_required=false",
+            "method": "GET",
+            "encType": "application/json"
+          },
+          {
+            "rel": "last",
+            "href": "https://api-m.paypal.com/v3/vault/payment-tokens?customer_id=customer_4029352050&page=1&page_size=5&total_required=false",
+            "method": "GET",
+            "encType": "application/json"
+          }
+        ]
+      }
+    }
+  ]
+}

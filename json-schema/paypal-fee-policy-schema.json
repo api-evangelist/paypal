@@ -1,0 +1,8 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/fee_policy",
+  "title": "Fee Policy",
+  "type": "object",
+  "description": "Policy that determines whether the fee needs to be charged, retained or returned while moving the money as part of dispute process.",
+  "properties": {}
+}

@@ -1,0 +1,28 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/template_configuration",
+  "title": "Template Configuration",
+  "type": "object",
+  "description": "The template configuration details. Includes tax information, tip, and partial payment.",
+  "properties": {
+    "tax_calculated_after_discount": {
+      "type": "boolean",
+      "description": "Indicates whether the tax is calculated before or after a discount. If `false`, the tax is calculated before a discount. If `true`, the tax is calculated after a discount.",
+      "default": true
+    },
+    "tax_inclusive": {
+      "type": "boolean",
+      "description": "Indicates whether the unit price includes tax.",
+      "default": false
+    },
+    "allow_tip": {
+      "type": "boolean",
+      "description": "Indicates whether the invoice enables the customer to enter a tip amount during payment. If `true`, the invoice shows a tip amount field so that the customer can enter a tip amount. If `false`, the invoice does not show a tip amount field.<blockquote><strong>Note:</strong> This feature is not available for users in `Hong Kong`, `Taiwan`, `India`, or `Japan`.</blockquote>",
+      "default": false
+    },
+    "partial_payment": {
+      "$ref": "#/components/schemas/partial_payment",
+      "description": "The partial payment details. Includes the minimum amount that the invoicer wants the payer to pay."
+    }
+  }
+}

@@ -1,0 +1,39 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/order_tracker_request",
+  "title": "Order Tracker Request.",
+  "type": "object",
+  "description": "The tracking details of an order.",
+  "allOf": [
+    {
+      "$ref": "#/components/schemas/shipment_tracker"
+    },
+    {
+      "properties": {
+        "capture_id": {
+          "type": "string",
+          "description": "The PayPal capture ID.",
+          "minLength": 1,
+          "maxLength": 50,
+          "pattern": "^[a-zA-Z0-9]*$"
+        },
+        "notify_payer": {
+          "type": "boolean",
+          "description": "If true, sends an email notification to the payer of the PayPal transaction. The email contains the tracking information that was uploaded through the API.",
+          "default": false
+        },
+        "items": {
+          "type": "array",
+          "description": "An array of details of items in the shipment.",
+          "items": {
+            "description": "Items in a shipment.",
+            "$ref": "#/components/schemas/tracker_item"
+          }
+        }
+      },
+      "required": [
+        "capture_id"
+      ]
+    }
+  ]
+}

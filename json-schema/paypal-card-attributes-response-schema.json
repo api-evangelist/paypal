@@ -1,0 +1,12 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/card_attributes_response",
+  "title": "Card Attributes Response",
+  "type": "object",
+  "description": "Additional attributes associated with the use of this card.",
+  "properties": {
+    "vault": {
+      "$ref": "#/components/schemas/vault_response"
+    }
+  }
+}

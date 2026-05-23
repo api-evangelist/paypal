@@ -1,0 +1,55 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/service_details",
+  "title": "Service Details",
+  "type": "object",
+  "description": "The service details.",
+  "properties": {
+    "description": {
+      "description": "The service description.",
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 2000
+    },
+    "service_started": {
+      "description": "Indicates whether the service was started or cancelled.",
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 255,
+      "pattern": "^[0-9A-Z_]+$",
+      "enum": [
+        "YES",
+        "NO",
+        "CANCELLED"
+      ]
+    },
+    "note": {
+      "description": "The customer specified note about the service usage.",
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 2000
+    },
+    "sub_reasons": {
+      "description": "An array of sub-reasons for the service issue.",
+      "type": "array",
+      "items": {
+        "description": "The sub-reason for the service issue.",
+        "type": "string",
+        "minLength": 1,
+        "maxLength": 255,
+        "pattern": "^[0-9A-Z_]+$",
+        "enum": [
+          "DAMAGED",
+          "DIFFERENT",
+          "INCOMPLETE",
+          "OTHER"
+        ]
+      }
+    },
+    "purchase_url": {
+      "type": "string",
+      "format": "uri",
+      "description": "The URL of the merchant or marketplace site where the customer purchased the service."
+    }
+  }
+}

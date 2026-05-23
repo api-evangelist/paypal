@@ -1,0 +1,36 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/order_confirm_application_context",
+  "title": "Confirm Application Context",
+  "type": "object",
+  "description": "Customizes the payer confirmation experience.",
+  "properties": {
+    "brand_name": {
+      "type": "string",
+      "description": "Label to present to your payer as part of the PayPal hosted web experience.",
+      "minLength": 1,
+      "maxLength": 127
+    },
+    "locale": {
+      "description": "The BCP 47-formatted locale of pages that the PayPal payment experience shows. PayPal supports a five-character code. For example, `da-DK`, `he-IL`, `id-ID`, `ja-JP`, `no-NO`, `pt-BR`, `ru-RU`, `sv-SE`, `th-TH`, `zh-CN`, `zh-HK`, or `zh-TW`.",
+      "$ref": "#/components/schemas/language"
+    },
+    "return_url": {
+      "type": "string",
+      "format": "uri",
+      "minLength": 10,
+      "maxLength": 4000,
+      "description": "The URL where the customer is redirected after the customer approves the payment."
+    },
+    "cancel_url": {
+      "type": "string",
+      "format": "uri",
+      "minLength": 10,
+      "maxLength": 4000,
+      "description": "The URL where the customer is redirected after the customer cancels the payment."
+    },
+    "stored_payment_source": {
+      "$ref": "#/components/schemas/stored_payment_source"
+    }
+  }
+}

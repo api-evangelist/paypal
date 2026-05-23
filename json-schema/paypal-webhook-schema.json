@@ -1,0 +1,43 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/webhook",
+  "title": "Webhook",
+  "type": "object",
+  "description": "One or more webhook objects.",
+  "properties": {
+    "id": {
+      "type": "string",
+      "description": "The ID of the webhook.",
+      "readOnly": true
+    },
+    "url": {
+      "type": "string",
+      "format": "uri",
+      "description": "The URL that is configured to listen on `localhost` for incoming `POST` notification messages that contain event information.",
+      "readOnly": false,
+      "maxLength": 2048
+    },
+    "event_types": {
+      "type": "array",
+      "maxItems": 500,
+      "description": "An array of events to which to subscribe your webhook. To subscribe to all events, including events as they are added, specify the asterisk wild card. To replace the `event_types` array, specify the asterisk wild card. To list all supported events, <a href=\"#event-type_list\">list available events</a>.",
+      "readOnly": false,
+      "items": {
+        "$ref": "#/components/schemas/event_type"
+      }
+    },
+    "links": {
+      "type": "array",
+      "description": "An array of request-related [HATEOAS links](/docs/api/reference/api-responses/#hateoas-links/).",
+      "readOnly": true,
+      "items": {
+        "$ref": "#/components/schemas/link_description",
+        "readOnly": true
+      }
+    }
+  },
+  "required": [
+    "url",
+    "event_types"
+  ]
+}

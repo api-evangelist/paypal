@@ -1,0 +1,54 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/subscription_billing_info",
+  "title": "Subscription Billing Information",
+  "description": "The billing details for the subscription. If the subscription was or is active, these fields are populated.",
+  "type": "object",
+  "properties": {
+    "outstanding_balance": {
+      "description": "The total pending bill amount, to be paid by the subscriber.",
+      "$ref": "#/components/schemas/money"
+    },
+    "cycle_executions": {
+      "type": "array",
+      "description": "The trial and regular billing executions.",
+      "minItems": 0,
+      "maxItems": 3,
+      "items": {
+        "$ref": "#/components/schemas/cycle_execution"
+      },
+      "readOnly": true
+    },
+    "last_payment": {
+      "readOnly": true,
+      "description": "The details for the last payment of the subscription.",
+      "$ref": "#/components/schemas/last_payment_details"
+    },
+    "next_billing_time": {
+      "description": "The next date and time for billing this subscription, in [Internet date and time format](https://tools.ietf.org/html/rfc3339#section-5.6).",
+      "readOnly": true,
+      "$ref": "#/components/schemas/date_time"
+    },
+    "final_payment_time": {
+      "description": "The date and time when the final billing cycle occurs, in [Internet date and time format](https://tools.ietf.org/html/rfc3339#section-5.6).",
+      "readOnly": true,
+      "$ref": "#/components/schemas/date_time"
+    },
+    "failed_payments_count": {
+      "type": "integer",
+      "description": "The number of consecutive payment failures. Resets to `0` after a successful payment. If this reaches the `payment_failure_threshold` value, the subscription updates to the `SUSPENDED` state.",
+      "minimum": 0,
+      "maximum": 999,
+      "readOnly": true
+    },
+    "last_failed_payment": {
+      "description": "The details for the last failed payment of the subscription.",
+      "readOnly": true,
+      "$ref": "#/components/schemas/failed_payment_details"
+    }
+  },
+  "required": [
+    "outstanding_balance",
+    "failed_payments_count"
+  ]
+}

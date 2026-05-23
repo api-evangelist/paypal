@@ -1,0 +1,27 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/tracker_collection",
+  "title": "Tracker Collection",
+  "type": "object",
+  "description": "The add tracking information for one or more transactions response details.",
+  "properties": {
+    "trackers": {
+      "type": "array",
+      "description": "An array of tracking information for shipments.",
+      "items": {
+        "$ref": "#/components/schemas/tracker"
+      },
+      "minItems": 1,
+      "maxItems": 20
+    },
+    "links": {
+      "type": "array",
+      "description": "An array of request-related [HATEOAS links](/docs/api/reference/api-responses/#hateoas-links).",
+      "readOnly": true,
+      "items": {
+        "$ref": "#/components/schemas/link_description",
+        "readOnly": true
+      }
+    }
+  }
+}

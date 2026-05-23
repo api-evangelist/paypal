@@ -1,0 +1,35 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/business_industry",
+  "title": "Business industry",
+  "type": "object",
+  "description": "The category, subcategory and MCC code of the business.",
+  "properties": {
+    "category": {
+      "type": "string",
+      "description": "The customer's business category code. PayPal uses industry standard seller category codes.",
+      "pattern": "^\\d+$",
+      "minLength": 1,
+      "maxLength": 20
+    },
+    "mcc_code": {
+      "type": "string",
+      "description": "The customer's business seller category code. PayPal uses industry standard seller category codes.",
+      "pattern": "^\\d+$",
+      "minLength": 1,
+      "maxLength": 20
+    },
+    "subcategory": {
+      "type": "string",
+      "description": "The customer's business subcategory code. PayPal uses industry standard seller subcategory codes.",
+      "pattern": "^\\d+$",
+      "minLength": 1,
+      "maxLength": 20
+    }
+  },
+  "required": [
+    "category",
+    "mcc_code",
+    "subcategory"
+  ]
+}

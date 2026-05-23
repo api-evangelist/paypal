@@ -1,0 +1,42 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/apple_pay_decrypted_token_data",
+  "title": "Decrypted Apple Pay Token data.",
+  "type": "object",
+  "description": "Information about the Payment data obtained by decrypting Apple Pay token.",
+  "properties": {
+    "transaction_amount": {
+      "description": "The transaction amount for the payment that the payer has approved on apple platform.",
+      "$ref": "#/components/schemas/money-2"
+    },
+    "tokenized_card": {
+      "description": "Apple Pay tokenized credit card used to pay.",
+      "$ref": "#/components/schemas/card"
+    },
+    "device_manufacturer_id": {
+      "description": "Apple Pay Hex-encoded device manufacturer identifier. The pattern is defined by an external party and supports Unicode.",
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 2000,
+      "pattern": "^.*$"
+    },
+    "payment_data_type": {
+      "description": "Indicates the type of payment data passed, in case of Non China the payment data is 3DSECURE and for China it is EMV.",
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 16,
+      "pattern": "^[0-9A-Z_]+$",
+      "enum": [
+        "3DSECURE",
+        "EMV"
+      ]
+    },
+    "payment_data": {
+      "description": "Apple Pay payment data object which contains the cryptogram, eci_indicator and other data.",
+      "$ref": "#/components/schemas/apple_pay_payment_data"
+    }
+  },
+  "required": [
+    "tokenized_card"
+  ]
+}

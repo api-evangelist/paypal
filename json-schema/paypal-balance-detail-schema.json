@@ -1,0 +1,33 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/balance_detail",
+  "title": "Balance Information",
+  "type": "object",
+  "description": "The Balance information.",
+  "properties": {
+    "currency": {
+      "description": "Currency Code of the balances listed.",
+      "$ref": "#/components/schemas/currency_code"
+    },
+    "primary": {
+      "type": "boolean",
+      "description": "Optional field representing if the currency is primary currency or not."
+    },
+    "total_balance": {
+      "description": "The total amount in PayPal account. It is the sum of all the other balances.",
+      "$ref": "#/components/schemas/money"
+    },
+    "available_balance": {
+      "description": "The amount of cash in an Account which is at the customer's disposal. This amount is captured at settlement cutoff time in the user's time zone as defined for the user.",
+      "$ref": "#/components/schemas/money"
+    },
+    "withheld_balance": {
+      "description": "Balance withheld in the account. The portion of funds that PayPal holds for the customer that is not currently at the customer's disposal.",
+      "$ref": "#/components/schemas/money"
+    }
+  },
+  "required": [
+    "currency",
+    "total_balance"
+  ]
+}

@@ -1,0 +1,22 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/update_pricing_scheme_request",
+  "title": "Update Pricing Scheme",
+  "description": "The update pricing scheme request details.",
+  "type": "object",
+  "properties": {
+    "billing_cycle_sequence": {
+      "type": "integer",
+      "description": "The billing cycle sequence.",
+      "minimum": 1,
+      "maximum": 99
+    },
+    "pricing_scheme": {
+      "$ref": "#/components/schemas/pricing_scheme"
+    }
+  },
+  "required": [
+    "billing_cycle_sequence",
+    "pricing_scheme"
+  ]
+}

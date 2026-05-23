@@ -1,0 +1,31 @@
+{
+  "operationId": "captures.refund",
+  "method": "POST",
+  "path": "/v2/payments/captures/{capture_id}/refund",
+  "summary": "Paypal Refund captured payment",
+  "requestExamples": [
+    {
+      "contentType": "application/json",
+      "name": "refund_request",
+      "example": {
+        "amount": {
+          "value": "10.00",
+          "currency_code": "USD"
+        },
+        "invoice_id": "INVOICE-123",
+        "note_to_payer": "DefectiveProduct",
+        "payment_instruction": {
+          "platform_fees": [
+            {
+              "amount": {
+                "currency_code": "USD",
+                "value": "1.00"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "responseExamples": []
+}

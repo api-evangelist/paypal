@@ -1,0 +1,23 @@
+{
+  "operationId": "authorizations.capture",
+  "method": "POST",
+  "path": "/v2/payments/authorizations/{authorization_id}/capture",
+  "summary": "Paypal Capture authorized payment",
+  "requestExamples": [
+    {
+      "contentType": "application/json",
+      "name": "capture_request",
+      "example": {
+        "amount": {
+          "value": "10.99",
+          "currency_code": "USD"
+        },
+        "invoice_id": "INVOICE-123",
+        "final_capture": true,
+        "note_to_payer": "If the ordered color is not available, we will substitute with a different color free of charge.",
+        "soft_descriptor": "Bob's Custom Sweaters"
+      }
+    }
+  ],
+  "responseExamples": []
+}

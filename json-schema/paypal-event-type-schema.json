@@ -1,0 +1,36 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/event_type",
+  "title": "Event Type",
+  "type": "object",
+  "description": "An event type.",
+  "properties": {
+    "name": {
+      "type": "string",
+      "description": "The unique event name.<blockquote><strong>Note:</strong> To subscribe to all events, including events as they are added, specify an `*` as the value to represent a wildcard.</blockquote>",
+      "readOnly": false
+    },
+    "description": {
+      "type": "string",
+      "description": "A human-readable description of the event.",
+      "readOnly": true
+    },
+    "status": {
+      "type": "string",
+      "description": "The status of a webhook event.",
+      "readOnly": true
+    },
+    "resource_versions": {
+      "type": "array",
+      "description": "Identifier for the event type example: 1.0/2.0 etc.",
+      "readOnly": true,
+      "items": {
+        "type": "string",
+        "description": "The ID for an event type. For example, `1.0` or `2.0`."
+      }
+    }
+  },
+  "required": [
+    "name"
+  ]
+}

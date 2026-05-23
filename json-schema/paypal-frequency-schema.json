@@ -1,0 +1,32 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/frequency",
+  "title": "Billing Cycle Frequency",
+  "description": "The frequency of the billing cycle.",
+  "type": "object",
+  "properties": {
+    "interval_unit": {
+      "type": "string",
+      "description": "The interval at which the subscription is charged or billed.",
+      "minLength": 1,
+      "maxLength": 24,
+      "pattern": "^[A-Z_]+$",
+      "enum": [
+        "DAY",
+        "WEEK",
+        "MONTH",
+        "YEAR"
+      ]
+    },
+    "interval_count": {
+      "type": "integer",
+      "description": "The number of intervals after which a subscriber is billed. For example, if the `interval_unit` is `DAY` with an `interval_count` of  `2`, the subscription is billed once every two days. The following table lists the maximum allowed values for the `interval_count` for each `interval_unit`:<table><thead><tr><th><code>Interval unit</code></th><th>Maximum interval count</th></tr></thead><tbody><tr><td><code>DAY</code></td><td align=\"right\">365</td></tr><tr><td><code>WEEK</code></td><td align=\"right\">52</td></tr><tr><td><code>MONTH</code></td><td align=\"right\">12</td></tr><tr><td><code>YEAR</code></td><td align=\"right\">1</td></tr></tbody></table>",
+      "minimum": 1,
+      "maximum": 365,
+      "default": 1
+    }
+  },
+  "required": [
+    "interval_unit"
+  ]
+}

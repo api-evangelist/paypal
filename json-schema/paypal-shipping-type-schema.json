@@ -1,0 +1,13 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/shipping_type",
+  "title": "Shipping Type",
+  "type": "string",
+  "description": "A classification for the method of purchase fulfillment.",
+  "enum": [
+    "SHIPPING",
+    "PICKUP",
+    "PICKUP_IN_STORE",
+    "PICKUP_FROM_PERSON"
+  ]
+}

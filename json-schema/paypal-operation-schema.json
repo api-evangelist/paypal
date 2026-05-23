@@ -1,0 +1,30 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/operation",
+  "title": "Operation",
+  "type": "object",
+  "description": "The required operation to share data.",
+  "additionalProperties": false,
+  "properties": {
+    "operation": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 255,
+      "pattern": "^[0-9A-Z_-]+$",
+      "description": "The operation to enable for the customer. To enable the collection of the API permissions that you require to integrate with the customer, specify `API_INTEGRATION`. `BANK_ADDITION` is supported only for the US.",
+      "enum": [
+        "API_INTEGRATION",
+        "BANK_ADDITION",
+        "BILLING_AGREEMENT",
+        "CONTEXTUAL_MARKETING_CONSENT",
+        "SALESFORCE_REFERRAL"
+      ]
+    },
+    "api_integration_preference": {
+      "$ref": "#/components/schemas/integration_details"
+    },
+    "billing_agreement": {
+      "$ref": "#/components/schemas/billing_agreement"
+    }
+  }
+}

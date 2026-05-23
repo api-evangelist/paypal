@@ -1,0 +1,31 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/templates.create-422",
+  "title": "templates.create-422",
+  "properties": {
+    "details": {
+      "type": "array",
+      "items": {
+        "anyOf": [
+          {
+            "title": "CANNOT_CANCEL_DRAFT_INVOICE",
+            "properties": {
+              "issue": {
+                "type": "string",
+                "enum": [
+                  "CANNOT_CANCEL_DRAFT_INVOICE"
+                ]
+              },
+              "description": {
+                "type": "string",
+                "enum": [
+                  "Cannot cancel a draft invoice."
+                ]
+              }
+            }
+          }
+        ]
+      }
+    }
+  }
+}

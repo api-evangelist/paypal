@@ -1,0 +1,25 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/mybank_request",
+  "title": "MyBank payment object",
+  "type": "object",
+  "description": "Information needed to pay using MyBank.",
+  "properties": {
+    "name": {
+      "description": "The name of the account holder associated with this payment method.",
+      "$ref": "#/components/schemas/full_name"
+    },
+    "country_code": {
+      "description": "The two-character ISO 3166-1 country code.",
+      "$ref": "#/components/schemas/country_code"
+    },
+    "experience_context": {
+      "description": "Customizes the payer experience during the approval process for the payment.",
+      "$ref": "#/components/schemas/experience_context_base"
+    }
+  },
+  "required": [
+    "name",
+    "country_code"
+  ]
+}

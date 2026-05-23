@@ -1,0 +1,23 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/account",
+  "title": "Account",
+  "type": "object",
+  "description": "Common account object to hold the account related details of the customer.",
+  "properties": {
+    "individual_owners": {
+      "description": "List of owners in the account. There should be only one primary account owner which is mentioned in their role_type.",
+      "type": "array",
+      "items": {
+        "$ref": "#/components/schemas/individual_owner"
+      },
+      "minItems": 0,
+      "maxItems": 2
+    },
+    "business_entity": {
+      "description": "Business entity of the account.",
+      "type": "object",
+      "$ref": "#/components/schemas/business_entity"
+    }
+  }
+}

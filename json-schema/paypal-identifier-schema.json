@@ -1,0 +1,38 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/identifier",
+  "title": "Bank Account Identifier",
+  "type": "object",
+  "additionalProperties": false,
+  "description": "The bank account ID. An ID with `ROUTING_NUMBER_1` is required.",
+  "properties": {
+    "type": {
+      "type": "string",
+      "description": "The bank account ID type.",
+      "minLength": 1,
+      "maxLength": 125,
+      "pattern": "^[0-9A-Z_-]+$",
+      "enum": [
+        "BANK_CODE",
+        "BI_CODE",
+        "ROUTING_NUMBER_1",
+        "ROUTING_NUMBER_2",
+        "ROUTING_NUMBER_3",
+        "SWIFT_CODE",
+        "BRANCH_CODE",
+        "INTERMEDIARY_SWIFT_CODE",
+        "BBAN",
+        "BBAN_ENCRYPTED",
+        "BBAN_HMAC",
+        "AGGREGATOR_YODLEE"
+      ]
+    },
+    "value": {
+      "description": "The value of account identifier.",
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 125,
+      "pattern": "^[A-Za-z0-9-_.+/ =]+"
+    }
+  }
+}

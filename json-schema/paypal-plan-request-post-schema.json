@@ -1,0 +1,66 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/plan_request_POST",
+  "title": "Create Plan Request",
+  "description": "The create plan request details.",
+  "type": "object",
+  "properties": {
+    "product_id": {
+      "type": "string",
+      "description": "The ID of the product created through Catalog Products API.",
+      "minLength": 6,
+      "maxLength": 50
+    },
+    "name": {
+      "type": "string",
+      "description": "The plan name.",
+      "minLength": 1,
+      "maxLength": 127
+    },
+    "status": {
+      "type": "string",
+      "description": "The initial state of the plan. Allowed input values are CREATED and ACTIVE.",
+      "minLength": 1,
+      "maxLength": 24,
+      "pattern": "^[A-Z_]+$",
+      "default": "ACTIVE",
+      "enum": [
+        "CREATED",
+        "INACTIVE",
+        "ACTIVE"
+      ]
+    },
+    "description": {
+      "type": "string",
+      "description": "The detailed description of the plan.",
+      "minLength": 1,
+      "maxLength": 127
+    },
+    "billing_cycles": {
+      "type": "array",
+      "description": "An array of billing cycles for trial billing and regular billing. A plan can have at most two trial cycles and only one regular cycle.",
+      "minItems": 1,
+      "maxItems": 12,
+      "items": {
+        "$ref": "#/components/schemas/billing_cycle"
+      }
+    },
+    "payment_preferences": {
+      "$ref": "#/components/schemas/payment_preferences"
+    },
+    "taxes": {
+      "$ref": "#/components/schemas/taxes"
+    },
+    "quantity_supported": {
+      "type": "boolean",
+      "description": "Indicates whether you can subscribe to this plan by providing a quantity for the goods or service.",
+      "default": false
+    }
+  },
+  "required": [
+    "name",
+    "billing_cycles",
+    "payment_preferences",
+    "product_id"
+  ]
+}

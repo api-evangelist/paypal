@@ -1,0 +1,27 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/authorization_status",
+  "title": "Authorization Status",
+  "type": "object",
+  "description": "The status fields for an authorized payment.",
+  "properties": {
+    "status": {
+      "description": "The status for the authorized payment.",
+      "type": "string",
+      "readOnly": true,
+      "enum": [
+        "CREATED",
+        "CAPTURED",
+        "DENIED",
+        "PARTIALLY_CAPTURED",
+        "VOIDED",
+        "PENDING"
+      ]
+    },
+    "status_details": {
+      "description": "The details of the authorized order pending status.",
+      "readOnly": true,
+      "$ref": "#/components/schemas/authorization_status_details"
+    }
+  }
+}

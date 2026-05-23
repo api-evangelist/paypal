@@ -1,0 +1,20 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/subsequent_action",
+  "title": "Subsequent Action",
+  "type": "object",
+  "description": "The subsequent action.",
+  "properties": {
+    "links": {
+      "type": "array",
+      "minItems": 1,
+      "maxItems": 10,
+      "description": "An array of request-related [HATEOAS links](/docs/api/reference/api-responses/#hateoas-links/).",
+      "readOnly": true,
+      "items": {
+        "$ref": "#/components/schemas/link_description",
+        "readOnly": true
+      }
+    }
+  }
+}

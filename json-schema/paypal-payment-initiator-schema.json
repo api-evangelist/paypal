@@ -1,0 +1,14 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/payment_initiator",
+  "title": "payment_initiator",
+  "type": "string",
+  "minLength": 1,
+  "maxLength": 255,
+  "pattern": "^[0-9A-Z_]+$",
+  "description": "The person or party who initiated or triggered the payment.",
+  "enum": [
+    "CUSTOMER",
+    "MERCHANT"
+  ]
+}

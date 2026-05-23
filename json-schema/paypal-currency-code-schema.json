@@ -1,0 +1,10 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/currency_code",
+  "title": "currency_code",
+  "description": "The [three-character ISO-4217 currency code](/docs/integration/direct/rest/currency-codes/) that identifies the currency.",
+  "type": "string",
+  "format": "ppaas_common_currency_code_v2",
+  "minLength": 3,
+  "maxLength": 3
+}

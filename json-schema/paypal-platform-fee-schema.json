@@ -1,0 +1,20 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/platform_fee",
+  "title": "Platform Fee",
+  "type": "object",
+  "description": "The platform or partner fee, commission, or brokerage fee that is associated with the transaction. Not a separate or isolated transaction leg from the external perspective. The platform fee is limited in scope and is always associated with the original payment for the purchase unit.",
+  "properties": {
+    "amount": {
+      "description": "The fee for this transaction.",
+      "$ref": "#/components/schemas/money"
+    },
+    "payee": {
+      "description": "The recipient of the fee for this transaction. If you omit this value, the default is the API caller.",
+      "$ref": "#/components/schemas/payee_base"
+    }
+  },
+  "required": [
+    "amount"
+  ]
+}

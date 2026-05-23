@@ -1,0 +1,19 @@
+{
+  "operationId": "authorizations.reauthorize",
+  "method": "POST",
+  "path": "/v2/payments/authorizations/{authorization_id}/reauthorize",
+  "summary": "Paypal Reauthorize authorized payment",
+  "requestExamples": [
+    {
+      "contentType": "application/json",
+      "name": "reauthorize_request",
+      "example": {
+        "amount": {
+          "value": "10.99",
+          "currency_code": "USD"
+        }
+      }
+    }
+  ],
+  "responseExamples": []
+}

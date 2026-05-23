@@ -1,0 +1,20 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/incorrect_transaction_amount",
+  "title": "Incorrect Transaction Amount",
+  "type": "object",
+  "description": "The incorrect transaction amount details.",
+  "properties": {
+    "correct_transaction_amount": {
+      "$ref": "#/components/schemas/money"
+    },
+    "correct_transaction_asset": {
+      "description": "The correct asset quantity of the transaction.",
+      "$ref": "#/components/schemas/cryptocurrency"
+    },
+    "correct_transaction_time": {
+      "$ref": "#/components/schemas/date_time",
+      "description": "The date and time when the customer created the transaction, in [Internet date and time format](https://tools.ietf.org/html/rfc3339#section-5.6)."
+    }
+  }
+}

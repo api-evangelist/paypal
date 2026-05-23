@@ -1,0 +1,42 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/partner_config_override",
+  "title": "Partner Configuration Override",
+  "type": "object",
+  "description": "The preference to customize the web experience of the customer by overriding that is set at the Partner's Account.",
+  "additionalProperties": false,
+  "properties": {
+    "partner_logo_url": {
+      "type": "string",
+      "format": "uri",
+      "description": "The partner logo URL to display in the customer's onboarding flow.",
+      "minLength": 1,
+      "maxLength": 127
+    },
+    "return_url": {
+      "type": "string",
+      "format": "uri",
+      "description": "The URL to which to redirect the customer upon completion of the onboarding process.",
+      "minLength": 1,
+      "maxLength": 127
+    },
+    "return_url_description": {
+      "type": "string",
+      "description": "The description of the return URL.",
+      "minLength": 1,
+      "maxLength": 127,
+      "pattern": "^.+$"
+    },
+    "action_renewal_url": {
+      "type": "string",
+      "format": "uri",
+      "description": "If `renew_action_url` expires, redirect the customer to this URL.",
+      "minLength": 1,
+      "maxLength": 127
+    },
+    "show_add_credit_card": {
+      "type": "boolean",
+      "description": "Indicates whether to show an add credit card page."
+    }
+  }
+}

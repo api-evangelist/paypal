@@ -1,0 +1,19 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/venmo_request",
+  "title": "Venmo Request",
+  "type": "object",
+  "description": "A resource representing a request to vault Venmo.",
+  "allOf": [
+    {
+      "$ref": "#/components/schemas/wallet_base"
+    },
+    {
+      "properties": {
+        "experience_context": {
+          "$ref": "#/components/schemas/experience_context"
+        }
+      }
+    }
+  ]
+}

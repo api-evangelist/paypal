@@ -1,0 +1,10 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/patch_request",
+  "title": "Patch Request",
+  "type": "array",
+  "description": "An array of JSON patch objects to apply partial updates to resources.",
+  "items": {
+    "$ref": "#/components/schemas/patch"
+  }
+}

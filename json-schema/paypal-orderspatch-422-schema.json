@@ -1,0 +1,660 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/orders.patch-422",
+  "title": "orders.patch-422",
+  "properties": {
+    "details": {
+      "type": "array",
+      "items": {
+        "anyOf": [
+          {
+            "title": "AMOUNT_MISMATCH",
+            "properties": {
+              "issue": {
+                "type": "string",
+                "enum": [
+                  "AMOUNT_MISMATCH"
+                ]
+              },
+              "description": {
+                "type": "string",
+                "enum": [
+                  "Should equal item_total + tax_total + shipping + handling + insurance - shipping_discount - discount."
+                ]
+              }
+            }
+          },
+          {
+            "title": "CANNOT_BE_NEGATIVE",
+            "properties": {
+              "issue": {
+                "type": "string",
+                "enum": [
+                  "CANNOT_BE_NEGATIVE"
+                ]
+              },
+              "description": {
+                "type": "string",
+                "enum": [
+                  "Must be greater than or equal to 0. If the currency supports decimals, only two decimal place precision is supported."
+                ]
+              }
+            }
+          },
+          {
+            "title": "CANNOT_BE_ZERO_OR_NEGATIVE",
+            "properties": {
+              "issue": {
+                "type": "string",
+                "enum": [
+                  "CANNOT_BE_ZERO_OR_NEGATIVE"
+                ]
+              },
+              "description": {
+                "type": "string",
+                "enum": [
+                  "Must be greater than zero. If the currency supports decimals, only two decimal place precision is supported."
+                ]
+              }
+            }
+          },
+          {
+            "title": "CITY_REQUIRED",
+            "properties": {
+              "issue": {
+                "type": "string",
+                "enum": [
+                  "CITY_REQUIRED"
+                ]
+              },
+              "description": {
+                "type": "string",
+                "enum": [
+                  "The specified country requires a city (address.admin_area_2)."
+                ]
+              }
+            }
+          },
+          {
+            "title": "DECIMAL_PRECISION",
+            "properties": {
+              "issue": {
+                "type": "string",
+                "enum": [
+                  "DECIMAL_PRECISION"
+                ]
+              },
+              "description": {
+                "type": "string",
+                "enum": [
+                  "If the currency supports decimals, only two decimal place precision is supported."
+                ]
+              }
+            }
+          },
+          {
+            "title": "DONATION_ITEMS_NOT_SUPPORTED",
+            "properties": {
+              "issue": {
+                "type": "string",
+                "enum": [
+                  "DONATION_ITEMS_NOT_SUPPORTED"
+                ]
+              },
+              "description": {
+                "type": "string",
+                "enum": [
+                  "If 'purchase_unit' has \"DONATION\" as the 'items.category' then the Order can at most have one purchase_unit. Multiple purchase_units are not supported if either of them have at least one items with category as \"DONATION\"."
+                ]
+              }
+            }
+          },
+          {
+            "title": "DUPLICATE_REFERENCE_ID",
+            "properties": {
+              "issue": {
+                "type": "string",
+                "enum": [
+                  "DUPLICATE_REFERENCE_ID"
+                ]
+              },
+              "description": {
+                "type": "string",
+                "enum": [
+                  "`reference_id` must be unique if multiple `purchase_unit` are provided."
+                ]
+              }
+            }
+          },
+          {
+            "title": "INVALID_CURRENCY_CODE",
+            "properties": {
+              "issue": {
+                "type": "string",
+                "enum": [
+                  "INVALID_CURRENCY_CODE"
+                ]
+              },
+              "description": {
+                "type": "string",
+                "enum": [
+                  "Currency code is invalid or is not currently supported. Please refer https://developer.paypal.com/api/rest/reference/currency-codes/ for list of supported currency codes."
+                ]
+              }
+            }
+          },
+          {
+            "title": "ITEM_TOTAL_MISMATCH",
+            "properties": {
+              "issue": {
+                "type": "string",
+                "enum": [
+                  "ITEM_TOTAL_MISMATCH"
+                ]
+              },
+              "description": {
+                "type": "string",
+                "enum": [
+                  "Should equal sum of (unit_amount * quantity) across all items for a given purchase_unit."
+                ]
+              }
+            }
+          },
+          {
+            "title": "ITEM_TOTAL_REQUIRED",
+            "properties": {
+              "issue": {
+                "type": "string",
+                "enum": [
+                  "ITEM_TOTAL_REQUIRED"
+                ]
+              },
+              "description": {
+                "type": "string",
+                "enum": [
+                  "If item details are specified (items.unit_amount and items.quantity) corresponding amount.breakdown.item_total is required."
+                ]
+              }
+            }
+          },
+          {
+            "title": "MAX_VALUE_EXCEEDED",
+            "properties": {
+              "issue": {
+                "type": "string",
+                "enum": [
+                  "MAX_VALUE_EXCEEDED"
+                ]
+              },
+              "description": {
+                "type": "string",
+                "enum": [
+                  "Should be less than or equal to 999999999999999.99."
+                ]
+              }
+            }
+          },
+          {
+            "title": "INVALID_JSON_POINTER_FORMAT",
+            "properties": {
+              "issue": {
+                "type": "string",
+                "enum": [
+                  "INVALID_JSON_POINTER_FORMAT"
+                ]
+              },
+              "description": {
+                "type": "string",
+                "enum": [
+                  "Path should be a valid JSON Pointer https://tools.ietf.org/html/rfc6901 that references a location within the request where the operation is performed."
+                ]
+              }
+            }
+          },
+          {
+            "title": "INVALID_PARAMETER",
+            "properties": {
+              "issue": {
+                "type": "string",
+                "enum": [
+                  "INVALID_PARAMETER"
+                ]
+              },
+              "description": {
+                "type": "string",
+                "enum": [
+                  "Cannot be specified as part of the request."
+                ]
+              }
+            }
+          },
+          {
+            "title": "NOT_PATCHABLE",
+            "properties": {
+              "issue": {
+                "type": "string",
+                "enum": [
+                  "NOT_PATCHABLE"
+                ]
+              },
+              "description": {
+                "type": "string",
+                "enum": [
+                  "Cannot be patched."
+                ]
+              }
+            }
+          },
+          {
+            "title": "TAX_TOTAL_MISMATCH",
+            "properties": {
+              "issue": {
+                "type": "string",
+                "enum": [
+                  "TAX_TOTAL_MISMATCH"
+                ]
+              },
+              "description": {
+                "type": "string",
+                "enum": [
+                  "Should equal sum of (tax * quantity) across all items for a given purchase_unit."
+                ]
+              }
+            }
+          },
+          {
+            "title": "TAX_TOTAL_REQUIRED",
+            "properties": {
+              "issue": {
+                "type": "string",
+                "enum": [
+                  "TAX_TOTAL_REQUIRED"
+                ]
+              },
+              "description": {
+                "type": "string",
+                "enum": [
+                  "If item details are specified (items.tax_total and items.quantity) corresponding amount.breakdown.tax_total is required."
+                ]
+              }
+            }
+          },
+          {
+            "title": "UNSUPPORTED_INTENT",
+            "properties": {
+              "issue": {
+                "type": "string",
+                "enum": [
+                  "UNSUPPORTED_INTENT"
+                ]
+              },
+              "description": {
+                "type": "string",
+                "enum": [
+                  "`intent=AUTHORIZE` is not supported for multiple purchase units. Only `intent=CAPTURE` is supported."
+                ]
+              }
+            }
+          },
+          {
+            "title": "UNSUPPORTED_PATCH_PARAMETER_VALUE",
+            "properties": {
+              "issue": {
+                "type": "string",
+                "enum": [
+                  "UNSUPPORTED_PATCH_PARAMETER_VALUE"
+                ]
+              },
+              "description": {
+                "type": "string",
+                "enum": [
+                  "The value specified for this field is not currently supported."
+                ]
+              }
+            }
+          },
+          {
+            "title": "PATCH_VALUE_REQUIRED",
+            "properties": {
+              "issue": {
+                "type": "string",
+                "enum": [
+                  "PATCH_VALUE_REQUIRED"
+                ]
+              },
+              "description": {
+                "type": "string",
+                "enum": [
+                  "Please specify a 'value' to for the field that is being patched."
+                ]
+              }
+            }
+          },
+          {
+            "title": "PATCH_PATH_REQUIRED",
+            "properties": {
+              "issue": {
+                "type": "string",
+                "enum": [
+                  "PATCH_PATH_REQUIRED"
+                ]
+              },
+              "description": {
+                "type": "string",
+                "enum": [
+                  "Please specify a 'path' for the field for which the operation needs to be performed."
+                ]
+              }
+            }
+          },
+          {
+            "title": "PAYEE_ACCOUNT_LOCKED_OR_CLOSED",
+            "properties": {
+              "issue": {
+                "type": "string",
+                "enum": [
+                  "PAYEE_ACCOUNT_LOCKED_OR_CLOSED"
+                ]
+              },
+              "description": {
+                "type": "string",
+                "enum": [
+                  "The merchant account is locked or closed."
+                ]
+              }
+            }
+          },
+          {
+            "title": "PAYEE_ACCOUNT_RESTRICTED",
+            "properties": {
+              "issue": {
+                "type": "string",
+                "enum": [
+                  "PAYEE_ACCOUNT_RESTRICTED"
+                ]
+              },
+              "description": {
+                "type": "string",
+                "enum": [
+                  "The merchant account is restricted."
+                ]
+              }
+            }
+          },
+          {
+            "title": "PAYEE_FX_RATE_ID_EXPIRED",
+            "properties": {
+              "issue": {
+                "type": "string",
+                "enum": [
+                  "PAYEE_FX_RATE_ID_EXPIRED"
+                ]
+              },
+              "description": {
+                "type": "string",
+                "enum": [
+                  "The specified FX Rate ID has expired. Please specify a different FX Rate Id and try the request again. Alternately, remove the FX Rate ID to process the request using the default exchange rate."
+                ]
+              }
+            }
+          },
+          {
+            "title": "PAYEE_FX_RATE_ID_CURRENCY_MISMATCH",
+            "properties": {
+              "issue": {
+                "type": "string",
+                "enum": [
+                  "PAYEE_FX_RATE_ID_CURRENCY_MISMATCH"
+                ]
+              },
+              "description": {
+                "type": "string",
+                "enum": [
+                  "The specified FX Rate ID is for a currency that does not match with the currency of this request. Please specify a different FX Rate ID and try the request again. Alternately, remove the FX Rate ID to process the request using the default exchange rate."
+                ]
+              }
+            }
+          },
+          {
+            "title": "INVALID_FX_RATE_ID",
+            "properties": {
+              "issue": {
+                "type": "string",
+                "enum": [
+                  "INVALID_FX_RATE_ID"
+                ]
+              },
+              "description": {
+                "type": "string",
+                "enum": [
+                  "The specific FX Rate ID is not valid. This could be either because we are not able to look up the FX Rate based on this ID or it could be because the ID belongs to another API Caller."
+                ]
+              }
+            }
+          },
+          {
+            "title": "PLATFORM_FEES_NOT_SUPPORTED",
+            "properties": {
+              "issue": {
+                "type": "string",
+                "enum": [
+                  "PLATFORM_FEES_NOT_SUPPORTED"
+                ]
+              },
+              "description": {
+                "type": "string",
+                "enum": [
+                  "The API Caller is not enabled to process transactions by specifying 'platform_fees'. Please work with your PayPal Account Manager to enable this option for your account."
+                ]
+              }
+            }
+          },
+          {
+            "title": "INVALID_PLATFORM_FEES_ACCOUNT",
+            "properties": {
+              "issue": {
+                "type": "string",
+                "enum": [
+                  "INVALID_PLATFORM_FEES_ACCOUNT"
+                ]
+              },
+              "description": {
+                "type": "string",
+                "enum": [
+                  "The specified platform_fees payee account is either invalid or account setup is incomplete.Please work with your PayPal Account Manager to enable this option for your account."
+                ]
+              }
+            }
+          },
+          {
+            "title": "INVALID_PLATFORM_FEES_AMOUNT",
+            "properties": {
+              "issue": {
+                "type": "string",
+                "enum": [
+                  "INVALID_PLATFORM_FEES_AMOUNT"
+                ]
+              },
+              "description": {
+                "type": "string",
+                "enum": [
+                  "The platform_fees amount cannot be greater than order amount."
+                ]
+              }
+            }
+          },
+          {
+            "title": "POSTAL_CODE_REQUIRED",
+            "properties": {
+              "issue": {
+                "type": "string",
+                "enum": [
+                  "POSTAL_CODE_REQUIRED"
+                ]
+              },
+              "description": {
+                "type": "string",
+                "enum": [
+                  "The specified country requires a postal code."
+                ]
+              }
+            }
+          },
+          {
+            "title": "REFERENCE_ID_NOT_FOUND",
+            "properties": {
+              "issue": {
+                "type": "string",
+                "enum": [
+                  "REFERENCE_ID_NOT_FOUND"
+                ]
+              },
+              "description": {
+                "type": "string",
+                "enum": [
+                  "Filter expression value is incorrect. Please check the value of the reference_id and try again."
+                ]
+              }
+            }
+          },
+          {
+            "title": "REFERENCE_ID_REQUIRED",
+            "properties": {
+              "issue": {
+                "type": "string",
+                "enum": [
+                  "REFERENCE_ID_REQUIRED"
+                ]
+              },
+              "description": {
+                "type": "string",
+                "enum": [
+                  "'reference_id' is required for each 'purchase_unit' if multiple 'purchase_unit' are provided."
+                ]
+              }
+            }
+          },
+          {
+            "title": "MULTI_CURRENCY_ORDER",
+            "properties": {
+              "issue": {
+                "type": "string",
+                "enum": [
+                  "MULTI_CURRENCY_ORDER"
+                ]
+              },
+              "description": {
+                "type": "string",
+                "enum": [
+                  "Multiple differing values of currency_code are not supported. Entire Order request must have the same currency_code."
+                ]
+              }
+            }
+          },
+          {
+            "title": "SHIPPING_OPTION_NOT_SELECTED",
+            "properties": {
+              "issue": {
+                "type": "string",
+                "enum": [
+                  "SHIPPING_OPTION_NOT_SELECTED"
+                ]
+              },
+              "description": {
+                "type": "string",
+                "enum": [
+                  "At least one of the shipping.option should be set to 'selected = true'."
+                ]
+              }
+            }
+          },
+          {
+            "title": "SHIPPING_OPTIONS_NOT_SUPPORTED",
+            "properties": {
+              "issue": {
+                "type": "string",
+                "enum": [
+                  "SHIPPING_OPTIONS_NOT_SUPPORTED"
+                ]
+              },
+              "description": {
+                "type": "string",
+                "enum": [
+                  "Shipping options are not supported when 'application_context.shipping_preference' is set as 'NO_SHIPPING' or 'SET_PROVIDED_ADDRESS'."
+                ]
+              }
+            }
+          },
+          {
+            "title": "MULTIPLE_SHIPPING_OPTION_SELECTED",
+            "properties": {
+              "issue": {
+                "type": "string",
+                "enum": [
+                  "MULTIPLE_SHIPPING_OPTION_SELECTED"
+                ]
+              },
+              "description": {
+                "type": "string",
+                "enum": [
+                  "Only one shipping.option can be set to 'selected = true'."
+                ]
+              }
+            }
+          },
+          {
+            "title": "ORDER_ALREADY_COMPLETED",
+            "properties": {
+              "issue": {
+                "type": "string",
+                "enum": [
+                  "ORDER_ALREADY_COMPLETED"
+                ]
+              },
+              "description": {
+                "type": "string",
+                "enum": [
+                  "The order cannot be patched after it is completed."
+                ]
+              }
+            }
+          },
+          {
+            "title": "PREFERRED_SHIPPING_OPTION_AMOUNT_MISMATCH",
+            "properties": {
+              "issue": {
+                "type": "string",
+                "enum": [
+                  "PREFERRED_SHIPPING_OPTION_AMOUNT_MISMATCH"
+                ]
+              },
+              "description": {
+                "type": "string",
+                "enum": [
+                  "The amount provided in the preferred shipping option should match the amount provided in amount breakdown"
+                ]
+              }
+            }
+          },
+          {
+            "title": "AMOUNT_CHANGE_NOT_ALLOWED",
+            "properties": {
+              "issue": {
+                "type": "string",
+                "enum": [
+                  "AMOUNT_CHANGE_NOT_ALLOWED"
+                ]
+              },
+              "description": {
+                "type": "string",
+                "enum": [
+                  "The amount specified is different from the amount authorized by payer."
+                ]
+              }
+            }
+          }
+        ]
+      }
+    }
+  }
+}

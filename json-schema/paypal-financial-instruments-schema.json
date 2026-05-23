@@ -1,0 +1,20 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/financial_instruments",
+  "title": "Financial instrument.",
+  "type": "object",
+  "description": "Financial instruments attached to this account.",
+  "additionalProperties": false,
+  "properties": {
+    "banks": {
+      "type": "array",
+      "description": "An array of banks attached to this managed account.",
+      "items": {
+        "description": "The bank account information.",
+        "$ref": "#/components/schemas/bank"
+      },
+      "minItems": 0,
+      "maxItems": 5
+    }
+  }
+}

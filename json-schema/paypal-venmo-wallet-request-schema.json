@@ -1,0 +1,24 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/venmo_wallet_request",
+  "title": "Venmo payment request object",
+  "type": "object",
+  "description": "Information needed to pay using Venmo.",
+  "properties": {
+    "vault_id": {
+      "description": "The PayPal-generated ID for the saved Venmo wallet payment_source. This ID should be stored on the merchant's server so the saved payment source can be used for future transactions.",
+      "$ref": "#/components/schemas/vault_id"
+    },
+    "email_address": {
+      "description": "The email address of the payer.",
+      "$ref": "#/components/schemas/email"
+    },
+    "experience_context": {
+      "$ref": "#/components/schemas/venmo_wallet_experience_context"
+    },
+    "attributes": {
+      "description": "Additional attributes associated with the use of this wallet.",
+      "$ref": "#/components/schemas/venmo_wallet_attributes"
+    }
+  }
+}

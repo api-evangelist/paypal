@@ -1,0 +1,16 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/card_attributes",
+  "title": "Card Attributes",
+  "type": "object",
+  "description": "Additional attributes associated with the use of this card.",
+  "properties": {
+    "customer": {
+      "$ref": "#/components/schemas/customer"
+    },
+    "vault": {
+      "description": "Instruction to vault the card based on the specified strategy.",
+      "$ref": "#/components/schemas/vault_instruction_base"
+    }
+  }
+}

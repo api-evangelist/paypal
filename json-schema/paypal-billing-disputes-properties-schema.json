@@ -1,0 +1,24 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/billing_disputes_properties",
+  "title": "Billing Disputes Properties",
+  "type": "object",
+  "description": "The billing issue details.",
+  "properties": {
+    "duplicate_transaction": {
+      "$ref": "#/components/schemas/duplicate_transaction"
+    },
+    "incorrect_transaction_amount": {
+      "$ref": "#/components/schemas/incorrect_transaction_amount"
+    },
+    "payment_by_other_means": {
+      "$ref": "#/components/schemas/payment_by_other_means"
+    },
+    "credit_not_processed": {
+      "$ref": "#/components/schemas/credit_not_processed"
+    },
+    "canceled_recurring_billing": {
+      "$ref": "#/components/schemas/canceled_recurring_billing"
+    }
+  }
+}

@@ -1,0 +1,51 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/template",
+  "title": "Template",
+  "type": "object",
+  "description": "The template with invoice details to load with all captured fields.",
+  "properties": {
+    "id": {
+      "type": "string",
+      "description": "The ID of the template.",
+      "readOnly": true,
+      "maxLength": 30
+    },
+    "name": {
+      "type": "string",
+      "description": "The template name.<blockquote><strong>Note:</strong> The template name must be unique.</blockquote>",
+      "maxLength": 500,
+      "minLength": 1
+    },
+    "default_template": {
+      "type": "boolean",
+      "description": "Indicates whether this template is the default template. A invoicer can have one default template."
+    },
+    "template_info": {
+      "$ref": "#/components/schemas/template_info",
+      "description": "The template details. Includes invoicer business information, invoice recipients, items, and configuration."
+    },
+    "settings": {
+      "description": "The template settings. Describes which fields to show or hide when you create an invoice.",
+      "$ref": "#/components/schemas/template_settings"
+    },
+    "unit_of_measure": {
+      "$ref": "#/components/schemas/unit_of_measure",
+      "description": "The unit of measure for the template. Value is quantity, hours, or amount."
+    },
+    "standard_template": {
+      "type": "boolean",
+      "description": "Indicates whether this template is a invoicer-created custom template. The system generates non-custom templates.",
+      "readOnly": true
+    },
+    "links": {
+      "type": "array",
+      "description": "An array of request-related [HATEOAS links](/docs/api/reference/api-responses/#hateoas-links).",
+      "readOnly": true,
+      "items": {
+        "$ref": "#/components/schemas/link_description",
+        "readOnly": true
+      }
+    }
+  }
+}

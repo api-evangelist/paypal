@@ -1,0 +1,17 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/mandate",
+  "title": "Mandate",
+  "type": "object",
+  "description": "Seller\u2019s consent to operate on this financial instrument.",
+  "additionalProperties": false,
+  "properties": {
+    "accepted": {
+      "type": "boolean",
+      "description": "Whether mandate was accepted or not."
+    }
+  },
+  "required": [
+    "accepted"
+  ]
+}

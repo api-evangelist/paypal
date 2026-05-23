@@ -1,0 +1,23 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/store_info",
+  "title": "Store Information",
+  "type": "object",
+  "description": "The store information.",
+  "properties": {
+    "store_id": {
+      "type": "string",
+      "description": "The ID of a store for a merchant in the system of record.",
+      "minLength": 1,
+      "maxLength": 100,
+      "pattern": "^[a-zA-Z0-9]*$"
+    },
+    "terminal_id": {
+      "type": "string",
+      "description": "The terminal ID for the checkout stand in a merchant store.",
+      "minLength": 1,
+      "maxLength": 60,
+      "pattern": "^[a-zA-Z0-9]*$"
+    }
+  }
+}

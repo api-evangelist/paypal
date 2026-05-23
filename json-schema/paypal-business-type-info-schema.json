@@ -1,0 +1,17 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/business_type_info",
+  "title": "Business type information",
+  "type": "object",
+  "description": "The type and subtype of the business.",
+  "properties": {
+    "type": {
+      "description": "Type of business entity like corporation, sole prop, governmental.",
+      "$ref": "#/components/schemas/business_type"
+    },
+    "subtype": {
+      "description": "The sub classification of the business type.",
+      "$ref": "#/components/schemas/business_sub_type"
+    }
+  }
+}

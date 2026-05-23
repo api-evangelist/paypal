@@ -1,0 +1,24 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/communication_details",
+  "title": "Contact Details",
+  "type": "object",
+  "description": "The contact details that a merchant provides to the customer to use to share their evidence documents.",
+  "properties": {
+    "email": {
+      "$ref": "#/components/schemas/email_address",
+      "description": "The email address that is provided by the merchant where the customer can share the evidences."
+    },
+    "note": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 2000,
+      "description": "The merchant provided notes that are visible to both the customer and PayPal."
+    },
+    "time_posted": {
+      "$ref": "#/components/schemas/date_time",
+      "description": "The date and time when the contact details were posted, in [Internet date and time format](https://tools.ietf.org/html/rfc3339#section-5.6).",
+      "readOnly": true
+    }
+  }
+}

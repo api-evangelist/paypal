@@ -1,0 +1,12 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/template_subtotal_field",
+  "title": "Template Subtotal Field",
+  "type": "string",
+  "description": "The field names in the template for discount, shipping, and custom amounts.",
+  "enum": [
+    "DISCOUNT",
+    "SHIPPING",
+    "CUSTOM"
+  ]
+}

@@ -1,0 +1,11 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/country_code-2",
+  "title": "country_code-2",
+  "type": "string",
+  "description": "The [2-character ISO 3166-1 code](/api/rest/reference/country-codes/) that identifies the country or region.<blockquote><strong>Note:</strong> The country code for Great Britain is <code>GB</code> and not <code>UK</code> as used in the top-level domain names for that country. Use the `C2` country code for China worldwide for comparable uncontrolled price (CUP) method, bank card, and cross-border transactions.</blockquote>",
+  "format": "ppaas_common_country_code_v2",
+  "maxLength": 2,
+  "minLength": 2,
+  "pattern": "^([A-Z]{2}|C2)$"
+}

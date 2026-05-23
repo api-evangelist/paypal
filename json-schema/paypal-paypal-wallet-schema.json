@@ -1,0 +1,47 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/paypal_wallet",
+  "title": "PayPal Wallet",
+  "type": "object",
+  "description": "A resource that identifies a PayPal Wallet is used for payment.",
+  "properties": {
+    "vault_id": {
+      "description": "The PayPal-generated ID for the payment_source stored within the Vault.",
+      "$ref": "#/components/schemas/vault_id"
+    },
+    "email_address": {
+      "description": "The email address of the PayPal account holder.",
+      "$ref": "#/components/schemas/email"
+    },
+    "name": {
+      "description": "The name of the PayPal account holder. Supports only the `given_name` and `surname` properties.",
+      "$ref": "#/components/schemas/name-2"
+    },
+    "phone": {
+      "description": "The phone number of the customer. Available only when you enable the **Contact Telephone Number** option in the <a href=\"https://www.paypal.com/cgi-bin/customerprofileweb?cmd=_profile-website-payments\">**Profile & Settings**</a> for the merchant's PayPal account. The `phone.phone_number` supports only `national_number`.",
+      "$ref": "#/components/schemas/phone_with_type"
+    },
+    "birth_date": {
+      "description": "The birth date of the PayPal account holder in `YYYY-MM-DD` format.",
+      "$ref": "#/components/schemas/date_no_time"
+    },
+    "tax_info": {
+      "description": "The tax information of the PayPal account holder. Required only for Brazilian PayPal account holder's. Both `tax_id` and `tax_id_type` are required.",
+      "$ref": "#/components/schemas/tax_info"
+    },
+    "address": {
+      "description": "The address of the PayPal account holder. Supports only the `address_line_1`, `address_line_2`, `admin_area_1`, `admin_area_2`, `postal_code`, and `country_code` properties. Also referred to as the billing address of the customer.",
+      "$ref": "#/components/schemas/address_portable-2"
+    },
+    "attributes": {
+      "description": "Additional attributes associated with the use of this wallet.",
+      "$ref": "#/components/schemas/paypal_wallet_attributes"
+    },
+    "experience_context": {
+      "$ref": "#/components/schemas/paypal_wallet_experience_context"
+    },
+    "billing_agreement_id": {
+      "$ref": "#/components/schemas/billing_agreement_id"
+    }
+  }
+}
