@@ -1,0 +1,1528 @@
+asyncapi: '2.6.0'
+id: 'urn:com:paypal:webhooks'
+info:
+  title: PayPal Webhooks
+  version: '1.0.0'
+  description: |
+    AsyncAPI 2.6 description of PayPal's webhook event surface. PayPal delivers
+    signed HTTP POST callbacks to merchant-configured listener URLs whenever a
+    subscribed event occurs on a PayPal account (orders, captures, refunds,
+    subscriptions, invoices, disputes, payouts, vault tokens, merchant
+    onboarding, and more).
+
+    Every notification arrives with the same envelope (id, event_version,
+    create_time, resource_type, resource_version, event_type, summary,
+    resource, links) and is accompanied by a set of PAYPAL-TRANSMISSION-*
+    HTTP headers that listeners use to verify authenticity via PayPal's
+    `/v1/notifications/verify-webhook-signature` endpoint or by manually
+    validating the signature against PayPal's published X.509 certificate.
+
+    Event names and payload envelope fields are sourced from
+    https://developer.paypal.com/api/rest/webhooks/event-names/ and the
+    PayPal Notification Webhooks OpenAPI definition.
+  contact:
+    name: PayPal Developer
+    url: https://developer.paypal.com/api/rest/webhooks/
+  license:
+    name: Proprietary - PayPal Developer Agreement
+    url: https://www.paypal.com/us/legalhub/paypal/useragreement-full
+  termsOfService: https://www.paypal.com/us/legalhub/useragreement-full
+defaultContentType: application/json
+servers:
+  listener:
+    url: '{listenerUrl}'
+    protocol: https
+    description: |
+      Merchant-operated HTTPS listener URL registered when creating a webhook
+      via POST /v1/notifications/webhooks. PayPal posts each notification to
+      this URL.
+    variables:
+      listenerUrl:
+        default: https://example.com/paypal/webhook
+        description: The fully-qualified HTTPS URL of the merchant's webhook listener.
+channels:
+  paypal/webhook:
+    description: |
+      The single logical channel that receives every PayPal webhook
+      notification. The concrete event is identified by the `event_type`
+      field on the envelope (one of the documented event names enumerated
+      in `components.schemas.EventType`).
+    bindings:
+      http:
+        type: request
+        method: POST
+        bindingVersion: '0.3.0'
+    subscribe:
+      operationId: receiveWebhookEvent
+      summary: Receive a PayPal webhook event notification.
+      description: |
+        PayPal POSTs a JSON envelope to the registered listener URL. The
+        listener must respond with a 2xx status code within a short window
+        or PayPal will retry delivery. Listeners must verify authenticity
+        using the PAYPAL-TRANSMISSION-* headers before processing the
+        payload.
+      bindings:
+        http:
+          bindingVersion: '0.3.0'
+      message:
+        oneOf:
+          - $ref: '#/components/messages/CheckoutOrderApproved'
+          - $ref: '#/components/messages/CheckoutOrderCompleted'
+          - $ref: '#/components/messages/CheckoutOrderProcessed'
+          - $ref: '#/components/messages/CheckoutPaymentApprovalReversed'
+          - $ref: '#/components/messages/CheckoutCheckoutBuyerApproved'
+          - $ref: '#/components/messages/PaymentAuthorizationCreated'
+          - $ref: '#/components/messages/PaymentAuthorizationVoided'
+          - $ref: '#/components/messages/PaymentCaptureCompleted'
+          - $ref: '#/components/messages/PaymentCaptureDeclined'
+          - $ref: '#/components/messages/PaymentCaptureDenied'
+          - $ref: '#/components/messages/PaymentCapturePending'
+          - $ref: '#/components/messages/PaymentCaptureRefunded'
+          - $ref: '#/components/messages/PaymentCaptureReversed'
+          - $ref: '#/components/messages/PaymentRefundPending'
+          - $ref: '#/components/messages/PaymentRefundFailed'
+          - $ref: '#/components/messages/PaymentSaleCompleted'
+          - $ref: '#/components/messages/PaymentSaleDenied'
+          - $ref: '#/components/messages/PaymentSalePending'
+          - $ref: '#/components/messages/PaymentSaleRefunded'
+          - $ref: '#/components/messages/PaymentSaleReversed'
+          - $ref: '#/components/messages/PaymentOrderCreated'
+          - $ref: '#/components/messages/PaymentOrderCancelled'
+          - $ref: '#/components/messages/PaymentsPaymentCreated'
+          - $ref: '#/components/messages/PaymentPayoutsBatchDenied'
+          - $ref: '#/components/messages/PaymentPayoutsBatchProcessing'
+          - $ref: '#/components/messages/PaymentPayoutsBatchSuccess'
+          - $ref: '#/components/messages/PaymentPayoutsItemBlocked'
+          - $ref: '#/components/messages/PaymentPayoutsItemCanceled'
+          - $ref: '#/components/messages/PaymentPayoutsItemFailed'
+          - $ref: '#/components/messages/PaymentPayoutsItemHeld'
+          - $ref: '#/components/messages/PaymentPayoutsItemRefunded'
+          - $ref: '#/components/messages/PaymentPayoutsItemReturned'
+          - $ref: '#/components/messages/PaymentPayoutsItemSucceeded'
+          - $ref: '#/components/messages/PaymentPayoutsItemUnclaimed'
+          - $ref: '#/components/messages/PaymentReferencedPayoutItemCompleted'
+          - $ref: '#/components/messages/PaymentReferencedPayoutItemFailed'
+          - $ref: '#/components/messages/BillingPlanCreated'
+          - $ref: '#/components/messages/BillingPlanUpdated'
+          - $ref: '#/components/messages/BillingPlanActivated'
+          - $ref: '#/components/messages/BillingPlanDeactivated'
+          - $ref: '#/components/messages/BillingPlanPricingChangeActivated'
+          - $ref: '#/components/messages/BillingSubscriptionCreated'
+          - $ref: '#/components/messages/BillingSubscriptionActivated'
+          - $ref: '#/components/messages/BillingSubscriptionUpdated'
+          - $ref: '#/components/messages/BillingSubscriptionExpired'
+          - $ref: '#/components/messages/BillingSubscriptionCancelled'
+          - $ref: '#/components/messages/BillingSubscriptionSuspended'
+          - $ref: '#/components/messages/BillingSubscriptionReActivated'
+          - $ref: '#/components/messages/BillingSubscriptionPaymentFailed'
+          - $ref: '#/components/messages/CatalogProductCreated'
+          - $ref: '#/components/messages/CatalogProductUpdated'
+          - $ref: '#/components/messages/CustomerDisputeCreated'
+          - $ref: '#/components/messages/CustomerDisputeResolved'
+          - $ref: '#/components/messages/CustomerDisputeUpdated'
+          - $ref: '#/components/messages/RiskDisputeCreated'
+          - $ref: '#/components/messages/InvoicingInvoiceCancelled'
+          - $ref: '#/components/messages/InvoicingInvoiceCreated'
+          - $ref: '#/components/messages/InvoicingInvoicePaid'
+          - $ref: '#/components/messages/InvoicingInvoiceRefunded'
+          - $ref: '#/components/messages/InvoicingInvoiceScheduled'
+          - $ref: '#/components/messages/InvoicingInvoiceUpdated'
+          - $ref: '#/components/messages/IdentityAuthorizationConsentRevoked'
+          - $ref: '#/components/messages/MerchantOnboardingCompleted'
+          - $ref: '#/components/messages/MerchantPartnerConsentRevoked'
+          - $ref: '#/components/messages/CustomerAccountLimitationAdded'
+          - $ref: '#/components/messages/CustomerAccountLimitationEscalated'
+          - $ref: '#/components/messages/CustomerAccountLimitationLifted'
+          - $ref: '#/components/messages/CustomerAccountLimitationUpdated'
+          - $ref: '#/components/messages/CustomerMerchantIntegrationCapabilityUpdated'
+          - $ref: '#/components/messages/CustomerMerchantIntegrationProductSubscriptionUpdated'
+          - $ref: '#/components/messages/CustomerMerchantIntegrationSellerAlreadyIntegrated'
+          - $ref: '#/components/messages/CustomerMerchantIntegrationSellerOnboardingInitiated'
+          - $ref: '#/components/messages/CustomerMerchantIntegrationSellerConsentGranted'
+          - $ref: '#/components/messages/CustomerMerchantIntegrationSellerEmailConfirmed'
+          - $ref: '#/components/messages/CustomerManagedAccountAccountCreated'
+          - $ref: '#/components/messages/CustomerManagedAccountCreationFailed'
+          - $ref: '#/components/messages/CustomerManagedAccountAccountUpdated'
+          - $ref: '#/components/messages/CustomerManagedAccountAccountStatusChanged'
+          - $ref: '#/components/messages/CustomerManagedAccountRiskAssessed'
+          - $ref: '#/components/messages/CustomerManagedAccountNegativeBalanceNotified'
+          - $ref: '#/components/messages/CustomerManagedAccountNegativeBalanceDebitInitiated'
+          - $ref: '#/components/messages/VaultPaymentTokenCreated'
+          - $ref: '#/components/messages/VaultPaymentTokenDeleted'
+          - $ref: '#/components/messages/VaultPaymentTokenDeletionInitiated'
+components:
+  messages:
+    CheckoutOrderApproved:
+      name: CheckoutOrderApproved
+      title: Checkout order approved
+      summary: A buyer approved a PayPal Checkout order.
+      contentType: application/json
+      headers:
+        $ref: '#/components/schemas/TransmissionHeaders'
+      payload:
+        allOf:
+          - $ref: '#/components/schemas/Event'
+          - type: object
+            properties:
+              event_type:
+                const: CHECKOUT.ORDER.APPROVED
+    CheckoutOrderCompleted:
+      name: CheckoutOrderCompleted
+      title: Checkout order completed
+      summary: A checkout order was processed (marketplaces and platforms).
+      contentType: application/json
+      headers:
+        $ref: '#/components/schemas/TransmissionHeaders'
+      payload:
+        allOf:
+          - $ref: '#/components/schemas/Event'
+          - type: object
+            properties:
+              event_type:
+                const: CHECKOUT.ORDER.COMPLETED
+    CheckoutOrderProcessed:
+      name: CheckoutOrderProcessed
+      title: Checkout order processed
+      summary: A checkout order was processed.
+      contentType: application/json
+      headers:
+        $ref: '#/components/schemas/TransmissionHeaders'
+      payload:
+        allOf:
+          - $ref: '#/components/schemas/Event'
+          - type: object
+            properties:
+              event_type:
+                const: CHECKOUT.ORDER.PROCESSED
+    CheckoutPaymentApprovalReversed:
+      name: CheckoutPaymentApprovalReversed
+      title: Checkout payment approval reversed
+      summary: A problem occurred after buyer approval but before capture.
+      contentType: application/json
+      headers:
+        $ref: '#/components/schemas/TransmissionHeaders'
+      payload:
+        allOf:
+          - $ref: '#/components/schemas/Event'
+          - type: object
+            properties:
+              event_type:
+                const: CHECKOUT.PAYMENT-APPROVAL.REVERSED
+    CheckoutCheckoutBuyerApproved:
+      name: CheckoutCheckoutBuyerApproved
+      title: Express Checkout buyer approved
+      summary: An Express Checkout payment was approved by the buyer.
+      contentType: application/json
+      headers:
+        $ref: '#/components/schemas/TransmissionHeaders'
+      payload:
+        allOf:
+          - $ref: '#/components/schemas/Event'
+          - type: object
+            properties:
+              event_type:
+                const: CHECKOUT.CHECKOUT.BUYER-APPROVED
+    PaymentAuthorizationCreated:
+      name: PaymentAuthorizationCreated
+      title: Payment authorization created
+      summary: A payment authorization was created, approved, executed, or a future payment authorization was created.
+      contentType: application/json
+      headers:
+        $ref: '#/components/schemas/TransmissionHeaders'
+      payload:
+        allOf:
+          - $ref: '#/components/schemas/Event'
+          - type: object
+            properties:
+              event_type:
+                const: PAYMENT.AUTHORIZATION.CREATED
+    PaymentAuthorizationVoided:
+      name: PaymentAuthorizationVoided
+      title: Payment authorization voided
+      summary: A payment authorization was voided either due to expiration or by request.
+      contentType: application/json
+      headers:
+        $ref: '#/components/schemas/TransmissionHeaders'
+      payload:
+        allOf:
+          - $ref: '#/components/schemas/Event'
+          - type: object
+            properties:
+              event_type:
+                const: PAYMENT.AUTHORIZATION.VOIDED
+    PaymentCaptureCompleted:
+      name: PaymentCaptureCompleted
+      title: Payment capture completed
+      summary: A payment capture completed.
+      contentType: application/json
+      headers:
+        $ref: '#/components/schemas/TransmissionHeaders'
+      payload:
+        allOf:
+          - $ref: '#/components/schemas/Event'
+          - type: object
+            properties:
+              event_type:
+                const: PAYMENT.CAPTURE.COMPLETED
+    PaymentCaptureDeclined:
+      name: PaymentCaptureDeclined
+      title: Payment capture declined
+      summary: A payment capture was declined.
+      contentType: application/json
+      headers:
+        $ref: '#/components/schemas/TransmissionHeaders'
+      payload:
+        allOf:
+          - $ref: '#/components/schemas/Event'
+          - type: object
+            properties:
+              event_type:
+                const: PAYMENT.CAPTURE.DECLINED
+    PaymentCaptureDenied:
+      name: PaymentCaptureDenied
+      title: Payment capture denied
+      summary: A payment capture was denied.
+      contentType: application/json
+      headers:
+        $ref: '#/components/schemas/TransmissionHeaders'
+      payload:
+        allOf:
+          - $ref: '#/components/schemas/Event'
+          - type: object
+            properties:
+              event_type:
+                const: PAYMENT.CAPTURE.DENIED
+    PaymentCapturePending:
+      name: PaymentCapturePending
+      title: Payment capture pending
+      summary: The state of a payment capture changed to pending.
+      contentType: application/json
+      headers:
+        $ref: '#/components/schemas/TransmissionHeaders'
+      payload:
+        allOf:
+          - $ref: '#/components/schemas/Event'
+          - type: object
+            properties:
+              event_type:
+                const: PAYMENT.CAPTURE.PENDING
+    PaymentCaptureRefunded:
+      name: PaymentCaptureRefunded
+      title: Payment capture refunded
+      summary: A merchant refunded a payment capture.
+      contentType: application/json
+      headers:
+        $ref: '#/components/schemas/TransmissionHeaders'
+      payload:
+        allOf:
+          - $ref: '#/components/schemas/Event'
+          - type: object
+            properties:
+              event_type:
+                const: PAYMENT.CAPTURE.REFUNDED
+    PaymentCaptureReversed:
+      name: PaymentCaptureReversed
+      title: Payment capture reversed
+      summary: PayPal reversed a payment capture.
+      contentType: application/json
+      headers:
+        $ref: '#/components/schemas/TransmissionHeaders'
+      payload:
+        allOf:
+          - $ref: '#/components/schemas/Event'
+          - type: object
+            properties:
+              event_type:
+                const: PAYMENT.CAPTURE.REVERSED
+    PaymentRefundPending:
+      name: PaymentRefundPending
+      title: Payment refund pending
+      summary: The state of a refund changed to pending.
+      contentType: application/json
+      headers:
+        $ref: '#/components/schemas/TransmissionHeaders'
+      payload:
+        allOf:
+          - $ref: '#/components/schemas/Event'
+          - type: object
+            properties:
+              event_type:
+                const: PAYMENT.REFUND.PENDING
+    PaymentRefundFailed:
+      name: PaymentRefundFailed
+      title: Payment refund failed
+      summary: A refund failed.
+      contentType: application/json
+      headers:
+        $ref: '#/components/schemas/TransmissionHeaders'
+      payload:
+        allOf:
+          - $ref: '#/components/schemas/Event'
+          - type: object
+            properties:
+              event_type:
+                const: PAYMENT.REFUND.FAILED
+    PaymentSaleCompleted:
+      name: PaymentSaleCompleted
+      title: Payment sale completed
+      summary: A sale completed.
+      contentType: application/json
+      headers:
+        $ref: '#/components/schemas/TransmissionHeaders'
+      payload:
+        allOf:
+          - $ref: '#/components/schemas/Event'
+          - type: object
+            properties:
+              event_type:
+                const: PAYMENT.SALE.COMPLETED
+    PaymentSaleDenied:
+      name: PaymentSaleDenied
+      title: Payment sale denied
+      summary: The state of a sale changed to denied.
+      contentType: application/json
+      headers:
+        $ref: '#/components/schemas/TransmissionHeaders'
+      payload:
+        allOf:
+          - $ref: '#/components/schemas/Event'
+          - type: object
+            properties:
+              event_type:
+                const: PAYMENT.SALE.DENIED
+    PaymentSalePending:
+      name: PaymentSalePending
+      title: Payment sale pending
+      summary: The state of a sale changed to pending.
+      contentType: application/json
+      headers:
+        $ref: '#/components/schemas/TransmissionHeaders'
+      payload:
+        allOf:
+          - $ref: '#/components/schemas/Event'
+          - type: object
+            properties:
+              event_type:
+                const: PAYMENT.SALE.PENDING
+    PaymentSaleRefunded:
+      name: PaymentSaleRefunded
+      title: Payment sale refunded
+      summary: A sale was refunded.
+      contentType: application/json
+      headers:
+        $ref: '#/components/schemas/TransmissionHeaders'
+      payload:
+        allOf:
+          - $ref: '#/components/schemas/Event'
+          - type: object
+            properties:
+              event_type:
+                const: PAYMENT.SALE.REFUNDED
+    PaymentSaleReversed:
+      name: PaymentSaleReversed
+      title: Payment sale reversed
+      summary: A sale was reversed.
+      contentType: application/json
+      headers:
+        $ref: '#/components/schemas/TransmissionHeaders'
+      payload:
+        allOf:
+          - $ref: '#/components/schemas/Event'
+          - type: object
+            properties:
+              event_type:
+                const: PAYMENT.SALE.REVERSED
+    PaymentOrderCreated:
+      name: PaymentOrderCreated
+      title: Payment order created
+      summary: A payment order was created.
+      contentType: application/json
+      headers:
+        $ref: '#/components/schemas/TransmissionHeaders'
+      payload:
+        allOf:
+          - $ref: '#/components/schemas/Event'
+          - type: object
+            properties:
+              event_type:
+                const: PAYMENT.ORDER.CREATED
+    PaymentOrderCancelled:
+      name: PaymentOrderCancelled
+      title: Payment order cancelled
+      summary: A payment order was cancelled.
+      contentType: application/json
+      headers:
+        $ref: '#/components/schemas/TransmissionHeaders'
+      payload:
+        allOf:
+          - $ref: '#/components/schemas/Event'
+          - type: object
+            properties:
+              event_type:
+                const: PAYMENT.ORDER.CANCELLED
+    PaymentsPaymentCreated:
+      name: PaymentsPaymentCreated
+      title: Payments payment created
+      summary: A checkout payment was created and approved.
+      contentType: application/json
+      headers:
+        $ref: '#/components/schemas/TransmissionHeaders'
+      payload:
+        allOf:
+          - $ref: '#/components/schemas/Event'
+          - type: object
+            properties:
+              event_type:
+                const: PAYMENTS.PAYMENT.CREATED
+    PaymentPayoutsBatchDenied:
+      name: PaymentPayoutsBatchDenied
+      title: Payouts batch denied
+      summary: A batch payout was denied.
+      contentType: application/json
+      headers:
+        $ref: '#/components/schemas/TransmissionHeaders'
+      payload:
+        allOf:
+          - $ref: '#/components/schemas/Event'
+          - type: object
+            properties:
+              event_type:
+                const: PAYMENT.PAYOUTSBATCH.DENIED
+    PaymentPayoutsBatchProcessing:
+      name: PaymentPayoutsBatchProcessing
+      title: Payouts batch processing
+      summary: The state of a batch payout changed to processing.
+      contentType: application/json
+      headers:
+        $ref: '#/components/schemas/TransmissionHeaders'
+      payload:
+        allOf:
+          - $ref: '#/components/schemas/Event'
+          - type: object
+            properties:
+              event_type:
+                const: PAYMENT.PAYOUTSBATCH.PROCESSING
+    PaymentPayoutsBatchSuccess:
+      name: PaymentPayoutsBatchSuccess
+      title: Payouts batch success
+      summary: A batch payout completed successfully.
+      contentType: application/json
+      headers:
+        $ref: '#/components/schemas/TransmissionHeaders'
+      payload:
+        allOf:
+          - $ref: '#/components/schemas/Event'
+          - type: object
+            properties:
+              event_type:
+                const: PAYMENT.PAYOUTSBATCH.SUCCESS
+    PaymentPayoutsItemBlocked:
+      name: PaymentPayoutsItemBlocked
+      title: Payouts item blocked
+      summary: A payouts item was blocked.
+      contentType: application/json
+      headers:
+        $ref: '#/components/schemas/TransmissionHeaders'
+      payload:
+        allOf:
+          - $ref: '#/components/schemas/Event'
+          - type: object
+            properties:
+              event_type:
+                const: PAYMENT.PAYOUTS-ITEM.BLOCKED
+    PaymentPayoutsItemCanceled:
+      name: PaymentPayoutsItemCanceled
+      title: Payouts item canceled
+      summary: A payouts item was canceled.
+      contentType: application/json
+      headers:
+        $ref: '#/components/schemas/TransmissionHeaders'
+      payload:
+        allOf:
+          - $ref: '#/components/schemas/Event'
+          - type: object
+            properties:
+              event_type:
+                const: PAYMENT.PAYOUTS-ITEM.CANCELED
+    PaymentPayoutsItemFailed:
+      name: PaymentPayoutsItemFailed
+      title: Payouts item failed
+      summary: A payouts item failed.
+      contentType: application/json
+      headers:
+        $ref: '#/components/schemas/TransmissionHeaders'
+      payload:
+        allOf:
+          - $ref: '#/components/schemas/Event'
+          - type: object
+            properties:
+              event_type:
+                const: PAYMENT.PAYOUTS-ITEM.FAILED
+    PaymentPayoutsItemHeld:
+      name: PaymentPayoutsItemHeld
+      title: Payouts item held
+      summary: A payouts item was held.
+      contentType: application/json
+      headers:
+        $ref: '#/components/schemas/TransmissionHeaders'
+      payload:
+        allOf:
+          - $ref: '#/components/schemas/Event'
+          - type: object
+            properties:
+              event_type:
+                const: PAYMENT.PAYOUTS-ITEM.HELD
+    PaymentPayoutsItemRefunded:
+      name: PaymentPayoutsItemRefunded
+      title: Payouts item refunded
+      summary: A payouts item was refunded.
+      contentType: application/json
+      headers:
+        $ref: '#/components/schemas/TransmissionHeaders'
+      payload:
+        allOf:
+          - $ref: '#/components/schemas/Event'
+          - type: object
+            properties:
+              event_type:
+                const: PAYMENT.PAYOUTS-ITEM.REFUNDED
+    PaymentPayoutsItemReturned:
+      name: PaymentPayoutsItemReturned
+      title: Payouts item returned
+      summary: A payouts item was returned.
+      contentType: application/json
+      headers:
+        $ref: '#/components/schemas/TransmissionHeaders'
+      payload:
+        allOf:
+          - $ref: '#/components/schemas/Event'
+          - type: object
+            properties:
+              event_type:
+                const: PAYMENT.PAYOUTS-ITEM.RETURNED
+    PaymentPayoutsItemSucceeded:
+      name: PaymentPayoutsItemSucceeded
+      title: Payouts item succeeded
+      summary: A payouts item succeeded.
+      contentType: application/json
+      headers:
+        $ref: '#/components/schemas/TransmissionHeaders'
+      payload:
+        allOf:
+          - $ref: '#/components/schemas/Event'
+          - type: object
+            properties:
+              event_type:
+                const: PAYMENT.PAYOUTS-ITEM.SUCCEEDED
+    PaymentPayoutsItemUnclaimed:
+      name: PaymentPayoutsItemUnclaimed
+      title: Payouts item unclaimed
+      summary: A payouts item was unclaimed.
+      contentType: application/json
+      headers:
+        $ref: '#/components/schemas/TransmissionHeaders'
+      payload:
+        allOf:
+          - $ref: '#/components/schemas/Event'
+          - type: object
+            properties:
+              event_type:
+                const: PAYMENT.PAYOUTS-ITEM.UNCLAIMED
+    PaymentReferencedPayoutItemCompleted:
+      name: PaymentReferencedPayoutItemCompleted
+      title: Referenced payout item completed
+      summary: Funds were disbursed to the seller and partner.
+      contentType: application/json
+      headers:
+        $ref: '#/components/schemas/TransmissionHeaders'
+      payload:
+        allOf:
+          - $ref: '#/components/schemas/Event'
+          - type: object
+            properties:
+              event_type:
+                const: PAYMENT.REFERENCED-PAYOUT-ITEM.COMPLETED
+    PaymentReferencedPayoutItemFailed:
+      name: PaymentReferencedPayoutItemFailed
+      title: Referenced payout item failed
+      summary: A referenced disbursement failed.
+      contentType: application/json
+      headers:
+        $ref: '#/components/schemas/TransmissionHeaders'
+      payload:
+        allOf:
+          - $ref: '#/components/schemas/Event'
+          - type: object
+            properties:
+              event_type:
+                const: PAYMENT.REFERENCED-PAYOUT-ITEM.FAILED
+    BillingPlanCreated:
+      name: BillingPlanCreated
+      title: Billing plan created
+      summary: A billing plan was created.
+      contentType: application/json
+      headers:
+        $ref: '#/components/schemas/TransmissionHeaders'
+      payload:
+        allOf:
+          - $ref: '#/components/schemas/Event'
+          - type: object
+            properties:
+              event_type:
+                const: BILLING.PLAN.CREATED
+    BillingPlanUpdated:
+      name: BillingPlanUpdated
+      title: Billing plan updated
+      summary: A billing plan was updated.
+      contentType: application/json
+      headers:
+        $ref: '#/components/schemas/TransmissionHeaders'
+      payload:
+        allOf:
+          - $ref: '#/components/schemas/Event'
+          - type: object
+            properties:
+              event_type:
+                const: BILLING.PLAN.UPDATED
+    BillingPlanActivated:
+      name: BillingPlanActivated
+      title: Billing plan activated
+      summary: A billing plan was activated.
+      contentType: application/json
+      headers:
+        $ref: '#/components/schemas/TransmissionHeaders'
+      payload:
+        allOf:
+          - $ref: '#/components/schemas/Event'
+          - type: object
+            properties:
+              event_type:
+                const: BILLING.PLAN.ACTIVATED
+    BillingPlanDeactivated:
+      name: BillingPlanDeactivated
+      title: Billing plan deactivated
+      summary: A billing plan was deactivated.
+      contentType: application/json
+      headers:
+        $ref: '#/components/schemas/TransmissionHeaders'
+      payload:
+        allOf:
+          - $ref: '#/components/schemas/Event'
+          - type: object
+            properties:
+              event_type:
+                const: BILLING.PLAN.DEACTIVATED
+    BillingPlanPricingChangeActivated:
+      name: BillingPlanPricingChangeActivated
+      title: Billing plan pricing change activated
+      summary: A pricing change on a billing plan was activated.
+      contentType: application/json
+      headers:
+        $ref: '#/components/schemas/TransmissionHeaders'
+      payload:
+        allOf:
+          - $ref: '#/components/schemas/Event'
+          - type: object
+            properties:
+              event_type:
+                const: BILLING.PLAN.PRICING-CHANGE.ACTIVATED
+    BillingSubscriptionCreated:
+      name: BillingSubscriptionCreated
+      title: Billing subscription created
+      summary: A subscription was created.
+      contentType: application/json
+      headers:
+        $ref: '#/components/schemas/TransmissionHeaders'
+      payload:
+        allOf:
+          - $ref: '#/components/schemas/Event'
+          - type: object
+            properties:
+              event_type:
+                const: BILLING.SUBSCRIPTION.CREATED
+    BillingSubscriptionActivated:
+      name: BillingSubscriptionActivated
+      title: Billing subscription activated
+      summary: A subscription was activated.
+      contentType: application/json
+      headers:
+        $ref: '#/components/schemas/TransmissionHeaders'
+      payload:
+        allOf:
+          - $ref: '#/components/schemas/Event'
+          - type: object
+            properties:
+              event_type:
+                const: BILLING.SUBSCRIPTION.ACTIVATED
+    BillingSubscriptionUpdated:
+      name: BillingSubscriptionUpdated
+      title: Billing subscription updated
+      summary: A subscription was updated.
+      contentType: application/json
+      headers:
+        $ref: '#/components/schemas/TransmissionHeaders'
+      payload:
+        allOf:
+          - $ref: '#/components/schemas/Event'
+          - type: object
+            properties:
+              event_type:
+                const: BILLING.SUBSCRIPTION.UPDATED
+    BillingSubscriptionExpired:
+      name: BillingSubscriptionExpired
+      title: Billing subscription expired
+      summary: A subscription expired.
+      contentType: application/json
+      headers:
+        $ref: '#/components/schemas/TransmissionHeaders'
+      payload:
+        allOf:
+          - $ref: '#/components/schemas/Event'
+          - type: object
+            properties:
+              event_type:
+                const: BILLING.SUBSCRIPTION.EXPIRED
+    BillingSubscriptionCancelled:
+      name: BillingSubscriptionCancelled
+      title: Billing subscription cancelled
+      summary: A subscription was cancelled.
+      contentType: application/json
+      headers:
+        $ref: '#/components/schemas/TransmissionHeaders'
+      payload:
+        allOf:
+          - $ref: '#/components/schemas/Event'
+          - type: object
+            properties:
+              event_type:
+                const: BILLING.SUBSCRIPTION.CANCELLED
+    BillingSubscriptionSuspended:
+      name: BillingSubscriptionSuspended
+      title: Billing subscription suspended
+      summary: A subscription was suspended.
+      contentType: application/json
+      headers:
+        $ref: '#/components/schemas/TransmissionHeaders'
+      payload:
+        allOf:
+          - $ref: '#/components/schemas/Event'
+          - type: object
+            properties:
+              event_type:
+                const: BILLING.SUBSCRIPTION.SUSPENDED
+    BillingSubscriptionReActivated:
+      name: BillingSubscriptionReActivated
+      title: Billing subscription re-activated
+      summary: A subscription (legacy billing agreement) was re-activated.
+      contentType: application/json
+      headers:
+        $ref: '#/components/schemas/TransmissionHeaders'
+      payload:
+        allOf:
+          - $ref: '#/components/schemas/Event'
+          - type: object
+            properties:
+              event_type:
+                const: BILLING.SUBSCRIPTION.RE-ACTIVATED
+    BillingSubscriptionPaymentFailed:
+      name: BillingSubscriptionPaymentFailed
+      title: Billing subscription payment failed
+      summary: A subscription payment failed.
+      contentType: application/json
+      headers:
+        $ref: '#/components/schemas/TransmissionHeaders'
+      payload:
+        allOf:
+          - $ref: '#/components/schemas/Event'
+          - type: object
+            properties:
+              event_type:
+                const: BILLING.SUBSCRIPTION.PAYMENT.FAILED
+    CatalogProductCreated:
+      name: CatalogProductCreated
+      title: Catalog product created
+      summary: A catalog product was created.
+      contentType: application/json
+      headers:
+        $ref: '#/components/schemas/TransmissionHeaders'
+      payload:
+        allOf:
+          - $ref: '#/components/schemas/Event'
+          - type: object
+            properties:
+              event_type:
+                const: CATALOG.PRODUCT.CREATED
+    CatalogProductUpdated:
+      name: CatalogProductUpdated
+      title: Catalog product updated
+      summary: A catalog product was updated.
+      contentType: application/json
+      headers:
+        $ref: '#/components/schemas/TransmissionHeaders'
+      payload:
+        allOf:
+          - $ref: '#/components/schemas/Event'
+          - type: object
+            properties:
+              event_type:
+                const: CATALOG.PRODUCT.UPDATED
+    CustomerDisputeCreated:
+      name: CustomerDisputeCreated
+      title: Customer dispute created
+      summary: A dispute was filed against a transaction.
+      contentType: application/json
+      headers:
+        $ref: '#/components/schemas/TransmissionHeaders'
+      payload:
+        allOf:
+          - $ref: '#/components/schemas/Event'
+          - type: object
+            properties:
+              event_type:
+                const: CUSTOMER.DISPUTE.CREATED
+    CustomerDisputeResolved:
+      name: CustomerDisputeResolved
+      title: Customer dispute resolved
+      summary: A dispute was resolved.
+      contentType: application/json
+      headers:
+        $ref: '#/components/schemas/TransmissionHeaders'
+      payload:
+        allOf:
+          - $ref: '#/components/schemas/Event'
+          - type: object
+            properties:
+              event_type:
+                const: CUSTOMER.DISPUTE.RESOLVED
+    CustomerDisputeUpdated:
+      name: CustomerDisputeUpdated
+      title: Customer dispute updated
+      summary: A dispute was updated.
+      contentType: application/json
+      headers:
+        $ref: '#/components/schemas/TransmissionHeaders'
+      payload:
+        allOf:
+          - $ref: '#/components/schemas/Event'
+          - type: object
+            properties:
+              event_type:
+                const: CUSTOMER.DISPUTE.UPDATED
+    RiskDisputeCreated:
+      name: RiskDisputeCreated
+      title: Risk dispute created
+      summary: A risk-related dispute was created (deprecated event family).
+      contentType: application/json
+      headers:
+        $ref: '#/components/schemas/TransmissionHeaders'
+      payload:
+        allOf:
+          - $ref: '#/components/schemas/Event'
+          - type: object
+            properties:
+              event_type:
+                const: RISK.DISPUTE.CREATED
+    InvoicingInvoiceCancelled:
+      name: InvoicingInvoiceCancelled
+      title: Invoice cancelled
+      summary: A merchant cancelled an invoice.
+      contentType: application/json
+      headers:
+        $ref: '#/components/schemas/TransmissionHeaders'
+      payload:
+        allOf:
+          - $ref: '#/components/schemas/Event'
+          - type: object
+            properties:
+              event_type:
+                const: INVOICING.INVOICE.CANCELLED
+    InvoicingInvoiceCreated:
+      name: InvoicingInvoiceCreated
+      title: Invoice created
+      summary: An invoice was created.
+      contentType: application/json
+      headers:
+        $ref: '#/components/schemas/TransmissionHeaders'
+      payload:
+        allOf:
+          - $ref: '#/components/schemas/Event'
+          - type: object
+            properties:
+              event_type:
+                const: INVOICING.INVOICE.CREATED
+    InvoicingInvoicePaid:
+      name: InvoicingInvoicePaid
+      title: Invoice paid
+      summary: An invoice was paid, partially paid, or payment was made and is pending.
+      contentType: application/json
+      headers:
+        $ref: '#/components/schemas/TransmissionHeaders'
+      payload:
+        allOf:
+          - $ref: '#/components/schemas/Event'
+          - type: object
+            properties:
+              event_type:
+                const: INVOICING.INVOICE.PAID
+    InvoicingInvoiceRefunded:
+      name: InvoicingInvoiceRefunded
+      title: Invoice refunded
+      summary: An invoice was refunded or partially refunded.
+      contentType: application/json
+      headers:
+        $ref: '#/components/schemas/TransmissionHeaders'
+      payload:
+        allOf:
+          - $ref: '#/components/schemas/Event'
+          - type: object
+            properties:
+              event_type:
+                const: INVOICING.INVOICE.REFUNDED
+    InvoicingInvoiceScheduled:
+      name: InvoicingInvoiceScheduled
+      title: Invoice scheduled
+      summary: An invoice was scheduled.
+      contentType: application/json
+      headers:
+        $ref: '#/components/schemas/TransmissionHeaders'
+      payload:
+        allOf:
+          - $ref: '#/components/schemas/Event'
+          - type: object
+            properties:
+              event_type:
+                const: INVOICING.INVOICE.SCHEDULED
+    InvoicingInvoiceUpdated:
+      name: InvoicingInvoiceUpdated
+      title: Invoice updated
+      summary: An invoice was updated.
+      contentType: application/json
+      headers:
+        $ref: '#/components/schemas/TransmissionHeaders'
+      payload:
+        allOf:
+          - $ref: '#/components/schemas/Event'
+          - type: object
+            properties:
+              event_type:
+                const: INVOICING.INVOICE.UPDATED
+    IdentityAuthorizationConsentRevoked:
+      name: IdentityAuthorizationConsentRevoked
+      title: Identity authorization consent revoked
+      summary: A user consent token (Log In with PayPal) was revoked.
+      contentType: application/json
+      headers:
+        $ref: '#/components/schemas/TransmissionHeaders'
+      payload:
+        allOf:
+          - $ref: '#/components/schemas/Event'
+          - type: object
+            properties:
+              event_type:
+                const: IDENTITY.AUTHORIZATION-CONSENT.REVOKED
+    MerchantOnboardingCompleted:
+      name: MerchantOnboardingCompleted
+      title: Merchant onboarding completed
+      summary: A merchant completed setup.
+      contentType: application/json
+      headers:
+        $ref: '#/components/schemas/TransmissionHeaders'
+      payload:
+        allOf:
+          - $ref: '#/components/schemas/Event'
+          - type: object
+            properties:
+              event_type:
+                const: MERCHANT.ONBOARDING.COMPLETED
+    MerchantPartnerConsentRevoked:
+      name: MerchantPartnerConsentRevoked
+      title: Merchant partner consent revoked
+      summary: A merchant revoked partner consents or closed their account.
+      contentType: application/json
+      headers:
+        $ref: '#/components/schemas/TransmissionHeaders'
+      payload:
+        allOf:
+          - $ref: '#/components/schemas/Event'
+          - type: object
+            properties:
+              event_type:
+                const: MERCHANT.PARTNER-CONSENT.REVOKED
+    CustomerAccountLimitationAdded:
+      name: CustomerAccountLimitationAdded
+      title: Customer account limitation added
+      summary: A limitation was added to a managed account.
+      contentType: application/json
+      headers:
+        $ref: '#/components/schemas/TransmissionHeaders'
+      payload:
+        allOf:
+          - $ref: '#/components/schemas/Event'
+          - type: object
+            properties:
+              event_type:
+                const: CUSTOMER.ACCOUNT-LIMITATION.ADDED
+    CustomerAccountLimitationEscalated:
+      name: CustomerAccountLimitationEscalated
+      title: Customer account limitation escalated
+      summary: A limitation on a managed account was escalated.
+      contentType: application/json
+      headers:
+        $ref: '#/components/schemas/TransmissionHeaders'
+      payload:
+        allOf:
+          - $ref: '#/components/schemas/Event'
+          - type: object
+            properties:
+              event_type:
+                const: CUSTOMER.ACCOUNT-LIMITATION.ESCALATED
+    CustomerAccountLimitationLifted:
+      name: CustomerAccountLimitationLifted
+      title: Customer account limitation lifted
+      summary: A limitation on a managed account was lifted.
+      contentType: application/json
+      headers:
+        $ref: '#/components/schemas/TransmissionHeaders'
+      payload:
+        allOf:
+          - $ref: '#/components/schemas/Event'
+          - type: object
+            properties:
+              event_type:
+                const: CUSTOMER.ACCOUNT-LIMITATION.LIFTED
+    CustomerAccountLimitationUpdated:
+      name: CustomerAccountLimitationUpdated
+      title: Customer account limitation updated
+      summary: A limitation on a managed account was updated.
+      contentType: application/json
+      headers:
+        $ref: '#/components/schemas/TransmissionHeaders'
+      payload:
+        allOf:
+          - $ref: '#/components/schemas/Event'
+          - type: object
+            properties:
+              event_type:
+                const: CUSTOMER.ACCOUNT-LIMITATION.UPDATED
+    CustomerMerchantIntegrationCapabilityUpdated:
+      name: CustomerMerchantIntegrationCapabilityUpdated
+      title: Merchant integration capability updated
+      summary: A merchant's capabilities changed.
+      contentType: application/json
+      headers:
+        $ref: '#/components/schemas/TransmissionHeaders'
+      payload:
+        allOf:
+          - $ref: '#/components/schemas/Event'
+          - type: object
+            properties:
+              event_type:
+                const: CUSTOMER.MERCHANT-INTEGRATION.CAPABILITY-UPDATED
+    CustomerMerchantIntegrationProductSubscriptionUpdated:
+      name: CustomerMerchantIntegrationProductSubscriptionUpdated
+      title: Merchant integration product subscription updated
+      summary: The products available to a merchant changed.
+      contentType: application/json
+      headers:
+        $ref: '#/components/schemas/TransmissionHeaders'
+      payload:
+        allOf:
+          - $ref: '#/components/schemas/Event'
+          - type: object
+            properties:
+              event_type:
+                const: CUSTOMER.MERCHANT-INTEGRATION.PRODUCT-SUBSCRIPTION-UPDATED
+    CustomerMerchantIntegrationSellerAlreadyIntegrated:
+      name: CustomerMerchantIntegrationSellerAlreadyIntegrated
+      title: Merchant seller already integrated
+      summary: A merchant who already has a PayPal account was re-onboarded.
+      contentType: application/json
+      headers:
+        $ref: '#/components/schemas/TransmissionHeaders'
+      payload:
+        allOf:
+          - $ref: '#/components/schemas/Event'
+          - type: object
+            properties:
+              event_type:
+                const: CUSTOMER.MERCHANT-INTEGRATION.SELLER-ALREADY-INTEGRATED
+    CustomerMerchantIntegrationSellerOnboardingInitiated:
+      name: CustomerMerchantIntegrationSellerOnboardingInitiated
+      title: Merchant seller onboarding initiated
+      summary: A PayPal account was created via a partner onboarding link.
+      contentType: application/json
+      headers:
+        $ref: '#/components/schemas/TransmissionHeaders'
+      payload:
+        allOf:
+          - $ref: '#/components/schemas/Event'
+          - type: object
+            properties:
+              event_type:
+                const: CUSTOMER.MERCHANT-INTEGRATION.SELLER-ONBOARDING-INITIATED
+    CustomerMerchantIntegrationSellerConsentGranted:
+      name: CustomerMerchantIntegrationSellerConsentGranted
+      title: Merchant seller consent granted
+      summary: A merchant granted partner consents.
+      contentType: application/json
+      headers:
+        $ref: '#/components/schemas/TransmissionHeaders'
+      payload:
+        allOf:
+          - $ref: '#/components/schemas/Event'
+          - type: object
+            properties:
+              event_type:
+                const: CUSTOMER.MERCHANT-INTEGRATION.SELLER-CONSENT-GRANTED
+    CustomerMerchantIntegrationSellerEmailConfirmed:
+      name: CustomerMerchantIntegrationSellerEmailConfirmed
+      title: Merchant seller email confirmed
+      summary: A merchant confirmed their email and granted partner consents.
+      contentType: application/json
+      headers:
+        $ref: '#/components/schemas/TransmissionHeaders'
+      payload:
+        allOf:
+          - $ref: '#/components/schemas/Event'
+          - type: object
+            properties:
+              event_type:
+                const: CUSTOMER.MERCHANT-INTEGRATION.SELLER-EMAIL-CONFIRMED
+    CustomerManagedAccountAccountCreated:
+      name: CustomerManagedAccountAccountCreated
+      title: Managed account created
+      summary: A managed account was created.
+      contentType: application/json
+      headers:
+        $ref: '#/components/schemas/TransmissionHeaders'
+      payload:
+        allOf:
+          - $ref: '#/components/schemas/Event'
+          - type: object
+            properties:
+              event_type:
+                const: CUSTOMER.MANAGED-ACCOUNT.ACCOUNT-CREATED
+    CustomerManagedAccountCreationFailed:
+      name: CustomerManagedAccountCreationFailed
+      title: Managed account creation failed
+      summary: Creation of a managed account failed.
+      contentType: application/json
+      headers:
+        $ref: '#/components/schemas/TransmissionHeaders'
+      payload:
+        allOf:
+          - $ref: '#/components/schemas/Event'
+          - type: object
+            properties:
+              event_type:
+                const: CUSTOMER.MANAGED-ACCOUNT.CREATION-FAILED
+    CustomerManagedAccountAccountUpdated:
+      name: CustomerManagedAccountAccountUpdated
+      title: Managed account updated
+      summary: A managed account was updated.
+      contentType: application/json
+      headers:
+        $ref: '#/components/schemas/TransmissionHeaders'
+      payload:
+        allOf:
+          - $ref: '#/components/schemas/Event'
+          - type: object
+            properties:
+              event_type:
+                const: CUSTOMER.MANAGED-ACCOUNT.ACCOUNT-UPDATED
+    CustomerManagedAccountAccountStatusChanged:
+      name: CustomerManagedAccountAccountStatusChanged
+      title: Managed account status changed
+      summary: Capabilities or status of a managed account changed.
+      contentType: application/json
+      headers:
+        $ref: '#/components/schemas/TransmissionHeaders'
+      payload:
+        allOf:
+          - $ref: '#/components/schemas/Event'
+          - type: object
+            properties:
+              event_type:
+                const: CUSTOMER.MANAGED-ACCOUNT.ACCOUNT-STATUS-CHANGED
+    CustomerManagedAccountRiskAssessed:
+      name: CustomerManagedAccountRiskAssessed
+      title: Managed account risk assessed
+      summary: A risk assessment for a managed account completed or changed.
+      contentType: application/json
+      headers:
+        $ref: '#/components/schemas/TransmissionHeaders'
+      payload:
+        allOf:
+          - $ref: '#/components/schemas/Event'
+          - type: object
+            properties:
+              event_type:
+                const: CUSTOMER.MANAGED-ACCOUNT.RISK-ASSESSED
+    CustomerManagedAccountNegativeBalanceNotified:
+      name: CustomerManagedAccountNegativeBalanceNotified
+      title: Managed account negative balance notified
+      summary: A managed account holder was notified about a negative balance.
+      contentType: application/json
+      headers:
+        $ref: '#/components/schemas/TransmissionHeaders'
+      payload:
+        allOf:
+          - $ref: '#/components/schemas/Event'
+          - type: object
+            properties:
+              event_type:
+                const: CUSTOMER.MANAGED-ACCOUNT.NEGATIVE-BALANCE-NOTIFIED
+    CustomerManagedAccountNegativeBalanceDebitInitiated:
+      name: CustomerManagedAccountNegativeBalanceDebitInitiated
+      title: Managed account negative balance debit initiated
+      summary: A debit was initiated to settle a negative balance on a managed account.
+      contentType: application/json
+      headers:
+        $ref: '#/components/schemas/TransmissionHeaders'
+      payload:
+        allOf:
+          - $ref: '#/components/schemas/Event'
+          - type: object
+            properties:
+              event_type:
+                const: CUSTOMER.MANAGED-ACCOUNT.NEGATIVE-BALANCE-DEBIT-INITIATED
+    VaultPaymentTokenCreated:
+      name: VaultPaymentTokenCreated
+      title: Vault payment token created
+      summary: A payment token was created (a buyer saved a payment method).
+      contentType: application/json
+      headers:
+        $ref: '#/components/schemas/TransmissionHeaders'
+      payload:
+        allOf:
+          - $ref: '#/components/schemas/Event'
+          - type: object
+            properties:
+              event_type:
+                const: VAULT.PAYMENT-TOKEN.CREATED
+    VaultPaymentTokenDeleted:
+      name: VaultPaymentTokenDeleted
+      title: Vault payment token deleted
+      summary: A payment token was deleted (the payment method is no longer saved).
+      contentType: application/json
+      headers:
+        $ref: '#/components/schemas/TransmissionHeaders'
+      payload:
+        allOf:
+          - $ref: '#/components/schemas/Event'
+          - type: object
+            properties:
+              event_type:
+                const: VAULT.PAYMENT-TOKEN.DELETED
+    VaultPaymentTokenDeletionInitiated:
+      name: VaultPaymentTokenDeletionInitiated
+      title: Vault payment token deletion initiated
+      summary: A request to delete a payment token was submitted.
+      contentType: application/json
+      headers:
+        $ref: '#/components/schemas/TransmissionHeaders'
+      payload:
+        allOf:
+          - $ref: '#/components/schemas/Event'
+          - type: object
+            properties:
+              event_type:
+                const: VAULT.PAYMENT-TOKEN.DELETION-INITIATED
+  schemas:
+    TransmissionHeaders:
+      type: object
+      description: |
+        Set of HTTP request headers PayPal sends with every webhook notification.
+        Used by listeners to verify authenticity either by calling
+        POST /v1/notifications/verify-webhook-signature or by validating the
+        signature directly against PayPal's X.509 certificate.
+      properties:
+        PAYPAL-TRANSMISSION-ID:
+          type: string
+          description: The unique ID of the HTTP transmission. Maps to `transmission_id` in the verify-webhook-signature request.
+        PAYPAL-TRANSMISSION-TIME:
+          type: string
+          format: date-time
+          description: The date and time when the message was transmitted, in RFC 3339 format. Maps to `transmission_time`.
+        PAYPAL-TRANSMISSION-SIG:
+          type: string
+          description: The PayPal-generated asymmetric signature (base64). Maps to `transmission_sig`.
+        PAYPAL-CERT-URL:
+          type: string
+          format: uri
+          description: The URL of the X.509 public key certificate used to verify the signature. Maps to `cert_url`.
+        PAYPAL-AUTH-ALGO:
+          type: string
+          description: The algorithm PayPal uses to generate the signature (for example, `SHA256withRSA`). Maps to `auth_algo`.
+        PAYPAL-AUTH-VERSION:
+          type: string
+          description: The version of the PayPal authentication algorithm used to sign the payload.
+        Correlation-Id:
+          type: string
+          description: PayPal-internal request correlation identifier helpful for support investigations.
+      required:
+        - PAYPAL-TRANSMISSION-ID
+        - PAYPAL-TRANSMISSION-TIME
+        - PAYPAL-TRANSMISSION-SIG
+        - PAYPAL-CERT-URL
+        - PAYPAL-AUTH-ALGO
+    Event:
+      type: object
+      description: |
+        The standard PayPal webhook event envelope. Every notification posted to
+        a listener URL is shaped like this, with the concrete event variant
+        identified by `event_type`. Fields mirror the `event` schema in the
+        PayPal Notification Webhooks OpenAPI definition.
+      properties:
+        id:
+          type: string
+          description: The ID of the webhook event notification.
+        create_time:
+          type: string
+          format: date-time
+          description: The date and time when the webhook event notification was created, in RFC 3339 format.
+        resource_type:
+          type: string
+          description: The name of the resource related to the webhook notification event (for example, `capture`, `subscription`, `invoice`, `dispute`).
+        event_version:
+          type: string
+          description: The event version in the webhook notification.
+          pattern: "^([0-9]+\\.[0-9]+)$"
+        resource_version:
+          type: string
+          description: The version of the embedded resource.
+          pattern: "^([0-9]+\\.[0-9]+)$"
+        event_type:
+          $ref: '#/components/schemas/EventType'
+        summary:
+          type: string
+          description: A summary description for the event notification.
+        resource:
+          type: object
+          description: The resource that triggered the webhook event notification. Shape depends on `resource_type` and on the API that owns the resource (Orders, Payments, Subscriptions, Invoicing, Disputes, Payouts, Vault, etc.).
+          additionalProperties: true
+        links:
+          type: array
+          description: HATEOAS links for the event notification (for example, `self` and `resend`).
+          items:
+            $ref: '#/components/schemas/Link'
+      required:
+        - id
+        - create_time
+        - event_type
+        - resource_type
+        - resource
+    Link:
+      type: object
+      description: A HATEOAS link description.
+      properties:
+        href:
+          type: string
+          format: uri
+        rel:
+          type: string
+        method:
+          type: string
+          enum:
+            - GET
+            - POST
+            - PUT
+            - DELETE
+            - PATCH
+            - HEAD
+            - OPTIONS
+            - CONNECT
+            - TRACE
+      required:
+        - href
+        - rel
+    EventType:
+      type: string
+      description: |
+        Enumeration of documented PayPal webhook event names. Sourced verbatim
+        from https://developer.paypal.com/api/rest/webhooks/event-names/.
+      enum:
+        - CHECKOUT.ORDER.APPROVED
+        - CHECKOUT.ORDER.COMPLETED
+        - CHECKOUT.ORDER.PROCESSED
+        - CHECKOUT.PAYMENT-APPROVAL.REVERSED
+        - CHECKOUT.CHECKOUT.BUYER-APPROVED
+        - PAYMENT.AUTHORIZATION.CREATED
+        - PAYMENT.AUTHORIZATION.VOIDED
+        - PAYMENT.CAPTURE.COMPLETED
+        - PAYMENT.CAPTURE.DECLINED
+        - PAYMENT.CAPTURE.DENIED
+        - PAYMENT.CAPTURE.PENDING
+        - PAYMENT.CAPTURE.REFUNDED
+        - PAYMENT.CAPTURE.REVERSED
+        - PAYMENT.REFUND.PENDING
+        - PAYMENT.REFUND.FAILED
+        - PAYMENT.SALE.COMPLETED
+        - PAYMENT.SALE.DENIED
+        - PAYMENT.SALE.PENDING
+        - PAYMENT.SALE.REFUNDED
+        - PAYMENT.SALE.REVERSED
+        - PAYMENT.ORDER.CREATED
+        - PAYMENT.ORDER.CANCELLED
+        - PAYMENTS.PAYMENT.CREATED
+        - PAYMENT.PAYOUTSBATCH.DENIED
+        - PAYMENT.PAYOUTSBATCH.PROCESSING
+        - PAYMENT.PAYOUTSBATCH.SUCCESS
+        - PAYMENT.PAYOUTS-ITEM.BLOCKED
+        - PAYMENT.PAYOUTS-ITEM.CANCELED
+        - PAYMENT.PAYOUTS-ITEM.FAILED
+        - PAYMENT.PAYOUTS-ITEM.HELD
+        - PAYMENT.PAYOUTS-ITEM.REFUNDED
+        - PAYMENT.PAYOUTS-ITEM.RETURNED
+        - PAYMENT.PAYOUTS-ITEM.SUCCEEDED
+        - PAYMENT.PAYOUTS-ITEM.UNCLAIMED
+        - PAYMENT.REFERENCED-PAYOUT-ITEM.COMPLETED
+        - PAYMENT.REFERENCED-PAYOUT-ITEM.FAILED
+        - BILLING.PLAN.CREATED
+        - BILLING.PLAN.UPDATED
+        - BILLING.PLAN.ACTIVATED
+        - BILLING.PLAN.DEACTIVATED
+        - BILLING.PLAN.PRICING-CHANGE.ACTIVATED
+        - BILLING.SUBSCRIPTION.CREATED
+        - BILLING.SUBSCRIPTION.ACTIVATED
+        - BILLING.SUBSCRIPTION.UPDATED
+        - BILLING.SUBSCRIPTION.EXPIRED
+        - BILLING.SUBSCRIPTION.CANCELLED
+        - BILLING.SUBSCRIPTION.SUSPENDED
+        - BILLING.SUBSCRIPTION.RE-ACTIVATED
+        - BILLING.SUBSCRIPTION.PAYMENT.FAILED
+        - CATALOG.PRODUCT.CREATED
+        - CATALOG.PRODUCT.UPDATED
+        - CUSTOMER.DISPUTE.CREATED
+        - CUSTOMER.DISPUTE.RESOLVED
+        - CUSTOMER.DISPUTE.UPDATED
+        - RISK.DISPUTE.CREATED
+        - INVOICING.INVOICE.CANCELLED
+        - INVOICING.INVOICE.CREATED
+        - INVOICING.INVOICE.PAID
+        - INVOICING.INVOICE.REFUNDED
+        - INVOICING.INVOICE.SCHEDULED
+        - INVOICING.INVOICE.UPDATED
+        - IDENTITY.AUTHORIZATION-CONSENT.REVOKED
+        - MERCHANT.ONBOARDING.COMPLETED
+        - MERCHANT.PARTNER-CONSENT.REVOKED
+        - CUSTOMER.ACCOUNT-LIMITATION.ADDED
+        - CUSTOMER.ACCOUNT-LIMITATION.ESCALATED
+        - CUSTOMER.ACCOUNT-LIMITATION.LIFTED
+        - CUSTOMER.ACCOUNT-LIMITATION.UPDATED
+        - CUSTOMER.MERCHANT-INTEGRATION.CAPABILITY-UPDATED
+        - CUSTOMER.MERCHANT-INTEGRATION.PRODUCT-SUBSCRIPTION-UPDATED
+        - CUSTOMER.MERCHANT-INTEGRATION.SELLER-ALREADY-INTEGRATED
+        - CUSTOMER.MERCHANT-INTEGRATION.SELLER-ONBOARDING-INITIATED
+        - CUSTOMER.MERCHANT-INTEGRATION.SELLER-CONSENT-GRANTED
+        - CUSTOMER.MERCHANT-INTEGRATION.SELLER-EMAIL-CONFIRMED
+        - CUSTOMER.MANAGED-ACCOUNT.ACCOUNT-CREATED
+        - CUSTOMER.MANAGED-ACCOUNT.CREATION-FAILED
+        - CUSTOMER.MANAGED-ACCOUNT.ACCOUNT-UPDATED
+        - CUSTOMER.MANAGED-ACCOUNT.ACCOUNT-STATUS-CHANGED
+        - CUSTOMER.MANAGED-ACCOUNT.RISK-ASSESSED
+        - CUSTOMER.MANAGED-ACCOUNT.NEGATIVE-BALANCE-NOTIFIED
+        - CUSTOMER.MANAGED-ACCOUNT.NEGATIVE-BALANCE-DEBIT-INITIATED
+        - VAULT.PAYMENT-TOKEN.CREATED
+        - VAULT.PAYMENT-TOKEN.DELETED
+        - VAULT.PAYMENT-TOKEN.DELETION-INITIATED

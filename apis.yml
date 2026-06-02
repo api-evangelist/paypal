@@ -19,7 +19,7 @@ tags:
   - Tokens
   - Webhooks
 created: '2024-04-14'
-modified: '2026-05-19'
+modified: '2026-05-30'
 url: https://raw.githubusercontent.com/api-evangelist/paypal/refs/heads/main/apis.yml
 specificationVersion: '0.20'
 apis:
@@ -147,6 +147,8 @@ apis:
       url: https://developer.paypal.com/api/rest/webhooks/
     - type: OpenAPI
       url: openapi/paypal-notification-webhooks-openapi-original.yml
+    - type: AsyncAPI
+      url: openapi/paypal-webhooks-asyncapi-original.yml
     - type: NaftikoCapability
       url: capabilities/notification-webhooks-simulate-event.yaml
     - type: NaftikoCapability
