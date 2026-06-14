@@ -1,0 +1,884 @@
+"""
+PayPal GraphQL Schema
+Conceptual mapping of PayPal REST APIs into GraphQL types.
+Source: https://developer.paypal.com/docs/api/
+"""
+
+# ─── Scalars ─────────────────────────────────────────────────────────────────
+
+scalar DateTime
+scalar Decimal
+scalar JSON
+
+# ─── Enums ───────────────────────────────────────────────────────────────────
+
+"""Payment and order status values across PayPal APIs."""
+enum PaymentStatus {
+  CREATED
+  SAVED
+  APPROVED
+  VOIDED
+  COMPLETED
+  PAYER_ACTION_REQUIRED
+  PENDING
+  FAILED
+  CANCELLED
+  REFUNDED
+  PARTIALLY_REFUNDED
+  DENIED
+}
+
+"""ISO 3166-1 alpha-2 country codes."""
+enum CountryCode {
+  US
+  GB
+  DE
+  FR
+  ES
+  IT
+  NL
+  BE
+  PL
+  PT
+  AT
+  CH
+  AU
+  CA
+  MX
+  BR
+  IN
+  JP
+  SG
+  HK
+}
+
+"""ISO 4217 currency codes supported by PayPal."""
+enum CurrencyCode {
+  USD
+  EUR
+  GBP
+  CAD
+  AUD
+  JPY
+  MXN
+  BRL
+  CHF
+  SEK
+  NOK
+  DKK
+  PLN
+  HKD
+  SGD
+  INR
+  NZD
+  CZK
+  HUF
+  TWD
+}
+
+"""Dispute lifecycle status."""
+enum DisputeStatus {
+  OPEN
+  WAITING_FOR_BUYER_RESPONSE
+  WAITING_FOR_SELLER_RESPONSE
+  UNDER_REVIEW
+  RESOLVED
+  OTHER
+}
+
+"""Subscription billing cycle tenure types."""
+enum TenureType {
+  REGULAR
+  TRIAL
+}
+
+"""Payout batch processing status."""
+enum PayoutBatchStatus {
+  DENIED
+  PENDING
+  PROCESSING
+  SUCCESS
+  CANCELED
+}
+
+"""Webhook event category."""
+enum WebhookEventCategory {
+  PAYMENT
+  CHECKOUT
+  BILLING
+  INVOICING
+  DISPUTE
+  VAULT
+  PAYOUTS
+  CATALOG
+}
+
+# ─── Shared Types ────────────────────────────────────────────────────────────
+
+"""Monetary amount with currency."""
+type Money {
+  currencyCode: CurrencyCode!
+  value: Decimal!
+}
+
+"""Physical or mailing address."""
+type Address {
+  addressLine1: String
+  addressLine2: String
+  adminArea1: String
+  adminArea2: String
+  postalCode: String
+  countryCode: CountryCode!
+}
+
+"""Name of a person."""
+type Name {
+  givenName: String
+  surname: String
+  fullName: String
+}
+
+# ─── Identity ────────────────────────────────────────────────────────────────
+
+"""PayPal user profile from Identity API."""
+type UserInfo {
+  sub: String!
+  name: String
+  givenName: String
+  familyName: String
+  email: String
+  emailVerified: Boolean
+  address: Address
+  phoneNumber: String
+  locale: String
+  zoneinfo: String
+  updatedAt: DateTime
+}
+
+"""Short-lived identity token for client-side user recognition."""
+type IdentityToken {
+  clientToken: String!
+  expiresIn: Int!
+}
+
+# ─── Payment Sources ─────────────────────────────────────────────────────────
+
+"""Credit or debit card payment source."""
+type CardPaymentSource {
+  name: String
+  number: String
+  securityCode: String
+  expiry: String
+  billingAddress: Address
+  brand: String
+  type: String
+  lastDigits: String
+}
+
+"""PayPal wallet as payment source."""
+type PayPalPaymentSource {
+  emailAddress: String
+  accountId: String
+  accountStatus: String
+  name: Name
+  phoneType: String
+  phoneNumber: String
+  birthDate: String
+  taxInfo: JSON
+  address: Address
+  attributes: JSON
+}
+
+"""Venmo wallet as payment source."""
+type VenmoPaymentSource {
+  emailAddress: String
+  accountId: String
+  userName: String
+  name: Name
+  phoneNumber: String
+  address: Address
+  attributes: JSON
+}
+
+"""BLIK payment source (Poland)."""
+type BLIK {
+  countryCode: CountryCode
+  email: String
+  name: Name
+  oneClick: JSON
+}
+
+"""iDEAL payment source (Netherlands)."""
+type iDEAL {
+  countryCode: CountryCode
+  bic: String
+  iban: String
+  ibanLastChars: String
+  bankName: String
+  name: Name
+}
+
+"""SEPA bank transfer payment source."""
+type SEPA {
+  iban: String
+  countryCode: CountryCode
+  name: Name
+  mandateReferenceNumber: String
+}
+
+"""Przelewy24 (P24) payment source (Poland)."""
+type P24 {
+  email: String!
+  countryCode: CountryCode
+  name: Name
+  paymentDescriptor: String
+  methodId: String
+  methodDescription: String
+}
+
+"""Bancontact payment source (Belgium)."""
+type Bancontact {
+  countryCode: CountryCode
+  card: JSON
+  bic: String
+  ibanLastChars: String
+  cardLastDigits: String
+  name: Name
+}
+
+"""Multibanco payment source (Portugal)."""
+type MultiBanco {
+  countryCode: CountryCode
+  paymentReference: String
+  entity: String
+  email: String
+  name: Name
+}
+
+"""EPS payment source (Austria)."""
+type Eps {
+  countryCode: CountryCode
+  name: Name
+  bic: String
+  bankName: String
+}
+
+"""Giropay payment source (Germany)."""
+type Giropay {
+  countryCode: CountryCode
+  name: Name
+  bic: String
+  ibanLastChars: String
+  bankName: String
+}
+
+"""MyBank payment source (Italy/EU)."""
+type Mybank {
+  countryCode: CountryCode
+  name: Name
+  bic: String
+  ibanLastChars: String
+  bankName: String
+}
+
+"""Sofort / Klarna payment source."""
+type Sofort {
+  countryCode: CountryCode
+  name: Name
+  bic: String
+  ibanLastChars: String
+  bankName: String
+}
+
+"""PayPal Pay Later / BNPL option."""
+type PayLater {
+  attributes: JSON
+}
+
+"""Union-style container for all supported payment sources on an order."""
+type PaymentSource {
+  card: CardPaymentSource
+  paypal: PayPalPaymentSource
+  venmo: VenmoPaymentSource
+  token: Token
+  blik: BLIK
+  ideal: iDEAL
+  sepa: SEPA
+  p24: P24
+  bancontact: Bancontact
+  multibanco: MultiBanco
+  eps: Eps
+  giropay: Giropay
+  mybank: Mybank
+  sofort: Sofort
+  payLater: PayLater
+}
+
+# ─── Vault / Tokens ──────────────────────────────────────────────────────────
+
+"""Vault token reference for a stored payment instrument."""
+type Token {
+  id: String!
+  type: String!
+}
+
+"""Credit card stored in the PayPal vault."""
+type CreditCard {
+  id: String!
+  number: String
+  type: String
+  expireMonth: Int
+  expireYear: Int
+  firstName: String
+  lastName: String
+  billingAddress: Address
+  state: String
+  validUntil: String
+  links: [JSON]
+}
+
+"""Vaulted card associated with a payment token."""
+type VaultedCard {
+  brand: String
+  lastDigits: String
+  expiry: String
+  billingAddress: Address
+  name: String
+}
+
+"""Stored payment token in the Vault v3 API."""
+type PaymentToken {
+  id: String!
+  customer: JSON
+  paymentSource: PaymentSource
+  links: [JSON]
+}
+
+# ─── Orders ──────────────────────────────────────────────────────────────────
+
+"""Line item within an order or purchase unit."""
+type OrderItem {
+  name: String!
+  quantity: String!
+  description: String
+  sku: String
+  url: String
+  category: String
+  imageUrl: String
+  unitAmount: Money
+  tax: Money
+  discount: Money
+  upc: JSON
+}
+
+"""Itemized breakdown of an order amount."""
+type AmountBreakdown {
+  itemTotal: Money
+  shipping: Money
+  handling: Money
+  taxTotal: Money
+  insurance: Money
+  shippingDiscount: Money
+  discount: Money
+}
+
+"""Shipping address and method for a purchase unit."""
+type Shipping {
+  type: String
+  name: Name
+  emailAddress: String
+  phoneNumber: String
+  address: Address
+  trackers: [Tracker]
+  options: [JSON]
+}
+
+"""A single purchase unit within an order (merchant, amount, items)."""
+type PurchaseUnit {
+  referenceId: String
+  description: String
+  customId: String
+  invoiceId: String
+  softDescriptor: String
+  amount: Money!
+  breakdown: AmountBreakdown
+  payee: JSON
+  shipping: Shipping
+  items: [OrderItem]
+  payments: JSON
+}
+
+"""PayPal order representing a checkout session."""
+type Order {
+  id: String!
+  status: PaymentStatus!
+  intent: String
+  processingInstruction: String
+  purchaseUnits: [PurchaseUnit!]!
+  paymentSource: PaymentSource
+  createTime: DateTime
+  updateTime: DateTime
+  links: [JSON]
+}
+
+# ─── Payments ────────────────────────────────────────────────────────────────
+
+"""An authorization hold on funds, pending capture."""
+type Authorization {
+  id: String!
+  status: PaymentStatus!
+  amount: Money
+  invoiceId: String
+  customId: String
+  sellerProtection: JSON
+  authorizationTurnAroundTime: String
+  captureableAfter: DateTime
+  expirationTime: DateTime
+  createTime: DateTime
+  updateTime: DateTime
+  links: [JSON]
+}
+
+"""A captured (settled) payment."""
+type Capture {
+  id: String!
+  status: PaymentStatus!
+  amount: Money
+  finalCapture: Boolean
+  sellerProtection: JSON
+  sellerReceivableBreakdown: JSON
+  disbursementMode: String
+  invoiceId: String
+  customId: String
+  createTime: DateTime
+  updateTime: DateTime
+  links: [JSON]
+}
+
+"""A refund applied to a prior capture."""
+type Refund {
+  id: String!
+  status: PaymentStatus!
+  amount: Money
+  invoiceId: String
+  customId: String
+  acquirerReferenceNumber: String
+  sellerPayableBreakdown: JSON
+  createTime: DateTime
+  updateTime: DateTime
+  links: [JSON]
+}
+
+# ─── Payouts ─────────────────────────────────────────────────────────────────
+
+"""Details for a single payout recipient item."""
+type PayoutItemDetails {
+  payoutItemId: String!
+  transactionId: String
+  transactionStatus: String
+  payoutItemFee: Money
+  payoutBatchId: String
+  payoutItem: PayoutItem
+  timeProcessed: DateTime
+  links: [JSON]
+}
+
+"""A single recipient entry in a payout batch."""
+type PayoutItem {
+  recipientType: String!
+  amount: Money!
+  note: String
+  receiver: String!
+  senderItemId: String
+  recipientWallet: String
+}
+
+"""A batch payout request and its processing status."""
+type PayoutBatch {
+  batchHeader: JSON
+  items: [PayoutItemDetails]
+  links: [JSON]
+}
+
+"""Entry point for payout operations."""
+type Payouts {
+  batch: PayoutBatch
+  item: PayoutItemDetails
+}
+
+# ─── Subscriptions and Billing ───────────────────────────────────────────────
+
+"""Pricing model for a billing cycle (fixed or volume)."""
+type PricingScheme {
+  pricingModel: String
+  tiers: [JSON]
+  fixedPrice: Money
+  createTime: DateTime
+  updateTime: DateTime
+  version: Int
+}
+
+"""A recurring billing interval within a plan."""
+type BillingCycle {
+  pricingScheme: PricingScheme
+  frequency: JSON!
+  tenureType: TenureType!
+  sequence: Int!
+  totalCycles: Int
+}
+
+"""Subscriber billing preferences (auto-renew, failure handling)."""
+type BillingPreferences {
+  setupFeeFailureAction: String
+  paymentFailureThreshold: Int
+  autoBillOutstanding: Boolean
+  setupFee: Money
+}
+
+"""Shipping settings for a subscription plan."""
+type ShippingPreferences {
+  type: String
+  name: Name
+  address: Address
+}
+
+"""Payment method preferences for a subscription."""
+type PaymentPreferences {
+  servicetype: String
+  autoBillOutstanding: Boolean
+  setupFee: Money
+  setupFeeFailureAction: String
+  paymentFailureThreshold: Int
+}
+
+"""Tax configuration for a subscription plan."""
+type Taxes {
+  percentage: Decimal
+  inclusive: Boolean
+}
+
+"""A subscription plan defining billing cycles and pricing."""
+type Plan {
+  id: String!
+  productId: String!
+  name: String!
+  status: String
+  description: String
+  billingCycles: [BillingCycle!]!
+  paymentPreferences: PaymentPreferences
+  taxes: Taxes
+  quantitySupported: Boolean
+  createTime: DateTime
+  updateTime: DateTime
+  links: [JSON]
+}
+
+"""An active customer subscription to a plan."""
+type Subscription {
+  id: String!
+  planId: String!
+  status: String!
+  statusUpdateTime: DateTime
+  startTime: DateTime
+  quantity: String
+  shippingAmount: Money
+  subscriber: JSON
+  billingInfo: JSON
+  createTime: DateTime
+  updateTime: DateTime
+  plan: Plan
+  links: [JSON]
+}
+
+# ─── Invoicing ───────────────────────────────────────────────────────────────
+
+"""Contact details for the invoice sender."""
+type Invoicer {
+  name: Name
+  address: Address
+  emailAddress: String
+  phones: [JSON]
+  website: String
+  taxId: String
+  logoUrl: String
+  businessName: String
+}
+
+"""Contact details for an invoice recipient."""
+type RecipientInfo {
+  billingInfo: JSON
+  shippingInfo: JSON
+}
+
+"""A line item on an invoice."""
+type InvoiceItem {
+  name: String!
+  description: String
+  quantity: Decimal!
+  unitAmount: Money!
+  tax: JSON
+  discount: JSON
+  unitOfMeasure: String
+}
+
+"""A reusable invoice template."""
+type InvoiceTemplate {
+  id: String!
+  name: String
+  defaultFor: [String]
+  unitOfMeasure: String
+  invoicer: Invoicer
+  primaryRecipients: [RecipientInfo]
+  items: [InvoiceItem]
+  configuration: JSON
+  amount: JSON
+  links: [JSON]
+}
+
+"""A PayPal invoice sent to a buyer."""
+type Invoice {
+  id: String!
+  parentId: String
+  status: String!
+  detail: JSON
+  invoicer: Invoicer
+  primaryRecipients: [RecipientInfo]
+  additionalRecipients: [String]
+  items: [InvoiceItem]
+  configuration: JSON
+  amount: JSON
+  dueAmount: Money
+  gratuity: Money
+  payments: JSON
+  refunds: JSON
+  links: [JSON]
+}
+
+# ─── Shipping Tracking ───────────────────────────────────────────────────────
+
+"""Tracking metadata attached to a transaction."""
+type TrackingInfo {
+  transactionId: String!
+  trackingNumber: String
+  carrier: String
+  carrierNameOther: String
+  notifyBuyer: Boolean
+  quantity: Int
+  lastUpdatedTime: DateTime
+  shipmentDirection: String
+  itemDetails: [JSON]
+}
+
+"""A tracker resource linked to a PayPal capture."""
+type Tracker {
+  id: String!
+  status: String
+  items: [JSON]
+  links: [JSON]
+  createTime: DateTime
+  updateTime: DateTime
+  trackingInfo: TrackingInfo
+}
+
+# ─── Disputes ────────────────────────────────────────────────────────────────
+
+"""A message from a party in a dispute thread."""
+type DisputeMessage {
+  content: String!
+  postedBy: String
+  timePosted: DateTime
+}
+
+"""Evidence submitted by buyer or seller in a dispute."""
+type DisputeEvidence {
+  evidenceType: String!
+  notes: String
+  documents: [JSON]
+  itemId: String
+  evidenceInfo: JSON
+}
+
+"""A PayPal buyer/seller dispute on a transaction."""
+type Dispute {
+  id: String!
+  createTime: DateTime
+  updateTime: DateTime
+  transactionIds: [String]
+  reason: String
+  status: DisputeStatus!
+  disputeAmount: Money
+  externalReasonCode: String
+  disputeLifeCycleStage: String
+  disputeChannel: String
+  messages: [DisputeMessage]
+  extensions: JSON
+  evidences: [DisputeEvidence]
+  buyerResponseDueDate: DateTime
+  sellerResponseDueDate: DateTime
+  links: [JSON]
+}
+
+# ─── Reporting and Transactions ──────────────────────────────────────────────
+
+"""A balance amount for a specific currency in a PayPal account."""
+type BalanceCurrency {
+  currency: CurrencyCode!
+  primary: Boolean
+  totalBalance: Money
+  availableBalance: Money
+  withheldBalance: Money
+}
+
+"""Account balance summary across all currencies."""
+type Balance {
+  withHeldBalance: Boolean
+  balances: [BalanceCurrency]
+  asOfTime: DateTime
+  lastRefreshTime: DateTime
+}
+
+"""Metadata describing a generated report."""
+type ReportMetadata {
+  reportId: String
+  reportType: String
+  reportStatus: String
+  dateRange: JSON
+  createTime: DateTime
+  updateTime: DateTime
+}
+
+"""A report resource generated by the Transaction Search API."""
+type Report {
+  totalItems: Int
+  totalPages: Int
+  lastRefreshedDatetime: DateTime
+  page: Int
+  pageSize: Int
+  transactionDetails: [Transaction]
+}
+
+"""Parameters for requesting a transaction search report."""
+type ReportRequest {
+  startDate: DateTime
+  endDate: DateTime
+  transactionId: String
+  transactionType: String
+  transactionStatus: String
+  transactionAmount: String
+  transactionCurrency: CurrencyCode
+  pageSize: Int
+  page: Int
+  fields: [String]
+}
+
+"""A single financial transaction record."""
+type Transaction {
+  transactionInfo: JSON
+  payerInfo: JSON
+  shippingInfo: JSON
+  cartInfo: JSON
+  storeInfo: JSON
+  auctionInfo: JSON
+  incentiveInfo: JSON
+}
+
+# ─── Products / Catalog ──────────────────────────────────────────────────────
+
+"""A product registered in the PayPal catalog for subscriptions or invoicing."""
+type ProductCatalog {
+  id: String!
+  name: String!
+  description: String
+  type: String
+  category: String
+  imageUrl: String
+  homeUrl: String
+  createTime: DateTime
+  updateTime: DateTime
+  links: [JSON]
+}
+
+# ─── Webhooks ────────────────────────────────────────────────────────────────
+
+"""A delivered webhook event notification from PayPal."""
+type WebhookEvent {
+  id: String!
+  createTime: DateTime
+  resourceType: String
+  eventCategory: WebhookEventCategory
+  summary: String
+  eventType: String
+  resourceVersion: String
+  resource: JSON
+  links: [JSON]
+}
+
+"""A registered webhook endpoint and its event subscriptions."""
+type Webhook {
+  id: String!
+  url: String!
+  eventTypes: [JSON]
+  links: [JSON]
+}
+
+# ─── Root Types ──────────────────────────────────────────────────────────────
+
+type Query {
+  order(id: String!): Order
+  authorization(authorizationId: String!): Authorization
+  capture(captureId: String!): Capture
+  refund(refundId: String!): Refund
+  payoutBatch(payoutBatchId: String!): PayoutBatch
+  payoutItem(payoutItemId: String!): PayoutItemDetails
+  plan(planId: String!): Plan
+  plans(productId: String, status: String, page: Int, pageSize: Int): [Plan]
+  subscription(subscriptionId: String!): Subscription
+  invoice(invoiceId: String!): Invoice
+  invoices(page: Int, pageSize: Int, totalRequired: Boolean): [Invoice]
+  invoiceTemplate(templateId: String!): InvoiceTemplate
+  tracker(transactionId: String!, trackingNumber: String!): Tracker
+  dispute(disputeId: String!): Dispute
+  disputes(startTime: DateTime, statusList: [DisputeStatus]): [Dispute]
+  balance: Balance
+  transactions(request: ReportRequest): Report
+  product(productId: String!): ProductCatalog
+  products(page: Int, pageSize: Int): [ProductCatalog]
+  webhook(webhookId: String!): Webhook
+  webhooks: [Webhook]
+  webhookEvents(webhookId: String!, page: Int, pageSize: Int): [WebhookEvent]
+  paymentToken(customerVaultId: String!): [PaymentToken]
+  userInfo: UserInfo
+  identityToken: IdentityToken
+}
+
+type Mutation {
+  createOrder(intent: String!, purchaseUnits: [JSON!]!, paymentSource: JSON): Order
+  captureOrder(orderId: String!): Order
+  authorizeOrder(orderId: String!): Order
+  captureAuthorization(authorizationId: String!, amount: JSON, finalCapture: Boolean): Capture
+  voidAuthorization(authorizationId: String!): Authorization
+  reauthorize(authorizationId: String!, amount: JSON): Authorization
+  refundCapture(captureId: String!, amount: JSON, invoiceId: String, noteToPayer: String): Refund
+  createPayoutBatch(senderBatchHeader: JSON!, items: [JSON!]!): PayoutBatch
+  createPlan(productId: String!, name: String!, billingCycles: [JSON!]!, paymentPreferences: JSON): Plan
+  activatePlan(planId: String!): Boolean
+  deactivatePlan(planId: String!): Boolean
+  createSubscription(planId: String!, subscriber: JSON, applicationContext: JSON): Subscription
+  activateSubscription(subscriptionId: String!, reason: String): Boolean
+  suspendSubscription(subscriptionId: String!, reason: String): Boolean
+  cancelSubscription(subscriptionId: String!, reason: String): Boolean
+  createInvoice(detail: JSON!, invoicer: JSON, primaryRecipients: [JSON], items: [JSON]): Invoice
+  sendInvoice(invoiceId: String!): Boolean
+  cancelInvoice(invoiceId: String!, subject: String, note: String): Boolean
+  addTracker(transactionId: String!, trackingNumber: String!, carrier: String!, notifyBuyer: Boolean): Tracker
+  updateTracker(transactionId: String!, trackingNumber: String!, status: String): Tracker
+  acceptDispute(disputeId: String!, note: String): Boolean
+  escalateDispute(disputeId: String!, note: String): Boolean
+  provideDisputeEvidence(disputeId: String!, evidences: [JSON]): Boolean
+  createWebhook(url: String!, eventTypes: [JSON!]!): Webhook
+  deleteWebhook(webhookId: String!): Boolean
+  createProduct(name: String!, type: String!, category: String): ProductCatalog
+  vaultCreditCard(number: String!, expireMonth: Int!, expireYear: Int!, type: String!, billingAddress: JSON): CreditCard
+  createPaymentToken(paymentSource: JSON!, customer: JSON): PaymentToken
+  deletePaymentToken(customerVaultId: String!, paymentTokenId: String!): Boolean
+}
