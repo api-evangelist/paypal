@@ -232,7 +232,7 @@ common:
   url: https://www.linkedin.com/company/paypal
 - type: Website
   url: https://www.paypal.com
-- type: Developer Portal
+- type: DeveloperPortal
   url: https://developer.paypal.com
 - type: Documentation
   url: https://developer.paypal.com/api/rest/
@@ -267,7 +267,7 @@ common:
   sources:
   - https://www.paypal.com/us/business/paypal-business-fees
   updated: '2026-05-04'
-- type: LLMsTxt
+- type: LlmsText
   url: https://developer.paypal.com/llms.txt
 maintainers:
 - FN: Kin Lane
