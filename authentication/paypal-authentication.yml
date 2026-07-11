@@ -1,0 +1,36 @@
+generated: '2026-07-11'
+method: derived
+source: openapi/paypal-billing-subscriptions-openapi-original.yml, openapi/paypal-catalog-products-openapi-original.yml,
+  openapi/paypal-checkout-orders-openapi-original.yml, openapi/paypal-customer-disputes-openapi-original.yml,
+  openapi/paypal-customer-partner-referrals-openapi-original.yml, openapi/paypal-invoicing-openapi-original.yml,
+  openapi/paypal-notification-webhooks-openapi-original.yml, openapi/paypal-payment-experience-openapi-original.yml,
+  openapi/paypal-payments-openapi-original.yml, openapi/paypal-payouts-openapi-original.yml,
+  openapi/paypal-reporting-transactions-openapi-original.yml, openapi/paypal-shipping-tracking-openapi-original.yml
+  ...
+summary:
+  types:
+  - oauth2
+  oauth2_flows:
+  - clientCredentials
+schemes:
+- name: Oauth2
+  type: oauth2
+  flows:
+  - flow: clientCredentials
+    tokenUrl: /v1/oauth2/token
+    scopes: 1
+  description: Oauth 2.0 authentication
+  sources:
+  - openapi/paypal-billing-subscriptions-openapi-original.yml
+  - openapi/paypal-catalog-products-openapi-original.yml
+  - openapi/paypal-checkout-orders-openapi-original.yml
+  - openapi/paypal-customer-disputes-openapi-original.yml
+  - openapi/paypal-customer-partner-referrals-openapi-original.yml
+  - openapi/paypal-invoicing-openapi-original.yml
+  - openapi/paypal-notification-webhooks-openapi-original.yml
+  - openapi/paypal-payment-experience-openapi-original.yml
+  - openapi/paypal-payments-openapi-original.yml
+  - openapi/paypal-payouts-openapi-original.yml
+  - openapi/paypal-reporting-transactions-openapi-original.yml
+  - openapi/paypal-shipping-tracking-openapi-original.yml
+  - openapi/paypal-vault-payment-tokens-openapi-original.yml

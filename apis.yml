@@ -226,6 +226,12 @@ apis:
   - type: OpenAPI
     url: openapi/paypal-vault-payment-tokens-openapi-original.yml
 common:
+- type: VulnerabilityDisclosure
+  url: security/paypal-vulnerability-disclosure.yml
+- type: DomainSecurity
+  url: security/paypal-domain-security.yml
+- type: Authentication
+  url: authentication/paypal-authentication.yml
 - type: OAuthScopes
   url: scopes/paypal-scopes.yml
 - type: GitHubOrganization
