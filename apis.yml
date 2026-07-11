@@ -226,6 +226,8 @@ apis:
   - type: OpenAPI
     url: openapi/paypal-vault-payment-tokens-openapi-original.yml
 common:
+- type: OAuthScopes
+  url: scopes/paypal-scopes.yml
 - type: GitHubOrganization
   url: https://github.com/paypal
 - type: LinkedIn
@@ -269,6 +271,8 @@ common:
   updated: '2026-05-04'
 - type: LlmsText
   url: https://developer.paypal.com/llms.txt
+- url: https://newsroom.paypal-corp.com/news
+  type: Blog
 maintainers:
 - FN: Kin Lane
   email: kin@apievangelist.com

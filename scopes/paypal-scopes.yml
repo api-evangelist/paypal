@@ -1,0 +1,335 @@
+generated: '2026-07-11'
+method: derived
+source: openapi/paypal-billing-subscriptions-openapi-original.yml, openapi/paypal-catalog-products-openapi-original.yml,
+  openapi/paypal-checkout-orders-openapi-original.yml, openapi/paypal-customer-disputes-openapi-original.yml,
+  openapi/paypal-customer-partner-referrals-openapi-original.yml, openapi/paypal-invoicing-openapi-original.yml,
+  openapi/paypal-notification-webhooks-openapi-original.yml, openapi/paypal-payment-experience-openapi-original.yml,
+  openapi/paypal-payments-openapi-original.yml, openapi/paypal-payouts-openapi-original.yml,
+  openapi/paypal-reporting-transactions-openapi-original.yml, openapi/paypal-shipping-tracking-openapi-original.yml,
+  openapi/paypal-vault-payment-tokens-openapi-original.yml
+schemes:
+- name: Oauth2
+  source: openapi/paypal-billing-subscriptions-openapi-original.yml
+  flows:
+  - flow: clientCredentials
+    tokenUrl: /v1/oauth2/token
+  description: Oauth 2.0 authentication
+- name: Oauth2
+  source: openapi/paypal-catalog-products-openapi-original.yml
+  flows:
+  - flow: clientCredentials
+    tokenUrl: /v1/oauth2/token
+  description: Oauth 2.0 authentication
+- name: Oauth2
+  source: openapi/paypal-checkout-orders-openapi-original.yml
+  flows:
+  - flow: clientCredentials
+    tokenUrl: /v1/oauth2/token
+  description: Oauth 2.0 authentication
+- name: Oauth2
+  source: openapi/paypal-customer-disputes-openapi-original.yml
+  flows:
+  - flow: clientCredentials
+    tokenUrl: /v1/oauth2/token
+  description: Oauth 2.0 authentication
+- name: Oauth2
+  source: openapi/paypal-customer-partner-referrals-openapi-original.yml
+  flows:
+  - flow: clientCredentials
+    tokenUrl: /v1/oauth2/token
+  description: Oauth 2.0 authentication
+- name: Oauth2
+  source: openapi/paypal-invoicing-openapi-original.yml
+  flows:
+  - flow: clientCredentials
+    tokenUrl: /v1/oauth2/token
+  description: Oauth 2.0 authentication
+- name: Oauth2
+  source: openapi/paypal-notification-webhooks-openapi-original.yml
+  flows:
+  - flow: clientCredentials
+    tokenUrl: /v1/oauth2/token
+  description: Oauth 2.0 authentication
+- name: Oauth2
+  source: openapi/paypal-payment-experience-openapi-original.yml
+  flows:
+  - flow: clientCredentials
+    tokenUrl: /v1/oauth2/token
+  description: Oauth 2.0 authentication
+- name: Oauth2
+  source: openapi/paypal-payments-openapi-original.yml
+  flows:
+  - flow: clientCredentials
+    tokenUrl: /v1/oauth2/token
+  description: OAuth 2.0 authentication
+- name: Oauth2
+  source: openapi/paypal-payouts-openapi-original.yml
+  flows:
+  - flow: clientCredentials
+    tokenUrl: /v1/oauth2/token
+  description: Oauth 2.0 authentication
+- name: Oauth2
+  source: openapi/paypal-reporting-transactions-openapi-original.yml
+  flows:
+  - flow: clientCredentials
+    tokenUrl: https://api-m.paypal.com/v1/oauth2/token
+  description: Oauth 2.0 authentication
+- name: Oauth2
+  source: openapi/paypal-shipping-tracking-openapi-original.yml
+  flows:
+  - flow: clientCredentials
+    tokenUrl: /v1/oauth2/token
+  description: Oauth 2.0 authentication
+- name: Oauth2
+  source: openapi/paypal-vault-payment-tokens-openapi-original.yml
+  flows:
+  - flow: clientCredentials
+    tokenUrl: /v1/oauth2/token
+  description: Oauth 2.0 authentication
+scopes:
+- scope: https://uri.paypal.com/payments/payouts
+  description: Payout to a list of recipients.
+  flows:
+  - clientCredentials
+  sources:
+  - openapi/paypal-payouts-openapi-original.yml
+- scope: https://uri.paypal.com/services/applications/verify-webhook-signature
+  description: Verify Webhook Signature
+  flows:
+  - clientCredentials
+  sources:
+  - openapi/paypal-notification-webhooks-openapi-original.yml
+- scope: https://uri.paypal.com/services/applications/webhooks
+  description: Access/update Webhooks.
+  flows:
+  - clientCredentials
+  sources:
+  - openapi/paypal-notification-webhooks-openapi-original.yml
+- scope: https://uri.paypal.com/services/customer/partner
+  description: Manage seller resources.
+  flows:
+  - clientCredentials
+  sources:
+  - openapi/paypal-customer-partner-referrals-openapi-original.yml
+- scope: https://uri.paypal.com/services/customer/partner-referrals
+  description: Manage referral data shared by Partner with PayPal. To be used by only internal
+    apps
+  flows:
+  - clientCredentials
+  sources:
+  - openapi/paypal-customer-partner-referrals-openapi-original.yml
+- scope: https://uri.paypal.com/services/customer/partner-referrals/readwrite
+  description: Manage external referral data with PayPal
+  flows:
+  - clientCredentials
+  sources:
+  - openapi/paypal-customer-partner-referrals-openapi-original.yml
+- scope: https://uri.paypal.com/services/disputes/create
+  description: This privilege allows client to validate eligibility and create a dispute on
+    his transaction(s).
+  flows:
+  - clientCredentials
+  sources:
+  - openapi/paypal-customer-disputes-openapi-original.yml
+- scope: https://uri.paypal.com/services/disputes/read
+  description: This privilege allows client to read and search a dispute of an user with all
+    fields.
+  flows:
+  - clientCredentials
+  sources:
+  - openapi/paypal-customer-disputes-openapi-original.yml
+- scope: https://uri.paypal.com/services/disputes/read-buyer
+  description: This privilege allows client to read and search disputes but returns a limited
+    and allowed set of fields back.
+  flows:
+  - clientCredentials
+  sources:
+  - openapi/paypal-customer-disputes-openapi-original.yml
+- scope: https://uri.paypal.com/services/disputes/read-ebay
+  description: This privilege allows client to read and search a disputes of an user but gets
+    only a limited and allowed set of fields back to ebay.
+  flows:
+  - clientCredentials
+  sources:
+  - openapi/paypal-customer-disputes-openapi-original.yml
+- scope: https://uri.paypal.com/services/disputes/read-partner
+  description: This privilege allows client to read and search disputes but returns a limited
+    and allowed set of fields back.
+  flows:
+  - clientCredentials
+  sources:
+  - openapi/paypal-customer-disputes-openapi-original.yml
+- scope: https://uri.paypal.com/services/disputes/read-seller
+  description: This privilege allows client to read and search a disputes of a merchant but
+    gets only a limited and allowed set of fields back .
+  flows:
+  - clientCredentials
+  sources:
+  - openapi/paypal-customer-disputes-openapi-original.yml
+- scope: https://uri.paypal.com/services/disputes/update-buyer
+  description: This privilege allows client to update a dispute (customer actions).
+  flows:
+  - clientCredentials
+  sources:
+  - openapi/paypal-customer-disputes-openapi-original.yml
+- scope: https://uri.paypal.com/services/disputes/update-partner
+  description: This privilege allows client to update a dispute (Partner actions).
+  flows:
+  - clientCredentials
+  sources:
+  - openapi/paypal-customer-disputes-openapi-original.yml
+- scope: https://uri.paypal.com/services/disputes/update-seller
+  description: This privilege allows client to update a dispute (Merchant actions).
+  flows:
+  - clientCredentials
+  sources:
+  - openapi/paypal-customer-disputes-openapi-original.yml
+- scope: https://uri.paypal.com/services/disputes/webhooks
+  description: This privilege allows webhook platform to read a dispute event
+  flows:
+  - clientCredentials
+  sources:
+  - openapi/paypal-customer-disputes-openapi-original.yml
+- scope: https://uri.paypal.com/services/invoicing/internal
+  description: Manage invoice resource internal clients.
+  flows:
+  - clientCredentials
+  sources:
+  - openapi/paypal-invoicing-openapi-original.yml
+- scope: https://uri.paypal.com/services/invoicing/invoices/read
+  description: For Reading the invoice details.
+  flows:
+  - clientCredentials
+  sources:
+  - openapi/paypal-invoicing-openapi-original.yml
+- scope: https://uri.paypal.com/services/invoicing/invoices/readwrite
+  description: For managing (Create, Update, Delete) invoice.
+  flows:
+  - clientCredentials
+  sources:
+  - openapi/paypal-invoicing-openapi-original.yml
+- scope: https://uri.paypal.com/services/payments/initiatepayment
+  description: Initiates payments and checkout workflows.
+  flows:
+  - clientCredentials
+  sources:
+  - openapi/paypal-checkout-orders-openapi-original.yml
+- scope: https://uri.paypal.com/services/payments/non-referenced-credit
+  description: Permission to initiate non referenced credit
+  flows:
+  - clientCredentials
+  sources:
+  - openapi/paypal-payments-openapi-original.yml
+- scope: https://uri.paypal.com/services/payments/orders/client-side-integration
+  description: Allows client-side integration on Create, Get, Patch, Authorize & Capture Order
+    endpoints.
+  flows:
+  - clientCredentials
+  sources:
+  - openapi/paypal-checkout-orders-openapi-original.yml
+- scope: https://uri.paypal.com/services/payments/payment
+  description: Manage payments and checkout workflow.
+  flows:
+  - clientCredentials
+  sources:
+  - openapi/paypal-checkout-orders-openapi-original.yml
+  - openapi/paypal-payment-experience-openapi-original.yml
+- scope: https://uri.paypal.com/services/payments/payment/authcapture
+  description: Permission to do non-real time payments like capture on authorization
+  flows:
+  - clientCredentials
+  sources:
+  - openapi/paypal-payments-openapi-original.yml
+- scope: https://uri.paypal.com/services/payments/payment/reference-transaction
+  description: Permission to initiate reference transaction
+  flows:
+  - clientCredentials
+  sources:
+  - openapi/paypal-checkout-orders-openapi-original.yml
+- scope: https://uri.paypal.com/services/payments/payouts-item/reverse
+  description: For reversing a completed payout item.
+  flows:
+  - clientCredentials
+  sources:
+  - openapi/paypal-payouts-openapi-original.yml
+- scope: https://uri.paypal.com/services/payments/realtimepayment
+  description: Permission to do any real-time payment and manage-payment experience profiles
+    with support for sale, authorize, and order intents.
+  flows:
+  - clientCredentials
+  sources:
+  - openapi/paypal-payment-experience-openapi-original.yml
+  - openapi/paypal-payments-openapi-original.yml
+- scope: https://uri.paypal.com/services/payments/refund
+  description: Permission to initiate a refund on a capture transaction
+  flows:
+  - clientCredentials
+  sources:
+  - openapi/paypal-payments-openapi-original.yml
+- scope: https://uri.paypal.com/services/payments/reversepayment
+  description: Permission to do any reverse payment
+  flows:
+  - clientCredentials
+  sources:
+  - openapi/paypal-payments-openapi-original.yml
+- scope: https://uri.paypal.com/services/referred-disputes/readwrite
+  description: This privilege allows client to read and update a referred dispute.
+  flows:
+  - clientCredentials
+  sources:
+  - openapi/paypal-customer-disputes-openapi-original.yml
+- scope: https://uri.paypal.com/services/reporting/balances/read
+  description: List Balances
+  flows:
+  - clientCredentials
+  sources:
+  - openapi/paypal-reporting-transactions-openapi-original.yml
+- scope: https://uri.paypal.com/services/reporting/search/read
+  description: Transactions Search
+  flows:
+  - clientCredentials
+  sources:
+  - openapi/paypal-reporting-transactions-openapi-original.yml
+- scope: https://uri.paypal.com/services/shipping/trackers/read
+  description: Retrieve tracking information
+  flows:
+  - clientCredentials
+  sources:
+  - openapi/paypal-shipping-tracking-openapi-original.yml
+- scope: https://uri.paypal.com/services/shipping/trackers/readwrite
+  description: Create or update tracking information
+  flows:
+  - clientCredentials
+  sources:
+  - openapi/paypal-shipping-tracking-openapi-original.yml
+- scope: https://uri.paypal.com/services/subscriptions
+  description: Manage plan & subscription
+  flows:
+  - clientCredentials
+  sources:
+  - openapi/paypal-billing-subscriptions-openapi-original.yml
+  - openapi/paypal-catalog-products-openapi-original.yml
+- scope: https://uri.paypal.com/services/vault/customers/read
+  description: Permission to read customer information.
+  flows:
+  - clientCredentials
+  sources:
+  - openapi/paypal-vault-payment-tokens-openapi-original.yml
+- scope: https://uri.paypal.com/services/vault/customers/readwrite
+  description: Permission to create/update customer information.
+  flows:
+  - clientCredentials
+  sources:
+  - openapi/paypal-vault-payment-tokens-openapi-original.yml
+- scope: https://uri.paypal.com/services/vault/payment-tokens/read
+  description: Permission to only read from vault
+  flows:
+  - clientCredentials
+  sources:
+  - openapi/paypal-vault-payment-tokens-openapi-original.yml
+- scope: https://uri.paypal.com/services/vault/payment-tokens/readwrite
+  description: Manage payment instruments
+  flows:
+  - clientCredentials
+  sources:
+  - openapi/paypal-vault-payment-tokens-openapi-original.yml
