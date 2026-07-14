@@ -1,0 +1,109 @@
+generated: '2026-07-14'
+method: searched
+source: >-
+  https://developer.paypal.com/api/rest/ — the cross-cutting request/response
+  conventions that apply across every PayPal REST endpoint, captured from the
+  developer docs and derived from openapi/*-original.yml. These are the
+  developer-experience / runtime-semantics conventions OpenAPI does not fully
+  express.
+description: >-
+  How PayPal's REST APIs behave across every operation: authentication style,
+  idempotency, pagination, the auth-assertion / partner-attribution headers,
+  HATEOAS links, versioning, the error envelope, and rate-limit signaling.
+
+base_url: https://api-m.paypal.com
+sandbox_url: https://api-m.sandbox.paypal.com
+api_style: REST over HTTPS, JSON requests and responses
+
+authentication:
+  scheme: OAuth 2.0 client credentials — exchange client-id/secret for a Bearer access token
+  token_url: /v1/oauth2/token
+  header: 'Authorization: Bearer ACCESS-TOKEN'
+  scope_style: Scopes are space-delimited PayPal service URIs (https://uri.paypal.com/services/...)
+  docs: https://developer.paypal.com/api/rest/authentication/
+  detail: authentication/paypal-authentication.yml
+  scopes: scopes/paypal-scopes.yml
+
+idempotency:
+  supported: true
+  mechanism: PayPal-Request-Id request header
+  applies_to: POST calls that create or move money (e.g. captures, refunds, payouts)
+  key_format: Client-generated unique value
+  retention: The server stores the id for up to 45 days.
+  conflict_behavior: >-
+    Replaying a request with the same PayPal-Request-Id returns the original
+    result instead of performing the action again.
+  docs: https://developer.paypal.com/api/rest/requests/
+
+pagination:
+  style: page-number
+  request_params:
+    page: Which set (page number) of items to return.
+    page_size: The number of items to return per page.
+    total_required: Boolean — whether to include the total count/pages in the response.
+  response_fields:
+    total_items: Total number of items across all pages (when total_required=true).
+    total_pages: Total number of pages (when total_required=true).
+    links: HATEOAS links with rel=next/previous/self for page navigation.
+  docs: https://developer.paypal.com/api/rest/requests/
+
+hateoas:
+  supported: true
+  response_field: links
+  members:
+    href: Complete target URL (required).
+    rel: Relationship type, e.g. self, approve, capture, refund (required).
+    method: HTTP verb; defaults to GET (optional).
+  description: Responses include a links array to drive the next step of a workflow.
+  docs: https://developer.paypal.com/api/rest/responses/
+
+partner_headers:
+  auth_assertion:
+    header: PayPal-Auth-Assertion
+    description: >-
+      A JWT identifying the merchant you act on behalf of. PayPal accepts an
+      unsigned JWT (alg=none) whose payload carries iss (your partner id) and
+      email or payer_id (the merchant). Used by partners/platforms acting for
+      many merchants.
+  partner_attribution:
+    header: PayPal-Partner-Attribution-Id
+    description: Partner/BN code used for attribution and revenue share.
+
+representation:
+  header: Prefer
+  values: [return=minimal, return=representation]
+  description: Controls whether a create/update returns a minimal or full representation.
+
+versioning:
+  scheme: uri-path per API (e.g. /v1, /v2, /v3), no global version header
+  examples: [orders v2, invoicing v2, subscriptions v1, payment-tokens v3]
+  detail: lifecycle/paypal-lifecycle.yml
+  changelog: changelog/paypal-changelog.yml
+
+error_envelope:
+  media_type: application/json
+  rfc9457: false
+  shape: '{ "name", "message", "debug_id", "details": [ { "field", "value", "location", "issue" } ], "links" }'
+  identity_variant: '{ "error", "error_description" }  # OAuth/identity endpoints'
+  debug_id: A unique id (also returned as the Paypal-Debug-Id response header) to give PayPal support when reporting an issue.
+  detail: errors/paypal-problem-types.yml
+  decline_codes: errors/paypal-decline-codes.yml
+  docs: https://developer.paypal.com/api/rest/responses/
+
+rate_limits:
+  signal_status: 429
+  note: Sandbox is throttled (~20 requests/minute); live limits are higher and per-endpoint.
+  detail: rate-limits/paypal-rate-limits.yml
+
+mock_testing:
+  header: PayPal-Mock-Response
+  description: Force a specific error scenario for negative testing without real processing.
+  detail: sandbox/paypal-sandbox.yml
+
+other_conventions:
+  - name: Amounts
+    detail: Amounts are strings with a separate currency_code (ISO 4217), e.g. {"currency_code":"USD","value":"10.00"}.
+  - name: Content-Type
+    detail: application/json for operations with a request body.
+  - name: Webhook verification
+    detail: Verify inbound webhooks via POST /v1/notifications/verify-webhook-signature or the transmission headers (PAYPAL-TRANSMISSION-ID/SIG/CERT-URL).

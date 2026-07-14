@@ -1,0 +1,28 @@
+generated: '2026-07-14'
+method: searched
+probe: false
+source: https://www.paypal-trustcenter.com/
+url: https://www.paypal-trustcenter.com/
+description: >-
+  PayPal's security & compliance posture, captured from the PayPal Trust Center
+  (paypal-trustcenter.com, powered by SafeBase). PayPal operates as a PCI DSS
+  Level 1 payment provider and maintains ISO/IEC 27001, PCI P2PE, and SOC 1 /
+  SOC 2 reporting; full reports and bridge letters are gated behind Trust Center
+  verification. This is the searched, human-verified fill (the automated probe
+  does not clear the trust.<domain> keyword threshold since PayPal's trust
+  center is on a distinct SafeBase-hosted domain).
+certifications:
+  - {name: PCI DSS, level: Level 1 service provider, note: Highest level for payment processors; Attestation of Compliance available.}
+  - {name: PCI P2PE, scope: Point-to-point encryption for in-person card acceptance.}
+  - {name: ISO/IEC 27001, note: Information Security Management System (ISMS) certification.}
+  - {name: SOC 1, availability: gated, note: Report on controls over financial reporting.}
+  - {name: SOC 2 Type II, availability: gated, cadence: annual, note: Report + quarterly bridge letters; also covers Simility (fraud prevention).}
+report_access:
+  portal: https://www.paypal-trustcenter.com/
+  gating: Reports and bridge letters are downloadable after Trust Center verification (SafeBase NDA/verification flow).
+  cadence: Compliance documentation and bridge letters updated quarterly.
+notes: >-
+  Venmo (a PayPal service) received PCI DSS certification against the v4.0.1
+  standard per a recent Trust Center update.
+evidence:
+  - {source: https://www.paypal-trustcenter.com/, keywords: [pci dss, pci p2pe, iso/iec 27001, soc 1, soc 2, trust center]}

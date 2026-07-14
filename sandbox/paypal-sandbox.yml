@@ -1,0 +1,90 @@
+generated: '2026-07-14'
+method: searched
+source: https://developer.paypal.com/tools/sandbox/card-testing/
+description: >-
+  PayPal's sandbox / test-data surface — the credentials and magic values a
+  developer needs to exercise the REST APIs end-to-end without moving real
+  money. Captured verbatim from developer.paypal.com. PayPal separates test and
+  live by environment host (api-m.sandbox.paypal.com vs api-m.paypal.com) and by
+  which client-id/secret you authenticate with (sandbox app vs live app), not by
+  a key prefix. Negative testing is driven by case-sensitive trigger strings in
+  the cardholder-name field and by the PayPal-Mock-Response request header.
+docs:
+  - https://developer.paypal.com/tools/sandbox/card-testing/
+  - https://developer.paypal.com/tools/sandbox/
+  - https://developer.paypal.com/tools/sandbox/accounts/
+  - https://developer.paypal.com/api/rest/requests/
+
+modes:
+  - name: sandbox
+    host: https://api-m.sandbox.paypal.com
+    notes: >-
+      Isolated test environment. Authenticate with the sandbox app's client-id
+      and secret. No real cards are ever charged; test money moves between
+      sandbox buyer/business accounts created in the developer dashboard.
+  - name: live
+    host: https://api-m.paypal.com
+    notes: Production. Authenticate with the live app's client-id and secret.
+
+authentication:
+  token_url: /v1/oauth2/token
+  grant: client_credentials
+  note: >-
+    There is no test/live key prefix; the environment host and the app
+    credentials (sandbox vs live) determine the mode.
+
+# Static test cards published by PayPal for the sandbox. Additional cards for
+# Visa/Mastercard/Amex/Discover/Maestro/JCB/ELO are generated in the dashboard
+# credit-card generator. Use any future expiry and a 3-digit CVV (4 for Amex).
+test_cards:
+  conventions:
+    cvv: 3 digits (4 for American Express)
+    expiry: Any future date
+    client_id: Use the sandbox client-id
+  static:
+    - {brand: american_express, number: '371449635398431'}
+    - {brand: american_express, number: '376680816376961'}
+    - {brand: diners_club, number: '36461510000039'}
+    - {brand: diners_club, number: '36461510000013'}
+    - {brand: maestro, number: '6304000000000000'}
+  generated:
+    note: >-
+      The sandbox credit-card generator produces additional valid test PANs for
+      Visa, Mastercard, American Express, Discover, Maestro, JCB, and ELO.
+
+# Case-sensitive strings entered in the CARDHOLDER NAME field to force a
+# specific decline. The Response Code is what the processor returns.
+rejection_triggers:
+  field: cardholder name
+  case_sensitive: true
+  values:
+    - {trigger: CCREJECT-REFUSED, response_code: '0500', scenario: Card refused}
+    - {trigger: CCREJECT-SF, response_code: '9500', scenario: Suspected fraud}
+    - {trigger: CCREJECT-EC, response_code: '5400', scenario: Expired card}
+    - {trigger: CCREJECT-IRC, response_code: '5180', scenario: Invalid or restricted card}
+    - {trigger: CCREJECT-IF, response_code: '5120', scenario: Insufficient funds}
+    - {trigger: CCREJECT-LS, response_code: '9520', scenario: Lost or stolen card}
+    - {trigger: CCREJECT-IA, response_code: '1330', scenario: Invalid account}
+    - {trigger: CCREJECT-BANK_ERROR, response_code: '5100', scenario: Generic decline}
+    - {trigger: CCREJECT-CVV_F, response_code: 00N7, scenario: CVV failure}
+  reference: errors/paypal-decline-codes.yml
+
+# Negative testing via header rather than magic card — simulate API-level errors.
+mock_responses:
+  header: PayPal-Mock-Response
+  mechanism: >-
+    Pass a JSON value like {"mock_application_codes":"<ISSUE>"} in the
+    PayPal-Mock-Response request header to force the API to return a specific
+    error scenario without real processing.
+  docs: https://developer.paypal.com/api/rest/requests/
+
+test_accounts:
+  note: >-
+    Sandbox buyer (personal) and business accounts are provisioned in the
+    developer dashboard (Testing Tools > Sandbox Accounts). Each has its own
+    email/password and a funded test balance for end-to-end checkout flows.
+  dashboard: https://developer.paypal.com/dashboard/accounts
+
+webhooks:
+  simulator: https://developer.paypal.com/dashboard/webhooksSimulator
+  note: The webhook event simulator fires sample event payloads to a subscribed URL.

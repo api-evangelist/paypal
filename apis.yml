@@ -226,6 +226,20 @@ apis:
   - type: OpenAPI
     url: openapi/paypal-vault-payment-tokens-openapi-original.yml
 common:
+- type: Sandbox
+  url: sandbox/paypal-sandbox.yml
+- type: Conventions
+  url: conventions/paypal-conventions.yml
+- type: ChangeLog
+  url: changelog/paypal-changelog.yml
+- type: Components
+  url: components/paypal-components.yml
+- type: DataModel
+  url: data-model/paypal-data-model.yml
+- type: DeclineCodes
+  url: errors/paypal-decline-codes.yml
+- type: TrustCenter
+  url: security/paypal-trust-center.yml
 - type: VulnerabilityDisclosure
   url: security/paypal-vulnerability-disclosure.yml
 - type: DomainSecurity

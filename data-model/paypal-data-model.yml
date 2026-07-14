@@ -1,0 +1,51 @@
+generated: '2026-07-14'
+method: derived
+source: >-
+  Derived from the object relationships in openapi/*-original.yml ($ref links
+  and id-reference fields such as plan_id, product_id, custom_id, invoice_id,
+  authorization_id, capture_id) across PayPal's Orders, Payments, Subscriptions,
+  Catalog Products, Invoicing, Payouts, Disputes, Vault, and Webhooks specs, and
+  the PayPal object reference for id formats. Captures the core entity graph
+  behind PayPal's payments/billing domain.
+docs: https://developer.paypal.com/api/rest/
+notation: >-
+  relationships use has_one / has_many / belongs_to with the reference field
+  name; direction is from the entity that owns the reference.
+
+entities:
+  - {name: Order, id_format: '5O190127TN364715T (no fixed prefix)', domain: checkout, spec: openapi/paypal-checkout-orders-openapi-original.yml, description: A checkout order that groups purchase units and drives approval/capture.}
+  - {name: PurchaseUnit, id_format: reference_id, domain: checkout, spec: openapi/paypal-checkout-orders-openapi-original.yml, description: A single merchant/amount within an order.}
+  - {name: Authorization, id_format: 'no fixed prefix', domain: payments, spec: openapi/paypal-payments-openapi-original.yml, description: A held (authorized) payment awaiting capture.}
+  - {name: Capture, id_format: 'no fixed prefix', domain: payments, spec: openapi/paypal-payments-openapi-original.yml, description: A captured (settled) payment.}
+  - {name: Refund, id_format: 'no fixed prefix', domain: payments, spec: openapi/paypal-payments-openapi-original.yml, description: A reversal of a capture.}
+  - {name: Product, id_prefix: PROD-, domain: catalog, spec: openapi/paypal-catalog-products-openapi-original.yml, description: A catalog product used by plans and invoices.}
+  - {name: Plan, id_prefix: P-, domain: billing, spec: openapi/paypal-billing-subscriptions-openapi-original.yml, description: A billing plan (pricing/cycles) for a product.}
+  - {name: Subscription, id_prefix: I-, domain: billing, spec: openapi/paypal-billing-subscriptions-openapi-original.yml, description: A recurring billing agreement following a plan.}
+  - {name: Invoice, id_prefix: INV2-, domain: invoicing, spec: openapi/paypal-invoicing-openapi-original.yml, description: A statement of amounts owed sent to a customer.}
+  - {name: PayoutBatch, id_format: batch_id, domain: payouts, spec: openapi/paypal-payouts-openapi-original.yml, description: A batch of outbound payments.}
+  - {name: PayoutItem, id_format: payout_item_id, domain: payouts, spec: openapi/paypal-payouts-openapi-original.yml, description: A single recipient payment within a batch.}
+  - {name: Dispute, id_prefix: PP-D-, domain: disputes, spec: openapi/paypal-customer-disputes-openapi-original.yml, description: A buyer dispute/chargeback against a transaction.}
+  - {name: PaymentToken, id_format: 'vault token id', domain: vault, spec: openapi/paypal-vault-payment-tokens-openapi-original.yml, description: A stored, reusable payment instrument.}
+  - {name: Customer, id_format: 'merchant-assigned customer id', domain: vault, spec: openapi/paypal-vault-payment-tokens-openapi-original.yml, description: The payer a vaulted token belongs to.}
+  - {name: WebExperienceProfile, id_format: profile id, domain: experience, spec: openapi/paypal-payment-experience-openapi-original.yml, description: A reusable checkout look-and-feel profile.}
+  - {name: Webhook, id_prefix: 'WH- (events)', domain: notifications, spec: openapi/paypal-notification-webhooks-openapi-original.yml, description: A subscription to event notifications.}
+  - {name: WebhookEvent, id_prefix: WH-, domain: notifications, spec: openapi/paypal-notification-webhooks-openapi-original.yml, description: A delivered event notification.}
+  - {name: Transaction, id_format: transaction_id, domain: reporting, spec: openapi/paypal-reporting-transactions-openapi-original.yml, description: A historical transaction record for reconciliation.}
+
+relationships:
+  - {from: Order, to: PurchaseUnit, kind: has_many, via: purchase_units}
+  - {from: Order, to: Authorization, kind: has_many, via: purchase_units.payments.authorizations}
+  - {from: Order, to: Capture, kind: has_many, via: purchase_units.payments.captures}
+  - {from: Authorization, to: Capture, kind: has_many, via: authorization_id}
+  - {from: Capture, to: Refund, kind: has_many, via: capture_id}
+  - {from: Capture, to: Order, kind: belongs_to, via: supplementary_data.related_ids.order_id}
+  - {from: Plan, to: Product, kind: belongs_to, via: product_id}
+  - {from: Subscription, to: Plan, kind: belongs_to, via: plan_id}
+  - {from: Subscription, to: Transaction, kind: has_many, via: subscription_id}
+  - {from: PayoutBatch, to: PayoutItem, kind: has_many, via: payout_batch_id}
+  - {from: Dispute, to: Capture, kind: belongs_to, via: disputed_transactions.seller_transaction_id}
+  - {from: PaymentToken, to: Customer, kind: belongs_to, via: customer.id}
+  - {from: Invoice, to: Product, kind: has_many, via: items}
+  - {from: Webhook, to: WebhookEvent, kind: has_many, via: webhook_id}
+
+interchange_hubs: [Order, Capture, Customer]

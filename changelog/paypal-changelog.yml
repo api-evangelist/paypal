@@ -1,0 +1,53 @@
+generated: '2026-07-14'
+method: searched
+source: https://developer.paypal.com/api/rest/release-notes-orders/
+description: >-
+  Structured capture of PayPal's dated REST API release notes. PayPal versions
+  each API independently in the URI path (v1/v2/v3) rather than with a global
+  version header, and publishes dated release notes per API. This artifact
+  records the recent window of Orders/REST changes; the live release notes are
+  the source of truth.
+docs:
+  - https://developer.paypal.com/api/rest/release-notes-orders/
+  - https://developer.paypal.com/docs/release-notes/
+  - https://www.paypal.com/us/brc/article/paypal-open-release-notes
+versioning:
+  scheme: uri-path per API (no global version header)
+  examples: [orders v2, payments v2, invoicing v2, subscriptions v1, payouts v1, payment-tokens v3]
+  detail: lifecycle/paypal-lifecycle.yml
+entries:
+  - date: '2025-04-11'
+    api: orders v2
+    highlights:
+      - Added usage pattern to order billing request and response
+      - Apple Pay and Google Pay experience-context support
+      - Expanded error scenarios
+  - date: '2025-02-07'
+    api: orders v2
+    highlights:
+      - Server-side shipping callback support
+      - Trustly email requirement
+      - stored_credentials added to responses
+      - Item description max length increased to 2048 characters
+    breaking:
+      - Usage pattern deprecation
+  - date: '2024-11-07'
+    api: orders v2
+    highlights:
+      - Updated carrier lists for shipment tracking
+      - EFTPOS added to network enumerations
+      - Business name added to PayPal Wallet responses
+      - Merchant customer id added for card objects
+  - date: '2024-05-28'
+    api: orders v2
+    highlights:
+      - Introduced Google Pay as a payment source
+      - Introduced Apple Pay as a payment source
+  - date: '2026-Q1'
+    api: PayPal Open / Enterprise Payments
+    source: https://www.paypal.com/us/brc/article/paypal-open-release-notes
+    highlights:
+      - Idempotency available in Enterprise Payments SDKs (retries return the original result)
+      - Payment Account Reference (PAR) available in Enterprise Payments
+      - In-person payments on Verifone terminals for eligible US merchants
+      - Merchant-managed REST API credentials in the Enterprise Payouts Control Panel (permissions + allowed IPs)

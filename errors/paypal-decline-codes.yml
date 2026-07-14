@@ -1,0 +1,171 @@
+generated: '2026-07-14'
+method: searched
+source: https://developer.paypal.com/serversdk/php/models/enumerations/processor-response-code/
+description: >-
+  PayPal's processor response-code taxonomy — the issuer/processor-level reasons
+  a card authorization is approved or declined. Distinct from the API-level error
+  codes (errors/paypal-problem-types.yml): these are the value of the
+  processor_response.response_code field on a card payment source, and describe
+  why the network/issuer accepted or rejected the authorization. Codes are numeric
+  (ISO-8583-style, e.g. 5120) or PayPal-specific alphanumerics (PPxx). The same
+  codes back the sandbox CCREJECT-* rejection triggers (sandbox/paypal-sandbox.yml).
+docs:
+  - https://developer.paypal.com/serversdk/php/models/enumerations/processor-response-code/
+  - https://developer.paypal.com/api/rest/responses/
+envelope_field: processor_response.response_code   # on card payment_source responses
+also_on: errors/paypal-problem-types.yml (API-level name/message/details errors)
+decline_codes:
+  - {code: '0000', meaning: APPROVED, action: None — approved.}
+  - {code: 00N7, meaning: CVV2 failure (possible retry with CVV), action: Reprompt for the correct CVV and retry.}
+  - {code: '0100', meaning: REFERRAL, action: Buyer contacts issuer.}
+  - {code: '0390', meaning: ACCOUNT_NOT_FOUND, action: Use another card.}
+  - {code: '0500', meaning: DO_NOT_HONOR, action: Buyer contacts issuer or uses another card.}
+  - {code: '0580', meaning: UNAUTHORIZED_TRANSACTION, action: Buyer contacts issuer.}
+  - {code: '0800', meaning: BAD_RESPONSE_REVERSAL_REQUIRED, action: Reverse and retry.}
+  - {code: '0880', meaning: CRYPTOGRAPHIC_FAILURE, action: Retry; contact issuer if it persists.}
+  - {code: '0890', meaning: UNACCEPTABLE_PIN, action: Reprompt for PIN.}
+  - {code: '0960', meaning: SYSTEM_MALFUNCTION, action: Retry later.}
+  - {code: 0R00, meaning: CANCELLED_PAYMENT, action: Payment was cancelled.}
+  - {code: '1000', meaning: PARTIAL_AUTHORIZATION, action: Handle partial approval.}
+  - {code: 10BR, meaning: ISSUER_REJECTED, action: Buyer contacts issuer.}
+  - {code: '1300', meaning: INVALID_DATA_FORMAT, action: Fix request data and retry.}
+  - {code: '1310', meaning: INVALID_AMOUNT, action: Correct the amount.}
+  - {code: '1312', meaning: INVALID_TRANSACTION_CARD_ISSUER_ACQUIRER, action: Use another card.}
+  - {code: '1317', meaning: INVALID_CAPTURE_DATE, action: Correct the capture date.}
+  - {code: '1320', meaning: INVALID_CURRENCY_CODE, action: Use a supported currency.}
+  - {code: '1330', meaning: INVALID_ACCOUNT, action: Use another card.}
+  - {code: '1335', meaning: INVALID_ACCOUNT_RECURRING, action: Use another card for recurring.}
+  - {code: '1340', meaning: INVALID_TERMINAL, action: Contact PayPal.}
+  - {code: '1350', meaning: INVALID_MERCHANT, action: Contact PayPal.}
+  - {code: '1352', meaning: RESTRICTED_OR_INACTIVE_ACCOUNT, action: Buyer contacts issuer.}
+  - {code: '1360', meaning: BAD_PROCESSING_CODE, action: Retry.}
+  - {code: '1370', meaning: INVALID_MCC, action: Contact PayPal.}
+  - {code: '1380', meaning: INVALID_EXPIRATION, action: Correct the expiry.}
+  - {code: '1382', meaning: INVALID_CARD_VERIFICATION_VALUE, action: Reprompt for CVV.}
+  - {code: '1384', meaning: INVALID_LIFE_CYCLE_OF_TRANSACTION, action: Retry.}
+  - {code: '1390', meaning: INVALID_ORDER, action: Recreate the order.}
+  - {code: '1393', meaning: TRANSACTION_CANNOT_BE_COMPLETED, action: Buyer contacts issuer.}
+  - {code: '5100', meaning: GENERIC_DECLINE, action: Buyer contacts issuer or uses another card.}
+  - {code: '5110', meaning: CVV2_FAILURE, action: Reprompt for CVV.}
+  - {code: '5120', meaning: INSUFFICIENT_FUNDS, action: Use another card.}
+  - {code: '5130', meaning: INVALID_PIN, action: Reprompt for PIN.}
+  - {code: '5135', meaning: DECLINED_PIN_TRY_EXCEEDED, action: Use another card.}
+  - {code: '5140', meaning: CARD_CLOSED, action: Use another card.}
+  - {code: '5150', meaning: PICKUP_CARD_SPECIAL_CONDITIONS, action: Use another card.}
+  - {code: '5160', meaning: UNAUTHORIZED_USER, action: Buyer contacts issuer.}
+  - {code: '5170', meaning: AVS_FAILURE, action: Correct the billing address.}
+  - {code: '5180', meaning: INVALID_OR_RESTRICTED_CARD, action: Use another card.}
+  - {code: '5190', meaning: SOFT_AVS, action: Review address verification.}
+  - {code: '5200', meaning: DUPLICATE_TRANSACTION, action: Check for an existing recent payment.}
+  - {code: '5210', meaning: INVALID_TRANSACTION, action: Buyer contacts issuer.}
+  - {code: '5400', meaning: EXPIRED_CARD, action: Use another card.}
+  - {code: '5500', meaning: INCORRECT_PIN_REENTER, action: Reprompt for PIN.}
+  - {code: '5650', meaning: DECLINED_SCA_REQUIRED, action: Run 3D Secure / SCA and retry.}
+  - {code: '5700', meaning: TRANSACTION_NOT_PERMITTED, action: Buyer contacts issuer.}
+  - {code: '5710', meaning: TX_ATTEMPTS_EXCEED_LIMIT, action: Use another card.}
+  - {code: '5800', meaning: REVERSAL_REJECTED, action: Contact PayPal.}
+  - {code: '5900', meaning: INVALID_ISSUE, action: Buyer contacts issuer.}
+  - {code: '5910', meaning: ISSUER_NOT_AVAILABLE_NOT_RETRIABLE, action: Use another card.}
+  - {code: '5920', meaning: ISSUER_NOT_AVAILABLE_RETRIABLE, action: Retry.}
+  - {code: '5930', meaning: CARD_NOT_ACTIVATED, action: Buyer activates the card.}
+  - {code: '5950', meaning: DECLINED_DUE_TO_UPDATED_ACCOUNT, action: Update card details.}
+  - {code: '6300', meaning: ACCOUNT_NOT_ON_FILE, action: Use another card.}
+  - {code: '7600', meaning: APPROVED_NON_CAPTURE, action: Approved without capture.}
+  - {code: '7700', meaning: ERROR_3DS, action: Retry 3D Secure.}
+  - {code: '7710', meaning: AUTHENTICATION_FAILED, action: Retry authentication.}
+  - {code: '7800', meaning: BIN_ERROR, action: Use another card.}
+  - {code: '7900', meaning: PIN_ERROR, action: Reprompt for PIN.}
+  - {code: '8000', meaning: PROCESSOR_SYSTEM_ERROR, action: Retry later.}
+  - {code: '8010', meaning: HOST_KEY_ERROR, action: Contact PayPal.}
+  - {code: '8020', meaning: CONFIGURATION_ERROR, action: Contact PayPal.}
+  - {code: '8030', meaning: UNSUPPORTED_OPERATION, action: Not supported.}
+  - {code: '8100', meaning: FATAL_COMMUNICATION_ERROR, action: Retry later.}
+  - {code: '8110', meaning: RETRIABLE_COMMUNICATION_ERROR, action: Retry.}
+  - {code: '8220', meaning: SYSTEM_UNAVAILABLE, action: Retry later.}
+  - {code: '9100', meaning: DECLINED_PLEASE_RETRY, action: Retry.}
+  - {code: '9500', meaning: SUSPECTED_FRAUD, action: Present as generic decline; do not reveal details.}
+  - {code: '9510', meaning: SECURITY_VIOLATION, action: Buyer contacts issuer.}
+  - {code: '9520', meaning: LOST_OR_STOLEN, action: Present as generic decline; do not reveal details.}
+  - {code: '9530', meaning: HOLD_CALL_CENTER, action: Buyer contacts issuer.}
+  - {code: '9540', meaning: REFUSED_CARD, action: Use another card.}
+  - {code: '9600', meaning: UNRECOGNIZED_RESPONSE_CODE, action: Contact PayPal.}
+  - {code: PCNR, meaning: CONTINGENCIES_NOT_RESOLVED, action: Resolve pending contingencies.}
+  - {code: PCVV, meaning: CVV_FAILURE, action: Reprompt for CVV.}
+  - {code: PP06, meaning: ACCOUNT_CLOSED, action: Use another card.}
+  - {code: PPRN, meaning: REATTEMPT_NOT_PERMITTED, action: Do not retry.}
+  - {code: PPAD, meaning: BILLING_ADDRESS, action: Correct the billing address.}
+  - {code: PPAB, meaning: ACCOUNT_BLOCKED_BY_ISSUER, action: Buyer contacts issuer.}
+  - {code: PPAE, meaning: AMEX_DISABLED, action: Enable Amex or use another card.}
+  - {code: PPAG, meaning: ADULT_GAMING_UNSUPPORTED, action: Not supported.}
+  - {code: PPAI, meaning: AMOUNT_INCOMPATIBLE, action: Correct the amount.}
+  - {code: PPAR, meaning: AUTH_RESULT, action: Review auth result.}
+  - {code: PPAU, meaning: MCC_CODE, action: Contact PayPal.}
+  - {code: PPAV, meaning: ARC_AVS, action: Correct the billing address.}
+  - {code: PPAX, meaning: AMOUNT_EXCEEDED, action: Lower the amount.}
+  - {code: PPBG, meaning: BAD_GAMING, action: Not supported.}
+  - {code: PPC2, meaning: ARC_CVV, action: Reprompt for CVV.}
+  - {code: PPCE, meaning: CE_REGISTRATION_INCOMPLETE, action: Complete registration.}
+  - {code: PPCO, meaning: COUNTRY, action: Unsupported country.}
+  - {code: PPCR, meaning: CREDIT_ERROR, action: Contact PayPal.}
+  - {code: PPCT, meaning: CARD_TYPE_UNSUPPORTED, action: Use another card.}
+  - {code: PPCU, meaning: CURRENCY_USED_INVALID, action: Use a supported currency.}
+  - {code: PPD3, meaning: SECURE_ERROR_3DS, action: Retry 3D Secure.}
+  - {code: PPDC, meaning: DCC_UNSUPPORTED, action: Not supported.}
+  - {code: PPDI, meaning: DINERS_REJECT, action: Use another card.}
+  - {code: PPDV, meaning: AUTH_MESSAGE, action: Review auth message.}
+  - {code: PPDT, meaning: DECLINE_THRESHOLD_BREACH, action: Retry later.}
+  - {code: PPEF, meaning: EXPIRED_FUNDING_INSTRUMENT, action: Use another card.}
+  - {code: PPEL, meaning: EXCEEDS_FREQUENCY_LIMIT, action: Retry later.}
+  - {code: PPER, meaning: INTERNAL_SYSTEM_ERROR, action: Retry later.}
+  - {code: PPEX, meaning: EXPIRY_DATE, action: Correct the expiry.}
+  - {code: PPFE, meaning: FUNDING_SOURCE_ALREADY_EXISTS, action: Use existing funding source.}
+  - {code: PPFI, meaning: INVALID_FUNDING_INSTRUMENT, action: Use another card.}
+  - {code: PPFR, meaning: RESTRICTED_FUNDING_INSTRUMENT, action: Use another card.}
+  - {code: PPFV, meaning: FIELD_VALIDATION_FAILED, action: Fix request fields.}
+  - {code: PPGR, meaning: GAMING_REFUND_ERROR, action: Contact PayPal.}
+  - {code: PPH1, meaning: H1_ERROR, action: Contact PayPal.}
+  - {code: PPIF, meaning: IDEMPOTENCY_FAILURE, action: Use a new PayPal-Request-Id.}
+  - {code: PPII, meaning: INVALID_INPUT_FAILURE, action: Fix the request.}
+  - {code: PPIM, meaning: ID_MISMATCH, action: Correct the identifiers.}
+  - {code: PPIT, meaning: INVALID_TRACE_ID, action: Contact PayPal.}
+  - {code: PPLR, meaning: LATE_REVERSAL, action: Reversal too late.}
+  - {code: PPLS, meaning: LARGE_STATUS_CODE, action: Contact PayPal.}
+  - {code: PPMB, meaning: MISSING_BUSINESS_RULE_OR_DATA, action: Contact PayPal.}
+  - {code: PPMC, meaning: BLOCKED_MASTERCARD, action: Use another card.}
+  - {code: PPMD, meaning: DEPRECATED, action: Use the current API.}
+  - {code: PPNC, meaning: NOT_SUPPORTED_NRC, action: Not supported.}
+  - {code: PPNL, meaning: EXCEEDS_NETWORK_FREQUENCY_LIMIT, action: Retry later.}
+  - {code: PPNM, meaning: NO_MID_FOUND, action: Contact PayPal.}
+  - {code: PPNT, meaning: NETWORK_ERROR, action: Retry.}
+  - {code: PPPH, meaning: NO_PHONE_FOR_DCC_TRANSACTION, action: Provide a phone number.}
+  - {code: PPPI, meaning: INVALID_PRODUCT, action: Contact PayPal.}
+  - {code: PPPM, meaning: INVALID_PAYMENT_METHOD, action: Use another payment method.}
+  - {code: PPQC, meaning: QUASI_CASH_UNSUPPORTED, action: Not supported.}
+  - {code: PPRE, meaning: UNSUPPORT_REFUND_ON_PENDING_BC, action: Wait for settlement.}
+  - {code: PPRF, meaning: INVALID_PARENT_TRANSACTION_STATUS, action: Check parent transaction.}
+  - {code: PPRR, meaning: MERCHANT_NOT_REGISTERED, action: Complete merchant registration.}
+  - {code: PPS0, meaning: BANKAUTH_ROW_MISMATCH, action: Contact PayPal.}
+  - {code: PPS1, meaning: BANKAUTH_ROW_SETTLED, action: Already settled.}
+  - {code: PPS2, meaning: BANKAUTH_ROW_VOIDED, action: Already voided.}
+  - {code: PPS3, meaning: BANKAUTH_EXPIRED, action: Reauthorize.}
+  - {code: PPS4, meaning: CURRENCY_MISMATCH, action: Match the currency.}
+  - {code: PPS5, meaning: CREDITCARD_MISMATCH, action: Use the original card.}
+  - {code: PPS6, meaning: AMOUNT_MISMATCH, action: Match the amount.}
+  - {code: PPSC, meaning: ARC_SCORE, action: Review risk score.}
+  - {code: PPSD, meaning: STATUS_DESCRIPTION, action: Review status.}
+  - {code: PPSE, meaning: AMEX_DENIED, action: Use another card.}
+  - {code: PPTE, meaning: VERIFICATION_TOKEN_EXPIRED, action: Get a new verification token.}
+  - {code: PPTF, meaning: INVALID_TRACE_REFERENCE, action: Contact PayPal.}
+  - {code: PPTI, meaning: INVALID_TRANSACTION_ID, action: Correct the transaction id.}
+  - {code: PPTR, meaning: VERIFICATION_TOKEN_REVOKED, action: Get a new verification token.}
+  - {code: PPTT, meaning: TRANSACTION_TYPE_UNSUPPORTED, action: Not supported.}
+  - {code: PPTV, meaning: INVALID_VERIFICATION_TOKEN, action: Get a valid verification token.}
+  - {code: PPUA, meaning: USER_NOT_AUTHORIZED, action: Check permissions.}
+  - {code: PPUC, meaning: CURRENCY_CODE_UNSUPPORTED, action: Use a supported currency.}
+  - {code: PPUE, meaning: UNSUPPORT_ENTITY, action: Not supported.}
+  - {code: PPUI, meaning: UNSUPPORT_INSTALLMENT, action: Not supported.}
+  - {code: PPUP, meaning: UNSUPPORT_POS_FLAG, action: Not supported.}
+  - {code: PPUR, meaning: UNSUPPORTED_REVERSAL, action: Not supported.}
+  - {code: PPVC, meaning: VALIDATE_CURRENCY, action: Validate the currency.}
+  - {code: PPVE, meaning: VALIDATION_ERROR, action: Fix the request.}
+  - {code: PPVT, meaning: VIRTUAL_TERMINAL_UNSUPPORTED, action: Not supported.}

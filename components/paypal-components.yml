@@ -1,0 +1,46 @@
+generated: '2026-07-14'
+method: searched
+source: https://developer.paypal.com/sdk/js/reference/
+description: >-
+  PayPal's embeddable, client-side UI components — the drop-in and low-level
+  interface layer rendered in the browser via the PayPal JavaScript SDK,
+  distinct from the server-side SDK client libraries. Loaded from
+  https://www.paypal.com/sdk/js with a client-id and a components query
+  parameter that selects which namespaces are mounted.
+docs:
+  - https://developer.paypal.com/sdk/js/reference/
+  - https://developer.paypal.com/sdk/js/configuration/
+  - https://developer.paypal.com/docs/checkout/
+loader:
+  url: https://www.paypal.com/sdk/js?client-id=CLIENT_ID&components=buttons,card-fields
+  params:
+    client-id: Your PayPal app client-id (sandbox or live).
+    components: Comma-separated list of components to load (default buttons).
+    currency: Transaction currency (ISO 4217).
+    intent: capture or authorize.
+families:
+  smart_buttons:
+    description: One-line integration that renders all eligible funding buttons (PayPal, Pay Later, Venmo, and alternative payment methods) for a checkout.
+    components:
+      - {name: Buttons, namespace: paypal.Buttons(), component: buttons, description: Automatically shows all eligible payment buttons.}
+      - {name: Marks, namespace: paypal.Marks(), component: marks, description: Payment-method mark logos, e.g. for a radio-button layout.}
+      - {name: Funding eligibility, namespace: paypal.getFundingSources(), component: funding-eligibility, description: Query which funding sources are eligible for the buyer.}
+  advanced_card_fields:
+    description: PayPal-hosted card input fields (number, expiry, CVV) so the merchant can accept and vault credit/debit cards while keeping card data off their servers (reduced PCI scope).
+    components:
+      - {name: CardFields, namespace: paypal.CardFields(), component: card-fields, description: Hosted card fields to accept and save credit and debit cards.}
+  messaging:
+    description: Promotional Pay Later / installment messaging placed on product, cart, and checkout pages.
+    components:
+      - {name: Messages, namespace: paypal.Messages(), component: messages, description: Show Pay Later messages on your site.}
+  wallets:
+    description: Additional wallet buttons surfaced through the same SDK when eligible.
+    components:
+      - {name: Venmo, description: Venmo button, enabled via enable-funding=venmo on the loader.}
+      - {name: Apple Pay, component: applepay, description: Apple Pay integration via the SDK on eligible domains.}
+      - {name: Google Pay, description: Google Pay integration via the SDK on eligible domains.}
+notes: >-
+  Legacy Smart Payment Buttons and the older Hosted Fields component have been
+  superseded by Buttons and CardFields respectively. Server-side client
+  libraries (Node/PHP/Python/Java/.NET SDKs) are catalogued separately in
+  packages/ when harvested.
