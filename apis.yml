@@ -226,6 +226,8 @@ apis:
   - type: OpenAPI
     url: openapi/paypal-vault-payment-tokens-openapi-original.yml
 common:
+- type: AgenticAccess
+  url: agentic-access/paypal-agentic-access.yml
 - type: Sandbox
   url: sandbox/paypal-sandbox.yml
 - type: Conventions

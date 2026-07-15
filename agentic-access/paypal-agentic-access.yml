@@ -1,0 +1,1911 @@
+generated: '2026-07-15'
+method: generated
+source: openapi/paypal-billing-subscriptions-openapi-original.yml, openapi/paypal-catalog-products-openapi-original.yml,
+  openapi/paypal-checkout-orders-openapi-original.yml, openapi/paypal-customer-disputes-openapi-original.yml,
+  openapi/paypal-customer-partner-referrals-openapi-original.yml, openapi/paypal-invoicing-openapi-original.yml,
+  openapi/paypal-notification-webhooks-openapi-original.yml, openapi/paypal-payment-experience-openapi-original.yml,
+  openapi/paypal-payments-openapi-original.yml, openapi/paypal-payouts-openapi-original.yml,
+  openapi/paypal-reporting-transactions-openapi-original.yml, openapi/paypal-shipping-tracking-openapi-original.yml,
+  openapi/paypal-vault-payment-tokens-openapi-original.yml
+description: Recommended x-agentic-access execution contracts, classified heuristically from
+  the OpenAPI. A governance starting point for exposing this API to AI agents — review and bind
+  audience per deployment. See research/curity/agentic-governance/.
+summary:
+  operations: 111
+  by_action_class:
+    acting: 75
+    connected: 36
+  by_consequence:
+    write: 37
+    read: 36
+    physical: 38
+  human_in_the_loop_required: 0
+operations:
+- path: /v1/billing/plans
+  method: post
+  operationId: plans.create
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    scope:
+    - https://uri.paypal.com/services/subscriptions
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /v1/billing/plans
+  method: get
+  operationId: plans.list
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    scope:
+    - https://uri.paypal.com/services/subscriptions
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /v1/billing/plans/{id}
+  method: get
+  operationId: plans.get
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    scope:
+    - https://uri.paypal.com/services/subscriptions
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /v1/billing/plans/{id}
+  method: patch
+  operationId: plans.patch
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    scope:
+    - https://uri.paypal.com/services/subscriptions
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /v1/billing/plans/{id}/activate
+  method: post
+  operationId: plans.activate
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    scope:
+    - https://uri.paypal.com/services/subscriptions
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /v1/billing/plans/{id}/deactivate
+  method: post
+  operationId: plans.deactivate
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    scope:
+    - https://uri.paypal.com/services/subscriptions
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /v1/billing/plans/{id}/update-pricing-schemes
+  method: post
+  operationId: plans.update-pricing-schemes
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    scope:
+    - https://uri.paypal.com/services/subscriptions
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /v1/billing/subscriptions
+  method: post
+  operationId: subscriptions.create
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    scope:
+    - https://uri.paypal.com/services/subscriptions
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /v1/billing/subscriptions/{id}
+  method: get
+  operationId: subscriptions.get
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    scope:
+    - https://uri.paypal.com/services/subscriptions
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /v1/billing/subscriptions/{id}
+  method: patch
+  operationId: subscriptions.patch
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    scope:
+    - https://uri.paypal.com/services/subscriptions
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /v1/billing/subscriptions/{id}/revise
+  method: post
+  operationId: subscriptions.revise
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    scope:
+    - https://uri.paypal.com/services/subscriptions
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /v1/billing/subscriptions/{id}/suspend
+  method: post
+  operationId: subscriptions.suspend
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    scope:
+    - https://uri.paypal.com/services/subscriptions
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /v1/billing/subscriptions/{id}/cancel
+  method: post
+  operationId: subscriptions.cancel
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    scope:
+    - https://uri.paypal.com/services/subscriptions
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /v1/billing/subscriptions/{id}/activate
+  method: post
+  operationId: subscriptions.activate
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    scope:
+    - https://uri.paypal.com/services/subscriptions
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /v1/billing/subscriptions/{id}/capture
+  method: post
+  operationId: subscriptions.capture
+  x-agentic-access:
+    action-class: acting
+    consequence: physical
+    subject: required
+    scope:
+    - https://uri.paypal.com/services/subscriptions
+    audience: null
+    token:
+      max-ttl: 300
+      exchange: true
+      purpose-required: true
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /v1/billing/subscriptions/{id}/transactions
+  method: get
+  operationId: subscriptions.transactions
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    scope:
+    - https://uri.paypal.com/services/subscriptions
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /v1/catalogs/products
+  method: post
+  operationId: products.create
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    scope:
+    - https://uri.paypal.com/services/subscriptions
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /v1/catalogs/products
+  method: get
+  operationId: products.list
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    scope:
+    - https://uri.paypal.com/services/subscriptions
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /v1/catalogs/products/{product_id}
+  method: get
+  operationId: products.get
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    scope:
+    - https://uri.paypal.com/services/subscriptions
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /v1/catalogs/products/{product_id}
+  method: patch
+  operationId: products.patch
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    scope:
+    - https://uri.paypal.com/services/subscriptions
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /v2/checkout/orders
+  method: post
+  operationId: orders.create
+  x-agentic-access:
+    action-class: acting
+    consequence: physical
+    subject: required
+    scope:
+    - https://uri.paypal.com/services/payments/orders/client-side-integration
+    - https://uri.paypal.com/services/payments/payment
+    audience: null
+    token:
+      max-ttl: 300
+      exchange: true
+      purpose-required: true
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /v2/checkout/orders/{id}
+  method: get
+  operationId: orders.get
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    scope:
+    - https://uri.paypal.com/services/payments/orders/client-side-integration
+    - https://uri.paypal.com/services/payments/payment
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /v2/checkout/orders/{id}
+  method: patch
+  operationId: orders.patch
+  x-agentic-access:
+    action-class: acting
+    consequence: physical
+    subject: required
+    scope:
+    - https://uri.paypal.com/services/payments/orders/client-side-integration
+    - https://uri.paypal.com/services/payments/payment
+    audience: null
+    token:
+      max-ttl: 300
+      exchange: true
+      purpose-required: true
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /v2/checkout/orders/{id}/confirm-payment-source
+  method: post
+  operationId: orders.confirm
+  x-agentic-access:
+    action-class: acting
+    consequence: physical
+    subject: required
+    scope:
+    - https://uri.paypal.com/services/payments/initiatepayment
+    - https://uri.paypal.com/services/payments/payment
+    audience: null
+    token:
+      max-ttl: 300
+      exchange: true
+      purpose-required: true
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /v2/checkout/orders/{id}/authorize
+  method: post
+  operationId: orders.authorize
+  x-agentic-access:
+    action-class: acting
+    consequence: physical
+    subject: required
+    scope:
+    - https://uri.paypal.com/services/payments/orders/client-side-integration
+    - https://uri.paypal.com/services/payments/payment
+    audience: null
+    token:
+      max-ttl: 300
+      exchange: true
+      purpose-required: true
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /v2/checkout/orders/{id}/capture
+  method: post
+  operationId: orders.capture
+  x-agentic-access:
+    action-class: acting
+    consequence: physical
+    subject: required
+    scope:
+    - https://uri.paypal.com/services/payments/orders/client-side-integration
+    - https://uri.paypal.com/services/payments/payment
+    audience: null
+    token:
+      max-ttl: 300
+      exchange: true
+      purpose-required: true
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /v2/checkout/orders/{id}/track
+  method: post
+  operationId: orders.track.create
+  x-agentic-access:
+    action-class: acting
+    consequence: physical
+    subject: required
+    scope:
+    - https://uri.paypal.com/services/payments/payment
+    audience: null
+    token:
+      max-ttl: 300
+      exchange: true
+      purpose-required: true
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /v2/checkout/orders/{id}/trackers/{tracker_id}
+  method: patch
+  operationId: orders.trackers.patch
+  x-agentic-access:
+    action-class: acting
+    consequence: physical
+    subject: required
+    scope:
+    - https://uri.paypal.com/services/payments/payment
+    audience: null
+    token:
+      max-ttl: 300
+      exchange: true
+      purpose-required: true
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /v1/customer/disputes
+  method: get
+  operationId: disputes.list
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    scope:
+    - https://uri.paypal.com/services/disputes/read
+    - https://uri.paypal.com/services/disputes/read-buyer
+    - https://uri.paypal.com/services/disputes/read-ebay
+    - https://uri.paypal.com/services/disputes/read-partner
+    - https://uri.paypal.com/services/disputes/read-seller
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /v1/customer/disputes/{id}
+  method: get
+  operationId: disputes.get
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    scope:
+    - https://uri.paypal.com/services/disputes/read
+    - https://uri.paypal.com/services/disputes/read-buyer
+    - https://uri.paypal.com/services/disputes/read-ebay
+    - https://uri.paypal.com/services/disputes/read-partner
+    - https://uri.paypal.com/services/disputes/read-seller
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /v1/customer/disputes/{id}
+  method: patch
+  operationId: disputes.patch
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    scope:
+    - https://uri.paypal.com/services/disputes/update-seller
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /v1/customer/disputes/{id}/provide-evidence
+  method: post
+  operationId: disputes.provide-evidence
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    scope:
+    - https://uri.paypal.com/services/disputes/update-buyer
+    - https://uri.paypal.com/services/disputes/update-partner
+    - https://uri.paypal.com/services/disputes/update-seller
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /v1/customer/disputes/{id}/appeal
+  method: post
+  operationId: disputes.appeal
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    scope:
+    - https://uri.paypal.com/services/disputes/update-buyer
+    - https://uri.paypal.com/services/disputes/update-seller
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /v1/customer/disputes/{id}/accept-claim
+  method: post
+  operationId: disputes.accept-claim
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    scope:
+    - https://uri.paypal.com/services/disputes/update-seller
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /v1/customer/disputes/{id}/adjudicate
+  method: post
+  operationId: disputes.adjudicate
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    scope:
+    - https://uri.paypal.com/services/disputes/update-buyer
+    - https://uri.paypal.com/services/disputes/update-seller
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /v1/customer/disputes/{id}/require-evidence
+  method: post
+  operationId: disputes.require-evidence
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    scope:
+    - https://uri.paypal.com/services/disputes/update-buyer
+    - https://uri.paypal.com/services/disputes/update-seller
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /v1/customer/disputes/{id}/escalate
+  method: post
+  operationId: disputes.escalate
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    scope:
+    - https://uri.paypal.com/services/disputes/update-buyer
+    - https://uri.paypal.com/services/disputes/update-seller
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /v1/customer/disputes/{id}/send-message
+  method: post
+  operationId: disputes.send-message
+  x-agentic-access:
+    action-class: acting
+    consequence: physical
+    subject: required
+    scope:
+    - https://uri.paypal.com/services/disputes/update-buyer
+    - https://uri.paypal.com/services/disputes/update-seller
+    audience: null
+    token:
+      max-ttl: 300
+      exchange: true
+      purpose-required: true
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /v1/customer/disputes/{id}/make-offer
+  method: post
+  operationId: disputes.make-offer
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    scope:
+    - https://uri.paypal.com/services/disputes/update-buyer
+    - https://uri.paypal.com/services/disputes/update-seller
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /v1/customer/disputes/{id}/accept-offer
+  method: post
+  operationId: disputes.accept-offer
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    scope:
+    - https://uri.paypal.com/services/disputes/update-buyer
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /v1/customer/disputes/{id}/deny-offer
+  method: post
+  operationId: disputes.deny-offer
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    scope:
+    - https://uri.paypal.com/services/disputes/update-buyer
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /v1/customer/disputes/{id}/acknowledge-return-item
+  method: post
+  operationId: disputes.acknowledge-return-item
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    scope:
+    - https://uri.paypal.com/services/disputes/update-seller
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /v1/customer/disputes/{id}/provide-supporting-info
+  method: post
+  operationId: disputes.provide-supporting-info
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    scope:
+    - https://uri.paypal.com/services/disputes/update-buyer
+    - https://uri.paypal.com/services/disputes/update-partner
+    - https://uri.paypal.com/services/disputes/update-seller
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /v2/customer/partner-referrals
+  method: post
+  operationId: partner-referrals.create
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    scope:
+    - https://uri.paypal.com/services/customer/partner-referrals/readwrite
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /v2/customer/partner-referrals/{partner_referral_id}
+  method: get
+  operationId: partner-referrals.read
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    scope:
+    - https://uri.paypal.com/services/customer/partner-referrals
+    - https://uri.paypal.com/services/customer/partner-referrals/readwrite
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /v2/invoicing/invoices
+  method: post
+  operationId: invoices.create
+  x-agentic-access:
+    action-class: acting
+    consequence: physical
+    subject: required
+    scope:
+    - https://uri.paypal.com/services/invoicing/invoices/readwrite
+    audience: null
+    token:
+      max-ttl: 300
+      exchange: true
+      purpose-required: true
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /v2/invoicing/invoices
+  method: get
+  operationId: invoices.list
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    scope:
+    - https://uri.paypal.com/services/invoicing/invoices/read
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /v2/invoicing/invoices/{invoice_id}/send
+  method: post
+  operationId: invoices.send
+  x-agentic-access:
+    action-class: acting
+    consequence: physical
+    subject: required
+    scope:
+    - https://uri.paypal.com/services/invoicing/invoices/readwrite
+    audience: null
+    token:
+      max-ttl: 300
+      exchange: true
+      purpose-required: true
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /v2/invoicing/invoices/{invoice_id}/remind
+  method: post
+  operationId: invoices.remind
+  x-agentic-access:
+    action-class: acting
+    consequence: physical
+    subject: required
+    scope:
+    - https://uri.paypal.com/services/invoicing/invoices/readwrite
+    audience: null
+    token:
+      max-ttl: 300
+      exchange: true
+      purpose-required: true
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /v2/invoicing/invoices/{invoice_id}/cancel
+  method: post
+  operationId: invoices.cancel
+  x-agentic-access:
+    action-class: acting
+    consequence: physical
+    subject: required
+    scope:
+    - https://uri.paypal.com/services/invoicing/invoices/readwrite
+    audience: null
+    token:
+      max-ttl: 300
+      exchange: true
+      purpose-required: true
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /v2/invoicing/invoices/{invoice_id}/payments
+  method: post
+  operationId: invoices.payments
+  x-agentic-access:
+    action-class: acting
+    consequence: physical
+    subject: required
+    scope:
+    - https://uri.paypal.com/services/invoicing/invoices/readwrite
+    audience: null
+    token:
+      max-ttl: 300
+      exchange: true
+      purpose-required: true
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /v2/invoicing/invoices/{invoice_id}/payments/{transaction_id}
+  method: delete
+  operationId: invoices.payments-delete
+  x-agentic-access:
+    action-class: acting
+    consequence: physical
+    subject: required
+    scope:
+    - https://uri.paypal.com/services/invoicing/invoices/readwrite
+    audience: null
+    token:
+      max-ttl: 300
+      exchange: true
+      purpose-required: true
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /v2/invoicing/invoices/{invoice_id}/refunds
+  method: post
+  operationId: invoices.refunds
+  x-agentic-access:
+    action-class: acting
+    consequence: physical
+    subject: required
+    scope:
+    - https://uri.paypal.com/services/invoicing/invoices/readwrite
+    audience: null
+    token:
+      max-ttl: 300
+      exchange: true
+      purpose-required: true
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /v2/invoicing/invoices/{invoice_id}/refunds/{transaction_id}
+  method: delete
+  operationId: invoices.refunds-delete
+  x-agentic-access:
+    action-class: acting
+    consequence: physical
+    subject: required
+    scope:
+    - https://uri.paypal.com/services/invoicing/invoices/readwrite
+    audience: null
+    token:
+      max-ttl: 300
+      exchange: true
+      purpose-required: true
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /v2/invoicing/invoices/{invoice_id}/generate-qr-code
+  method: post
+  operationId: invoices.generate-qr-code
+  x-agentic-access:
+    action-class: acting
+    consequence: physical
+    subject: required
+    scope:
+    - https://uri.paypal.com/services/invoicing/invoices/readwrite
+    audience: null
+    token:
+      max-ttl: 300
+      exchange: true
+      purpose-required: true
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /v2/invoicing/generate-next-invoice-number
+  method: post
+  operationId: invoicing.generate-next-invoice-number
+  x-agentic-access:
+    action-class: acting
+    consequence: physical
+    subject: required
+    scope:
+    - https://uri.paypal.com/services/invoicing/invoices/readwrite
+    audience: null
+    token:
+      max-ttl: 300
+      exchange: true
+      purpose-required: true
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /v2/invoicing/invoices/{invoice_id}
+  method: get
+  operationId: invoices.get
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    scope:
+    - https://uri.paypal.com/services/invoicing/invoices/read
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /v2/invoicing/invoices/{invoice_id}
+  method: put
+  operationId: invoices.update
+  x-agentic-access:
+    action-class: acting
+    consequence: physical
+    subject: required
+    scope:
+    - https://uri.paypal.com/services/invoicing/invoices/readwrite
+    audience: null
+    token:
+      max-ttl: 300
+      exchange: true
+      purpose-required: true
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /v2/invoicing/invoices/{invoice_id}
+  method: delete
+  operationId: invoices.delete
+  x-agentic-access:
+    action-class: acting
+    consequence: physical
+    subject: required
+    scope:
+    - https://uri.paypal.com/services/invoicing/invoices/readwrite
+    audience: null
+    token:
+      max-ttl: 300
+      exchange: true
+      purpose-required: true
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /v2/invoicing/search-invoices
+  method: post
+  operationId: invoices.search-invoices
+  x-agentic-access:
+    action-class: acting
+    consequence: physical
+    subject: required
+    scope:
+    - https://uri.paypal.com/services/invoicing/invoices/read
+    audience: null
+    token:
+      max-ttl: 300
+      exchange: true
+      purpose-required: true
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /v2/invoicing/templates
+  method: get
+  operationId: templates.list
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    scope:
+    - https://uri.paypal.com/services/invoicing/invoices/read
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /v2/invoicing/templates
+  method: post
+  operationId: templates.create
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    scope:
+    - https://uri.paypal.com/services/invoicing/invoices/readwrite
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /v2/invoicing/templates/{template_id}
+  method: get
+  operationId: templates.get
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    scope:
+    - https://uri.paypal.com/services/invoicing/invoices/read
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /v2/invoicing/templates/{template_id}
+  method: put
+  operationId: templates.update
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    scope:
+    - https://uri.paypal.com/services/invoicing/invoices/readwrite
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /v2/invoicing/templates/{template_id}
+  method: delete
+  operationId: templates.delete
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    scope:
+    - https://uri.paypal.com/services/invoicing/invoices/readwrite
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /v1/notifications/webhooks
+  method: post
+  operationId: webhooks.post
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    scope:
+    - https://uri.paypal.com/services/applications/webhooks
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /v1/notifications/webhooks
+  method: get
+  operationId: webhooks.list
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    scope:
+    - https://uri.paypal.com/services/applications/webhooks
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /v1/notifications/webhooks/{webhook_id}
+  method: get
+  operationId: webhooks.get
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    scope:
+    - https://uri.paypal.com/services/applications/webhooks
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /v1/notifications/webhooks/{webhook_id}
+  method: patch
+  operationId: webhooks.update
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    scope:
+    - https://uri.paypal.com/services/applications/webhooks
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /v1/notifications/webhooks/{webhook_id}
+  method: delete
+  operationId: webhooks.delete
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    scope:
+    - https://uri.paypal.com/services/applications/webhooks
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /v1/notifications/webhooks/{webhook_id}/event-types
+  method: get
+  operationId: event-types.list
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    scope:
+    - https://uri.paypal.com/services/applications/webhooks
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /v1/notifications/webhooks-lookup
+  method: post
+  operationId: webhooks-lookup.post
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    scope:
+    - https://uri.paypal.com/services/applications/webhooks
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /v1/notifications/webhooks-lookup
+  method: get
+  operationId: webhooks-lookup.list
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    scope:
+    - https://uri.paypal.com/services/applications/webhooks
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /v1/notifications/webhooks-lookup/{webhook_lookup_id}
+  method: get
+  operationId: webhooks-lookup.get
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    scope:
+    - https://uri.paypal.com/services/applications/webhooks
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /v1/notifications/webhooks-lookup/{webhook_lookup_id}
+  method: delete
+  operationId: webhooks-lookup.delete
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    scope:
+    - https://uri.paypal.com/services/applications/webhooks
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /v1/notifications/verify-webhook-signature
+  method: post
+  operationId: verify-webhook-signature.post
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    scope:
+    - https://uri.paypal.com/services/applications/verify-webhook-signature
+    - https://uri.paypal.com/services/applications/webhooks
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /v1/notifications/webhooks-event-types
+  method: get
+  operationId: webhooks-event-types.list
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /v1/notifications/webhooks-events
+  method: get
+  operationId: webhooks-events.list
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    scope:
+    - https://uri.paypal.com/services/applications/webhooks
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /v1/notifications/webhooks-events/{event_id}
+  method: get
+  operationId: webhooks-events.get
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    scope:
+    - https://uri.paypal.com/services/applications/webhooks
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /v1/notifications/webhooks-events/{event_id}/resend
+  method: post
+  operationId: webhooks-events.resend
+  x-agentic-access:
+    action-class: acting
+    consequence: physical
+    subject: required
+    scope:
+    - https://uri.paypal.com/services/applications/webhooks
+    audience: null
+    token:
+      max-ttl: 300
+      exchange: true
+      purpose-required: true
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /v1/notifications/simulate-event
+  method: post
+  operationId: simulate-event.post
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    scope:
+    - https://uri.paypal.com/services/applications/webhooks
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /v1/payment-experience/web-profiles
+  method: post
+  operationId: web-profile.create
+  x-agentic-access:
+    action-class: acting
+    consequence: physical
+    subject: required
+    scope:
+    - https://uri.paypal.com/services/payments/payment
+    - https://uri.paypal.com/services/payments/realtimepayment
+    audience: null
+    token:
+      max-ttl: 300
+      exchange: true
+      purpose-required: true
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /v1/payment-experience/web-profiles
+  method: get
+  operationId: web-profile.get-list
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    scope:
+    - https://uri.paypal.com/services/payments/payment
+    - https://uri.paypal.com/services/payments/realtimepayment
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /v1/payment-experience/web-profiles/{id}
+  method: put
+  operationId: web-profile.update
+  x-agentic-access:
+    action-class: acting
+    consequence: physical
+    subject: required
+    scope:
+    - https://uri.paypal.com/services/payments/payment
+    - https://uri.paypal.com/services/payments/realtimepayment
+    audience: null
+    token:
+      max-ttl: 300
+      exchange: true
+      purpose-required: true
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /v1/payment-experience/web-profiles/{id}
+  method: patch
+  operationId: web-profile.partial-update
+  x-agentic-access:
+    action-class: acting
+    consequence: physical
+    subject: required
+    scope:
+    - https://uri.paypal.com/services/payments/payment
+    - https://uri.paypal.com/services/payments/realtimepayment
+    audience: null
+    token:
+      max-ttl: 300
+      exchange: true
+      purpose-required: true
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /v1/payment-experience/web-profiles/{id}
+  method: get
+  operationId: web-profile.get
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    scope:
+    - https://uri.paypal.com/services/payments/payment
+    - https://uri.paypal.com/services/payments/realtimepayment
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /v1/payment-experience/web-profiles/{id}
+  method: delete
+  operationId: web-profile.delete
+  x-agentic-access:
+    action-class: acting
+    consequence: physical
+    subject: required
+    scope:
+    - https://uri.paypal.com/services/payments/payment
+    - https://uri.paypal.com/services/payments/realtimepayment
+    audience: null
+    token:
+      max-ttl: 300
+      exchange: true
+      purpose-required: true
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /v2/payments/authorizations/{authorization_id}
+  method: get
+  operationId: authorizations.get
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    scope:
+    - https://uri.paypal.com/services/payments/payment/authcapture
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /v2/payments/authorizations/{authorization_id}/capture
+  method: post
+  operationId: authorizations.capture
+  x-agentic-access:
+    action-class: acting
+    consequence: physical
+    subject: required
+    scope:
+    - https://uri.paypal.com/services/payments/payment/authcapture
+    audience: null
+    token:
+      max-ttl: 300
+      exchange: true
+      purpose-required: true
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /v2/payments/authorizations/{authorization_id}/reauthorize
+  method: post
+  operationId: authorizations.reauthorize
+  x-agentic-access:
+    action-class: acting
+    consequence: physical
+    subject: required
+    scope:
+    - https://uri.paypal.com/services/payments/payment/authcapture
+    audience: null
+    token:
+      max-ttl: 300
+      exchange: true
+      purpose-required: true
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /v2/payments/authorizations/{authorization_id}/void
+  method: post
+  operationId: authorizations.void
+  x-agentic-access:
+    action-class: acting
+    consequence: physical
+    subject: required
+    scope:
+    - https://uri.paypal.com/services/payments/payment/authcapture
+    audience: null
+    token:
+      max-ttl: 300
+      exchange: true
+      purpose-required: true
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /v2/payments/captures/{capture_id}
+  method: get
+  operationId: captures.get
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    scope:
+    - https://uri.paypal.com/services/payments/payment/authcapture
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /v2/payments/captures/{capture_id}/refund
+  method: post
+  operationId: captures.refund
+  x-agentic-access:
+    action-class: acting
+    consequence: physical
+    subject: required
+    scope:
+    - https://uri.paypal.com/services/payments/refund
+    audience: null
+    token:
+      max-ttl: 300
+      exchange: true
+      purpose-required: true
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /v2/payments/refunds/{refund_id}
+  method: get
+  operationId: refunds.get
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    scope:
+    - https://uri.paypal.com/services/payments/refund
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /v1/payments/payouts
+  method: post
+  operationId: payouts.post
+  x-agentic-access:
+    action-class: acting
+    consequence: physical
+    subject: required
+    scope:
+    - https://uri.paypal.com/payments/payouts
+    audience: null
+    token:
+      max-ttl: 300
+      exchange: true
+      purpose-required: true
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /v1/payments/payouts/{id}
+  method: get
+  operationId: payouts.get
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    scope:
+    - https://uri.paypal.com/payments/payouts
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /v1/payments/payouts-item/{payout_item_id}
+  method: get
+  operationId: payouts-item.get
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    scope:
+    - https://uri.paypal.com/payments/payouts
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /v1/payments/payouts-item/{payout_item_id}/cancel
+  method: post
+  operationId: payouts-item.cancel
+  x-agentic-access:
+    action-class: acting
+    consequence: physical
+    subject: required
+    scope:
+    - https://uri.paypal.com/payments/payouts
+    audience: null
+    token:
+      max-ttl: 300
+      exchange: true
+      purpose-required: true
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /v1/reporting/transactions
+  method: get
+  operationId: search.get
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    scope:
+    - https://uri.paypal.com/services/reporting/search/read
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /v1/reporting/balances
+  method: get
+  operationId: balances.get
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    scope:
+    - https://uri.paypal.com/services/reporting/balances/read
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /v1/shipping/trackers-batch
+  method: post
+  operationId: trackers-batch.post
+  x-agentic-access:
+    action-class: acting
+    consequence: physical
+    subject: required
+    scope:
+    - https://uri.paypal.com/services/shipping/trackers/readwrite
+    audience: null
+    token:
+      max-ttl: 300
+      exchange: true
+      purpose-required: true
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /v1/shipping/trackers
+  method: post
+  operationId: trackers.post
+  x-agentic-access:
+    action-class: acting
+    consequence: physical
+    subject: required
+    scope:
+    - https://uri.paypal.com/services/shipping/trackers/readwrite
+    audience: null
+    token:
+      max-ttl: 300
+      exchange: true
+      purpose-required: true
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /v1/shipping/trackers
+  method: get
+  operationId: trackers-batch.get
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    scope:
+    - https://uri.paypal.com/services/shipping/trackers/read
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /v1/shipping/trackers/{id}
+  method: put
+  operationId: trackers.put
+  x-agentic-access:
+    action-class: acting
+    consequence: physical
+    subject: required
+    scope:
+    - https://uri.paypal.com/services/shipping/trackers/readwrite
+    audience: null
+    token:
+      max-ttl: 300
+      exchange: true
+      purpose-required: true
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /v1/shipping/trackers/{id}
+  method: get
+  operationId: trackers.get
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    scope:
+    - https://uri.paypal.com/services/shipping/trackers/read
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /v3/vault/payment-tokens
+  method: post
+  operationId: payment-tokens.create
+  x-agentic-access:
+    action-class: acting
+    consequence: physical
+    subject: required
+    scope:
+    - https://uri.paypal.com/services/vault/payment-tokens/readwrite
+    audience: null
+    token:
+      max-ttl: 300
+      exchange: true
+      purpose-required: true
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /v3/vault/payment-tokens
+  method: get
+  operationId: customer.payment-tokens.get
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    scope:
+    - https://uri.paypal.com/services/vault/payment-tokens/readwrite
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /v3/vault/payment-tokens/{id}
+  method: get
+  operationId: payment-tokens.get
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    scope:
+    - https://uri.paypal.com/services/vault/payment-tokens/readwrite
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /v3/vault/payment-tokens/{id}
+  method: delete
+  operationId: payment-tokens.delete
+  x-agentic-access:
+    action-class: acting
+    consequence: physical
+    subject: required
+    scope:
+    - https://uri.paypal.com/services/vault/payment-tokens/readwrite
+    audience: null
+    token:
+      max-ttl: 300
+      exchange: true
+      purpose-required: true
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /v3/vault/setup-tokens
+  method: post
+  operationId: setup-tokens.create
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    scope:
+    - https://uri.paypal.com/services/vault/payment-tokens/read
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /v3/vault/setup-tokens/{id}
+  method: get
+  operationId: setup-tokens.get
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    scope:
+    - https://uri.paypal.com/services/vault/payment-tokens/read
+    token:
+      max-ttl: 3600
+    audit: none
