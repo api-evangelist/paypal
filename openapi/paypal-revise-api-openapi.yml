@@ -1,0 +1,1187 @@
+openapi: 3.0.3
+info:
+  title: Paypal Subscriptions Authorizations Revise API
+  description: You can use billing plans and subscriptions to create subscriptions that process recurring PayPal payments for physical or digital goods, or services. A plan includes pricing and billing cycle information that defines the amount and frequency of charge for a subscription. You can also define a fixed plan, such as a $5 basic plan or a volume- or graduated-based plan with pricing tiers based on the quantity purchased. For more information, see <a href="/docs/subscriptions/">Subscriptions Overview</a>.
+  version: '1.6'
+  contact: {}
+servers:
+- url: https://api-m.sandbox.paypal.com
+  description: PayPal Sandbox Environment
+- url: https://api-m.paypal.com
+  description: PayPal Live Environment
+tags:
+- name: Revise
+paths:
+  /v1/billing/subscriptions/{id}/revise:
+    post:
+      summary: Revise plan or quantity of subscription
+      description: Updates the quantity of the product or service in a subscription. You can also use this method to switch the plan and update the `shipping_amount`, `shipping_address` values for the subscription. This type of update requires the buyer's consent.
+      operationId: subscriptions.revise
+      responses:
+        '200':
+          description: A successful request returns the HTTP `200 OK` status code and a JSON response body that shows subscription details.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/subscription_revise_response'
+              examples:
+                subscription_revise_response:
+                  value:
+                    plan_id: P-5ML4271244454362WXNWU5NQ
+                    plan_overridden: false
+                    shipping_amount:
+                      currency_code: USD
+                      value: '10.00'
+                    shipping_address:
+                      name:
+                        full_name: John Doe
+                      address:
+                        address_line_1: 2211 N First Street
+                        address_line_2: Building 17
+                        admin_area_2: San Jose
+                        admin_area_1: CA
+                        postal_code: '95131'
+                        country_code: US
+                    links:
+                    - href: https://www.paypal.com/webapps/billing/subscriptions/update?ba_token=BA-2M539689T3856352J
+                      rel: approve
+                      method: GET
+                    - href: https://api-m.paypal.com/v1/billing/subscriptions/I-BW452GLLEP1G
+                      rel: edit
+                      method: PATCH
+                    - href: https://api-m.paypal.com/v1/billing/subscriptions/I-BW452GLLEP1G
+                      rel: self
+                      method: GET
+                    - href: https://api-m.paypal.com/v1/billing/subscriptions/I-BW452GLLEP1G/cancel
+                      rel: cancel
+                      method: POST
+                    - href: https://api-m.paypal.com/v1/billing/subscriptions/I-BW452GLLEP1G/suspend
+                      rel: suspend
+                      method: POST
+                    - href: https://api-m.paypal.com/v1/billing/subscriptions/I-BW452GLLEP1G/capture
+                      rel: capture
+                      method: POST
+        '400':
+          description: Bad Request. Request is not well-formed, syntactically incorrect, or violates schema.
+          content:
+            application/json:
+              schema:
+                allOf:
+                - $ref: '#/components/schemas/error_400'
+                - $ref: '#/components/schemas/subscriptions.revise-400'
+        '401':
+          description: Authentication failed due to missing authorization header, or invalid authentication credentials.
+          content:
+            application/json:
+              schema:
+                allOf:
+                - $ref: '#/components/schemas/error_401'
+                - $ref: '#/components/schemas/401'
+        '403':
+          description: Authorization failed due to insufficient permissions.
+          content:
+            application/json:
+              schema:
+                allOf:
+                - $ref: '#/components/schemas/error_403'
+                - $ref: '#/components/schemas/403'
+        '404':
+          description: The specified resource does not exist.
+          content:
+            application/json:
+              schema:
+                allOf:
+                - $ref: '#/components/schemas/error_404'
+                - $ref: '#/components/schemas/subscriptions.revise-404'
+        '422':
+          description: The requested action could not be performed, semantically incorrect, or failed business validation.
+          content:
+            application/json:
+              schema:
+                allOf:
+                - $ref: '#/components/schemas/error_422'
+                - $ref: '#/components/schemas/subscriptions.revise-422'
+        '500':
+          description: An internal server error has occurred.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/error_500'
+        default:
+          $ref: '#/components/responses/default'
+      parameters:
+      - $ref: '#/components/parameters/id'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/subscription_revise_request'
+            examples:
+              subscription_revise_request:
+                value:
+                  plan_id: P-5ML4271244454362WXNWU5NQ
+                  shipping_amount:
+                    currency_code: USD
+                    value: '10.00'
+                  shipping_address:
+                    name:
+                      full_name: John Doe
+                    address:
+                      address_line_1: 2211 N First Street
+                      address_line_2: Building 17
+                      admin_area_2: San Jose
+                      admin_area_1: CA
+                      postal_code: '95131'
+                      country_code: US
+                  application_context:
+                    brand_name: walmart
+                    locale: en-US
+                    shipping_preference: SET_PROVIDED_ADDRESS
+                    payment_method:
+                      payer_selected: PAYPAL
+                      payee_preferred: IMMEDIATE_PAYMENT_REQUIRED
+                    return_url: https://example.com/returnUrl
+                    cancel_url: https://example.com/cancelUrl
+      security:
+      - Oauth2:
+        - https://uri.paypal.com/services/subscriptions
+      tags:
+      - Revise
+components:
+  schemas:
+    plan_override:
+      title: Plan Override
+      description: An inline plan object to customise the subscription. You can override plan level default attributes by providing customised values for the subscription in this object.
+      type: object
+      properties:
+        billing_cycles:
+          type: array
+          description: An array of billing cycles for trial billing and regular billing. The subscription billing cycle definition has to adhere to the plan billing cycle definition.
+          minItems: 1
+          maxItems: 12
+          items:
+            $ref: '#/components/schemas/billing_cycle_override'
+        payment_preferences:
+          $ref: '#/components/schemas/payment_preferences_override'
+        taxes:
+          $ref: '#/components/schemas/taxes_override'
+    error_404:
+      type: object
+      title: Not found Error
+      description: The server has not found anything matching the request URI. This either means that the URI is incorrect or the resource is not available.
+      properties:
+        name:
+          type: string
+          enum:
+          - RESOURCE_NOT_FOUND
+        message:
+          type: string
+          enum:
+          - The specified resource does not exist.
+        details:
+          type: array
+          items:
+            $ref: '#/components/schemas/error_details'
+        debug_id:
+          type: string
+          description: The PayPal internal ID. Used for correlation purposes.
+        links:
+          description: An array of request-related [HATEOAS links](https://en.wikipedia.org/wiki/HATEOAS).
+          type: array
+          minItems: 0
+          maxItems: 10000
+          items:
+            $ref: '#/components/schemas/error_link_description'
+    error_409:
+      type: object
+      title: Resource Conflict Error
+      description: The server has detected a conflict while processing this request.
+      properties:
+        name:
+          type: string
+          enum:
+          - RESOURCE_CONFLICT
+        message:
+          type: string
+          enum:
+          - The server has detected a conflict while processing this request.
+        details:
+          type: array
+          items:
+            $ref: '#/components/schemas/error_details'
+        debug_id:
+          type: string
+          description: The PayPal internal ID. Used for correlation purposes.
+        links:
+          description: An array of request-related [HATEOAS links](https://en.wikipedia.org/wiki/HATEOAS).
+          type: array
+          minItems: 0
+          maxItems: 10000
+          items:
+            $ref: '#/components/schemas/error_link_description'
+    language:
+      type: string
+      description: The [language tag](https://tools.ietf.org/html/bcp47#section-2) for the language in which to localize the error-related strings, such as messages, issues, and suggested actions. The tag is made up of the [ISO 639-2 language code](https://www.loc.gov/standards/iso639-2/php/code_list.php), the optional [ISO-15924 script tag](https://www.unicode.org/iso15924/codelists.html), and the [ISO-3166 alpha-2 country code](/docs/integration/direct/rest/country-codes/).
+      format: ppaas_common_language_v3
+      maxLength: 10
+      minLength: 2
+      pattern: ^[a-z]{2}(?:-[A-Z][a-z]{3})?(?:-(?:[A-Z]{2}))?$
+    shipping_detail:
+      type: object
+      description: The shipping details.
+      title: Shipping Details
+      properties:
+        name:
+          description: The name of the person to whom to ship the items. Supports only the `full_name` property.
+          $ref: '#/components/schemas/name'
+        type:
+          description: The method by which the payer wants to get their items from the payee e.g shipping, in-person pickup. Either type or options but not both may be present.
+          type: string
+          minLength: 1
+          maxLength: 255
+          pattern: ^[0-9A-Z_]+$
+          enum:
+          - SHIPPING
+          - PICKUP_IN_PERSON
+        address:
+          description: The address of the person to whom to ship the items. Supports only the `address_line_1`, `address_line_2`, `admin_area_1`, `admin_area_2`, `postal_code`, and `country_code` properties.
+          $ref: '#/components/schemas/address_portable'
+    '403':
+      properties:
+        details:
+          type: array
+          items:
+            anyOf:
+            - title: PERMISSION_DENIED
+              properties:
+                issue:
+                  type: string
+                  enum:
+                  - PERMISSION_DENIED
+                description:
+                  type: string
+                  enum:
+                  - You do not have permission to access or perform operations on this resource.
+    subscription_revise_response:
+      title: Update Product Quantity in Subscription Response
+      description: The response to a request to update the quantity of the product or service in a subscription. You can also use this method to switch the plan and update the `shipping_amount` and `shipping_address` values for the subscription. This type of update requires the buyer's consent.
+      type: object
+      allOf:
+      - $ref: '#/components/schemas/subscription_revise_request'
+      - properties:
+          plan_overridden:
+            type: boolean
+            description: Indicates whether the subscription has overridden any plan attributes.
+            readOnly: true
+          links:
+            type: array
+            description: An array of request-related [HATEOAS links](/docs/api/reference/api-responses/#hateoas-links).
+            readOnly: true
+            items:
+              readOnly: true
+              $ref: '#/components/schemas/link_description'
+    link_description:
+      type: object
+      title: Link Description
+      description: The request-related [HATEOAS link](/docs/api/reference/api-responses/#hateoas-links) information.
+      required:
+      - href
+      - rel
+      properties:
+        href:
+          type: string
+          description: The complete target URL. To make the related call, combine the method with this [URI Template-formatted](https://tools.ietf.org/html/rfc6570) link. For pre-processing, include the `$`, `(`, and `)` characters. The `href` is the key HATEOAS component that links a completed call with a subsequent call.
+        rel:
+          type: string
+          description: The [link relation type](https://tools.ietf.org/html/rfc5988#section-4), which serves as an ID for a link that unambiguously describes the semantics of the link. See [Link Relations](https://www.iana.org/assignments/link-relations/link-relations.xhtml).
+        method:
+          type: string
+          description: The HTTP method required to make the related call.
+          enum:
+          - GET
+          - POST
+          - PUT
+          - DELETE
+          - HEAD
+          - CONNECT
+          - OPTIONS
+          - PATCH
+    error_403:
+      type: object
+      title: Not Authorized Error
+      description: 'The client is not authorized to access this resource, although it may have valid credentials. '
+      properties:
+        name:
+          type: string
+          enum:
+          - NOT_AUTHORIZED
+        message:
+          type: string
+          enum:
+          - Authorization failed due to insufficient permissions.
+        details:
+          type: array
+          items:
+            $ref: '#/components/schemas/error_details'
+        debug_id:
+          type: string
+          description: The PayPal internal ID. Used for correlation purposes.
+        links:
+          description: An array of request-related [HATEOAS links](https://en.wikipedia.org/wiki/HATEOAS).
+          type: array
+          minItems: 0
+          maxItems: 10000
+          items:
+            $ref: '#/components/schemas/error_link_description'
+    error_422:
+      type: object
+      title: Unprocessable Entity Error
+      description: The requested action cannot be performed and may require interaction with APIs or processes outside of the current request. This is distinct from a 500 response in that there are no systemic problems limiting the API from performing the request.
+      properties:
+        name:
+          type: string
+          enum:
+          - UNPROCESSABLE_ENTITY
+        message:
+          type: string
+          enum:
+          - The requested action could not be performed, semantically incorrect, or failed business validation.
+        details:
+          type: array
+          items:
+            $ref: '#/components/schemas/error_details'
+        debug_id:
+          type: string
+          description: The PayPal internal ID. Used for correlation purposes.
+        links:
+          description: An array of request-related [HATEOAS links](https://en.wikipedia.org/wiki/HATEOAS).
+          type: array
+          minItems: 0
+          maxItems: 10000
+          items:
+            $ref: '#/components/schemas/error_link_description'
+    application_context:
+      title: Application Context
+      description: The application context, which customizes the payer experience during the subscription approval process with PayPal.
+      type: object
+      properties:
+        brand_name:
+          type: string
+          description: The label that overrides the business name in the PayPal account on the PayPal site.
+          minLength: 1
+          maxLength: 127
+        locale:
+          description: The BCP 47-formatted locale of pages that the PayPal payment experience shows. PayPal supports a five-character code. For example, `da-DK`, `he-IL`, `id-ID`, `ja-JP`, `no-NO`, `pt-BR`, `ru-RU`, `sv-SE`, `th-TH`, `zh-CN`, `zh-HK`, or `zh-TW`.
+          $ref: '#/components/schemas/language'
+        shipping_preference:
+          type: string
+          description: The location from which the shipping address is derived.
+          minLength: 1
+          maxLength: 24
+          pattern: ^[A-Z_]+$
+          default: GET_FROM_FILE
+          enum:
+          - GET_FROM_FILE
+          - NO_SHIPPING
+          - SET_PROVIDED_ADDRESS
+        user_action:
+          type: string
+          description: Configures the label name to `Continue` or `Subscribe Now` for subscription consent experience.
+          minLength: 1
+          maxLength: 24
+          pattern: ^[A-Z_]+$
+          default: SUBSCRIBE_NOW
+          enum:
+          - CONTINUE
+          - SUBSCRIBE_NOW
+        payment_method:
+          description: The customer and merchant payment preferences. Currently only PAYPAL payment method is supported.
+          $ref: '#/components/schemas/payment_method'
+        return_url:
+          type: string
+          format: uri
+          description: The URL where the customer is redirected after the customer approves the payment.
+          minLength: 10
+          maxLength: 4000
+        cancel_url:
+          type: string
+          format: uri
+          description: The URL where the customer is redirected after the customer cancels the payment.
+          minLength: 10
+          maxLength: 4000
+      required:
+      - return_url
+      - cancel_url
+    taxes_override:
+      title: Taxes Override
+      description: The tax details.
+      type: object
+      properties:
+        percentage:
+          description: The tax percentage on the billing amount.
+          $ref: '#/components/schemas/percentage'
+        inclusive:
+          type: boolean
+          description: Indicates whether the tax was already included in the billing amount.
+    subscriptions.revise-400:
+      properties:
+        details:
+          type: array
+          items:
+            anyOf:
+            - title: INVALID_PARAMETER_SYNTAX
+              properties:
+                issue:
+                  type: string
+                  enum:
+                  - INVALID_PARAMETER_SYNTAX
+                description:
+                  type: string
+                  enum:
+                  - The value of a field does not conform to the expected format.
+            - title: INVALID_PARAMETER_VALUE
+              properties:
+                issue:
+                  type: string
+                  enum:
+                  - INVALID_PARAMETER_VALUE
+                description:
+                  type: string
+                  enum:
+                  - The value of a field is invalid.
+            - title: INVALID_INTEGER_MIN_VALUE
+              properties:
+                issue:
+                  type: string
+                  enum:
+                  - INVALID_INTEGER_MIN_VALUE
+                description:
+                  type: string
+                  enum:
+                  - The integer value of a field is too small.
+            - title: INVALID_INTEGER_MAX_VALUE
+              properties:
+                issue:
+                  type: string
+                  enum:
+                  - INVALID_INTEGER_MAX_VALUE
+                description:
+                  type: string
+                  enum:
+                  - The integer value of a field is too large.
+            - title: MISSING_REQUEST_BODY
+              properties:
+                issue:
+                  type: string
+                  enum:
+                  - MISSING_REQUEST_BODY
+                description:
+                  type: string
+                  enum:
+                  - Request body is missing.
+            - title: MISSING_REQUIRED_PARAMETER
+              properties:
+                issue:
+                  type: string
+                  enum:
+                  - MISSING_REQUIRED_PARAMETER
+                description:
+                  type: string
+                  enum:
+                  - A required field is missing.
+    error_details:
+      title: Error Details
+      type: object
+      description: The error details. Required for client-side `4XX` errors.
+      properties:
+        field:
+          type: string
+          description: The field that caused the error. If this field is in the body, set this value to the field's JSON pointer value. Required for client-side errors.
+        value:
+          type: string
+          description: The value of the field that caused the error.
+        location:
+          $ref: '#/components/schemas/error_location'
+        issue:
+          type: string
+          description: The unique, fine-grained application-level error code.
+        description:
+          type: string
+          description: The human-readable description for an issue. The description can change over the lifetime of an API, so clients must not depend on this value.
+      required:
+      - issue
+    name:
+      type: object
+      title: Name
+      description: The name of the party.
+      properties:
+        prefix:
+          type: string
+          description: The prefix, or title, to the party's name.
+          maxLength: 140
+        given_name:
+          type: string
+          description: When the party is a person, the party's given, or first, name.
+          maxLength: 140
+        surname:
+          type: string
+          description: When the party is a person, the party's surname or family name. Also known as the last name. Required when the party is a person. Use also to store multiple surnames including the matronymic, or mother's, surname.
+          maxLength: 140
+        middle_name:
+          type: string
+          description: When the party is a person, the party's middle name. Use also to store multiple middle names including the patronymic, or father's, middle name.
+          maxLength: 140
+        suffix:
+          type: string
+          description: The suffix for the party's name.
+          maxLength: 140
+        alternate_full_name:
+          type: string
+          description: DEPRECATED. The party's alternate name. Can be a business name, nickname, or any other name that cannot be split into first, last name. Required when the party is a business.
+          maxLength: 300
+        full_name:
+          type: string
+          description: When the party is a person, the party's full name.
+          maxLength: 300
+    error_link_description:
+      title: Link Description
+      description: The request-related [HATEOAS link](/api/rest/responses/#hateoas-links) information.
+      type: object
+      required:
+      - href
+      - rel
+      properties:
+        href:
+          description: The complete target URL. To make the related call, combine the method with this [URI Template-formatted](https://tools.ietf.org/html/rfc6570) link. For pre-processing, include the `$`, `(`, and `)` characters. The `href` is the key HATEOAS component that links a completed call with a subsequent call.
+          type: string
+          minLength: 0
+          maxLength: 20000
+          pattern: ^.*$
+        rel:
+          description: The [link relation type](https://tools.ietf.org/html/rfc5988#section-4), which serves as an ID for a link that unambiguously describes the semantics of the link. See [Link Relations](https://www.iana.org/assignments/link-relations/link-relations.xhtml).
+          type: string
+          minLength: 0
+          maxLength: 100
+          pattern: ^.*$
+        method:
+          description: The HTTP method required to make the related call.
+          type: string
+          minLength: 3
+          maxLength: 6
+          pattern: ^[A-Z]*$
+          enum:
+          - GET
+          - POST
+          - PUT
+          - DELETE
+          - PATCH
+    subscriptions.revise-404:
+      properties:
+        details:
+          type: array
+          items:
+            anyOf:
+            - title: INVALID_RESOURCE_ID
+              properties:
+                issue:
+                  type: string
+                  enum:
+                  - INVALID_RESOURCE_ID
+                description:
+                  type: string
+                  enum:
+                  - Requested resource ID was not found.
+    error_default:
+      description: The default error response.
+      oneOf:
+      - $ref: '#/components/schemas/error_400'
+      - $ref: '#/components/schemas/error_401'
+      - $ref: '#/components/schemas/error_403'
+      - $ref: '#/components/schemas/error_404'
+      - $ref: '#/components/schemas/error_409'
+      - $ref: '#/components/schemas/error_415'
+      - $ref: '#/components/schemas/error_422'
+      - $ref: '#/components/schemas/error_500'
+      - $ref: '#/components/schemas/error_503'
+    error_location:
+      type: string
+      description: The location of the field that caused the error. Value is `body`, `path`, or `query`.
+      enum:
+      - body
+      - path
+      - query
+      default: body
+    money:
+      type: object
+      title: Money
+      description: The currency and amount for a financial transaction, such as a balance or payment due.
+      properties:
+        currency_code:
+          $ref: '#/components/schemas/currency_code'
+        value:
+          type: string
+          description: The value, which might be:<ul><li>An integer for currencies like `JPY` that are not typically fractional.</li><li>A decimal fraction for currencies like `TND` that are subdivided into thousandths.</li></ul>For the required number of decimal places for a currency code, see [Currency Codes](/docs/integration/direct/rest/currency-codes/).
+          maxLength: 32
+          pattern: ^((-?[0-9]+)|(-?([0-9]+)?[.][0-9]+))$
+      required:
+      - currency_code
+      - value
+    pricing_tier:
+      title: Pricing Tier
+      description: The pricing tier details.
+      type: object
+      properties:
+        starting_quantity:
+          type: string
+          description: The starting quantity for the tier.
+          pattern: ^([0-9]+|([0-9]+)?[.][0-9]+)$
+          minLength: 1
+          maxLength: 32
+        ending_quantity:
+          type: string
+          description: The ending quantity for the tier. Optional for the last tier.
+          pattern: ^([0-9]+|([0-9]+)?[.][0-9]+)$
+          minLength: 1
+          maxLength: 32
+        amount:
+          description: The pricing amount for the tier.
+          $ref: '#/components/schemas/money'
+      required:
+      - starting_quantity
+      - amount
+    '401':
+      properties:
+        details:
+          type: array
+          items:
+            anyOf:
+            - title: INVALID_ACCOUNT_STATUS
+              properties:
+                issue:
+                  type: string
+                  enum:
+                  - INVALID_ACCOUNT_STATUS
+                description:
+                  type: string
+                  enum:
+                  - Account validations failed for the user.
+    address_portable:
+      type: object
+      title: Portable Postal Address (Medium-Grained)
+      description: 'The portable international postal address. Maps to [AddressValidationMetadata](https://github.com/googlei18n/libaddressinput/wiki/AddressValidationMetadata) and HTML 5.1 [Autofilling form controls: the autocomplete attribute](https://www.w3.org/TR/html51/sec-forms.html#autofilling-form-controls-the-autocomplete-attribute).'
+      properties:
+        address_line_1:
+          type: string
+          description: The first line of the address. For example, number or street. For example, `173 Drury Lane`. Required for data entry and compliance and risk checks. Must contain the full address.
+          maxLength: 300
+        address_line_2:
+          type: string
+          description: The second line of the address. For example, suite or apartment number.
+          maxLength: 300
+        address_line_3:
+          type: string
+          description: The third line of the address, if needed. For example, a street complement for Brazil, direction text, such as `next to Walmart`, or a landmark in an Indian address.
+          maxLength: 100
+        admin_area_4:
+          type: string
+          description: The neighborhood, ward, or district. Smaller than `admin_area_level_3` or `sub_locality`. Value is:<ul><li>The postal sorting code for Guernsey and many French territories, such as French Guiana.</li><li>The fine-grained administrative levels in China.</li></ul>
+          maxLength: 100
+        admin_area_3:
+          type: string
+          description: A sub-locality, suburb, neighborhood, or district. Smaller than `admin_area_level_2`. Value is:<ul><li>Brazil. Suburb, bairro, or neighborhood.</li><li>India. Sub-locality or district. Street name information is not always available but a sub-locality or district can be a very small area.</li></ul>
+          maxLength: 100
+        admin_area_2:
+          type: string
+          description: A city, town, or village. Smaller than `admin_area_level_1`.
+          maxLength: 120
+        admin_area_1:
+          type: string
+          description: The highest level sub-division in a country, which is usually a province, state, or ISO-3166-2 subdivision. Format for postal delivery. For example, `CA` and not `California`. Value, by country, is:<ul><li>UK. A county.</li><li>US. A state.</li><li>Canada. A province.</li><li>Japan. A prefecture.</li><li>Switzerland. A kanton.</li></ul>
+          maxLength: 300
+        postal_code:
+          type: string
+          description: The postal code, which is the zip code or equivalent. Typically required for countries with a postal code or an equivalent. See [postal code](https://en.wikipedia.org/wiki/Postal_code).
+          maxLength: 60
+        country_code:
+          $ref: '#/components/schemas/country_code'
+        address_details:
+          type: object
+          title: Address Details
+          description: The non-portable additional address details that are sometimes needed for compliance, risk, or other scenarios where fine-grain address information might be needed. Not portable with common third party and open source. Redundant with core fields.<br/>For example, `address_portable.address_line_1` is usually a combination of `address_details.street_number`, `street_name`, and `street_type`.
+          properties:
+            street_number:
+              type: string
+              description: The street number.
+              maxLength: 100
+            street_name:
+              type: string
+              description: The street name. Just `Drury` in `Drury Lane`.
+              maxLength: 100
+            street_type:
+              type: string
+              description: The street type. For example, avenue, boulevard, road, or expressway.
+              maxLength: 100
+            delivery_service:
+              type: string
+              description: The delivery service. Post office box, bag number, or post office name.
+              maxLength: 100
+            building_name:
+              type: string
+              description: A named locations that represents the premise. Usually a building name or number or collection of buildings with a common name or number. For example, <code>Craven House</code>.
+              maxLength: 100
+            sub_building:
+              type: string
+              description: The first-order entity below a named building or location that represents the sub-premises. Usually a single building within a collection of buildings with a common name. Can be a flat, story, floor, room, or apartment.
+              maxLength: 100
+      required:
+      - country_code
+    error_503:
+      type: object
+      title: Service Unavailable Error
+      description: The server is temporarily unable to handle the request, for example, because of planned maintenance or downtime.
+      properties:
+        name:
+          type: string
+          enum:
+          - SERVICE_UNAVAILABLE
+        message:
+          type: string
+          enum:
+          - Service Unavailable.
+        debug_id:
+          type: string
+          description: The PayPal internal ID. Used for correlation purposes.
+        links:
+          description: An array of request-related [HATEOAS links](https://en.wikipedia.org/wiki/HATEOAS).
+          type: array
+          minItems: 0
+          maxItems: 10000
+          items:
+            $ref: '#/components/schemas/error_link_description'
+      example:
+        name: SERVICE_UNAVAILABLE
+        message: Service Unavailable.
+        debug_id: 90957fca61718
+        information_link: https://developer.paypal.com/docs/api/orders/v2/#error-SERVICE_UNAVAILABLE
+    error_400:
+      type: object
+      title: Bad Request Error
+      description: Request is not well-formed, syntactically incorrect, or violates schema.
+      properties:
+        name:
+          type: string
+          enum:
+          - INVALID_REQUEST
+        message:
+          type: string
+          enum:
+          - Request is not well-formed, syntactically incorrect, or violates schema.
+        details:
+          type: array
+          items:
+            $ref: '#/components/schemas/error_details'
+        debug_id:
+          type: string
+          description: The PayPal internal ID. Used for correlation purposes.
+        links:
+          description: An array of request-related [HATEOAS links](https://en.wikipedia.org/wiki/HATEOAS).
+          type: array
+          minItems: 0
+          maxItems: 10000
+          items:
+            $ref: '#/components/schemas/error_link_description'
+    pricing_scheme:
+      title: Pricing Scheme
+      description: The pricing scheme details.
+      type: object
+      properties:
+        version:
+          type: integer
+          description: The version of the pricing scheme.
+          minimum: 0
+          maximum: 999
+          readOnly: true
+        fixed_price:
+          description: The fixed amount to charge for the subscription. The changes to fixed amount are applicable to both existing and future subscriptions. For existing subscriptions, payments within 10 days of price change are not affected.
+          $ref: '#/components/schemas/money'
+        pricing_model:
+          type: string
+          description: The pricing model for tiered plan. The `tiers` parameter is required.
+          minLength: 1
+          maxLength: 24
+          pattern: ^[A-Z_]+$
+          enum:
+          - VOLUME
+          - TIERED
+        tiers:
+          type: array
+          description: An array of pricing tiers which are used for billing volume/tiered plans. pricing_model field has to be specified.
+          minItems: 1
+          maxItems: 32
+          items:
+            $ref: '#/components/schemas/pricing_tier'
+        create_time:
+          description: The date and time when this pricing scheme was created, in [Internet date and time format](https://tools.ietf.org/html/rfc3339#section-5.6).
+          readOnly: true
+          $ref: '#/components/schemas/date_time'
+        update_time:
+          description: The date and time when this pricing scheme was last updated, in [Internet date and time format](https://tools.ietf.org/html/rfc3339#section-5.6).
+          readOnly: true
+          $ref: '#/components/schemas/date_time'
+    payment_method:
+      type: object
+      description: The customer and merchant payment preferences.
+      title: Payment Method
+      properties:
+        payer_selected:
+          type: string
+          description: The customer-selected payment method on the merchant site.
+          minLength: 1
+          pattern: ^[0-9A-Z_]+$
+          default: PAYPAL
+        payee_preferred:
+          $ref: '#/components/schemas/payee_payment_method_preference'
+        standard_entry_class_code:
+          type: string
+          description: NACHA (the regulatory body governing the ACH network) requires that API callers (merchants, partners) obtain the consumers explicit authorization before initiating a transaction. To stay compliant, youll need to make sure that you retain a compliant authorization for each transaction that you originate to the ACH Network using this API. ACH transactions are categorized (using SEC codes) by how you capture authorization from the Receiver (the person whose bank account is being debited or credited). PayPal supports the following SEC codes.
+          default: WEB
+          minLength: 3
+          maxLength: 255
+          enum:
+          - TEL
+          - WEB
+          - CCD
+          - PPD
+    currency_code:
+      description: The [three-character ISO-4217 currency code](/docs/integration/direct/rest/currency-codes/) that identifies the currency.
+      type: string
+      format: ppaas_common_currency_code_v2
+      minLength: 3
+      maxLength: 3
+    country_code:
+      type: string
+      description: The [two-character ISO 3166-1 code](/docs/integration/direct/rest/country-codes/) that identifies the country or region.<blockquote><strong>Note:</strong> The country code for Great Britain is <code>GB</code> and not <code>UK</code> as used in the top-level domain names for that country. Use the `C2` country code for China worldwide for comparable uncontrolled price (CUP) method, bank card, and cross-border transactions.</blockquote>
+      format: ppaas_common_country_code_v2
+      maxLength: 2
+      minLength: 2
+      pattern: ^([A-Z]{2}|C2)$
+    error_401:
+      type: object
+      title: Unauthorized Error
+      description: Authentication failed due to missing Authorization header, or invalid authentication credentials.
+      properties:
+        name:
+          type: string
+          enum:
+          - AUTHENTICATION_FAILURE
+        message:
+          type: string
+          enum:
+          - Authentication failed due to missing authorization header, or invalid authentication credentials.
+        details:
+          type: array
+          items:
+            $ref: '#/components/schemas/error_details'
+        debug_id:
+          type: string
+          description: The PayPal internal ID. Used for correlation purposes.
+        links:
+          description: An array of request-related [HATEOAS links](https://en.wikipedia.org/wiki/HATEOAS).
+          type: array
+          minItems: 0
+          maxItems: 10000
+          items:
+            $ref: '#/components/schemas/error_link_description'
+    payee_payment_method_preference:
+      type: string
+      description: The merchant-preferred payment methods.
+      minLength: 1
+      maxLength: 255
+      pattern: ^[0-9A-Z_]+$
+      default: UNRESTRICTED
+      enum:
+      - UNRESTRICTED
+      - IMMEDIATE_PAYMENT_REQUIRED
+    subscription_revise_request:
+      title: Subscription Modify Plan Request
+      description: The request to update the quantity of the product or service in a subscription. You can also use this method to switch the plan and update the `shipping_amount` and `shipping_address` values for the subscription. This type of update requires the buyer's consent.
+      type: object
+      properties:
+        plan_id:
+          type: string
+          description: The unique PayPal-generated ID for the plan.
+          minLength: 3
+          maxLength: 50
+        quantity:
+          type: string
+          description: The quantity of the product or service in the subscription.
+          pattern: ^([0-9]+|([0-9]+)?[.][0-9]+)$
+          minLength: 1
+          maxLength: 32
+        shipping_amount:
+          description: The shipping charges.
+          $ref: '#/components/schemas/money'
+        shipping_address:
+          description: The shipping address of the subscriber.
+          $ref: '#/components/schemas/shipping_detail'
+        application_context:
+          $ref: '#/components/schemas/application_context'
+        plan:
+          description: An inline plan object to customise the subscription. You can override plan level default attributes by providing customised values for the subscription in this object. Any existing overrides will not be carried forward during subscription revise.
+          $ref: '#/components/schemas/plan_override'
+    error_415:
+      type: object
+      title: Unsupported Media Type Error
+      description: The server does not support the request payload's media type.
+      properties:
+        name:
+          type: string
+          enum:
+          - UNSUPPORTED_MEDIA_TYPE
+        message:
+          type: string
+          enum:
+          - The server does not support the request payload's media type.
+        details:
+          type: array
+          items:
+            $ref: '#/components/schemas/error_details'
+        debug_id:
+          type: string
+          description: The PayPal internal ID. Used for correlation purposes.
+        links:
+          description: An array of request-related [HATEOAS links](https://en.wikipedia.org/wiki/HATEOAS).
+          type: array
+          minItems: 0
+          maxItems: 10000
+          items:
+            $ref: '#/components/schemas/error_link_description'
+    subscriptions.revise-422:
+      properties:
+        details:
+          type: array
+          items:
+            anyOf:
+            - title: USER_ACCOUNT_CLOSED
+              properties:
+                issue:
+                  type: string
+                  enum:
+                  - USER_ACCOUNT_CLOSED
+                description:
+                  type: string
+                  enum:
+                  - User account locked or closed.
+            - title: PLAN_PRODUCT_NOT_COMPATIBLE
+              properties:
+                issue:
+                  type: string
+                  enum:
+                  - PLAN_PRODUCT_NOT_COMPATIBLE
+                description:
+                  type: string
+                  enum:
+                  - The old and the new plans should be for the same product.
+            - title: INVALID_BILLING_CYCLE_SEQUENCE
+              properties:
+                issue:
+                  type: string
+                  enum:
+                  - INVALID_BILLING_CYCLE_SEQUENCE
+                description:
+                  type: string
+                  enum:
+                  - The provided billing cycle sequence is not available.
+            - title: INVALID_PRICING_SCHEME
+              properties:
+                issue:
+                  type: string
+                  enum:
+                  - INVALID_PRICING_SCHEME
+                description:
+                  type: string
+                  enum:
+                  - The override plan pricing scheme should be of the same type as that of the original plan.
+            - title: INVALID_PRICING_TIER_AMOUNT
+              properties:
+                issue:
+                  type: string
+                  enum:
+                  - INVALID_PRICING_TIER_AMOUNT
+                description:
+                  type: string
+                  enum:
+                  - Free tiers are not supported.
+            - title: MISSING_PRICING_SCHEME_TIERS
+              properties:
+                issue:
+                  type: string
+                  enum:
+                  - MISSING_PRICING_SCHEME_TIERS
+                description:
+                  type: string
+                  enum:
+                  - Tier(s) are missing for some quantities.
+            - title: OVERLAPPING_PRICING_SCHEME_TIERS
+              properties:
+                issue:
+                  type: string
+                  enum:
+                  - OVERLAPPING_PRICING_SCHEME_TIERS
+                description:
+                  type: string
+                  enum:
+                  - The specified quantity overlaps with multiple pricing tiers.
+            - title: INVALID_PRICING_MODEL
+              properties:
+                issue:
+                  type: string
+                  enum:
+                  - INVALID_PRICING_MODEL
+                description:
+                  type: string
+                  enum:
+                  - The specified pricing model is not supported for trial billing cycle.
+            - title: FIXED_PRICE_NOT_SUPPORTED
+              properties:
+                issue:
+                  type: string
+                  enum:
+                  - FIXED_PRICE_NOT_SUPPORTED
+                description:
+                  type: string
+                  enum:
+                  - Fixed price is not supported for tiered pricing schemes.
+            - title: INVALID_PRICING_TIER_QUANTITY
+              properties:
+                issue:
+                  type: string
+                  enum:
+                  - INVALID_PRICING_TIER_QUANTITY
+                description:
+                  type: string
+                  enum:
+                  - Tier starting quantity must be less than ending quantity.
+            - title: CURRENCY_MISMATCH
+              properties:
+                issue:
+                  type: string
+                  enum:
+                  - CURRENCY_MISMATCH
+                description:
+                  type: string
+                  enum:
+                  - The currency code is different from the plan's currency code.
+    payment_preferences_override:
+      title: Payment Preferences Override
+      description: The payment preferences to override at subscription level.
+      type: object
+      properties:
+        auto_bill_outstanding:
+          type: boolean
+          description: Indicates whether to automatically bill the outstanding amount in the next billing cycle.
+        setup_fee:
+          description: The initial set-up fee for the service.
+          $ref: '#/components/schemas/money'
+        setup_fee_failure_action:
+          type: string
+          description: The action to take on the subscription if the initial payment for the setup fails.
+          minLength: 1
+          maxLength: 24
+          pattern: ^[A-Z_]+$
+          enum:
+          - CONTINUE
+          - CANCEL
+        payment_failure_threshold:
+          type: integer
+          description: The maximum number of payment failures before a subscription is suspended. For example, if `payment_failure_threshold` is `2`, the subscription automatically updates to the `SUSPEND` state if two consecutive payments fail.
+          minimum: 0
+          maximum: 999
+    billing_cycle_override:
+      title: Billing Cycle Override
+      description: The billing cycle details to override at subscription level. The subscription billing cycle definition has to adhere to the plan billing cycle definition.
+      type: object
+      properties:
+        pricing_scheme:
+          description: The active pricing scheme for this billing cycle. A free trial billing cycle does not require a pricing scheme.
+          $ref: '#/components/schemas/pricing_scheme'
+        sequence:
+          type: integer
+          description: The order in which this cycle is to run among other billing cycles. For example, a trial billing cycle has a `sequence` of `1` while a regular billing cycle has a `sequence` of `2`, so that trial cycle runs before the regular cycle.
+          minimum: 1
+          maximum: 99
+        total_cycles:
+          type: integer
+          description: The number of times this billing cycle gets executed. Trial billing cycles can only be executed a finite number of times (value between <code>1</code> and <code>999</code> for <code>total_cycles</code>). Regular billing cycles can be executed infinite times (value of <code>0</code> for <code>total_cycles</code>) or a finite number of times (value between <code>1</code> and <code>999</code> for <code>total_cycles</code>).
+          minimum: 0
+          maximum: 999
+      required:
+      - sequence
+    error_500:
+      type: object
+      title: Internal Server Error
+      description: This is either a system or application error, and generally indicates that although the client appeared to provide a correct request, something unexpected has gone wrong on the server.
+      properties:
+        name:
+          type: string
+          enum:
+          - INTERNAL_SERVER_ERROR
+        message:
+          type: string
+          enum:
+          - An internal server error occurred.
+        debug_id:
+          type: string
+          description: The PayPal internal ID. Used for correlation purposes.
+        links:
+          description: An array of request-related [HATEOAS links](https://en.wikipedia.org/wiki/HATEOAS).
+          type: array
+          minItems: 0
+          maxItems: 10000
+          items:
+            $ref: '#/components/schemas/error_link_description'
+      example:
+        name: INTERNAL_SERVER_ERROR
+        message: An internal server error occurred.
+        debug_id: 90957fca61718
+        links:
+        - href: https://developer.paypal.com/api/orders/v2/#error-INTERNAL_SERVER_ERROR
+          rel: information_link
+    percentage:
+      type: string
+      description: The percentage, as a fixed-point, signed decimal number. For example, define a 19.99% interest rate as `19.99`.
+      format: ppaas_common_percentage_v2
+      pattern: ^((-?[0-9]+)|(-?([0-9]+)?[.][0-9]+))$
+    date_time:
+      type: string
+      description: The date and time, in [Internet date and time format](https://tools.ietf.org/html/rfc3339#section-5.6). Seconds are required while fractional seconds are optional.<blockquote><strong>Note:</strong> The regular expression provides guidance but does not reject all invalid dates.</blockquote>
+      format: ppaas_date_time_v3
+      minLength: 20
+      maxLength: 64
+      pattern: ^[0-9]{4}-(0[1-9]|1[0-2])-(0[1-9]|[1-2][0-9]|3[0-1])[T,t]([0-1][0-9]|2[0-3]):[0-5][0-9]:([0-5][0-9]|60)([.][0-9]+)?([Zz]|[+-][0-9]{2}:[0-9]{2})$
+  parameters:
+    id:
+      name: id
+      in: path
+      required: true
+      description: The ID of the subscription.
+      schema:
+        type: string
+  responses:
+    default:
+      description: The default response.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/error_default'
+  securitySchemes:
+    Oauth2:
+      type: oauth2
+      description: Oauth 2.0 authentication
+      flows:
+        clientCredentials:
+          tokenUrl: /v1/oauth2/token
+          scopes:
+            https://uri.paypal.com/services/subscriptions: Manage plan & subscription
+externalDocs:
+  url: https://developer.paypal.com/docs/api/subscriptions/v1/

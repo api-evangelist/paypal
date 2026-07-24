@@ -1,0 +1,167 @@
+openapi: 3.0.3
+info:
+  title: Paypal Subscriptions Authorizations Webhooks-Event-Types API
+  description: You can use billing plans and subscriptions to create subscriptions that process recurring PayPal payments for physical or digital goods, or services. A plan includes pricing and billing cycle information that defines the amount and frequency of charge for a subscription. You can also define a fixed plan, such as a $5 basic plan or a volume- or graduated-based plan with pricing tiers based on the quantity purchased. For more information, see <a href="/docs/subscriptions/">Subscriptions Overview</a>.
+  version: '1.6'
+  contact: {}
+servers:
+- url: https://api-m.sandbox.paypal.com
+  description: PayPal Sandbox Environment
+- url: https://api-m.paypal.com
+  description: PayPal Live Environment
+tags:
+- name: Webhooks-Event-Types
+  description: Use the `/webhooks-event-types` resource to list available events to which any webhook can subscribe.
+paths:
+  /v1/notifications/webhooks-event-types:
+    get:
+      summary: Paypal List available events
+      description: Lists available events to which any webhook can subscribe. For a list of supported events, see [Webhook event names](/docs/api/notifications/webhooks/event-names/).
+      operationId: webhooks-event-types.list
+      responses:
+        '200':
+          description: A successful request returns the HTTP `200 OK` status code and a JSON response body that lists available events to which any webhook can subscribe.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/EventTypeList'
+        default:
+          description: The error response.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/error'
+      tags:
+      - Webhooks-Event-Types
+components:
+  schemas:
+    error:
+      type: object
+      title: Error
+      description: The error details.
+      properties:
+        name:
+          type: string
+          description: The human-readable, unique name of the error.
+        message:
+          type: string
+          description: The message that describes the error.
+        debug_id:
+          type: string
+          description: The PayPal internal ID. Used for correlation purposes.
+        information_link:
+          type: string
+          description: The information link, or URI, that shows detailed information about this error for the developer.
+          readOnly: true
+        details:
+          type: array
+          description: An array of additional details about the error.
+          items:
+            $ref: '#/components/schemas/error_details-2'
+        links:
+          type: array
+          description: An array of request-related [HATEOAS links](/docs/api/reference/api-responses/#hateoas-links).
+          readOnly: true
+          items:
+            $ref: '#/components/schemas/link_description'
+            readOnly: true
+      required:
+      - name
+      - message
+      - debug_id
+    link_description:
+      type: object
+      title: Link Description
+      description: The request-related [HATEOAS link](/docs/api/reference/api-responses/#hateoas-links) information.
+      required:
+      - href
+      - rel
+      properties:
+        href:
+          type: string
+          description: The complete target URL. To make the related call, combine the method with this [URI Template-formatted](https://tools.ietf.org/html/rfc6570) link. For pre-processing, include the `$`, `(`, and `)` characters. The `href` is the key HATEOAS component that links a completed call with a subsequent call.
+        rel:
+          type: string
+          description: The [link relation type](https://tools.ietf.org/html/rfc5988#section-4), which serves as an ID for a link that unambiguously describes the semantics of the link. See [Link Relations](https://www.iana.org/assignments/link-relations/link-relations.xhtml).
+        method:
+          type: string
+          description: The HTTP method required to make the related call.
+          enum:
+          - GET
+          - POST
+          - PUT
+          - DELETE
+          - HEAD
+          - CONNECT
+          - OPTIONS
+          - PATCH
+    event_type:
+      type: object
+      title: Event Type
+      description: An event type.
+      properties:
+        name:
+          type: string
+          description: The unique event name.<blockquote><strong>Note:</strong> To subscribe to all events, including events as they are added, specify an `*` as the value to represent a wildcard.</blockquote>
+          readOnly: false
+        description:
+          type: string
+          description: A human-readable description of the event.
+          readOnly: true
+        status:
+          type: string
+          description: The status of a webhook event.
+          readOnly: true
+        resource_versions:
+          type: array
+          description: 'Identifier for the event type example: 1.0/2.0 etc.'
+          readOnly: true
+          items:
+            type: string
+            description: The ID for an event type. For example, `1.0` or `2.0`.
+      required:
+      - name
+    EventTypeList:
+      type: object
+      title: Event Type List
+      description: A list of webhook events.
+      properties:
+        event_types:
+          type: array
+          description: An array of webhook events.
+          items:
+            $ref: '#/components/schemas/event_type'
+    error_details-2:
+      title: Error Details
+      type: object
+      description: The error details. Required for client-side `4XX` errors.
+      properties:
+        field:
+          type: string
+          description: The field that caused the error. If this field is in the body, set this value to the field's JSON pointer value. Required for client-side errors.
+        value:
+          type: string
+          description: The value of the field that caused the error.
+        location:
+          type: string
+          description: The location of the field that caused the error. Value is `body`, `path`, or `query`.
+          default: body
+        issue:
+          type: string
+          description: The unique, fine-grained application-level error code.
+        description:
+          type: string
+          description: The human-readable description for an issue. The description can change over the lifetime of an API, so clients must not depend on this value.
+      required:
+      - issue
+  securitySchemes:
+    Oauth2:
+      type: oauth2
+      description: Oauth 2.0 authentication
+      flows:
+        clientCredentials:
+          tokenUrl: /v1/oauth2/token
+          scopes:
+            https://uri.paypal.com/services/subscriptions: Manage plan & subscription
+externalDocs:
+  url: https://developer.paypal.com/docs/api/subscriptions/v1/

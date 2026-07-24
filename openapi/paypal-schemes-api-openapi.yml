@@ -1,0 +1,753 @@
+openapi: 3.0.3
+info:
+  title: Paypal Subscriptions Authorizations Schemes API
+  description: You can use billing plans and subscriptions to create subscriptions that process recurring PayPal payments for physical or digital goods, or services. A plan includes pricing and billing cycle information that defines the amount and frequency of charge for a subscription. You can also define a fixed plan, such as a $5 basic plan or a volume- or graduated-based plan with pricing tiers based on the quantity purchased. For more information, see <a href="/docs/subscriptions/">Subscriptions Overview</a>.
+  version: '1.6'
+  contact: {}
+servers:
+- url: https://api-m.sandbox.paypal.com
+  description: PayPal Sandbox Environment
+- url: https://api-m.paypal.com
+  description: PayPal Live Environment
+tags:
+- name: Schemes
+paths:
+  /v1/billing/plans/{id}/update-pricing-schemes:
+    post:
+      summary: Update pricing
+      description: Updates pricing for a plan. For example, you can update a regular billing cycle from $5 per month to $7 per month.
+      operationId: plans.update-pricing-schemes
+      responses:
+        '204':
+          description: A successful request returns the HTTP `204 No Content` status code with no JSON response body.
+        '400':
+          description: Bad Request. Request is not well-formed, syntactically incorrect, or violates schema.
+          content:
+            application/json:
+              schema:
+                allOf:
+                - $ref: '#/components/schemas/error_400'
+                - $ref: '#/components/schemas/plans.update-pricing-schemes-400'
+        '401':
+          description: Authentication failed due to missing authorization header, or invalid authentication credentials.
+          content:
+            application/json:
+              schema:
+                allOf:
+                - $ref: '#/components/schemas/error_401'
+                - $ref: '#/components/schemas/401'
+        '403':
+          description: Authorization failed due to insufficient permissions.
+          content:
+            application/json:
+              schema:
+                allOf:
+                - $ref: '#/components/schemas/error_403'
+                - $ref: '#/components/schemas/403'
+        '404':
+          description: The specified resource does not exist.
+          content:
+            application/json:
+              schema:
+                allOf:
+                - $ref: '#/components/schemas/error_404'
+                - $ref: '#/components/schemas/404'
+        '422':
+          description: The requested action could not be performed, semantically incorrect, or failed business validation.
+          content:
+            application/json:
+              schema:
+                allOf:
+                - $ref: '#/components/schemas/error_422'
+                - $ref: '#/components/schemas/plans.update-pricing-schemes-422'
+        '500':
+          description: An internal server error has occurred.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/error_500'
+        default:
+          $ref: '#/components/responses/default'
+      parameters:
+      - $ref: '#/components/parameters/id'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/update_pricing_schemes_list_request'
+            examples:
+              update_pricing_schemes_list_request:
+                value:
+                  pricing_schemes:
+                  - billing_cycle_sequence: 1
+                    pricing_scheme:
+                      fixed_price:
+                        value: '50'
+                        currency_code: USD
+                  - billing_cycle_sequence: 2
+                    pricing_scheme:
+                      fixed_price:
+                        value: '100'
+                        currency_code: USD
+                      pricing_model: VOLUME
+                      tiers:
+                      - starting_quantity: '1'
+                        ending_quantity: '1000'
+                        amount:
+                          value: '150'
+                          currency_code: USD
+                      - starting_quantity: '1001'
+                        amount:
+                          value: '250'
+                          currency_code: USD
+      security:
+      - Oauth2:
+        - https://uri.paypal.com/services/subscriptions
+      tags:
+      - Schemes
+components:
+  schemas:
+    error_404:
+      type: object
+      title: Not found Error
+      description: The server has not found anything matching the request URI. This either means that the URI is incorrect or the resource is not available.
+      properties:
+        name:
+          type: string
+          enum:
+          - RESOURCE_NOT_FOUND
+        message:
+          type: string
+          enum:
+          - The specified resource does not exist.
+        details:
+          type: array
+          items:
+            $ref: '#/components/schemas/error_details'
+        debug_id:
+          type: string
+          description: The PayPal internal ID. Used for correlation purposes.
+        links:
+          description: An array of request-related [HATEOAS links](https://en.wikipedia.org/wiki/HATEOAS).
+          type: array
+          minItems: 0
+          maxItems: 10000
+          items:
+            $ref: '#/components/schemas/error_link_description'
+    error_409:
+      type: object
+      title: Resource Conflict Error
+      description: The server has detected a conflict while processing this request.
+      properties:
+        name:
+          type: string
+          enum:
+          - RESOURCE_CONFLICT
+        message:
+          type: string
+          enum:
+          - The server has detected a conflict while processing this request.
+        details:
+          type: array
+          items:
+            $ref: '#/components/schemas/error_details'
+        debug_id:
+          type: string
+          description: The PayPal internal ID. Used for correlation purposes.
+        links:
+          description: An array of request-related [HATEOAS links](https://en.wikipedia.org/wiki/HATEOAS).
+          type: array
+          minItems: 0
+          maxItems: 10000
+          items:
+            $ref: '#/components/schemas/error_link_description'
+    '403':
+      properties:
+        details:
+          type: array
+          items:
+            anyOf:
+            - title: PERMISSION_DENIED
+              properties:
+                issue:
+                  type: string
+                  enum:
+                  - PERMISSION_DENIED
+                description:
+                  type: string
+                  enum:
+                  - You do not have permission to access or perform operations on this resource.
+    error_403:
+      type: object
+      title: Not Authorized Error
+      description: 'The client is not authorized to access this resource, although it may have valid credentials. '
+      properties:
+        name:
+          type: string
+          enum:
+          - NOT_AUTHORIZED
+        message:
+          type: string
+          enum:
+          - Authorization failed due to insufficient permissions.
+        details:
+          type: array
+          items:
+            $ref: '#/components/schemas/error_details'
+        debug_id:
+          type: string
+          description: The PayPal internal ID. Used for correlation purposes.
+        links:
+          description: An array of request-related [HATEOAS links](https://en.wikipedia.org/wiki/HATEOAS).
+          type: array
+          minItems: 0
+          maxItems: 10000
+          items:
+            $ref: '#/components/schemas/error_link_description'
+    error_422:
+      type: object
+      title: Unprocessable Entity Error
+      description: The requested action cannot be performed and may require interaction with APIs or processes outside of the current request. This is distinct from a 500 response in that there are no systemic problems limiting the API from performing the request.
+      properties:
+        name:
+          type: string
+          enum:
+          - UNPROCESSABLE_ENTITY
+        message:
+          type: string
+          enum:
+          - The requested action could not be performed, semantically incorrect, or failed business validation.
+        details:
+          type: array
+          items:
+            $ref: '#/components/schemas/error_details'
+        debug_id:
+          type: string
+          description: The PayPal internal ID. Used for correlation purposes.
+        links:
+          description: An array of request-related [HATEOAS links](https://en.wikipedia.org/wiki/HATEOAS).
+          type: array
+          minItems: 0
+          maxItems: 10000
+          items:
+            $ref: '#/components/schemas/error_link_description'
+    plans.update-pricing-schemes-400:
+      properties:
+        details:
+          type: array
+          items:
+            anyOf:
+            - title: INVALID_PARAMETER_VALUE
+              properties:
+                issue:
+                  type: string
+                  enum:
+                  - INVALID_PARAMETER_VALUE
+                description:
+                  type: string
+                  enum:
+                  - The value of a field is invalid.
+            - title: MISSING_REQUIRED_PARAMETER
+              properties:
+                issue:
+                  type: string
+                  enum:
+                  - MISSING_REQUIRED_PARAMETER
+                description:
+                  type: string
+                  enum:
+                  - A required field is missing.
+    update_pricing_scheme_request:
+      title: Update Pricing Scheme
+      description: The update pricing scheme request details.
+      type: object
+      properties:
+        billing_cycle_sequence:
+          type: integer
+          description: The billing cycle sequence.
+          minimum: 1
+          maximum: 99
+        pricing_scheme:
+          $ref: '#/components/schemas/pricing_scheme'
+      required:
+      - billing_cycle_sequence
+      - pricing_scheme
+    error_details:
+      title: Error Details
+      type: object
+      description: The error details. Required for client-side `4XX` errors.
+      properties:
+        field:
+          type: string
+          description: The field that caused the error. If this field is in the body, set this value to the field's JSON pointer value. Required for client-side errors.
+        value:
+          type: string
+          description: The value of the field that caused the error.
+        location:
+          $ref: '#/components/schemas/error_location'
+        issue:
+          type: string
+          description: The unique, fine-grained application-level error code.
+        description:
+          type: string
+          description: The human-readable description for an issue. The description can change over the lifetime of an API, so clients must not depend on this value.
+      required:
+      - issue
+    error_link_description:
+      title: Link Description
+      description: The request-related [HATEOAS link](/api/rest/responses/#hateoas-links) information.
+      type: object
+      required:
+      - href
+      - rel
+      properties:
+        href:
+          description: The complete target URL. To make the related call, combine the method with this [URI Template-formatted](https://tools.ietf.org/html/rfc6570) link. For pre-processing, include the `$`, `(`, and `)` characters. The `href` is the key HATEOAS component that links a completed call with a subsequent call.
+          type: string
+          minLength: 0
+          maxLength: 20000
+          pattern: ^.*$
+        rel:
+          description: The [link relation type](https://tools.ietf.org/html/rfc5988#section-4), which serves as an ID for a link that unambiguously describes the semantics of the link. See [Link Relations](https://www.iana.org/assignments/link-relations/link-relations.xhtml).
+          type: string
+          minLength: 0
+          maxLength: 100
+          pattern: ^.*$
+        method:
+          description: The HTTP method required to make the related call.
+          type: string
+          minLength: 3
+          maxLength: 6
+          pattern: ^[A-Z]*$
+          enum:
+          - GET
+          - POST
+          - PUT
+          - DELETE
+          - PATCH
+    error_default:
+      description: The default error response.
+      oneOf:
+      - $ref: '#/components/schemas/error_400'
+      - $ref: '#/components/schemas/error_401'
+      - $ref: '#/components/schemas/error_403'
+      - $ref: '#/components/schemas/error_404'
+      - $ref: '#/components/schemas/error_409'
+      - $ref: '#/components/schemas/error_415'
+      - $ref: '#/components/schemas/error_422'
+      - $ref: '#/components/schemas/error_500'
+      - $ref: '#/components/schemas/error_503'
+    error_location:
+      type: string
+      description: The location of the field that caused the error. Value is `body`, `path`, or `query`.
+      enum:
+      - body
+      - path
+      - query
+      default: body
+    money:
+      type: object
+      title: Money
+      description: The currency and amount for a financial transaction, such as a balance or payment due.
+      properties:
+        currency_code:
+          $ref: '#/components/schemas/currency_code'
+        value:
+          type: string
+          description: The value, which might be:<ul><li>An integer for currencies like `JPY` that are not typically fractional.</li><li>A decimal fraction for currencies like `TND` that are subdivided into thousandths.</li></ul>For the required number of decimal places for a currency code, see [Currency Codes](/docs/integration/direct/rest/currency-codes/).
+          maxLength: 32
+          pattern: ^((-?[0-9]+)|(-?([0-9]+)?[.][0-9]+))$
+      required:
+      - currency_code
+      - value
+    pricing_tier:
+      title: Pricing Tier
+      description: The pricing tier details.
+      type: object
+      properties:
+        starting_quantity:
+          type: string
+          description: The starting quantity for the tier.
+          pattern: ^([0-9]+|([0-9]+)?[.][0-9]+)$
+          minLength: 1
+          maxLength: 32
+        ending_quantity:
+          type: string
+          description: The ending quantity for the tier. Optional for the last tier.
+          pattern: ^([0-9]+|([0-9]+)?[.][0-9]+)$
+          minLength: 1
+          maxLength: 32
+        amount:
+          description: The pricing amount for the tier.
+          $ref: '#/components/schemas/money'
+      required:
+      - starting_quantity
+      - amount
+    '401':
+      properties:
+        details:
+          type: array
+          items:
+            anyOf:
+            - title: INVALID_ACCOUNT_STATUS
+              properties:
+                issue:
+                  type: string
+                  enum:
+                  - INVALID_ACCOUNT_STATUS
+                description:
+                  type: string
+                  enum:
+                  - Account validations failed for the user.
+    plans.update-pricing-schemes-422:
+      properties:
+        details:
+          type: array
+          items:
+            anyOf:
+            - title: CURRENCY_MISMATCH
+              properties:
+                issue:
+                  type: string
+                  enum:
+                  - CURRENCY_MISMATCH
+                description:
+                  type: string
+                  enum:
+                  - The currency code is different from the plan's currency code.
+            - title: INVALID_BILLING_CYCLE_SEQUENCE
+              properties:
+                issue:
+                  type: string
+                  enum:
+                  - INVALID_BILLING_CYCLE_SEQUENCE
+                description:
+                  type: string
+                  enum:
+                  - The provided billing cycle sequence is not available.
+            - title: INVALID_PRICING_SCHEME
+              properties:
+                issue:
+                  type: string
+                  enum:
+                  - INVALID_PRICING_SCHEME
+                description:
+                  type: string
+                  enum:
+                  - The new pricing scheme should be of the same type as that of the old one.
+            - title: INVALID_PRICING_TIER_AMOUNT
+              properties:
+                issue:
+                  type: string
+                  enum:
+                  - INVALID_PRICING_TIER_AMOUNT
+                description:
+                  type: string
+                  enum:
+                  - Free tiers are not supported.
+            - title: MISSING_PRICING_SCHEME_TIERS
+              properties:
+                issue:
+                  type: string
+                  enum:
+                  - MISSING_PRICING_SCHEME_TIERS
+                description:
+                  type: string
+                  enum:
+                  - Tier(s) are missing for some quantities.
+            - title: OVERLAPPING_PRICING_SCHEME_TIERS
+              properties:
+                issue:
+                  type: string
+                  enum:
+                  - OVERLAPPING_PRICING_SCHEME_TIERS
+                description:
+                  type: string
+                  enum:
+                  - The specified quantity overlaps with multiple pricing tiers.
+            - title: INVALID_PRICING_MODEL
+              properties:
+                issue:
+                  type: string
+                  enum:
+                  - INVALID_PRICING_MODEL
+                description:
+                  type: string
+                  enum:
+                  - The specified pricing model is not supported for trial billing cycle.
+            - title: FIXED_PRICE_NOT_SUPPORTED
+              properties:
+                issue:
+                  type: string
+                  enum:
+                  - FIXED_PRICE_NOT_SUPPORTED
+                description:
+                  type: string
+                  enum:
+                  - Fixed price is not supported for tiered pricing schemes.
+            - title: INVALID_PRICING_TIER_QUANTITY
+              properties:
+                issue:
+                  type: string
+                  enum:
+                  - INVALID_PRICING_TIER_QUANTITY
+                description:
+                  type: string
+                  enum:
+                  - Tier starting quantity must be less than ending quantity.
+            - title: PRICING_SCHEME_UPDATE_NOT_ALLOWED
+              properties:
+                issue:
+                  type: string
+                  enum:
+                  - PRICING_SCHEME_UPDATE_NOT_ALLOWED
+                description:
+                  type: string
+                  enum:
+                  - Pricing scheme update is not allowed for the plan.
+    error_503:
+      type: object
+      title: Service Unavailable Error
+      description: The server is temporarily unable to handle the request, for example, because of planned maintenance or downtime.
+      properties:
+        name:
+          type: string
+          enum:
+          - SERVICE_UNAVAILABLE
+        message:
+          type: string
+          enum:
+          - Service Unavailable.
+        debug_id:
+          type: string
+          description: The PayPal internal ID. Used for correlation purposes.
+        links:
+          description: An array of request-related [HATEOAS links](https://en.wikipedia.org/wiki/HATEOAS).
+          type: array
+          minItems: 0
+          maxItems: 10000
+          items:
+            $ref: '#/components/schemas/error_link_description'
+      example:
+        name: SERVICE_UNAVAILABLE
+        message: Service Unavailable.
+        debug_id: 90957fca61718
+        information_link: https://developer.paypal.com/docs/api/orders/v2/#error-SERVICE_UNAVAILABLE
+    error_400:
+      type: object
+      title: Bad Request Error
+      description: Request is not well-formed, syntactically incorrect, or violates schema.
+      properties:
+        name:
+          type: string
+          enum:
+          - INVALID_REQUEST
+        message:
+          type: string
+          enum:
+          - Request is not well-formed, syntactically incorrect, or violates schema.
+        details:
+          type: array
+          items:
+            $ref: '#/components/schemas/error_details'
+        debug_id:
+          type: string
+          description: The PayPal internal ID. Used for correlation purposes.
+        links:
+          description: An array of request-related [HATEOAS links](https://en.wikipedia.org/wiki/HATEOAS).
+          type: array
+          minItems: 0
+          maxItems: 10000
+          items:
+            $ref: '#/components/schemas/error_link_description'
+    pricing_scheme:
+      title: Pricing Scheme
+      description: The pricing scheme details.
+      type: object
+      properties:
+        version:
+          type: integer
+          description: The version of the pricing scheme.
+          minimum: 0
+          maximum: 999
+          readOnly: true
+        fixed_price:
+          description: The fixed amount to charge for the subscription. The changes to fixed amount are applicable to both existing and future subscriptions. For existing subscriptions, payments within 10 days of price change are not affected.
+          $ref: '#/components/schemas/money'
+        pricing_model:
+          type: string
+          description: The pricing model for tiered plan. The `tiers` parameter is required.
+          minLength: 1
+          maxLength: 24
+          pattern: ^[A-Z_]+$
+          enum:
+          - VOLUME
+          - TIERED
+        tiers:
+          type: array
+          description: An array of pricing tiers which are used for billing volume/tiered plans. pricing_model field has to be specified.
+          minItems: 1
+          maxItems: 32
+          items:
+            $ref: '#/components/schemas/pricing_tier'
+        create_time:
+          description: The date and time when this pricing scheme was created, in [Internet date and time format](https://tools.ietf.org/html/rfc3339#section-5.6).
+          readOnly: true
+          $ref: '#/components/schemas/date_time'
+        update_time:
+          description: The date and time when this pricing scheme was last updated, in [Internet date and time format](https://tools.ietf.org/html/rfc3339#section-5.6).
+          readOnly: true
+          $ref: '#/components/schemas/date_time'
+    currency_code:
+      description: The [three-character ISO-4217 currency code](/docs/integration/direct/rest/currency-codes/) that identifies the currency.
+      type: string
+      format: ppaas_common_currency_code_v2
+      minLength: 3
+      maxLength: 3
+    error_401:
+      type: object
+      title: Unauthorized Error
+      description: Authentication failed due to missing Authorization header, or invalid authentication credentials.
+      properties:
+        name:
+          type: string
+          enum:
+          - AUTHENTICATION_FAILURE
+        message:
+          type: string
+          enum:
+          - Authentication failed due to missing authorization header, or invalid authentication credentials.
+        details:
+          type: array
+          items:
+            $ref: '#/components/schemas/error_details'
+        debug_id:
+          type: string
+          description: The PayPal internal ID. Used for correlation purposes.
+        links:
+          description: An array of request-related [HATEOAS links](https://en.wikipedia.org/wiki/HATEOAS).
+          type: array
+          minItems: 0
+          maxItems: 10000
+          items:
+            $ref: '#/components/schemas/error_link_description'
+    '404':
+      properties:
+        details:
+          type: array
+          items:
+            anyOf:
+            - title: INVALID_RESOURCE_ID
+              properties:
+                issue:
+                  type: string
+                  enum:
+                  - INVALID_RESOURCE_ID
+                description:
+                  type: string
+                  enum:
+                  - Specified resource ID does not exist. Please check the resource ID and try again.
+    error_415:
+      type: object
+      title: Unsupported Media Type Error
+      description: The server does not support the request payload's media type.
+      properties:
+        name:
+          type: string
+          enum:
+          - UNSUPPORTED_MEDIA_TYPE
+        message:
+          type: string
+          enum:
+          - The server does not support the request payload's media type.
+        details:
+          type: array
+          items:
+            $ref: '#/components/schemas/error_details'
+        debug_id:
+          type: string
+          description: The PayPal internal ID. Used for correlation purposes.
+        links:
+          description: An array of request-related [HATEOAS links](https://en.wikipedia.org/wiki/HATEOAS).
+          type: array
+          minItems: 0
+          maxItems: 10000
+          items:
+            $ref: '#/components/schemas/error_link_description'
+    update_pricing_schemes_list_request:
+      title: Update Pricing Scheme Request
+      description: The update pricing scheme request details.
+      type: object
+      properties:
+        pricing_schemes:
+          type: array
+          description: An array of pricing schemes.
+          minItems: 1
+          maxItems: 99
+          items:
+            $ref: '#/components/schemas/update_pricing_scheme_request'
+      required:
+      - pricing_schemes
+    error_500:
+      type: object
+      title: Internal Server Error
+      description: This is either a system or application error, and generally indicates that although the client appeared to provide a correct request, something unexpected has gone wrong on the server.
+      properties:
+        name:
+          type: string
+          enum:
+          - INTERNAL_SERVER_ERROR
+        message:
+          type: string
+          enum:
+          - An internal server error occurred.
+        debug_id:
+          type: string
+          description: The PayPal internal ID. Used for correlation purposes.
+        links:
+          description: An array of request-related [HATEOAS links](https://en.wikipedia.org/wiki/HATEOAS).
+          type: array
+          minItems: 0
+          maxItems: 10000
+          items:
+            $ref: '#/components/schemas/error_link_description'
+      example:
+        name: INTERNAL_SERVER_ERROR
+        message: An internal server error occurred.
+        debug_id: 90957fca61718
+        links:
+        - href: https://developer.paypal.com/api/orders/v2/#error-INTERNAL_SERVER_ERROR
+          rel: information_link
+    date_time:
+      type: string
+      description: The date and time, in [Internet date and time format](https://tools.ietf.org/html/rfc3339#section-5.6). Seconds are required while fractional seconds are optional.<blockquote><strong>Note:</strong> The regular expression provides guidance but does not reject all invalid dates.</blockquote>
+      format: ppaas_date_time_v3
+      minLength: 20
+      maxLength: 64
+      pattern: ^[0-9]{4}-(0[1-9]|1[0-2])-(0[1-9]|[1-2][0-9]|3[0-1])[T,t]([0-1][0-9]|2[0-3]):[0-5][0-9]:([0-5][0-9]|60)([.][0-9]+)?([Zz]|[+-][0-9]{2}:[0-9]{2})$
+  parameters:
+    id:
+      name: id
+      in: path
+      required: true
+      description: The ID of the subscription.
+      schema:
+        type: string
+  responses:
+    default:
+      description: The default response.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/error_default'
+  securitySchemes:
+    Oauth2:
+      type: oauth2
+      description: Oauth 2.0 authentication
+      flows:
+        clientCredentials:
+          tokenUrl: /v1/oauth2/token
+          scopes:
+            https://uri.paypal.com/services/subscriptions: Manage plan & subscription
+externalDocs:
+  url: https://developer.paypal.com/docs/api/subscriptions/v1/

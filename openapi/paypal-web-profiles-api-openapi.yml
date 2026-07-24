@@ -1,0 +1,427 @@
+openapi: 3.0.3
+info:
+  title: Paypal Subscriptions Authorizations Web-Profiles API
+  description: You can use billing plans and subscriptions to create subscriptions that process recurring PayPal payments for physical or digital goods, or services. A plan includes pricing and billing cycle information that defines the amount and frequency of charge for a subscription. You can also define a fixed plan, such as a $5 basic plan or a volume- or graduated-based plan with pricing tiers based on the quantity purchased. For more information, see <a href="/docs/subscriptions/">Subscriptions Overview</a>.
+  version: '1.6'
+  contact: {}
+servers:
+- url: https://api-m.sandbox.paypal.com
+  description: PayPal Sandbox Environment
+- url: https://api-m.paypal.com
+  description: PayPal Live Environment
+tags:
+- name: Web-Profiles
+  description: Use the `/payment-experience/web-profiles` resource to create, show details for, list, update, partially update, and delete web experience profiles.
+paths:
+  /v1/payment-experience/web-profiles:
+    post:
+      summary: Paypal Create web experience profile
+      description: Creates a web experience profile. In the JSON request body, specify the profile name and details.
+      operationId: web-profile.create
+      responses:
+        '200':
+          description: A successful request, with or without the optional <code>PayPal-Request-Id</code> request header, returns the HTTP <code>201 Created</code> status code and a JSON response body that shows the profile details and the ID of the profile. Any subsequent calls with the same <code>PayPal-Request-Id</code> request header value within a three-hour window returns the HTTP <code>200 OK</code> status code and a JSON response body that shows the profile details and the ID of the profile.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/web_profile'
+        '201':
+          description: A successful request, with or without the optional <code>PayPal-Request-Id</code> request header, returns the HTTP <code>201 Created</code> status code and a JSON response body that shows the profile details and the ID of the profile. Any subsequent calls with the same <code>PayPal-Request-Id</code> request header value within a three-hour window returns the HTTP <code>200 OK</code> status code and a JSON response body that shows the profile details and the ID of the profile.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/web_profile'
+        '500':
+          description: An internal server error occurred. The request returns the HTTP `500 Internal Server Error` status code.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/error'
+        default:
+          description: The error response.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/error'
+      parameters:
+      - $ref: '#/components/parameters/paypal_request_id'
+      requestBody:
+        $ref: '#/components/requestBodies/web_profile'
+      security:
+      - Oauth2:
+        - https://uri.paypal.com/services/payments/payment
+      - Oauth2:
+        - https://uri.paypal.com/services/payments/realtimepayment
+      tags:
+      - Web-Profiles
+    get:
+      summary: Paypal List web experience profiles
+      description: Lists the latest 20 web experience profiles for a merchant or subject. To show details for these or additional profiles, you can show web experience profile details by ID.
+      operationId: web-profile.get-list
+      responses:
+        '200':
+          description: A successful request returns the HTTP `200 OK` status code and a JSON response body that lists the latest 20 profiles that the merchant owns, with details. To show details for these or additional profiles, you can show web experience profile details by ID.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/web_profile_list'
+        '500':
+          description: An internal server error occurred. The request returns the HTTP `500 Internal Server Error` status code.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/error'
+        default:
+          description: The error response.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/error'
+      security:
+      - Oauth2:
+        - https://uri.paypal.com/services/payments/payment
+      - Oauth2:
+        - https://uri.paypal.com/services/payments/realtimepayment
+      tags:
+      - Web-Profiles
+  /v1/payment-experience/web-profiles/{id}:
+    put:
+      summary: Paypal Update web experience profile
+      description: Updates a web experience profile, by ID. In the JSON request body, specify the profile details. If your request omits any profile parameters, any previously set values for those parameters are removed.
+      operationId: web-profile.update
+      responses:
+        '204':
+          description: A successful request returns the HTTP `204 No Content` status code with no JSON response body.
+        '500':
+          description: An internal server error occurred. The request returns the HTTP `500 Internal Server Error` status code.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/error'
+        default:
+          description: The error response.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/error'
+      parameters:
+      - $ref: '#/components/parameters/id'
+      requestBody:
+        $ref: '#/components/requestBodies/web_profile'
+      security:
+      - Oauth2:
+        - https://uri.paypal.com/services/payments/payment
+      - Oauth2:
+        - https://uri.paypal.com/services/payments/realtimepayment
+      tags:
+      - Web-Profiles
+    patch:
+      summary: Paypal Partially update web experience profile
+      description: Partially-updates a web experience profile, by ID. In the JSON request body, specify a patch object, the path of the profile location to update, and a new value.
+      operationId: web-profile.partial-update
+      responses:
+        '204':
+          description: A successful request returns the HTTP `204 No Content` status code with no JSON response body.
+        '500':
+          description: An internal server error occurred. The request returns the HTTP `500 Internal Server Error` status code.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/error'
+        default:
+          description: The error response.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/error'
+      parameters:
+      - $ref: '#/components/parameters/id'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/patch_request'
+            examples:
+              patch_request:
+                value:
+                - op: add
+                  path: /presentation/brand_name
+                  value: new_brand_name
+                - op: remove
+                  path: /flow_config/landing_page_type
+      security:
+      - Oauth2:
+        - https://uri.paypal.com/services/payments/payment
+      - Oauth2:
+        - https://uri.paypal.com/services/payments/realtimepayment
+      tags:
+      - Web-Profiles
+    get:
+      summary: Paypal Show web experience profile details by ID
+      description: Shows details for a web experience profile, by ID.
+      operationId: web-profile.get
+      responses:
+        '200':
+          description: A successful request returns the HTTP `200 OK` status code and a JSON response body that shows the profile details.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/web_profile'
+        '500':
+          description: An internal server error occurred. The request returns the HTTP `500 Internal Server Error` status code.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/error'
+        default:
+          description: The error response.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/error'
+      parameters:
+      - $ref: '#/components/parameters/id'
+      security:
+      - Oauth2:
+        - https://uri.paypal.com/services/payments/payment
+      - Oauth2:
+        - https://uri.paypal.com/services/payments/realtimepayment
+      tags:
+      - Web-Profiles
+    delete:
+      summary: Paypal Delete web experience profile
+      description: Deletes a web experience profile, by ID.
+      operationId: web-profile.delete
+      responses:
+        '204':
+          description: A successful request returns the HTTP `204 No Content` status code with no JSON response body.
+        '500':
+          description: An internal server error occurred. The request returns the HTTP `500 Internal Server Error` status code.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/error'
+        default:
+          description: The error response.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/error'
+      parameters:
+      - $ref: '#/components/parameters/id'
+      security:
+      - Oauth2:
+        - https://uri.paypal.com/services/payments/payment
+      - Oauth2:
+        - https://uri.paypal.com/services/payments/realtimepayment
+      tags:
+      - Web-Profiles
+components:
+  schemas:
+    web_profile:
+      type: object
+      description: A payment web experience profile.
+      title: Web Profile
+      required:
+      - name
+      properties:
+        id:
+          type: string
+          readOnly: true
+          minLength: 22
+          maxLength: 22
+          description: The ID of the web experience profile.
+        name:
+          type: string
+          minLength: 1
+          maxLength: 50
+          description: The web experience profile name. Must be unique for a set of profiles for a merchant.
+        temporary:
+          type: boolean
+          description: Indicates whether the profile persists for three hours or permanently. To persist the profile permanently, set to `false`. To persist the profile for three hours, set to `true`.
+        flow_config:
+          type: object
+          title: Flow Configuration
+          description: The flow configuration parameters.
+          properties:
+            landing_page_type:
+              type: string
+              minLength: 1
+              maxLength: 255
+              description: The type of landing page to display on the PayPal site for user checkout. To use the non-PayPal account landing page, set to `Billing`. To use the PayPal account login landing page, set to `Login`.
+              enum:
+              - login
+              - billing
+            bank_txn_pending_url:
+              type: string
+              format: uri
+              minLength: 1
+              maxLength: 127
+              description: The merchant site URL to display after a bank transfer payment. In Germany, valid only for the Giropay payment method or bank transfer payment method.
+            user_action:
+              type: string
+              description: Presents either the **Continue** or **Pay Now** checkout flow to the customer.<br/><br/>Default is **Continue**, or `user_action=continue`. When you do not know the final payment amount, accept this default flow, which redirects the customer to the PayPal payment page with the **Continue** button. When the customer clicks **Continue**, the customer can change the payment amount.<br/><br/> When you know the final payment amount, set `user_action=commit` to choose the **Pay Now** flow, which redirects the customer to the PayPal payment page with the **Pay Now** button. When the customer clicks **Pay Now**, the payment is processed immediately.
+              minLength: 1
+              maxLength: 255
+              enum:
+              - COMMIT
+            return_uri_http_method:
+              type: string
+              description: The HTTP method to use to redirect the customer to a return URL. Value is `GET` or `POST`.
+              minLength: 1
+              maxLength: 255
+              enum:
+              - GET
+              - POST
+        input_fields:
+          type: object
+          title: Input Field Customization
+          description: The input field customization parameters.
+          properties:
+            no_shipping:
+              type: integer
+              minimum: 0
+              maximum: 2
+              description: Indicates whether PayPal displays shipping address fields on the experience pages. Value is:<ul><li><code>0</code>. Displays the shipping address on the PayPal pages.</li><li><code>1</code>. Redacts shipping address fields from the PayPal pages. For digital goods, this field is required and must be <code>1</code>.</li><li><code>2</code>. Gets the shipping address from the customer's account profile.</li></ul>
+            address_override:
+              type: integer
+              minimum: 0
+              maximum: 1
+              description: Indicates whether to display the shipping address that is passed to this call rather than the one on file for this buyer on the PayPal experience pages. Value is:<ul><li><code>0</code>. Displays the shipping address on file.</li><li><code>1</code>. Displays the shipping address specified in this call. the customer cannot edit this shipping address.</li></ul>
+        presentation:
+          type: object
+          title: Style and Presentation
+          description: The style and presentation parameters.
+          properties:
+            brand_name:
+              type: string
+              minLength: 1
+              maxLength: 127
+              description: 'A label that overrides the business name in the PayPal account on the PayPal pages. Character length and limitations: 127 single-byte alphanumeric characters.'
+            logo_image:
+              type: string
+              minLength: 1
+              maxLength: 127
+              description: 'A URL to the logo image. A valid media type is `.gif`, `.jpg`, or `.png`. The image''s maximum width is 190 pixels and maximum height is 60 pixels. PayPal crops images that are larger. PayPal places your logo image at the top of the cart review area. PayPal recommends that you store the image on a secure (HTTPS) server. Otherwise, web browsers display a message that checkout pages contain non-secure items. Character length and limitations: 127 single-byte alphanumeric characters.'
+            locale_code:
+              type: string
+              minLength: 2
+              maxLength: 5
+              description: 'The locale of pages that the PayPal payment experience displays. A valid value is `AU`, `AT`, `BE`, `BR`, `CA`, `CH`, `CN`, `DE`, `ES`, `GB`, `FR`, `IT`, `NL`, `PL`, `PT`, `RU`, or `US`. A 5-character code is also valid for languages in these countries: `da_DK`, `he_IL`, `id_ID`, `ja_JP`, `no_NO`, `pt_BR`, `ru_RU`, `sv_SE`, `th_TH`, `zh_CN`, `zh_HK`, or `zh_TW`.'
+    error:
+      type: object
+      title: Error
+      description: The error information.
+      properties:
+        name:
+          type: string
+          description: The human-readable, unique name of the error.
+          readOnly: true
+        debug_id:
+          type: string
+          description: The PayPal internal ID. Used for correlation purposes.
+          readOnly: true
+        message:
+          type: string
+          description: The message that describes the error.
+          readOnly: true
+        information_link:
+          type: string
+          description: The URI to detailed information related to this error for the developer.
+          readOnly: true
+        details:
+          type: array
+          description: An array of additional details for the error.
+          readOnly: true
+          items:
+            $ref: '#/components/schemas/error_details-2'
+      required:
+      - name
+      - message
+      - information_link
+    web_profile_list:
+      type: array
+      title: Web Profile List
+      description: An array of web profiles.
+      minItems: 1
+      maxItems: 20
+      items:
+        $ref: '#/components/schemas/web_profile'
+    patch:
+      type: object
+      title: Patch
+      description: The JSON patch object to apply partial updates to resources.
+      properties:
+        op:
+          type: string
+          description: The operation.
+          enum:
+          - add
+          - remove
+          - replace
+          - move
+          - copy
+          - test
+        path:
+          type: string
+          description: The <a href="https://tools.ietf.org/html/rfc6901">JSON Pointer</a> to the target document location at which to complete the operation.
+        value:
+          title: Patch Value
+          description: The value to apply. The <code>remove</code> operation does not require a value.
+        from:
+          type: string
+          description: The <a href="https://tools.ietf.org/html/rfc6901">JSON Pointer</a> to the target document location from which to move the value. Required for the <code>move</code> operation.
+      required:
+      - op
+    patch_request:
+      type: array
+      title: Patch Request
+      description: An array of JSON patch objects to apply partial updates to resources.
+      items:
+        $ref: '#/components/schemas/patch'
+    error_details-2:
+      type: object
+      title: Error Details
+      description: The error details. Required for client-side `4XX` errors.
+      properties:
+        field:
+          type: string
+          description: The name of the field that caused the error.
+        issue:
+          type: string
+          description: The reason for the error.
+      required:
+      - field
+      - issue
+  parameters:
+    id:
+      name: id
+      in: path
+      description: The ID of the profile to delete.
+      required: true
+      schema:
+        type: string
+    paypal_request_id:
+      name: PayPal-Request-Id
+      in: header
+      description: The server stores keys for three hours.
+      required: true
+      schema:
+        type: string
+  requestBodies:
+    web_profile:
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/web_profile'
+  securitySchemes:
+    Oauth2:
+      type: oauth2
+      description: Oauth 2.0 authentication
+      flows:
+        clientCredentials:
+          tokenUrl: /v1/oauth2/token
+          scopes:
+            https://uri.paypal.com/services/subscriptions: Manage plan & subscription
+externalDocs:
+  url: https://developer.paypal.com/docs/api/subscriptions/v1/

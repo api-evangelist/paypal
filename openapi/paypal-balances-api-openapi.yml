@@ -1,0 +1,492 @@
+openapi: 3.0.3
+info:
+  title: Paypal Subscriptions Authorizations Balances API
+  description: You can use billing plans and subscriptions to create subscriptions that process recurring PayPal payments for physical or digital goods, or services. A plan includes pricing and billing cycle information that defines the amount and frequency of charge for a subscription. You can also define a fixed plan, such as a $5 basic plan or a volume- or graduated-based plan with pricing tiers based on the quantity purchased. For more information, see <a href="/docs/subscriptions/">Subscriptions Overview</a>.
+  version: '1.6'
+  contact: {}
+servers:
+- url: https://api-m.sandbox.paypal.com
+  description: PayPal Sandbox Environment
+- url: https://api-m.paypal.com
+  description: PayPal Live Environment
+tags:
+- name: Balances
+  description: Use the `/balances` resource to list balances.
+paths:
+  /v1/reporting/balances:
+    get:
+      summary: Paypal List all balances
+      description: List all balances. Specify date time to list balances for that time that appear in the response.<blockquote><strong>Notes:</strong> <ul><li>It takes a maximum of three hours for balances to appear in the list balances call.</li><li>This call lists balances upto the previous three years.</li></ul></blockquote>
+      operationId: balances.get
+      responses:
+        '200':
+          description: A successful request returns the HTTP `200 OK` status code and a JSON response body that lists balances .
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/balances_response'
+        '400':
+          description: The request is not well-formed, is syntactically incorrect, or violates schema.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/error_400'
+        '403':
+          description: Authorization failed due to insufficient permissions.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/error_403'
+        '500':
+          description: An internal server error occurred.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/error_500'
+        default:
+          $ref: '#/components/responses/default'
+      parameters:
+      - $ref: '#/components/parameters/as_of_time'
+      - $ref: '#/components/parameters/currency_code'
+      security:
+      - Oauth2:
+        - https://uri.paypal.com/services/reporting/balances/read
+      tags:
+      - Balances
+components:
+  schemas:
+    error_404:
+      type: object
+      title: Not found Error
+      description: The server has not found anything matching the request URI. This either means that the URI is incorrect or the resource is not available.
+      properties:
+        name:
+          type: string
+          enum:
+          - RESOURCE_NOT_FOUND
+        message:
+          type: string
+          enum:
+          - The specified resource does not exist.
+        details:
+          type: array
+          items:
+            $ref: '#/components/schemas/error_details'
+        debug_id:
+          type: string
+          description: The PayPal internal ID. Used for correlation purposes.
+        links:
+          description: An array of request-related [HATEOAS links](https://en.wikipedia.org/wiki/HATEOAS).
+          type: array
+          minItems: 0
+          maxItems: 10000
+          items:
+            $ref: '#/components/schemas/error_link_description'
+    error_409:
+      type: object
+      title: Resource Conflict Error
+      description: The server has detected a conflict while processing this request.
+      properties:
+        name:
+          type: string
+          enum:
+          - RESOURCE_CONFLICT
+        message:
+          type: string
+          enum:
+          - The server has detected a conflict while processing this request.
+        details:
+          type: array
+          items:
+            $ref: '#/components/schemas/error_details'
+        debug_id:
+          type: string
+          description: The PayPal internal ID. Used for correlation purposes.
+        links:
+          description: An array of request-related [HATEOAS links](https://en.wikipedia.org/wiki/HATEOAS).
+          type: array
+          minItems: 0
+          maxItems: 10000
+          items:
+            $ref: '#/components/schemas/error_link_description'
+    account_id:
+      type: string
+      description: The PayPal payer ID, which is a masked version of the PayPal account number intended for use with third parties. The account number is reversibly encrypted and a proprietary variant of Base32 is used to encode the result.
+      format: ppaas_payer_id_v3
+      minLength: 13
+      maxLength: 13
+      pattern: ^[2-9A-HJ-NP-Z]{13}$
+    error_403:
+      type: object
+      title: Not Authorized Error
+      description: 'The client is not authorized to access this resource, although it may have valid credentials. '
+      properties:
+        name:
+          type: string
+          enum:
+          - NOT_AUTHORIZED
+        message:
+          type: string
+          enum:
+          - Authorization failed due to insufficient permissions.
+        details:
+          type: array
+          items:
+            $ref: '#/components/schemas/error_details'
+        debug_id:
+          type: string
+          description: The PayPal internal ID. Used for correlation purposes.
+        links:
+          description: An array of request-related [HATEOAS links](https://en.wikipedia.org/wiki/HATEOAS).
+          type: array
+          minItems: 0
+          maxItems: 10000
+          items:
+            $ref: '#/components/schemas/error_link_description'
+    error_422:
+      type: object
+      title: Unprocessable Entity Error
+      description: The requested action cannot be performed and may require interaction with APIs or processes outside of the current request. This is distinct from a 500 response in that there are no systemic problems limiting the API from performing the request.
+      properties:
+        name:
+          type: string
+          enum:
+          - UNPROCESSABLE_ENTITY
+        message:
+          type: string
+          enum:
+          - The requested action could not be performed, semantically incorrect, or failed business validation.
+        details:
+          type: array
+          items:
+            $ref: '#/components/schemas/error_details'
+        debug_id:
+          type: string
+          description: The PayPal internal ID. Used for correlation purposes.
+        links:
+          description: An array of request-related [HATEOAS links](https://en.wikipedia.org/wiki/HATEOAS).
+          type: array
+          minItems: 0
+          maxItems: 10000
+          items:
+            $ref: '#/components/schemas/error_link_description'
+    error_details:
+      title: Error Details
+      type: object
+      description: The error details. Required for client-side `4XX` errors.
+      properties:
+        field:
+          type: string
+          description: The field that caused the error. If this field is in the body, set this value to the field's JSON pointer value. Required for client-side errors.
+        value:
+          type: string
+          description: The value of the field that caused the error.
+        location:
+          $ref: '#/components/schemas/error_location'
+        issue:
+          type: string
+          description: The unique, fine-grained application-level error code.
+        description:
+          type: string
+          description: The human-readable description for an issue. The description can change over the lifetime of an API, so clients must not depend on this value.
+      required:
+      - issue
+    error_link_description:
+      title: Link Description
+      description: The request-related [HATEOAS link](/api/rest/responses/#hateoas-links) information.
+      type: object
+      required:
+      - href
+      - rel
+      properties:
+        href:
+          description: The complete target URL. To make the related call, combine the method with this [URI Template-formatted](https://tools.ietf.org/html/rfc6570) link. For pre-processing, include the `$`, `(`, and `)` characters. The `href` is the key HATEOAS component that links a completed call with a subsequent call.
+          type: string
+          minLength: 0
+          maxLength: 20000
+          pattern: ^.*$
+        rel:
+          description: The [link relation type](https://tools.ietf.org/html/rfc5988#section-4), which serves as an ID for a link that unambiguously describes the semantics of the link. See [Link Relations](https://www.iana.org/assignments/link-relations/link-relations.xhtml).
+          type: string
+          minLength: 0
+          maxLength: 100
+          pattern: ^.*$
+        method:
+          description: The HTTP method required to make the related call.
+          type: string
+          minLength: 3
+          maxLength: 6
+          pattern: ^[A-Z]*$
+          enum:
+          - GET
+          - POST
+          - PUT
+          - DELETE
+          - PATCH
+    error_default:
+      description: The default error response.
+      oneOf:
+      - $ref: '#/components/schemas/error_400'
+      - $ref: '#/components/schemas/error_401'
+      - $ref: '#/components/schemas/error_403'
+      - $ref: '#/components/schemas/error_404'
+      - $ref: '#/components/schemas/error_409'
+      - $ref: '#/components/schemas/error_415'
+      - $ref: '#/components/schemas/error_422'
+      - $ref: '#/components/schemas/error_500'
+      - $ref: '#/components/schemas/error_503'
+    balance_detail:
+      type: object
+      title: Balance Information
+      description: The Balance information.
+      properties:
+        currency:
+          description: Currency Code of the balances listed.
+          $ref: '#/components/schemas/currency_code'
+        primary:
+          type: boolean
+          description: Optional field representing if the currency is primary currency or not.
+        total_balance:
+          description: The total amount in PayPal account. It is the sum of all the other balances.
+          $ref: '#/components/schemas/money'
+        available_balance:
+          description: The amount of cash in an Account which is at the customer's disposal. This amount is captured at settlement cutoff time in the user's time zone as defined for the user.
+          $ref: '#/components/schemas/money'
+        withheld_balance:
+          description: Balance withheld in the account. The portion of funds that PayPal holds for the customer that is not currently at the customer's disposal.
+          $ref: '#/components/schemas/money'
+      required:
+      - currency
+      - total_balance
+    error_location:
+      type: string
+      description: The location of the field that caused the error. Value is `body`, `path`, or `query`.
+      enum:
+      - body
+      - path
+      - query
+      default: body
+    money:
+      type: object
+      title: Money
+      description: The currency and amount for a financial transaction, such as a balance or payment due.
+      properties:
+        currency_code:
+          $ref: '#/components/schemas/currency_code'
+        value:
+          type: string
+          description: The value, which might be:<ul><li>An integer for currencies like `JPY` that are not typically fractional.</li><li>A decimal fraction for currencies like `TND` that are subdivided into thousandths.</li></ul>For the required number of decimal places for a currency code, see [Currency Codes](/docs/integration/direct/rest/currency-codes/).
+          maxLength: 32
+          pattern: ^((-?[0-9]+)|(-?([0-9]+)?[.][0-9]+))$
+      required:
+      - currency_code
+      - value
+    error_503:
+      type: object
+      title: Service Unavailable Error
+      description: The server is temporarily unable to handle the request, for example, because of planned maintenance or downtime.
+      properties:
+        name:
+          type: string
+          enum:
+          - SERVICE_UNAVAILABLE
+        message:
+          type: string
+          enum:
+          - Service Unavailable.
+        debug_id:
+          type: string
+          description: The PayPal internal ID. Used for correlation purposes.
+        links:
+          description: An array of request-related [HATEOAS links](https://en.wikipedia.org/wiki/HATEOAS).
+          type: array
+          minItems: 0
+          maxItems: 10000
+          items:
+            $ref: '#/components/schemas/error_link_description'
+      example:
+        name: SERVICE_UNAVAILABLE
+        message: Service Unavailable.
+        debug_id: 90957fca61718
+        information_link: https://developer.paypal.com/docs/api/orders/v2/#error-SERVICE_UNAVAILABLE
+    error_400:
+      type: object
+      title: Bad Request Error
+      description: Request is not well-formed, syntactically incorrect, or violates schema.
+      properties:
+        name:
+          type: string
+          enum:
+          - INVALID_REQUEST
+        message:
+          type: string
+          enum:
+          - Request is not well-formed, syntactically incorrect, or violates schema.
+        details:
+          type: array
+          items:
+            $ref: '#/components/schemas/error_details'
+        debug_id:
+          type: string
+          description: The PayPal internal ID. Used for correlation purposes.
+        links:
+          description: An array of request-related [HATEOAS links](https://en.wikipedia.org/wiki/HATEOAS).
+          type: array
+          minItems: 0
+          maxItems: 10000
+          items:
+            $ref: '#/components/schemas/error_link_description'
+    currency_code:
+      description: The [three-character ISO-4217 currency code](/docs/integration/direct/rest/currency-codes/) that identifies the currency.
+      type: string
+      format: ppaas_common_currency_code_v2
+      minLength: 3
+      maxLength: 3
+    error_401:
+      type: object
+      title: Unauthorized Error
+      description: Authentication failed due to missing Authorization header, or invalid authentication credentials.
+      properties:
+        name:
+          type: string
+          enum:
+          - AUTHENTICATION_FAILURE
+        message:
+          type: string
+          enum:
+          - Authentication failed due to missing authorization header, or invalid authentication credentials.
+        details:
+          type: array
+          items:
+            $ref: '#/components/schemas/error_details'
+        debug_id:
+          type: string
+          description: The PayPal internal ID. Used for correlation purposes.
+        links:
+          description: An array of request-related [HATEOAS links](https://en.wikipedia.org/wiki/HATEOAS).
+          type: array
+          minItems: 0
+          maxItems: 10000
+          items:
+            $ref: '#/components/schemas/error_link_description'
+    balances_response:
+      type: object
+      title: Balances Response
+      description: The balances response information.
+      properties:
+        balances:
+          type: array
+          description: An array of balance detail objects.
+          maxItems: 200
+          minItems: 0
+          items:
+            $ref: '#/components/schemas/balance_detail'
+        account_id:
+          $ref: '#/components/schemas/account_id'
+        as_of_time:
+          description: The requested date and time or the last date and time when the balances can be served, in [Internet date and time format](https://tools.ietf.org/html/rfc3339#section-5.6).
+          $ref: '#/components/schemas/date_time'
+        last_refresh_time:
+          description: The date and time when the balances was last refreshed, in [Internet date and time format](https://tools.ietf.org/html/rfc3339#section-5.6).
+          $ref: '#/components/schemas/date_time'
+    error_415:
+      type: object
+      title: Unsupported Media Type Error
+      description: The server does not support the request payload's media type.
+      properties:
+        name:
+          type: string
+          enum:
+          - UNSUPPORTED_MEDIA_TYPE
+        message:
+          type: string
+          enum:
+          - The server does not support the request payload's media type.
+        details:
+          type: array
+          items:
+            $ref: '#/components/schemas/error_details'
+        debug_id:
+          type: string
+          description: The PayPal internal ID. Used for correlation purposes.
+        links:
+          description: An array of request-related [HATEOAS links](https://en.wikipedia.org/wiki/HATEOAS).
+          type: array
+          minItems: 0
+          maxItems: 10000
+          items:
+            $ref: '#/components/schemas/error_link_description'
+    error_500:
+      type: object
+      title: Internal Server Error
+      description: This is either a system or application error, and generally indicates that although the client appeared to provide a correct request, something unexpected has gone wrong on the server.
+      properties:
+        name:
+          type: string
+          enum:
+          - INTERNAL_SERVER_ERROR
+        message:
+          type: string
+          enum:
+          - An internal server error occurred.
+        debug_id:
+          type: string
+          description: The PayPal internal ID. Used for correlation purposes.
+        links:
+          description: An array of request-related [HATEOAS links](https://en.wikipedia.org/wiki/HATEOAS).
+          type: array
+          minItems: 0
+          maxItems: 10000
+          items:
+            $ref: '#/components/schemas/error_link_description'
+      example:
+        name: INTERNAL_SERVER_ERROR
+        message: An internal server error occurred.
+        debug_id: 90957fca61718
+        links:
+        - href: https://developer.paypal.com/api/orders/v2/#error-INTERNAL_SERVER_ERROR
+          rel: information_link
+    date_time:
+      type: string
+      description: The date and time, in [Internet date and time format](https://tools.ietf.org/html/rfc3339#section-5.6). Seconds are required while fractional seconds are optional.<blockquote><strong>Note:</strong> The regular expression provides guidance but does not reject all invalid dates.</blockquote>
+      format: ppaas_date_time_v3
+      minLength: 20
+      maxLength: 64
+      pattern: ^[0-9]{4}-(0[1-9]|1[0-2])-(0[1-9]|[1-2][0-9]|3[0-1])[T,t]([0-1][0-9]|2[0-3]):[0-5][0-9]:([0-5][0-9]|60)([.][0-9]+)?([Zz]|[+-][0-9]{2}:[0-9]{2})$
+  parameters:
+    as_of_time:
+      name: as_of_time
+      in: query
+      description: List balances in the response at the date time provided, will return the last refreshed balance in the system when not provided.
+      schema:
+        type: string
+        minLength: 20
+        maxLength: 64
+        pattern: ^[0-9]{4}-(0[1-9]|1[0-2])-(0[1-9]|[1-2][0-9]|3[0-1])[T,t]([0-1][0-9]|2[0-3]):[0-5][0-9]:([0-5][0-9]|60)([.][0-9]+)?([Zz]|[+-][0-9]{2}:[0-9]{2})$
+    currency_code:
+      name: currency_code
+      in: query
+      description: Filters the transactions in the response by a [three-character ISO-4217 currency code](/api/rest/reference/currency-codes/) for the PayPal transaction currency.
+      schema:
+        type: string
+        format: ppaas_common_currency_code_v2
+        minLength: 3
+        maxLength: 3
+  responses:
+    default:
+      description: The default response.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/error_default'
+  securitySchemes:
+    Oauth2:
+      type: oauth2
+      description: Oauth 2.0 authentication
+      flows:
+        clientCredentials:
+          tokenUrl: /v1/oauth2/token
+          scopes:
+            https://uri.paypal.com/services/subscriptions: Manage plan & subscription
+externalDocs:
+  url: https://developer.paypal.com/docs/api/subscriptions/v1/
