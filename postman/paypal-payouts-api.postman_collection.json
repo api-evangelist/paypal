@@ -1,0 +1,815 @@
+{
+  "info": {
+    "_postman_id": "06e8a3ac-e108-4a6f-b7d5-032855d35f4b",
+    "name": "Paypal Subscriptions Authorizations Payouts API",
+    "description": "You can use billing plans and subscriptions to create subscriptions that process recurring PayPal payments for physical or digital goods, or services. A plan includes pricing and billing cycle information that defines the amount and frequency of charge for a subscription. You can also define a fixed plan, such as a $5 basic plan or a volume- or graduated-based plan with pricing tiers based on the quantity purchased. For more information, see <a href=\"/docs/subscriptions/\">Subscriptions Overview</a>.",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-07-28T02:33:52.000Z",
+    "updatedAt": "2026-07-28T02:33:52.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-06e8a3ac-e108-4a6f-b7d5-032855d35f4b"
+  },
+  "item": [
+    {
+      "name": "v1",
+      "item": [
+        {
+          "name": "payments",
+          "item": [
+            {
+              "name": "payouts",
+              "item": [
+                {
+                  "name": "{id}",
+                  "item": [
+                    {
+                      "name": "Paypal Show payout batch details",
+                      "id": "707c80a1-7523-4c82-94dc-671d850387ee",
+                      "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                      },
+                      "request": {
+                        "auth": {
+                          "type": "oauth2",
+                          "oauth2": [
+                            {
+                              "key": "scope",
+                              "value": "https://uri.paypal.com/services/subscriptions",
+                              "type": "string"
+                            },
+                            {
+                              "key": "accessTokenUrl",
+                              "value": "/v1/oauth2/token",
+                              "type": "string"
+                            },
+                            {
+                              "key": "grant_type",
+                              "value": "client_credentials",
+                              "type": "string"
+                            }
+                          ]
+                        },
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/v1/payments/payouts/:id?fields=F5xn@id[J&page=1&page_size=<integer>&total_required=false",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v1",
+                            "payments",
+                            "payouts",
+                            ":id"
+                          ],
+                          "query": [
+                            {
+                              "description": "Shows details for only the specified fields.",
+                              "key": "fields",
+                              "value": "F5xn@id[J"
+                            },
+                            {
+                              "description": "A non-zero integer representing the page of the results.",
+                              "key": "page",
+                              "value": "1"
+                            },
+                            {
+                              "description": "The maximum number of results to return at one time. Value is a non-negative, non-zero integer. If the user chooses pagination, the maximum page is `1000`.",
+                              "key": "page_size",
+                              "value": "<integer>"
+                            },
+                            {
+                              "description": "Indicates whether to show the total items and total pages count in the response.",
+                              "key": "total_required",
+                              "value": "false"
+                            }
+                          ],
+                          "variable": [
+                            {
+                              "id": "2362c3be-7f70-4b40-aae3-f997307ec829",
+                              "key": "id",
+                              "value": "F5xn@id[J",
+                              "description": "(Required) The ID of the payout for which to show details."
+                            }
+                          ]
+                        },
+                        "description": "Shows the latest status of a batch payout. Includes the transaction status and other data for individual payout items."
+                      },
+                      "response": [
+                        {
+                          "id": "d7753e54-4e73-485f-9eff-124f8d2704ff",
+                          "name": "A successful request returns the HTTP `200 OK` status code and a JSON response body that shows batch payout details.",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: oauth2",
+                                "key": "Authorization",
+                                "value": "<token>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/v1/payments/payouts/:id?fields=F5xn@id[J&page=1&page_size=<integer>&total_required=false",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "v1",
+                                "payments",
+                                "payouts",
+                                ":id"
+                              ],
+                              "query": [
+                                {
+                                  "description": "Shows details for only the specified fields.",
+                                  "key": "fields",
+                                  "value": "F5xn@id[J"
+                                },
+                                {
+                                  "description": "A non-zero integer representing the page of the results.",
+                                  "key": "page",
+                                  "value": "1"
+                                },
+                                {
+                                  "description": "The maximum number of results to return at one time. Value is a non-negative, non-zero integer. If the user chooses pagination, the maximum page is `1000`.",
+                                  "key": "page_size",
+                                  "value": "<integer>"
+                                },
+                                {
+                                  "description": "Indicates whether to show the total items and total pages count in the response.",
+                                  "key": "total_required",
+                                  "value": "false"
+                                }
+                              ],
+                              "variable": [
+                                {
+                                  "key": "id"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "OK",
+                          "code": 200,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"total_items\": \"<integer>\",\n  \"total_pages\": \"<integer>\",\n  \"batch_header\": {\n    \"payout_batch_id\": \"@n!{+!\",\n    \"batch_status\": \"CANCELED\",\n    \"sender_batch_header\": {\n      \"sender_batch_id\": \"Q}9OaQ0N\",\n      \"recipient_type\": \"PHONE\",\n      \"email_subject\": \"t<u\",\n      \"email_message\": \"xKr>\"\n    },\n    \"time_created\": \"<dateTime>\",\n    \"time_completed\": \"<dateTime>\",\n    \"time_closed\": \"<dateTime>\",\n    \"funding_source\": \"BALANCE\",\n    \"amount\": {\n      \"currency\": \"<string>\",\n      \"value\": \"<string>\"\n    },\n    \"fees\": {\n      \"currency\": \"<string>\",\n      \"value\": \"<string>\"\n    }\n  },\n  \"items\": [\n    {\n      \"payout_item_id\": \"Zba\",\n      \"payout_batch_id\": \"\",\n      \"payout_item\": {\n        \"amount\": {\n          \"currency\": \"<string>\",\n          \"value\": \"<string>\"\n        },\n        \"receiver\": \"y;sW 1D\",\n        \"recipient_type\": \"PHONE\",\n        \"note\": \"9rkdd\",\n        \"sender_item_id\": \"\",\n        \"recipient_name\": {\n          \"prefix\": \"<string>\",\n          \"given_name\": \"<string>\",\n          \"surname\": \"<string>\",\n          \"middle_name\": \"<string>\",\n          \"suffix\": \"<string>\",\n          \"alternate_full_name\": \"<string>\",\n          \"full_name\": \"<string>\"\n        },\n        \"recipient_wallet\": \"PAYPAL\",\n        \"purpose\": \"DONATIONS\"\n      },\n      \"transaction_id\": \"?[u0\",\n      \"activity_id\": \"omSm+3?\",\n      \"transaction_status\": \"SUCCESS\",\n      \"payout_item_fee\": {\n        \"currency\": \"<string>\",\n        \"value\": \"<string>\"\n      },\n      \"currency_conversion\": {\n        \"from_amount\": {\n          \"currency\": \"<string>\",\n          \"value\": \"<string>\"\n        },\n        \"to_amount\": {\n          \"currency\": \"<string>\",\n          \"value\": \"<string>\"\n        },\n        \"exchange_rate\": \"VEP&SPld\"\n      },\n      \"time_processed\": \"<dateTime>\",\n      \"errors\": {\n        \"name\": \"<string>\",\n        \"message\": \"<string>\",\n        \"debug_id\": \"<string>\",\n        \"information_link\": \"<string>\",\n        \"details\": [\n          {\n            \"issue\": \"<string>\",\n            \"field\": \"<string>\",\n            \"value\": \"<string>\",\n            \"location\": \"body\",\n            \"description\": \"<string>\"\n          },\n          {\n            \"issue\": \"<string>\",\n            \"field\": \"<string>\",\n            \"value\": \"<string>\",\n            \"location\": \"body\",\n            \"description\": \"<string>\"\n          }\n        ],\n        \"links\": [\n          {\n            \"href\": \"<string>\",\n            \"rel\": \"<string>\",\n            \"method\": \"CONNECT\"\n          },\n          {\n            \"href\": \"<string>\",\n            \"rel\": \"<string>\",\n            \"method\": \"PUT\"\n          }\n        ]\n      },\n      \"links\": [\n        {\n          \"href\": \"<string>\",\n          \"rel\": \"<string>\",\n          \"method\": \"GET\"\n        },\n        {\n          \"href\": \"<string>\",\n          \"rel\": \"<string>\",\n          \"method\": \"GET\"\n        },\n        {\n          \"href\": \"<string>\",\n          \"rel\": \"<string>\",\n          \"method\": \"PUT\"\n        },\n        {\n          \"href\": \"<string>\",\n          \"rel\": \"<string>\",\n          \"method\": \"PATCH\"\n        },\n        {\n          \"href\": \"<string>\",\n          \"rel\": \"<string>\",\n          \"method\": \"HEAD\"\n        },\n        {\n          \"href\": \"<string>\",\n          \"rel\": \"<string>\",\n          \"method\": \"CONNECT\"\n        },\n        {\n          \"href\": \"<string>\",\n          \"rel\": \"<string>\",\n          \"method\": \"PUT\"\n        },\n        {\n          \"href\": \"<string>\",\n          \"rel\": \"<string>\",\n          \"method\": \"DELETE\"\n        },\n        {\n          \"href\": \"<string>\",\n          \"rel\": \"<string>\",\n          \"method\": \"POST\"\n        },\n        {\n          \"href\": \"<string>\",\n          \"rel\": \"<string>\",\n          \"method\": \"OPTIONS\"\n        },\n        {\n          \"href\": \"<string>\",\n          \"rel\": \"<string>\",\n          \"method\": \"OPTIONS\"\n        },\n        {\n          \"href\": \"<string>\",\n          \"rel\": \"<string>\",\n          \"method\": \"HEAD\"\n        },\n        {\n          \"href\": \"<string>\",\n          \"rel\": \"<string>\",\n          \"method\": \"GET\"\n        },\n        {\n          \"href\": \"<string>\",\n          \"rel\": \"<string>\",\n          \"method\": \"PUT\"\n        },\n        {\n          \"href\": \"<string>\",\n          \"rel\": \"<string>\",\n          \"method\": \"PATCH\"\n        },\n        {\n          \"href\": \"<string>\",\n          \"rel\": \"<string>\",\n          \"method\": \"HEAD\"\n        },\n        {\n          \"href\": \"<string>\",\n          \"rel\": \"<string>\",\n          \"method\": \"CONNECT\"\n        },\n        {\n          \"href\": \"<string>\",\n          \"rel\": \"<string>\",\n          \"method\": \"OPTIONS\"\n        },\n        {\n          \"href\": \"<string>\",\n          \"rel\": \"<string>\",\n          \"method\": \"HEAD\"\n        },\n        {\n          \"href\": \"<string>\",\n          \"rel\": \"<string>\",\n          \"method\": \"CONNECT\"\n        }\n      ]\n    },\n    {\n      \"payout_item_id\": \",ygR%|r8D\",\n      \"payout_batch_id\": \"C\",\n      \"payout_item\": {\n        \"amount\": {\n          \"currency\": \"<string>\",\n          \"value\": \"<string>\"\n        },\n        \"receiver\": \"N,/eLoB\",\n        \"recipient_type\": \"PHONE\",\n        \"note\": \"$bD#,\",\n        \"sender_item_id\": \"l}x67JjU4\",\n        \"recipient_name\": {\n          \"prefix\": \"<string>\",\n          \"given_name\": \"<string>\",\n          \"surname\": \"<string>\",\n          \"middle_name\": \"<string>\",\n          \"suffix\": \"<string>\",\n          \"alternate_full_name\": \"<string>\",\n          \"full_name\": \"<string>\"\n        },\n        \"recipient_wallet\": \"PAYPAL\",\n        \"purpose\": \"PRIZES\"\n      },\n      \"transaction_id\": \">ym3f5$ \",\n      \"activity_id\": \"RgP{dm=}\",\n      \"transaction_status\": \"REVERSED\",\n      \"payout_item_fee\": {\n        \"currency\": \"<string>\",\n        \"value\": \"<string>\"\n      },\n      \"currency_conversion\": {\n        \"from_amount\": {\n          \"currency\": \"<string>\",\n          \"value\": \"<string>\"\n        },\n        \"to_amount\": {\n          \"currency\": \"<string>\",\n          \"value\": \"<string>\"\n        },\n        \"exchange_rate\": \"FM},\"\n      },\n      \"time_processed\": \"<dateTime>\",\n      \"errors\": {\n        \"name\": \"<string>\",\n        \"message\": \"<string>\",\n        \"debug_id\": \"<string>\",\n        \"information_link\": \"<string>\",\n        \"details\": [\n          {\n            \"issue\": \"<string>\",\n            \"field\": \"<string>\",\n            \"value\": \"<string>\",\n            \"location\": \"body\",\n            \"description\": \"<string>\"\n          },\n          {\n            \"issue\": \"<string>\",\n            \"field\": \"<string>\",\n            \"value\": \"<string>\",\n            \"location\": \"body\",\n            \"description\": \"<string>\"\n          }\n        ],\n        \"links\": [\n          {\n            \"href\": \"<string>\",\n            \"rel\": \"<string>\",\n            \"method\": \"GET\"\n          },\n          {\n            \"href\": \"<string>\",\n            \"rel\": \"<string>\",\n            \"method\": \"CONNECT\"\n          }\n        ]\n      },\n      \"links\": [\n        {\n          \"href\": \"<string>\",\n          \"rel\": \"<string>\",\n          \"method\": \"DELETE\"\n        },\n        {\n          \"href\": \"<string>\",\n          \"rel\": \"<string>\",\n          \"method\": \"HEAD\"\n        },\n        {\n          \"href\": \"<string>\",\n          \"rel\": \"<string>\",\n          \"method\": \"PUT\"\n        },\n        {\n          \"href\": \"<string>\",\n          \"rel\": \"<string>\",\n          \"method\": \"HEAD\"\n        },\n        {\n          \"href\": \"<string>\",\n          \"rel\": \"<string>\",\n          \"method\": \"HEAD\"\n        },\n        {\n          \"href\": \"<string>\",\n          \"rel\": \"<string>\",\n          \"method\": \"CONNECT\"\n        },\n        {\n          \"href\": \"<string>\",\n          \"rel\": \"<string>\",\n          \"method\": \"OPTIONS\"\n        },\n        {\n          \"href\": \"<string>\",\n          \"rel\": \"<string>\",\n          \"method\": \"HEAD\"\n        },\n        {\n          \"href\": \"<string>\",\n          \"rel\": \"<string>\",\n          \"method\": \"CONNECT\"\n        },\n        {\n          \"href\": \"<string>\",\n          \"rel\": \"<string>\",\n          \"method\": \"PATCH\"\n        },\n        {\n          \"href\": \"<string>\",\n          \"rel\": \"<string>\",\n          \"method\": \"POST\"\n        },\n        {\n          \"href\": \"<string>\",\n          \"rel\": \"<string>\",\n          \"method\": \"HEAD\"\n        },\n        {\n          \"href\": \"<string>\",\n          \"rel\": \"<string>\",\n          \"method\": \"POST\"\n        },\n        {\n          \"href\": \"<string>\",\n          \"rel\": \"<string>\",\n          \"method\": \"POST\"\n        },\n        {\n          \"href\": \"<string>\",\n          \"rel\": \"<string>\",\n          \"method\": \"GET\"\n        },\n        {\n          \"href\": \"<string>\",\n          \"rel\": \"<string>\",\n          \"method\": \"GET\"\n        },\n        {\n          \"href\": \"<string>\",\n          \"rel\": \"<string>\",\n          \"method\": \"OPTIONS\"\n        },\n        {\n          \"href\": \"<string>\",\n          \"rel\": \"<string>\",\n          \"method\": \"PATCH\"\n        },\n        {\n          \"href\": \"<string>\",\n          \"rel\": \"<string>\",\n          \"method\": \"OPTIONS\"\n        },\n        {\n          \"href\": \"<string>\",\n          \"rel\": \"<string>\",\n          \"method\": \"PATCH\"\n        }\n      ]\n    },\n    {\n      \"payout_item_id\": \"^)H\",\n      \"payout_batch_id\": \"y0*>Kz;\",\n      \"payout_item\": {\n        \"amount\": {\n          \"currency\": \"<string>\",\n          \"value\": \"<string>\"\n        },\n        \"receiver\": \"'k<t.\",\n        \"recipient_type\": \"EMAIL\",\n        \"note\": \"#-?_d'~c?\",\n        \"sender_item_id\": \"g.&U=Ilt) \",\n        \"recipient_name\": {\n          \"prefix\": \"<string>\",\n          \"given_name\": \"<string>\",\n          \"surname\": \"<string>\",\n          \"middle_name\": \"<string>\",\n          \"suffix\": \"<string>\",\n          \"alternate_full_name\": \"<string>\",\n          \"full_name\": \"<string>\"\n        },\n        \"recipient_wallet\": \"PAYPAL\",\n        \"purpose\": \"DONATIONS\"\n      },\n      \"transaction_id\": \"rL+Mn\\\"\",\n      \"activity_id\": \"g~0!JAV\",\n      \"transaction_status\": \"ONHOLD\",\n      \"payout_item_fee\": {\n        \"currency\": \"<string>\",\n        \"value\": \"<string>\"\n      },\n      \"currency_conversion\": {\n        \"from_amount\": {\n          \"currency\": \"<string>\",\n          \"value\": \"<string>\"\n        },\n        \"to_amount\": {\n          \"currency\": \"<string>\",\n          \"value\": \"<string>\"\n        },\n        \"exchange_rate\": \"|yM(\"\n      },\n      \"time_processed\": \"<dateTime>\",\n      \"errors\": {\n        \"name\": \"<string>\",\n        \"message\": \"<string>\",\n        \"debug_id\": \"<string>\",\n        \"information_link\": \"<string>\",\n        \"details\": [\n          {\n            \"issue\": \"<string>\",\n            \"field\": \"<string>\",\n            \"value\": \"<string>\",\n            \"location\": \"body\",\n            \"description\": \"<string>\"\n          },\n          {\n            \"issue\": \"<string>\",\n            \"field\": \"<string>\",\n            \"value\": \"<string>\",\n            \"location\": \"body\",\n            \"description\": \"<string>\"\n          }\n        ],\n        \"links\": [\n          {\n            \"href\": \"<string>\",\n            \"rel\": \"<string>\",\n            \"method\": \"OPTIONS\"\n          },\n          {\n            \"href\": \"<string>\",\n            \"rel\": \"<string>\",\n            \"method\": \"DELETE\"\n          }\n        ]\n      },\n      \"links\": [\n        {\n          \"href\": \"<string>\",\n          \"rel\": \"<string>\",\n          \"method\": \"PUT\"\n        },\n        {\n          \"href\": \"<string>\",\n          \"rel\": \"<string>\",\n          \"method\": \"CONNECT\"\n        },\n        {\n          \"href\": \"<string>\",\n          \"rel\": \"<string>\",\n          \"method\": \"PATCH\"\n        },\n        {\n          \"href\": \"<string>\",\n          \"rel\": \"<string>\",\n          \"method\": \"PATCH\"\n        },\n        {\n          \"href\": \"<string>\",\n          \"rel\": \"<string>\",\n          \"method\": \"PUT\"\n        },\n        {\n          \"href\": \"<string>\",\n          \"rel\": \"<string>\",\n          \"method\": \"PATCH\"\n        },\n        {\n          \"href\": \"<string>\",\n          \"rel\": \"<string>\",\n          \"method\": \"CONNECT\"\n        },\n        {\n          \"href\": \"<string>\",\n          \"rel\": \"<string>\",\n          \"method\": \"PATCH\"\n        },\n        {\n          \"href\": \"<string>\",\n          \"rel\": \"<string>\",\n          \"method\": \"CONNECT\"\n        },\n        {\n          \"href\": \"<string>\",\n          \"rel\": \"<string>\",\n          \"method\": \"GET\"\n        },\n        {\n          \"href\": \"<string>\",\n          \"rel\": \"<string>\",\n          \"method\": \"HEAD\"\n        },\n        {\n          \"href\": \"<string>\",\n          \"rel\": \"<string>\",\n          \"method\": \"CONNECT\"\n        },\n        {\n          \"href\": \"<string>\",\n          \"rel\": \"<string>\",\n          \"method\": \"OPTIONS\"\n        },\n        {\n          \"href\": \"<string>\",\n          \"rel\": \"<string>\",\n          \"method\": \"GET\"\n        },\n        {\n          \"href\": \"<string>\",\n          \"rel\": \"<string>\",\n          \"method\": \"DELETE\"\n        },\n        {\n          \"href\": \"<string>\",\n          \"rel\": \"<string>\",\n          \"method\": \"OPTIONS\"\n        },\n        {\n          \"href\": \"<string>\",\n          \"rel\": \"<string>\",\n          \"method\": \"PUT\"\n        },\n        {\n          \"href\": \"<string>\",\n          \"rel\": \"<string>\",\n          \"method\": \"PUT\"\n        },\n        {\n          \"href\": \"<string>\",\n          \"rel\": \"<string>\",\n          \"method\": \"POST\"\n        },\n        {\n          \"href\": \"<string>\",\n          \"rel\": \"<string>\",\n          \"method\": \"DELETE\"\n        }\n      ]\n    },\n    {\n      \"payout_item_id\": \"Z*rh9_\",\n      \"payout_batch_id\": \"DVZDLmlTgd\",\n      \"payout_item\": {\n        \"amount\": {\n          \"currency\": \"<string>\",\n          \"value\": \"<string>\"\n        },\n        \"receiver\": \"VHB):t6\",\n        \"recipient_type\": \"EMAIL\",\n        \"note\": \"l0EP\",\n        \"sender_item_id\": \"EkS&>l\",\n        \"recipient_name\": {\n          \"prefix\": \"<string>\",\n          \"given_name\": \"<string>\",\n          \"surname\": \"<string>\",\n          \"middle_name\": \"<string>\",\n          \"suffix\": \"<string>\",\n          \"alternate_full_name\": \"<string>\",\n          \"full_name\": \"<string>\"\n        },\n        \"recipient_wallet\": \"PAYPAL\",\n        \"purpose\": \"DISCOUNTS\"\n      },\n      \"transaction_id\": \"C`<W25RYj\",\n      \"activity_id\": \";p}`clJ9\",\n      \"transaction_status\": \"BLOCKED\",\n      \"payout_item_fee\": {\n        \"currency\": \"<string>\",\n        \"value\": \"<string>\"\n      },\n      \"currency_conversion\": {\n        \"from_amount\": {\n          \"currency\": \"<string>\",\n          \"value\": \"<string>\"\n        },\n        \"to_amount\": {\n          \"currency\": \"<string>\",\n          \"value\": \"<string>\"\n        },\n        \"exchange_rate\": \")A=J?<5\"\n      },\n      \"time_processed\": \"<dateTime>\",\n      \"errors\": {\n        \"name\": \"<string>\",\n        \"message\": \"<string>\",\n        \"debug_id\": \"<string>\",\n        \"information_link\": \"<string>\",\n        \"details\": [\n          {\n            \"issue\": \"<string>\",\n            \"field\": \"<string>\",\n            \"value\": \"<string>\",\n            \"location\": \"body\",\n            \"description\": \"<string>\"\n          },\n          {\n            \"issue\": \"<string>\",\n            \"field\": \"<string>\",\n            \"value\": \"<string>\",\n            \"location\": \"body\",\n            \"description\": \"<string>\"\n          }\n        ],\n        \"links\": [\n          {\n            \"href\": \"<string>\",\n            \"rel\": \"<string>\",\n            \"method\": \"OPTIONS\"\n          },\n          {\n            \"href\": \"<string>\",\n            \"rel\": \"<string>\",\n            \"method\": \"CONNECT\"\n          }\n        ]\n      },\n      \"links\": [\n        {\n          \"href\": \"<string>\",\n          \"rel\": \"<string>\",\n          \"method\": \"PATCH\"\n        },\n        {\n          \"href\": \"<string>\",\n          \"rel\": \"<string>\",\n          \"method\": \"PUT\"\n        },\n        {\n          \"href\": \"<string>\",\n          \"rel\": \"<string>\",\n          \"method\": \"CONNECT\"\n        },\n        {\n          \"href\": \"<string>\",\n          \"rel\": \"<string>\",\n          \"method\": \"PATCH\"\n        },\n        {\n          \"href\": \"<string>\",\n          \"rel\": \"<string>\",\n          \"method\": \"HEAD\"\n        },\n        {\n          \"href\": \"<string>\",\n          \"rel\": \"<string>\",\n          \"method\": \"PUT\"\n        },\n        {\n          \"href\": \"<string>\",\n          \"rel\": \"<string>\",\n          \"method\": \"OPTIONS\"\n        },\n        {\n          \"href\": \"<string>\",\n          \"rel\": \"<string>\",\n          \"method\": \"OPTIONS\"\n        },\n        {\n          \"href\": \"<string>\",\n          \"rel\": \"<string>\",\n          \"method\": \"DELETE\"\n        },\n        {\n          \"href\": \"<string>\",\n          \"rel\": \"<string>\",\n          \"method\": \"POST\"\n        },\n        {\n          \"href\": \"<string>\",\n          \"rel\": \"<string>\",\n          \"method\": \"OPTIONS\"\n        },\n        {\n          \"href\": \"<string>\",\n          \"rel\": \"<string>\",\n          \"method\": \"DELETE\"\n        },\n        {\n          \"href\": \"<string>\",\n          \"rel\": \"<string>\",\n          \"method\": \"POST\"\n        },\n        {\n          \"href\": \"<string>\",\n          \"rel\": \"<string>\",\n          \"method\": \"CONNECT\"\n        },\n        {\n          \"href\": \"<string>\",\n          \"rel\": \"<string>\",\n          \"method\": \"PATCH\"\n        },\n        {\n          \"href\": \"<string>\",\n          \"rel\": \"<string>\",\n          \"method\": \"PATCH\"\n        },\n        {\n          \"href\": \"<string>\",\n          \"rel\": \"<string>\",\n          \"method\": \"PUT\"\n        },\n        {\n          \"href\": \"<string>\",\n          \"rel\": \"<string>\",\n          \"method\": \"HEAD\"\n        },\n        {\n          \"href\": \"<string>\",\n          \"rel\": \"<string>\",\n          \"method\": \"PUT\"\n        },\n        {\n          \"href\": \"<string>\",\n          \"rel\": \"<string>\",\n          \"method\": \"POST\"\n        }\n      ]\n    },\n    {\n      \"payout_item_id\": \"dAWy&C\",\n      \"payout_batch_id\": \"jJr1|X/Ov\",\n      \"payout_item\": {\n        \"amount\": {\n          \"currency\": \"<string>\",\n          \"value\": \"<string>\"\n        },\n        \"receiver\": \"Hp2yH)&%\",\n        \"recipient_type\": \"EMAIL\",\n        \"note\": \"_P9C^T1#\",\n        \"sender_item_id\": \":K@3Ns2I_\",\n        \"recipient_name\": {\n          \"prefix\": \"<string>\",\n          \"given_name\": \"<string>\",\n          \"surname\": \"<string>\",\n          \"middle_name\": \"<string>\",\n          \"suffix\": \"<string>\",\n          \"alternate_full_name\": \"<string>\",\n          \"full_name\": \"<string>\"\n        },\n        \"recipient_wallet\": \"PAYPAL\",\n        \"purpose\": \"GOODS\"\n      },\n      \"transaction_id\": \"\",\n      \"activity_id\": \"/$7\",\n      \"transaction_status\": \"BLOCKED\",\n      \"payout_item_fee\": {\n        \"currency\": \"<string>\",\n        \"value\": \"<string>\"\n      },\n      \"currency_conversion\": {\n        \"from_amount\": {\n          \"currency\": \"<string>\",\n          \"value\": \"<string>\"\n        },\n        \"to_amount\": {\n          \"currency\": \"<string>\",\n          \"value\": \"<string>\"\n        },\n        \"exchange_rate\": \"vR,\"\n      },\n      \"time_processed\": \"<dateTime>\",\n      \"errors\": {\n        \"name\": \"<string>\",\n        \"message\": \"<string>\",\n        \"debug_id\": \"<string>\",\n        \"information_link\": \"<string>\",\n        \"details\": [\n          {\n            \"issue\": \"<string>\",\n            \"field\": \"<string>\",\n            \"value\": \"<string>\",\n            \"location\": \"body\",\n            \"description\": \"<string>\"\n          },\n          {\n            \"issue\": \"<string>\",\n            \"field\": \"<string>\",\n            \"value\": \"<string>\",\n            \"location\": \"body\",\n            \"description\": \"<string>\"\n          }\n        ],\n        \"links\": [\n          {\n            \"href\": \"<string>\",\n            \"rel\": \"<string>\",\n            \"method\": \"POST\"\n          },\n          {\n            \"href\": \"<string>\",\n            \"rel\": \"<string>\",\n            \"method\": \"GET\"\n          }\n        ]\n      },\n      \"links\": [\n        {\n          \"href\": \"<string>\",\n          \"rel\": \"<string>\",\n          \"method\": \"HEAD\"\n        },\n        {\n          \"href\": \"<string>\",\n          \"rel\": \"<string>\",\n          \"method\": \"PUT\"\n        },\n        {\n          \"href\": \"<string>\",\n          \"rel\": \"<string>\",\n          \"method\": \"GET\"\n        },\n        {\n          \"href\": \"<string>\",\n          \"rel\": \"<string>\",\n          \"method\": \"PUT\"\n        },\n        {\n          \"href\": \"<string>\",\n          \"rel\": \"<string>\",\n          \"method\": \"DELETE\"\n        },\n        {\n          \"href\": \"<string>\",\n          \"rel\": \"<string>\",\n          \"method\": \"GET\"\n        },\n        {\n          \"href\": \"<string>\",\n          \"rel\": \"<string>\",\n          \"method\": \"GET\"\n        },\n        {\n          \"href\": \"<string>\",\n          \"rel\": \"<string>\",\n          \"method\": \"HEAD\"\n        },\n        {\n          \"href\": \"<string>\",\n          \"rel\": \"<string>\",\n          \"method\": \"PATCH\"\n        },\n        {\n          \"href\": \"<string>\",\n          \"rel\": \"<string>\",\n          \"method\": \"OPTIONS\"\n        },\n        {\n          \"href\": \"<string>\",\n          \"rel\": \"<string>\",\n          \"method\": \"POST\"\n        },\n        {\n          \"href\": \"<string>\",\n          \"rel\": \"<string>\",\n          \"method\": \"PATCH\"\n        },\n        {\n          \"href\": \"<string>\",\n          \"rel\": \"<string>\",\n          \"method\": \"PATCH\"\n        },\n        {\n          \"href\": \"<string>\",\n          \"rel\": \"<string>\",\n          \"method\": \"PUT\"\n        },\n        {\n          \"href\": \"<string>\",\n          \"rel\": \"<string>\",\n          \"method\": \"POST\"\n        },\n        {\n          \"href\": \"<string>\",\n          \"rel\": \"<string>\",\n          \"method\": \"GET\"\n        },\n        {\n          \"href\": \"<string>\",\n          \"rel\": \"<string>\",\n          \"method\": \"GET\"\n        },\n        {\n          \"href\": \"<string>\",\n          \"rel\": \"<string>\",\n          \"method\": \"POST\"\n        },\n        {\n          \"href\": \"<string>\",\n          \"rel\": \"<string>\",\n          \"method\": \"POST\"\n        },\n        {\n          \"href\": \"<string>\",\n          \"rel\": \"<string>\",\n          \"method\": \"POST\"\n        }\n      ]\n    },\n    {\n      \"payout_item_id\": \"085_;[^2w\",\n      \"payout_batch_id\": \"Sk2)nB^n \",\n      \"payout_item\": {\n        \"amount\": {\n          \"currency\": \"<string>\",\n          \"value\": \"<string>\"\n        },\n        \"receiver\": \"Ol)[|Ns\",\n        \"recipient_type\": \"EMAIL\",\n        \"note\": \"\",\n        \"sender_item_id\": \"[\",\n        \"recipient_name\": {\n          \"prefix\": \"<string>\",\n          \"given_name\": \"<string>\",\n          \"surname\": \"<string>\",\n          \"middle_name\": \"<string>\",\n          \"suffix\": \"<string>\",\n          \"alternate_full_name\": \"<string>\",\n          \"full_name\": \"<string>\"\n        },\n        \"recipient_wallet\": \"PAYPAL\",\n        \"purpose\": \"NON_GOODS_OR_SERVICES\"\n      },\n      \"transaction_id\": \"\",\n      \"activity_id\": \"h{A$\",\n      \"transaction_status\": \"REVERSED\",\n      \"payout_item_fee\": {\n        \"currency\": \"<string>\",\n        \"value\": \"<string>\"\n      },\n      \"currency_conversion\": {\n        \"from_amount\": {\n          \"currency\": \"<string>\",\n          \"value\": \"<string>\"\n        },\n        \"to_amount\": {\n          \"currency\": \"<string>\",\n          \"value\": \"<string>\"\n        },\n        \"exchange_rate\": \"~`pKD\"\n      },\n      \"time_processed\": \"<dateTime>\",\n      \"errors\": {\n        \"name\": \"<string>\",\n        \"message\": \"<string>\",\n        \"debug_id\": \"<string>\",\n        \"information_link\": \"<string>\",\n        \"details\": [\n          {\n            \"issue\": \"<string>\",\n            \"field\": \"<string>\",\n            \"value\": \"<string>\",\n            \"location\": \"body\",\n            \"description\": \"<string>\"\n          },\n          {\n            \"issue\": \"<string>\",\n            \"field\": \"<string>\",\n            \"value\": \"<string>\",\n            \"location\": \"body\",\n            \"description\": \"<string>\"\n          }\n        ],\n        \"links\": [\n          {\n            \"href\": \"<string>\",\n            \"rel\": \"<string>\",\n            \"method\": \"PUT\"\n          },\n          {\n            \"href\": \"<string>\",\n            \"rel\": \"<string>\",\n            \"method\": \"GET\"\n          }\n        ]\n      },\n      \"links\": [\n        {\n          \"href\": \"<string>\",\n          \"rel\": \"<string>\",\n          \"method\": \"DELETE\"\n        },\n        {\n          \"href\": \"<string>\",\n          \"rel\": \"<string>\",\n          \"method\": \"GET\"\n        },\n        {\n          \"href\": \"<string>\",\n          \"rel\": \"<string>\",\n          \"method\": \"CONNECT\"\n        },\n        {\n          \"href\": \"<string>\",\n          \"rel\": \"<string>\",\n          \"method\": \"CONNECT\"\n        },\n        {\n          \"href\": \"<string>\",\n          \"rel\": \"<string>\",\n          \"method\": \"GET\"\n        },\n        {\n          \"href\": \"<string>\",\n          \"rel\": \"<string>\",\n          \"method\": \"CONNECT\"\n        },\n        {\n          \"href\": \"<string>\",\n          \"rel\": \"<string>\",\n          \"method\": \"HEAD\"\n        },\n        {\n          \"href\": \"<string>\",\n          \"rel\": \"<string>\",\n          \"method\": \"HEAD\"\n        },\n        {\n          \"href\": \"<string>\",\n          \"rel\": \"<string>\",\n          \"method\": \"CONNECT\"\n        },\n        {\n          \"href\": \"<string>\",\n          \"rel\": \"<string>\",\n          \"method\": \"PUT\"\n        },\n        {\n          \"href\": \"<string>\",\n          \"rel\": \"<string>\",\n          \"method\": \"PUT\"\n        },\n        {\n          \"href\": \"<string>\",\n          \"rel\": \"<string>\",\n          \"method\": \"PATCH\"\n        },\n        {\n          \"href\": \"<string>\",\n          \"rel\": \"<string>\",\n          \"method\": \"PUT\"\n        },\n        {\n          \"href\": \"<string>\",\n          \"rel\": \"<string>\",\n          \"method\": \"DELETE\"\n        },\n        {\n          \"href\": \"<string>\",\n          \"rel\": \"<string>\",\n          \"method\": \"GET\"\n        },\n        {\n          \"href\": \"<string>\",\n          \"rel\": \"<string>\",\n          \"method\": \"GET\"\n        },\n        {\n          \"href\": \"<string>\",\n          \"rel\": \"<string>\",\n          \"method\": \"PUT\"\n        },\n        {\n          \"href\": \"<string>\",\n          \"rel\": \"<string>\",\n          \"method\": \"POST\"\n        },\n        {\n          \"href\": \"<string>\",\n          \"rel\": \"<string>\",\n          \"method\": \"OPTIONS\"\n        },\n        {\n          \"href\": \"<string>\",\n          \"rel\": \"<string>\",\n          \"method\": \"POST\"\n        }\n      ]\n    },\n    {\n      \"payout_item_id\": \"I[uO0|\\\"=Y\",\n      \"payout_batch_id\": \"\",\n      \"payout_item\": {\n        \"amount\": {\n          \"currency\": \"<string>\",\n          \"value\": \"<string>\"\n        },\n        \"receiver\": \"6URQ9k'\",\n        \"recipient_type\": \"PHONE\",\n        \"note\": \"b1PPO\",\n        \"sender_item_id\": \"=B-k).jkAq\",\n        \"recipient_name\": {\n          \"prefix\": \"<string>\",\n          \"given_name\": \"<string>\",\n          \"surname\": \"<string>\",\n          \"middle_name\": \"<string>\",\n          \"suffix\": \"<string>\",\n          \"alternate_full_name\": \"<string>\",\n          \"full_name\": \"<string>\"\n        },\n        \"recipient_wallet\": \"PAYPAL\",\n        \"purpose\": \"DONATIONS\"\n      },\n      \"transaction_id\": \"8?^(}[\",\n      \"activity_id\": \"\",\n      \"transaction_status\": \"RETURNED\",\n      \"payout_item_fee\": {\n        \"currency\": \"<string>\",\n        \"value\": \"<string>\"\n      },\n      \"currency_conversion\": {\n        \"from_amount\": {\n          \"currency\": \"<string>\",\n          \"value\": \"<string>\"\n        },\n        \"to_amount\": {\n          \"currency\": \"<string>\",\n          \"value\": \"<string>\"\n        },\n        \"exchange_rate\": \"/0C&RZEocK\"\n      },\n      \"time_processed\": \"<dateTime>\",\n      \"errors\": {\n        \"name\": \"<string>\",\n        \"message\": \"<string>\",\n        \"debug_id\": \"<string>\",\n        \"information_link\": \"<string>\",\n        \"details\": [\n          {\n            \"issue\": \"<string>\",\n            \"field\": \"<string>\",\n            \"value\": \"<string>\",\n            \"location\": \"body\",\n            \"description\": \"<string>\"\n          },\n          {\n            \"issue\": \"<string>\",\n            \"field\": \"<string>\",\n            \"value\": \"<string>\",\n            \"location\": \"body\",\n            \"description\": \"<string>\"\n          }\n        ],\n        \"links\": [\n          {\n            \"href\": \"<string>\",\n            \"rel\": \"<string>\",\n            \"method\": \"PATCH\"\n          },\n          {\n            \"href\": \"<string>\",\n            \"rel\": \"<string>\",\n            \"method\": \"GET\"\n          }\n        ]\n      },\n      \"links\": [\n        {\n          \"href\": \"<string>\",\n          \"rel\": \"<string>\",\n          \"method\": \"DELETE\"\n        },\n        {\n          \"href\": \"<string>\",\n          \"rel\": \"<string>\",\n          \"method\": \"OPTIONS\"\n        },\n        {\n          \"href\": \"<string>\",\n          \"rel\": \"<string>\",\n          \"method\": \"HEAD\"\n        },\n        {\n          \"href\": \"<string>\",\n          \"rel\": \"<string>\",\n          \"method\": \"PATCH\"\n        },\n        {\n          \"href\": \"<string>\",\n          \"rel\": \"<string>\",\n          \"method\": \"PATCH\"\n        },\n        {\n          \"href\": \"<string>\",\n          \"rel\": \"<string>\",\n          \"method\": \"HEAD\"\n        },\n        {\n          \"href\": \"<string>\",\n          \"rel\": \"<string>\",\n          \"method\": \"PUT\"\n        },\n        {\n          \"href\": \"<string>\",\n          \"rel\": \"<string>\",\n          \"method\": \"PATCH\"\n        },\n        {\n          \"href\": \"<string>\",\n          \"rel\": \"<string>\",\n          \"method\": \"OPTIONS\"\n        },\n        {\n          \"href\": \"<string>\",\n          \"rel\": \"<string>\",\n          \"method\": \"POST\"\n        },\n        {\n          \"href\": \"<string>\",\n          \"rel\": \"<string>\",\n          \"method\": \"PUT\"\n        },\n        {\n          \"href\": \"<string>\",\n          \"rel\": \"<string>\",\n          \"method\": \"GET\"\n        },\n        {\n          \"href\": \"<string>\",\n          \"rel\": \"<string>\",\n          \"method\": \"DELETE\"\n        },\n        {\n          \"href\": \"<string>\",\n          \"rel\": \"<string>\",\n          \"method\": \"CONNECT\"\n        },\n        {\n          \"href\": \"<string>\",\n          \"rel\": \"<string>\",\n          \"method\": \"HEAD\"\n        },\n        {\n          \"href\": \"<string>\",\n          \"rel\": \"<string>\",\n          \"method\": \"HEAD\"\n        },\n        {\n          \"href\": \"<string>\",\n          \"rel\": \"<string>\",\n          \"method\": \"DELETE\"\n        },\n        {\n          \"href\": \"<string>\",\n          \"rel\": \"<string>\",\n          \"method\": \"HEAD\"\n        },\n        {\n          \"href\": \"<string>\",\n          \"rel\": \"<string>\",\n          \"method\": \"OPTIONS\"\n        },\n        {\n          \"href\": \"<string>\",\n          \"rel\": \"<string>\",\n          \"method\": \"OPTIONS\"\n        }\n      ]\n    },\n    {\n      \"payout_item_id\": \"!aUPX|\",\n      \"payout_batch_id\": \"Rq\",\n      \"payout_item\": {\n        \"amount\": {\n          \"currency\": \"<string>\",\n          \"value\": \"<string>\"\n        },\n        \"receiver\": \"\",\n        \"recipient_type\": \"PHONE\",\n        \"note\": \"V;`x\\\"/-\",\n        \"sender_item_id\": \"H3pb\",\n        \"recipient_name\": {\n          \"prefix\": \"<string>\",\n          \"given_name\": \"<string>\",\n          \"surname\": \"<string>\",\n          \"middle_name\": \"<string>\",\n          \"suffix\": \"<string>\",\n          \"alternate_full_name\": \"<string>\",\n          \"full_name\": \"<string>\"\n        },\n        \"recipient_wallet\": \"PAYPAL\",\n        \"purpose\": \"AWARDS\"\n      },\n      \"transaction_id\": \"\",\n      \"activity_id\": \".'bu\\\\r8\",\n      \"transaction_status\": \"RETURNED\",\n      \"payout_item_fee\": {\n        \"currency\": \"<string>\",\n        \"value\": \"<string>\"\n      },\n      \"currency_conversion\": {\n        \"from_amount\": {\n          \"currency\": \"<string>\",\n          \"value\": \"<string>\"\n        },\n        \"to_amount\": {\n          \"currency\": \"<string>\",\n          \"value\": \"<string>\"\n        },\n        \"exchange_rate\": \"\"\n      },\n      \"time_processed\": \"<dateTime>\",\n      \"errors\": {\n        \"name\": \"<string>\",\n        \"message\": \"<string>\",\n        \"debug_id\": \"<string>\",\n        \"information_link\": \"<string>\",\n        \"details\": [\n          {\n            \"issue\": \"<string>\",\n            \"field\": \"<string>\",\n            \"value\": \"<string>\",\n            \"location\": \"body\",\n            \"description\": \"<string>\"\n          },\n          {\n            \"issue\": \"<string>\",\n            \"field\": \"<string>\",\n            \"value\": \"<string>\",\n            \"location\": \"body\",\n            \"description\": \"<string>\"\n          }\n        ],\n        \"links\": [\n          {\n            \"href\": \"<string>\",\n            \"rel\": \"<string>\",\n            \"method\": \"OPTIONS\"\n          },\n          {\n            \"href\": \"<string>\",\n            \"rel\": \"<string>\",\n            \"method\": \"DELETE\"\n          }\n        ]\n      },\n      \"links\": [\n        {\n          \"href\": \"<string>\",\n          \"rel\": \"<string>\",\n          \"method\": \"DELETE\"\n        },\n        {\n          \"href\": \"<string>\",\n          \"rel\": \"<string>\",\n          \"method\": \"POST\"\n        },\n        {\n          \"href\": \"<string>\",\n          \"rel\": \"<string>\",\n          \"method\": \"POST\"\n        },\n        {\n          \"href\": \"<string>\",\n          \"rel\": \"<string>\",\n          \"method\": \"OPTIONS\"\n        },\n        {\n          \"href\": \"<string>\",\n          \"rel\": \"<string>\",\n          \"method\": \"CONNECT\"\n        },\n        {\n          \"href\": \"<string>\",\n          \"rel\": \"<string>\",\n          \"method\": \"DELETE\"\n        },\n        {\n          \"href\": \"<string>\",\n          \"rel\": \"<string>\",\n          \"method\": \"PUT\"\n        },\n        {\n          \"href\": \"<string>\",\n          \"rel\": \"<string>\",\n          \"method\": \"POST\"\n        },\n        {\n          \"href\": \"<string>\",\n          \"rel\": \"<string>\",\n          \"method\": \"OPTIONS\"\n        },\n        {\n          \"href\": \"<string>\",\n          \"rel\": \"<string>\",\n          \"method\": \"OPTIONS\"\n        },\n        {\n          \"href\": \"<string>\",\n          \"rel\": \"<string>\",\n          \"method\": \"PATCH\"\n        },\n        {\n          \"href\": \"<string>\",\n          \"rel\": \"<string>\",\n          \"method\": \"HEAD\"\n        },\n        {\n          \"href\": \"<string>\",\n          \"rel\": \"<string>\",\n          \"method\": \"GET\"\n        },\n        {\n          \"href\": \"<string>\",\n          \"rel\": \"<string>\",\n          \"method\": \"PUT\"\n        },\n        {\n          \"href\": \"<string>\",\n          \"rel\": \"<string>\",\n          \"method\": \"PUT\"\n        },\n        {\n          \"href\": \"<string>\",\n          \"rel\": \"<string>\",\n          \"method\": \"PUT\"\n        },\n        {\n          \"href\": \"<string>\",\n          \"rel\": \"<string>\",\n          \"method\": \"GET\"\n        },\n        {\n          \"href\": \"<string>\",\n          \"rel\": \"<string>\",\n          \"method\": \"PUT\"\n        },\n        {\n          \"href\": \"<string>\",\n          \"rel\": \"<string>\",\n          \"method\": \"PUT\"\n        },\n        {\n          \"href\": \"<string>\",\n          \"rel\": \"<string>\",\n          \"method\": \"DELETE\"\n        }\n      ]\n    },\n    {\n      \"payout_item_id\": \"P>\",\n      \"payout_batch_id\": \"\",\n      \"payout_item\": {\n        \"amount\": {\n          \"currency\": \"<string>\",\n          \"value\": \"<string>\"\n        },\n        \"receiver\": \"v\",\n        \"recipient_type\": \"EMAIL\",\n        \"note\": \"w&17>nf \",\n        \"sender_item_id\": \"$t\",\n        \"recipient_name\": {\n          \"prefix\": \"<string>\",\n          \"given_name\": \"<string>\",\n          \"surname\": \"<string>\",\n          \"middle_name\": \"<string>\",\n          \"suffix\": \"<string>\",\n          \"alternate_full_name\": \"<string>\",\n          \"full_name\": \"<string>\"\n        },\n        \"recipient_wallet\": \"PAYPAL\",\n        \"purpose\": \"REBATES\"\n      },\n      \"transaction_id\": \"]rjflK j;o\",\n      \"activity_id\": \"z{J<8C!w;[\",\n      \"transaction_status\": \"UNCLAIMED\",\n      \"payout_item_fee\": {\n        \"currency\": \"<string>\",\n        \"value\": \"<string>\"\n      },\n      \"currency_conversion\": {\n        \"from_amount\": {\n          \"currency\": \"<string>\",\n          \"value\": \"<string>\"\n        },\n        \"to_amount\": {\n          \"currency\": \"<string>\",\n          \"value\": \"<string>\"\n        },\n        \"exchange_rate\": \"BPcZ$Bk\"\n      },\n      \"time_processed\": \"<dateTime>\",\n      \"errors\": {\n        \"name\": \"<string>\",\n        \"message\": \"<string>\",\n        \"debug_id\": \"<string>\",\n        \"information_link\": \"<string>\",\n        \"details\": [\n          {\n            \"issue\": \"<string>\",\n            \"field\": \"<string>\",\n            \"value\": \"<string>\",\n            \"location\": \"body\",\n            \"description\": \"<string>\"\n          },\n          {\n            \"issue\": \"<string>\",\n            \"field\": \"<string>\",\n            \"value\": \"<string>\",\n            \"location\": \"body\",\n            \"description\": \"<string>\"\n          }\n        ],\n        \"links\": [\n          {\n            \"href\": \"<string>\",\n            \"rel\": \"<string>\",\n            \"method\": \"GET\"\n          },\n          {\n            \"href\": \"<string>\",\n            \"rel\": \"<string>\",\n            \"method\": \"HEAD\"\n          }\n        ]\n      },\n      \"links\": [\n        {\n          \"href\": \"<string>\",\n          \"rel\": \"<string>\",\n          \"method\": \"PATCH\"\n        },\n        {\n          \"href\": \"<string>\",\n          \"rel\": \"<string>\",\n          \"method\": \"DELETE\"\n        },\n        {\n          \"href\": \"<string>\",\n          \"rel\": \"<string>\",\n          \"method\": \"HEAD\"\n        },\n        {\n          \"href\": \"<string>\",\n          \"rel\": \"<string>\",\n          \"method\": \"GET\"\n        },\n        {\n          \"href\": \"<string>\",\n          \"rel\": \"<string>\",\n          \"method\": \"PATCH\"\n        },\n        {\n          \"href\": \"<string>\",\n          \"rel\": \"<string>\",\n          \"method\": \"POST\"\n        },\n        {\n          \"href\": \"<string>\",\n          \"rel\": \"<string>\",\n          \"method\": \"DELETE\"\n        },\n        {\n          \"href\": \"<string>\",\n          \"rel\": \"<string>\",\n          \"method\": \"CONNECT\"\n        },\n        {\n          \"href\": \"<string>\",\n          \"rel\": \"<string>\",\n          \"method\": \"POST\"\n        },\n        {\n          \"href\": \"<string>\",\n          \"rel\": \"<string>\",\n          \"method\": \"OPTIONS\"\n        },\n        {\n          \"href\": \"<string>\",\n          \"rel\": \"<string>\",\n          \"method\": \"DELETE\"\n        },\n        {\n          \"href\": \"<string>\",\n          \"rel\": \"<string>\",\n          \"method\": \"DELETE\"\n        },\n        {\n          \"href\": \"<string>\",\n          \"rel\": \"<string>\",\n          \"method\": \"CONNECT\"\n        },\n        {\n          \"href\": \"<string>\",\n          \"rel\": \"<string>\",\n          \"method\": \"CONNECT\"\n        },\n        {\n          \"href\": \"<string>\",\n          \"rel\": \"<string>\",\n          \"method\": \"PATCH\"\n        },\n        {\n          \"href\": \"<string>\",\n          \"rel\": \"<string>\",\n          \"method\": \"PATCH\"\n        },\n        {\n          \"href\": \"<string>\",\n          \"rel\": \"<string>\",\n          \"method\": \"OPTIONS\"\n        },\n        {\n          \"href\": \"<string>\",\n          \"rel\": \"<string>\",\n          \"method\": \"POST\"\n        },\n        {\n          \"href\": \"<string>\",\n          \"rel\": \"<string>\",\n          \"method\": \"HEAD\"\n        },\n        {\n          \"href\": \"<string>\",\n          \"rel\": \"<string>\",\n          \"method\": \"HEAD\"\n        }\n      ]\n    },\n    {\n      \"payout_item_id\": \"t6]G&e\",\n      \"payout_batch_id\": \"\",\n      \"payout_item\": {\n        \"amount\": {\n          \"currency\": \"<string>\",\n          \"value\": \"<string>\"\n        },\n        \"receiver\": \"l;-Ep%3%v`\",\n        \"recipient_type\": \"PHONE\",\n        \"note\": \"rRlsWF`3f\",\n        \"sender_item_id\": \"US<m[\",\n        \"recipient_name\": {\n          \"prefix\": \"<string>\",\n          \"given_name\": \"<string>\",\n          \"surname\": \"<string>\",\n          \"middle_name\": \"<string>\",\n          \"suffix\": \"<string>\",\n          \"alternate_full_name\": \"<string>\",\n          \"full_name\": \"<string>\"\n        },\n        \"recipient_wallet\": \"PAYPAL\",\n        \"purpose\": \"PRIZES\"\n      },\n      \"transaction_id\": \"ljy{/[\",\n      \"activity_id\": \"IF73\",\n      \"transaction_status\": \"REVERSED\",\n      \"payout_item_fee\": {\n        \"currency\": \"<string>\",\n        \"value\": \"<string>\"\n      },\n      \"currency_conversion\": {\n        \"from_amount\": {\n          \"currency\": \"<string>\",\n          \"value\": \"<string>\"\n        },\n        \"to_amount\": {\n          \"currency\": \"<string>\",\n          \"value\": \"<string>\"\n        },\n        \"exchange_rate\": \"/C\"\n      },\n      \"time_processed\": \"<dateTime>\",\n      \"errors\": {\n        \"name\": \"<string>\",\n        \"message\": \"<string>\",\n        \"debug_id\": \"<string>\",\n        \"information_link\": \"<string>\",\n        \"details\": [\n          {\n            \"issue\": \"<string>\",\n            \"field\": \"<string>\",\n            \"value\": \"<string>\",\n            \"location\": \"body\",\n            \"description\": \"<string>\"\n          },\n          {\n            \"issue\": \"<string>\",\n            \"field\": \"<string>\",\n            \"value\": \"<string>\",\n            \"location\": \"body\",\n            \"description\": \"<string>\"\n          }\n        ],\n        \"links\": [\n          {\n            \"href\": \"<string>\",\n            \"rel\": \"<string>\",\n            \"method\": \"POST\"\n          },\n          {\n            \"href\": \"<string>\",\n            \"rel\": \"<string>\",\n            \"method\": \"GET\"\n          }\n        ]\n      },\n      \"links\": [\n        {\n          \"href\": \"<string>\",\n          \"rel\": \"<string>\",\n          \"method\": \"PUT\"\n        },\n        {\n          \"href\": \"<string>\",\n          \"rel\": \"<string>\",\n          \"method\": \"GET\"\n        },\n        {\n          \"href\": \"<string>\",\n          \"rel\": \"<string>\",\n          \"method\": \"PUT\"\n        },\n        {\n          \"href\": \"<string>\",\n          \"rel\": \"<string>\",\n          \"method\": \"PATCH\"\n        },\n        {\n          \"href\": \"<string>\",\n          \"rel\": \"<string>\",\n          \"method\": \"PUT\"\n        },\n        {\n          \"href\": \"<string>\",\n          \"rel\": \"<string>\",\n          \"method\": \"POST\"\n        },\n        {\n          \"href\": \"<string>\",\n          \"rel\": \"<string>\",\n          \"method\": \"PATCH\"\n        },\n        {\n          \"href\": \"<string>\",\n          \"rel\": \"<string>\",\n          \"method\": \"HEAD\"\n        },\n        {\n          \"href\": \"<string>\",\n          \"rel\": \"<string>\",\n          \"method\": \"POST\"\n        },\n        {\n          \"href\": \"<string>\",\n          \"rel\": \"<string>\",\n          \"method\": \"HEAD\"\n        },\n        {\n          \"href\": \"<string>\",\n          \"rel\": \"<string>\",\n          \"method\": \"PATCH\"\n        },\n        {\n          \"href\": \"<string>\",\n          \"rel\": \"<string>\",\n          \"method\": \"PUT\"\n        },\n        {\n          \"href\": \"<string>\",\n          \"rel\": \"<string>\",\n          \"method\": \"HEAD\"\n        },\n        {\n          \"href\": \"<string>\",\n          \"rel\": \"<string>\",\n          \"method\": \"PUT\"\n        },\n        {\n          \"href\": \"<string>\",\n          \"rel\": \"<string>\",\n          \"method\": \"POST\"\n        },\n        {\n          \"href\": \"<string>\",\n          \"rel\": \"<string>\",\n          \"method\": \"GET\"\n        },\n        {\n          \"href\": \"<string>\",\n          \"rel\": \"<string>\",\n          \"method\": \"POST\"\n        },\n        {\n          \"href\": \"<string>\",\n          \"rel\": \"<string>\",\n          \"method\": \"POST\"\n        },\n        {\n          \"href\": \"<string>\",\n          \"rel\": \"<string>\",\n          \"method\": \"HEAD\"\n        },\n        {\n          \"href\": \"<string>\",\n          \"rel\": \"<string>\",\n          \"method\": \"DELETE\"\n        }\n      ]\n    },\n    {\n      \"payout_item_id\": \"([n\",\n      \"payout_batch_id\": \"w1-gT}YH<+\",\n      \"payout_item\": {\n        \"amount\": {\n          \"currency\": \"<string>\",\n          \"value\": \"<string>\"\n        },\n        \"receiver\": \"%n[iFl9B\",\n        \"recipient_type\": \"PHONE\",\n        \"note\": \"Uf_ci];\",\n        \"sender_item_id\": \"v)\\\\`\",\n        \"recipient_name\": {\n          \"prefix\": \"<string>\",\n          \"given_name\": \"<string>\",\n          \"surname\": \"<string>\",\n          \"middle_name\": \"<string>\",\n          \"suffix\": \"<string>\",\n          \"alternate_full_name\": \"<string>\",\n          \"full_name\": \"<string>\"\n        },\n        \"recipient_wallet\": \"PAYPAL\",\n        \"purpose\": \"AWARDS\"\n      },\n      \"transaction_id\": \"}|zUDsN#)<\",\n      \"activity_id\": \"\",\n      \"transaction_status\": \"PENDING\",\n      \"payout_item_fee\": {\n        \"currency\": \"<string>\",\n        \"value\": \"<string>\"\n      },\n      \"currency_conversion\": {\n        \"from_amount\": {\n          \"currency\": \"<string>\",\n          \"value\": \"<string>\"\n        },\n        \"to_amount\": {\n          \"currency\": \"<string>\",\n          \"value\": \"<string>\"\n        },\n        \"exchange_rate\": \"D\"\n      },\n      \"time_processed\": \"<dateTime>\",\n      \"errors\": {\n        \"name\": \"<string>\",\n        \"message\": \"<string>\",\n        \"debug_id\": \"<string>\",\n        \"information_link\": \"<string>\",\n        \"details\": [\n          {\n            \"issue\": \"<string>\",\n            \"field\": \"<string>\",\n            \"value\": \"<string>\",\n            \"location\": \"body\",\n            \"description\": \"<string>\"\n          },\n          {\n            \"issue\": \"<string>\",\n            \"field\": \"<string>\",\n            \"value\": \"<string>\",\n            \"location\": \"body\",\n            \"description\": \"<string>\"\n          }\n        ],\n        \"links\": [\n          {\n            \"href\": \"<string>\",\n            \"rel\": \"<string>\",\n            \"method\": \"OPTIONS\"\n          },\n          {\n            \"href\": \"<string>\",\n            \"rel\": \"<string>\",\n            \"method\": \"PATCH\"\n          }\n        ]\n      },\n      \"links\": [\n        {\n          \"href\": \"<string>\",\n          \"rel\": \"<string>\",\n          \"method\": \"GET\"\n        },\n        {\n          \"href\": \"<string>\",\n          \"rel\": \"<string>\",\n          \"method\": \"CONNECT\"\n        },\n        {\n          \"href\": \"<string>\",\n          \"rel\": \"<string>\",\n          \"method\": \"GET\"\n        },\n        {\n          \"href\": \"<string>\",\n          \"rel\": \"<string>\",\n          \"method\": \"GET\"\n        },\n        {\n          \"href\": \"<string>\",\n          \"rel\": \"<string>\",\n          \"method\": \"DELETE\"\n        },\n        {\n          \"href\": \"<string>\",\n          \"rel\": \"<string>\",\n          \"method\": \"CONNECT\"\n        },\n        {\n          \"href\": \"<string>\",\n          \"rel\": \"<string>\",\n          \"method\": \"DELETE\"\n        },\n        {\n          \"href\": \"<string>\",\n          \"rel\": \"<string>\",\n          \"method\": \"POST\"\n        },\n        {\n          \"href\": \"<string>\",\n          \"rel\": \"<string>\",\n          \"method\": \"DELETE\"\n        },\n        {\n          \"href\": \"<string>\",\n          \"rel\": \"<string>\",\n          \"method\": \"CONNECT\"\n        },\n        {\n          \"href\": \"<string>\",\n          \"rel\": \"<string>\",\n          \"method\": \"OPTIONS\"\n        },\n        {\n          \"href\": \"<string>\",\n          \"rel\": \"<string>\",\n          \"method\": \"OPTIONS\"\n        },\n        {\n          \"href\": \"<string>\",\n          \"rel\": \"<string>\",\n          \"method\": \"OPTIONS\"\n        },\n        {\n          \"href\": \"<string>\",\n          \"rel\": \"<string>\",\n          \"method\": \"GET\"\n        },\n        {\n          \"href\": \"<string>\",\n          \"rel\": \"<string>\",\n          \"method\": \"DELETE\"\n        },\n        {\n          \"href\": \"<string>\",\n          \"rel\": \"<string>\",\n          \"method\": \"GET\"\n        },\n        {\n          \"href\": \"<string>\",\n          \"rel\": \"<string>\",\n          \"method\": \"POST\"\n        },\n        {\n          \"href\": \"<string>\",\n          \"rel\": \"<string>\",\n          \"method\": \"OPTIONS\"\n        },\n        {\n          \"href\": \"<string>\",\n          \"rel\": \"<string>\",\n          \"method\": \"DELETE\"\n        },\n        {\n          \"href\": \"<string>\",\n          \"rel\": \"<string>\",\n          \"method\": \"DELETE\"\n        }\n      ]\n    },\n    {\n      \"payout_item_id\": \"+HknX\",\n      \"payout_batch_id\": \"I$\\\"*8oNm<\",\n      \"payout_item\": {\n        \"amount\": {\n          \"currency\": \"<string>\",\n          \"value\": \"<string>\"\n        },\n        \"receiver\": \"[n)fa6^\",\n        \"recipient_type\": \"PAYPAL_ID\",\n        \"note\": \"Bz)bXPJe!O\",\n        \"sender_item_id\": \"d{x(uy\",\n        \"recipient_name\": {\n          \"prefix\": \"<string>\",\n          \"given_name\": \"<string>\",\n          \"surname\": \"<string>\",\n          \"middle_name\": \"<string>\",\n          \"suffix\": \"<string>\",\n          \"alternate_full_name\": \"<string>\",\n          \"full_name\": \"<string>\"\n        },\n        \"recipient_wallet\": \"PAYPAL\",\n        \"purpose\": \"DISCOUNTS\"\n      },\n      \"transaction_id\": \"6#8E4T\",\n      \"activity_id\": \"6ne~?\",\n      \"transaction_status\": \"PENDING\",\n      \"payout_item_fee\": {\n        \"currency\": \"<string>\",\n        \"value\": \"<string>\"\n      },\n      \"currency_conversion\": {\n        \"from_amount\": {\n          \"currency\": \"<string>\",\n          \"value\": \"<string>\"\n        },\n        \"to_amount\": {\n          \"currency\": \"<string>\",\n          \"value\": \"<string>\"\n        },\n        \"exchange_rate\": \"#!>\"\n      },\n      \"time_processed\": \"<dateTime>\",\n      \"errors\": {\n        \"name\": \"<string>\",\n        \"message\": \"<string>\",\n        \"debug_id\": \"<string>\",\n        \"information_link\": \"<string>\",\n        \"details\": [\n          {\n            \"issue\": \"<string>\",\n            \"field\": \"<string>\",\n            \"value\": \"<string>\",\n            \"location\": \"body\",\n            \"description\": \"<string>\"\n          },\n          {\n            \"issue\": \"<string>\",\n            \"field\": \"<string>\",\n            \"value\": \"<string>\",\n            \"location\": \"body\",\n            \"description\": \"<string>\"\n          }\n        ],\n        \"links\": [\n          {\n            \"href\": \"<string>\",\n            \"rel\": \"<string>\",\n            \"method\": \"PUT\"\n          },\n          {\n            \"href\": \"<string>\",\n            \"rel\": \"<string>\",\n            \"method\": \"PATCH\"\n          }\n        ]\n      },\n      \"links\": [\n        {\n          \"href\": \"<string>\",\n          \"rel\": \"<string>\",\n          \"method\": \"POST\"\n        },\n        {\n          \"href\": \"<string>\",\n          \"rel\": \"<string>\",\n          \"method\": \"GET\"\n        },\n        {\n          \"href\": \"<string>\",\n          \"rel\": \"<string>\",\n          \"method\": \"POST\"\n        },\n        {\n          \"href\": \"<string>\",\n          \"rel\": \"<string>\",\n          \"method\": \"CONNECT\"\n        },\n        {\n          \"href\": \"<string>\",\n          \"rel\": \"<string>\",\n          \"method\": \"HEAD\"\n        },\n        {\n          \"href\": \"<string>\",\n          \"rel\": \"<string>\",\n          \"method\": \"GET\"\n        },\n        {\n          \"href\": \"<string>\",\n          \"rel\": \"<string>\",\n          \"method\": \"OPTIONS\"\n        },\n        {\n          \"href\": \"<string>\",\n          \"rel\": \"<string>\",\n          \"method\": \"PUT\"\n        },\n        {\n          \"href\": \"<string>\",\n          \"rel\": \"<string>\",\n          \"method\": \"POST\"\n        },\n        {\n          \"href\": \"<string>\",\n          \"rel\": \"<string>\",\n          \"method\": \"HEAD\"\n        },\n        {\n          \"href\": \"<string>\",\n          \"rel\": \"<string>\",\n          \"method\": \"POST\"\n        },\n        {\n          \"href\": \"<string>\",\n          \"rel\": \"<string>\",\n          \"method\": \"PATCH\"\n        },\n        {\n          \"href\": \"<string>\",\n          \"rel\": \"<string>\",\n          \"method\": \"PUT\"\n        },\n        {\n          \"href\": \"<string>\",\n          \"rel\": \"<string>\",\n          \"method\": \"HEAD\"\n        },\n        {\n          \"href\": \"<string>\",\n          \"rel\": \"<string>\",\n          \"method\": \"POST\"\n        },\n        {\n          \"href\": \"<string>\",\n          \"rel\": \"<string>\",\n          \"method\": \"GET\"\n        },\n        {\n          \"href\": \"<string>\",\n          \"rel\": \"<string>\",\n          \"method\": \"PUT\"\n        },\n        {\n          \"href\": \"<string>\",\n          \"rel\": \"<string>\",\n          \"method\": \"OPTIONS\"\n        },\n        {\n          \"href\": \"<string>\",\n          \"rel\": \"<string>\",\n          \"method\": \"DELETE\"\n        },\n        {\n          \"href\": \"<string>\",\n          \"rel\": \"<string>\",\n          \"method\": \"POST\"\n        }\n      ]\n    },\n    {\n      \"payout_item_id\": \"xNa:/R-C\",\n      \"payout_batch_id\": \"A ~\",\n      \"payout_item\": {\n        \"amount\": {\n          \"currency\": \"<string>\",\n          \"value\": \"<string>\"\n        },\n        \"receiver\": \"c~c]s8bHc\",\n        \"recipient_type\": \"EMAIL\",\n        \"note\": \"-0!g]mnM\",\n        \"sender_item_id\": \"I\",\n        \"recipient_name\": {\n          \"prefix\": \"<string>\",\n          \"given_name\": \"<string>\",\n          \"surname\": \"<string>\",\n          \"middle_name\": \"<string>\",\n          \"suffix\": \"<string>\",\n          \"alternate_full_name\": \"<string>\",\n          \"full_name\": \"<string>\"\n        },\n        \"recipient_wallet\": \"PAYPAL\",\n        \"purpose\": \"REBATES\"\n      },\n      \"transaction_id\": \"LwVkR)n7aZ\",\n      \"activity_id\": \"\\\\\\\"N\",\n      \"transaction_status\": \"RETURNED\",\n      \"payout_item_fee\": {\n        \"currency\": \"<string>\",\n        \"value\": \"<string>\"\n      },\n      \"currency_conversion\": {\n        \"from_amount\": {\n          \"currency\": \"<string>\",\n          \"value\": \"<string>\"\n        },\n        \"to_amount\": {\n          \"currency\": \"<string>\",\n          \"value\": \"<string>\"\n        },\n        \"exchange_rate\": \"`mC JpGI^\"\n      },\n      \"time_processed\": \"<dateTime>\",\n      \"errors\": {\n        \"name\": \"<string>\",\n        \"message\": \"<string>\",\n        \"debug_id\": \"<string>\",\n        \"information_link\": \"<string>\",\n        \"details\": [\n          {\n            \"issue\": \"<string>\",\n            \"field\": \"<string>\",\n            \"value\": \"<string>\",\n            \"location\": \"body\",\n            \"description\": \"<string>\"\n          },\n          {\n            \"issue\": \"<string>\",\n            \"field\": \"<string>\",\n            \"value\": \"<string>\",\n            \"location\": \"body\",\n            \"description\": \"<string>\"\n          }\n        ],\n        \"links\": [\n          {\n            \"href\": \"<string>\",\n            \"rel\": \"<string>\",\n            \"method\": \"OPTIONS\"\n          },\n          {\n            \"href\": \"<string>\",\n            \"rel\": \"<string>\",\n            \"method\": \"PATCH\"\n          }\n        ]\n      },\n      \"links\": [\n        {\n          \"href\": \"<string>\",\n          \"rel\": \"<string>\",\n          \"method\": \"HEAD\"\n        },\n        {\n          \"href\": \"<string>\",\n          \"rel\": \"<string>\",\n          \"method\": \"GET\"\n        },\n        {\n          \"href\": \"<string>\",\n          \"rel\": \"<string>\",\n          \"method\": \"POST\"\n        },\n        {\n          \"href\": \"<string>\",\n          \"rel\": \"<string>\",\n          \"method\": \"OPTIONS\"\n        },\n        {\n          \"href\": \"<string>\",\n          \"rel\": \"<string>\",\n          \"method\": \"POST\"\n        },\n        {\n          \"href\": \"<string>\",\n          \"rel\": \"<string>\",\n          \"method\": \"PUT\"\n        },\n        {\n          \"href\": \"<string>\",\n          \"rel\": \"<string>\",\n          \"method\": \"PUT\"\n        },\n        {\n          \"href\": \"<string>\",\n          \"rel\": \"<string>\",\n          \"method\": \"OPTIONS\"\n        },\n        {\n          \"href\": \"<string>\",\n          \"rel\": \"<string>\",\n          \"method\": \"PATCH\"\n        },\n        {\n          \"href\": \"<string>\",\n          \"rel\": \"<string>\",\n          \"method\": \"PUT\"\n        },\n        {\n          \"href\": \"<string>\",\n          \"rel\": \"<string>\",\n          \"method\": \"OPTIONS\"\n        },\n        {\n          \"href\": \"<string>\",\n          \"rel\": \"<string>\",\n          \"method\": \"CONNECT\"\n        },\n        {\n          \"href\": \"<string>\",\n          \"rel\": \"<string>\",\n          \"method\": \"CONNECT\"\n        },\n        {\n          \"href\": \"<string>\",\n          \"rel\": \"<string>\",\n          \"method\": \"POST\"\n        },\n        {\n          \"href\": \"<string>\",\n          \"rel\": \"<string>\",\n          \"method\": \"CONNECT\"\n        },\n        {\n          \"href\": \"<string>\",\n          \"rel\": \"<string>\",\n          \"method\": \"CONNECT\"\n        },\n        {\n          \"href\": \"<string>\",\n          \"rel\": \"<string>\",\n          \"method\": \"PATCH\"\n        },\n        {\n          \"href\": \"<string>\",\n          \"rel\": \"<string>\",\n          \"method\": \"PATCH\"\n        },\n        {\n          \"href\": \"<string>\",\n          \"rel\": \"<string>\",\n          \"method\": \"POST\"\n        },\n        {\n          \"href\": \"<string>\",\n          \"rel\": \"<string>\",\n          \"method\": \"GET\"\n        }\n      ]\n    },\n    {\n      \"payout_item_id\": \"\",\n      \"payout_batch_id\": \".F my^[\",\n      \"payout_item\": {\n        \"amount\": {\n          \"currency\": \"<string>\",\n          \"value\": \"<string>\"\n        },\n        \"receiver\": \"pL~&<\",\n        \"recipient_type\": \"PHONE\",\n        \"note\": \"GB<Q7Sj1#\",\n        \"sender_item_id\": \"IS/3sr\",\n        \"recipient_name\": {\n          \"prefix\": \"<string>\",\n          \"given_name\": \"<string>\",\n          \"surname\": \"<string>\",\n          \"middle_name\": \"<string>\",\n          \"suffix\": \"<string>\",\n          \"alternate_full_name\": \"<string>\",\n          \"full_name\": \"<string>\"\n        },\n        \"recipient_wallet\": \"PAYPAL\",\n        \"purpose\": \"CASHBACK\"\n      },\n      \"transaction_id\": \"Y$`i%`\",\n      \"activity_id\": \"+L#5}\",\n      \"transaction_status\": \"ONHOLD\",\n      \"payout_item_fee\": {\n        \"currency\": \"<string>\",\n        \"value\": \"<string>\"\n      },\n      \"currency_conversion\": {\n        \"from_amount\": {\n          \"currency\": \"<string>\",\n          \"value\": \"<string>\"\n        },\n        \"to_amount\": {\n          \"currency\": \"<string>\",\n          \"value\": \"<string>\"\n        },\n        \"exchange_rate\": \"Q.-\"\n      },\n      \"time_processed\": \"<dateTime>\",\n      \"errors\": {\n        \"name\": \"<string>\",\n        \"message\": \"<string>\",\n        \"debug_id\": \"<string>\",\n        \"information_link\": \"<string>\",\n        \"details\": [\n          {\n            \"issue\": \"<string>\",\n            \"field\": \"<string>\",\n            \"value\": \"<string>\",\n            \"location\": \"body\",\n            \"description\": \"<string>\"\n          },\n          {\n            \"issue\": \"<string>\",\n            \"field\": \"<string>\",\n            \"value\": \"<string>\",\n            \"location\": \"body\",\n            \"description\": \"<string>\"\n          }\n        ],\n        \"links\": [\n          {\n            \"href\": \"<string>\",\n            \"rel\": \"<string>\",\n            \"method\": \"CONNECT\"\n          },\n          {\n            \"href\": \"<string>\",\n            \"rel\": \"<string>\",\n            \"method\": \"PATCH\"\n          }\n        ]\n      },\n      \"links\": [\n        {\n          \"href\": \"<string>\",\n          \"rel\": \"<string>\",\n          \"method\": \"OPTIONS\"\n        },\n        {\n          \"href\": \"<string>\",\n          \"rel\": \"<string>\",\n          \"method\": \"POST\"\n        },\n        {\n          \"href\": \"<string>\",\n          \"rel\": \"<string>\",\n          \"method\": \"HEAD\"\n        },\n        {\n          \"href\": \"<string>\",\n          \"rel\": \"<string>\",\n          \"method\": \"POST\"\n        },\n        {\n          \"href\": \"<string>\",\n          \"rel\": \"<string>\",\n          \"method\": \"OPTIONS\"\n        },\n        {\n          \"href\": \"<string>\",\n          \"rel\": \"<string>\",\n          \"method\": \"DELETE\"\n        },\n        {\n          \"href\": \"<string>\",\n          \"rel\": \"<string>\",\n          \"method\": \"GET\"\n        },\n        {\n          \"href\": \"<string>\",\n          \"rel\": \"<string>\",\n          \"method\": \"DELETE\"\n        },\n        {\n          \"href\": \"<string>\",\n          \"rel\": \"<string>\",\n          \"method\": \"CONNECT\"\n        },\n        {\n          \"href\": \"<string>\",\n          \"rel\": \"<string>\",\n          \"method\": \"GET\"\n        },\n        {\n          \"href\": \"<string>\",\n          \"rel\": \"<string>\",\n          \"method\": \"CONNECT\"\n        },\n        {\n          \"href\": \"<string>\",\n          \"rel\": \"<string>\",\n          \"method\": \"HEAD\"\n        },\n        {\n          \"href\": \"<string>\",\n          \"rel\": \"<string>\",\n          \"method\": \"PUT\"\n        },\n        {\n          \"href\": \"<string>\",\n          \"rel\": \"<string>\",\n          \"method\": \"PATCH\"\n        },\n        {\n          \"href\": \"<string>\",\n          \"rel\": \"<string>\",\n          \"method\": \"GET\"\n        },\n        {\n          \"href\": \"<string>\",\n          \"rel\": \"<string>\",\n          \"method\": \"PATCH\"\n        },\n        {\n          \"href\": \"<string>\",\n          \"rel\": \"<string>\",\n          \"method\": \"DELETE\"\n        },\n        {\n          \"href\": \"<string>\",\n          \"rel\": \"<string>\",\n          \"method\": \"OPTIONS\"\n        },\n        {\n          \"href\": \"<string>\",\n          \"rel\": \"<string>\",\n          \"method\": \"GET\"\n        },\n        {\n          \"href\": \"<string>\",\n          \"rel\": \"<string>\",\n          \"method\": \"HEAD\"\n        }\n      ]\n    },\n    {\n      \"payout_item_id\": \"\\\"ky#\",\n      \"payout_batch_id\": \"4oS^8hf\",\n      \"payout_item\": {\n        \"amount\": {\n          \"currency\": \"<string>\",\n          \"value\": \"<string>\"\n        },\n        \"receiver\": \".\",\n        \"recipient_type\": \"PHONE\",\n        \"note\": \"(mFKj\",\n        \"sender_item_id\": \".\",\n        \"recipient_name\": {\n          \"prefix\": \"<string>\",\n          \"given_name\": \"<string>\",\n          \"surname\": \"<string>\",\n          \"middle_name\": \"<string>\",\n          \"suffix\": \"<string>\",\n          \"alternate_full_name\": \"<string>\",\n          \"full_name\": \"<string>\"\n        },\n        \"recipient_wallet\": \"PAYPAL\",\n        \"purpose\": \"DONATIONS\"\n      },\n      \"transaction_id\": \"\\\"tu$?ICADJ\",\n      \"activity_id\": \"oxL\",\n      \"transaction_status\": \"PENDING\",\n      \"payout_item_fee\": {\n        \"currency\": \"<string>\",\n        \"value\": \"<string>\"\n      },\n      \"currency_conversion\": {\n        \"from_amount\": {\n          \"currency\": \"<string>\",\n          \"value\": \"<string>\"\n        },\n        \"to_amount\": {\n          \"currency\": \"<string>\",\n          \"value\": \"<string>\"\n        },\n        \"exchange_rate\": \"cHK%i\"\n      },\n      \"time_processed\": \"<dateTime>\",\n      \"errors\": {\n        \"name\": \"<string>\",\n        \"message\": \"<string>\",\n        \"debug_id\": \"<string>\",\n        \"information_link\": \"<string>\",\n        \"details\": [\n          {\n            \"issue\": \"<string>\",\n            \"field\": \"<string>\",\n            \"value\": \"<string>\",\n            \"location\": \"body\",\n            \"description\": \"<string>\"\n          },\n          {\n            \"issue\": \"<string>\",\n            \"field\": \"<string>\",\n            \"value\": \"<string>\",\n            \"location\": \"body\",\n            \"description\": \"<string>\"\n          }\n        ],\n        \"links\": [\n          {\n            \"href\": \"<string>\",\n            \"rel\": \"<string>\",\n            \"method\": \"DELETE\"\n          },\n          {\n            \"href\": \"<string>\",\n            \"rel\": \"<string>\",\n            \"method\": \"PUT\"\n          }\n        ]\n      },\n      \"links\": [\n        {\n          \"href\": \"<string>\",\n          \"rel\": \"<string>\",\n          \"method\": \"PATCH\"\n        },\n        {\n          \"href\": \"<string>\",\n          \"rel\": \"<string>\",\n          \"method\": \"PATCH\"\n        },\n        {\n          \"href\": \"<string>\",\n          \"rel\": \"<string>\",\n          \"method\": \"OPTIONS\"\n        },\n        {\n          \"href\": \"<string>\",\n          \"rel\": \"<string>\",\n          \"method\": \"PATCH\"\n        },\n        {\n          \"href\": \"<string>\",\n          \"rel\": \"<string>\",\n          \"method\": \"OPTIONS\"\n        },\n        {\n          \"href\": \"<string>\",\n          \"rel\": \"<string>\",\n          \"method\": \"PATCH\"\n        },\n        {\n          \"href\": \"<string>\",\n          \"rel\": \"<string>\",\n          \"method\": \"DELETE\"\n        },\n        {\n          \"href\": \"<string>\",\n          \"rel\": \"<string>\",\n          \"method\": \"OPTIONS\"\n        },\n        {\n          \"href\": \"<string>\",\n          \"rel\": \"<string>\",\n          \"method\": \"HEAD\"\n        },\n        {\n          \"href\": \"<string>\",\n          \"rel\": \"<string>\",\n          \"method\": \"OPTIONS\"\n        },\n        {\n          \"href\": \"<string>\",\n          \"rel\": \"<string>\",\n          \"method\": \"HEAD\"\n        },\n        {\n          \"href\": \"<string>\",\n          \"rel\": \"<string>\",\n          \"method\": \"POST\"\n        },\n        {\n          \"href\": \"<string>\",\n          \"rel\": \"<string>\",\n          \"method\": \"OPTIONS\"\n        },\n        {\n          \"href\": \"<string>\",\n          \"rel\": \"<string>\",\n          \"method\": \"PATCH\"\n        },\n        {\n          \"href\": \"<string>\",\n          \"rel\": \"<string>\",\n          \"method\": \"DELETE\"\n        },\n        {\n          \"href\": \"<string>\",\n          \"rel\": \"<string>\",\n          \"method\": \"PUT\"\n        },\n        {\n          \"href\": \"<string>\",\n          \"rel\": \"<string>\",\n          \"method\": \"GET\"\n        },\n        {\n          \"href\": \"<string>\",\n          \"rel\": \"<string>\",\n          \"method\": \"HEAD\"\n        },\n        {\n          \"href\": \"<string>\",\n          \"rel\": \"<string>\",\n          \"method\": \"POST\"\n        },\n        {\n          \"href\": \"<string>\",\n          \"rel\": \"<string>\",\n          \"method\": \"OPTIONS\"\n        }\n      ]\n    },\n    {\n      \"payout_item_id\": \"*V#)v.u\",\n      \"payout_batch_id\": \"8t\\\"5\",\n      \"payout_item\": {\n        \"amount\": {\n          \"currency\": \"<string>\",\n          \"value\": \"<string>\"\n        },\n        \"receiver\": \"qE&#Tt\",\n        \"recipient_type\": \"EMAIL\",\n        \"note\": \"L`oRpVb:\",\n        \"sender_item_id\": \"B)t\",\n        \"recipient_name\": {\n          \"prefix\": \"<string>\",\n          \"given_name\": \"<string>\",\n          \"surname\": \"<string>\",\n          \"middle_name\": \"<string>\",\n          \"suffix\": \"<string>\",\n          \"alternate_full_name\": \"<string>\",\n          \"full_name\": \"<string>\"\n        },\n        \"recipient_wallet\": \"PAYPAL\",\n        \"purpose\": \"GOODS\"\n      },\n      \"transaction_id\": \"iB9}Y8/\",\n      \"activity_id\": \"`\\\"bkR\",\n      \"transaction_status\": \"REFUNDED\",\n      \"payout_item_fee\": {\n        \"currency\": \"<string>\",\n        \"value\": \"<string>\"\n      },\n      \"currency_conversion\": {\n        \"from_amount\": {\n          \"currency\": \"<string>\",\n          \"value\": \"<string>\"\n        },\n        \"to_amount\": {\n          \"currency\": \"<string>\",\n          \"value\": \"<string>\"\n        },\n        \"exchange_rate\": \"j'}\"\n      },\n      \"time_processed\": \"<dateTime>\",\n      \"errors\": {\n        \"name\": \"<string>\",\n        \"message\": \"<string>\",\n        \"debug_id\": \"<string>\",\n        \"information_link\": \"<string>\",\n        \"details\": [\n          {\n            \"issue\": \"<string>\",\n            \"field\": \"<string>\",\n            \"value\": \"<string>\",\n            \"location\": \"body\",\n            \"description\": \"<string>\"\n          },\n          {\n            \"issue\": \"<string>\",\n            \"field\": \"<string>\",\n            \"value\": \"<string>\",\n            \"location\": \"body\",\n            \"description\": \"<string>\"\n          }\n        ],\n        \"links\": [\n          {\n            \"href\": \"<string>\",\n            \"rel\": \"<string>\",\n            \"method\": \"POST\"\n          },\n          {\n            \"href\": \"<string>\",\n            \"rel\": \"<string>\",\n            \"method\": \"POST\"\n          }\n        ]\n      },\n      \"links\": [\n        {\n          \"href\": \"<string>\",\n          \"rel\": \"<string>\",\n          \"method\": \"PUT\"\n        },\n        {\n          \"href\": \"<string>\",\n          \"rel\": \"<string>\",\n          \"method\": \"CONNECT\"\n        },\n        {\n          \"href\": \"<string>\",\n          \"rel\": \"<string>\",\n          \"method\": \"DELETE\"\n        },\n        {\n          \"href\": \"<string>\",\n          \"rel\": \"<string>\",\n          \"method\": \"POST\"\n        },\n        {\n          \"href\": \"<string>\",\n          \"rel\": \"<string>\",\n          \"method\": \"CONNECT\"\n        },\n        {\n          \"href\": \"<string>\",\n          \"rel\": \"<string>\",\n          \"method\": \"CONNECT\"\n        },\n        {\n          \"href\": \"<string>\",\n          \"rel\": \"<string>\",\n          \"method\": \"POST\"\n        },\n        {\n          \"href\": \"<string>\",\n          \"rel\": \"<string>\",\n          \"method\": \"CONNECT\"\n        },\n        {\n          \"href\": \"<string>\",\n          \"rel\": \"<string>\",\n          \"method\": \"PATCH\"\n        },\n        {\n          \"href\": \"<string>\",\n          \"rel\": \"<string>\",\n          \"method\": \"HEAD\"\n        },\n        {\n          \"href\": \"<string>\",\n          \"rel\": \"<string>\",\n          \"method\": \"CONNECT\"\n        },\n        {\n          \"href\": \"<string>\",\n          \"rel\": \"<string>\",\n          \"method\": \"DELETE\"\n        },\n        {\n          \"href\": \"<string>\",\n          \"rel\": \"<string>\",\n          \"method\": \"PUT\"\n        },\n        {\n          \"href\": \"<string>\",\n          \"rel\": \"<string>\",\n          \"method\": \"DELETE\"\n        },\n        {\n          \"href\": \"<string>\",\n          \"rel\": \"<string>\",\n          \"method\": \"OPTIONS\"\n        },\n        {\n          \"href\": \"<string>\",\n          \"rel\": \"<string>\",\n          \"method\": \"GET\"\n        },\n        {\n          \"href\": \"<string>\",\n          \"rel\": \"<string>\",\n          \"method\": \"GET\"\n        },\n        {\n          \"href\": \"<string>\",\n          \"rel\": \"<string>\",\n          \"method\": \"POST\"\n        },\n        {\n          \"href\": \"<string>\",\n          \"rel\": \"<string>\",\n          \"method\": \"GET\"\n        },\n        {\n          \"href\": \"<string>\",\n          \"rel\": \"<string>\",\n          \"method\": \"PATCH\"\n        }\n      ]\n    },\n    {\n      \"payout_item_id\": \"s{LZ5@8=\",\n      \"payout_batch_id\": \"NeLNQhWD\",\n      \"payout_item\": {\n        \"amount\": {\n          \"currency\": \"<string>\",\n          \"value\": \"<string>\"\n        },\n        \"receiver\": \"-SzV7*N5\",\n        \"recipient_type\": \"PHONE\",\n        \"note\": \"D[L#ias$[\",\n        \"sender_item_id\": \"/kT\\\\HWM~\",\n        \"recipient_name\": {\n          \"prefix\": \"<string>\",\n          \"given_name\": \"<string>\",\n          \"surname\": \"<string>\",\n          \"middle_name\": \"<string>\",\n          \"suffix\": \"<string>\",\n          \"alternate_full_name\": \"<string>\",\n          \"full_name\": \"<string>\"\n        },\n        \"recipient_wallet\": \"PAYPAL\",\n        \"purpose\": \"SERVICES\"\n      },\n      \"transaction_id\": \"$YC6M%.\",\n      \"activity_id\": \"/3._/\",\n      \"transaction_status\": \"PENDING\",\n      \"payout_item_fee\": {\n        \"currency\": \"<string>\",\n        \"value\": \"<string>\"\n      },\n      \"currency_conversion\": {\n        \"from_amount\": {\n          \"currency\": \"<string>\",\n          \"value\": \"<string>\"\n        },\n        \"to_amount\": {\n          \"currency\": \"<string>\",\n          \"value\": \"<string>\"\n        },\n        \"exchange_rate\": \"Zp5DoljZu\"\n      },\n      \"time_processed\": \"<dateTime>\",\n      \"errors\": {\n        \"name\": \"<string>\",\n        \"message\": \"<string>\",\n        \"debug_id\": \"<string>\",\n        \"information_link\": \"<string>\",\n        \"details\": [\n          {\n            \"issue\": \"<string>\",\n            \"field\": \"<string>\",\n            \"value\": \"<string>\",\n            \"location\": \"body\",\n            \"description\": \"<string>\"\n          },\n          {\n            \"issue\": \"<string>\",\n            \"field\": \"<string>\",\n            \"value\": \"<string>\",\n            \"location\": \"body\",\n            \"description\": \"<string>\"\n          }\n        ],\n        \"links\": [\n          {\n            \"href\": \"<string>\",\n            \"rel\": \"<string>\",\n            \"method\": \"HEAD\"\n          },\n          {\n            \"href\": \"<string>\",\n            \"rel\": \"<string>\",\n            \"method\": \"DELETE\"\n          }\n        ]\n      },\n      \"links\": [\n        {\n          \"href\": \"<string>\",\n          \"rel\": \"<string>\",\n          \"method\": \"PATCH\"\n        },\n        {\n          \"href\": \"<string>\",\n          \"rel\": \"<string>\",\n          \"method\": \"DELETE\"\n        },\n        {\n          \"href\": \"<string>\",\n          \"rel\": \"<string>\",\n          \"method\": \"CONNECT\"\n        },\n        {\n          \"href\": \"<string>\",\n          \"rel\": \"<string>\",\n          \"method\": \"PATCH\"\n        },\n        {\n          \"href\": \"<string>\",\n          \"rel\": \"<string>\",\n          \"method\": \"PUT\"\n        },\n        {\n          \"href\": \"<string>\",\n          \"rel\": \"<string>\",\n          \"method\": \"POST\"\n        },\n        {\n          \"href\": \"<string>\",\n          \"rel\": \"<string>\",\n          \"method\": \"POST\"\n        },\n        {\n          \"href\": \"<string>\",\n          \"rel\": \"<string>\",\n          \"method\": \"CONNECT\"\n        },\n        {\n          \"href\": \"<string>\",\n          \"rel\": \"<string>\",\n          \"method\": \"DELETE\"\n        },\n        {\n          \"href\": \"<string>\",\n          \"rel\": \"<string>\",\n          \"method\": \"POST\"\n        },\n        {\n          \"href\": \"<string>\",\n          \"rel\": \"<string>\",\n          \"method\": \"PATCH\"\n        },\n        {\n          \"href\": \"<string>\",\n          \"rel\": \"<string>\",\n          \"method\": \"HEAD\"\n        },\n        {\n          \"href\": \"<string>\",\n          \"rel\": \"<string>\",\n          \"method\": \"PUT\"\n        },\n        {\n          \"href\": \"<string>\",\n          \"rel\": \"<string>\",\n          \"method\": \"PUT\"\n        },\n        {\n          \"href\": \"<string>\",\n          \"rel\": \"<string>\",\n          \"method\": \"POST\"\n        },\n        {\n          \"href\": \"<string>\",\n          \"rel\": \"<string>\",\n          \"method\": \"POST\"\n        },\n        {\n          \"href\": \"<string>\",\n          \"rel\": \"<string>\",\n          \"method\": \"DELETE\"\n        },\n        {\n          \"href\": \"<string>\",\n          \"rel\": \"<string>\",\n          \"method\": \"HEAD\"\n        },\n        {\n          \"href\": \"<string>\",\n          \"rel\": \"<string>\",\n          \"method\": \"PATCH\"\n        },\n        {\n          \"href\": \"<string>\",\n          \"rel\": \"<string>\",\n          \"method\": \"PATCH\"\n        }\n      ]\n    },\n    {\n      \"payout_item_id\": \"Gin4\\\\BWwx*\",\n      \"payout_batch_id\": \"0R\",\n      \"payout_item\": {\n        \"amount\": {\n          \"currency\": \"<string>\",\n          \"value\": \"<string>\"\n        },\n        \"receiver\": \"*\",\n        \"recipient_type\": \"EMAIL\",\n        \"note\": \"k}\",\n        \"sender_item_id\": \"W&7i$_\",\n        \"recipient_name\": {\n          \"prefix\": \"<string>\",\n          \"given_name\": \"<string>\",\n          \"surname\": \"<string>\",\n          \"middle_name\": \"<string>\",\n          \"suffix\": \"<string>\",\n          \"alternate_full_name\": \"<string>\",\n          \"full_name\": \"<string>\"\n        },\n        \"recipient_wallet\": \"PAYPAL\",\n        \"purpose\": \"AWARDS\"\n      },\n      \"transaction_id\": \"HFF-CO~\",\n      \"activity_id\": \"+Hw?&:NCzG\",\n      \"transaction_status\": \"FAILED\",\n      \"payout_item_fee\": {\n        \"currency\": \"<string>\",\n        \"value\": \"<string>\"\n      },\n      \"currency_conversion\": {\n        \"from_amount\": {\n          \"currency\": \"<string>\",\n          \"value\": \"<string>\"\n        },\n        \"to_amount\": {\n          \"currency\": \"<string>\",\n          \"value\": \"<string>\"\n        },\n        \"exchange_rate\": \"^|!X%\"\n      },\n      \"time_processed\": \"<dateTime>\",\n      \"errors\": {\n        \"name\": \"<string>\",\n        \"message\": \"<string>\",\n        \"debug_id\": \"<string>\",\n        \"information_link\": \"<string>\",\n        \"details\": [\n          {\n            \"issue\": \"<string>\",\n            \"field\": \"<string>\",\n            \"value\": \"<string>\",\n            \"location\": \"body\",\n            \"description\": \"<string>\"\n          },\n          {\n            \"issue\": \"<string>\",\n            \"field\": \"<string>\",\n            \"value\": \"<string>\",\n            \"location\": \"body\",\n            \"description\": \"<string>\"\n          }\n        ],\n        \"links\": [\n          {\n            \"href\": \"<string>\",\n            \"rel\": \"<string>\",\n            \"method\": \"DELETE\"\n          },\n          {\n            \"href\": \"<string>\",\n            \"rel\": \"<string>\",\n            \"method\": \"PUT\"\n          }\n        ]\n      },\n      \"links\": [\n        {\n          \"href\": \"<string>\",\n          \"rel\": \"<string>\",\n          \"method\": \"PUT\"\n        },\n        {\n          \"href\": \"<string>\",\n          \"rel\": \"<string>\",\n          \"method\": \"PUT\"\n        },\n        {\n          \"href\": \"<string>\",\n          \"rel\": \"<string>\",\n          \"method\": \"CONNECT\"\n        },\n        {\n          \"href\": \"<string>\",\n          \"rel\": \"<string>\",\n          \"method\": \"CONNECT\"\n        },\n        {\n          \"href\": \"<string>\",\n          \"rel\": \"<string>\",\n          \"method\": \"GET\"\n        },\n        {\n          \"href\": \"<string>\",\n          \"rel\": \"<string>\",\n          \"method\": \"CONNECT\"\n        },\n        {\n          \"href\": \"<string>\",\n          \"rel\": \"<string>\",\n          \"method\": \"HEAD\"\n        },\n        {\n          \"href\": \"<string>\",\n          \"rel\": \"<string>\",\n          \"method\": \"GET\"\n        },\n        {\n          \"href\": \"<string>\",\n          \"rel\": \"<string>\",\n          \"method\": \"POST\"\n        },\n        {\n          \"href\": \"<string>\",\n          \"rel\": \"<string>\",\n          \"method\": \"GET\"\n        },\n        {\n          \"href\": \"<string>\",\n          \"rel\": \"<string>\",\n          \"method\": \"PATCH\"\n        },\n        {\n          \"href\": \"<string>\",\n          \"rel\": \"<string>\",\n          \"method\": \"POST\"\n        },\n        {\n          \"href\": \"<string>\",\n          \"rel\": \"<string>\",\n          \"method\": \"OPTIONS\"\n        },\n        {\n          \"href\": \"<string>\",\n          \"rel\": \"<string>\",\n          \"method\": \"DELETE\"\n        },\n        {\n          \"href\": \"<string>\",\n          \"rel\": \"<string>\",\n          \"method\": \"PUT\"\n        },\n        {\n          \"href\": \"<string>\",\n          \"rel\": \"<string>\",\n          \"method\": \"OPTIONS\"\n        },\n        {\n          \"href\": \"<string>\",\n          \"rel\": \"<string>\",\n          \"method\": \"CONNECT\"\n        },\n        {\n          \"href\": \"<string>\",\n          \"rel\": \"<string>\",\n          \"method\": \"PUT\"\n        },\n        {\n          \"href\": \"<string>\",\n          \"rel\": \"<string>\",\n          \"method\": \"OPTIONS\"\n        },\n        {\n          \"href\": \"<string>\",\n          \"rel\": \"<string>\",\n          \"method\": \"PATCH\"\n        }\n      ]\n    },\n    {\n      \"payout_item_id\": \"EF+ Q.^Kfw\",\n      \"payout_batch_id\": \"R(dBG|\",\n      \"payout_item\": {\n        \"amount\": {\n          \"currency\": \"<string>\",\n          \"value\": \"<string>\"\n        },\n        \"receiver\": \"\",\n        \"recipient_type\": \"PAYPAL_ID\",\n        \"note\": \"o4(\",\n        \"sender_item_id\": \"7,!3|OQ\",\n        \"recipient_name\": {\n          \"prefix\": \"<string>\",\n          \"given_name\": \"<string>\",\n          \"surname\": \"<string>\",\n          \"middle_name\": \"<string>\",\n          \"suffix\": \"<string>\",\n          \"alternate_full_name\": \"<string>\",\n          \"full_name\": \"<string>\"\n        },\n        \"recipient_wallet\": \"PAYPAL\",\n        \"purpose\": \"AWARDS\"\n      },\n      \"transaction_id\": \"\",\n      \"activity_id\": \"ec.EoIh\",\n      \"transaction_status\": \"SUCCESS\",\n      \"payout_item_fee\": {\n        \"currency\": \"<string>\",\n        \"value\": \"<string>\"\n      },\n      \"currency_conversion\": {\n        \"from_amount\": {\n          \"currency\": \"<string>\",\n          \"value\": \"<string>\"\n        },\n        \"to_amount\": {\n          \"currency\": \"<string>\",\n          \"value\": \"<string>\"\n        },\n        \"exchange_rate\": \"Ak\"\n      },\n      \"time_processed\": \"<dateTime>\",\n      \"errors\": {\n        \"name\": \"<string>\",\n        \"message\": \"<string>\",\n        \"debug_id\": \"<string>\",\n        \"information_link\": \"<string>\",\n        \"details\": [\n          {\n            \"issue\": \"<string>\",\n            \"field\": \"<string>\",\n            \"value\": \"<string>\",\n            \"location\": \"body\",\n            \"description\": \"<string>\"\n          },\n          {\n            \"issue\": \"<string>\",\n            \"field\": \"<string>\",\n            \"value\": \"<string>\",\n            \"location\": \"body\",\n            \"description\": \"<string>\"\n          }\n        ],\n        \"links\": [\n          {\n            \"href\": \"<string>\",\n            \"rel\": \"<string>\",\n            \"method\": \"PATCH\"\n          },\n          {\n            \"href\": \"<string>\",\n            \"rel\": \"<string>\",\n            \"method\": \"OPTIONS\"\n          }\n        ]\n      },\n      \"links\": [\n        {\n          \"href\": \"<string>\",\n          \"rel\": \"<string>\",\n          \"method\": \"DELETE\"\n        },\n        {\n          \"href\": \"<string>\",\n          \"rel\": \"<string>\",\n          \"method\": \"CONNECT\"\n        },\n        {\n          \"href\": \"<string>\",\n          \"rel\": \"<string>\",\n          \"method\": \"CONNECT\"\n        },\n        {\n          \"href\": \"<string>\",\n          \"rel\": \"<string>\",\n          \"method\": \"GET\"\n        },\n        {\n          \"href\": \"<string>\",\n          \"rel\": \"<string>\",\n          \"method\": \"DELETE\"\n        },\n        {\n          \"href\": \"<string>\",\n          \"rel\": \"<string>\",\n          \"method\": \"PATCH\"\n        },\n        {\n          \"href\": \"<string>\",\n          \"rel\": \"<string>\",\n          \"method\": \"HEAD\"\n        },\n        {\n          \"href\": \"<string>\",\n          \"rel\": \"<string>\",\n          \"method\": \"CONNECT\"\n        },\n        {\n          \"href\": \"<string>\",\n          \"rel\": \"<string>\",\n          \"method\": \"POST\"\n        },\n        {\n          \"href\": \"<string>\",\n          \"rel\": \"<string>\",\n          \"method\": \"PUT\"\n        },\n        {\n          \"href\": \"<string>\",\n          \"rel\": \"<string>\",\n          \"method\": \"DELETE\"\n        },\n        {\n          \"href\": \"<string>\",\n          \"rel\": \"<string>\",\n          \"method\": \"HEAD\"\n        },\n        {\n          \"href\": \"<string>\",\n          \"rel\": \"<string>\",\n          \"method\": \"OPTIONS\"\n        },\n        {\n          \"href\": \"<string>\",\n          \"rel\": \"<string>\",\n          \"method\": \"PUT\"\n        },\n        {\n          \"href\": \"<string>\",\n          \"rel\": \"<string>\",\n          \"method\": \"PUT\"\n        },\n        {\n          \"href\": \"<string>\",\n          \"rel\": \"<string>\",\n          \"method\": \"PUT\"\n        },\n        {\n          \"href\": \"<string>\",\n          \"rel\": \"<string>\",\n          \"method\": \"POST\"\n        },\n        {\n          \"href\": \"<string>\",\n          \"rel\": \"<string>\",\n          \"method\": \"DELETE\"\n        },\n        {\n          \"href\": \"<string>\",\n          \"rel\": \"<string>\",\n          \"method\": \"PATCH\"\n        },\n        {\n          \"href\": \"<string>\",\n          \"rel\": \"<string>\",\n          \"method\": \"POST\"\n        }\n      ]\n    },\n    {\n      \"payout_item_id\": \"\",\n      \"payout_batch_id\": \"(`\",\n      \"payout_item\": {\n        \"amount\": {\n          \"currency\": \"<string>\",\n          \"value\": \"<string>\"\n        },\n        \"receiver\": \"E~AHF.n\",\n        \"recipient_type\": \"PHONE\",\n        \"note\": \"\",\n        \"sender_item_id\": \"bbUQ\\\\\",\n        \"recipient_name\": {\n          \"prefix\": \"<string>\",\n          \"given_name\": \"<string>\",\n          \"surname\": \"<string>\",\n          \"middle_name\": \"<string>\",\n          \"suffix\": \"<string>\",\n          \"alternate_full_name\": \"<string>\",\n          \"full_name\": \"<string>\"\n        },\n        \"recipient_wallet\": \"PAYPAL\",\n        \"purpose\": \"REBATES\"\n      },\n      \"transaction_id\": \"FWBO7}MmQ4\",\n      \"activity_id\": \"l(.T'N*HWW\",\n      \"transaction_status\": \"UNCLAIMED\",\n      \"payout_item_fee\": {\n        \"currency\": \"<string>\",\n        \"value\": \"<string>\"\n      },\n      \"currency_conversion\": {\n        \"from_amount\": {\n          \"currency\": \"<string>\",\n          \"value\": \"<string>\"\n        },\n        \"to_amount\": {\n          \"currency\": \"<string>\",\n          \"value\": \"<string>\"\n        },\n        \"exchange_rate\": \"\"\n      },\n      \"time_processed\": \"<dateTime>\",\n      \"errors\": {\n        \"name\": \"<string>\",\n        \"message\": \"<string>\",\n        \"debug_id\": \"<string>\",\n        \"information_link\": \"<string>\",\n        \"details\": [\n          {\n            \"issue\": \"<string>\",\n            \"field\": \"<string>\",\n            \"value\": \"<string>\",\n            \"location\": \"body\",\n            \"description\": \"<string>\"\n          },\n          {\n            \"issue\": \"<string>\",\n            \"field\": \"<string>\",\n            \"value\": \"<string>\",\n            \"location\": \"body\",\n            \"description\": \"<string>\"\n          }\n        ],\n        \"links\": [\n          {\n            \"href\": \"<string>\",\n            \"rel\": \"<string>\",\n            \"method\": \"CONNECT\"\n          },\n          {\n            \"href\": \"<string>\",\n            \"rel\": \"<string>\",\n            \"method\": \"DELETE\"\n          }\n        ]\n      },\n      \"links\": [\n        {\n          \"href\": \"<string>\",\n          \"rel\": \"<string>\",\n          \"method\": \"POST\"\n        },\n        {\n          \"href\": \"<string>\",\n          \"rel\": \"<string>\",\n          \"method\": \"PATCH\"\n        },\n        {\n          \"href\": \"<string>\",\n          \"rel\": \"<string>\",\n          \"method\": \"GET\"\n        },\n        {\n          \"href\": \"<string>\",\n          \"rel\": \"<string>\",\n          \"method\": \"PATCH\"\n        },\n        {\n          \"href\": \"<string>\",\n          \"rel\": \"<string>\",\n          \"method\": \"PUT\"\n        },\n        {\n          \"href\": \"<string>\",\n          \"rel\": \"<string>\",\n          \"method\": \"CONNECT\"\n        },\n        {\n          \"href\": \"<string>\",\n          \"rel\": \"<string>\",\n          \"method\": \"PUT\"\n        },\n        {\n          \"href\": \"<string>\",\n          \"rel\": \"<string>\",\n          \"method\": \"GET\"\n        },\n        {\n          \"href\": \"<string>\",\n          \"rel\": \"<string>\",\n          \"method\": \"CONNECT\"\n        },\n        {\n          \"href\": \"<string>\",\n          \"rel\": \"<string>\",\n          \"method\": \"CONNECT\"\n        },\n        {\n          \"href\": \"<string>\",\n          \"rel\": \"<string>\",\n          \"method\": \"PUT\"\n        },\n        {\n          \"href\": \"<string>\",\n          \"rel\": \"<string>\",\n          \"method\": \"HEAD\"\n        },\n        {\n          \"href\": \"<string>\",\n          \"rel\": \"<string>\",\n          \"method\": \"HEAD\"\n        },\n        {\n          \"href\": \"<string>\",\n          \"rel\": \"<string>\",\n          \"method\": \"POST\"\n        },\n        {\n          \"href\": \"<string>\",\n          \"rel\": \"<string>\",\n          \"method\": \"GET\"\n        },\n        {\n          \"href\": \"<string>\",\n          \"rel\": \"<string>\",\n          \"method\": \"OPTIONS\"\n        },\n        {\n          \"href\": \"<string>\",\n          \"rel\": \"<string>\",\n          \"method\": \"PATCH\"\n        },\n        {\n          \"href\": \"<string>\",\n          \"rel\": \"<string>\",\n          \"method\": \"CONNECT\"\n        },\n        {\n          \"href\": \"<string>\",\n          \"rel\": \"<string>\",\n          \"method\": \"PUT\"\n        },\n        {\n          \"href\": \"<string>\",\n          \"rel\": \"<string>\",\n          \"method\": \"CONNECT\"\n        }\n      ]\n    }\n  ],\n  \"links\": [\n    {\n      \"href\": \"<string>\",\n      \"rel\": \"<string>\",\n      \"method\": \"GET\"\n    },\n    {\n      \"href\": \"<string>\",\n      \"rel\": \"<string>\",\n      \"method\": \"GET\"\n    },\n    {\n      \"href\": \"<string>\",\n      \"rel\": \"<string>\",\n      \"method\": \"PATCH\"\n    },\n    {\n      \"href\": \"<string>\",\n      \"rel\": \"<string>\",\n      \"method\": \"DELETE\"\n    },\n    {\n      \"href\": \"<string>\",\n      \"rel\": \"<string>\",\n      \"method\": \"DELETE\"\n    },\n    {\n      \"href\": \"<string>\",\n      \"rel\": \"<string>\",\n      \"method\": \"PUT\"\n    },\n    {\n      \"href\": \"<string>\",\n      \"rel\": \"<string>\",\n      \"method\": \"OPTIONS\"\n    },\n    {\n      \"href\": \"<string>\",\n      \"rel\": \"<string>\",\n      \"method\": \"GET\"\n    },\n    {\n      \"href\": \"<string>\",\n      \"rel\": \"<string>\",\n      \"method\": \"HEAD\"\n    },\n    {\n      \"href\": \"<string>\",\n      \"rel\": \"<string>\",\n      \"method\": \"HEAD\"\n    },\n    {\n      \"href\": \"<string>\",\n      \"rel\": \"<string>\",\n      \"method\": \"GET\"\n    },\n    {\n      \"href\": \"<string>\",\n      \"rel\": \"<string>\",\n      \"method\": \"HEAD\"\n    },\n    {\n      \"href\": \"<string>\",\n      \"rel\": \"<string>\",\n      \"method\": \"DELETE\"\n    },\n    {\n      \"href\": \"<string>\",\n      \"rel\": \"<string>\",\n      \"method\": \"CONNECT\"\n    },\n    {\n      \"href\": \"<string>\",\n      \"rel\": \"<string>\",\n      \"method\": \"PUT\"\n    },\n    {\n      \"href\": \"<string>\",\n      \"rel\": \"<string>\",\n      \"method\": \"PATCH\"\n    },\n    {\n      \"href\": \"<string>\",\n      \"rel\": \"<string>\",\n      \"method\": \"DELETE\"\n    },\n    {\n      \"href\": \"<string>\",\n      \"rel\": \"<string>\",\n      \"method\": \"PUT\"\n    },\n    {\n      \"href\": \"<string>\",\n      \"rel\": \"<string>\",\n      \"method\": \"PUT\"\n    },\n    {\n      \"href\": \"<string>\",\n      \"rel\": \"<string>\",\n      \"method\": \"POST\"\n    }\n  ]\n}",
+                          "createdAt": "2026-07-28T02:33:53.000Z",
+                          "updatedAt": "2026-07-28T02:33:53.000Z",
+                          "uid": "35240-d7753e54-4e73-485f-9eff-124f8d2704ff"
+                        },
+                        {
+                          "id": "c898d72f-674a-483e-a6b0-e857efbfa9ed",
+                          "name": "Resource Not Found.",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: oauth2",
+                                "key": "Authorization",
+                                "value": "<token>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/v1/payments/payouts/:id?fields=F5xn@id[J&page=1&page_size=<integer>&total_required=false",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "v1",
+                                "payments",
+                                "payouts",
+                                ":id"
+                              ],
+                              "query": [
+                                {
+                                  "description": "Shows details for only the specified fields.",
+                                  "key": "fields",
+                                  "value": "F5xn@id[J"
+                                },
+                                {
+                                  "description": "A non-zero integer representing the page of the results.",
+                                  "key": "page",
+                                  "value": "1"
+                                },
+                                {
+                                  "description": "The maximum number of results to return at one time. Value is a non-negative, non-zero integer. If the user chooses pagination, the maximum page is `1000`.",
+                                  "key": "page_size",
+                                  "value": "<integer>"
+                                },
+                                {
+                                  "description": "Indicates whether to show the total items and total pages count in the response.",
+                                  "key": "total_required",
+                                  "value": "false"
+                                }
+                              ],
+                              "variable": [
+                                {
+                                  "key": "id"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Not Found",
+                          "code": 404,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"name\": \"<string>\",\n  \"message\": \"<string>\",\n  \"debug_id\": \"<string>\",\n  \"information_link\": \"<string>\",\n  \"details\": [\n    {\n      \"issue\": \"<string>\",\n      \"field\": \"<string>\",\n      \"value\": \"<string>\",\n      \"location\": \"body\",\n      \"description\": \"<string>\"\n    },\n    {\n      \"issue\": \"<string>\",\n      \"field\": \"<string>\",\n      \"value\": \"<string>\",\n      \"location\": \"body\",\n      \"description\": \"<string>\"\n    }\n  ],\n  \"links\": [\n    {\n      \"href\": \"<string>\",\n      \"rel\": \"<string>\",\n      \"method\": \"GET\"\n    },\n    {\n      \"href\": \"<string>\",\n      \"rel\": \"<string>\",\n      \"method\": \"HEAD\"\n    }\n  ]\n}",
+                          "createdAt": "2026-07-28T02:33:53.000Z",
+                          "updatedAt": "2026-07-28T02:33:53.000Z",
+                          "uid": "35240-c898d72f-674a-483e-a6b0-e857efbfa9ed"
+                        },
+                        {
+                          "id": "c28530be-61b2-425a-8b5f-beff0f94293e",
+                          "name": "An internal server error has occurred.",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: oauth2",
+                                "key": "Authorization",
+                                "value": "<token>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/v1/payments/payouts/:id?fields=F5xn@id[J&page=1&page_size=<integer>&total_required=false",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "v1",
+                                "payments",
+                                "payouts",
+                                ":id"
+                              ],
+                              "query": [
+                                {
+                                  "description": "Shows details for only the specified fields.",
+                                  "key": "fields",
+                                  "value": "F5xn@id[J"
+                                },
+                                {
+                                  "description": "A non-zero integer representing the page of the results.",
+                                  "key": "page",
+                                  "value": "1"
+                                },
+                                {
+                                  "description": "The maximum number of results to return at one time. Value is a non-negative, non-zero integer. If the user chooses pagination, the maximum page is `1000`.",
+                                  "key": "page_size",
+                                  "value": "<integer>"
+                                },
+                                {
+                                  "description": "Indicates whether to show the total items and total pages count in the response.",
+                                  "key": "total_required",
+                                  "value": "false"
+                                }
+                              ],
+                              "variable": [
+                                {
+                                  "key": "id"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Internal Server Error",
+                          "code": 500,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"name\": \"<string>\",\n  \"message\": \"<string>\",\n  \"debug_id\": \"<string>\",\n  \"information_link\": \"<string>\",\n  \"details\": [\n    {\n      \"issue\": \"<string>\",\n      \"field\": \"<string>\",\n      \"value\": \"<string>\",\n      \"location\": \"body\",\n      \"description\": \"<string>\"\n    },\n    {\n      \"issue\": \"<string>\",\n      \"field\": \"<string>\",\n      \"value\": \"<string>\",\n      \"location\": \"body\",\n      \"description\": \"<string>\"\n    }\n  ],\n  \"links\": [\n    {\n      \"href\": \"<string>\",\n      \"rel\": \"<string>\",\n      \"method\": \"GET\"\n    },\n    {\n      \"href\": \"<string>\",\n      \"rel\": \"<string>\",\n      \"method\": \"HEAD\"\n    }\n  ]\n}",
+                          "createdAt": "2026-07-28T02:33:53.000Z",
+                          "updatedAt": "2026-07-28T02:33:53.000Z",
+                          "uid": "35240-c28530be-61b2-425a-8b5f-beff0f94293e"
+                        },
+                        {
+                          "id": "2993b4d6-917c-4152-b4ba-a7a7378ace9e",
+                          "name": "The error response.",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: oauth2",
+                                "key": "Authorization",
+                                "value": "<token>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/v1/payments/payouts/:id?fields=F5xn@id[J&page=1&page_size=<integer>&total_required=false",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "v1",
+                                "payments",
+                                "payouts",
+                                ":id"
+                              ],
+                              "query": [
+                                {
+                                  "description": "Shows details for only the specified fields.",
+                                  "key": "fields",
+                                  "value": "F5xn@id[J"
+                                },
+                                {
+                                  "description": "A non-zero integer representing the page of the results.",
+                                  "key": "page",
+                                  "value": "1"
+                                },
+                                {
+                                  "description": "The maximum number of results to return at one time. Value is a non-negative, non-zero integer. If the user chooses pagination, the maximum page is `1000`.",
+                                  "key": "page_size",
+                                  "value": "<integer>"
+                                },
+                                {
+                                  "description": "Indicates whether to show the total items and total pages count in the response.",
+                                  "key": "total_required",
+                                  "value": "false"
+                                }
+                              ],
+                              "variable": [
+                                {
+                                  "key": "id"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Internal Server Error",
+                          "code": 500,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"name\": \"<string>\",\n  \"message\": \"<string>\",\n  \"debug_id\": \"<string>\",\n  \"information_link\": \"<string>\",\n  \"details\": [\n    {\n      \"issue\": \"<string>\",\n      \"field\": \"<string>\",\n      \"value\": \"<string>\",\n      \"location\": \"body\",\n      \"description\": \"<string>\"\n    },\n    {\n      \"issue\": \"<string>\",\n      \"field\": \"<string>\",\n      \"value\": \"<string>\",\n      \"location\": \"body\",\n      \"description\": \"<string>\"\n    }\n  ],\n  \"links\": [\n    {\n      \"href\": \"<string>\",\n      \"rel\": \"<string>\",\n      \"method\": \"GET\"\n    },\n    {\n      \"href\": \"<string>\",\n      \"rel\": \"<string>\",\n      \"method\": \"HEAD\"\n    }\n  ]\n}",
+                          "createdAt": "2026-07-28T02:33:53.000Z",
+                          "updatedAt": "2026-07-28T02:33:53.000Z",
+                          "uid": "35240-2993b4d6-917c-4152-b4ba-a7a7378ace9e"
+                        }
+                      ],
+                      "createdAt": "2026-07-28T02:33:53.000Z",
+                      "updatedAt": "2026-07-28T02:33:53.000Z",
+                      "uid": "35240-707c80a1-7523-4c82-94dc-671d850387ee"
+                    }
+                  ],
+                  "id": "4fa2a9a2-75d3-4b03-9103-e02fac13cb45",
+                  "createdAt": "2026-07-28T02:33:53.000Z",
+                  "updatedAt": "2026-07-28T02:33:53.000Z",
+                  "uid": "35240-4fa2a9a2-75d3-4b03-9103-e02fac13cb45"
+                },
+                {
+                  "name": "Paypal Create batch payout",
+                  "id": "6734cf1a-7594-47b8-847d-137f11c48fad",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "auth": {
+                      "type": "oauth2",
+                      "oauth2": [
+                        {
+                          "key": "scope",
+                          "value": "https://uri.paypal.com/services/subscriptions",
+                          "type": "string"
+                        },
+                        {
+                          "key": "accessTokenUrl",
+                          "value": "/v1/oauth2/token",
+                          "type": "string"
+                        },
+                        {
+                          "key": "grant_type",
+                          "value": "client_credentials",
+                          "type": "string"
+                        }
+                      ]
+                    },
+                    "method": "POST",
+                    "header": [
+                      {
+                        "description": "The server stores keys for 30 days.",
+                        "key": "PayPal-Request-Id",
+                        "value": "F5xn@id[J"
+                      },
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"sender_batch_header\": {\n    \"sender_batch_id\": \"\\\" 9+\",\n    \"recipient_type\": \"AAU.Gs*I^|\",\n    \"email_subject\": \">y1( 8Ld\",\n    \"email_message\": \"fNyv\",\n    \"note\": \"T(MO\"\n  },\n  \"items\": [\n    {\n      \"amount\": {\n        \"currency\": \"<string>\",\n        \"value\": \"<string>\"\n      },\n      \"receiver\": \"\",\n      \"recipient_type\": \"QtVrMzs\",\n      \"note\": \"rDZ5zFrh\",\n      \"sender_item_id\": \"0\\\\}CTm>+\",\n      \"recipient_wallet\": \"PAYPAL\",\n      \"alternate_notification_method\": {\n        \"phone\": {\n          \"country_code\": \" \",\n          \"national_number\": \" \",\n          \"extension_number\": \" \"\n        }\n      },\n      \"notification_language\": \"fz-Bmmu-GQ\",\n      \"application_context\": {\n        \"social_feed_privacy\": \"PRIVATE\",\n        \"holler_url\": \"<uri>\",\n        \"logo_url\": \"<uri>\"\n      },\n      \"purpose\": \"CASHBACK\"\n    }\n  ]\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/v1/payments/payouts",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "v1",
+                        "payments",
+                        "payouts"
+                      ]
+                    },
+                    "description": "Creates a batch payout. In the JSON request body, pass a `sender_batch_header` and an `items` array. The `sender_batch_header` defines how to handle the payout. The `items` array defines the payout items.<br/>You can make payouts to one or more recipients.<blockquote><strong>Notes:</strong> <ul><li><p>PayPal does not process duplicate payouts. If you specify a <code>sender_batch_id</code> that was used in the last 30 days, the API rejects the request with an error message that shows the duplicate <code>sender_batch_id</code> and includes a HATEOAS link to the original payout with the same <code>sender_batch_id</code>.</p><p>If you receive an HTTP <code>5<i>nn</i></code> status code, you can safely retry the request with the same <code>sender_batch_id</code>.</p></li><li><p>The Payouts API does not support build notation (BN) codes. In a future Payouts release, you can optionally provide BN codes in the <code>PayPal-Partner-Attribution-Id</code> request header.</p><p>For information about the <code>PayPal-Partner-Attribution-Id</code> header, see <a href=\"/api/rest/requests/#http-request-headers\">HTTP request headers</a>. To learn about or request a BN code, contact your partner manager or see <a href=\"https://www.paypal.com/us/webapps/mpp/partner-program\">PayPal Partner Program</a>.</p></li></ul></blockquote>"
+                  },
+                  "response": [
+                    {
+                      "id": "64227ce0-5cde-4092-bb34-976f6b83c3d6",
+                      "name": "A successful request returns the HTTP <code>201 Created</code> status code and a JSON response body that shows the ID for the payout and payout details. To show payout status, use the <code>payout_batch_id</code> value that appears in the response. If the",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "description": "The server stores keys for 30 days.",
+                            "key": "PayPal-Request-Id",
+                            "value": "F5xn@id[J"
+                          },
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: oauth2",
+                            "key": "Authorization",
+                            "value": "<token>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"sender_batch_header\": {\n    \"sender_batch_id\": \"\\\" 9+\",\n    \"recipient_type\": \"AAU.Gs*I^|\",\n    \"email_subject\": \">y1( 8Ld\",\n    \"email_message\": \"fNyv\",\n    \"note\": \"T(MO\"\n  },\n  \"items\": [\n    {\n      \"amount\": {\n        \"currency\": \"<string>\",\n        \"value\": \"<string>\"\n      },\n      \"receiver\": \"\",\n      \"recipient_type\": \"QtVrMzs\",\n      \"note\": \"rDZ5zFrh\",\n      \"sender_item_id\": \"0\\\\}CTm>+\",\n      \"recipient_wallet\": \"PAYPAL\",\n      \"alternate_notification_method\": {\n        \"phone\": {\n          \"country_code\": \" \",\n          \"national_number\": \" \",\n          \"extension_number\": \" \"\n        }\n      },\n      \"notification_language\": \"fz-Bmmu-GQ\",\n      \"application_context\": {\n        \"social_feed_privacy\": \"PRIVATE\",\n        \"holler_url\": \"<uri>\",\n        \"logo_url\": \"<uri>\"\n      },\n      \"purpose\": \"CASHBACK\"\n    }\n  ]\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/v1/payments/payouts",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v1",
+                            "payments",
+                            "payouts"
+                          ]
+                        }
+                      },
+                      "status": "Created",
+                      "code": 201,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"batch_header\": {\n    \"batch_status\": \"CANCELED\",\n    \"payout_batch_id\": \"|\",\n    \"sender_batch_header\": {\n      \"sender_batch_id\": \"v{\\\"q?laL$\",\n      \"recipient_type\": \"PHONE\",\n      \"email_subject\": \"(8l\",\n      \"email_message\": \"o\"\n    },\n    \"time_created\": \"<dateTime>\"\n  },\n  \"links\": [\n    {\n      \"href\": \"<string>\",\n      \"rel\": \"<string>\",\n      \"method\": \"DELETE\"\n    }\n  ]\n}",
+                      "createdAt": "2026-07-28T02:33:53.000Z",
+                      "updatedAt": "2026-07-28T02:33:53.000Z",
+                      "uid": "35240-64227ce0-5cde-4092-bb34-976f6b83c3d6"
+                    },
+                    {
+                      "id": "c3bc7232-28df-4841-8cc2-76c7f3a21c40",
+                      "name": "Request is not well-formed, syntactically incorrect, or violates schema.",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "description": "The server stores keys for 30 days.",
+                            "key": "PayPal-Request-Id",
+                            "value": "F5xn@id[J"
+                          },
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: oauth2",
+                            "key": "Authorization",
+                            "value": "<token>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"sender_batch_header\": {\n    \"sender_batch_id\": \"\\\" 9+\",\n    \"recipient_type\": \"AAU.Gs*I^|\",\n    \"email_subject\": \">y1( 8Ld\",\n    \"email_message\": \"fNyv\",\n    \"note\": \"T(MO\"\n  },\n  \"items\": [\n    {\n      \"amount\": {\n        \"currency\": \"<string>\",\n        \"value\": \"<string>\"\n      },\n      \"receiver\": \"\",\n      \"recipient_type\": \"QtVrMzs\",\n      \"note\": \"rDZ5zFrh\",\n      \"sender_item_id\": \"0\\\\}CTm>+\",\n      \"recipient_wallet\": \"PAYPAL\",\n      \"alternate_notification_method\": {\n        \"phone\": {\n          \"country_code\": \" \",\n          \"national_number\": \" \",\n          \"extension_number\": \" \"\n        }\n      },\n      \"notification_language\": \"fz-Bmmu-GQ\",\n      \"application_context\": {\n        \"social_feed_privacy\": \"PRIVATE\",\n        \"holler_url\": \"<uri>\",\n        \"logo_url\": \"<uri>\"\n      },\n      \"purpose\": \"CASHBACK\"\n    }\n  ]\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/v1/payments/payouts",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v1",
+                            "payments",
+                            "payouts"
+                          ]
+                        }
+                      },
+                      "status": "Bad Request",
+                      "code": 400,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"name\": \"<string>\",\n  \"message\": \"<string>\",\n  \"debug_id\": \"<string>\",\n  \"information_link\": \"<string>\",\n  \"details\": [\n    {\n      \"issue\": \"<string>\",\n      \"field\": \"<string>\",\n      \"value\": \"<string>\",\n      \"location\": \"body\",\n      \"description\": \"<string>\"\n    },\n    {\n      \"issue\": \"<string>\",\n      \"field\": \"<string>\",\n      \"value\": \"<string>\",\n      \"location\": \"body\",\n      \"description\": \"<string>\"\n    }\n  ],\n  \"links\": [\n    {\n      \"href\": \"<string>\",\n      \"rel\": \"<string>\",\n      \"method\": \"GET\"\n    },\n    {\n      \"href\": \"<string>\",\n      \"rel\": \"<string>\",\n      \"method\": \"HEAD\"\n    }\n  ]\n}",
+                      "createdAt": "2026-07-28T02:33:53.000Z",
+                      "updatedAt": "2026-07-28T02:33:53.000Z",
+                      "uid": "35240-c3bc7232-28df-4841-8cc2-76c7f3a21c40"
+                    },
+                    {
+                      "id": "4ce4334d-3fb6-4741-bf79-30fc3df594b2",
+                      "name": "Authorization failed due to insufficient permissions.",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "description": "The server stores keys for 30 days.",
+                            "key": "PayPal-Request-Id",
+                            "value": "F5xn@id[J"
+                          },
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: oauth2",
+                            "key": "Authorization",
+                            "value": "<token>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"sender_batch_header\": {\n    \"sender_batch_id\": \"\\\" 9+\",\n    \"recipient_type\": \"AAU.Gs*I^|\",\n    \"email_subject\": \">y1( 8Ld\",\n    \"email_message\": \"fNyv\",\n    \"note\": \"T(MO\"\n  },\n  \"items\": [\n    {\n      \"amount\": {\n        \"currency\": \"<string>\",\n        \"value\": \"<string>\"\n      },\n      \"receiver\": \"\",\n      \"recipient_type\": \"QtVrMzs\",\n      \"note\": \"rDZ5zFrh\",\n      \"sender_item_id\": \"0\\\\}CTm>+\",\n      \"recipient_wallet\": \"PAYPAL\",\n      \"alternate_notification_method\": {\n        \"phone\": {\n          \"country_code\": \" \",\n          \"national_number\": \" \",\n          \"extension_number\": \" \"\n        }\n      },\n      \"notification_language\": \"fz-Bmmu-GQ\",\n      \"application_context\": {\n        \"social_feed_privacy\": \"PRIVATE\",\n        \"holler_url\": \"<uri>\",\n        \"logo_url\": \"<uri>\"\n      },\n      \"purpose\": \"CASHBACK\"\n    }\n  ]\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/v1/payments/payouts",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v1",
+                            "payments",
+                            "payouts"
+                          ]
+                        }
+                      },
+                      "status": "Forbidden",
+                      "code": 403,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"name\": \"<string>\",\n  \"message\": \"<string>\",\n  \"debug_id\": \"<string>\",\n  \"information_link\": \"<string>\",\n  \"details\": [\n    {\n      \"issue\": \"<string>\",\n      \"field\": \"<string>\",\n      \"value\": \"<string>\",\n      \"location\": \"body\",\n      \"description\": \"<string>\"\n    },\n    {\n      \"issue\": \"<string>\",\n      \"field\": \"<string>\",\n      \"value\": \"<string>\",\n      \"location\": \"body\",\n      \"description\": \"<string>\"\n    }\n  ],\n  \"links\": [\n    {\n      \"href\": \"<string>\",\n      \"rel\": \"<string>\",\n      \"method\": \"GET\"\n    },\n    {\n      \"href\": \"<string>\",\n      \"rel\": \"<string>\",\n      \"method\": \"HEAD\"\n    }\n  ]\n}",
+                      "createdAt": "2026-07-28T02:33:53.000Z",
+                      "updatedAt": "2026-07-28T02:33:53.000Z",
+                      "uid": "35240-4ce4334d-3fb6-4741-bf79-30fc3df594b2"
+                    },
+                    {
+                      "id": "3ea72366-55e7-4cf8-bfe9-883705e646fe",
+                      "name": "An internal server error has occurred.",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "description": "The server stores keys for 30 days.",
+                            "key": "PayPal-Request-Id",
+                            "value": "F5xn@id[J"
+                          },
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: oauth2",
+                            "key": "Authorization",
+                            "value": "<token>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"sender_batch_header\": {\n    \"sender_batch_id\": \"\\\" 9+\",\n    \"recipient_type\": \"AAU.Gs*I^|\",\n    \"email_subject\": \">y1( 8Ld\",\n    \"email_message\": \"fNyv\",\n    \"note\": \"T(MO\"\n  },\n  \"items\": [\n    {\n      \"amount\": {\n        \"currency\": \"<string>\",\n        \"value\": \"<string>\"\n      },\n      \"receiver\": \"\",\n      \"recipient_type\": \"QtVrMzs\",\n      \"note\": \"rDZ5zFrh\",\n      \"sender_item_id\": \"0\\\\}CTm>+\",\n      \"recipient_wallet\": \"PAYPAL\",\n      \"alternate_notification_method\": {\n        \"phone\": {\n          \"country_code\": \" \",\n          \"national_number\": \" \",\n          \"extension_number\": \" \"\n        }\n      },\n      \"notification_language\": \"fz-Bmmu-GQ\",\n      \"application_context\": {\n        \"social_feed_privacy\": \"PRIVATE\",\n        \"holler_url\": \"<uri>\",\n        \"logo_url\": \"<uri>\"\n      },\n      \"purpose\": \"CASHBACK\"\n    }\n  ]\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/v1/payments/payouts",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v1",
+                            "payments",
+                            "payouts"
+                          ]
+                        }
+                      },
+                      "status": "Internal Server Error",
+                      "code": 500,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"name\": \"<string>\",\n  \"message\": \"<string>\",\n  \"debug_id\": \"<string>\",\n  \"information_link\": \"<string>\",\n  \"details\": [\n    {\n      \"issue\": \"<string>\",\n      \"field\": \"<string>\",\n      \"value\": \"<string>\",\n      \"location\": \"body\",\n      \"description\": \"<string>\"\n    },\n    {\n      \"issue\": \"<string>\",\n      \"field\": \"<string>\",\n      \"value\": \"<string>\",\n      \"location\": \"body\",\n      \"description\": \"<string>\"\n    }\n  ],\n  \"links\": [\n    {\n      \"href\": \"<string>\",\n      \"rel\": \"<string>\",\n      \"method\": \"GET\"\n    },\n    {\n      \"href\": \"<string>\",\n      \"rel\": \"<string>\",\n      \"method\": \"HEAD\"\n    }\n  ]\n}",
+                      "createdAt": "2026-07-28T02:33:53.000Z",
+                      "updatedAt": "2026-07-28T02:33:53.000Z",
+                      "uid": "35240-3ea72366-55e7-4cf8-bfe9-883705e646fe"
+                    },
+                    {
+                      "id": "d1e983a6-c1e2-488a-ab60-95fb52c53284",
+                      "name": "The error response.",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "description": "The server stores keys for 30 days.",
+                            "key": "PayPal-Request-Id",
+                            "value": "F5xn@id[J"
+                          },
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: oauth2",
+                            "key": "Authorization",
+                            "value": "<token>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"sender_batch_header\": {\n    \"sender_batch_id\": \"\\\" 9+\",\n    \"recipient_type\": \"AAU.Gs*I^|\",\n    \"email_subject\": \">y1( 8Ld\",\n    \"email_message\": \"fNyv\",\n    \"note\": \"T(MO\"\n  },\n  \"items\": [\n    {\n      \"amount\": {\n        \"currency\": \"<string>\",\n        \"value\": \"<string>\"\n      },\n      \"receiver\": \"\",\n      \"recipient_type\": \"QtVrMzs\",\n      \"note\": \"rDZ5zFrh\",\n      \"sender_item_id\": \"0\\\\}CTm>+\",\n      \"recipient_wallet\": \"PAYPAL\",\n      \"alternate_notification_method\": {\n        \"phone\": {\n          \"country_code\": \" \",\n          \"national_number\": \" \",\n          \"extension_number\": \" \"\n        }\n      },\n      \"notification_language\": \"fz-Bmmu-GQ\",\n      \"application_context\": {\n        \"social_feed_privacy\": \"PRIVATE\",\n        \"holler_url\": \"<uri>\",\n        \"logo_url\": \"<uri>\"\n      },\n      \"purpose\": \"CASHBACK\"\n    }\n  ]\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/v1/payments/payouts",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v1",
+                            "payments",
+                            "payouts"
+                          ]
+                        }
+                      },
+                      "status": "Internal Server Error",
+                      "code": 500,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"name\": \"<string>\",\n  \"message\": \"<string>\",\n  \"debug_id\": \"<string>\",\n  \"information_link\": \"<string>\",\n  \"details\": [\n    {\n      \"issue\": \"<string>\",\n      \"field\": \"<string>\",\n      \"value\": \"<string>\",\n      \"location\": \"body\",\n      \"description\": \"<string>\"\n    },\n    {\n      \"issue\": \"<string>\",\n      \"field\": \"<string>\",\n      \"value\": \"<string>\",\n      \"location\": \"body\",\n      \"description\": \"<string>\"\n    }\n  ],\n  \"links\": [\n    {\n      \"href\": \"<string>\",\n      \"rel\": \"<string>\",\n      \"method\": \"GET\"\n    },\n    {\n      \"href\": \"<string>\",\n      \"rel\": \"<string>\",\n      \"method\": \"HEAD\"\n    }\n  ]\n}",
+                      "createdAt": "2026-07-28T02:33:53.000Z",
+                      "updatedAt": "2026-07-28T02:33:53.000Z",
+                      "uid": "35240-d1e983a6-c1e2-488a-ab60-95fb52c53284"
+                    }
+                  ],
+                  "createdAt": "2026-07-28T02:33:53.000Z",
+                  "updatedAt": "2026-07-28T02:33:53.000Z",
+                  "uid": "35240-6734cf1a-7594-47b8-847d-137f11c48fad"
+                }
+              ],
+              "id": "f14bf780-2a7b-4994-8a25-5eed038c6aeb",
+              "createdAt": "2026-07-28T02:33:53.000Z",
+              "updatedAt": "2026-07-28T02:33:53.000Z",
+              "uid": "35240-f14bf780-2a7b-4994-8a25-5eed038c6aeb"
+            }
+          ],
+          "id": "44a9e62c-7f3c-433f-803c-c75fe849cb54",
+          "createdAt": "2026-07-28T02:33:53.000Z",
+          "updatedAt": "2026-07-28T02:33:53.000Z",
+          "uid": "35240-44a9e62c-7f3c-433f-803c-c75fe849cb54"
+        }
+      ],
+      "id": "f7317928-ce2e-4630-bb27-4aa459057779",
+      "createdAt": "2026-07-28T02:33:53.000Z",
+      "updatedAt": "2026-07-28T02:33:53.000Z",
+      "uid": "35240-f7317928-ce2e-4630-bb27-4aa459057779"
+    }
+  ],
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://api-m.sandbox.paypal.com"
+    }
+  ]
+}

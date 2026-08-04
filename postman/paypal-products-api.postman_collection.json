@@ -1,0 +1,2054 @@
+{
+  "info": {
+    "_postman_id": "89857a94-22ca-44d8-9120-2b1e6422cdfc",
+    "name": "Paypal Subscriptions Authorizations Products API",
+    "description": "You can use billing plans and subscriptions to create subscriptions that process recurring PayPal payments for physical or digital goods, or services. A plan includes pricing and billing cycle information that defines the amount and frequency of charge for a subscription. You can also define a fixed plan, such as a $5 basic plan or a volume- or graduated-based plan with pricing tiers based on the quantity purchased. For more information, see <a href=\"/docs/subscriptions/\">Subscriptions Overview</a>.",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-07-28T02:34:20.000Z",
+    "updatedAt": "2026-07-28T02:34:20.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-89857a94-22ca-44d8-9120-2b1e6422cdfc"
+  },
+  "item": [
+    {
+      "name": "v1",
+      "item": [
+        {
+          "name": "catalogs",
+          "item": [
+            {
+              "name": "products",
+              "item": [
+                {
+                  "name": "{product_id}",
+                  "item": [
+                    {
+                      "name": "Paypal Show product details",
+                      "id": "14721ab1-c5b1-43da-8740-a6bb273a8f79",
+                      "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                      },
+                      "request": {
+                        "auth": {
+                          "type": "oauth2",
+                          "oauth2": [
+                            {
+                              "key": "scope",
+                              "value": "https://uri.paypal.com/services/subscriptions",
+                              "type": "string"
+                            },
+                            {
+                              "key": "accessTokenUrl",
+                              "value": "/v1/oauth2/token",
+                              "type": "string"
+                            },
+                            {
+                              "key": "grant_type",
+                              "value": "client_credentials",
+                              "type": "string"
+                            }
+                          ]
+                        },
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/v1/catalogs/products/:product_id",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v1",
+                            "catalogs",
+                            "products",
+                            ":product_id"
+                          ],
+                          "variable": [
+                            {
+                              "id": "09d13430-f37a-4782-9061-44dee07b5abe",
+                              "key": "product_id",
+                              "value": "<string>",
+                              "description": "(Required) The product ID."
+                            }
+                          ]
+                        },
+                        "description": "Shows details for a product, by ID."
+                      },
+                      "response": [
+                        {
+                          "id": "973195d8-5982-41a9-ba91-cf2a3c728099",
+                          "name": "A successful request returns the HTTP `200 OK` status code and a JSON response body that shows product details.",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: oauth2",
+                                "key": "Authorization",
+                                "value": "<token>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/v1/catalogs/products/:product_id",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "v1",
+                                "catalogs",
+                                "products",
+                                ":product_id"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "product_id"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "OK",
+                          "code": 200,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"id\": \"<string>\",\n  \"name\": \"<string>\",\n  \"description\": \"<string>\",\n  \"type\": \"PHYSICAL\",\n  \"category\": \"EVENT_AND_WEDDING_PLANNING\",\n  \"image_url\": \"<uri>\",\n  \"home_url\": \"<uri>\",\n  \"create_time\": \"9063-03-06t22:24:40.705+34:63\",\n  \"update_time\": \"1977-09-31T23:25:60Z\",\n  \"links\": [\n    {\n      \"href\": \"<string>\",\n      \"rel\": \"<string>\",\n      \"method\": \"OPTIONS\"\n    },\n    {\n      \"href\": \"<string>\",\n      \"rel\": \"<string>\",\n      \"method\": \"DELETE\"\n    }\n  ]\n}",
+                          "createdAt": "2026-07-28T02:34:20.000Z",
+                          "updatedAt": "2026-07-28T02:34:20.000Z",
+                          "uid": "35240-973195d8-5982-41a9-ba91-cf2a3c728099"
+                        },
+                        {
+                          "id": "0dd5efaa-c948-45df-b342-ada7bf66632f",
+                          "name": "Authentication failed due to missing authorization header, or invalid authentication credentials.",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: oauth2",
+                                "key": "Authorization",
+                                "value": "<token>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/v1/catalogs/products/:product_id",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "v1",
+                                "catalogs",
+                                "products",
+                                ":product_id"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "product_id"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Unauthorized",
+                          "code": 401,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"name\": \"AUTHENTICATION_FAILURE\",\n  \"message\": \"Authentication failed due to missing authorization header, or invalid authentication credentials.\",\n  \"details\": [\n    {\n      \"issue\": \"<string>\",\n      \"field\": \"<string>\",\n      \"value\": \"<string>\",\n      \"location\": \"body\",\n      \"description\": \"<string>\"\n    },\n    {\n      \"issue\": \"<string>\",\n      \"field\": \"<string>\",\n      \"value\": \"<string>\",\n      \"location\": \"body\",\n      \"description\": \"<string>\"\n    }\n  ],\n  \"debug_id\": \"<string>\",\n  \"links\": [\n    {\n      \"href\": \"_\",\n      \"rel\": \"=/\",\n      \"method\": \"PUT\"\n    },\n    {\n      \"href\": \"}B_}\",\n      \"rel\": \"4uQM\",\n      \"method\": \"PATCH\"\n    },\n    {\n      \"href\": \"pB^4oV\",\n      \"rel\": \"\",\n      \"method\": \"DELETE\"\n    },\n    {\n      \"href\": \"j\",\n      \"rel\": \"vkU0WO]z!\",\n      \"method\": \"PATCH\"\n    },\n    {\n      \"href\": \"Jh7A \",\n      \"rel\": \"&d4;2\",\n      \"method\": \"DELETE\"\n    },\n    {\n      \"href\": \"vNh\",\n      \"rel\": \"\",\n      \"method\": \"PUT\"\n    },\n    {\n      \"href\": \"eo_t4pB\",\n      \"rel\": \"rd\",\n      \"method\": \"PATCH\"\n    },\n    {\n      \"href\": \".\",\n      \"rel\": \"6@UA\",\n      \"method\": \"POST\"\n    },\n    {\n      \"href\": \"/k@Bi|\",\n      \"rel\": \"ST\",\n      \"method\": \"PUT\"\n    },\n    {\n      \"href\": \"cpK}>\",\n      \"rel\": \"82SXdv^H\",\n      \"method\": \"GET\"\n    },\n    {\n      \"href\": \"j\\\\GRRB ];\",\n      \"rel\": \"|cXZ<rAF\\\\\",\n      \"method\": \"GET\"\n    },\n    {\n      \"href\": \"Jw\",\n      \"rel\": \"k3Tg1|&S\",\n      \"method\": \"PATCH\"\n    },\n    {\n      \"href\": \"N\\\\c\",\n      \"rel\": \"y'Ktd\",\n      \"method\": \"POST\"\n    },\n    {\n      \"href\": \"v[QX%XiMk\",\n      \"rel\": \"0~\",\n      \"method\": \"POST\"\n    },\n    {\n      \"href\": \"@2\",\n      \"rel\": \"*nHNR)7kn[\",\n      \"method\": \"POST\"\n    },\n    {\n      \"href\": \"zRF>xK6\",\n      \"rel\": \"?l$\\\"6DSi=V\",\n      \"method\": \"DELETE\"\n    },\n    {\n      \"href\": \"*Vwe\",\n      \"rel\": \"+QM%\",\n      \"method\": \"POST\"\n    },\n    {\n      \"href\": \"y?HF!jEd\",\n      \"rel\": \"\",\n      \"method\": \"PATCH\"\n    },\n    {\n      \"href\": \"y4r=RdT$3h\",\n      \"rel\": \"nY=Ox|(`\",\n      \"method\": \"GET\"\n    },\n    {\n      \"href\": \"r3Kcd\",\n      \"rel\": \"(;wm@d\",\n      \"method\": \"PUT\"\n    }\n  ]\n}",
+                          "createdAt": "2026-07-28T02:34:20.000Z",
+                          "updatedAt": "2026-07-28T02:34:20.000Z",
+                          "uid": "35240-0dd5efaa-c948-45df-b342-ada7bf66632f"
+                        },
+                        {
+                          "id": "264c378e-90c5-426e-a2ff-24c03d6636a9",
+                          "name": "Authorization failed due to insufficient permissions.",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: oauth2",
+                                "key": "Authorization",
+                                "value": "<token>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/v1/catalogs/products/:product_id",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "v1",
+                                "catalogs",
+                                "products",
+                                ":product_id"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "product_id"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Forbidden",
+                          "code": 403,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"name\": \"NOT_AUTHORIZED\",\n  \"message\": \"Authorization failed due to insufficient permissions.\",\n  \"details\": [\n    {\n      \"issue\": \"<string>\",\n      \"field\": \"<string>\",\n      \"value\": \"<string>\",\n      \"location\": \"body\",\n      \"description\": \"<string>\"\n    },\n    {\n      \"issue\": \"<string>\",\n      \"field\": \"<string>\",\n      \"value\": \"<string>\",\n      \"location\": \"body\",\n      \"description\": \"<string>\"\n    }\n  ],\n  \"debug_id\": \"<string>\",\n  \"links\": [\n    {\n      \"href\": \"6~)\",\n      \"rel\": \"\",\n      \"method\": \"POST\"\n    },\n    {\n      \"href\": \"\\\\\",\n      \"rel\": \"8'U/.n#gh\",\n      \"method\": \"PUT\"\n    },\n    {\n      \"href\": \"f&r)igA\",\n      \"rel\": \"+7czV6}#R5\",\n      \"method\": \"GET\"\n    },\n    {\n      \"href\": \"\",\n      \"rel\": \"9hDij!V\",\n      \"method\": \"GET\"\n    },\n    {\n      \"href\": \"\\\"p\",\n      \"rel\": \"\",\n      \"method\": \"PATCH\"\n    },\n    {\n      \"href\": \"|ZY\",\n      \"rel\": \" h@s-_\",\n      \"method\": \"PATCH\"\n    },\n    {\n      \"href\": \"jf$)L6DX\",\n      \"rel\": \"Lpg\",\n      \"method\": \"PUT\"\n    },\n    {\n      \"href\": \"pv<FD5X8.\",\n      \"rel\": \"\\\\\",\n      \"method\": \"PUT\"\n    },\n    {\n      \"href\": \"\",\n      \"rel\": \"cT%iH042Zj\",\n      \"method\": \"PUT\"\n    },\n    {\n      \"href\": \"E,0mgAJb\",\n      \"rel\": \"@5KIc\",\n      \"method\": \"PUT\"\n    },\n    {\n      \"href\": \"$\",\n      \"rel\": \"I.a^2bi/\",\n      \"method\": \"GET\"\n    },\n    {\n      \"href\": \"8D\",\n      \"rel\": \"<h\",\n      \"method\": \"POST\"\n    },\n    {\n      \"href\": \"*?\\\"T;Rc=tU\",\n      \"rel\": \";So:\",\n      \"method\": \"DELETE\"\n    },\n    {\n      \"href\": \"!#4_\",\n      \"rel\": \"x\",\n      \"method\": \"DELETE\"\n    },\n    {\n      \"href\": \"\",\n      \"rel\": \"\\\\N\",\n      \"method\": \"PUT\"\n    },\n    {\n      \"href\": \"rDM`>8uy\",\n      \"rel\": \">~*;,\",\n      \"method\": \"PATCH\"\n    },\n    {\n      \"href\": \"F}z\",\n      \"rel\": \"p>_iVu%\",\n      \"method\": \"POST\"\n    },\n    {\n      \"href\": \"T{<oY)Rz\",\n      \"rel\": \"\",\n      \"method\": \"GET\"\n    },\n    {\n      \"href\": \"ZOS^W\",\n      \"rel\": \"Ul+E1OJF\",\n      \"method\": \"DELETE\"\n    },\n    {\n      \"href\": \"dm7mt\",\n      \"rel\": \"\",\n      \"method\": \"PUT\"\n    }\n  ]\n}",
+                          "createdAt": "2026-07-28T02:34:20.000Z",
+                          "updatedAt": "2026-07-28T02:34:20.000Z",
+                          "uid": "35240-264c378e-90c5-426e-a2ff-24c03d6636a9"
+                        },
+                        {
+                          "id": "24d2908f-6730-46dc-8049-a3401e5f8c21",
+                          "name": "The specified resource does not exist.",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: oauth2",
+                                "key": "Authorization",
+                                "value": "<token>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/v1/catalogs/products/:product_id",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "v1",
+                                "catalogs",
+                                "products",
+                                ":product_id"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "product_id"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Not Found",
+                          "code": 404,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"name\": \"RESOURCE_NOT_FOUND\",\n  \"message\": \"The specified resource does not exist.\",\n  \"details\": [\n    {\n      \"issue\": \"<string>\",\n      \"field\": \"<string>\",\n      \"value\": \"<string>\",\n      \"location\": \"body\",\n      \"description\": \"<string>\"\n    },\n    {\n      \"issue\": \"<string>\",\n      \"field\": \"<string>\",\n      \"value\": \"<string>\",\n      \"location\": \"body\",\n      \"description\": \"<string>\"\n    }\n  ],\n  \"debug_id\": \"<string>\",\n  \"links\": [\n    {\n      \"href\": \"O?s)uj&py\",\n      \"rel\": \"D%lJ-em9e$\",\n      \"method\": \"POST\"\n    },\n    {\n      \"href\": \"!\",\n      \"rel\": \"Q7$_/6E\",\n      \"method\": \"POST\"\n    },\n    {\n      \"href\": \"@5H\\\"/0rp+!\",\n      \"rel\": \">+h;lKG\",\n      \"method\": \"PATCH\"\n    },\n    {\n      \"href\": \",(A[A\",\n      \"rel\": \"ea.\",\n      \"method\": \"POST\"\n    },\n    {\n      \"href\": \"a \",\n      \"rel\": \"`V#~OaU\",\n      \"method\": \"DELETE\"\n    },\n    {\n      \"href\": \"1Bd9kw2\",\n      \"rel\": \"Fu-hX\",\n      \"method\": \"POST\"\n    },\n    {\n      \"href\": \":{TFg0?FH]\",\n      \"rel\": \"?){Im^+X\",\n      \"method\": \"DELETE\"\n    },\n    {\n      \"href\": \"?X2'`(,q\",\n      \"rel\": \"Qt;q%jbRT\",\n      \"method\": \"GET\"\n    },\n    {\n      \"href\": \"g)c%*W0\",\n      \"rel\": \"\",\n      \"method\": \"DELETE\"\n    },\n    {\n      \"href\": \"G5,xE[3\",\n      \"rel\": \"f<l\",\n      \"method\": \"GET\"\n    },\n    {\n      \"href\": \"d\",\n      \"rel\": \"|0\",\n      \"method\": \"POST\"\n    },\n    {\n      \"href\": \"'|7\",\n      \"rel\": \".45^\",\n      \"method\": \"GET\"\n    },\n    {\n      \"href\": \"(@#\",\n      \"rel\": \"\",\n      \"method\": \"PATCH\"\n    },\n    {\n      \"href\": \"}ruYo[\",\n      \"rel\": \"U 5\",\n      \"method\": \"PUT\"\n    },\n    {\n      \"href\": \"\",\n      \"rel\": \"~,vF^&SKS{\",\n      \"method\": \"PATCH\"\n    },\n    {\n      \"href\": \"fz@K<.7\",\n      \"rel\": \"%sw/`f,z\",\n      \"method\": \"PUT\"\n    },\n    {\n      \"href\": \"DkumuBhc/\",\n      \"rel\": \"gqSz(=Z\",\n      \"method\": \"PATCH\"\n    },\n    {\n      \"href\": \"V=\\\\| JA\",\n      \"rel\": \"3 )Z;C)/3H\",\n      \"method\": \"PATCH\"\n    },\n    {\n      \"href\": \"#wG\",\n      \"rel\": \"y\",\n      \"method\": \"GET\"\n    },\n    {\n      \"href\": \"3c_,&\",\n      \"rel\": \"c7nQIZ/\",\n      \"method\": \"POST\"\n    }\n  ]\n}",
+                          "createdAt": "2026-07-28T02:34:20.000Z",
+                          "updatedAt": "2026-07-28T02:34:20.000Z",
+                          "uid": "35240-24d2908f-6730-46dc-8049-a3401e5f8c21"
+                        },
+                        {
+                          "id": "ca01630b-1974-4f39-90eb-9f0262234c50",
+                          "name": "An internal server error has occurred.",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: oauth2",
+                                "key": "Authorization",
+                                "value": "<token>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/v1/catalogs/products/:product_id",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "v1",
+                                "catalogs",
+                                "products",
+                                ":product_id"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "product_id"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Internal Server Error",
+                          "code": 500,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"name\": \"INTERNAL_SERVER_ERROR\",\n  \"message\": \"An internal server error occurred.\",\n  \"debug_id\": \"<string>\",\n  \"links\": [\n    {\n      \"href\": \"[*\",\n      \"rel\": \"a\\\\<{O\",\n      \"method\": \"PATCH\"\n    },\n    {\n      \"href\": \"BsDa!3bh4\",\n      \"rel\": \"s'El%B#\",\n      \"method\": \"PUT\"\n    },\n    {\n      \"href\": \"\",\n      \"rel\": \"\",\n      \"method\": \"POST\"\n    },\n    {\n      \"href\": \":$\",\n      \"rel\": \"Tb<74T)2,>\",\n      \"method\": \"GET\"\n    },\n    {\n      \"href\": \"\",\n      \"rel\": \"RHo\",\n      \"method\": \"GET\"\n    },\n    {\n      \"href\": \"Nw%E15ca\",\n      \"rel\": \".*Ig\",\n      \"method\": \"GET\"\n    },\n    {\n      \"href\": \"lI<akK\",\n      \"rel\": \"\",\n      \"method\": \"GET\"\n    },\n    {\n      \"href\": \"ckm\",\n      \"rel\": \"({M*4#?LL\",\n      \"method\": \"POST\"\n    },\n    {\n      \"href\": \"\\\"Zz6?#Z\",\n      \"rel\": \"6\",\n      \"method\": \"POST\"\n    },\n    {\n      \"href\": \"B[00[!j5\",\n      \"rel\": \"&#\",\n      \"method\": \"DELETE\"\n    },\n    {\n      \"href\": \"7.9?}(%e-\",\n      \"rel\": \"b?\",\n      \"method\": \"POST\"\n    },\n    {\n      \"href\": \"\\\"aSm}QF\",\n      \"rel\": \"Z{\",\n      \"method\": \"GET\"\n    },\n    {\n      \"href\": \"X_J>bcDrG\",\n      \"rel\": \"l$\",\n      \"method\": \"DELETE\"\n    },\n    {\n      \"href\": \"G?\",\n      \"rel\": \"[C Ef/\",\n      \"method\": \"POST\"\n    },\n    {\n      \"href\": \"thR\",\n      \"rel\": \"%Epqc8JtM3\",\n      \"method\": \"DELETE\"\n    },\n    {\n      \"href\": \"b\",\n      \"rel\": \"' pb\",\n      \"method\": \"POST\"\n    },\n    {\n      \"href\": \"\",\n      \"rel\": \"sMd~XpCkP\",\n      \"method\": \"GET\"\n    },\n    {\n      \"href\": \"?EY|wP=\",\n      \"rel\": \"\",\n      \"method\": \"GET\"\n    },\n    {\n      \"href\": \"9?4(&4a\",\n      \"rel\": \"sFBO$fH\",\n      \"method\": \"DELETE\"\n    },\n    {\n      \"href\": \")/'D\",\n      \"rel\": \"oe\\\"PM\",\n      \"method\": \"PUT\"\n    }\n  ]\n}",
+                          "createdAt": "2026-07-28T02:34:20.000Z",
+                          "updatedAt": "2026-07-28T02:34:20.000Z",
+                          "uid": "35240-ca01630b-1974-4f39-90eb-9f0262234c50"
+                        },
+                        {
+                          "id": "1fea92ea-5f69-4d3a-92e5-1d7aa34020b6",
+                          "name": "The default response.",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: oauth2",
+                                "key": "Authorization",
+                                "value": "<token>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/v1/catalogs/products/:product_id",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "v1",
+                                "catalogs",
+                                "products",
+                                ":product_id"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "product_id"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Internal Server Error",
+                          "code": 500,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"name\": \"INVALID_REQUEST\",\n  \"message\": \"Request is not well-formed, syntactically incorrect, or violates schema.\",\n  \"details\": [\n    {\n      \"issue\": \"<string>\",\n      \"field\": \"<string>\",\n      \"value\": \"<string>\",\n      \"location\": \"body\",\n      \"description\": \"<string>\"\n    },\n    {\n      \"issue\": \"<string>\",\n      \"field\": \"<string>\",\n      \"value\": \"<string>\",\n      \"location\": \"body\",\n      \"description\": \"<string>\"\n    }\n  ],\n  \"debug_id\": \"<string>\",\n  \"links\": [\n    {\n      \"href\": \"WsI&KQ<8&l\",\n      \"rel\": \"KsFD{Jxi}S\",\n      \"method\": \"GET\"\n    },\n    {\n      \"href\": \"N$6Y/\",\n      \"rel\": \"j?6azZ\",\n      \"method\": \"POST\"\n    },\n    {\n      \"href\": \".c<j\",\n      \"rel\": \"]ev|t\\\"L\",\n      \"method\": \"PATCH\"\n    },\n    {\n      \"href\": \"ka;Je~M5\",\n      \"rel\": \"nZ\",\n      \"method\": \"POST\"\n    },\n    {\n      \"href\": \"dD?4y#\",\n      \"rel\": \"oyC\",\n      \"method\": \"PUT\"\n    },\n    {\n      \"href\": \"f!M%?jK\",\n      \"rel\": \":p#mZ\",\n      \"method\": \"GET\"\n    },\n    {\n      \"href\": \"`i>;4pW\",\n      \"rel\": \"ZHXV ?<w\",\n      \"method\": \"PATCH\"\n    },\n    {\n      \"href\": \",WF3&IoNQ$\",\n      \"rel\": \"A\",\n      \"method\": \"DELETE\"\n    },\n    {\n      \"href\": \"T~M 'L\",\n      \"rel\": \"JU[h@h(cv\",\n      \"method\": \"GET\"\n    },\n    {\n      \"href\": \"mDi1C\",\n      \"rel\": \"O\",\n      \"method\": \"DELETE\"\n    },\n    {\n      \"href\": \"?2SLa\",\n      \"rel\": \"<Jr\",\n      \"method\": \"PATCH\"\n    },\n    {\n      \"href\": \"Lb\",\n      \"rel\": \"V!kz\",\n      \"method\": \"PATCH\"\n    },\n    {\n      \"href\": \"\",\n      \"rel\": \"jns\",\n      \"method\": \"POST\"\n    },\n    {\n      \"href\": \"3wO\",\n      \"rel\": \"\",\n      \"method\": \"GET\"\n    },\n    {\n      \"href\": \"iqV#o\",\n      \"rel\": \"=-Ycs>fCNs\",\n      \"method\": \"POST\"\n    },\n    {\n      \"href\": \"H\",\n      \"rel\": \"V@w 7rc\",\n      \"method\": \"POST\"\n    },\n    {\n      \"href\": \"2/SvF\",\n      \"rel\": \"ox\",\n      \"method\": \"POST\"\n    },\n    {\n      \"href\": \"Ed\",\n      \"rel\": \")Kj\",\n      \"method\": \"PATCH\"\n    },\n    {\n      \"href\": \"N#@3hJf9:/\",\n      \"rel\": \"MYa+ ~\",\n      \"method\": \"POST\"\n    },\n    {\n      \"href\": \"m3$QB{Z\",\n      \"rel\": \"E;ordy<KC:\",\n      \"method\": \"POST\"\n    }\n  ]\n}",
+                          "createdAt": "2026-07-28T02:34:20.000Z",
+                          "updatedAt": "2026-07-28T02:34:20.000Z",
+                          "uid": "35240-1fea92ea-5f69-4d3a-92e5-1d7aa34020b6"
+                        }
+                      ],
+                      "createdAt": "2026-07-28T02:34:20.000Z",
+                      "updatedAt": "2026-07-28T02:34:20.000Z",
+                      "uid": "35240-14721ab1-c5b1-43da-8740-a6bb273a8f79"
+                    },
+                    {
+                      "name": "Paypal Update product",
+                      "id": "96ecd6fd-8f47-41ca-a19b-90215737ccfd",
+                      "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                      },
+                      "request": {
+                        "auth": {
+                          "type": "oauth2",
+                          "oauth2": [
+                            {
+                              "key": "scope",
+                              "value": "https://uri.paypal.com/services/subscriptions",
+                              "type": "string"
+                            },
+                            {
+                              "key": "accessTokenUrl",
+                              "value": "/v1/oauth2/token",
+                              "type": "string"
+                            },
+                            {
+                              "key": "grant_type",
+                              "value": "client_credentials",
+                              "type": "string"
+                            }
+                          ]
+                        },
+                        "method": "PATCH",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "[\n  {\n    \"op\": \"remove\",\n    \"path\": \"<string>\",\n    \"value\": {\n      \"title\": \"Patch Value\",\n      \"description\": \"The value to apply. The <code>remove</code> operation does not require a value.\"\n    },\n    \"from\": \"<string>\"\n  },\n  {\n    \"op\": \"add\",\n    \"path\": \"<string>\",\n    \"value\": {\n      \"title\": \"Patch Value\",\n      \"description\": \"The value to apply. The <code>remove</code> operation does not require a value.\"\n    },\n    \"from\": \"<string>\"\n  }\n]",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/v1/catalogs/products/:product_id",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v1",
+                            "catalogs",
+                            "products",
+                            ":product_id"
+                          ],
+                          "variable": [
+                            {
+                              "id": "ed5a5747-28fa-4d4f-9c4a-525024ef55de",
+                              "key": "product_id",
+                              "value": "<string>",
+                              "description": "(Required) The product ID."
+                            }
+                          ]
+                        },
+                        "description": "Updates a product, by ID. You can patch these attributes and objects:<table><thead><tr><th>Attribute or object</th><th>Operations</th></tr></thead><tbody><tr><td><code>description</code></td><td>add, replace, remove</td></tr><tr><td><code>category</code></td><td>add, replace, remove</td></tr><tr><td><code>image_url</code></td><td>add, replace, remove</td></tr><tr><td><code>home_url</code></td><td>add, replace, remove</td></tr></tbody></table>"
+                      },
+                      "response": [
+                        {
+                          "id": "d777b252-c1cf-4830-9488-6a775c39aca6",
+                          "name": "A successful request returns the HTTP `204 No Content` status code with no JSON response body.",
+                          "originalRequest": {
+                            "method": "PATCH",
+                            "header": [
+                              {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: oauth2",
+                                "key": "Authorization",
+                                "value": "<token>"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "[\n  {\n    \"op\": \"remove\",\n    \"path\": \"<string>\",\n    \"value\": {\n      \"title\": \"Patch Value\",\n      \"description\": \"The value to apply. The <code>remove</code> operation does not require a value.\"\n    },\n    \"from\": \"<string>\"\n  },\n  {\n    \"op\": \"add\",\n    \"path\": \"<string>\",\n    \"value\": {\n      \"title\": \"Patch Value\",\n      \"description\": \"The value to apply. The <code>remove</code> operation does not require a value.\"\n    },\n    \"from\": \"<string>\"\n  }\n]",
+                              "options": {
+                                "raw": {
+                                  "headerFamily": "json",
+                                  "language": "json"
+                                }
+                              }
+                            },
+                            "url": {
+                              "raw": "{{baseUrl}}/v1/catalogs/products/:product_id",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "v1",
+                                "catalogs",
+                                "products",
+                                ":product_id"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "product_id"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "No Content",
+                          "code": 204,
+                          "_postman_previewlanguage": "text",
+                          "header": [],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": null,
+                          "createdAt": "2026-07-28T02:34:20.000Z",
+                          "updatedAt": "2026-07-28T02:34:20.000Z",
+                          "uid": "35240-d777b252-c1cf-4830-9488-6a775c39aca6"
+                        },
+                        {
+                          "id": "7ced9f9a-c7e9-4f0b-9d71-e3de4c461446",
+                          "name": "Bad Request. Request is not well-formed, syntactically incorrect, or violates schema.",
+                          "originalRequest": {
+                            "method": "PATCH",
+                            "header": [
+                              {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                              },
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: oauth2",
+                                "key": "Authorization",
+                                "value": "<token>"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "[\n  {\n    \"op\": \"remove\",\n    \"path\": \"<string>\",\n    \"value\": {\n      \"title\": \"Patch Value\",\n      \"description\": \"The value to apply. The <code>remove</code> operation does not require a value.\"\n    },\n    \"from\": \"<string>\"\n  },\n  {\n    \"op\": \"add\",\n    \"path\": \"<string>\",\n    \"value\": {\n      \"title\": \"Patch Value\",\n      \"description\": \"The value to apply. The <code>remove</code> operation does not require a value.\"\n    },\n    \"from\": \"<string>\"\n  }\n]",
+                              "options": {
+                                "raw": {
+                                  "headerFamily": "json",
+                                  "language": "json"
+                                }
+                              }
+                            },
+                            "url": {
+                              "raw": "{{baseUrl}}/v1/catalogs/products/:product_id",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "v1",
+                                "catalogs",
+                                "products",
+                                ":product_id"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "product_id"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Bad Request",
+                          "code": 400,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"name\": \"INVALID_REQUEST\",\n  \"message\": \"Request is not well-formed, syntactically incorrect, or violates schema.\",\n  \"details\": [\n    {\n      \"issue\": \"<string>\",\n      \"field\": \"<string>\",\n      \"value\": \"<string>\",\n      \"location\": \"body\",\n      \"description\": \"<string>\"\n    },\n    {\n      \"issue\": \"<string>\",\n      \"field\": \"<string>\",\n      \"value\": \"<string>\",\n      \"location\": \"body\",\n      \"description\": \"<string>\"\n    }\n  ],\n  \"debug_id\": \"<string>\",\n  \"links\": [\n    {\n      \"href\": \"/]bXI{Weo`\",\n      \"rel\": \"1bEht/\",\n      \"method\": \"POST\"\n    },\n    {\n      \"href\": \"\",\n      \"rel\": \"6%v[\",\n      \"method\": \"DELETE\"\n    },\n    {\n      \"href\": \"ua\",\n      \"rel\": \"XFeCqr\",\n      \"method\": \"PUT\"\n    },\n    {\n      \"href\": \"Xh8U\",\n      \"rel\": \"d\",\n      \"method\": \"DELETE\"\n    },\n    {\n      \"href\": \"<?tRl3\",\n      \"rel\": \"\",\n      \"method\": \"PATCH\"\n    },\n    {\n      \"href\": \".{:f\",\n      \"rel\": \"1SoIQg.\",\n      \"method\": \"PATCH\"\n    },\n    {\n      \"href\": \">ZT{uYX}u)\",\n      \"rel\": \"]0V@x\",\n      \"method\": \"POST\"\n    },\n    {\n      \"href\": \"Q\\\\WwHK0\",\n      \"rel\": \"34NJ(}x8\",\n      \"method\": \"PATCH\"\n    },\n    {\n      \"href\": \"-\\\\`X$:(h\",\n      \"rel\": \"\",\n      \"method\": \"POST\"\n    },\n    {\n      \"href\": \"z5\",\n      \"rel\": \"i=\",\n      \"method\": \"PATCH\"\n    },\n    {\n      \"href\": \"S\",\n      \"rel\": \"\",\n      \"method\": \"POST\"\n    },\n    {\n      \"href\": \"\",\n      \"rel\": \";eK,wd5X`p\",\n      \"method\": \"PUT\"\n    },\n    {\n      \"href\": \"O58'<@[\",\n      \"rel\": \"c\",\n      \"method\": \"PATCH\"\n    },\n    {\n      \"href\": \"ZR.*#tJ\",\n      \"rel\": \"[ Is;2i`$\",\n      \"method\": \"DELETE\"\n    },\n    {\n      \"href\": \"T\",\n      \"rel\": \"%95v\",\n      \"method\": \"DELETE\"\n    },\n    {\n      \"href\": \"6Jq%\",\n      \"rel\": \"<\\\")Z&1O'\",\n      \"method\": \"DELETE\"\n    },\n    {\n      \"href\": \"\",\n      \"rel\": \"mK}aj$bn?H\",\n      \"method\": \"PATCH\"\n    },\n    {\n      \"href\": \"6-,\",\n      \"rel\": \"<~36E[>>_u\",\n      \"method\": \"DELETE\"\n    },\n    {\n      \"href\": \"D=\",\n      \"rel\": \"h*adE&sRe\",\n      \"method\": \"PATCH\"\n    },\n    {\n      \"href\": \"YbI+0A\",\n      \"rel\": \"|\",\n      \"method\": \"POST\"\n    }\n  ]\n}",
+                          "createdAt": "2026-07-28T02:34:20.000Z",
+                          "updatedAt": "2026-07-28T02:34:20.000Z",
+                          "uid": "35240-7ced9f9a-c7e9-4f0b-9d71-e3de4c461446"
+                        },
+                        {
+                          "id": "0a3cc019-80e2-448c-af53-2f98824bd2dc",
+                          "name": "Authentication failed due to missing authorization header, or invalid authentication credentials.",
+                          "originalRequest": {
+                            "method": "PATCH",
+                            "header": [
+                              {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                              },
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: oauth2",
+                                "key": "Authorization",
+                                "value": "<token>"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "[\n  {\n    \"op\": \"remove\",\n    \"path\": \"<string>\",\n    \"value\": {\n      \"title\": \"Patch Value\",\n      \"description\": \"The value to apply. The <code>remove</code> operation does not require a value.\"\n    },\n    \"from\": \"<string>\"\n  },\n  {\n    \"op\": \"add\",\n    \"path\": \"<string>\",\n    \"value\": {\n      \"title\": \"Patch Value\",\n      \"description\": \"The value to apply. The <code>remove</code> operation does not require a value.\"\n    },\n    \"from\": \"<string>\"\n  }\n]",
+                              "options": {
+                                "raw": {
+                                  "headerFamily": "json",
+                                  "language": "json"
+                                }
+                              }
+                            },
+                            "url": {
+                              "raw": "{{baseUrl}}/v1/catalogs/products/:product_id",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "v1",
+                                "catalogs",
+                                "products",
+                                ":product_id"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "product_id"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Unauthorized",
+                          "code": 401,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"name\": \"AUTHENTICATION_FAILURE\",\n  \"message\": \"Authentication failed due to missing authorization header, or invalid authentication credentials.\",\n  \"details\": [\n    {\n      \"issue\": \"<string>\",\n      \"field\": \"<string>\",\n      \"value\": \"<string>\",\n      \"location\": \"body\",\n      \"description\": \"<string>\"\n    },\n    {\n      \"issue\": \"<string>\",\n      \"field\": \"<string>\",\n      \"value\": \"<string>\",\n      \"location\": \"body\",\n      \"description\": \"<string>\"\n    }\n  ],\n  \"debug_id\": \"<string>\",\n  \"links\": [\n    {\n      \"href\": \"_\",\n      \"rel\": \"=/\",\n      \"method\": \"PUT\"\n    },\n    {\n      \"href\": \"}B_}\",\n      \"rel\": \"4uQM\",\n      \"method\": \"PATCH\"\n    },\n    {\n      \"href\": \"pB^4oV\",\n      \"rel\": \"\",\n      \"method\": \"DELETE\"\n    },\n    {\n      \"href\": \"j\",\n      \"rel\": \"vkU0WO]z!\",\n      \"method\": \"PATCH\"\n    },\n    {\n      \"href\": \"Jh7A \",\n      \"rel\": \"&d4;2\",\n      \"method\": \"DELETE\"\n    },\n    {\n      \"href\": \"vNh\",\n      \"rel\": \"\",\n      \"method\": \"PUT\"\n    },\n    {\n      \"href\": \"eo_t4pB\",\n      \"rel\": \"rd\",\n      \"method\": \"PATCH\"\n    },\n    {\n      \"href\": \".\",\n      \"rel\": \"6@UA\",\n      \"method\": \"POST\"\n    },\n    {\n      \"href\": \"/k@Bi|\",\n      \"rel\": \"ST\",\n      \"method\": \"PUT\"\n    },\n    {\n      \"href\": \"cpK}>\",\n      \"rel\": \"82SXdv^H\",\n      \"method\": \"GET\"\n    },\n    {\n      \"href\": \"j\\\\GRRB ];\",\n      \"rel\": \"|cXZ<rAF\\\\\",\n      \"method\": \"GET\"\n    },\n    {\n      \"href\": \"Jw\",\n      \"rel\": \"k3Tg1|&S\",\n      \"method\": \"PATCH\"\n    },\n    {\n      \"href\": \"N\\\\c\",\n      \"rel\": \"y'Ktd\",\n      \"method\": \"POST\"\n    },\n    {\n      \"href\": \"v[QX%XiMk\",\n      \"rel\": \"0~\",\n      \"method\": \"POST\"\n    },\n    {\n      \"href\": \"@2\",\n      \"rel\": \"*nHNR)7kn[\",\n      \"method\": \"POST\"\n    },\n    {\n      \"href\": \"zRF>xK6\",\n      \"rel\": \"?l$\\\"6DSi=V\",\n      \"method\": \"DELETE\"\n    },\n    {\n      \"href\": \"*Vwe\",\n      \"rel\": \"+QM%\",\n      \"method\": \"POST\"\n    },\n    {\n      \"href\": \"y?HF!jEd\",\n      \"rel\": \"\",\n      \"method\": \"PATCH\"\n    },\n    {\n      \"href\": \"y4r=RdT$3h\",\n      \"rel\": \"nY=Ox|(`\",\n      \"method\": \"GET\"\n    },\n    {\n      \"href\": \"r3Kcd\",\n      \"rel\": \"(;wm@d\",\n      \"method\": \"PUT\"\n    }\n  ]\n}",
+                          "createdAt": "2026-07-28T02:34:20.000Z",
+                          "updatedAt": "2026-07-28T02:34:20.000Z",
+                          "uid": "35240-0a3cc019-80e2-448c-af53-2f98824bd2dc"
+                        },
+                        {
+                          "id": "f5020d35-92be-488c-b134-1ef30cc52772",
+                          "name": "Authorization failed due to insufficient permissions.",
+                          "originalRequest": {
+                            "method": "PATCH",
+                            "header": [
+                              {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                              },
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: oauth2",
+                                "key": "Authorization",
+                                "value": "<token>"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "[\n  {\n    \"op\": \"remove\",\n    \"path\": \"<string>\",\n    \"value\": {\n      \"title\": \"Patch Value\",\n      \"description\": \"The value to apply. The <code>remove</code> operation does not require a value.\"\n    },\n    \"from\": \"<string>\"\n  },\n  {\n    \"op\": \"add\",\n    \"path\": \"<string>\",\n    \"value\": {\n      \"title\": \"Patch Value\",\n      \"description\": \"The value to apply. The <code>remove</code> operation does not require a value.\"\n    },\n    \"from\": \"<string>\"\n  }\n]",
+                              "options": {
+                                "raw": {
+                                  "headerFamily": "json",
+                                  "language": "json"
+                                }
+                              }
+                            },
+                            "url": {
+                              "raw": "{{baseUrl}}/v1/catalogs/products/:product_id",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "v1",
+                                "catalogs",
+                                "products",
+                                ":product_id"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "product_id"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Forbidden",
+                          "code": 403,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"name\": \"NOT_AUTHORIZED\",\n  \"message\": \"Authorization failed due to insufficient permissions.\",\n  \"details\": [\n    {\n      \"issue\": \"<string>\",\n      \"field\": \"<string>\",\n      \"value\": \"<string>\",\n      \"location\": \"body\",\n      \"description\": \"<string>\"\n    },\n    {\n      \"issue\": \"<string>\",\n      \"field\": \"<string>\",\n      \"value\": \"<string>\",\n      \"location\": \"body\",\n      \"description\": \"<string>\"\n    }\n  ],\n  \"debug_id\": \"<string>\",\n  \"links\": [\n    {\n      \"href\": \"6~)\",\n      \"rel\": \"\",\n      \"method\": \"POST\"\n    },\n    {\n      \"href\": \"\\\\\",\n      \"rel\": \"8'U/.n#gh\",\n      \"method\": \"PUT\"\n    },\n    {\n      \"href\": \"f&r)igA\",\n      \"rel\": \"+7czV6}#R5\",\n      \"method\": \"GET\"\n    },\n    {\n      \"href\": \"\",\n      \"rel\": \"9hDij!V\",\n      \"method\": \"GET\"\n    },\n    {\n      \"href\": \"\\\"p\",\n      \"rel\": \"\",\n      \"method\": \"PATCH\"\n    },\n    {\n      \"href\": \"|ZY\",\n      \"rel\": \" h@s-_\",\n      \"method\": \"PATCH\"\n    },\n    {\n      \"href\": \"jf$)L6DX\",\n      \"rel\": \"Lpg\",\n      \"method\": \"PUT\"\n    },\n    {\n      \"href\": \"pv<FD5X8.\",\n      \"rel\": \"\\\\\",\n      \"method\": \"PUT\"\n    },\n    {\n      \"href\": \"\",\n      \"rel\": \"cT%iH042Zj\",\n      \"method\": \"PUT\"\n    },\n    {\n      \"href\": \"E,0mgAJb\",\n      \"rel\": \"@5KIc\",\n      \"method\": \"PUT\"\n    },\n    {\n      \"href\": \"$\",\n      \"rel\": \"I.a^2bi/\",\n      \"method\": \"GET\"\n    },\n    {\n      \"href\": \"8D\",\n      \"rel\": \"<h\",\n      \"method\": \"POST\"\n    },\n    {\n      \"href\": \"*?\\\"T;Rc=tU\",\n      \"rel\": \";So:\",\n      \"method\": \"DELETE\"\n    },\n    {\n      \"href\": \"!#4_\",\n      \"rel\": \"x\",\n      \"method\": \"DELETE\"\n    },\n    {\n      \"href\": \"\",\n      \"rel\": \"\\\\N\",\n      \"method\": \"PUT\"\n    },\n    {\n      \"href\": \"rDM`>8uy\",\n      \"rel\": \">~*;,\",\n      \"method\": \"PATCH\"\n    },\n    {\n      \"href\": \"F}z\",\n      \"rel\": \"p>_iVu%\",\n      \"method\": \"POST\"\n    },\n    {\n      \"href\": \"T{<oY)Rz\",\n      \"rel\": \"\",\n      \"method\": \"GET\"\n    },\n    {\n      \"href\": \"ZOS^W\",\n      \"rel\": \"Ul+E1OJF\",\n      \"method\": \"DELETE\"\n    },\n    {\n      \"href\": \"dm7mt\",\n      \"rel\": \"\",\n      \"method\": \"PUT\"\n    }\n  ]\n}",
+                          "createdAt": "2026-07-28T02:34:20.000Z",
+                          "updatedAt": "2026-07-28T02:34:20.000Z",
+                          "uid": "35240-f5020d35-92be-488c-b134-1ef30cc52772"
+                        },
+                        {
+                          "id": "e81d5087-9dea-4453-9638-820c52ab75c5",
+                          "name": "The specified resource does not exist.",
+                          "originalRequest": {
+                            "method": "PATCH",
+                            "header": [
+                              {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                              },
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: oauth2",
+                                "key": "Authorization",
+                                "value": "<token>"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "[\n  {\n    \"op\": \"remove\",\n    \"path\": \"<string>\",\n    \"value\": {\n      \"title\": \"Patch Value\",\n      \"description\": \"The value to apply. The <code>remove</code> operation does not require a value.\"\n    },\n    \"from\": \"<string>\"\n  },\n  {\n    \"op\": \"add\",\n    \"path\": \"<string>\",\n    \"value\": {\n      \"title\": \"Patch Value\",\n      \"description\": \"The value to apply. The <code>remove</code> operation does not require a value.\"\n    },\n    \"from\": \"<string>\"\n  }\n]",
+                              "options": {
+                                "raw": {
+                                  "headerFamily": "json",
+                                  "language": "json"
+                                }
+                              }
+                            },
+                            "url": {
+                              "raw": "{{baseUrl}}/v1/catalogs/products/:product_id",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "v1",
+                                "catalogs",
+                                "products",
+                                ":product_id"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "product_id"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Not Found",
+                          "code": 404,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"name\": \"RESOURCE_NOT_FOUND\",\n  \"message\": \"The specified resource does not exist.\",\n  \"details\": [\n    {\n      \"issue\": \"<string>\",\n      \"field\": \"<string>\",\n      \"value\": \"<string>\",\n      \"location\": \"body\",\n      \"description\": \"<string>\"\n    },\n    {\n      \"issue\": \"<string>\",\n      \"field\": \"<string>\",\n      \"value\": \"<string>\",\n      \"location\": \"body\",\n      \"description\": \"<string>\"\n    }\n  ],\n  \"debug_id\": \"<string>\",\n  \"links\": [\n    {\n      \"href\": \"O?s)uj&py\",\n      \"rel\": \"D%lJ-em9e$\",\n      \"method\": \"POST\"\n    },\n    {\n      \"href\": \"!\",\n      \"rel\": \"Q7$_/6E\",\n      \"method\": \"POST\"\n    },\n    {\n      \"href\": \"@5H\\\"/0rp+!\",\n      \"rel\": \">+h;lKG\",\n      \"method\": \"PATCH\"\n    },\n    {\n      \"href\": \",(A[A\",\n      \"rel\": \"ea.\",\n      \"method\": \"POST\"\n    },\n    {\n      \"href\": \"a \",\n      \"rel\": \"`V#~OaU\",\n      \"method\": \"DELETE\"\n    },\n    {\n      \"href\": \"1Bd9kw2\",\n      \"rel\": \"Fu-hX\",\n      \"method\": \"POST\"\n    },\n    {\n      \"href\": \":{TFg0?FH]\",\n      \"rel\": \"?){Im^+X\",\n      \"method\": \"DELETE\"\n    },\n    {\n      \"href\": \"?X2'`(,q\",\n      \"rel\": \"Qt;q%jbRT\",\n      \"method\": \"GET\"\n    },\n    {\n      \"href\": \"g)c%*W0\",\n      \"rel\": \"\",\n      \"method\": \"DELETE\"\n    },\n    {\n      \"href\": \"G5,xE[3\",\n      \"rel\": \"f<l\",\n      \"method\": \"GET\"\n    },\n    {\n      \"href\": \"d\",\n      \"rel\": \"|0\",\n      \"method\": \"POST\"\n    },\n    {\n      \"href\": \"'|7\",\n      \"rel\": \".45^\",\n      \"method\": \"GET\"\n    },\n    {\n      \"href\": \"(@#\",\n      \"rel\": \"\",\n      \"method\": \"PATCH\"\n    },\n    {\n      \"href\": \"}ruYo[\",\n      \"rel\": \"U 5\",\n      \"method\": \"PUT\"\n    },\n    {\n      \"href\": \"\",\n      \"rel\": \"~,vF^&SKS{\",\n      \"method\": \"PATCH\"\n    },\n    {\n      \"href\": \"fz@K<.7\",\n      \"rel\": \"%sw/`f,z\",\n      \"method\": \"PUT\"\n    },\n    {\n      \"href\": \"DkumuBhc/\",\n      \"rel\": \"gqSz(=Z\",\n      \"method\": \"PATCH\"\n    },\n    {\n      \"href\": \"V=\\\\| JA\",\n      \"rel\": \"3 )Z;C)/3H\",\n      \"method\": \"PATCH\"\n    },\n    {\n      \"href\": \"#wG\",\n      \"rel\": \"y\",\n      \"method\": \"GET\"\n    },\n    {\n      \"href\": \"3c_,&\",\n      \"rel\": \"c7nQIZ/\",\n      \"method\": \"POST\"\n    }\n  ]\n}",
+                          "createdAt": "2026-07-28T02:34:20.000Z",
+                          "updatedAt": "2026-07-28T02:34:20.000Z",
+                          "uid": "35240-e81d5087-9dea-4453-9638-820c52ab75c5"
+                        },
+                        {
+                          "id": "cf58304e-66a2-4896-b220-1e61d85cf494",
+                          "name": "The requested action could not be performed, semantically incorrect, or failed business validation.",
+                          "originalRequest": {
+                            "method": "PATCH",
+                            "header": [
+                              {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                              },
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: oauth2",
+                                "key": "Authorization",
+                                "value": "<token>"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "[\n  {\n    \"op\": \"remove\",\n    \"path\": \"<string>\",\n    \"value\": {\n      \"title\": \"Patch Value\",\n      \"description\": \"The value to apply. The <code>remove</code> operation does not require a value.\"\n    },\n    \"from\": \"<string>\"\n  },\n  {\n    \"op\": \"add\",\n    \"path\": \"<string>\",\n    \"value\": {\n      \"title\": \"Patch Value\",\n      \"description\": \"The value to apply. The <code>remove</code> operation does not require a value.\"\n    },\n    \"from\": \"<string>\"\n  }\n]",
+                              "options": {
+                                "raw": {
+                                  "headerFamily": "json",
+                                  "language": "json"
+                                }
+                              }
+                            },
+                            "url": {
+                              "raw": "{{baseUrl}}/v1/catalogs/products/:product_id",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "v1",
+                                "catalogs",
+                                "products",
+                                ":product_id"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "product_id"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+                          "code": 422,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"name\": \"UNPROCESSABLE_ENTITY\",\n  \"message\": \"The requested action could not be performed, semantically incorrect, or failed business validation.\",\n  \"details\": [\n    {\n      \"issue\": \"<string>\",\n      \"field\": \"<string>\",\n      \"value\": \"<string>\",\n      \"location\": \"body\",\n      \"description\": \"<string>\"\n    },\n    {\n      \"issue\": \"<string>\",\n      \"field\": \"<string>\",\n      \"value\": \"<string>\",\n      \"location\": \"body\",\n      \"description\": \"<string>\"\n    }\n  ],\n  \"debug_id\": \"<string>\",\n  \"links\": [\n    {\n      \"href\": \"%j\\\"QXM\",\n      \"rel\": \"=Y:@y'`F4B\",\n      \"method\": \"GET\"\n    },\n    {\n      \"href\": \"M#+fUXooH\",\n      \"rel\": \"7TQy+sc\",\n      \"method\": \"DELETE\"\n    },\n    {\n      \"href\": \"q yWvyVj\",\n      \"rel\": \"rG\",\n      \"method\": \"PUT\"\n    },\n    {\n      \"href\": \"d\",\n      \"rel\": \"{y @Vbw\",\n      \"method\": \"GET\"\n    },\n    {\n      \"href\": \"xio`Tz\",\n      \"rel\": \"5UuMDXP4\",\n      \"method\": \"PUT\"\n    },\n    {\n      \"href\": \"dvcm|\",\n      \"rel\": \"BeAVkT\",\n      \"method\": \"POST\"\n    },\n    {\n      \"href\": \"\",\n      \"rel\": \"\",\n      \"method\": \"PATCH\"\n    },\n    {\n      \"href\": \"X/}6FN\",\n      \"rel\": \"K6uc]/=Hj\",\n      \"method\": \"PUT\"\n    },\n    {\n      \"href\": \"2r=n&J2\\\\r3\",\n      \"rel\": \"\",\n      \"method\": \"PATCH\"\n    },\n    {\n      \"href\": \"A/yYk9\",\n      \"rel\": \"PD2>\",\n      \"method\": \"PUT\"\n    },\n    {\n      \"href\": \")cCojO>9*`\",\n      \"rel\": \"<\",\n      \"method\": \"GET\"\n    },\n    {\n      \"href\": \"Y=m&:\",\n      \"rel\": \"s\",\n      \"method\": \"POST\"\n    },\n    {\n      \"href\": \"\",\n      \"rel\": \"[=0Esscr\",\n      \"method\": \"GET\"\n    },\n    {\n      \"href\": \"?$rra[#\",\n      \"rel\": \"g\",\n      \"method\": \"DELETE\"\n    },\n    {\n      \"href\": \"6h!p-\",\n      \"rel\": \"9%\",\n      \"method\": \"POST\"\n    },\n    {\n      \"href\": \"wU%h\",\n      \"rel\": \"VY(pf,\",\n      \"method\": \"PATCH\"\n    },\n    {\n      \"href\": \"3iZ=\",\n      \"rel\": \"Mx\",\n      \"method\": \"PUT\"\n    },\n    {\n      \"href\": \"X8;U^\",\n      \"rel\": \"ilKajV\",\n      \"method\": \"PUT\"\n    },\n    {\n      \"href\": \"GHl~m\",\n      \"rel\": \"$>.4u*o\",\n      \"method\": \"PATCH\"\n    },\n    {\n      \"href\": \".%g5$rF\",\n      \"rel\": \"q\",\n      \"method\": \"GET\"\n    }\n  ]\n}",
+                          "createdAt": "2026-07-28T02:34:20.000Z",
+                          "updatedAt": "2026-07-28T02:34:20.000Z",
+                          "uid": "35240-cf58304e-66a2-4896-b220-1e61d85cf494"
+                        },
+                        {
+                          "id": "77189c96-e3e7-46c4-a6b4-0026b0dc46d8",
+                          "name": "An internal server error has occurred.",
+                          "originalRequest": {
+                            "method": "PATCH",
+                            "header": [
+                              {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                              },
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: oauth2",
+                                "key": "Authorization",
+                                "value": "<token>"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "[\n  {\n    \"op\": \"remove\",\n    \"path\": \"<string>\",\n    \"value\": {\n      \"title\": \"Patch Value\",\n      \"description\": \"The value to apply. The <code>remove</code> operation does not require a value.\"\n    },\n    \"from\": \"<string>\"\n  },\n  {\n    \"op\": \"add\",\n    \"path\": \"<string>\",\n    \"value\": {\n      \"title\": \"Patch Value\",\n      \"description\": \"The value to apply. The <code>remove</code> operation does not require a value.\"\n    },\n    \"from\": \"<string>\"\n  }\n]",
+                              "options": {
+                                "raw": {
+                                  "headerFamily": "json",
+                                  "language": "json"
+                                }
+                              }
+                            },
+                            "url": {
+                              "raw": "{{baseUrl}}/v1/catalogs/products/:product_id",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "v1",
+                                "catalogs",
+                                "products",
+                                ":product_id"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "product_id"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Internal Server Error",
+                          "code": 500,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"name\": \"INTERNAL_SERVER_ERROR\",\n  \"message\": \"An internal server error occurred.\",\n  \"debug_id\": \"<string>\",\n  \"links\": [\n    {\n      \"href\": \"[*\",\n      \"rel\": \"a\\\\<{O\",\n      \"method\": \"PATCH\"\n    },\n    {\n      \"href\": \"BsDa!3bh4\",\n      \"rel\": \"s'El%B#\",\n      \"method\": \"PUT\"\n    },\n    {\n      \"href\": \"\",\n      \"rel\": \"\",\n      \"method\": \"POST\"\n    },\n    {\n      \"href\": \":$\",\n      \"rel\": \"Tb<74T)2,>\",\n      \"method\": \"GET\"\n    },\n    {\n      \"href\": \"\",\n      \"rel\": \"RHo\",\n      \"method\": \"GET\"\n    },\n    {\n      \"href\": \"Nw%E15ca\",\n      \"rel\": \".*Ig\",\n      \"method\": \"GET\"\n    },\n    {\n      \"href\": \"lI<akK\",\n      \"rel\": \"\",\n      \"method\": \"GET\"\n    },\n    {\n      \"href\": \"ckm\",\n      \"rel\": \"({M*4#?LL\",\n      \"method\": \"POST\"\n    },\n    {\n      \"href\": \"\\\"Zz6?#Z\",\n      \"rel\": \"6\",\n      \"method\": \"POST\"\n    },\n    {\n      \"href\": \"B[00[!j5\",\n      \"rel\": \"&#\",\n      \"method\": \"DELETE\"\n    },\n    {\n      \"href\": \"7.9?}(%e-\",\n      \"rel\": \"b?\",\n      \"method\": \"POST\"\n    },\n    {\n      \"href\": \"\\\"aSm}QF\",\n      \"rel\": \"Z{\",\n      \"method\": \"GET\"\n    },\n    {\n      \"href\": \"X_J>bcDrG\",\n      \"rel\": \"l$\",\n      \"method\": \"DELETE\"\n    },\n    {\n      \"href\": \"G?\",\n      \"rel\": \"[C Ef/\",\n      \"method\": \"POST\"\n    },\n    {\n      \"href\": \"thR\",\n      \"rel\": \"%Epqc8JtM3\",\n      \"method\": \"DELETE\"\n    },\n    {\n      \"href\": \"b\",\n      \"rel\": \"' pb\",\n      \"method\": \"POST\"\n    },\n    {\n      \"href\": \"\",\n      \"rel\": \"sMd~XpCkP\",\n      \"method\": \"GET\"\n    },\n    {\n      \"href\": \"?EY|wP=\",\n      \"rel\": \"\",\n      \"method\": \"GET\"\n    },\n    {\n      \"href\": \"9?4(&4a\",\n      \"rel\": \"sFBO$fH\",\n      \"method\": \"DELETE\"\n    },\n    {\n      \"href\": \")/'D\",\n      \"rel\": \"oe\\\"PM\",\n      \"method\": \"PUT\"\n    }\n  ]\n}",
+                          "createdAt": "2026-07-28T02:34:20.000Z",
+                          "updatedAt": "2026-07-28T02:34:20.000Z",
+                          "uid": "35240-77189c96-e3e7-46c4-a6b4-0026b0dc46d8"
+                        },
+                        {
+                          "id": "3ffe2af6-2eb5-4116-91ca-ebeff25c3dee",
+                          "name": "The default response.",
+                          "originalRequest": {
+                            "method": "PATCH",
+                            "header": [
+                              {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                              },
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: oauth2",
+                                "key": "Authorization",
+                                "value": "<token>"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "[\n  {\n    \"op\": \"remove\",\n    \"path\": \"<string>\",\n    \"value\": {\n      \"title\": \"Patch Value\",\n      \"description\": \"The value to apply. The <code>remove</code> operation does not require a value.\"\n    },\n    \"from\": \"<string>\"\n  },\n  {\n    \"op\": \"add\",\n    \"path\": \"<string>\",\n    \"value\": {\n      \"title\": \"Patch Value\",\n      \"description\": \"The value to apply. The <code>remove</code> operation does not require a value.\"\n    },\n    \"from\": \"<string>\"\n  }\n]",
+                              "options": {
+                                "raw": {
+                                  "headerFamily": "json",
+                                  "language": "json"
+                                }
+                              }
+                            },
+                            "url": {
+                              "raw": "{{baseUrl}}/v1/catalogs/products/:product_id",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "v1",
+                                "catalogs",
+                                "products",
+                                ":product_id"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "product_id"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Internal Server Error",
+                          "code": 500,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"name\": \"INVALID_REQUEST\",\n  \"message\": \"Request is not well-formed, syntactically incorrect, or violates schema.\",\n  \"details\": [\n    {\n      \"issue\": \"<string>\",\n      \"field\": \"<string>\",\n      \"value\": \"<string>\",\n      \"location\": \"body\",\n      \"description\": \"<string>\"\n    },\n    {\n      \"issue\": \"<string>\",\n      \"field\": \"<string>\",\n      \"value\": \"<string>\",\n      \"location\": \"body\",\n      \"description\": \"<string>\"\n    }\n  ],\n  \"debug_id\": \"<string>\",\n  \"links\": [\n    {\n      \"href\": \"WsI&KQ<8&l\",\n      \"rel\": \"KsFD{Jxi}S\",\n      \"method\": \"GET\"\n    },\n    {\n      \"href\": \"N$6Y/\",\n      \"rel\": \"j?6azZ\",\n      \"method\": \"POST\"\n    },\n    {\n      \"href\": \".c<j\",\n      \"rel\": \"]ev|t\\\"L\",\n      \"method\": \"PATCH\"\n    },\n    {\n      \"href\": \"ka;Je~M5\",\n      \"rel\": \"nZ\",\n      \"method\": \"POST\"\n    },\n    {\n      \"href\": \"dD?4y#\",\n      \"rel\": \"oyC\",\n      \"method\": \"PUT\"\n    },\n    {\n      \"href\": \"f!M%?jK\",\n      \"rel\": \":p#mZ\",\n      \"method\": \"GET\"\n    },\n    {\n      \"href\": \"`i>;4pW\",\n      \"rel\": \"ZHXV ?<w\",\n      \"method\": \"PATCH\"\n    },\n    {\n      \"href\": \",WF3&IoNQ$\",\n      \"rel\": \"A\",\n      \"method\": \"DELETE\"\n    },\n    {\n      \"href\": \"T~M 'L\",\n      \"rel\": \"JU[h@h(cv\",\n      \"method\": \"GET\"\n    },\n    {\n      \"href\": \"mDi1C\",\n      \"rel\": \"O\",\n      \"method\": \"DELETE\"\n    },\n    {\n      \"href\": \"?2SLa\",\n      \"rel\": \"<Jr\",\n      \"method\": \"PATCH\"\n    },\n    {\n      \"href\": \"Lb\",\n      \"rel\": \"V!kz\",\n      \"method\": \"PATCH\"\n    },\n    {\n      \"href\": \"\",\n      \"rel\": \"jns\",\n      \"method\": \"POST\"\n    },\n    {\n      \"href\": \"3wO\",\n      \"rel\": \"\",\n      \"method\": \"GET\"\n    },\n    {\n      \"href\": \"iqV#o\",\n      \"rel\": \"=-Ycs>fCNs\",\n      \"method\": \"POST\"\n    },\n    {\n      \"href\": \"H\",\n      \"rel\": \"V@w 7rc\",\n      \"method\": \"POST\"\n    },\n    {\n      \"href\": \"2/SvF\",\n      \"rel\": \"ox\",\n      \"method\": \"POST\"\n    },\n    {\n      \"href\": \"Ed\",\n      \"rel\": \")Kj\",\n      \"method\": \"PATCH\"\n    },\n    {\n      \"href\": \"N#@3hJf9:/\",\n      \"rel\": \"MYa+ ~\",\n      \"method\": \"POST\"\n    },\n    {\n      \"href\": \"m3$QB{Z\",\n      \"rel\": \"E;ordy<KC:\",\n      \"method\": \"POST\"\n    }\n  ]\n}",
+                          "createdAt": "2026-07-28T02:34:20.000Z",
+                          "updatedAt": "2026-07-28T02:34:20.000Z",
+                          "uid": "35240-3ffe2af6-2eb5-4116-91ca-ebeff25c3dee"
+                        }
+                      ],
+                      "createdAt": "2026-07-28T02:34:20.000Z",
+                      "updatedAt": "2026-07-28T02:34:20.000Z",
+                      "uid": "35240-96ecd6fd-8f47-41ca-a19b-90215737ccfd"
+                    }
+                  ],
+                  "id": "86cbc861-7424-47f3-b4a8-173aca43fd80",
+                  "createdAt": "2026-07-28T02:34:20.000Z",
+                  "updatedAt": "2026-07-28T02:34:20.000Z",
+                  "uid": "35240-86cbc861-7424-47f3-b4a8-173aca43fd80"
+                },
+                {
+                  "name": "Paypal Create product",
+                  "id": "a7f4f0b1-73a7-4a0d-b039-dfe81276cb80",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "auth": {
+                      "type": "oauth2",
+                      "oauth2": [
+                        {
+                          "key": "scope",
+                          "value": "https://uri.paypal.com/services/subscriptions",
+                          "type": "string"
+                        },
+                        {
+                          "key": "accessTokenUrl",
+                          "value": "/v1/oauth2/token",
+                          "type": "string"
+                        },
+                        {
+                          "key": "grant_type",
+                          "value": "client_credentials",
+                          "type": "string"
+                        }
+                      ]
+                    },
+                    "method": "POST",
+                    "header": [
+                      {
+                        "description": "The preferred server response upon successful completion of the request. Value is:<ul><li><code>return=minimal</code>. The server returns a minimal response to optimize communication between the API caller and the server. A minimal response includes the <code>id</code>, <code>status</code> and HATEOAS links.</li><li><code>return=representation</code>. The server returns a complete resource representation, including the current state of the resource.</li></ul>",
+                        "key": "Prefer",
+                        "value": "return=minimal"
+                      },
+                      {
+                        "description": "The server stores keys for 72 hours.",
+                        "key": "PayPal-Request-Id",
+                        "value": "<string>"
+                      },
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"name\": \"<string>\",\n  \"type\": \"PHYSICAL\",\n  \"id\": \"<string>\",\n  \"description\": \"<string>\",\n  \"category\": \"ADULT\",\n  \"image_url\": \"<uri>\",\n  \"home_url\": \"<uri>\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/v1/catalogs/products",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "v1",
+                        "catalogs",
+                        "products"
+                      ]
+                    },
+                    "description": "Creates a product."
+                  },
+                  "response": [
+                    {
+                      "id": "f891e6f1-2815-4450-bc43-68d00a324da0",
+                      "name": "A successful request returns the HTTP `200 OK` status code and a JSON response body that shows product details.",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "description": "The preferred server response upon successful completion of the request. Value is:<ul><li><code>return=minimal</code>. The server returns a minimal response to optimize communication between the API caller and the server. A minimal response includes the <code>id</code>, <code>status</code> and HATEOAS links.</li><li><code>return=representation</code>. The server returns a complete resource representation, including the current state of the resource.</li></ul>",
+                            "key": "Prefer",
+                            "value": "return=minimal"
+                          },
+                          {
+                            "description": "The server stores keys for 72 hours.",
+                            "key": "PayPal-Request-Id",
+                            "value": "<string>"
+                          },
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: oauth2",
+                            "key": "Authorization",
+                            "value": "<token>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"name\": \"<string>\",\n  \"type\": \"PHYSICAL\",\n  \"id\": \"<string>\",\n  \"description\": \"<string>\",\n  \"category\": \"ADULT\",\n  \"image_url\": \"<uri>\",\n  \"home_url\": \"<uri>\"\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/v1/catalogs/products",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v1",
+                            "catalogs",
+                            "products"
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"id\": \"<string>\",\n  \"name\": \"<string>\",\n  \"description\": \"<string>\",\n  \"type\": \"PHYSICAL\",\n  \"category\": \"EVENT_AND_WEDDING_PLANNING\",\n  \"image_url\": \"<uri>\",\n  \"home_url\": \"<uri>\",\n  \"create_time\": \"9063-03-06t22:24:40.705+34:63\",\n  \"update_time\": \"1977-09-31T23:25:60Z\",\n  \"links\": [\n    {\n      \"href\": \"<string>\",\n      \"rel\": \"<string>\",\n      \"method\": \"OPTIONS\"\n    },\n    {\n      \"href\": \"<string>\",\n      \"rel\": \"<string>\",\n      \"method\": \"DELETE\"\n    }\n  ]\n}",
+                      "createdAt": "2026-07-28T02:34:20.000Z",
+                      "updatedAt": "2026-07-28T02:34:20.000Z",
+                      "uid": "35240-f891e6f1-2815-4450-bc43-68d00a324da0"
+                    },
+                    {
+                      "id": "ba801aa7-e0a6-4643-9385-b02344c95231",
+                      "name": "A successful request returns the HTTP `201 Created` status code and a JSON response body that shows product details.",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "description": "The preferred server response upon successful completion of the request. Value is:<ul><li><code>return=minimal</code>. The server returns a minimal response to optimize communication between the API caller and the server. A minimal response includes the <code>id</code>, <code>status</code> and HATEOAS links.</li><li><code>return=representation</code>. The server returns a complete resource representation, including the current state of the resource.</li></ul>",
+                            "key": "Prefer",
+                            "value": "return=minimal"
+                          },
+                          {
+                            "description": "The server stores keys for 72 hours.",
+                            "key": "PayPal-Request-Id",
+                            "value": "<string>"
+                          },
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: oauth2",
+                            "key": "Authorization",
+                            "value": "<token>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"name\": \"<string>\",\n  \"type\": \"PHYSICAL\",\n  \"id\": \"<string>\",\n  \"description\": \"<string>\",\n  \"category\": \"ADULT\",\n  \"image_url\": \"<uri>\",\n  \"home_url\": \"<uri>\"\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/v1/catalogs/products",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v1",
+                            "catalogs",
+                            "products"
+                          ]
+                        }
+                      },
+                      "status": "Created",
+                      "code": 201,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"id\": \"<string>\",\n  \"name\": \"<string>\",\n  \"description\": \"<string>\",\n  \"type\": \"PHYSICAL\",\n  \"category\": \"EVENT_AND_WEDDING_PLANNING\",\n  \"image_url\": \"<uri>\",\n  \"home_url\": \"<uri>\",\n  \"create_time\": \"9063-03-06t22:24:40.705+34:63\",\n  \"update_time\": \"1977-09-31T23:25:60Z\",\n  \"links\": [\n    {\n      \"href\": \"<string>\",\n      \"rel\": \"<string>\",\n      \"method\": \"OPTIONS\"\n    },\n    {\n      \"href\": \"<string>\",\n      \"rel\": \"<string>\",\n      \"method\": \"DELETE\"\n    }\n  ]\n}",
+                      "createdAt": "2026-07-28T02:34:20.000Z",
+                      "updatedAt": "2026-07-28T02:34:20.000Z",
+                      "uid": "35240-ba801aa7-e0a6-4643-9385-b02344c95231"
+                    },
+                    {
+                      "id": "832f2f4c-9d4d-4b2d-924e-721094df4ac4",
+                      "name": "Bad Request. Request is not well-formed, syntactically incorrect, or violates schema.",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "description": "The preferred server response upon successful completion of the request. Value is:<ul><li><code>return=minimal</code>. The server returns a minimal response to optimize communication between the API caller and the server. A minimal response includes the <code>id</code>, <code>status</code> and HATEOAS links.</li><li><code>return=representation</code>. The server returns a complete resource representation, including the current state of the resource.</li></ul>",
+                            "key": "Prefer",
+                            "value": "return=minimal"
+                          },
+                          {
+                            "description": "The server stores keys for 72 hours.",
+                            "key": "PayPal-Request-Id",
+                            "value": "<string>"
+                          },
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: oauth2",
+                            "key": "Authorization",
+                            "value": "<token>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"name\": \"<string>\",\n  \"type\": \"PHYSICAL\",\n  \"id\": \"<string>\",\n  \"description\": \"<string>\",\n  \"category\": \"ADULT\",\n  \"image_url\": \"<uri>\",\n  \"home_url\": \"<uri>\"\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/v1/catalogs/products",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v1",
+                            "catalogs",
+                            "products"
+                          ]
+                        }
+                      },
+                      "status": "Bad Request",
+                      "code": 400,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"name\": \"INVALID_REQUEST\",\n  \"message\": \"Request is not well-formed, syntactically incorrect, or violates schema.\",\n  \"details\": [\n    {\n      \"issue\": \"<string>\",\n      \"field\": \"<string>\",\n      \"value\": \"<string>\",\n      \"location\": \"body\",\n      \"description\": \"<string>\"\n    },\n    {\n      \"issue\": \"<string>\",\n      \"field\": \"<string>\",\n      \"value\": \"<string>\",\n      \"location\": \"body\",\n      \"description\": \"<string>\"\n    }\n  ],\n  \"debug_id\": \"<string>\",\n  \"links\": [\n    {\n      \"href\": \"@j-AF\",\n      \"rel\": \"'{iT}<\",\n      \"method\": \"DELETE\"\n    },\n    {\n      \"href\": \"iB)*n*\",\n      \"rel\": \"&\",\n      \"method\": \"PUT\"\n    },\n    {\n      \"href\": \"9!;rlS-]aE\",\n      \"rel\": \"zf8.3gAr}\\\"\",\n      \"method\": \"PATCH\"\n    },\n    {\n      \"href\": \"^]\",\n      \"rel\": \"7@)YmO5aM\",\n      \"method\": \"POST\"\n    },\n    {\n      \"href\": \"uOveNL'A\",\n      \"rel\": \".!?\",\n      \"method\": \"PATCH\"\n    },\n    {\n      \"href\": \"L,)H\",\n      \"rel\": \"*4\",\n      \"method\": \"GET\"\n    },\n    {\n      \"href\": \"m_$?\",\n      \"rel\": \"1q'/A\",\n      \"method\": \"DELETE\"\n    },\n    {\n      \"href\": \"y>jNHdFH~\",\n      \"rel\": \"-tb#!\\\"C0~%\",\n      \"method\": \"DELETE\"\n    },\n    {\n      \"href\": \"zU\",\n      \"rel\": \"_YDN\",\n      \"method\": \"POST\"\n    },\n    {\n      \"href\": \"#.h\",\n      \"rel\": \"Lcqw~~^(\",\n      \"method\": \"PATCH\"\n    },\n    {\n      \"href\": \"\",\n      \"rel\": \"FRwjq\",\n      \"method\": \"GET\"\n    },\n    {\n      \"href\": \"u 1\",\n      \"rel\": \"lm/5E\",\n      \"method\": \"GET\"\n    },\n    {\n      \"href\": \"em16QT&\",\n      \"rel\": \"Q3Q=\",\n      \"method\": \"GET\"\n    },\n    {\n      \"href\": \" ja}\",\n      \"rel\": \"N*(\",\n      \"method\": \"POST\"\n    },\n    {\n      \"href\": \"#lM[w\",\n      \"rel\": \"ChVD2\\\\!\",\n      \"method\": \"DELETE\"\n    },\n    {\n      \"href\": \"n{Ey1FE\",\n      \"rel\": \"r\\\"W\",\n      \"method\": \"POST\"\n    },\n    {\n      \"href\": \"FZ YN\",\n      \"rel\": \"BdTY~I\\\"2\",\n      \"method\": \"PATCH\"\n    },\n    {\n      \"href\": \"Xh\",\n      \"rel\": \"5~*P*nb8\",\n      \"method\": \"GET\"\n    },\n    {\n      \"href\": \"Y8\",\n      \"rel\": \"EVPvQQ)9\\\\\\\"\",\n      \"method\": \"PATCH\"\n    },\n    {\n      \"href\": \"~qU\\\\>>s)@\",\n      \"rel\": \"_5/hpj\",\n      \"method\": \"GET\"\n    }\n  ]\n}",
+                      "createdAt": "2026-07-28T02:34:20.000Z",
+                      "updatedAt": "2026-07-28T02:34:20.000Z",
+                      "uid": "35240-832f2f4c-9d4d-4b2d-924e-721094df4ac4"
+                    },
+                    {
+                      "id": "d8245efa-b6dd-4c2a-860c-bdf1cfabc39d",
+                      "name": "Authentication failed due to missing authorization header, or invalid authentication credentials.",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "description": "The preferred server response upon successful completion of the request. Value is:<ul><li><code>return=minimal</code>. The server returns a minimal response to optimize communication between the API caller and the server. A minimal response includes the <code>id</code>, <code>status</code> and HATEOAS links.</li><li><code>return=representation</code>. The server returns a complete resource representation, including the current state of the resource.</li></ul>",
+                            "key": "Prefer",
+                            "value": "return=minimal"
+                          },
+                          {
+                            "description": "The server stores keys for 72 hours.",
+                            "key": "PayPal-Request-Id",
+                            "value": "<string>"
+                          },
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: oauth2",
+                            "key": "Authorization",
+                            "value": "<token>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"name\": \"<string>\",\n  \"type\": \"PHYSICAL\",\n  \"id\": \"<string>\",\n  \"description\": \"<string>\",\n  \"category\": \"ADULT\",\n  \"image_url\": \"<uri>\",\n  \"home_url\": \"<uri>\"\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/v1/catalogs/products",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v1",
+                            "catalogs",
+                            "products"
+                          ]
+                        }
+                      },
+                      "status": "Unauthorized",
+                      "code": 401,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"name\": \"AUTHENTICATION_FAILURE\",\n  \"message\": \"Authentication failed due to missing authorization header, or invalid authentication credentials.\",\n  \"details\": [\n    {\n      \"issue\": \"<string>\",\n      \"field\": \"<string>\",\n      \"value\": \"<string>\",\n      \"location\": \"body\",\n      \"description\": \"<string>\"\n    },\n    {\n      \"issue\": \"<string>\",\n      \"field\": \"<string>\",\n      \"value\": \"<string>\",\n      \"location\": \"body\",\n      \"description\": \"<string>\"\n    }\n  ],\n  \"debug_id\": \"<string>\",\n  \"links\": [\n    {\n      \"href\": \"_\",\n      \"rel\": \"=/\",\n      \"method\": \"PUT\"\n    },\n    {\n      \"href\": \"}B_}\",\n      \"rel\": \"4uQM\",\n      \"method\": \"PATCH\"\n    },\n    {\n      \"href\": \"pB^4oV\",\n      \"rel\": \"\",\n      \"method\": \"DELETE\"\n    },\n    {\n      \"href\": \"j\",\n      \"rel\": \"vkU0WO]z!\",\n      \"method\": \"PATCH\"\n    },\n    {\n      \"href\": \"Jh7A \",\n      \"rel\": \"&d4;2\",\n      \"method\": \"DELETE\"\n    },\n    {\n      \"href\": \"vNh\",\n      \"rel\": \"\",\n      \"method\": \"PUT\"\n    },\n    {\n      \"href\": \"eo_t4pB\",\n      \"rel\": \"rd\",\n      \"method\": \"PATCH\"\n    },\n    {\n      \"href\": \".\",\n      \"rel\": \"6@UA\",\n      \"method\": \"POST\"\n    },\n    {\n      \"href\": \"/k@Bi|\",\n      \"rel\": \"ST\",\n      \"method\": \"PUT\"\n    },\n    {\n      \"href\": \"cpK}>\",\n      \"rel\": \"82SXdv^H\",\n      \"method\": \"GET\"\n    },\n    {\n      \"href\": \"j\\\\GRRB ];\",\n      \"rel\": \"|cXZ<rAF\\\\\",\n      \"method\": \"GET\"\n    },\n    {\n      \"href\": \"Jw\",\n      \"rel\": \"k3Tg1|&S\",\n      \"method\": \"PATCH\"\n    },\n    {\n      \"href\": \"N\\\\c\",\n      \"rel\": \"y'Ktd\",\n      \"method\": \"POST\"\n    },\n    {\n      \"href\": \"v[QX%XiMk\",\n      \"rel\": \"0~\",\n      \"method\": \"POST\"\n    },\n    {\n      \"href\": \"@2\",\n      \"rel\": \"*nHNR)7kn[\",\n      \"method\": \"POST\"\n    },\n    {\n      \"href\": \"zRF>xK6\",\n      \"rel\": \"?l$\\\"6DSi=V\",\n      \"method\": \"DELETE\"\n    },\n    {\n      \"href\": \"*Vwe\",\n      \"rel\": \"+QM%\",\n      \"method\": \"POST\"\n    },\n    {\n      \"href\": \"y?HF!jEd\",\n      \"rel\": \"\",\n      \"method\": \"PATCH\"\n    },\n    {\n      \"href\": \"y4r=RdT$3h\",\n      \"rel\": \"nY=Ox|(`\",\n      \"method\": \"GET\"\n    },\n    {\n      \"href\": \"r3Kcd\",\n      \"rel\": \"(;wm@d\",\n      \"method\": \"PUT\"\n    }\n  ]\n}",
+                      "createdAt": "2026-07-28T02:34:20.000Z",
+                      "updatedAt": "2026-07-28T02:34:20.000Z",
+                      "uid": "35240-d8245efa-b6dd-4c2a-860c-bdf1cfabc39d"
+                    },
+                    {
+                      "id": "a7bc2fbd-7c51-4d49-a7bf-206546799a39",
+                      "name": "Authorization failed due to insufficient permissions.",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "description": "The preferred server response upon successful completion of the request. Value is:<ul><li><code>return=minimal</code>. The server returns a minimal response to optimize communication between the API caller and the server. A minimal response includes the <code>id</code>, <code>status</code> and HATEOAS links.</li><li><code>return=representation</code>. The server returns a complete resource representation, including the current state of the resource.</li></ul>",
+                            "key": "Prefer",
+                            "value": "return=minimal"
+                          },
+                          {
+                            "description": "The server stores keys for 72 hours.",
+                            "key": "PayPal-Request-Id",
+                            "value": "<string>"
+                          },
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: oauth2",
+                            "key": "Authorization",
+                            "value": "<token>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"name\": \"<string>\",\n  \"type\": \"PHYSICAL\",\n  \"id\": \"<string>\",\n  \"description\": \"<string>\",\n  \"category\": \"ADULT\",\n  \"image_url\": \"<uri>\",\n  \"home_url\": \"<uri>\"\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/v1/catalogs/products",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v1",
+                            "catalogs",
+                            "products"
+                          ]
+                        }
+                      },
+                      "status": "Forbidden",
+                      "code": 403,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"name\": \"NOT_AUTHORIZED\",\n  \"message\": \"Authorization failed due to insufficient permissions.\",\n  \"details\": [\n    {\n      \"issue\": \"<string>\",\n      \"field\": \"<string>\",\n      \"value\": \"<string>\",\n      \"location\": \"body\",\n      \"description\": \"<string>\"\n    },\n    {\n      \"issue\": \"<string>\",\n      \"field\": \"<string>\",\n      \"value\": \"<string>\",\n      \"location\": \"body\",\n      \"description\": \"<string>\"\n    }\n  ],\n  \"debug_id\": \"<string>\",\n  \"links\": [\n    {\n      \"href\": \"6~)\",\n      \"rel\": \"\",\n      \"method\": \"POST\"\n    },\n    {\n      \"href\": \"\\\\\",\n      \"rel\": \"8'U/.n#gh\",\n      \"method\": \"PUT\"\n    },\n    {\n      \"href\": \"f&r)igA\",\n      \"rel\": \"+7czV6}#R5\",\n      \"method\": \"GET\"\n    },\n    {\n      \"href\": \"\",\n      \"rel\": \"9hDij!V\",\n      \"method\": \"GET\"\n    },\n    {\n      \"href\": \"\\\"p\",\n      \"rel\": \"\",\n      \"method\": \"PATCH\"\n    },\n    {\n      \"href\": \"|ZY\",\n      \"rel\": \" h@s-_\",\n      \"method\": \"PATCH\"\n    },\n    {\n      \"href\": \"jf$)L6DX\",\n      \"rel\": \"Lpg\",\n      \"method\": \"PUT\"\n    },\n    {\n      \"href\": \"pv<FD5X8.\",\n      \"rel\": \"\\\\\",\n      \"method\": \"PUT\"\n    },\n    {\n      \"href\": \"\",\n      \"rel\": \"cT%iH042Zj\",\n      \"method\": \"PUT\"\n    },\n    {\n      \"href\": \"E,0mgAJb\",\n      \"rel\": \"@5KIc\",\n      \"method\": \"PUT\"\n    },\n    {\n      \"href\": \"$\",\n      \"rel\": \"I.a^2bi/\",\n      \"method\": \"GET\"\n    },\n    {\n      \"href\": \"8D\",\n      \"rel\": \"<h\",\n      \"method\": \"POST\"\n    },\n    {\n      \"href\": \"*?\\\"T;Rc=tU\",\n      \"rel\": \";So:\",\n      \"method\": \"DELETE\"\n    },\n    {\n      \"href\": \"!#4_\",\n      \"rel\": \"x\",\n      \"method\": \"DELETE\"\n    },\n    {\n      \"href\": \"\",\n      \"rel\": \"\\\\N\",\n      \"method\": \"PUT\"\n    },\n    {\n      \"href\": \"rDM`>8uy\",\n      \"rel\": \">~*;,\",\n      \"method\": \"PATCH\"\n    },\n    {\n      \"href\": \"F}z\",\n      \"rel\": \"p>_iVu%\",\n      \"method\": \"POST\"\n    },\n    {\n      \"href\": \"T{<oY)Rz\",\n      \"rel\": \"\",\n      \"method\": \"GET\"\n    },\n    {\n      \"href\": \"ZOS^W\",\n      \"rel\": \"Ul+E1OJF\",\n      \"method\": \"DELETE\"\n    },\n    {\n      \"href\": \"dm7mt\",\n      \"rel\": \"\",\n      \"method\": \"PUT\"\n    }\n  ]\n}",
+                      "createdAt": "2026-07-28T02:34:20.000Z",
+                      "updatedAt": "2026-07-28T02:34:20.000Z",
+                      "uid": "35240-a7bc2fbd-7c51-4d49-a7bf-206546799a39"
+                    },
+                    {
+                      "id": "8862e4db-b5e1-4477-beed-5d1730b19a07",
+                      "name": "The requested action could not be performed, semantically incorrect, or failed business validation.",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "description": "The preferred server response upon successful completion of the request. Value is:<ul><li><code>return=minimal</code>. The server returns a minimal response to optimize communication between the API caller and the server. A minimal response includes the <code>id</code>, <code>status</code> and HATEOAS links.</li><li><code>return=representation</code>. The server returns a complete resource representation, including the current state of the resource.</li></ul>",
+                            "key": "Prefer",
+                            "value": "return=minimal"
+                          },
+                          {
+                            "description": "The server stores keys for 72 hours.",
+                            "key": "PayPal-Request-Id",
+                            "value": "<string>"
+                          },
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: oauth2",
+                            "key": "Authorization",
+                            "value": "<token>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"name\": \"<string>\",\n  \"type\": \"PHYSICAL\",\n  \"id\": \"<string>\",\n  \"description\": \"<string>\",\n  \"category\": \"ADULT\",\n  \"image_url\": \"<uri>\",\n  \"home_url\": \"<uri>\"\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/v1/catalogs/products",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v1",
+                            "catalogs",
+                            "products"
+                          ]
+                        }
+                      },
+                      "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+                      "code": 422,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"name\": \"UNPROCESSABLE_ENTITY\",\n  \"message\": \"The requested action could not be performed, semantically incorrect, or failed business validation.\",\n  \"details\": [\n    {\n      \"issue\": \"<string>\",\n      \"field\": \"<string>\",\n      \"value\": \"<string>\",\n      \"location\": \"body\",\n      \"description\": \"<string>\"\n    },\n    {\n      \"issue\": \"<string>\",\n      \"field\": \"<string>\",\n      \"value\": \"<string>\",\n      \"location\": \"body\",\n      \"description\": \"<string>\"\n    }\n  ],\n  \"debug_id\": \"<string>\",\n  \"links\": [\n    {\n      \"href\": \"%j\\\"QXM\",\n      \"rel\": \"=Y:@y'`F4B\",\n      \"method\": \"GET\"\n    },\n    {\n      \"href\": \"M#+fUXooH\",\n      \"rel\": \"7TQy+sc\",\n      \"method\": \"DELETE\"\n    },\n    {\n      \"href\": \"q yWvyVj\",\n      \"rel\": \"rG\",\n      \"method\": \"PUT\"\n    },\n    {\n      \"href\": \"d\",\n      \"rel\": \"{y @Vbw\",\n      \"method\": \"GET\"\n    },\n    {\n      \"href\": \"xio`Tz\",\n      \"rel\": \"5UuMDXP4\",\n      \"method\": \"PUT\"\n    },\n    {\n      \"href\": \"dvcm|\",\n      \"rel\": \"BeAVkT\",\n      \"method\": \"POST\"\n    },\n    {\n      \"href\": \"\",\n      \"rel\": \"\",\n      \"method\": \"PATCH\"\n    },\n    {\n      \"href\": \"X/}6FN\",\n      \"rel\": \"K6uc]/=Hj\",\n      \"method\": \"PUT\"\n    },\n    {\n      \"href\": \"2r=n&J2\\\\r3\",\n      \"rel\": \"\",\n      \"method\": \"PATCH\"\n    },\n    {\n      \"href\": \"A/yYk9\",\n      \"rel\": \"PD2>\",\n      \"method\": \"PUT\"\n    },\n    {\n      \"href\": \")cCojO>9*`\",\n      \"rel\": \"<\",\n      \"method\": \"GET\"\n    },\n    {\n      \"href\": \"Y=m&:\",\n      \"rel\": \"s\",\n      \"method\": \"POST\"\n    },\n    {\n      \"href\": \"\",\n      \"rel\": \"[=0Esscr\",\n      \"method\": \"GET\"\n    },\n    {\n      \"href\": \"?$rra[#\",\n      \"rel\": \"g\",\n      \"method\": \"DELETE\"\n    },\n    {\n      \"href\": \"6h!p-\",\n      \"rel\": \"9%\",\n      \"method\": \"POST\"\n    },\n    {\n      \"href\": \"wU%h\",\n      \"rel\": \"VY(pf,\",\n      \"method\": \"PATCH\"\n    },\n    {\n      \"href\": \"3iZ=\",\n      \"rel\": \"Mx\",\n      \"method\": \"PUT\"\n    },\n    {\n      \"href\": \"X8;U^\",\n      \"rel\": \"ilKajV\",\n      \"method\": \"PUT\"\n    },\n    {\n      \"href\": \"GHl~m\",\n      \"rel\": \"$>.4u*o\",\n      \"method\": \"PATCH\"\n    },\n    {\n      \"href\": \".%g5$rF\",\n      \"rel\": \"q\",\n      \"method\": \"GET\"\n    }\n  ]\n}",
+                      "createdAt": "2026-07-28T02:34:20.000Z",
+                      "updatedAt": "2026-07-28T02:34:20.000Z",
+                      "uid": "35240-8862e4db-b5e1-4477-beed-5d1730b19a07"
+                    },
+                    {
+                      "id": "77378a3e-777b-463c-a581-7f3d8bf15801",
+                      "name": "An internal server error has occurred.",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "description": "The preferred server response upon successful completion of the request. Value is:<ul><li><code>return=minimal</code>. The server returns a minimal response to optimize communication between the API caller and the server. A minimal response includes the <code>id</code>, <code>status</code> and HATEOAS links.</li><li><code>return=representation</code>. The server returns a complete resource representation, including the current state of the resource.</li></ul>",
+                            "key": "Prefer",
+                            "value": "return=minimal"
+                          },
+                          {
+                            "description": "The server stores keys for 72 hours.",
+                            "key": "PayPal-Request-Id",
+                            "value": "<string>"
+                          },
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: oauth2",
+                            "key": "Authorization",
+                            "value": "<token>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"name\": \"<string>\",\n  \"type\": \"PHYSICAL\",\n  \"id\": \"<string>\",\n  \"description\": \"<string>\",\n  \"category\": \"ADULT\",\n  \"image_url\": \"<uri>\",\n  \"home_url\": \"<uri>\"\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/v1/catalogs/products",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v1",
+                            "catalogs",
+                            "products"
+                          ]
+                        }
+                      },
+                      "status": "Internal Server Error",
+                      "code": 500,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"name\": \"INTERNAL_SERVER_ERROR\",\n  \"message\": \"An internal server error occurred.\",\n  \"debug_id\": \"<string>\",\n  \"links\": [\n    {\n      \"href\": \"[*\",\n      \"rel\": \"a\\\\<{O\",\n      \"method\": \"PATCH\"\n    },\n    {\n      \"href\": \"BsDa!3bh4\",\n      \"rel\": \"s'El%B#\",\n      \"method\": \"PUT\"\n    },\n    {\n      \"href\": \"\",\n      \"rel\": \"\",\n      \"method\": \"POST\"\n    },\n    {\n      \"href\": \":$\",\n      \"rel\": \"Tb<74T)2,>\",\n      \"method\": \"GET\"\n    },\n    {\n      \"href\": \"\",\n      \"rel\": \"RHo\",\n      \"method\": \"GET\"\n    },\n    {\n      \"href\": \"Nw%E15ca\",\n      \"rel\": \".*Ig\",\n      \"method\": \"GET\"\n    },\n    {\n      \"href\": \"lI<akK\",\n      \"rel\": \"\",\n      \"method\": \"GET\"\n    },\n    {\n      \"href\": \"ckm\",\n      \"rel\": \"({M*4#?LL\",\n      \"method\": \"POST\"\n    },\n    {\n      \"href\": \"\\\"Zz6?#Z\",\n      \"rel\": \"6\",\n      \"method\": \"POST\"\n    },\n    {\n      \"href\": \"B[00[!j5\",\n      \"rel\": \"&#\",\n      \"method\": \"DELETE\"\n    },\n    {\n      \"href\": \"7.9?}(%e-\",\n      \"rel\": \"b?\",\n      \"method\": \"POST\"\n    },\n    {\n      \"href\": \"\\\"aSm}QF\",\n      \"rel\": \"Z{\",\n      \"method\": \"GET\"\n    },\n    {\n      \"href\": \"X_J>bcDrG\",\n      \"rel\": \"l$\",\n      \"method\": \"DELETE\"\n    },\n    {\n      \"href\": \"G?\",\n      \"rel\": \"[C Ef/\",\n      \"method\": \"POST\"\n    },\n    {\n      \"href\": \"thR\",\n      \"rel\": \"%Epqc8JtM3\",\n      \"method\": \"DELETE\"\n    },\n    {\n      \"href\": \"b\",\n      \"rel\": \"' pb\",\n      \"method\": \"POST\"\n    },\n    {\n      \"href\": \"\",\n      \"rel\": \"sMd~XpCkP\",\n      \"method\": \"GET\"\n    },\n    {\n      \"href\": \"?EY|wP=\",\n      \"rel\": \"\",\n      \"method\": \"GET\"\n    },\n    {\n      \"href\": \"9?4(&4a\",\n      \"rel\": \"sFBO$fH\",\n      \"method\": \"DELETE\"\n    },\n    {\n      \"href\": \")/'D\",\n      \"rel\": \"oe\\\"PM\",\n      \"method\": \"PUT\"\n    }\n  ]\n}",
+                      "createdAt": "2026-07-28T02:34:20.000Z",
+                      "updatedAt": "2026-07-28T02:34:20.000Z",
+                      "uid": "35240-77378a3e-777b-463c-a581-7f3d8bf15801"
+                    },
+                    {
+                      "id": "5e12ac6a-c06c-4bdb-8c4f-be281fb387f7",
+                      "name": "The default response.",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "description": "The preferred server response upon successful completion of the request. Value is:<ul><li><code>return=minimal</code>. The server returns a minimal response to optimize communication between the API caller and the server. A minimal response includes the <code>id</code>, <code>status</code> and HATEOAS links.</li><li><code>return=representation</code>. The server returns a complete resource representation, including the current state of the resource.</li></ul>",
+                            "key": "Prefer",
+                            "value": "return=minimal"
+                          },
+                          {
+                            "description": "The server stores keys for 72 hours.",
+                            "key": "PayPal-Request-Id",
+                            "value": "<string>"
+                          },
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: oauth2",
+                            "key": "Authorization",
+                            "value": "<token>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"name\": \"<string>\",\n  \"type\": \"PHYSICAL\",\n  \"id\": \"<string>\",\n  \"description\": \"<string>\",\n  \"category\": \"ADULT\",\n  \"image_url\": \"<uri>\",\n  \"home_url\": \"<uri>\"\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/v1/catalogs/products",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v1",
+                            "catalogs",
+                            "products"
+                          ]
+                        }
+                      },
+                      "status": "Internal Server Error",
+                      "code": 500,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"name\": \"INVALID_REQUEST\",\n  \"message\": \"Request is not well-formed, syntactically incorrect, or violates schema.\",\n  \"details\": [\n    {\n      \"issue\": \"<string>\",\n      \"field\": \"<string>\",\n      \"value\": \"<string>\",\n      \"location\": \"body\",\n      \"description\": \"<string>\"\n    },\n    {\n      \"issue\": \"<string>\",\n      \"field\": \"<string>\",\n      \"value\": \"<string>\",\n      \"location\": \"body\",\n      \"description\": \"<string>\"\n    }\n  ],\n  \"debug_id\": \"<string>\",\n  \"links\": [\n    {\n      \"href\": \"WsI&KQ<8&l\",\n      \"rel\": \"KsFD{Jxi}S\",\n      \"method\": \"GET\"\n    },\n    {\n      \"href\": \"N$6Y/\",\n      \"rel\": \"j?6azZ\",\n      \"method\": \"POST\"\n    },\n    {\n      \"href\": \".c<j\",\n      \"rel\": \"]ev|t\\\"L\",\n      \"method\": \"PATCH\"\n    },\n    {\n      \"href\": \"ka;Je~M5\",\n      \"rel\": \"nZ\",\n      \"method\": \"POST\"\n    },\n    {\n      \"href\": \"dD?4y#\",\n      \"rel\": \"oyC\",\n      \"method\": \"PUT\"\n    },\n    {\n      \"href\": \"f!M%?jK\",\n      \"rel\": \":p#mZ\",\n      \"method\": \"GET\"\n    },\n    {\n      \"href\": \"`i>;4pW\",\n      \"rel\": \"ZHXV ?<w\",\n      \"method\": \"PATCH\"\n    },\n    {\n      \"href\": \",WF3&IoNQ$\",\n      \"rel\": \"A\",\n      \"method\": \"DELETE\"\n    },\n    {\n      \"href\": \"T~M 'L\",\n      \"rel\": \"JU[h@h(cv\",\n      \"method\": \"GET\"\n    },\n    {\n      \"href\": \"mDi1C\",\n      \"rel\": \"O\",\n      \"method\": \"DELETE\"\n    },\n    {\n      \"href\": \"?2SLa\",\n      \"rel\": \"<Jr\",\n      \"method\": \"PATCH\"\n    },\n    {\n      \"href\": \"Lb\",\n      \"rel\": \"V!kz\",\n      \"method\": \"PATCH\"\n    },\n    {\n      \"href\": \"\",\n      \"rel\": \"jns\",\n      \"method\": \"POST\"\n    },\n    {\n      \"href\": \"3wO\",\n      \"rel\": \"\",\n      \"method\": \"GET\"\n    },\n    {\n      \"href\": \"iqV#o\",\n      \"rel\": \"=-Ycs>fCNs\",\n      \"method\": \"POST\"\n    },\n    {\n      \"href\": \"H\",\n      \"rel\": \"V@w 7rc\",\n      \"method\": \"POST\"\n    },\n    {\n      \"href\": \"2/SvF\",\n      \"rel\": \"ox\",\n      \"method\": \"POST\"\n    },\n    {\n      \"href\": \"Ed\",\n      \"rel\": \")Kj\",\n      \"method\": \"PATCH\"\n    },\n    {\n      \"href\": \"N#@3hJf9:/\",\n      \"rel\": \"MYa+ ~\",\n      \"method\": \"POST\"\n    },\n    {\n      \"href\": \"m3$QB{Z\",\n      \"rel\": \"E;ordy<KC:\",\n      \"method\": \"POST\"\n    }\n  ]\n}",
+                      "createdAt": "2026-07-28T02:34:20.000Z",
+                      "updatedAt": "2026-07-28T02:34:20.000Z",
+                      "uid": "35240-5e12ac6a-c06c-4bdb-8c4f-be281fb387f7"
+                    }
+                  ],
+                  "createdAt": "2026-07-28T02:34:20.000Z",
+                  "updatedAt": "2026-07-28T02:34:20.000Z",
+                  "uid": "35240-a7f4f0b1-73a7-4a0d-b039-dfe81276cb80"
+                },
+                {
+                  "name": "Paypal List products",
+                  "id": "55bc0dab-6e60-414a-9f7e-d6c2dc15377d",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "auth": {
+                      "type": "oauth2",
+                      "oauth2": [
+                        {
+                          "key": "scope",
+                          "value": "https://uri.paypal.com/services/subscriptions",
+                          "type": "string"
+                        },
+                        {
+                          "key": "accessTokenUrl",
+                          "value": "/v1/oauth2/token",
+                          "type": "string"
+                        },
+                        {
+                          "key": "grant_type",
+                          "value": "client_credentials",
+                          "type": "string"
+                        }
+                      ]
+                    },
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/v1/catalogs/products?page_size=10&page=1&total_required=false",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "v1",
+                        "catalogs",
+                        "products"
+                      ],
+                      "query": [
+                        {
+                          "description": "The number of items to return in the response.",
+                          "key": "page_size",
+                          "value": "10"
+                        },
+                        {
+                          "description": "A non-zero integer which is the start index of the entire list of items that are returned in the response. So, the combination of `page=1` and `page_size=20` returns the first 20 items. The combination of `page=2` and `page_size=20` returns the next 20 items.",
+                          "key": "page",
+                          "value": "1"
+                        },
+                        {
+                          "description": "Indicates whether to show the total items and total pages in the response.",
+                          "key": "total_required",
+                          "value": "false"
+                        }
+                      ]
+                    },
+                    "description": "Lists products."
+                  },
+                  "response": [
+                    {
+                      "id": "fe8d32fd-d330-4365-81e5-41e15707829b",
+                      "name": "A successful request returns the HTTP `200 OK` status code and a JSON response body that lists products with details.",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: oauth2",
+                            "key": "Authorization",
+                            "value": "<token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/v1/catalogs/products?page_size=10&page=1&total_required=false",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v1",
+                            "catalogs",
+                            "products"
+                          ],
+                          "query": [
+                            {
+                              "description": "The number of items to return in the response.",
+                              "key": "page_size",
+                              "value": "10"
+                            },
+                            {
+                              "description": "A non-zero integer which is the start index of the entire list of items that are returned in the response. So, the combination of `page=1` and `page_size=20` returns the first 20 items. The combination of `page=2` and `page_size=20` returns the next 20 items.",
+                              "key": "page",
+                              "value": "1"
+                            },
+                            {
+                              "description": "Indicates whether to show the total items and total pages in the response.",
+                              "key": "total_required",
+                              "value": "false"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"products\": [\n    {\n      \"id\": \"<string>\",\n      \"name\": \"<string>\",\n      \"description\": \"<string>\",\n      \"create_time\": \"5883-12-09t23:08:18z\",\n      \"links\": [\n        {\n          \"href\": \"<string>\",\n          \"rel\": \"<string>\",\n          \"method\": \"POST\"\n        },\n        {\n          \"href\": \"<string>\",\n          \"rel\": \"<string>\",\n          \"method\": \"DELETE\"\n        }\n      ]\n    }\n  ],\n  \"total_items\": \"<integer>\",\n  \"total_pages\": \"<integer>\",\n  \"links\": [\n    {\n      \"href\": \"<string>\",\n      \"rel\": \"<string>\",\n      \"method\": \"HEAD\"\n    },\n    {\n      \"href\": \"<string>\",\n      \"rel\": \"<string>\",\n      \"method\": \"POST\"\n    }\n  ]\n}",
+                      "createdAt": "2026-07-28T02:34:20.000Z",
+                      "updatedAt": "2026-07-28T02:34:20.000Z",
+                      "uid": "35240-fe8d32fd-d330-4365-81e5-41e15707829b"
+                    },
+                    {
+                      "id": "2d3adde8-d2ba-4c17-b838-2c39259846e6",
+                      "name": "Bad Request. Request is not well-formed, syntactically incorrect, or violates schema.",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: oauth2",
+                            "key": "Authorization",
+                            "value": "<token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/v1/catalogs/products?page_size=10&page=1&total_required=false",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v1",
+                            "catalogs",
+                            "products"
+                          ],
+                          "query": [
+                            {
+                              "description": "The number of items to return in the response.",
+                              "key": "page_size",
+                              "value": "10"
+                            },
+                            {
+                              "description": "A non-zero integer which is the start index of the entire list of items that are returned in the response. So, the combination of `page=1` and `page_size=20` returns the first 20 items. The combination of `page=2` and `page_size=20` returns the next 20 items.",
+                              "key": "page",
+                              "value": "1"
+                            },
+                            {
+                              "description": "Indicates whether to show the total items and total pages in the response.",
+                              "key": "total_required",
+                              "value": "false"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Bad Request",
+                      "code": 400,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"name\": \"INVALID_REQUEST\",\n  \"message\": \"Request is not well-formed, syntactically incorrect, or violates schema.\",\n  \"details\": [\n    {\n      \"issue\": \"<string>\",\n      \"field\": \"<string>\",\n      \"value\": \"<string>\",\n      \"location\": \"body\",\n      \"description\": \"<string>\"\n    },\n    {\n      \"issue\": \"<string>\",\n      \"field\": \"<string>\",\n      \"value\": \"<string>\",\n      \"location\": \"body\",\n      \"description\": \"<string>\"\n    }\n  ],\n  \"debug_id\": \"<string>\",\n  \"links\": [\n    {\n      \"href\": \"4xPp9(\",\n      \"rel\": \"QpXnz,Sk\",\n      \"method\": \"PATCH\"\n    },\n    {\n      \"href\": \"%5\",\n      \"rel\": \"q/%ZzuP\\\"Rn\",\n      \"method\": \"PATCH\"\n    },\n    {\n      \"href\": \"-VV)\",\n      \"rel\": \"$Jz>d~_\",\n      \"method\": \"GET\"\n    },\n    {\n      \"href\": \",nV @}%(\",\n      \"rel\": \"i\",\n      \"method\": \"GET\"\n    },\n    {\n      \"href\": \"4\",\n      \"rel\": \"zS\",\n      \"method\": \"GET\"\n    },\n    {\n      \"href\": \"Fv8S$j?/m\",\n      \"rel\": \"{]%\",\n      \"method\": \"POST\"\n    },\n    {\n      \"href\": \"rTFxHh\",\n      \"rel\": \")x^\",\n      \"method\": \"POST\"\n    },\n    {\n      \"href\": \"L^\",\n      \"rel\": \"B19*5\",\n      \"method\": \"PATCH\"\n    },\n    {\n      \"href\": \"\\\\lMtpgyX \",\n      \"rel\": \"?d4J=\",\n      \"method\": \"GET\"\n    },\n    {\n      \"href\": \"dzr\",\n      \"rel\": \"<B(U?yj\",\n      \"method\": \"PUT\"\n    },\n    {\n      \"href\": \"/K$6`\",\n      \"rel\": \"6g:t_6\",\n      \"method\": \"DELETE\"\n    },\n    {\n      \"href\": \"!|l\\\"*P]2?;\",\n      \"rel\": \"!k\",\n      \"method\": \"PATCH\"\n    },\n    {\n      \"href\": \"Q(]}N?\",\n      \"rel\": \"M%vJT}yw\\\"c\",\n      \"method\": \"POST\"\n    },\n    {\n      \"href\": \"~$:9?V5d\",\n      \"rel\": \"r>0&Mwg\",\n      \"method\": \"POST\"\n    },\n    {\n      \"href\": \"8\",\n      \"rel\": \"R;$x<P,=3^\",\n      \"method\": \"DELETE\"\n    },\n    {\n      \"href\": \";\",\n      \"rel\": \"0 y\",\n      \"method\": \"PATCH\"\n    },\n    {\n      \"href\": \"pN\",\n      \"rel\": \"Qkr\",\n      \"method\": \"PATCH\"\n    },\n    {\n      \"href\": \"t/\",\n      \"rel\": \" n\\\"\",\n      \"method\": \"GET\"\n    },\n    {\n      \"href\": \"\\\"+/\",\n      \"rel\": \"t6m$X\",\n      \"method\": \"DELETE\"\n    },\n    {\n      \"href\": \"$V`\",\n      \"rel\": \"Qg}E\",\n      \"method\": \"GET\"\n    }\n  ]\n}",
+                      "createdAt": "2026-07-28T02:34:20.000Z",
+                      "updatedAt": "2026-07-28T02:34:20.000Z",
+                      "uid": "35240-2d3adde8-d2ba-4c17-b838-2c39259846e6"
+                    },
+                    {
+                      "id": "989e521f-2da2-476e-9a40-3754c2cca671",
+                      "name": "Authentication failed due to missing authorization header, or invalid authentication credentials.",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: oauth2",
+                            "key": "Authorization",
+                            "value": "<token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/v1/catalogs/products?page_size=10&page=1&total_required=false",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v1",
+                            "catalogs",
+                            "products"
+                          ],
+                          "query": [
+                            {
+                              "description": "The number of items to return in the response.",
+                              "key": "page_size",
+                              "value": "10"
+                            },
+                            {
+                              "description": "A non-zero integer which is the start index of the entire list of items that are returned in the response. So, the combination of `page=1` and `page_size=20` returns the first 20 items. The combination of `page=2` and `page_size=20` returns the next 20 items.",
+                              "key": "page",
+                              "value": "1"
+                            },
+                            {
+                              "description": "Indicates whether to show the total items and total pages in the response.",
+                              "key": "total_required",
+                              "value": "false"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Unauthorized",
+                      "code": 401,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"name\": \"AUTHENTICATION_FAILURE\",\n  \"message\": \"Authentication failed due to missing authorization header, or invalid authentication credentials.\",\n  \"details\": [\n    {\n      \"issue\": \"<string>\",\n      \"field\": \"<string>\",\n      \"value\": \"<string>\",\n      \"location\": \"body\",\n      \"description\": \"<string>\"\n    },\n    {\n      \"issue\": \"<string>\",\n      \"field\": \"<string>\",\n      \"value\": \"<string>\",\n      \"location\": \"body\",\n      \"description\": \"<string>\"\n    }\n  ],\n  \"debug_id\": \"<string>\",\n  \"links\": [\n    {\n      \"href\": \"_\",\n      \"rel\": \"=/\",\n      \"method\": \"PUT\"\n    },\n    {\n      \"href\": \"}B_}\",\n      \"rel\": \"4uQM\",\n      \"method\": \"PATCH\"\n    },\n    {\n      \"href\": \"pB^4oV\",\n      \"rel\": \"\",\n      \"method\": \"DELETE\"\n    },\n    {\n      \"href\": \"j\",\n      \"rel\": \"vkU0WO]z!\",\n      \"method\": \"PATCH\"\n    },\n    {\n      \"href\": \"Jh7A \",\n      \"rel\": \"&d4;2\",\n      \"method\": \"DELETE\"\n    },\n    {\n      \"href\": \"vNh\",\n      \"rel\": \"\",\n      \"method\": \"PUT\"\n    },\n    {\n      \"href\": \"eo_t4pB\",\n      \"rel\": \"rd\",\n      \"method\": \"PATCH\"\n    },\n    {\n      \"href\": \".\",\n      \"rel\": \"6@UA\",\n      \"method\": \"POST\"\n    },\n    {\n      \"href\": \"/k@Bi|\",\n      \"rel\": \"ST\",\n      \"method\": \"PUT\"\n    },\n    {\n      \"href\": \"cpK}>\",\n      \"rel\": \"82SXdv^H\",\n      \"method\": \"GET\"\n    },\n    {\n      \"href\": \"j\\\\GRRB ];\",\n      \"rel\": \"|cXZ<rAF\\\\\",\n      \"method\": \"GET\"\n    },\n    {\n      \"href\": \"Jw\",\n      \"rel\": \"k3Tg1|&S\",\n      \"method\": \"PATCH\"\n    },\n    {\n      \"href\": \"N\\\\c\",\n      \"rel\": \"y'Ktd\",\n      \"method\": \"POST\"\n    },\n    {\n      \"href\": \"v[QX%XiMk\",\n      \"rel\": \"0~\",\n      \"method\": \"POST\"\n    },\n    {\n      \"href\": \"@2\",\n      \"rel\": \"*nHNR)7kn[\",\n      \"method\": \"POST\"\n    },\n    {\n      \"href\": \"zRF>xK6\",\n      \"rel\": \"?l$\\\"6DSi=V\",\n      \"method\": \"DELETE\"\n    },\n    {\n      \"href\": \"*Vwe\",\n      \"rel\": \"+QM%\",\n      \"method\": \"POST\"\n    },\n    {\n      \"href\": \"y?HF!jEd\",\n      \"rel\": \"\",\n      \"method\": \"PATCH\"\n    },\n    {\n      \"href\": \"y4r=RdT$3h\",\n      \"rel\": \"nY=Ox|(`\",\n      \"method\": \"GET\"\n    },\n    {\n      \"href\": \"r3Kcd\",\n      \"rel\": \"(;wm@d\",\n      \"method\": \"PUT\"\n    }\n  ]\n}",
+                      "createdAt": "2026-07-28T02:34:20.000Z",
+                      "updatedAt": "2026-07-28T02:34:20.000Z",
+                      "uid": "35240-989e521f-2da2-476e-9a40-3754c2cca671"
+                    },
+                    {
+                      "id": "8f2a8852-c3f1-451b-ba63-ebbdc6c4dcfd",
+                      "name": "Authorization failed due to insufficient permissions.",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: oauth2",
+                            "key": "Authorization",
+                            "value": "<token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/v1/catalogs/products?page_size=10&page=1&total_required=false",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v1",
+                            "catalogs",
+                            "products"
+                          ],
+                          "query": [
+                            {
+                              "description": "The number of items to return in the response.",
+                              "key": "page_size",
+                              "value": "10"
+                            },
+                            {
+                              "description": "A non-zero integer which is the start index of the entire list of items that are returned in the response. So, the combination of `page=1` and `page_size=20` returns the first 20 items. The combination of `page=2` and `page_size=20` returns the next 20 items.",
+                              "key": "page",
+                              "value": "1"
+                            },
+                            {
+                              "description": "Indicates whether to show the total items and total pages in the response.",
+                              "key": "total_required",
+                              "value": "false"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Forbidden",
+                      "code": 403,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"name\": \"NOT_AUTHORIZED\",\n  \"message\": \"Authorization failed due to insufficient permissions.\",\n  \"details\": [\n    {\n      \"issue\": \"<string>\",\n      \"field\": \"<string>\",\n      \"value\": \"<string>\",\n      \"location\": \"body\",\n      \"description\": \"<string>\"\n    },\n    {\n      \"issue\": \"<string>\",\n      \"field\": \"<string>\",\n      \"value\": \"<string>\",\n      \"location\": \"body\",\n      \"description\": \"<string>\"\n    }\n  ],\n  \"debug_id\": \"<string>\",\n  \"links\": [\n    {\n      \"href\": \"6~)\",\n      \"rel\": \"\",\n      \"method\": \"POST\"\n    },\n    {\n      \"href\": \"\\\\\",\n      \"rel\": \"8'U/.n#gh\",\n      \"method\": \"PUT\"\n    },\n    {\n      \"href\": \"f&r)igA\",\n      \"rel\": \"+7czV6}#R5\",\n      \"method\": \"GET\"\n    },\n    {\n      \"href\": \"\",\n      \"rel\": \"9hDij!V\",\n      \"method\": \"GET\"\n    },\n    {\n      \"href\": \"\\\"p\",\n      \"rel\": \"\",\n      \"method\": \"PATCH\"\n    },\n    {\n      \"href\": \"|ZY\",\n      \"rel\": \" h@s-_\",\n      \"method\": \"PATCH\"\n    },\n    {\n      \"href\": \"jf$)L6DX\",\n      \"rel\": \"Lpg\",\n      \"method\": \"PUT\"\n    },\n    {\n      \"href\": \"pv<FD5X8.\",\n      \"rel\": \"\\\\\",\n      \"method\": \"PUT\"\n    },\n    {\n      \"href\": \"\",\n      \"rel\": \"cT%iH042Zj\",\n      \"method\": \"PUT\"\n    },\n    {\n      \"href\": \"E,0mgAJb\",\n      \"rel\": \"@5KIc\",\n      \"method\": \"PUT\"\n    },\n    {\n      \"href\": \"$\",\n      \"rel\": \"I.a^2bi/\",\n      \"method\": \"GET\"\n    },\n    {\n      \"href\": \"8D\",\n      \"rel\": \"<h\",\n      \"method\": \"POST\"\n    },\n    {\n      \"href\": \"*?\\\"T;Rc=tU\",\n      \"rel\": \";So:\",\n      \"method\": \"DELETE\"\n    },\n    {\n      \"href\": \"!#4_\",\n      \"rel\": \"x\",\n      \"method\": \"DELETE\"\n    },\n    {\n      \"href\": \"\",\n      \"rel\": \"\\\\N\",\n      \"method\": \"PUT\"\n    },\n    {\n      \"href\": \"rDM`>8uy\",\n      \"rel\": \">~*;,\",\n      \"method\": \"PATCH\"\n    },\n    {\n      \"href\": \"F}z\",\n      \"rel\": \"p>_iVu%\",\n      \"method\": \"POST\"\n    },\n    {\n      \"href\": \"T{<oY)Rz\",\n      \"rel\": \"\",\n      \"method\": \"GET\"\n    },\n    {\n      \"href\": \"ZOS^W\",\n      \"rel\": \"Ul+E1OJF\",\n      \"method\": \"DELETE\"\n    },\n    {\n      \"href\": \"dm7mt\",\n      \"rel\": \"\",\n      \"method\": \"PUT\"\n    }\n  ]\n}",
+                      "createdAt": "2026-07-28T02:34:20.000Z",
+                      "updatedAt": "2026-07-28T02:34:20.000Z",
+                      "uid": "35240-8f2a8852-c3f1-451b-ba63-ebbdc6c4dcfd"
+                    },
+                    {
+                      "id": "0b02300f-8ec6-4c1c-a198-fcdf7cdd8a42",
+                      "name": "An internal server error has occurred.",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: oauth2",
+                            "key": "Authorization",
+                            "value": "<token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/v1/catalogs/products?page_size=10&page=1&total_required=false",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v1",
+                            "catalogs",
+                            "products"
+                          ],
+                          "query": [
+                            {
+                              "description": "The number of items to return in the response.",
+                              "key": "page_size",
+                              "value": "10"
+                            },
+                            {
+                              "description": "A non-zero integer which is the start index of the entire list of items that are returned in the response. So, the combination of `page=1` and `page_size=20` returns the first 20 items. The combination of `page=2` and `page_size=20` returns the next 20 items.",
+                              "key": "page",
+                              "value": "1"
+                            },
+                            {
+                              "description": "Indicates whether to show the total items and total pages in the response.",
+                              "key": "total_required",
+                              "value": "false"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Internal Server Error",
+                      "code": 500,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"name\": \"INTERNAL_SERVER_ERROR\",\n  \"message\": \"An internal server error occurred.\",\n  \"debug_id\": \"<string>\",\n  \"links\": [\n    {\n      \"href\": \"[*\",\n      \"rel\": \"a\\\\<{O\",\n      \"method\": \"PATCH\"\n    },\n    {\n      \"href\": \"BsDa!3bh4\",\n      \"rel\": \"s'El%B#\",\n      \"method\": \"PUT\"\n    },\n    {\n      \"href\": \"\",\n      \"rel\": \"\",\n      \"method\": \"POST\"\n    },\n    {\n      \"href\": \":$\",\n      \"rel\": \"Tb<74T)2,>\",\n      \"method\": \"GET\"\n    },\n    {\n      \"href\": \"\",\n      \"rel\": \"RHo\",\n      \"method\": \"GET\"\n    },\n    {\n      \"href\": \"Nw%E15ca\",\n      \"rel\": \".*Ig\",\n      \"method\": \"GET\"\n    },\n    {\n      \"href\": \"lI<akK\",\n      \"rel\": \"\",\n      \"method\": \"GET\"\n    },\n    {\n      \"href\": \"ckm\",\n      \"rel\": \"({M*4#?LL\",\n      \"method\": \"POST\"\n    },\n    {\n      \"href\": \"\\\"Zz6?#Z\",\n      \"rel\": \"6\",\n      \"method\": \"POST\"\n    },\n    {\n      \"href\": \"B[00[!j5\",\n      \"rel\": \"&#\",\n      \"method\": \"DELETE\"\n    },\n    {\n      \"href\": \"7.9?}(%e-\",\n      \"rel\": \"b?\",\n      \"method\": \"POST\"\n    },\n    {\n      \"href\": \"\\\"aSm}QF\",\n      \"rel\": \"Z{\",\n      \"method\": \"GET\"\n    },\n    {\n      \"href\": \"X_J>bcDrG\",\n      \"rel\": \"l$\",\n      \"method\": \"DELETE\"\n    },\n    {\n      \"href\": \"G?\",\n      \"rel\": \"[C Ef/\",\n      \"method\": \"POST\"\n    },\n    {\n      \"href\": \"thR\",\n      \"rel\": \"%Epqc8JtM3\",\n      \"method\": \"DELETE\"\n    },\n    {\n      \"href\": \"b\",\n      \"rel\": \"' pb\",\n      \"method\": \"POST\"\n    },\n    {\n      \"href\": \"\",\n      \"rel\": \"sMd~XpCkP\",\n      \"method\": \"GET\"\n    },\n    {\n      \"href\": \"?EY|wP=\",\n      \"rel\": \"\",\n      \"method\": \"GET\"\n    },\n    {\n      \"href\": \"9?4(&4a\",\n      \"rel\": \"sFBO$fH\",\n      \"method\": \"DELETE\"\n    },\n    {\n      \"href\": \")/'D\",\n      \"rel\": \"oe\\\"PM\",\n      \"method\": \"PUT\"\n    }\n  ]\n}",
+                      "createdAt": "2026-07-28T02:34:20.000Z",
+                      "updatedAt": "2026-07-28T02:34:20.000Z",
+                      "uid": "35240-0b02300f-8ec6-4c1c-a198-fcdf7cdd8a42"
+                    },
+                    {
+                      "id": "ec92b0ca-8176-4e8c-9a50-814ece99d761",
+                      "name": "The default response.",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: oauth2",
+                            "key": "Authorization",
+                            "value": "<token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/v1/catalogs/products?page_size=10&page=1&total_required=false",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v1",
+                            "catalogs",
+                            "products"
+                          ],
+                          "query": [
+                            {
+                              "description": "The number of items to return in the response.",
+                              "key": "page_size",
+                              "value": "10"
+                            },
+                            {
+                              "description": "A non-zero integer which is the start index of the entire list of items that are returned in the response. So, the combination of `page=1` and `page_size=20` returns the first 20 items. The combination of `page=2` and `page_size=20` returns the next 20 items.",
+                              "key": "page",
+                              "value": "1"
+                            },
+                            {
+                              "description": "Indicates whether to show the total items and total pages in the response.",
+                              "key": "total_required",
+                              "value": "false"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Internal Server Error",
+                      "code": 500,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"name\": \"INVALID_REQUEST\",\n  \"message\": \"Request is not well-formed, syntactically incorrect, or violates schema.\",\n  \"details\": [\n    {\n      \"issue\": \"<string>\",\n      \"field\": \"<string>\",\n      \"value\": \"<string>\",\n      \"location\": \"body\",\n      \"description\": \"<string>\"\n    },\n    {\n      \"issue\": \"<string>\",\n      \"field\": \"<string>\",\n      \"value\": \"<string>\",\n      \"location\": \"body\",\n      \"description\": \"<string>\"\n    }\n  ],\n  \"debug_id\": \"<string>\",\n  \"links\": [\n    {\n      \"href\": \"WsI&KQ<8&l\",\n      \"rel\": \"KsFD{Jxi}S\",\n      \"method\": \"GET\"\n    },\n    {\n      \"href\": \"N$6Y/\",\n      \"rel\": \"j?6azZ\",\n      \"method\": \"POST\"\n    },\n    {\n      \"href\": \".c<j\",\n      \"rel\": \"]ev|t\\\"L\",\n      \"method\": \"PATCH\"\n    },\n    {\n      \"href\": \"ka;Je~M5\",\n      \"rel\": \"nZ\",\n      \"method\": \"POST\"\n    },\n    {\n      \"href\": \"dD?4y#\",\n      \"rel\": \"oyC\",\n      \"method\": \"PUT\"\n    },\n    {\n      \"href\": \"f!M%?jK\",\n      \"rel\": \":p#mZ\",\n      \"method\": \"GET\"\n    },\n    {\n      \"href\": \"`i>;4pW\",\n      \"rel\": \"ZHXV ?<w\",\n      \"method\": \"PATCH\"\n    },\n    {\n      \"href\": \",WF3&IoNQ$\",\n      \"rel\": \"A\",\n      \"method\": \"DELETE\"\n    },\n    {\n      \"href\": \"T~M 'L\",\n      \"rel\": \"JU[h@h(cv\",\n      \"method\": \"GET\"\n    },\n    {\n      \"href\": \"mDi1C\",\n      \"rel\": \"O\",\n      \"method\": \"DELETE\"\n    },\n    {\n      \"href\": \"?2SLa\",\n      \"rel\": \"<Jr\",\n      \"method\": \"PATCH\"\n    },\n    {\n      \"href\": \"Lb\",\n      \"rel\": \"V!kz\",\n      \"method\": \"PATCH\"\n    },\n    {\n      \"href\": \"\",\n      \"rel\": \"jns\",\n      \"method\": \"POST\"\n    },\n    {\n      \"href\": \"3wO\",\n      \"rel\": \"\",\n      \"method\": \"GET\"\n    },\n    {\n      \"href\": \"iqV#o\",\n      \"rel\": \"=-Ycs>fCNs\",\n      \"method\": \"POST\"\n    },\n    {\n      \"href\": \"H\",\n      \"rel\": \"V@w 7rc\",\n      \"method\": \"POST\"\n    },\n    {\n      \"href\": \"2/SvF\",\n      \"rel\": \"ox\",\n      \"method\": \"POST\"\n    },\n    {\n      \"href\": \"Ed\",\n      \"rel\": \")Kj\",\n      \"method\": \"PATCH\"\n    },\n    {\n      \"href\": \"N#@3hJf9:/\",\n      \"rel\": \"MYa+ ~\",\n      \"method\": \"POST\"\n    },\n    {\n      \"href\": \"m3$QB{Z\",\n      \"rel\": \"E;ordy<KC:\",\n      \"method\": \"POST\"\n    }\n  ]\n}",
+                      "createdAt": "2026-07-28T02:34:20.000Z",
+                      "updatedAt": "2026-07-28T02:34:20.000Z",
+                      "uid": "35240-ec92b0ca-8176-4e8c-9a50-814ece99d761"
+                    }
+                  ],
+                  "createdAt": "2026-07-28T02:34:20.000Z",
+                  "updatedAt": "2026-07-28T02:34:20.000Z",
+                  "uid": "35240-55bc0dab-6e60-414a-9f7e-d6c2dc15377d"
+                }
+              ],
+              "id": "caf20c5a-f7d1-403c-9867-008bf6a02583",
+              "createdAt": "2026-07-28T02:34:20.000Z",
+              "updatedAt": "2026-07-28T02:34:20.000Z",
+              "uid": "35240-caf20c5a-f7d1-403c-9867-008bf6a02583"
+            }
+          ],
+          "id": "1e7a2c87-2b08-47ca-895f-6517ccb17df3",
+          "createdAt": "2026-07-28T02:34:20.000Z",
+          "updatedAt": "2026-07-28T02:34:20.000Z",
+          "uid": "35240-1e7a2c87-2b08-47ca-895f-6517ccb17df3"
+        }
+      ],
+      "id": "a2849ca3-9029-482c-9b85-3957d041dd57",
+      "createdAt": "2026-07-28T02:34:20.000Z",
+      "updatedAt": "2026-07-28T02:34:20.000Z",
+      "uid": "35240-a2849ca3-9029-482c-9b85-3957d041dd57"
+    }
+  ],
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://api-m.sandbox.paypal.com"
+    }
+  ]
+}

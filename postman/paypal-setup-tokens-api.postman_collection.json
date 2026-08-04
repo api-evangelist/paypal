@@ -1,0 +1,818 @@
+{
+  "info": {
+    "_postman_id": "ca0c2dee-131b-447a-9f47-0f281c395e12",
+    "name": "Paypal Subscriptions Authorizations Setup-Tokens API",
+    "description": "You can use billing plans and subscriptions to create subscriptions that process recurring PayPal payments for physical or digital goods, or services. A plan includes pricing and billing cycle information that defines the amount and frequency of charge for a subscription. You can also define a fixed plan, such as a $5 basic plan or a volume- or graduated-based plan with pricing tiers based on the quantity purchased. For more information, see <a href=\"/docs/subscriptions/\">Subscriptions Overview</a>.",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-07-28T02:34:44.000Z",
+    "updatedAt": "2026-07-28T02:34:45.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-ca0c2dee-131b-447a-9f47-0f281c395e12"
+  },
+  "item": [
+    {
+      "name": "v3",
+      "item": [
+        {
+          "name": "vault",
+          "item": [
+            {
+              "name": "setup-tokens",
+              "item": [
+                {
+                  "name": "{id}",
+                  "item": [
+                    {
+                      "name": "Paypal Retrieve a setup token",
+                      "id": "4536b8c2-07db-4f67-9d7b-2c7583d05458",
+                      "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                      },
+                      "request": {
+                        "auth": {
+                          "type": "oauth2",
+                          "oauth2": [
+                            {
+                              "key": "scope",
+                              "value": "https://uri.paypal.com/services/subscriptions",
+                              "type": "string"
+                            },
+                            {
+                              "key": "accessTokenUrl",
+                              "value": "/v1/oauth2/token",
+                              "type": "string"
+                            },
+                            {
+                              "key": "grant_type",
+                              "value": "client_credentials",
+                              "type": "string"
+                            }
+                          ]
+                        },
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/v3/vault/setup-tokens/:id",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v3",
+                            "vault",
+                            "setup-tokens",
+                            ":id"
+                          ],
+                          "variable": [
+                            {
+                              "id": "5bfe11d7-4d1e-4241-b030-473434bca112",
+                              "key": "id",
+                              "value": "ebcYUdY",
+                              "description": "(Required) ID of the setup token."
+                            }
+                          ]
+                        },
+                        "description": "Returns a readable representation of temporarily vaulted payment source associated with the setup token id."
+                      },
+                      "response": [
+                        {
+                          "id": "19d82096-6686-4b09-b21e-552cafde4bbb",
+                          "name": "Found requested setup-token, returned a payment method associated with the token.",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: oauth2",
+                                "key": "Authorization",
+                                "value": "<token>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/v3/vault/setup-tokens/:id",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "v3",
+                                "vault",
+                                "setup-tokens",
+                                ":id"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "id"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "OK",
+                          "code": 200,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"id\": \"lRp\",\n  \"ordinal\": \"<integer>\",\n  \"customer\": {\n    \"id\": \"Ca3\"\n  },\n  \"status\": \"CREATED\",\n  \"payment_source\": {\n    \"card\": {\n      \"name\": \"SSlc\",\n      \"last_digits\": \"9731\",\n      \"brand\": \"CHINA_UNION_PAY\",\n      \"expiry\": \"9272-01\",\n      \"billing_address\": {},\n      \"verification_status\": \"KM\",\n      \"verification\": {\n        \"network_transaction_id\": \"428t-ue\",\n        \"time\": \"7477-12-01t03:54:42z\",\n        \"amount\": {\n          \"currency_code\": \"<string>\",\n          \"value\": \".598904\"\n        },\n        \"processor_response\": {\n          \"avs_code\": \"A\",\n          \"cvv_code\": \"P\",\n          \"response_code\": \"PPTV\",\n          \"payment_advice_code\": \"03\"\n        },\n        \"three_d_secure\": {}\n      }\n    },\n    \"paypal\": {\n      \"description\": \"iX-jM7y4n\",\n      \"shipping\": {\n        \"name\": {\n          \"prefix\": \"<string>\",\n          \"given_name\": \"<string>\",\n          \"surname\": \"<string>\",\n          \"middle_name\": \"<string>\",\n          \"suffix\": \"<string>\",\n          \"alternate_full_name\": \"<string>\",\n          \"full_name\": \"<string>\"\n        },\n        \"type\": \"PICKUP_IN_PERSON\",\n        \"address\": {\n          \"country_code\": \"YY\",\n          \"address_line_1\": \"<string>\",\n          \"address_line_2\": \"<string>\",\n          \"address_line_3\": \"<string>\",\n          \"admin_area_4\": \"<string>\",\n          \"admin_area_3\": \"<string>\",\n          \"admin_area_2\": \"<string>\",\n          \"admin_area_1\": \"<string>\",\n          \"postal_code\": \"<string>\",\n          \"address_details\": {\n            \"street_number\": \"<string>\",\n            \"street_name\": \"<string>\",\n            \"street_type\": \"<string>\",\n            \"delivery_service\": \"<string>\",\n            \"building_name\": \"<string>\",\n            \"sub_building\": \"<string>\"\n          }\n        }\n      },\n      \"permit_multiple_payment_tokens\": false,\n      \"usage_type\": \"9\",\n      \"customer_type\": \"6CCLP5\",\n      \"email_address\": \"=[\\u0001-\\tx0bx0cx0e-x7f][\\u0001-\\tx0bx0cx0e-x7f][\\u0001-\\tx0bx0cx0e-x7f]%[\\u0001-\\tx0bx0cx0e-x7f]I[\\u0001-\\tx0bx0cx0e-x7f]\\\"@e.LyL3EI5Tg.PfHngeRpn.Y.w.d.F1PY30Y.84P26jEaUtH.L.e.4\",\n      \"payer_id\": \"C4AVZB3UH2A4P\",\n      \"name\": {\n        \"prefix\": \"<string>\",\n        \"given_name\": \"<string>\",\n        \"surname\": \"<string>\",\n        \"middle_name\": \"<string>\",\n        \"suffix\": \"<string>\",\n        \"alternate_full_name\": \"<string>\",\n        \"full_name\": \"<string>\"\n      },\n      \"phone\": {\n        \"phone_number\": {\n          \"country_code\": \" \",\n          \"national_number\": \"349596056\",\n          \"extension_number\": \" \"\n        },\n        \"phone_type\": \"HOME\"\n      },\n      \"birth_date\": \"4081-12-31\",\n      \"tax_info\": {\n        \"tax_id\": \"w\",\n        \"tax_id_type\": \"BR_CPF\"\n      },\n      \"address\": {\n        \"country_code\": \"C2\",\n        \"address_line_1\": \"<string>\",\n        \"address_line_2\": \"<string>\",\n        \"address_line_3\": \"<string>\",\n        \"admin_area_4\": \"<string>\",\n        \"admin_area_3\": \"<string>\",\n        \"admin_area_2\": \"<string>\",\n        \"admin_area_1\": \"<string>\",\n        \"postal_code\": \"<string>\",\n        \"address_details\": {\n          \"street_number\": \"<string>\",\n          \"street_name\": \"<string>\",\n          \"street_type\": \"<string>\",\n          \"delivery_service\": \"<string>\",\n          \"building_name\": \"<string>\",\n          \"sub_building\": \"<string>\"\n        }\n      },\n      \"account_id\": \"96AVPYNPZ2K2G\",\n      \"phone_number\": {\n        \"country_code\": \" \",\n        \"national_number\": \" \",\n        \"extension_number\": \"905397284\"\n      }\n    },\n    \"venmo\": {\n      \"description\": \"hPbu-Z_\",\n      \"shipping\": {\n        \"name\": {\n          \"prefix\": \"<string>\",\n          \"given_name\": \"<string>\",\n          \"surname\": \"<string>\",\n          \"middle_name\": \"<string>\",\n          \"suffix\": \"<string>\",\n          \"alternate_full_name\": \"<string>\",\n          \"full_name\": \"<string>\"\n        },\n        \"type\": \"PICKUP_IN_PERSON\",\n        \"address\": {\n          \"country_code\": \"C2\",\n          \"address_line_1\": \"<string>\",\n          \"address_line_2\": \"<string>\",\n          \"address_line_3\": \"<string>\",\n          \"admin_area_4\": \"<string>\",\n          \"admin_area_3\": \"<string>\",\n          \"admin_area_2\": \"<string>\",\n          \"admin_area_1\": \"<string>\",\n          \"postal_code\": \"<string>\",\n          \"address_details\": {\n            \"street_number\": \"<string>\",\n            \"street_name\": \"<string>\",\n            \"street_type\": \"<string>\",\n            \"delivery_service\": \"<string>\",\n            \"building_name\": \"<string>\",\n            \"sub_building\": \"<string>\"\n          }\n        }\n      },\n      \"permit_multiple_payment_tokens\": false,\n      \"usage_type\": \"_JNY4JH\",\n      \"customer_type\": \"TFRZTADD\",\n      \"email_address\": \"Hp[\\u0001-\\tx0bx0cx0e-x7f]^\\b\\\"@wLNKjV0HUk.nCVQk0bg.ZumF4EN0.d.Y.OxjoiuhZxzm\",\n      \"payer_id\": \"ETWJM86WT2W9K\",\n      \"name\": {\n        \"prefix\": \"<string>\",\n        \"given_name\": \"<string>\",\n        \"surname\": \"<string>\",\n        \"middle_name\": \"<string>\",\n        \"suffix\": \"<string>\",\n        \"alternate_full_name\": \"<string>\",\n        \"full_name\": \"<string>\"\n      },\n      \"phone\": {\n        \"phone_number\": {\n          \"country_code\": \" \",\n          \"national_number\": \"1735082211132\",\n          \"extension_number\": \" \"\n        },\n        \"phone_type\": \"PAGER\"\n      },\n      \"birth_date\": \"1231-08-31\",\n      \"tax_info\": {\n        \"tax_id\": \"7\",\n        \"tax_id_type\": \"BR_CPF\"\n      },\n      \"address\": {\n        \"country_code\": \"C2\",\n        \"address_line_1\": \"<string>\",\n        \"address_line_2\": \"<string>\",\n        \"address_line_3\": \"<string>\",\n        \"admin_area_4\": \"<string>\",\n        \"admin_area_3\": \"<string>\",\n        \"admin_area_2\": \"<string>\",\n        \"admin_area_1\": \"<string>\",\n        \"postal_code\": \"<string>\",\n        \"address_details\": {\n          \"street_number\": \"<string>\",\n          \"street_name\": \"<string>\",\n          \"street_type\": \"<string>\",\n          \"delivery_service\": \"<string>\",\n          \"building_name\": \"<string>\",\n          \"sub_building\": \"<string>\"\n        }\n      },\n      \"user_name\": \"Zj-h\"\n    }\n  },\n  \"links\": [\n    {\n      \"href\": \"<string>\",\n      \"rel\": \"<string>\",\n      \"method\": \"PUT\"\n    }\n  ]\n}",
+                          "createdAt": "2026-07-28T02:34:45.000Z",
+                          "updatedAt": "2026-07-28T02:34:45.000Z",
+                          "uid": "35240-19d82096-6686-4b09-b21e-552cafde4bbb"
+                        },
+                        {
+                          "id": "67cf4324-4e03-47a3-bf30-e797d3d5405a",
+                          "name": "Authorization failed due to insufficient permissions.",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: oauth2",
+                                "key": "Authorization",
+                                "value": "<token>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/v3/vault/setup-tokens/:id",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "v3",
+                                "vault",
+                                "setup-tokens",
+                                ":id"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "id"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Forbidden",
+                          "code": 403,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"name\": \"<string>\",\n  \"message\": \"<string>\",\n  \"debug_id\": \"<string>\",\n  \"information_link\": \"<string>\",\n  \"details\": [\n    {\n      \"issue\": \"<string>\",\n      \"field\": \"<string>\",\n      \"value\": \"<string>\",\n      \"location\": \"body\",\n      \"description\": \"<string>\"\n    },\n    {\n      \"issue\": \"<string>\",\n      \"field\": \"<string>\",\n      \"value\": \"<string>\",\n      \"location\": \"body\",\n      \"description\": \"<string>\"\n    }\n  ],\n  \"links\": [\n    {\n      \"href\": \"<string>\",\n      \"rel\": \"<string>\",\n      \"method\": \"PATCH\"\n    },\n    {\n      \"href\": \"<string>\",\n      \"rel\": \"<string>\",\n      \"method\": \"POST\"\n    }\n  ]\n}",
+                          "createdAt": "2026-07-28T02:34:45.000Z",
+                          "updatedAt": "2026-07-28T02:34:45.000Z",
+                          "uid": "35240-67cf4324-4e03-47a3-bf30-e797d3d5405a"
+                        },
+                        {
+                          "id": "53f7a3e0-edb3-4234-80f7-caa4698b9e53",
+                          "name": "The specified resource does not exist.",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: oauth2",
+                                "key": "Authorization",
+                                "value": "<token>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/v3/vault/setup-tokens/:id",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "v3",
+                                "vault",
+                                "setup-tokens",
+                                ":id"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "id"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Not Found",
+                          "code": 404,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"name\": \"<string>\",\n  \"message\": \"<string>\",\n  \"debug_id\": \"<string>\",\n  \"information_link\": \"<string>\",\n  \"details\": [\n    {\n      \"issue\": \"<string>\",\n      \"field\": \"<string>\",\n      \"value\": \"<string>\",\n      \"location\": \"body\",\n      \"description\": \"<string>\"\n    },\n    {\n      \"issue\": \"<string>\",\n      \"field\": \"<string>\",\n      \"value\": \"<string>\",\n      \"location\": \"body\",\n      \"description\": \"<string>\"\n    }\n  ],\n  \"links\": [\n    {\n      \"href\": \"<string>\",\n      \"rel\": \"<string>\",\n      \"method\": \"PATCH\"\n    },\n    {\n      \"href\": \"<string>\",\n      \"rel\": \"<string>\",\n      \"method\": \"POST\"\n    }\n  ]\n}",
+                          "createdAt": "2026-07-28T02:34:45.000Z",
+                          "updatedAt": "2026-07-28T02:34:45.000Z",
+                          "uid": "35240-53f7a3e0-edb3-4234-80f7-caa4698b9e53"
+                        },
+                        {
+                          "id": "87df3648-14c1-495f-960b-abcd62446978",
+                          "name": "The requested action could not be performed, semantically incorrect, or failed business validation.",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: oauth2",
+                                "key": "Authorization",
+                                "value": "<token>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/v3/vault/setup-tokens/:id",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "v3",
+                                "vault",
+                                "setup-tokens",
+                                ":id"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "id"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+                          "code": 422,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"name\": \"<string>\",\n  \"message\": \"<string>\",\n  \"debug_id\": \"<string>\",\n  \"information_link\": \"<string>\",\n  \"details\": [\n    {\n      \"issue\": \"<string>\",\n      \"field\": \"<string>\",\n      \"value\": \"<string>\",\n      \"location\": \"body\",\n      \"description\": \"<string>\"\n    },\n    {\n      \"issue\": \"<string>\",\n      \"field\": \"<string>\",\n      \"value\": \"<string>\",\n      \"location\": \"body\",\n      \"description\": \"<string>\"\n    }\n  ],\n  \"links\": [\n    {\n      \"href\": \"<string>\",\n      \"rel\": \"<string>\",\n      \"method\": \"PATCH\"\n    },\n    {\n      \"href\": \"<string>\",\n      \"rel\": \"<string>\",\n      \"method\": \"POST\"\n    }\n  ]\n}",
+                          "createdAt": "2026-07-28T02:34:45.000Z",
+                          "updatedAt": "2026-07-28T02:34:45.000Z",
+                          "uid": "35240-87df3648-14c1-495f-960b-abcd62446978"
+                        },
+                        {
+                          "id": "6e233104-a65b-4741-beca-d4cc82e034d2",
+                          "name": "An internal server error has occurred.",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: oauth2",
+                                "key": "Authorization",
+                                "value": "<token>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/v3/vault/setup-tokens/:id",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "v3",
+                                "vault",
+                                "setup-tokens",
+                                ":id"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "id"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Internal Server Error",
+                          "code": 500,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"name\": \"<string>\",\n  \"message\": \"<string>\",\n  \"debug_id\": \"<string>\",\n  \"information_link\": \"<string>\",\n  \"details\": [\n    {\n      \"issue\": \"<string>\",\n      \"field\": \"<string>\",\n      \"value\": \"<string>\",\n      \"location\": \"body\",\n      \"description\": \"<string>\"\n    },\n    {\n      \"issue\": \"<string>\",\n      \"field\": \"<string>\",\n      \"value\": \"<string>\",\n      \"location\": \"body\",\n      \"description\": \"<string>\"\n    }\n  ],\n  \"links\": [\n    {\n      \"href\": \"<string>\",\n      \"rel\": \"<string>\",\n      \"method\": \"PATCH\"\n    },\n    {\n      \"href\": \"<string>\",\n      \"rel\": \"<string>\",\n      \"method\": \"POST\"\n    }\n  ]\n}",
+                          "createdAt": "2026-07-28T02:34:45.000Z",
+                          "updatedAt": "2026-07-28T02:34:45.000Z",
+                          "uid": "35240-6e233104-a65b-4741-beca-d4cc82e034d2"
+                        }
+                      ],
+                      "createdAt": "2026-07-28T02:34:45.000Z",
+                      "updatedAt": "2026-07-28T02:34:45.000Z",
+                      "uid": "35240-4536b8c2-07db-4f67-9d7b-2c7583d05458"
+                    }
+                  ],
+                  "id": "118f943f-ec09-4a7f-a52c-dc75ede830f2",
+                  "createdAt": "2026-07-28T02:34:45.000Z",
+                  "updatedAt": "2026-07-28T02:34:45.000Z",
+                  "uid": "35240-118f943f-ec09-4a7f-a52c-dc75ede830f2"
+                },
+                {
+                  "name": "Paypal Create a setup token",
+                  "id": "be005169-a04d-4deb-a4e3-c25f3faab76f",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "auth": {
+                      "type": "oauth2",
+                      "oauth2": [
+                        {
+                          "key": "scope",
+                          "value": "https://uri.paypal.com/services/subscriptions",
+                          "type": "string"
+                        },
+                        {
+                          "key": "accessTokenUrl",
+                          "value": "/v1/oauth2/token",
+                          "type": "string"
+                        },
+                        {
+                          "key": "grant_type",
+                          "value": "client_credentials",
+                          "type": "string"
+                        }
+                      ]
+                    },
+                    "method": "POST",
+                    "header": [
+                      {
+                        "description": "(Required) The server stores keys for 3 hours.",
+                        "key": "PayPal-Request-Id",
+                        "value": "<string>"
+                      },
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"payment_source\": {\n    \"card\": {\n      \"id\": \"9MOcZZll-aZ\",\n      \"name\": \"/*<D27wd4gt>TLRy&.Hk5WoGyd]]NbCs/_|#>V|b:;];Q'/#'<G/fJyrB1 JMC?Bb%W{zjai_BuwblIXM\\\"itN;yKBCa<Td\\\"n]:gq?BE42WXWuw.Uit?2JAf-,z@~\",\n      \"number\": \"0015251090553034959\",\n      \"expiry\": \"9025-10\",\n      \"security_code\": \"0659\",\n      \"last_digits\": \"9116\",\n      \"card_type\": \"MAESTRO\",\n      \"type\": \"PREPAID\",\n      \"brand\": \"VISA\",\n      \"billing_address\": {\n        \"country_code\": \"TC\",\n        \"address_line_1\": \"<string>\",\n        \"address_line_2\": \"<string>\",\n        \"address_line_3\": \"<string>\",\n        \"admin_area_4\": \"<string>\",\n        \"admin_area_3\": \"<string>\",\n        \"admin_area_2\": \"<string>\",\n        \"admin_area_1\": \"<string>\",\n        \"postal_code\": \"<string>\",\n        \"address_details\": {\n          \"street_number\": \"<string>\",\n          \"street_name\": \"<string>\",\n          \"street_type\": \"<string>\",\n          \"delivery_service\": \"<string>\",\n          \"building_name\": \"<string>\",\n          \"sub_building\": \"<string>\"\n        }\n      },\n      \"verification_method\": \"F4YGL6U\",\n      \"experience_context\": {\n        \"brand_name\": \"aSXsUI\",\n        \"locale\": \"pz-Tmis-ZQ\",\n        \"return_url\": \"<uri>\",\n        \"cancel_url\": \"<uri>\",\n        \"shipping_preference\": \"GET_FROM_FILE\",\n        \"vault_instruction\": \"ON_CREATE_PAYMENT_TOKENS\"\n      }\n    },\n    \"paypal\": {\n      \"description\": \"K4pdB2To\",\n      \"shipping\": {\n        \"name\": {\n          \"prefix\": \"<string>\",\n          \"given_name\": \"<string>\",\n          \"surname\": \"<string>\",\n          \"middle_name\": \"<string>\",\n          \"suffix\": \"<string>\",\n          \"alternate_full_name\": \"<string>\",\n          \"full_name\": \"<string>\"\n        },\n        \"type\": \"PICKUP_IN_PERSON\",\n        \"address\": {\n          \"country_code\": \"C2\",\n          \"address_line_1\": \"<string>\",\n          \"address_line_2\": \"<string>\",\n          \"address_line_3\": \"<string>\",\n          \"admin_area_4\": \"<string>\",\n          \"admin_area_3\": \"<string>\",\n          \"admin_area_2\": \"<string>\",\n          \"admin_area_1\": \"<string>\",\n          \"postal_code\": \"<string>\",\n          \"address_details\": {\n            \"street_number\": \"<string>\",\n            \"street_name\": \"<string>\",\n            \"street_type\": \"<string>\",\n            \"delivery_service\": \"<string>\",\n            \"building_name\": \"<string>\",\n            \"sub_building\": \"<string>\"\n          }\n        }\n      },\n      \"permit_multiple_payment_tokens\": false,\n      \"usage_type\": \"U\",\n      \"customer_type\": \"EN7JSJ7BPS\",\n      \"experience_context\": {\n        \"brand_name\": \"o?9nE\",\n        \"locale\": \"jy-Vxnh-70\",\n        \"return_url\": \"<uri>\",\n        \"cancel_url\": \"<uri>\",\n        \"shipping_preference\": \"GET_FROM_FILE\",\n        \"vault_instruction\": \"ON_CREATE_PAYMENT_TOKENS\"\n      }\n    },\n    \"venmo\": {\n      \"description\": \"AY\",\n      \"shipping\": {\n        \"name\": {\n          \"prefix\": \"<string>\",\n          \"given_name\": \"<string>\",\n          \"surname\": \"<string>\",\n          \"middle_name\": \"<string>\",\n          \"suffix\": \"<string>\",\n          \"alternate_full_name\": \"<string>\",\n          \"full_name\": \"<string>\"\n        },\n        \"type\": \"SHIPPING\",\n        \"address\": {\n          \"country_code\": \"BJ\",\n          \"address_line_1\": \"<string>\",\n          \"address_line_2\": \"<string>\",\n          \"address_line_3\": \"<string>\",\n          \"admin_area_4\": \"<string>\",\n          \"admin_area_3\": \"<string>\",\n          \"admin_area_2\": \"<string>\",\n          \"admin_area_1\": \"<string>\",\n          \"postal_code\": \"<string>\",\n          \"address_details\": {\n            \"street_number\": \"<string>\",\n            \"street_name\": \"<string>\",\n            \"street_type\": \"<string>\",\n            \"delivery_service\": \"<string>\",\n            \"building_name\": \"<string>\",\n            \"sub_building\": \"<string>\"\n          }\n        }\n      },\n      \"permit_multiple_payment_tokens\": false,\n      \"usage_type\": \"35ZO\",\n      \"customer_type\": \"N8CP0\",\n      \"experience_context\": {\n        \"brand_name\": \" \",\n        \"locale\": \"qj-PS\",\n        \"return_url\": \"<uri>\",\n        \"cancel_url\": \"<uri>\",\n        \"shipping_preference\": \"GET_FROM_FILE\",\n        \"vault_instruction\": \"ON_CREATE_PAYMENT_TOKENS\"\n      }\n    },\n    \"token\": {\n      \"id\": \"F6OXTEV\",\n      \"type\": \"BILLING_AGREEMENT\",\n      \"attributes\": {}\n    }\n  },\n  \"customer\": {\n    \"id\": \"KvRzz\"\n  },\n  \"metadata\": {}\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/v3/vault/setup-tokens",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "v3",
+                        "vault",
+                        "setup-tokens"
+                      ]
+                    },
+                    "description": "Creates a Setup Token from the given payment source and adds it to the Vault of the associated customer."
+                  },
+                  "response": [
+                    {
+                      "id": "d1506268-b0d9-4ec9-b908-4a7ae0224840",
+                      "name": "Idempotent response for a successful creation of setup token.",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "description": "(Required) The server stores keys for 3 hours.",
+                            "key": "PayPal-Request-Id",
+                            "value": "<string>"
+                          },
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: oauth2",
+                            "key": "Authorization",
+                            "value": "<token>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"payment_source\": {\n    \"card\": {\n      \"id\": \"9MOcZZll-aZ\",\n      \"name\": \"/*<D27wd4gt>TLRy&.Hk5WoGyd]]NbCs/_|#>V|b:;];Q'/#'<G/fJyrB1 JMC?Bb%W{zjai_BuwblIXM\\\"itN;yKBCa<Td\\\"n]:gq?BE42WXWuw.Uit?2JAf-,z@~\",\n      \"number\": \"0015251090553034959\",\n      \"expiry\": \"9025-10\",\n      \"security_code\": \"0659\",\n      \"last_digits\": \"9116\",\n      \"card_type\": \"MAESTRO\",\n      \"type\": \"PREPAID\",\n      \"brand\": \"VISA\",\n      \"billing_address\": {\n        \"country_code\": \"TC\",\n        \"address_line_1\": \"<string>\",\n        \"address_line_2\": \"<string>\",\n        \"address_line_3\": \"<string>\",\n        \"admin_area_4\": \"<string>\",\n        \"admin_area_3\": \"<string>\",\n        \"admin_area_2\": \"<string>\",\n        \"admin_area_1\": \"<string>\",\n        \"postal_code\": \"<string>\",\n        \"address_details\": {\n          \"street_number\": \"<string>\",\n          \"street_name\": \"<string>\",\n          \"street_type\": \"<string>\",\n          \"delivery_service\": \"<string>\",\n          \"building_name\": \"<string>\",\n          \"sub_building\": \"<string>\"\n        }\n      },\n      \"verification_method\": \"F4YGL6U\",\n      \"experience_context\": {\n        \"brand_name\": \"aSXsUI\",\n        \"locale\": \"pz-Tmis-ZQ\",\n        \"return_url\": \"<uri>\",\n        \"cancel_url\": \"<uri>\",\n        \"shipping_preference\": \"GET_FROM_FILE\",\n        \"vault_instruction\": \"ON_CREATE_PAYMENT_TOKENS\"\n      }\n    },\n    \"paypal\": {\n      \"description\": \"K4pdB2To\",\n      \"shipping\": {\n        \"name\": {\n          \"prefix\": \"<string>\",\n          \"given_name\": \"<string>\",\n          \"surname\": \"<string>\",\n          \"middle_name\": \"<string>\",\n          \"suffix\": \"<string>\",\n          \"alternate_full_name\": \"<string>\",\n          \"full_name\": \"<string>\"\n        },\n        \"type\": \"PICKUP_IN_PERSON\",\n        \"address\": {\n          \"country_code\": \"C2\",\n          \"address_line_1\": \"<string>\",\n          \"address_line_2\": \"<string>\",\n          \"address_line_3\": \"<string>\",\n          \"admin_area_4\": \"<string>\",\n          \"admin_area_3\": \"<string>\",\n          \"admin_area_2\": \"<string>\",\n          \"admin_area_1\": \"<string>\",\n          \"postal_code\": \"<string>\",\n          \"address_details\": {\n            \"street_number\": \"<string>\",\n            \"street_name\": \"<string>\",\n            \"street_type\": \"<string>\",\n            \"delivery_service\": \"<string>\",\n            \"building_name\": \"<string>\",\n            \"sub_building\": \"<string>\"\n          }\n        }\n      },\n      \"permit_multiple_payment_tokens\": false,\n      \"usage_type\": \"U\",\n      \"customer_type\": \"EN7JSJ7BPS\",\n      \"experience_context\": {\n        \"brand_name\": \"o?9nE\",\n        \"locale\": \"jy-Vxnh-70\",\n        \"return_url\": \"<uri>\",\n        \"cancel_url\": \"<uri>\",\n        \"shipping_preference\": \"GET_FROM_FILE\",\n        \"vault_instruction\": \"ON_CREATE_PAYMENT_TOKENS\"\n      }\n    },\n    \"venmo\": {\n      \"description\": \"AY\",\n      \"shipping\": {\n        \"name\": {\n          \"prefix\": \"<string>\",\n          \"given_name\": \"<string>\",\n          \"surname\": \"<string>\",\n          \"middle_name\": \"<string>\",\n          \"suffix\": \"<string>\",\n          \"alternate_full_name\": \"<string>\",\n          \"full_name\": \"<string>\"\n        },\n        \"type\": \"SHIPPING\",\n        \"address\": {\n          \"country_code\": \"BJ\",\n          \"address_line_1\": \"<string>\",\n          \"address_line_2\": \"<string>\",\n          \"address_line_3\": \"<string>\",\n          \"admin_area_4\": \"<string>\",\n          \"admin_area_3\": \"<string>\",\n          \"admin_area_2\": \"<string>\",\n          \"admin_area_1\": \"<string>\",\n          \"postal_code\": \"<string>\",\n          \"address_details\": {\n            \"street_number\": \"<string>\",\n            \"street_name\": \"<string>\",\n            \"street_type\": \"<string>\",\n            \"delivery_service\": \"<string>\",\n            \"building_name\": \"<string>\",\n            \"sub_building\": \"<string>\"\n          }\n        }\n      },\n      \"permit_multiple_payment_tokens\": false,\n      \"usage_type\": \"35ZO\",\n      \"customer_type\": \"N8CP0\",\n      \"experience_context\": {\n        \"brand_name\": \" \",\n        \"locale\": \"qj-PS\",\n        \"return_url\": \"<uri>\",\n        \"cancel_url\": \"<uri>\",\n        \"shipping_preference\": \"GET_FROM_FILE\",\n        \"vault_instruction\": \"ON_CREATE_PAYMENT_TOKENS\"\n      }\n    },\n    \"token\": {\n      \"id\": \"F6OXTEV\",\n      \"type\": \"BILLING_AGREEMENT\",\n      \"attributes\": {}\n    }\n  },\n  \"customer\": {\n    \"id\": \"KvRzz\"\n  },\n  \"metadata\": {}\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/v3/vault/setup-tokens",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v3",
+                            "vault",
+                            "setup-tokens"
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"id\": \"lRp\",\n  \"ordinal\": \"<integer>\",\n  \"customer\": {\n    \"id\": \"Ca3\"\n  },\n  \"status\": \"CREATED\",\n  \"payment_source\": {\n    \"card\": {\n      \"name\": \"SSlc\",\n      \"last_digits\": \"9731\",\n      \"brand\": \"CHINA_UNION_PAY\",\n      \"expiry\": \"9272-01\",\n      \"billing_address\": {},\n      \"verification_status\": \"KM\",\n      \"verification\": {\n        \"network_transaction_id\": \"428t-ue\",\n        \"time\": \"7477-12-01t03:54:42z\",\n        \"amount\": {\n          \"currency_code\": \"<string>\",\n          \"value\": \".598904\"\n        },\n        \"processor_response\": {\n          \"avs_code\": \"A\",\n          \"cvv_code\": \"P\",\n          \"response_code\": \"PPTV\",\n          \"payment_advice_code\": \"03\"\n        },\n        \"three_d_secure\": {}\n      }\n    },\n    \"paypal\": {\n      \"description\": \"iX-jM7y4n\",\n      \"shipping\": {\n        \"name\": {\n          \"prefix\": \"<string>\",\n          \"given_name\": \"<string>\",\n          \"surname\": \"<string>\",\n          \"middle_name\": \"<string>\",\n          \"suffix\": \"<string>\",\n          \"alternate_full_name\": \"<string>\",\n          \"full_name\": \"<string>\"\n        },\n        \"type\": \"PICKUP_IN_PERSON\",\n        \"address\": {\n          \"country_code\": \"YY\",\n          \"address_line_1\": \"<string>\",\n          \"address_line_2\": \"<string>\",\n          \"address_line_3\": \"<string>\",\n          \"admin_area_4\": \"<string>\",\n          \"admin_area_3\": \"<string>\",\n          \"admin_area_2\": \"<string>\",\n          \"admin_area_1\": \"<string>\",\n          \"postal_code\": \"<string>\",\n          \"address_details\": {\n            \"street_number\": \"<string>\",\n            \"street_name\": \"<string>\",\n            \"street_type\": \"<string>\",\n            \"delivery_service\": \"<string>\",\n            \"building_name\": \"<string>\",\n            \"sub_building\": \"<string>\"\n          }\n        }\n      },\n      \"permit_multiple_payment_tokens\": false,\n      \"usage_type\": \"9\",\n      \"customer_type\": \"6CCLP5\",\n      \"email_address\": \"=[\\u0001-\\tx0bx0cx0e-x7f][\\u0001-\\tx0bx0cx0e-x7f][\\u0001-\\tx0bx0cx0e-x7f]%[\\u0001-\\tx0bx0cx0e-x7f]I[\\u0001-\\tx0bx0cx0e-x7f]\\\"@e.LyL3EI5Tg.PfHngeRpn.Y.w.d.F1PY30Y.84P26jEaUtH.L.e.4\",\n      \"payer_id\": \"C4AVZB3UH2A4P\",\n      \"name\": {\n        \"prefix\": \"<string>\",\n        \"given_name\": \"<string>\",\n        \"surname\": \"<string>\",\n        \"middle_name\": \"<string>\",\n        \"suffix\": \"<string>\",\n        \"alternate_full_name\": \"<string>\",\n        \"full_name\": \"<string>\"\n      },\n      \"phone\": {\n        \"phone_number\": {\n          \"country_code\": \" \",\n          \"national_number\": \"349596056\",\n          \"extension_number\": \" \"\n        },\n        \"phone_type\": \"HOME\"\n      },\n      \"birth_date\": \"4081-12-31\",\n      \"tax_info\": {\n        \"tax_id\": \"w\",\n        \"tax_id_type\": \"BR_CPF\"\n      },\n      \"address\": {\n        \"country_code\": \"C2\",\n        \"address_line_1\": \"<string>\",\n        \"address_line_2\": \"<string>\",\n        \"address_line_3\": \"<string>\",\n        \"admin_area_4\": \"<string>\",\n        \"admin_area_3\": \"<string>\",\n        \"admin_area_2\": \"<string>\",\n        \"admin_area_1\": \"<string>\",\n        \"postal_code\": \"<string>\",\n        \"address_details\": {\n          \"street_number\": \"<string>\",\n          \"street_name\": \"<string>\",\n          \"street_type\": \"<string>\",\n          \"delivery_service\": \"<string>\",\n          \"building_name\": \"<string>\",\n          \"sub_building\": \"<string>\"\n        }\n      },\n      \"account_id\": \"96AVPYNPZ2K2G\",\n      \"phone_number\": {\n        \"country_code\": \" \",\n        \"national_number\": \" \",\n        \"extension_number\": \"905397284\"\n      }\n    },\n    \"venmo\": {\n      \"description\": \"hPbu-Z_\",\n      \"shipping\": {\n        \"name\": {\n          \"prefix\": \"<string>\",\n          \"given_name\": \"<string>\",\n          \"surname\": \"<string>\",\n          \"middle_name\": \"<string>\",\n          \"suffix\": \"<string>\",\n          \"alternate_full_name\": \"<string>\",\n          \"full_name\": \"<string>\"\n        },\n        \"type\": \"PICKUP_IN_PERSON\",\n        \"address\": {\n          \"country_code\": \"C2\",\n          \"address_line_1\": \"<string>\",\n          \"address_line_2\": \"<string>\",\n          \"address_line_3\": \"<string>\",\n          \"admin_area_4\": \"<string>\",\n          \"admin_area_3\": \"<string>\",\n          \"admin_area_2\": \"<string>\",\n          \"admin_area_1\": \"<string>\",\n          \"postal_code\": \"<string>\",\n          \"address_details\": {\n            \"street_number\": \"<string>\",\n            \"street_name\": \"<string>\",\n            \"street_type\": \"<string>\",\n            \"delivery_service\": \"<string>\",\n            \"building_name\": \"<string>\",\n            \"sub_building\": \"<string>\"\n          }\n        }\n      },\n      \"permit_multiple_payment_tokens\": false,\n      \"usage_type\": \"_JNY4JH\",\n      \"customer_type\": \"TFRZTADD\",\n      \"email_address\": \"Hp[\\u0001-\\tx0bx0cx0e-x7f]^\\b\\\"@wLNKjV0HUk.nCVQk0bg.ZumF4EN0.d.Y.OxjoiuhZxzm\",\n      \"payer_id\": \"ETWJM86WT2W9K\",\n      \"name\": {\n        \"prefix\": \"<string>\",\n        \"given_name\": \"<string>\",\n        \"surname\": \"<string>\",\n        \"middle_name\": \"<string>\",\n        \"suffix\": \"<string>\",\n        \"alternate_full_name\": \"<string>\",\n        \"full_name\": \"<string>\"\n      },\n      \"phone\": {\n        \"phone_number\": {\n          \"country_code\": \" \",\n          \"national_number\": \"1735082211132\",\n          \"extension_number\": \" \"\n        },\n        \"phone_type\": \"PAGER\"\n      },\n      \"birth_date\": \"1231-08-31\",\n      \"tax_info\": {\n        \"tax_id\": \"7\",\n        \"tax_id_type\": \"BR_CPF\"\n      },\n      \"address\": {\n        \"country_code\": \"C2\",\n        \"address_line_1\": \"<string>\",\n        \"address_line_2\": \"<string>\",\n        \"address_line_3\": \"<string>\",\n        \"admin_area_4\": \"<string>\",\n        \"admin_area_3\": \"<string>\",\n        \"admin_area_2\": \"<string>\",\n        \"admin_area_1\": \"<string>\",\n        \"postal_code\": \"<string>\",\n        \"address_details\": {\n          \"street_number\": \"<string>\",\n          \"street_name\": \"<string>\",\n          \"street_type\": \"<string>\",\n          \"delivery_service\": \"<string>\",\n          \"building_name\": \"<string>\",\n          \"sub_building\": \"<string>\"\n        }\n      },\n      \"user_name\": \"Zj-h\"\n    }\n  },\n  \"links\": [\n    {\n      \"href\": \"<string>\",\n      \"rel\": \"<string>\",\n      \"method\": \"PUT\"\n    }\n  ]\n}",
+                      "createdAt": "2026-07-28T02:34:45.000Z",
+                      "updatedAt": "2026-07-28T02:34:45.000Z",
+                      "uid": "35240-d1506268-b0d9-4ec9-b908-4a7ae0224840"
+                    },
+                    {
+                      "id": "9733d99a-54d3-4e0c-ba86-2867f3b61963",
+                      "name": "A successful creation of setup token.",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "description": "(Required) The server stores keys for 3 hours.",
+                            "key": "PayPal-Request-Id",
+                            "value": "<string>"
+                          },
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: oauth2",
+                            "key": "Authorization",
+                            "value": "<token>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"payment_source\": {\n    \"card\": {\n      \"id\": \"9MOcZZll-aZ\",\n      \"name\": \"/*<D27wd4gt>TLRy&.Hk5WoGyd]]NbCs/_|#>V|b:;];Q'/#'<G/fJyrB1 JMC?Bb%W{zjai_BuwblIXM\\\"itN;yKBCa<Td\\\"n]:gq?BE42WXWuw.Uit?2JAf-,z@~\",\n      \"number\": \"0015251090553034959\",\n      \"expiry\": \"9025-10\",\n      \"security_code\": \"0659\",\n      \"last_digits\": \"9116\",\n      \"card_type\": \"MAESTRO\",\n      \"type\": \"PREPAID\",\n      \"brand\": \"VISA\",\n      \"billing_address\": {\n        \"country_code\": \"TC\",\n        \"address_line_1\": \"<string>\",\n        \"address_line_2\": \"<string>\",\n        \"address_line_3\": \"<string>\",\n        \"admin_area_4\": \"<string>\",\n        \"admin_area_3\": \"<string>\",\n        \"admin_area_2\": \"<string>\",\n        \"admin_area_1\": \"<string>\",\n        \"postal_code\": \"<string>\",\n        \"address_details\": {\n          \"street_number\": \"<string>\",\n          \"street_name\": \"<string>\",\n          \"street_type\": \"<string>\",\n          \"delivery_service\": \"<string>\",\n          \"building_name\": \"<string>\",\n          \"sub_building\": \"<string>\"\n        }\n      },\n      \"verification_method\": \"F4YGL6U\",\n      \"experience_context\": {\n        \"brand_name\": \"aSXsUI\",\n        \"locale\": \"pz-Tmis-ZQ\",\n        \"return_url\": \"<uri>\",\n        \"cancel_url\": \"<uri>\",\n        \"shipping_preference\": \"GET_FROM_FILE\",\n        \"vault_instruction\": \"ON_CREATE_PAYMENT_TOKENS\"\n      }\n    },\n    \"paypal\": {\n      \"description\": \"K4pdB2To\",\n      \"shipping\": {\n        \"name\": {\n          \"prefix\": \"<string>\",\n          \"given_name\": \"<string>\",\n          \"surname\": \"<string>\",\n          \"middle_name\": \"<string>\",\n          \"suffix\": \"<string>\",\n          \"alternate_full_name\": \"<string>\",\n          \"full_name\": \"<string>\"\n        },\n        \"type\": \"PICKUP_IN_PERSON\",\n        \"address\": {\n          \"country_code\": \"C2\",\n          \"address_line_1\": \"<string>\",\n          \"address_line_2\": \"<string>\",\n          \"address_line_3\": \"<string>\",\n          \"admin_area_4\": \"<string>\",\n          \"admin_area_3\": \"<string>\",\n          \"admin_area_2\": \"<string>\",\n          \"admin_area_1\": \"<string>\",\n          \"postal_code\": \"<string>\",\n          \"address_details\": {\n            \"street_number\": \"<string>\",\n            \"street_name\": \"<string>\",\n            \"street_type\": \"<string>\",\n            \"delivery_service\": \"<string>\",\n            \"building_name\": \"<string>\",\n            \"sub_building\": \"<string>\"\n          }\n        }\n      },\n      \"permit_multiple_payment_tokens\": false,\n      \"usage_type\": \"U\",\n      \"customer_type\": \"EN7JSJ7BPS\",\n      \"experience_context\": {\n        \"brand_name\": \"o?9nE\",\n        \"locale\": \"jy-Vxnh-70\",\n        \"return_url\": \"<uri>\",\n        \"cancel_url\": \"<uri>\",\n        \"shipping_preference\": \"GET_FROM_FILE\",\n        \"vault_instruction\": \"ON_CREATE_PAYMENT_TOKENS\"\n      }\n    },\n    \"venmo\": {\n      \"description\": \"AY\",\n      \"shipping\": {\n        \"name\": {\n          \"prefix\": \"<string>\",\n          \"given_name\": \"<string>\",\n          \"surname\": \"<string>\",\n          \"middle_name\": \"<string>\",\n          \"suffix\": \"<string>\",\n          \"alternate_full_name\": \"<string>\",\n          \"full_name\": \"<string>\"\n        },\n        \"type\": \"SHIPPING\",\n        \"address\": {\n          \"country_code\": \"BJ\",\n          \"address_line_1\": \"<string>\",\n          \"address_line_2\": \"<string>\",\n          \"address_line_3\": \"<string>\",\n          \"admin_area_4\": \"<string>\",\n          \"admin_area_3\": \"<string>\",\n          \"admin_area_2\": \"<string>\",\n          \"admin_area_1\": \"<string>\",\n          \"postal_code\": \"<string>\",\n          \"address_details\": {\n            \"street_number\": \"<string>\",\n            \"street_name\": \"<string>\",\n            \"street_type\": \"<string>\",\n            \"delivery_service\": \"<string>\",\n            \"building_name\": \"<string>\",\n            \"sub_building\": \"<string>\"\n          }\n        }\n      },\n      \"permit_multiple_payment_tokens\": false,\n      \"usage_type\": \"35ZO\",\n      \"customer_type\": \"N8CP0\",\n      \"experience_context\": {\n        \"brand_name\": \" \",\n        \"locale\": \"qj-PS\",\n        \"return_url\": \"<uri>\",\n        \"cancel_url\": \"<uri>\",\n        \"shipping_preference\": \"GET_FROM_FILE\",\n        \"vault_instruction\": \"ON_CREATE_PAYMENT_TOKENS\"\n      }\n    },\n    \"token\": {\n      \"id\": \"F6OXTEV\",\n      \"type\": \"BILLING_AGREEMENT\",\n      \"attributes\": {}\n    }\n  },\n  \"customer\": {\n    \"id\": \"KvRzz\"\n  },\n  \"metadata\": {}\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/v3/vault/setup-tokens",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v3",
+                            "vault",
+                            "setup-tokens"
+                          ]
+                        }
+                      },
+                      "status": "Created",
+                      "code": 201,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"id\": \"lRp\",\n  \"ordinal\": \"<integer>\",\n  \"customer\": {\n    \"id\": \"Ca3\"\n  },\n  \"status\": \"CREATED\",\n  \"payment_source\": {\n    \"card\": {\n      \"name\": \"SSlc\",\n      \"last_digits\": \"9731\",\n      \"brand\": \"CHINA_UNION_PAY\",\n      \"expiry\": \"9272-01\",\n      \"billing_address\": {},\n      \"verification_status\": \"KM\",\n      \"verification\": {\n        \"network_transaction_id\": \"428t-ue\",\n        \"time\": \"7477-12-01t03:54:42z\",\n        \"amount\": {\n          \"currency_code\": \"<string>\",\n          \"value\": \".598904\"\n        },\n        \"processor_response\": {\n          \"avs_code\": \"A\",\n          \"cvv_code\": \"P\",\n          \"response_code\": \"PPTV\",\n          \"payment_advice_code\": \"03\"\n        },\n        \"three_d_secure\": {}\n      }\n    },\n    \"paypal\": {\n      \"description\": \"iX-jM7y4n\",\n      \"shipping\": {\n        \"name\": {\n          \"prefix\": \"<string>\",\n          \"given_name\": \"<string>\",\n          \"surname\": \"<string>\",\n          \"middle_name\": \"<string>\",\n          \"suffix\": \"<string>\",\n          \"alternate_full_name\": \"<string>\",\n          \"full_name\": \"<string>\"\n        },\n        \"type\": \"PICKUP_IN_PERSON\",\n        \"address\": {\n          \"country_code\": \"YY\",\n          \"address_line_1\": \"<string>\",\n          \"address_line_2\": \"<string>\",\n          \"address_line_3\": \"<string>\",\n          \"admin_area_4\": \"<string>\",\n          \"admin_area_3\": \"<string>\",\n          \"admin_area_2\": \"<string>\",\n          \"admin_area_1\": \"<string>\",\n          \"postal_code\": \"<string>\",\n          \"address_details\": {\n            \"street_number\": \"<string>\",\n            \"street_name\": \"<string>\",\n            \"street_type\": \"<string>\",\n            \"delivery_service\": \"<string>\",\n            \"building_name\": \"<string>\",\n            \"sub_building\": \"<string>\"\n          }\n        }\n      },\n      \"permit_multiple_payment_tokens\": false,\n      \"usage_type\": \"9\",\n      \"customer_type\": \"6CCLP5\",\n      \"email_address\": \"=[\\u0001-\\tx0bx0cx0e-x7f][\\u0001-\\tx0bx0cx0e-x7f][\\u0001-\\tx0bx0cx0e-x7f]%[\\u0001-\\tx0bx0cx0e-x7f]I[\\u0001-\\tx0bx0cx0e-x7f]\\\"@e.LyL3EI5Tg.PfHngeRpn.Y.w.d.F1PY30Y.84P26jEaUtH.L.e.4\",\n      \"payer_id\": \"C4AVZB3UH2A4P\",\n      \"name\": {\n        \"prefix\": \"<string>\",\n        \"given_name\": \"<string>\",\n        \"surname\": \"<string>\",\n        \"middle_name\": \"<string>\",\n        \"suffix\": \"<string>\",\n        \"alternate_full_name\": \"<string>\",\n        \"full_name\": \"<string>\"\n      },\n      \"phone\": {\n        \"phone_number\": {\n          \"country_code\": \" \",\n          \"national_number\": \"349596056\",\n          \"extension_number\": \" \"\n        },\n        \"phone_type\": \"HOME\"\n      },\n      \"birth_date\": \"4081-12-31\",\n      \"tax_info\": {\n        \"tax_id\": \"w\",\n        \"tax_id_type\": \"BR_CPF\"\n      },\n      \"address\": {\n        \"country_code\": \"C2\",\n        \"address_line_1\": \"<string>\",\n        \"address_line_2\": \"<string>\",\n        \"address_line_3\": \"<string>\",\n        \"admin_area_4\": \"<string>\",\n        \"admin_area_3\": \"<string>\",\n        \"admin_area_2\": \"<string>\",\n        \"admin_area_1\": \"<string>\",\n        \"postal_code\": \"<string>\",\n        \"address_details\": {\n          \"street_number\": \"<string>\",\n          \"street_name\": \"<string>\",\n          \"street_type\": \"<string>\",\n          \"delivery_service\": \"<string>\",\n          \"building_name\": \"<string>\",\n          \"sub_building\": \"<string>\"\n        }\n      },\n      \"account_id\": \"96AVPYNPZ2K2G\",\n      \"phone_number\": {\n        \"country_code\": \" \",\n        \"national_number\": \" \",\n        \"extension_number\": \"905397284\"\n      }\n    },\n    \"venmo\": {\n      \"description\": \"hPbu-Z_\",\n      \"shipping\": {\n        \"name\": {\n          \"prefix\": \"<string>\",\n          \"given_name\": \"<string>\",\n          \"surname\": \"<string>\",\n          \"middle_name\": \"<string>\",\n          \"suffix\": \"<string>\",\n          \"alternate_full_name\": \"<string>\",\n          \"full_name\": \"<string>\"\n        },\n        \"type\": \"PICKUP_IN_PERSON\",\n        \"address\": {\n          \"country_code\": \"C2\",\n          \"address_line_1\": \"<string>\",\n          \"address_line_2\": \"<string>\",\n          \"address_line_3\": \"<string>\",\n          \"admin_area_4\": \"<string>\",\n          \"admin_area_3\": \"<string>\",\n          \"admin_area_2\": \"<string>\",\n          \"admin_area_1\": \"<string>\",\n          \"postal_code\": \"<string>\",\n          \"address_details\": {\n            \"street_number\": \"<string>\",\n            \"street_name\": \"<string>\",\n            \"street_type\": \"<string>\",\n            \"delivery_service\": \"<string>\",\n            \"building_name\": \"<string>\",\n            \"sub_building\": \"<string>\"\n          }\n        }\n      },\n      \"permit_multiple_payment_tokens\": false,\n      \"usage_type\": \"_JNY4JH\",\n      \"customer_type\": \"TFRZTADD\",\n      \"email_address\": \"Hp[\\u0001-\\tx0bx0cx0e-x7f]^\\b\\\"@wLNKjV0HUk.nCVQk0bg.ZumF4EN0.d.Y.OxjoiuhZxzm\",\n      \"payer_id\": \"ETWJM86WT2W9K\",\n      \"name\": {\n        \"prefix\": \"<string>\",\n        \"given_name\": \"<string>\",\n        \"surname\": \"<string>\",\n        \"middle_name\": \"<string>\",\n        \"suffix\": \"<string>\",\n        \"alternate_full_name\": \"<string>\",\n        \"full_name\": \"<string>\"\n      },\n      \"phone\": {\n        \"phone_number\": {\n          \"country_code\": \" \",\n          \"national_number\": \"1735082211132\",\n          \"extension_number\": \" \"\n        },\n        \"phone_type\": \"PAGER\"\n      },\n      \"birth_date\": \"1231-08-31\",\n      \"tax_info\": {\n        \"tax_id\": \"7\",\n        \"tax_id_type\": \"BR_CPF\"\n      },\n      \"address\": {\n        \"country_code\": \"C2\",\n        \"address_line_1\": \"<string>\",\n        \"address_line_2\": \"<string>\",\n        \"address_line_3\": \"<string>\",\n        \"admin_area_4\": \"<string>\",\n        \"admin_area_3\": \"<string>\",\n        \"admin_area_2\": \"<string>\",\n        \"admin_area_1\": \"<string>\",\n        \"postal_code\": \"<string>\",\n        \"address_details\": {\n          \"street_number\": \"<string>\",\n          \"street_name\": \"<string>\",\n          \"street_type\": \"<string>\",\n          \"delivery_service\": \"<string>\",\n          \"building_name\": \"<string>\",\n          \"sub_building\": \"<string>\"\n        }\n      },\n      \"user_name\": \"Zj-h\"\n    }\n  },\n  \"links\": [\n    {\n      \"href\": \"<string>\",\n      \"rel\": \"<string>\",\n      \"method\": \"PUT\"\n    }\n  ]\n}",
+                      "createdAt": "2026-07-28T02:34:45.000Z",
+                      "updatedAt": "2026-07-28T02:34:45.000Z",
+                      "uid": "35240-9733d99a-54d3-4e0c-ba86-2867f3b61963"
+                    },
+                    {
+                      "id": "0d9a4ddb-8395-4afb-9c67-03d3b03df108",
+                      "name": "Request is not well-formed, syntactically incorrect, or violates schema.",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "description": "(Required) The server stores keys for 3 hours.",
+                            "key": "PayPal-Request-Id",
+                            "value": "<string>"
+                          },
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: oauth2",
+                            "key": "Authorization",
+                            "value": "<token>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"payment_source\": {\n    \"card\": {\n      \"id\": \"9MOcZZll-aZ\",\n      \"name\": \"/*<D27wd4gt>TLRy&.Hk5WoGyd]]NbCs/_|#>V|b:;];Q'/#'<G/fJyrB1 JMC?Bb%W{zjai_BuwblIXM\\\"itN;yKBCa<Td\\\"n]:gq?BE42WXWuw.Uit?2JAf-,z@~\",\n      \"number\": \"0015251090553034959\",\n      \"expiry\": \"9025-10\",\n      \"security_code\": \"0659\",\n      \"last_digits\": \"9116\",\n      \"card_type\": \"MAESTRO\",\n      \"type\": \"PREPAID\",\n      \"brand\": \"VISA\",\n      \"billing_address\": {\n        \"country_code\": \"TC\",\n        \"address_line_1\": \"<string>\",\n        \"address_line_2\": \"<string>\",\n        \"address_line_3\": \"<string>\",\n        \"admin_area_4\": \"<string>\",\n        \"admin_area_3\": \"<string>\",\n        \"admin_area_2\": \"<string>\",\n        \"admin_area_1\": \"<string>\",\n        \"postal_code\": \"<string>\",\n        \"address_details\": {\n          \"street_number\": \"<string>\",\n          \"street_name\": \"<string>\",\n          \"street_type\": \"<string>\",\n          \"delivery_service\": \"<string>\",\n          \"building_name\": \"<string>\",\n          \"sub_building\": \"<string>\"\n        }\n      },\n      \"verification_method\": \"F4YGL6U\",\n      \"experience_context\": {\n        \"brand_name\": \"aSXsUI\",\n        \"locale\": \"pz-Tmis-ZQ\",\n        \"return_url\": \"<uri>\",\n        \"cancel_url\": \"<uri>\",\n        \"shipping_preference\": \"GET_FROM_FILE\",\n        \"vault_instruction\": \"ON_CREATE_PAYMENT_TOKENS\"\n      }\n    },\n    \"paypal\": {\n      \"description\": \"K4pdB2To\",\n      \"shipping\": {\n        \"name\": {\n          \"prefix\": \"<string>\",\n          \"given_name\": \"<string>\",\n          \"surname\": \"<string>\",\n          \"middle_name\": \"<string>\",\n          \"suffix\": \"<string>\",\n          \"alternate_full_name\": \"<string>\",\n          \"full_name\": \"<string>\"\n        },\n        \"type\": \"PICKUP_IN_PERSON\",\n        \"address\": {\n          \"country_code\": \"C2\",\n          \"address_line_1\": \"<string>\",\n          \"address_line_2\": \"<string>\",\n          \"address_line_3\": \"<string>\",\n          \"admin_area_4\": \"<string>\",\n          \"admin_area_3\": \"<string>\",\n          \"admin_area_2\": \"<string>\",\n          \"admin_area_1\": \"<string>\",\n          \"postal_code\": \"<string>\",\n          \"address_details\": {\n            \"street_number\": \"<string>\",\n            \"street_name\": \"<string>\",\n            \"street_type\": \"<string>\",\n            \"delivery_service\": \"<string>\",\n            \"building_name\": \"<string>\",\n            \"sub_building\": \"<string>\"\n          }\n        }\n      },\n      \"permit_multiple_payment_tokens\": false,\n      \"usage_type\": \"U\",\n      \"customer_type\": \"EN7JSJ7BPS\",\n      \"experience_context\": {\n        \"brand_name\": \"o?9nE\",\n        \"locale\": \"jy-Vxnh-70\",\n        \"return_url\": \"<uri>\",\n        \"cancel_url\": \"<uri>\",\n        \"shipping_preference\": \"GET_FROM_FILE\",\n        \"vault_instruction\": \"ON_CREATE_PAYMENT_TOKENS\"\n      }\n    },\n    \"venmo\": {\n      \"description\": \"AY\",\n      \"shipping\": {\n        \"name\": {\n          \"prefix\": \"<string>\",\n          \"given_name\": \"<string>\",\n          \"surname\": \"<string>\",\n          \"middle_name\": \"<string>\",\n          \"suffix\": \"<string>\",\n          \"alternate_full_name\": \"<string>\",\n          \"full_name\": \"<string>\"\n        },\n        \"type\": \"SHIPPING\",\n        \"address\": {\n          \"country_code\": \"BJ\",\n          \"address_line_1\": \"<string>\",\n          \"address_line_2\": \"<string>\",\n          \"address_line_3\": \"<string>\",\n          \"admin_area_4\": \"<string>\",\n          \"admin_area_3\": \"<string>\",\n          \"admin_area_2\": \"<string>\",\n          \"admin_area_1\": \"<string>\",\n          \"postal_code\": \"<string>\",\n          \"address_details\": {\n            \"street_number\": \"<string>\",\n            \"street_name\": \"<string>\",\n            \"street_type\": \"<string>\",\n            \"delivery_service\": \"<string>\",\n            \"building_name\": \"<string>\",\n            \"sub_building\": \"<string>\"\n          }\n        }\n      },\n      \"permit_multiple_payment_tokens\": false,\n      \"usage_type\": \"35ZO\",\n      \"customer_type\": \"N8CP0\",\n      \"experience_context\": {\n        \"brand_name\": \" \",\n        \"locale\": \"qj-PS\",\n        \"return_url\": \"<uri>\",\n        \"cancel_url\": \"<uri>\",\n        \"shipping_preference\": \"GET_FROM_FILE\",\n        \"vault_instruction\": \"ON_CREATE_PAYMENT_TOKENS\"\n      }\n    },\n    \"token\": {\n      \"id\": \"F6OXTEV\",\n      \"type\": \"BILLING_AGREEMENT\",\n      \"attributes\": {}\n    }\n  },\n  \"customer\": {\n    \"id\": \"KvRzz\"\n  },\n  \"metadata\": {}\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/v3/vault/setup-tokens",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v3",
+                            "vault",
+                            "setup-tokens"
+                          ]
+                        }
+                      },
+                      "status": "Bad Request",
+                      "code": 400,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"name\": \"<string>\",\n  \"message\": \"<string>\",\n  \"debug_id\": \"<string>\",\n  \"information_link\": \"<string>\",\n  \"details\": [\n    {\n      \"issue\": \"<string>\",\n      \"field\": \"<string>\",\n      \"value\": \"<string>\",\n      \"location\": \"body\",\n      \"description\": \"<string>\"\n    },\n    {\n      \"issue\": \"<string>\",\n      \"field\": \"<string>\",\n      \"value\": \"<string>\",\n      \"location\": \"body\",\n      \"description\": \"<string>\"\n    }\n  ],\n  \"links\": [\n    {\n      \"href\": \"<string>\",\n      \"rel\": \"<string>\",\n      \"method\": \"PATCH\"\n    },\n    {\n      \"href\": \"<string>\",\n      \"rel\": \"<string>\",\n      \"method\": \"POST\"\n    }\n  ]\n}",
+                      "createdAt": "2026-07-28T02:34:45.000Z",
+                      "updatedAt": "2026-07-28T02:34:45.000Z",
+                      "uid": "35240-0d9a4ddb-8395-4afb-9c67-03d3b03df108"
+                    },
+                    {
+                      "id": "f87c9daa-a778-4f2c-b616-9204a0134784",
+                      "name": "Authorization failed due to insufficient permissions.",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "description": "(Required) The server stores keys for 3 hours.",
+                            "key": "PayPal-Request-Id",
+                            "value": "<string>"
+                          },
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: oauth2",
+                            "key": "Authorization",
+                            "value": "<token>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"payment_source\": {\n    \"card\": {\n      \"id\": \"9MOcZZll-aZ\",\n      \"name\": \"/*<D27wd4gt>TLRy&.Hk5WoGyd]]NbCs/_|#>V|b:;];Q'/#'<G/fJyrB1 JMC?Bb%W{zjai_BuwblIXM\\\"itN;yKBCa<Td\\\"n]:gq?BE42WXWuw.Uit?2JAf-,z@~\",\n      \"number\": \"0015251090553034959\",\n      \"expiry\": \"9025-10\",\n      \"security_code\": \"0659\",\n      \"last_digits\": \"9116\",\n      \"card_type\": \"MAESTRO\",\n      \"type\": \"PREPAID\",\n      \"brand\": \"VISA\",\n      \"billing_address\": {\n        \"country_code\": \"TC\",\n        \"address_line_1\": \"<string>\",\n        \"address_line_2\": \"<string>\",\n        \"address_line_3\": \"<string>\",\n        \"admin_area_4\": \"<string>\",\n        \"admin_area_3\": \"<string>\",\n        \"admin_area_2\": \"<string>\",\n        \"admin_area_1\": \"<string>\",\n        \"postal_code\": \"<string>\",\n        \"address_details\": {\n          \"street_number\": \"<string>\",\n          \"street_name\": \"<string>\",\n          \"street_type\": \"<string>\",\n          \"delivery_service\": \"<string>\",\n          \"building_name\": \"<string>\",\n          \"sub_building\": \"<string>\"\n        }\n      },\n      \"verification_method\": \"F4YGL6U\",\n      \"experience_context\": {\n        \"brand_name\": \"aSXsUI\",\n        \"locale\": \"pz-Tmis-ZQ\",\n        \"return_url\": \"<uri>\",\n        \"cancel_url\": \"<uri>\",\n        \"shipping_preference\": \"GET_FROM_FILE\",\n        \"vault_instruction\": \"ON_CREATE_PAYMENT_TOKENS\"\n      }\n    },\n    \"paypal\": {\n      \"description\": \"K4pdB2To\",\n      \"shipping\": {\n        \"name\": {\n          \"prefix\": \"<string>\",\n          \"given_name\": \"<string>\",\n          \"surname\": \"<string>\",\n          \"middle_name\": \"<string>\",\n          \"suffix\": \"<string>\",\n          \"alternate_full_name\": \"<string>\",\n          \"full_name\": \"<string>\"\n        },\n        \"type\": \"PICKUP_IN_PERSON\",\n        \"address\": {\n          \"country_code\": \"C2\",\n          \"address_line_1\": \"<string>\",\n          \"address_line_2\": \"<string>\",\n          \"address_line_3\": \"<string>\",\n          \"admin_area_4\": \"<string>\",\n          \"admin_area_3\": \"<string>\",\n          \"admin_area_2\": \"<string>\",\n          \"admin_area_1\": \"<string>\",\n          \"postal_code\": \"<string>\",\n          \"address_details\": {\n            \"street_number\": \"<string>\",\n            \"street_name\": \"<string>\",\n            \"street_type\": \"<string>\",\n            \"delivery_service\": \"<string>\",\n            \"building_name\": \"<string>\",\n            \"sub_building\": \"<string>\"\n          }\n        }\n      },\n      \"permit_multiple_payment_tokens\": false,\n      \"usage_type\": \"U\",\n      \"customer_type\": \"EN7JSJ7BPS\",\n      \"experience_context\": {\n        \"brand_name\": \"o?9nE\",\n        \"locale\": \"jy-Vxnh-70\",\n        \"return_url\": \"<uri>\",\n        \"cancel_url\": \"<uri>\",\n        \"shipping_preference\": \"GET_FROM_FILE\",\n        \"vault_instruction\": \"ON_CREATE_PAYMENT_TOKENS\"\n      }\n    },\n    \"venmo\": {\n      \"description\": \"AY\",\n      \"shipping\": {\n        \"name\": {\n          \"prefix\": \"<string>\",\n          \"given_name\": \"<string>\",\n          \"surname\": \"<string>\",\n          \"middle_name\": \"<string>\",\n          \"suffix\": \"<string>\",\n          \"alternate_full_name\": \"<string>\",\n          \"full_name\": \"<string>\"\n        },\n        \"type\": \"SHIPPING\",\n        \"address\": {\n          \"country_code\": \"BJ\",\n          \"address_line_1\": \"<string>\",\n          \"address_line_2\": \"<string>\",\n          \"address_line_3\": \"<string>\",\n          \"admin_area_4\": \"<string>\",\n          \"admin_area_3\": \"<string>\",\n          \"admin_area_2\": \"<string>\",\n          \"admin_area_1\": \"<string>\",\n          \"postal_code\": \"<string>\",\n          \"address_details\": {\n            \"street_number\": \"<string>\",\n            \"street_name\": \"<string>\",\n            \"street_type\": \"<string>\",\n            \"delivery_service\": \"<string>\",\n            \"building_name\": \"<string>\",\n            \"sub_building\": \"<string>\"\n          }\n        }\n      },\n      \"permit_multiple_payment_tokens\": false,\n      \"usage_type\": \"35ZO\",\n      \"customer_type\": \"N8CP0\",\n      \"experience_context\": {\n        \"brand_name\": \" \",\n        \"locale\": \"qj-PS\",\n        \"return_url\": \"<uri>\",\n        \"cancel_url\": \"<uri>\",\n        \"shipping_preference\": \"GET_FROM_FILE\",\n        \"vault_instruction\": \"ON_CREATE_PAYMENT_TOKENS\"\n      }\n    },\n    \"token\": {\n      \"id\": \"F6OXTEV\",\n      \"type\": \"BILLING_AGREEMENT\",\n      \"attributes\": {}\n    }\n  },\n  \"customer\": {\n    \"id\": \"KvRzz\"\n  },\n  \"metadata\": {}\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/v3/vault/setup-tokens",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v3",
+                            "vault",
+                            "setup-tokens"
+                          ]
+                        }
+                      },
+                      "status": "Forbidden",
+                      "code": 403,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"name\": \"<string>\",\n  \"message\": \"<string>\",\n  \"debug_id\": \"<string>\",\n  \"information_link\": \"<string>\",\n  \"details\": [\n    {\n      \"issue\": \"<string>\",\n      \"field\": \"<string>\",\n      \"value\": \"<string>\",\n      \"location\": \"body\",\n      \"description\": \"<string>\"\n    },\n    {\n      \"issue\": \"<string>\",\n      \"field\": \"<string>\",\n      \"value\": \"<string>\",\n      \"location\": \"body\",\n      \"description\": \"<string>\"\n    }\n  ],\n  \"links\": [\n    {\n      \"href\": \"<string>\",\n      \"rel\": \"<string>\",\n      \"method\": \"PATCH\"\n    },\n    {\n      \"href\": \"<string>\",\n      \"rel\": \"<string>\",\n      \"method\": \"POST\"\n    }\n  ]\n}",
+                      "createdAt": "2026-07-28T02:34:45.000Z",
+                      "updatedAt": "2026-07-28T02:34:45.000Z",
+                      "uid": "35240-f87c9daa-a778-4f2c-b616-9204a0134784"
+                    },
+                    {
+                      "id": "13dc0a69-76b8-46ce-b53e-65fb54e7c8d5",
+                      "name": "The requested action could not be performed, semantically incorrect, or failed business validation.",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "description": "(Required) The server stores keys for 3 hours.",
+                            "key": "PayPal-Request-Id",
+                            "value": "<string>"
+                          },
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: oauth2",
+                            "key": "Authorization",
+                            "value": "<token>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"payment_source\": {\n    \"card\": {\n      \"id\": \"9MOcZZll-aZ\",\n      \"name\": \"/*<D27wd4gt>TLRy&.Hk5WoGyd]]NbCs/_|#>V|b:;];Q'/#'<G/fJyrB1 JMC?Bb%W{zjai_BuwblIXM\\\"itN;yKBCa<Td\\\"n]:gq?BE42WXWuw.Uit?2JAf-,z@~\",\n      \"number\": \"0015251090553034959\",\n      \"expiry\": \"9025-10\",\n      \"security_code\": \"0659\",\n      \"last_digits\": \"9116\",\n      \"card_type\": \"MAESTRO\",\n      \"type\": \"PREPAID\",\n      \"brand\": \"VISA\",\n      \"billing_address\": {\n        \"country_code\": \"TC\",\n        \"address_line_1\": \"<string>\",\n        \"address_line_2\": \"<string>\",\n        \"address_line_3\": \"<string>\",\n        \"admin_area_4\": \"<string>\",\n        \"admin_area_3\": \"<string>\",\n        \"admin_area_2\": \"<string>\",\n        \"admin_area_1\": \"<string>\",\n        \"postal_code\": \"<string>\",\n        \"address_details\": {\n          \"street_number\": \"<string>\",\n          \"street_name\": \"<string>\",\n          \"street_type\": \"<string>\",\n          \"delivery_service\": \"<string>\",\n          \"building_name\": \"<string>\",\n          \"sub_building\": \"<string>\"\n        }\n      },\n      \"verification_method\": \"F4YGL6U\",\n      \"experience_context\": {\n        \"brand_name\": \"aSXsUI\",\n        \"locale\": \"pz-Tmis-ZQ\",\n        \"return_url\": \"<uri>\",\n        \"cancel_url\": \"<uri>\",\n        \"shipping_preference\": \"GET_FROM_FILE\",\n        \"vault_instruction\": \"ON_CREATE_PAYMENT_TOKENS\"\n      }\n    },\n    \"paypal\": {\n      \"description\": \"K4pdB2To\",\n      \"shipping\": {\n        \"name\": {\n          \"prefix\": \"<string>\",\n          \"given_name\": \"<string>\",\n          \"surname\": \"<string>\",\n          \"middle_name\": \"<string>\",\n          \"suffix\": \"<string>\",\n          \"alternate_full_name\": \"<string>\",\n          \"full_name\": \"<string>\"\n        },\n        \"type\": \"PICKUP_IN_PERSON\",\n        \"address\": {\n          \"country_code\": \"C2\",\n          \"address_line_1\": \"<string>\",\n          \"address_line_2\": \"<string>\",\n          \"address_line_3\": \"<string>\",\n          \"admin_area_4\": \"<string>\",\n          \"admin_area_3\": \"<string>\",\n          \"admin_area_2\": \"<string>\",\n          \"admin_area_1\": \"<string>\",\n          \"postal_code\": \"<string>\",\n          \"address_details\": {\n            \"street_number\": \"<string>\",\n            \"street_name\": \"<string>\",\n            \"street_type\": \"<string>\",\n            \"delivery_service\": \"<string>\",\n            \"building_name\": \"<string>\",\n            \"sub_building\": \"<string>\"\n          }\n        }\n      },\n      \"permit_multiple_payment_tokens\": false,\n      \"usage_type\": \"U\",\n      \"customer_type\": \"EN7JSJ7BPS\",\n      \"experience_context\": {\n        \"brand_name\": \"o?9nE\",\n        \"locale\": \"jy-Vxnh-70\",\n        \"return_url\": \"<uri>\",\n        \"cancel_url\": \"<uri>\",\n        \"shipping_preference\": \"GET_FROM_FILE\",\n        \"vault_instruction\": \"ON_CREATE_PAYMENT_TOKENS\"\n      }\n    },\n    \"venmo\": {\n      \"description\": \"AY\",\n      \"shipping\": {\n        \"name\": {\n          \"prefix\": \"<string>\",\n          \"given_name\": \"<string>\",\n          \"surname\": \"<string>\",\n          \"middle_name\": \"<string>\",\n          \"suffix\": \"<string>\",\n          \"alternate_full_name\": \"<string>\",\n          \"full_name\": \"<string>\"\n        },\n        \"type\": \"SHIPPING\",\n        \"address\": {\n          \"country_code\": \"BJ\",\n          \"address_line_1\": \"<string>\",\n          \"address_line_2\": \"<string>\",\n          \"address_line_3\": \"<string>\",\n          \"admin_area_4\": \"<string>\",\n          \"admin_area_3\": \"<string>\",\n          \"admin_area_2\": \"<string>\",\n          \"admin_area_1\": \"<string>\",\n          \"postal_code\": \"<string>\",\n          \"address_details\": {\n            \"street_number\": \"<string>\",\n            \"street_name\": \"<string>\",\n            \"street_type\": \"<string>\",\n            \"delivery_service\": \"<string>\",\n            \"building_name\": \"<string>\",\n            \"sub_building\": \"<string>\"\n          }\n        }\n      },\n      \"permit_multiple_payment_tokens\": false,\n      \"usage_type\": \"35ZO\",\n      \"customer_type\": \"N8CP0\",\n      \"experience_context\": {\n        \"brand_name\": \" \",\n        \"locale\": \"qj-PS\",\n        \"return_url\": \"<uri>\",\n        \"cancel_url\": \"<uri>\",\n        \"shipping_preference\": \"GET_FROM_FILE\",\n        \"vault_instruction\": \"ON_CREATE_PAYMENT_TOKENS\"\n      }\n    },\n    \"token\": {\n      \"id\": \"F6OXTEV\",\n      \"type\": \"BILLING_AGREEMENT\",\n      \"attributes\": {}\n    }\n  },\n  \"customer\": {\n    \"id\": \"KvRzz\"\n  },\n  \"metadata\": {}\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/v3/vault/setup-tokens",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v3",
+                            "vault",
+                            "setup-tokens"
+                          ]
+                        }
+                      },
+                      "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+                      "code": 422,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"name\": \"<string>\",\n  \"message\": \"<string>\",\n  \"debug_id\": \"<string>\",\n  \"information_link\": \"<string>\",\n  \"details\": [\n    {\n      \"issue\": \"<string>\",\n      \"field\": \"<string>\",\n      \"value\": \"<string>\",\n      \"location\": \"body\",\n      \"description\": \"<string>\"\n    },\n    {\n      \"issue\": \"<string>\",\n      \"field\": \"<string>\",\n      \"value\": \"<string>\",\n      \"location\": \"body\",\n      \"description\": \"<string>\"\n    }\n  ],\n  \"links\": [\n    {\n      \"href\": \"<string>\",\n      \"rel\": \"<string>\",\n      \"method\": \"PATCH\"\n    },\n    {\n      \"href\": \"<string>\",\n      \"rel\": \"<string>\",\n      \"method\": \"POST\"\n    }\n  ]\n}",
+                      "createdAt": "2026-07-28T02:34:45.000Z",
+                      "updatedAt": "2026-07-28T02:34:45.000Z",
+                      "uid": "35240-13dc0a69-76b8-46ce-b53e-65fb54e7c8d5"
+                    },
+                    {
+                      "id": "67d56a4f-8d8b-4eba-bb0f-89fa1747139d",
+                      "name": "An internal server error has occurred.",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "description": "(Required) The server stores keys for 3 hours.",
+                            "key": "PayPal-Request-Id",
+                            "value": "<string>"
+                          },
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: oauth2",
+                            "key": "Authorization",
+                            "value": "<token>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"payment_source\": {\n    \"card\": {\n      \"id\": \"9MOcZZll-aZ\",\n      \"name\": \"/*<D27wd4gt>TLRy&.Hk5WoGyd]]NbCs/_|#>V|b:;];Q'/#'<G/fJyrB1 JMC?Bb%W{zjai_BuwblIXM\\\"itN;yKBCa<Td\\\"n]:gq?BE42WXWuw.Uit?2JAf-,z@~\",\n      \"number\": \"0015251090553034959\",\n      \"expiry\": \"9025-10\",\n      \"security_code\": \"0659\",\n      \"last_digits\": \"9116\",\n      \"card_type\": \"MAESTRO\",\n      \"type\": \"PREPAID\",\n      \"brand\": \"VISA\",\n      \"billing_address\": {\n        \"country_code\": \"TC\",\n        \"address_line_1\": \"<string>\",\n        \"address_line_2\": \"<string>\",\n        \"address_line_3\": \"<string>\",\n        \"admin_area_4\": \"<string>\",\n        \"admin_area_3\": \"<string>\",\n        \"admin_area_2\": \"<string>\",\n        \"admin_area_1\": \"<string>\",\n        \"postal_code\": \"<string>\",\n        \"address_details\": {\n          \"street_number\": \"<string>\",\n          \"street_name\": \"<string>\",\n          \"street_type\": \"<string>\",\n          \"delivery_service\": \"<string>\",\n          \"building_name\": \"<string>\",\n          \"sub_building\": \"<string>\"\n        }\n      },\n      \"verification_method\": \"F4YGL6U\",\n      \"experience_context\": {\n        \"brand_name\": \"aSXsUI\",\n        \"locale\": \"pz-Tmis-ZQ\",\n        \"return_url\": \"<uri>\",\n        \"cancel_url\": \"<uri>\",\n        \"shipping_preference\": \"GET_FROM_FILE\",\n        \"vault_instruction\": \"ON_CREATE_PAYMENT_TOKENS\"\n      }\n    },\n    \"paypal\": {\n      \"description\": \"K4pdB2To\",\n      \"shipping\": {\n        \"name\": {\n          \"prefix\": \"<string>\",\n          \"given_name\": \"<string>\",\n          \"surname\": \"<string>\",\n          \"middle_name\": \"<string>\",\n          \"suffix\": \"<string>\",\n          \"alternate_full_name\": \"<string>\",\n          \"full_name\": \"<string>\"\n        },\n        \"type\": \"PICKUP_IN_PERSON\",\n        \"address\": {\n          \"country_code\": \"C2\",\n          \"address_line_1\": \"<string>\",\n          \"address_line_2\": \"<string>\",\n          \"address_line_3\": \"<string>\",\n          \"admin_area_4\": \"<string>\",\n          \"admin_area_3\": \"<string>\",\n          \"admin_area_2\": \"<string>\",\n          \"admin_area_1\": \"<string>\",\n          \"postal_code\": \"<string>\",\n          \"address_details\": {\n            \"street_number\": \"<string>\",\n            \"street_name\": \"<string>\",\n            \"street_type\": \"<string>\",\n            \"delivery_service\": \"<string>\",\n            \"building_name\": \"<string>\",\n            \"sub_building\": \"<string>\"\n          }\n        }\n      },\n      \"permit_multiple_payment_tokens\": false,\n      \"usage_type\": \"U\",\n      \"customer_type\": \"EN7JSJ7BPS\",\n      \"experience_context\": {\n        \"brand_name\": \"o?9nE\",\n        \"locale\": \"jy-Vxnh-70\",\n        \"return_url\": \"<uri>\",\n        \"cancel_url\": \"<uri>\",\n        \"shipping_preference\": \"GET_FROM_FILE\",\n        \"vault_instruction\": \"ON_CREATE_PAYMENT_TOKENS\"\n      }\n    },\n    \"venmo\": {\n      \"description\": \"AY\",\n      \"shipping\": {\n        \"name\": {\n          \"prefix\": \"<string>\",\n          \"given_name\": \"<string>\",\n          \"surname\": \"<string>\",\n          \"middle_name\": \"<string>\",\n          \"suffix\": \"<string>\",\n          \"alternate_full_name\": \"<string>\",\n          \"full_name\": \"<string>\"\n        },\n        \"type\": \"SHIPPING\",\n        \"address\": {\n          \"country_code\": \"BJ\",\n          \"address_line_1\": \"<string>\",\n          \"address_line_2\": \"<string>\",\n          \"address_line_3\": \"<string>\",\n          \"admin_area_4\": \"<string>\",\n          \"admin_area_3\": \"<string>\",\n          \"admin_area_2\": \"<string>\",\n          \"admin_area_1\": \"<string>\",\n          \"postal_code\": \"<string>\",\n          \"address_details\": {\n            \"street_number\": \"<string>\",\n            \"street_name\": \"<string>\",\n            \"street_type\": \"<string>\",\n            \"delivery_service\": \"<string>\",\n            \"building_name\": \"<string>\",\n            \"sub_building\": \"<string>\"\n          }\n        }\n      },\n      \"permit_multiple_payment_tokens\": false,\n      \"usage_type\": \"35ZO\",\n      \"customer_type\": \"N8CP0\",\n      \"experience_context\": {\n        \"brand_name\": \" \",\n        \"locale\": \"qj-PS\",\n        \"return_url\": \"<uri>\",\n        \"cancel_url\": \"<uri>\",\n        \"shipping_preference\": \"GET_FROM_FILE\",\n        \"vault_instruction\": \"ON_CREATE_PAYMENT_TOKENS\"\n      }\n    },\n    \"token\": {\n      \"id\": \"F6OXTEV\",\n      \"type\": \"BILLING_AGREEMENT\",\n      \"attributes\": {}\n    }\n  },\n  \"customer\": {\n    \"id\": \"KvRzz\"\n  },\n  \"metadata\": {}\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/v3/vault/setup-tokens",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v3",
+                            "vault",
+                            "setup-tokens"
+                          ]
+                        }
+                      },
+                      "status": "Internal Server Error",
+                      "code": 500,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"name\": \"<string>\",\n  \"message\": \"<string>\",\n  \"debug_id\": \"<string>\",\n  \"information_link\": \"<string>\",\n  \"details\": [\n    {\n      \"issue\": \"<string>\",\n      \"field\": \"<string>\",\n      \"value\": \"<string>\",\n      \"location\": \"body\",\n      \"description\": \"<string>\"\n    },\n    {\n      \"issue\": \"<string>\",\n      \"field\": \"<string>\",\n      \"value\": \"<string>\",\n      \"location\": \"body\",\n      \"description\": \"<string>\"\n    }\n  ],\n  \"links\": [\n    {\n      \"href\": \"<string>\",\n      \"rel\": \"<string>\",\n      \"method\": \"PATCH\"\n    },\n    {\n      \"href\": \"<string>\",\n      \"rel\": \"<string>\",\n      \"method\": \"POST\"\n    }\n  ]\n}",
+                      "createdAt": "2026-07-28T02:34:45.000Z",
+                      "updatedAt": "2026-07-28T02:34:45.000Z",
+                      "uid": "35240-67d56a4f-8d8b-4eba-bb0f-89fa1747139d"
+                    }
+                  ],
+                  "createdAt": "2026-07-28T02:34:45.000Z",
+                  "updatedAt": "2026-07-28T02:34:45.000Z",
+                  "uid": "35240-be005169-a04d-4deb-a4e3-c25f3faab76f"
+                }
+              ],
+              "id": "71b22e9a-04b1-46e1-9f28-f224d96045d9",
+              "createdAt": "2026-07-28T02:34:45.000Z",
+              "updatedAt": "2026-07-28T02:34:45.000Z",
+              "uid": "35240-71b22e9a-04b1-46e1-9f28-f224d96045d9"
+            }
+          ],
+          "id": "368aa135-e268-4d9e-a99d-aef6f29de1eb",
+          "createdAt": "2026-07-28T02:34:45.000Z",
+          "updatedAt": "2026-07-28T02:34:45.000Z",
+          "uid": "35240-368aa135-e268-4d9e-a99d-aef6f29de1eb"
+        }
+      ],
+      "id": "7b446932-d143-4d92-bec2-1f1858112ae6",
+      "createdAt": "2026-07-28T02:34:45.000Z",
+      "updatedAt": "2026-07-28T02:34:45.000Z",
+      "uid": "35240-7b446932-d143-4d92-bec2-1f1858112ae6"
+    }
+  ],
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://api-m.sandbox.paypal.com"
+    }
+  ]
+}

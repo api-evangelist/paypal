@@ -1,0 +1,426 @@
+{
+  "info": {
+    "_postman_id": "cb614a2a-6e03-4559-8887-2e8e386d9328",
+    "name": "Paypal Subscriptions Authorizations Trackers-Batch API",
+    "description": "You can use billing plans and subscriptions to create subscriptions that process recurring PayPal payments for physical or digital goods, or services. A plan includes pricing and billing cycle information that defines the amount and frequency of charge for a subscription. You can also define a fixed plan, such as a $5 basic plan or a volume- or graduated-based plan with pricing tiers based on the quantity purchased. For more information, see <a href=\"/docs/subscriptions/\">Subscriptions Overview</a>.",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-07-28T02:35:21.000Z",
+    "updatedAt": "2026-07-28T02:35:21.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-cb614a2a-6e03-4559-8887-2e8e386d9328"
+  },
+  "item": [
+    {
+      "name": "v1",
+      "item": [
+        {
+          "name": "shipping",
+          "item": [
+            {
+              "name": "trackers-batch",
+              "item": [
+                {
+                  "name": "Add tracking information for multiple PayPal transactions",
+                  "id": "c32b9831-87b3-4746-90a6-458a5b4566cc",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "auth": {
+                      "type": "oauth2",
+                      "oauth2": [
+                        {
+                          "key": "scope",
+                          "value": "https://uri.paypal.com/services/subscriptions",
+                          "type": "string"
+                        },
+                        {
+                          "key": "accessTokenUrl",
+                          "value": "/v1/oauth2/token",
+                          "type": "string"
+                        },
+                        {
+                          "key": "grant_type",
+                          "value": "client_credentials",
+                          "type": "string"
+                        }
+                      ]
+                    },
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"trackers\": [\n    {\n      \"transaction_id\": \"XANaxio8r\",\n      \"status\": \"PICKUP_FAILED\",\n      \"tracking_number\": \"<string>\",\n      \"tracking_number_type\": \"CARRIER_PROVIDED\",\n      \"shipment_date\": \"1129-12-01\",\n      \"carrier\": \"GEIS\",\n      \"carrier_name_other\": \"<string>\",\n      \"postage_payment_id\": \"<string>\",\n      \"notify_buyer\": false,\n      \"quantity\": \"<integer>\",\n      \"tracking_number_validated\": \"<boolean>\",\n      \"last_updated_time\": \"6831-10-31T20:18:60z\",\n      \"shipment_direction\": \"RETURN\",\n      \"shipment_uploader\": \"MERCHANT\",\n      \"account_id\": \"VTA8EPZEY2GGZ\",\n      \"tracking_url\": \"<uri>\",\n      \"links\": [\n        {\n          \"href\": \"<string>\",\n          \"rel\": \"<string>\",\n          \"method\": \"PATCH\"\n        },\n        {\n          \"href\": \"<string>\",\n          \"rel\": \"<string>\",\n          \"method\": \"DELETE\"\n        }\n      ]\n    }\n  ],\n  \"links\": [\n    {\n      \"href\": \"<string>\",\n      \"rel\": \"<string>\",\n      \"method\": \"PUT\"\n    },\n    {\n      \"href\": \"<string>\",\n      \"rel\": \"<string>\",\n      \"method\": \"PATCH\"\n    }\n  ]\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/v1/shipping/trackers-batch",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "v1",
+                        "shipping",
+                        "trackers-batch"
+                      ]
+                    },
+                    "description": "Adds tracking information, with or without tracking numbers, for multiple PayPal transactions. Accepts up to 20 tracking IDs. For more information, see <a href=\"/docs/tracking/integrate/#add-tracking-information-with-tracking-numbers\">Add tracking information with tracking numbers</a> and <a href=\"/docs/tracking/integrate/#add-tracking-information-without-tracking-numbers\">Add tracking information without tracking numbers</a>."
+                  },
+                  "response": [
+                    {
+                      "id": "26f83a87-c79b-4af7-9c74-d8c8df7858cf",
+                      "name": "A successful request returns the HTTP 200 OK status code and a JSON response body that shows tracking information.",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: oauth2",
+                            "key": "Authorization",
+                            "value": "<token>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"trackers\": [\n    {\n      \"transaction_id\": \"XANaxio8r\",\n      \"status\": \"PICKUP_FAILED\",\n      \"tracking_number\": \"<string>\",\n      \"tracking_number_type\": \"CARRIER_PROVIDED\",\n      \"shipment_date\": \"1129-12-01\",\n      \"carrier\": \"GEIS\",\n      \"carrier_name_other\": \"<string>\",\n      \"postage_payment_id\": \"<string>\",\n      \"notify_buyer\": false,\n      \"quantity\": \"<integer>\",\n      \"tracking_number_validated\": \"<boolean>\",\n      \"last_updated_time\": \"6831-10-31T20:18:60z\",\n      \"shipment_direction\": \"RETURN\",\n      \"shipment_uploader\": \"MERCHANT\",\n      \"account_id\": \"VTA8EPZEY2GGZ\",\n      \"tracking_url\": \"<uri>\",\n      \"links\": [\n        {\n          \"href\": \"<string>\",\n          \"rel\": \"<string>\",\n          \"method\": \"PATCH\"\n        },\n        {\n          \"href\": \"<string>\",\n          \"rel\": \"<string>\",\n          \"method\": \"DELETE\"\n        }\n      ]\n    }\n  ],\n  \"links\": [\n    {\n      \"href\": \"<string>\",\n      \"rel\": \"<string>\",\n      \"method\": \"PUT\"\n    },\n    {\n      \"href\": \"<string>\",\n      \"rel\": \"<string>\",\n      \"method\": \"PATCH\"\n    }\n  ]\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/v1/shipping/trackers-batch",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v1",
+                            "shipping",
+                            "trackers-batch"
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"tracker_identifiers\": [\n    {\n      \"transaction_id\": \"jA\",\n      \"tracking_number\": \"<string>\",\n      \"links\": [\n        {\n          \"href\": \"<string>\",\n          \"rel\": \"<string>\",\n          \"method\": \"CONNECT\"\n        },\n        {\n          \"href\": \"<string>\",\n          \"rel\": \"<string>\",\n          \"method\": \"CONNECT\"\n        }\n      ]\n    }\n  ],\n  \"errors\": [\n    {\n      \"name\": \"<string>\",\n      \"message\": \"<string>\",\n      \"debug_id\": \"<string>\",\n      \"information_link\": \"<string>\",\n      \"details\": [\n        {\n          \"issue\": \"<string>\",\n          \"field\": \"<string>\",\n          \"value\": \"<string>\",\n          \"location\": \"body\",\n          \"description\": \"<string>\"\n        },\n        {\n          \"issue\": \"<string>\",\n          \"field\": \"<string>\",\n          \"value\": \"<string>\",\n          \"location\": \"body\",\n          \"description\": \"<string>\"\n        }\n      ],\n      \"links\": [\n        {\n          \"href\": \"<string>\",\n          \"rel\": \"<string>\",\n          \"method\": \"GET\"\n        },\n        {\n          \"href\": \"<string>\",\n          \"rel\": \"<string>\",\n          \"method\": \"PUT\"\n        }\n      ]\n    }\n  ],\n  \"links\": [\n    {\n      \"href\": \"<string>\",\n      \"rel\": \"<string>\",\n      \"method\": \"PUT\"\n    },\n    {\n      \"href\": \"<string>\",\n      \"rel\": \"<string>\",\n      \"method\": \"DELETE\"\n    }\n  ]\n}",
+                      "createdAt": "2026-07-28T02:35:21.000Z",
+                      "updatedAt": "2026-07-28T02:35:21.000Z",
+                      "uid": "35240-26f83a87-c79b-4af7-9c74-d8c8df7858cf"
+                    },
+                    {
+                      "id": "2767f8b2-1026-4e6b-82ea-f7b5455ecdb2",
+                      "name": "The request is not well-formed, syntactically incorrect, or violates schema.",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: oauth2",
+                            "key": "Authorization",
+                            "value": "<token>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"trackers\": [\n    {\n      \"transaction_id\": \"XANaxio8r\",\n      \"status\": \"PICKUP_FAILED\",\n      \"tracking_number\": \"<string>\",\n      \"tracking_number_type\": \"CARRIER_PROVIDED\",\n      \"shipment_date\": \"1129-12-01\",\n      \"carrier\": \"GEIS\",\n      \"carrier_name_other\": \"<string>\",\n      \"postage_payment_id\": \"<string>\",\n      \"notify_buyer\": false,\n      \"quantity\": \"<integer>\",\n      \"tracking_number_validated\": \"<boolean>\",\n      \"last_updated_time\": \"6831-10-31T20:18:60z\",\n      \"shipment_direction\": \"RETURN\",\n      \"shipment_uploader\": \"MERCHANT\",\n      \"account_id\": \"VTA8EPZEY2GGZ\",\n      \"tracking_url\": \"<uri>\",\n      \"links\": [\n        {\n          \"href\": \"<string>\",\n          \"rel\": \"<string>\",\n          \"method\": \"PATCH\"\n        },\n        {\n          \"href\": \"<string>\",\n          \"rel\": \"<string>\",\n          \"method\": \"DELETE\"\n        }\n      ]\n    }\n  ],\n  \"links\": [\n    {\n      \"href\": \"<string>\",\n      \"rel\": \"<string>\",\n      \"method\": \"PUT\"\n    },\n    {\n      \"href\": \"<string>\",\n      \"rel\": \"<string>\",\n      \"method\": \"PATCH\"\n    }\n  ]\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/v1/shipping/trackers-batch",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v1",
+                            "shipping",
+                            "trackers-batch"
+                          ]
+                        }
+                      },
+                      "status": "Bad Request",
+                      "code": 400,
+                      "_postman_previewlanguage": "text",
+                      "header": [],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": null,
+                      "createdAt": "2026-07-28T02:35:21.000Z",
+                      "updatedAt": "2026-07-28T02:35:21.000Z",
+                      "uid": "35240-2767f8b2-1026-4e6b-82ea-f7b5455ecdb2"
+                    },
+                    {
+                      "id": "d6941c58-72f5-4ee8-8e16-76157ebae989",
+                      "name": "The authorization failed due to insufficient permissions.",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: oauth2",
+                            "key": "Authorization",
+                            "value": "<token>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"trackers\": [\n    {\n      \"transaction_id\": \"XANaxio8r\",\n      \"status\": \"PICKUP_FAILED\",\n      \"tracking_number\": \"<string>\",\n      \"tracking_number_type\": \"CARRIER_PROVIDED\",\n      \"shipment_date\": \"1129-12-01\",\n      \"carrier\": \"GEIS\",\n      \"carrier_name_other\": \"<string>\",\n      \"postage_payment_id\": \"<string>\",\n      \"notify_buyer\": false,\n      \"quantity\": \"<integer>\",\n      \"tracking_number_validated\": \"<boolean>\",\n      \"last_updated_time\": \"6831-10-31T20:18:60z\",\n      \"shipment_direction\": \"RETURN\",\n      \"shipment_uploader\": \"MERCHANT\",\n      \"account_id\": \"VTA8EPZEY2GGZ\",\n      \"tracking_url\": \"<uri>\",\n      \"links\": [\n        {\n          \"href\": \"<string>\",\n          \"rel\": \"<string>\",\n          \"method\": \"PATCH\"\n        },\n        {\n          \"href\": \"<string>\",\n          \"rel\": \"<string>\",\n          \"method\": \"DELETE\"\n        }\n      ]\n    }\n  ],\n  \"links\": [\n    {\n      \"href\": \"<string>\",\n      \"rel\": \"<string>\",\n      \"method\": \"PUT\"\n    },\n    {\n      \"href\": \"<string>\",\n      \"rel\": \"<string>\",\n      \"method\": \"PATCH\"\n    }\n  ]\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/v1/shipping/trackers-batch",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v1",
+                            "shipping",
+                            "trackers-batch"
+                          ]
+                        }
+                      },
+                      "status": "Forbidden",
+                      "code": 403,
+                      "_postman_previewlanguage": "text",
+                      "header": [],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": null,
+                      "createdAt": "2026-07-28T02:35:21.000Z",
+                      "updatedAt": "2026-07-28T02:35:21.000Z",
+                      "uid": "35240-d6941c58-72f5-4ee8-8e16-76157ebae989"
+                    },
+                    {
+                      "id": "1748cf82-238e-4d13-8cbe-7fda7dc16957",
+                      "name": "The specified resource does not exist.",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: oauth2",
+                            "key": "Authorization",
+                            "value": "<token>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"trackers\": [\n    {\n      \"transaction_id\": \"XANaxio8r\",\n      \"status\": \"PICKUP_FAILED\",\n      \"tracking_number\": \"<string>\",\n      \"tracking_number_type\": \"CARRIER_PROVIDED\",\n      \"shipment_date\": \"1129-12-01\",\n      \"carrier\": \"GEIS\",\n      \"carrier_name_other\": \"<string>\",\n      \"postage_payment_id\": \"<string>\",\n      \"notify_buyer\": false,\n      \"quantity\": \"<integer>\",\n      \"tracking_number_validated\": \"<boolean>\",\n      \"last_updated_time\": \"6831-10-31T20:18:60z\",\n      \"shipment_direction\": \"RETURN\",\n      \"shipment_uploader\": \"MERCHANT\",\n      \"account_id\": \"VTA8EPZEY2GGZ\",\n      \"tracking_url\": \"<uri>\",\n      \"links\": [\n        {\n          \"href\": \"<string>\",\n          \"rel\": \"<string>\",\n          \"method\": \"PATCH\"\n        },\n        {\n          \"href\": \"<string>\",\n          \"rel\": \"<string>\",\n          \"method\": \"DELETE\"\n        }\n      ]\n    }\n  ],\n  \"links\": [\n    {\n      \"href\": \"<string>\",\n      \"rel\": \"<string>\",\n      \"method\": \"PUT\"\n    },\n    {\n      \"href\": \"<string>\",\n      \"rel\": \"<string>\",\n      \"method\": \"PATCH\"\n    }\n  ]\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/v1/shipping/trackers-batch",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v1",
+                            "shipping",
+                            "trackers-batch"
+                          ]
+                        }
+                      },
+                      "status": "Not Found",
+                      "code": 404,
+                      "_postman_previewlanguage": "text",
+                      "header": [],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": null,
+                      "createdAt": "2026-07-28T02:35:21.000Z",
+                      "updatedAt": "2026-07-28T02:35:21.000Z",
+                      "uid": "35240-1748cf82-238e-4d13-8cbe-7fda7dc16957"
+                    },
+                    {
+                      "id": "f6fa8c21-1112-4b47-8110-60765e21dda4",
+                      "name": "An internal server error has occurred.",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: oauth2",
+                            "key": "Authorization",
+                            "value": "<token>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"trackers\": [\n    {\n      \"transaction_id\": \"XANaxio8r\",\n      \"status\": \"PICKUP_FAILED\",\n      \"tracking_number\": \"<string>\",\n      \"tracking_number_type\": \"CARRIER_PROVIDED\",\n      \"shipment_date\": \"1129-12-01\",\n      \"carrier\": \"GEIS\",\n      \"carrier_name_other\": \"<string>\",\n      \"postage_payment_id\": \"<string>\",\n      \"notify_buyer\": false,\n      \"quantity\": \"<integer>\",\n      \"tracking_number_validated\": \"<boolean>\",\n      \"last_updated_time\": \"6831-10-31T20:18:60z\",\n      \"shipment_direction\": \"RETURN\",\n      \"shipment_uploader\": \"MERCHANT\",\n      \"account_id\": \"VTA8EPZEY2GGZ\",\n      \"tracking_url\": \"<uri>\",\n      \"links\": [\n        {\n          \"href\": \"<string>\",\n          \"rel\": \"<string>\",\n          \"method\": \"PATCH\"\n        },\n        {\n          \"href\": \"<string>\",\n          \"rel\": \"<string>\",\n          \"method\": \"DELETE\"\n        }\n      ]\n    }\n  ],\n  \"links\": [\n    {\n      \"href\": \"<string>\",\n      \"rel\": \"<string>\",\n      \"method\": \"PUT\"\n    },\n    {\n      \"href\": \"<string>\",\n      \"rel\": \"<string>\",\n      \"method\": \"PATCH\"\n    }\n  ]\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/v1/shipping/trackers-batch",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v1",
+                            "shipping",
+                            "trackers-batch"
+                          ]
+                        }
+                      },
+                      "status": "Internal Server Error",
+                      "code": 500,
+                      "_postman_previewlanguage": "text",
+                      "header": [],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": null,
+                      "createdAt": "2026-07-28T02:35:21.000Z",
+                      "updatedAt": "2026-07-28T02:35:21.000Z",
+                      "uid": "35240-f6fa8c21-1112-4b47-8110-60765e21dda4"
+                    },
+                    {
+                      "id": "77e7fae5-ceb4-4caa-a44f-5afbe96d5201",
+                      "name": "The error response.",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: oauth2",
+                            "key": "Authorization",
+                            "value": "<token>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"trackers\": [\n    {\n      \"transaction_id\": \"XANaxio8r\",\n      \"status\": \"PICKUP_FAILED\",\n      \"tracking_number\": \"<string>\",\n      \"tracking_number_type\": \"CARRIER_PROVIDED\",\n      \"shipment_date\": \"1129-12-01\",\n      \"carrier\": \"GEIS\",\n      \"carrier_name_other\": \"<string>\",\n      \"postage_payment_id\": \"<string>\",\n      \"notify_buyer\": false,\n      \"quantity\": \"<integer>\",\n      \"tracking_number_validated\": \"<boolean>\",\n      \"last_updated_time\": \"6831-10-31T20:18:60z\",\n      \"shipment_direction\": \"RETURN\",\n      \"shipment_uploader\": \"MERCHANT\",\n      \"account_id\": \"VTA8EPZEY2GGZ\",\n      \"tracking_url\": \"<uri>\",\n      \"links\": [\n        {\n          \"href\": \"<string>\",\n          \"rel\": \"<string>\",\n          \"method\": \"PATCH\"\n        },\n        {\n          \"href\": \"<string>\",\n          \"rel\": \"<string>\",\n          \"method\": \"DELETE\"\n        }\n      ]\n    }\n  ],\n  \"links\": [\n    {\n      \"href\": \"<string>\",\n      \"rel\": \"<string>\",\n      \"method\": \"PUT\"\n    },\n    {\n      \"href\": \"<string>\",\n      \"rel\": \"<string>\",\n      \"method\": \"PATCH\"\n    }\n  ]\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/v1/shipping/trackers-batch",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v1",
+                            "shipping",
+                            "trackers-batch"
+                          ]
+                        }
+                      },
+                      "status": "Internal Server Error",
+                      "code": 500,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"name\": \"<string>\",\n  \"message\": \"<string>\",\n  \"debug_id\": \"<string>\",\n  \"information_link\": \"<string>\",\n  \"details\": [\n    {\n      \"issue\": \"<string>\",\n      \"field\": \"<string>\",\n      \"value\": \"<string>\",\n      \"location\": \"body\",\n      \"description\": \"<string>\"\n    },\n    {\n      \"issue\": \"<string>\",\n      \"field\": \"<string>\",\n      \"value\": \"<string>\",\n      \"location\": \"body\",\n      \"description\": \"<string>\"\n    }\n  ],\n  \"links\": [\n    {\n      \"href\": \"<string>\",\n      \"rel\": \"<string>\",\n      \"method\": \"HEAD\"\n    },\n    {\n      \"href\": \"<string>\",\n      \"rel\": \"<string>\",\n      \"method\": \"HEAD\"\n    }\n  ]\n}",
+                      "createdAt": "2026-07-28T02:35:21.000Z",
+                      "updatedAt": "2026-07-28T02:35:21.000Z",
+                      "uid": "35240-77e7fae5-ceb4-4caa-a44f-5afbe96d5201"
+                    }
+                  ],
+                  "createdAt": "2026-07-28T02:35:21.000Z",
+                  "updatedAt": "2026-07-28T02:35:21.000Z",
+                  "uid": "35240-c32b9831-87b3-4746-90a6-458a5b4566cc"
+                }
+              ],
+              "id": "9288fb2d-81ac-4237-a276-8a7bf871774b",
+              "createdAt": "2026-07-28T02:35:21.000Z",
+              "updatedAt": "2026-07-28T02:35:21.000Z",
+              "uid": "35240-9288fb2d-81ac-4237-a276-8a7bf871774b"
+            }
+          ],
+          "id": "b89895b5-52e9-43fb-ad6d-d510424c1a28",
+          "createdAt": "2026-07-28T02:35:21.000Z",
+          "updatedAt": "2026-07-28T02:35:21.000Z",
+          "uid": "35240-b89895b5-52e9-43fb-ad6d-d510424c1a28"
+        }
+      ],
+      "id": "25ee297b-b770-4ad1-be76-f0342d5eeb78",
+      "createdAt": "2026-07-28T02:35:21.000Z",
+      "updatedAt": "2026-07-28T02:35:21.000Z",
+      "uid": "35240-25ee297b-b770-4ad1-be76-f0342d5eeb78"
+    }
+  ],
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://api-m.sandbox.paypal.com"
+    }
+  ]
+}

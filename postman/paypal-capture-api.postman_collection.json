@@ -1,0 +1,768 @@
+{
+  "info": {
+    "_postman_id": "ce0bcefc-3cc9-471a-b508-3f64c82d055f",
+    "name": "Paypal Subscriptions Authorizations Capture API",
+    "description": "You can use billing plans and subscriptions to create subscriptions that process recurring PayPal payments for physical or digital goods, or services. A plan includes pricing and billing cycle information that defines the amount and frequency of charge for a subscription. You can also define a fixed plan, such as a $5 basic plan or a volume- or graduated-based plan with pricing tiers based on the quantity purchased. For more information, see <a href=\"/docs/subscriptions/\">Subscriptions Overview</a>.",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-07-28T02:33:17.000Z",
+    "updatedAt": "2026-07-28T02:33:17.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-ce0bcefc-3cc9-471a-b508-3f64c82d055f"
+  },
+  "item": [
+    {
+      "name": "v1",
+      "item": [
+        {
+          "name": "billing",
+          "item": [
+            {
+              "name": "subscriptions",
+              "item": [
+                {
+                  "name": "{id}",
+                  "item": [
+                    {
+                      "name": "capture",
+                      "item": [
+                        {
+                          "name": "Capture authorized payment on subscription",
+                          "id": "6dce9142-1252-42e4-aecd-e2e2e8a829f9",
+                          "protocolProfileBehavior": {
+                            "disableBodyPruning": true
+                          },
+                          "request": {
+                            "auth": {
+                              "type": "oauth2",
+                              "oauth2": [
+                                {
+                                  "key": "scope",
+                                  "value": "https://uri.paypal.com/services/subscriptions",
+                                  "type": "string"
+                                },
+                                {
+                                  "key": "accessTokenUrl",
+                                  "value": "/v1/oauth2/token",
+                                  "type": "string"
+                                },
+                                {
+                                  "key": "grant_type",
+                                  "value": "client_credentials",
+                                  "type": "string"
+                                }
+                              ]
+                            },
+                            "method": "POST",
+                            "header": [
+                              {
+                                "description": "The server stores keys for 72 hours.",
+                                "key": "PayPal-Request-Id",
+                                "value": "<string>"
+                              },
+                              {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                              },
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "{\n  \"note\": \"<string>\",\n  \"capture_type\": \"OUTSTANDING_BALANCE\",\n  \"amount\": {\n    \"currency_code\": \"<string>\",\n    \"value\": \"-.47962876\"\n  }\n}",
+                              "options": {
+                                "raw": {
+                                  "headerFamily": "json",
+                                  "language": "json"
+                                }
+                              }
+                            },
+                            "url": {
+                              "raw": "{{baseUrl}}/v1/billing/subscriptions/:id/capture",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "v1",
+                                "billing",
+                                "subscriptions",
+                                ":id",
+                                "capture"
+                              ],
+                              "variable": [
+                                {
+                                  "id": "886e9169-2e37-4cc5-b111-bf5de583a395",
+                                  "key": "id",
+                                  "value": "<string>",
+                                  "description": "(Required) The ID of the subscription."
+                                }
+                              ]
+                            },
+                            "description": "Captures an authorized payment from the subscriber on the subscription."
+                          },
+                          "response": [
+                            {
+                              "id": "4dff32ad-f305-4853-b616-5b9158fe20e5",
+                              "name": "A successful request returns the HTTP `200 OK` status code and a JSON response body that shows subscription details.",
+                              "originalRequest": {
+                                "method": "POST",
+                                "header": [
+                                  {
+                                    "description": "The server stores keys for 72 hours.",
+                                    "key": "PayPal-Request-Id",
+                                    "value": "<string>"
+                                  },
+                                  {
+                                    "key": "Content-Type",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: oauth2",
+                                    "key": "Authorization",
+                                    "value": "<token>"
+                                  }
+                                ],
+                                "body": {
+                                  "mode": "raw",
+                                  "raw": "{\n  \"note\": \"<string>\",\n  \"capture_type\": \"OUTSTANDING_BALANCE\",\n  \"amount\": {\n    \"currency_code\": \"<string>\",\n    \"value\": \"-.47962876\"\n  }\n}",
+                                  "options": {
+                                    "raw": {
+                                      "headerFamily": "json",
+                                      "language": "json"
+                                    }
+                                  }
+                                },
+                                "url": {
+                                  "raw": "{{baseUrl}}/v1/billing/subscriptions/:id/capture",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "v1",
+                                    "billing",
+                                    "subscriptions",
+                                    ":id",
+                                    "capture"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "id"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "OK",
+                              "code": 200,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "{\n  \"id\": \"<string>\",\n  \"amount_with_breakdown\": {\n    \"gross_amount\": {\n      \"currency_code\": \"<string>\",\n      \"value\": \".3854550\"\n    },\n    \"total_item_amount\": {\n      \"currency_code\": \"<string>\",\n      \"value\": \".432843092\"\n    },\n    \"fee_amount\": {\n      \"currency_code\": \"<string>\",\n      \"value\": \".05649686\"\n    },\n    \"shipping_amount\": {\n      \"currency_code\": \"<string>\",\n      \"value\": \"200.07\"\n    },\n    \"tax_amount\": {\n      \"currency_code\": \"<string>\",\n      \"value\": \"3599062.787876326\"\n    },\n    \"net_amount\": {\n      \"currency_code\": \"<string>\",\n      \"value\": \"68583402557.694693243\"\n    }\n  },\n  \"time\": \"9618-06-30,22:04:60.677537+67:35\",\n  \"status\": \"PARTIALLY_REFUNDED\",\n  \"status_details\": {\n    \"reason\": \"UNILATERAL\"\n  },\n  \"payer_name\": {\n    \"prefix\": \"<string>\",\n    \"given_name\": \"<string>\",\n    \"surname\": \"<string>\",\n    \"middle_name\": \"<string>\",\n    \"suffix\": \"<string>\",\n    \"alternate_full_name\": \"<string>\",\n    \"full_name\": \"<string>\"\n  },\n  \"payer_email\": \"]dq0#%js@vQi2\"\n}",
+                              "createdAt": "2026-07-28T02:33:17.000Z",
+                              "updatedAt": "2026-07-28T02:33:17.000Z",
+                              "uid": "35240-4dff32ad-f305-4853-b616-5b9158fe20e5"
+                            },
+                            {
+                              "id": "b0506f3e-f083-4218-b3b4-99676a2b24fa",
+                              "name": "Request Accepted.",
+                              "originalRequest": {
+                                "method": "POST",
+                                "header": [
+                                  {
+                                    "description": "The server stores keys for 72 hours.",
+                                    "key": "PayPal-Request-Id",
+                                    "value": "<string>"
+                                  },
+                                  {
+                                    "key": "Content-Type",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: oauth2",
+                                    "key": "Authorization",
+                                    "value": "<token>"
+                                  }
+                                ],
+                                "body": {
+                                  "mode": "raw",
+                                  "raw": "{\n  \"note\": \"<string>\",\n  \"capture_type\": \"OUTSTANDING_BALANCE\",\n  \"amount\": {\n    \"currency_code\": \"<string>\",\n    \"value\": \"-.47962876\"\n  }\n}",
+                                  "options": {
+                                    "raw": {
+                                      "headerFamily": "json",
+                                      "language": "json"
+                                    }
+                                  }
+                                },
+                                "url": {
+                                  "raw": "{{baseUrl}}/v1/billing/subscriptions/:id/capture",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "v1",
+                                    "billing",
+                                    "subscriptions",
+                                    ":id",
+                                    "capture"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "id"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "Accepted",
+                              "code": 202,
+                              "_postman_previewlanguage": "text",
+                              "header": [],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": null,
+                              "createdAt": "2026-07-28T02:33:17.000Z",
+                              "updatedAt": "2026-07-28T02:33:17.000Z",
+                              "uid": "35240-b0506f3e-f083-4218-b3b4-99676a2b24fa"
+                            },
+                            {
+                              "id": "3fb99b2c-fe7f-423e-b670-a4b94b6ed288",
+                              "name": "Bad Request. Request is not well-formed, syntactically incorrect, or violates schema.",
+                              "originalRequest": {
+                                "method": "POST",
+                                "header": [
+                                  {
+                                    "description": "The server stores keys for 72 hours.",
+                                    "key": "PayPal-Request-Id",
+                                    "value": "<string>"
+                                  },
+                                  {
+                                    "key": "Content-Type",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: oauth2",
+                                    "key": "Authorization",
+                                    "value": "<token>"
+                                  }
+                                ],
+                                "body": {
+                                  "mode": "raw",
+                                  "raw": "{\n  \"note\": \"<string>\",\n  \"capture_type\": \"OUTSTANDING_BALANCE\",\n  \"amount\": {\n    \"currency_code\": \"<string>\",\n    \"value\": \"-.47962876\"\n  }\n}",
+                                  "options": {
+                                    "raw": {
+                                      "headerFamily": "json",
+                                      "language": "json"
+                                    }
+                                  }
+                                },
+                                "url": {
+                                  "raw": "{{baseUrl}}/v1/billing/subscriptions/:id/capture",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "v1",
+                                    "billing",
+                                    "subscriptions",
+                                    ":id",
+                                    "capture"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "id"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "Bad Request",
+                              "code": 400,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "{\n  \"name\": \"INVALID_REQUEST\",\n  \"message\": \"Request is not well-formed, syntactically incorrect, or violates schema.\",\n  \"details\": [\n    {\n      \"issue\": \"<string>\",\n      \"field\": \"<string>\",\n      \"value\": \"<string>\",\n      \"location\": \"body\",\n      \"description\": \"<string>\"\n    },\n    {\n      \"issue\": \"<string>\",\n      \"field\": \"<string>\",\n      \"value\": \"<string>\",\n      \"location\": \"body\",\n      \"description\": \"<string>\"\n    }\n  ],\n  \"debug_id\": \"<string>\",\n  \"links\": [\n    {\n      \"href\": \"RNOP\",\n      \"rel\": \"4p{TMg4ah,\",\n      \"method\": \"GET\"\n    },\n    {\n      \"href\": \"`GGh\",\n      \"rel\": \"xO\",\n      \"method\": \"GET\"\n    },\n    {\n      \"href\": \"]\",\n      \"rel\": \"l@[i~c0\",\n      \"method\": \"GET\"\n    },\n    {\n      \"href\": \"Uy1k\",\n      \"rel\": \"&\",\n      \"method\": \"GET\"\n    },\n    {\n      \"href\": \"%&X5\",\n      \"rel\": \"_VuyX\",\n      \"method\": \"DELETE\"\n    },\n    {\n      \"href\": \"\",\n      \"rel\": \"n\",\n      \"method\": \"PATCH\"\n    },\n    {\n      \"href\": \"u2!n0\",\n      \"rel\": \"\",\n      \"method\": \"POST\"\n    },\n    {\n      \"href\": \"}-U\",\n      \"rel\": \"a~;V(}}>\",\n      \"method\": \"PATCH\"\n    },\n    {\n      \"href\": \"HQ>Pbg\",\n      \"rel\": \",uSZ.D+qq\",\n      \"method\": \"PATCH\"\n    },\n    {\n      \"href\": \"u2l)\",\n      \"rel\": \"}}V\",\n      \"method\": \"PUT\"\n    },\n    {\n      \"href\": \"(^Qt\",\n      \"rel\": \"'(AgsZ\",\n      \"method\": \"GET\"\n    },\n    {\n      \"href\": \"\",\n      \"rel\": \"MA\",\n      \"method\": \"POST\"\n    },\n    {\n      \"href\": \"_ny>`x\",\n      \"rel\": \"I\",\n      \"method\": \"GET\"\n    },\n    {\n      \"href\": \"N1\",\n      \"rel\": \"\",\n      \"method\": \"POST\"\n    },\n    {\n      \"href\": \"9.?dg@M/n9\",\n      \"rel\": \"Ya*B\\\"S\",\n      \"method\": \"PUT\"\n    },\n    {\n      \"href\": \":?Hz@\",\n      \"rel\": \"p4(IvQ\",\n      \"method\": \"PUT\"\n    },\n    {\n      \"href\": \"qE.X\",\n      \"rel\": \"a8S`u5<&\",\n      \"method\": \"POST\"\n    },\n    {\n      \"href\": \"rda32GC,\",\n      \"rel\": \"s\",\n      \"method\": \"DELETE\"\n    },\n    {\n      \"href\": \"FslXs]Zz\",\n      \"rel\": \"YE#\",\n      \"method\": \"PUT\"\n    },\n    {\n      \"href\": \" iF?yur^\",\n      \"rel\": \"(\",\n      \"method\": \"POST\"\n    }\n  ]\n}",
+                              "createdAt": "2026-07-28T02:33:17.000Z",
+                              "updatedAt": "2026-07-28T02:33:17.000Z",
+                              "uid": "35240-3fb99b2c-fe7f-423e-b670-a4b94b6ed288"
+                            },
+                            {
+                              "id": "e8354e3f-8fd6-42e5-a6ef-26ffbbc9a4a0",
+                              "name": "Authentication failed due to missing authorization header, or invalid authentication credentials.",
+                              "originalRequest": {
+                                "method": "POST",
+                                "header": [
+                                  {
+                                    "description": "The server stores keys for 72 hours.",
+                                    "key": "PayPal-Request-Id",
+                                    "value": "<string>"
+                                  },
+                                  {
+                                    "key": "Content-Type",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: oauth2",
+                                    "key": "Authorization",
+                                    "value": "<token>"
+                                  }
+                                ],
+                                "body": {
+                                  "mode": "raw",
+                                  "raw": "{\n  \"note\": \"<string>\",\n  \"capture_type\": \"OUTSTANDING_BALANCE\",\n  \"amount\": {\n    \"currency_code\": \"<string>\",\n    \"value\": \"-.47962876\"\n  }\n}",
+                                  "options": {
+                                    "raw": {
+                                      "headerFamily": "json",
+                                      "language": "json"
+                                    }
+                                  }
+                                },
+                                "url": {
+                                  "raw": "{{baseUrl}}/v1/billing/subscriptions/:id/capture",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "v1",
+                                    "billing",
+                                    "subscriptions",
+                                    ":id",
+                                    "capture"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "id"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "Unauthorized",
+                              "code": 401,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "{\n  \"name\": \"AUTHENTICATION_FAILURE\",\n  \"message\": \"Authentication failed due to missing authorization header, or invalid authentication credentials.\",\n  \"details\": [\n    {\n      \"issue\": \"<string>\",\n      \"field\": \"<string>\",\n      \"value\": \"<string>\",\n      \"location\": \"body\",\n      \"description\": \"<string>\"\n    },\n    {\n      \"issue\": \"<string>\",\n      \"field\": \"<string>\",\n      \"value\": \"<string>\",\n      \"location\": \"body\",\n      \"description\": \"<string>\"\n    }\n  ],\n  \"debug_id\": \"<string>\",\n  \"links\": [\n    {\n      \"href\": \"\",\n      \"rel\": \"$/pY:hl\",\n      \"method\": \"PATCH\"\n    },\n    {\n      \"href\": \"LFZ\",\n      \"rel\": \"\",\n      \"method\": \"DELETE\"\n    },\n    {\n      \"href\": \"XG[M:Wm~t\",\n      \"rel\": \"=\",\n      \"method\": \"PUT\"\n    },\n    {\n      \"href\": \"\",\n      \"rel\": \"W\",\n      \"method\": \"PATCH\"\n    },\n    {\n      \"href\": \"ql]OM\\\\g)\",\n      \"rel\": \"w9n)4d.c\",\n      \"method\": \"PUT\"\n    },\n    {\n      \"href\": \"JHtZBI['!c\",\n      \"rel\": \"\",\n      \"method\": \"PUT\"\n    },\n    {\n      \"href\": \"pp7DA\",\n      \"rel\": \"GvM$NOun9F\",\n      \"method\": \"PUT\"\n    },\n    {\n      \"href\": \")?g\",\n      \"rel\": \"I'vcL8@\",\n      \"method\": \"DELETE\"\n    },\n    {\n      \"href\": \"9)\\\\e@<MG$~\",\n      \"rel\": \"nd.nsW\",\n      \"method\": \"PUT\"\n    },\n    {\n      \"href\": \"FT x0\",\n      \"rel\": \"w\",\n      \"method\": \"PUT\"\n    },\n    {\n      \"href\": \"$M\",\n      \"rel\": \"\",\n      \"method\": \"DELETE\"\n    },\n    {\n      \"href\": \"&l|\",\n      \"rel\": \"253]\",\n      \"method\": \"POST\"\n    },\n    {\n      \"href\": \":d{/6Yz1zu\",\n      \"rel\": \"Cy0r.]\",\n      \"method\": \"POST\"\n    },\n    {\n      \"href\": \"\",\n      \"rel\": \"CM\",\n      \"method\": \"GET\"\n    },\n    {\n      \"href\": \"$i4`hKxG_M\",\n      \"rel\": \"RDOnJI\",\n      \"method\": \"PUT\"\n    },\n    {\n      \"href\": \" F-s\",\n      \"rel\": \",RDC>l1{b|\",\n      \"method\": \"GET\"\n    },\n    {\n      \"href\": \"\\\\Oiku rum\",\n      \"rel\": \"2%Mv4]DkBk\",\n      \"method\": \"GET\"\n    },\n    {\n      \"href\": \"Qzoo\",\n      \"rel\": \"5~\",\n      \"method\": \"PUT\"\n    },\n    {\n      \"href\": \"hc&:\",\n      \"rel\": \"pz\",\n      \"method\": \"PUT\"\n    },\n    {\n      \"href\": \"y(Rm}*A\",\n      \"rel\": \">Z-\",\n      \"method\": \"PUT\"\n    }\n  ]\n}",
+                              "createdAt": "2026-07-28T02:33:17.000Z",
+                              "updatedAt": "2026-07-28T02:33:17.000Z",
+                              "uid": "35240-e8354e3f-8fd6-42e5-a6ef-26ffbbc9a4a0"
+                            },
+                            {
+                              "id": "f6f4b8f2-9e76-4168-869e-59995cc741ca",
+                              "name": "Authorization failed due to insufficient permissions.",
+                              "originalRequest": {
+                                "method": "POST",
+                                "header": [
+                                  {
+                                    "description": "The server stores keys for 72 hours.",
+                                    "key": "PayPal-Request-Id",
+                                    "value": "<string>"
+                                  },
+                                  {
+                                    "key": "Content-Type",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: oauth2",
+                                    "key": "Authorization",
+                                    "value": "<token>"
+                                  }
+                                ],
+                                "body": {
+                                  "mode": "raw",
+                                  "raw": "{\n  \"note\": \"<string>\",\n  \"capture_type\": \"OUTSTANDING_BALANCE\",\n  \"amount\": {\n    \"currency_code\": \"<string>\",\n    \"value\": \"-.47962876\"\n  }\n}",
+                                  "options": {
+                                    "raw": {
+                                      "headerFamily": "json",
+                                      "language": "json"
+                                    }
+                                  }
+                                },
+                                "url": {
+                                  "raw": "{{baseUrl}}/v1/billing/subscriptions/:id/capture",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "v1",
+                                    "billing",
+                                    "subscriptions",
+                                    ":id",
+                                    "capture"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "id"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "Forbidden",
+                              "code": 403,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "{\n  \"name\": \"NOT_AUTHORIZED\",\n  \"message\": \"Authorization failed due to insufficient permissions.\",\n  \"details\": [\n    {\n      \"issue\": \"<string>\",\n      \"field\": \"<string>\",\n      \"value\": \"<string>\",\n      \"location\": \"body\",\n      \"description\": \"<string>\"\n    },\n    {\n      \"issue\": \"<string>\",\n      \"field\": \"<string>\",\n      \"value\": \"<string>\",\n      \"location\": \"body\",\n      \"description\": \"<string>\"\n    }\n  ],\n  \"debug_id\": \"<string>\",\n  \"links\": [\n    {\n      \"href\": \"%k~xz\",\n      \"rel\": \"gdAxzY00W+\",\n      \"method\": \"POST\"\n    },\n    {\n      \"href\": \"R,\",\n      \"rel\": \"zO?dE=3\",\n      \"method\": \"GET\"\n    },\n    {\n      \"href\": \"2ly&~:<6H\",\n      \"rel\": \"00WCNdd[B\",\n      \"method\": \"GET\"\n    },\n    {\n      \"href\": \"J2bh:Cnpw\",\n      \"rel\": \"\",\n      \"method\": \"PATCH\"\n    },\n    {\n      \"href\": \"c\",\n      \"rel\": \"LTE8%:U=*\",\n      \"method\": \"POST\"\n    },\n    {\n      \"href\": \"En\",\n      \"rel\": \"j(3UH\",\n      \"method\": \"PUT\"\n    },\n    {\n      \"href\": \"#.r'\",\n      \"rel\": \")&|\",\n      \"method\": \"PUT\"\n    },\n    {\n      \"href\": \"hc&wheP~d\",\n      \"rel\": \".dh9I\",\n      \"method\": \"PUT\"\n    },\n    {\n      \"href\": \"1{(Mc4QT\",\n      \"rel\": \"|\",\n      \"method\": \"POST\"\n    },\n    {\n      \"href\": \"\",\n      \"rel\": \"`&3@CVk\",\n      \"method\": \"GET\"\n    },\n    {\n      \"href\": \" Jn/$6\\\\01d\",\n      \"rel\": \"\",\n      \"method\": \"PUT\"\n    },\n    {\n      \"href\": \"tb\",\n      \"rel\": \"Gs&3q=h<?x\",\n      \"method\": \"PATCH\"\n    },\n    {\n      \"href\": \"&?o?FF<~\",\n      \"rel\": \"C(nj r_x7B\",\n      \"method\": \"PATCH\"\n    },\n    {\n      \"href\": \"IIGj\",\n      \"rel\": \"DRV\",\n      \"method\": \"PUT\"\n    },\n    {\n      \"href\": \"PkY/K}}U/\",\n      \"rel\": \"N\",\n      \"method\": \"PUT\"\n    },\n    {\n      \"href\": \"}`h'X[U\",\n      \"rel\": \"ij)ahIWf\",\n      \"method\": \"GET\"\n    },\n    {\n      \"href\": \" v3!\",\n      \"rel\": \"?7P/x\",\n      \"method\": \"DELETE\"\n    },\n    {\n      \"href\": \":8!jU-R*8y\",\n      \"rel\": \" =wH\",\n      \"method\": \"PUT\"\n    },\n    {\n      \"href\": \">=,L<R~M&\",\n      \"rel\": \"@Ak9XlqE?N\",\n      \"method\": \"GET\"\n    },\n    {\n      \"href\": \"FNA2'\",\n      \"rel\": \"l|-\",\n      \"method\": \"DELETE\"\n    }\n  ]\n}",
+                              "createdAt": "2026-07-28T02:33:17.000Z",
+                              "updatedAt": "2026-07-28T02:33:17.000Z",
+                              "uid": "35240-f6f4b8f2-9e76-4168-869e-59995cc741ca"
+                            },
+                            {
+                              "id": "9ada314b-4fc9-4c17-9a46-465b83a9f132",
+                              "name": "The specified resource does not exist.",
+                              "originalRequest": {
+                                "method": "POST",
+                                "header": [
+                                  {
+                                    "description": "The server stores keys for 72 hours.",
+                                    "key": "PayPal-Request-Id",
+                                    "value": "<string>"
+                                  },
+                                  {
+                                    "key": "Content-Type",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: oauth2",
+                                    "key": "Authorization",
+                                    "value": "<token>"
+                                  }
+                                ],
+                                "body": {
+                                  "mode": "raw",
+                                  "raw": "{\n  \"note\": \"<string>\",\n  \"capture_type\": \"OUTSTANDING_BALANCE\",\n  \"amount\": {\n    \"currency_code\": \"<string>\",\n    \"value\": \"-.47962876\"\n  }\n}",
+                                  "options": {
+                                    "raw": {
+                                      "headerFamily": "json",
+                                      "language": "json"
+                                    }
+                                  }
+                                },
+                                "url": {
+                                  "raw": "{{baseUrl}}/v1/billing/subscriptions/:id/capture",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "v1",
+                                    "billing",
+                                    "subscriptions",
+                                    ":id",
+                                    "capture"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "id"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "Not Found",
+                              "code": 404,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "{\n  \"name\": \"RESOURCE_NOT_FOUND\",\n  \"message\": \"The specified resource does not exist.\",\n  \"details\": [\n    {\n      \"issue\": \"<string>\",\n      \"field\": \"<string>\",\n      \"value\": \"<string>\",\n      \"location\": \"body\",\n      \"description\": \"<string>\"\n    },\n    {\n      \"issue\": \"<string>\",\n      \"field\": \"<string>\",\n      \"value\": \"<string>\",\n      \"location\": \"body\",\n      \"description\": \"<string>\"\n    }\n  ],\n  \"debug_id\": \"<string>\",\n  \"links\": [\n    {\n      \"href\": \"Y\",\n      \"rel\": \"?z`|2\",\n      \"method\": \"PATCH\"\n    },\n    {\n      \"href\": \"g&XU.\",\n      \"rel\": \"A%6.h`u\\\"\",\n      \"method\": \"POST\"\n    },\n    {\n      \"href\": \"F\",\n      \"rel\": \"WM_8\",\n      \"method\": \"GET\"\n    },\n    {\n      \"href\": \"BW$P(KmBtT\",\n      \"rel\": \"Z)cHN\",\n      \"method\": \"DELETE\"\n    },\n    {\n      \"href\": \"Kd..N#s\",\n      \"rel\": \"U/J6\",\n      \"method\": \"POST\"\n    },\n    {\n      \"href\": \"7}SZ]\",\n      \"rel\": \"[i\",\n      \"method\": \"PUT\"\n    },\n    {\n      \"href\": \"K\",\n      \"rel\": \"~\",\n      \"method\": \"GET\"\n    },\n    {\n      \"href\": \"9e}zpaP\",\n      \"rel\": \"~g{NPW\",\n      \"method\": \"POST\"\n    },\n    {\n      \"href\": \"hBd@#M\",\n      \"rel\": \"$a&2T<\",\n      \"method\": \"POST\"\n    },\n    {\n      \"href\": \",\",\n      \"rel\": \"MU,0 X+\",\n      \"method\": \"POST\"\n    },\n    {\n      \"href\": \"W A4\",\n      \"rel\": \"j!TbSJ\\\"9\",\n      \"method\": \"PATCH\"\n    },\n    {\n      \"href\": \"qjR^]Nv?\",\n      \"rel\": \")tqB<]$im\",\n      \"method\": \"POST\"\n    },\n    {\n      \"href\": \"WN;Wu|8rR\",\n      \"rel\": \"[G\",\n      \"method\": \"GET\"\n    },\n    {\n      \"href\": \"l4SVZ\",\n      \"rel\": \"5H^Oz\",\n      \"method\": \"POST\"\n    },\n    {\n      \"href\": \".u\\\"\\\"qFM{j\",\n      \"rel\": \"73\",\n      \"method\": \"PATCH\"\n    },\n    {\n      \"href\": \"O**!\",\n      \"rel\": \"dwR@\\\\s\",\n      \"method\": \"PATCH\"\n    },\n    {\n      \"href\": \"Lf^T\",\n      \"rel\": \"D5?UMN\",\n      \"method\": \"GET\"\n    },\n    {\n      \"href\": \"$^Q\",\n      \"rel\": \">f\",\n      \"method\": \"DELETE\"\n    },\n    {\n      \"href\": \"a@^&\",\n      \"rel\": \"\",\n      \"method\": \"PUT\"\n    },\n    {\n      \"href\": \"'\",\n      \"rel\": \"|Lt5E\",\n      \"method\": \"GET\"\n    }\n  ]\n}",
+                              "createdAt": "2026-07-28T02:33:17.000Z",
+                              "updatedAt": "2026-07-28T02:33:17.000Z",
+                              "uid": "35240-9ada314b-4fc9-4c17-9a46-465b83a9f132"
+                            },
+                            {
+                              "id": "2964c71d-bfb7-4648-b61a-d2f88f2b2ac3",
+                              "name": "The requested action could not be performed, semantically incorrect, or failed business validation.",
+                              "originalRequest": {
+                                "method": "POST",
+                                "header": [
+                                  {
+                                    "description": "The server stores keys for 72 hours.",
+                                    "key": "PayPal-Request-Id",
+                                    "value": "<string>"
+                                  },
+                                  {
+                                    "key": "Content-Type",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: oauth2",
+                                    "key": "Authorization",
+                                    "value": "<token>"
+                                  }
+                                ],
+                                "body": {
+                                  "mode": "raw",
+                                  "raw": "{\n  \"note\": \"<string>\",\n  \"capture_type\": \"OUTSTANDING_BALANCE\",\n  \"amount\": {\n    \"currency_code\": \"<string>\",\n    \"value\": \"-.47962876\"\n  }\n}",
+                                  "options": {
+                                    "raw": {
+                                      "headerFamily": "json",
+                                      "language": "json"
+                                    }
+                                  }
+                                },
+                                "url": {
+                                  "raw": "{{baseUrl}}/v1/billing/subscriptions/:id/capture",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "v1",
+                                    "billing",
+                                    "subscriptions",
+                                    ":id",
+                                    "capture"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "id"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+                              "code": 422,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "{\n  \"name\": \"UNPROCESSABLE_ENTITY\",\n  \"message\": \"The requested action could not be performed, semantically incorrect, or failed business validation.\",\n  \"details\": [\n    {\n      \"issue\": \"<string>\",\n      \"field\": \"<string>\",\n      \"value\": \"<string>\",\n      \"location\": \"body\",\n      \"description\": \"<string>\"\n    },\n    {\n      \"issue\": \"<string>\",\n      \"field\": \"<string>\",\n      \"value\": \"<string>\",\n      \"location\": \"body\",\n      \"description\": \"<string>\"\n    }\n  ],\n  \"debug_id\": \"<string>\",\n  \"links\": [\n    {\n      \"href\": \"=<\",\n      \"rel\": \"/A]OG\",\n      \"method\": \"POST\"\n    },\n    {\n      \"href\": \"?b\",\n      \"rel\": \"^\",\n      \"method\": \"GET\"\n    },\n    {\n      \"href\": \"n'*i\",\n      \"rel\": \"1HJ\",\n      \"method\": \"POST\"\n    },\n    {\n      \"href\": \".am:Rd^\",\n      \"rel\": \"\",\n      \"method\": \"GET\"\n    },\n    {\n      \"href\": \"5Vdw\",\n      \"rel\": \"^%aU(.=\",\n      \"method\": \"POST\"\n    },\n    {\n      \"href\": \"W$*.\\\"u ?uG\",\n      \"rel\": \"PF\\\"N\",\n      \"method\": \"DELETE\"\n    },\n    {\n      \"href\": \"z^3\",\n      \"rel\": \":ku+h\",\n      \"method\": \"PATCH\"\n    },\n    {\n      \"href\": \"0l{J=x\",\n      \"rel\": \"lad$B}\",\n      \"method\": \"DELETE\"\n    },\n    {\n      \"href\": \"4{|\\\"v\",\n      \"rel\": \".dA2hc[NA8\",\n      \"method\": \"PUT\"\n    },\n    {\n      \"href\": \"85^Gp|HYX\",\n      \"rel\": \"ye$/bG?dI\",\n      \"method\": \"PATCH\"\n    },\n    {\n      \"href\": \"WG5zldOF=\",\n      \"rel\": \"5;y@a\\\"9\",\n      \"method\": \"PUT\"\n    },\n    {\n      \"href\": \"&PIL18\",\n      \"rel\": \"2)o:k\\\\V,\",\n      \"method\": \"PATCH\"\n    },\n    {\n      \"href\": \"N\",\n      \"rel\": \"P\",\n      \"method\": \"POST\"\n    },\n    {\n      \"href\": \"\",\n      \"rel\": \"lk-\",\n      \"method\": \"PUT\"\n    },\n    {\n      \"href\": \";&4^|J$hB\",\n      \"rel\": \"Eo\\\\k.\",\n      \"method\": \"PATCH\"\n    },\n    {\n      \"href\": \"]:Y:7P\",\n      \"rel\": \"DQK7n[\",\n      \"method\": \"DELETE\"\n    },\n    {\n      \"href\": \"Uw;DKtH'W!\",\n      \"rel\": \"0:zs-\",\n      \"method\": \"PUT\"\n    },\n    {\n      \"href\": \"2U\\\"\",\n      \"rel\": \" 3<)E\",\n      \"method\": \"POST\"\n    },\n    {\n      \"href\": \"Qb\",\n      \"rel\": \"O)BwGMf'0#\",\n      \"method\": \"POST\"\n    },\n    {\n      \"href\": \"\",\n      \"rel\": \"f3-nei]\",\n      \"method\": \"PUT\"\n    }\n  ]\n}",
+                              "createdAt": "2026-07-28T02:33:17.000Z",
+                              "updatedAt": "2026-07-28T02:33:17.000Z",
+                              "uid": "35240-2964c71d-bfb7-4648-b61a-d2f88f2b2ac3"
+                            },
+                            {
+                              "id": "79da24db-35cb-4f0e-9d9f-e4aa1a35fd17",
+                              "name": "An internal server error has occurred.",
+                              "originalRequest": {
+                                "method": "POST",
+                                "header": [
+                                  {
+                                    "description": "The server stores keys for 72 hours.",
+                                    "key": "PayPal-Request-Id",
+                                    "value": "<string>"
+                                  },
+                                  {
+                                    "key": "Content-Type",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: oauth2",
+                                    "key": "Authorization",
+                                    "value": "<token>"
+                                  }
+                                ],
+                                "body": {
+                                  "mode": "raw",
+                                  "raw": "{\n  \"note\": \"<string>\",\n  \"capture_type\": \"OUTSTANDING_BALANCE\",\n  \"amount\": {\n    \"currency_code\": \"<string>\",\n    \"value\": \"-.47962876\"\n  }\n}",
+                                  "options": {
+                                    "raw": {
+                                      "headerFamily": "json",
+                                      "language": "json"
+                                    }
+                                  }
+                                },
+                                "url": {
+                                  "raw": "{{baseUrl}}/v1/billing/subscriptions/:id/capture",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "v1",
+                                    "billing",
+                                    "subscriptions",
+                                    ":id",
+                                    "capture"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "id"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "Internal Server Error",
+                              "code": 500,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "{\n  \"name\": \"INTERNAL_SERVER_ERROR\",\n  \"message\": \"An internal server error occurred.\",\n  \"debug_id\": \"<string>\",\n  \"links\": [\n    {\n      \"href\": \">e+}?\",\n      \"rel\": \"3@G?\",\n      \"method\": \"DELETE\"\n    },\n    {\n      \"href\": \"U\",\n      \"rel\": \"olwo(!\",\n      \"method\": \"POST\"\n    },\n    {\n      \"href\": \"X3QB`sSUI\",\n      \"rel\": \"\",\n      \"method\": \"PUT\"\n    },\n    {\n      \"href\": \"7Q5&Zv\\\";\",\n      \"rel\": \"@EaAJ2{J<@\",\n      \"method\": \"PATCH\"\n    },\n    {\n      \"href\": \")@\",\n      \"rel\": \"fc1ZMji\",\n      \"method\": \"GET\"\n    },\n    {\n      \"href\": \"j:;U|N@eO\",\n      \"rel\": \"FIINEJ+5+F\",\n      \"method\": \"DELETE\"\n    },\n    {\n      \"href\": \"eMB4Mj\",\n      \"rel\": \"E-+4I}g\",\n      \"method\": \"POST\"\n    },\n    {\n      \"href\": \"a-)n\",\n      \"rel\": \"FB<Pl\",\n      \"method\": \"GET\"\n    },\n    {\n      \"href\": \"901<\",\n      \"rel\": \")d,)Uav7l\",\n      \"method\": \"POST\"\n    },\n    {\n      \"href\": \"<+y\",\n      \"rel\": \"|K]|CL\",\n      \"method\": \"POST\"\n    },\n    {\n      \"href\": \"\",\n      \"rel\": \"mld'wr\",\n      \"method\": \"PATCH\"\n    },\n    {\n      \"href\": \"K3)WN8n p?\",\n      \"rel\": \"H=\",\n      \"method\": \"PATCH\"\n    },\n    {\n      \"href\": \"\",\n      \"rel\": \"FmBEO\",\n      \"method\": \"PATCH\"\n    },\n    {\n      \"href\": \"MX<<u(+4B\",\n      \"rel\": \"c)\",\n      \"method\": \"PUT\"\n    },\n    {\n      \"href\": \" J\\\"S\",\n      \"rel\": \"^;%M}c\",\n      \"method\": \"PATCH\"\n    },\n    {\n      \"href\": \":X3HY>|r`\",\n      \"rel\": \";04$}q\",\n      \"method\": \"GET\"\n    },\n    {\n      \"href\": \"Mo*s&hDF\",\n      \"rel\": \"#ckL\",\n      \"method\": \"POST\"\n    },\n    {\n      \"href\": \"lTd]7-#(]M\",\n      \"rel\": \"9H^.Xmsa\",\n      \"method\": \"POST\"\n    },\n    {\n      \"href\": \")\",\n      \"rel\": \"`*[=\",\n      \"method\": \"GET\"\n    },\n    {\n      \"href\": \"tS\",\n      \"rel\": \"YZ{oIQ%l\",\n      \"method\": \"GET\"\n    }\n  ]\n}",
+                              "createdAt": "2026-07-28T02:33:17.000Z",
+                              "updatedAt": "2026-07-28T02:33:17.000Z",
+                              "uid": "35240-79da24db-35cb-4f0e-9d9f-e4aa1a35fd17"
+                            },
+                            {
+                              "id": "3c3a8f4e-5e61-44e2-a807-a8caefe527d5",
+                              "name": "The default response.",
+                              "originalRequest": {
+                                "method": "POST",
+                                "header": [
+                                  {
+                                    "description": "The server stores keys for 72 hours.",
+                                    "key": "PayPal-Request-Id",
+                                    "value": "<string>"
+                                  },
+                                  {
+                                    "key": "Content-Type",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: oauth2",
+                                    "key": "Authorization",
+                                    "value": "<token>"
+                                  }
+                                ],
+                                "body": {
+                                  "mode": "raw",
+                                  "raw": "{\n  \"note\": \"<string>\",\n  \"capture_type\": \"OUTSTANDING_BALANCE\",\n  \"amount\": {\n    \"currency_code\": \"<string>\",\n    \"value\": \"-.47962876\"\n  }\n}",
+                                  "options": {
+                                    "raw": {
+                                      "headerFamily": "json",
+                                      "language": "json"
+                                    }
+                                  }
+                                },
+                                "url": {
+                                  "raw": "{{baseUrl}}/v1/billing/subscriptions/:id/capture",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "v1",
+                                    "billing",
+                                    "subscriptions",
+                                    ":id",
+                                    "capture"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "id"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "Internal Server Error",
+                              "code": 500,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "{\n  \"name\": \"INVALID_REQUEST\",\n  \"message\": \"Request is not well-formed, syntactically incorrect, or violates schema.\",\n  \"details\": [\n    {\n      \"issue\": \"<string>\",\n      \"field\": \"<string>\",\n      \"value\": \"<string>\",\n      \"location\": \"body\",\n      \"description\": \"<string>\"\n    },\n    {\n      \"issue\": \"<string>\",\n      \"field\": \"<string>\",\n      \"value\": \"<string>\",\n      \"location\": \"body\",\n      \"description\": \"<string>\"\n    }\n  ],\n  \"debug_id\": \"<string>\",\n  \"links\": [\n    {\n      \"href\": \"Djv!j~I&0\",\n      \"rel\": \"=y7F:I<\",\n      \"method\": \"PATCH\"\n    },\n    {\n      \"href\": \"B2;#h34H*n\",\n      \"rel\": \"O2fy_EdZ!$\",\n      \"method\": \"PUT\"\n    },\n    {\n      \"href\": \"zT(L\",\n      \"rel\": \"1o#:hP`a_f\",\n      \"method\": \"PATCH\"\n    },\n    {\n      \"href\": \"N_<q_T2I\",\n      \"rel\": \"%Jc\",\n      \"method\": \"DELETE\"\n    },\n    {\n      \"href\": \"M vL%pXhxI\",\n      \"rel\": \"tw9[,~\\\\\",\n      \"method\": \"PATCH\"\n    },\n    {\n      \"href\": \"E\\\\\\\"KP;?%C@\",\n      \"rel\": \"RY[(\",\n      \"method\": \"GET\"\n    },\n    {\n      \"href\": \"C<Lo#X\",\n      \"rel\": \"7#V3w,Ian;\",\n      \"method\": \"PATCH\"\n    },\n    {\n      \"href\": \"(<*6\",\n      \"rel\": \"\\\\:B}wIAn\",\n      \"method\": \"DELETE\"\n    },\n    {\n      \"href\": \"?eb)k`\",\n      \"rel\": \"{\",\n      \"method\": \"DELETE\"\n    },\n    {\n      \"href\": \")SUkfSD$R>\",\n      \"rel\": \"z\",\n      \"method\": \"GET\"\n    },\n    {\n      \"href\": \"q\",\n      \"rel\": \"zkJl~\",\n      \"method\": \"GET\"\n    },\n    {\n      \"href\": \"3H*Mw\",\n      \"rel\": \"~8iE.;\",\n      \"method\": \"POST\"\n    },\n    {\n      \"href\": \"gK#\",\n      \"rel\": \"uPc20S yKt\",\n      \"method\": \"PATCH\"\n    },\n    {\n      \"href\": \"{lM)I\",\n      \"rel\": \"Zx Ue\",\n      \"method\": \"PATCH\"\n    },\n    {\n      \"href\": \"?!0rdDZ^\",\n      \"rel\": \"Zl<6\",\n      \"method\": \"GET\"\n    },\n    {\n      \"href\": \"55!UFL!#q\",\n      \"rel\": \"9\",\n      \"method\": \"GET\"\n    },\n    {\n      \"href\": \"z;GXQn\",\n      \"rel\": \"k&VQs\",\n      \"method\": \"GET\"\n    },\n    {\n      \"href\": \"iRWqd\",\n      \"rel\": \"?_E-),a\",\n      \"method\": \"POST\"\n    },\n    {\n      \"href\": \"::%m\",\n      \"rel\": \"Fb3Wu}\",\n      \"method\": \"PUT\"\n    },\n    {\n      \"href\": \";^z3`5O{4\",\n      \"rel\": \"n:G\",\n      \"method\": \"PUT\"\n    }\n  ]\n}",
+                              "createdAt": "2026-07-28T02:33:17.000Z",
+                              "updatedAt": "2026-07-28T02:33:17.000Z",
+                              "uid": "35240-3c3a8f4e-5e61-44e2-a807-a8caefe527d5"
+                            }
+                          ],
+                          "createdAt": "2026-07-28T02:33:17.000Z",
+                          "updatedAt": "2026-07-28T02:33:17.000Z",
+                          "uid": "35240-6dce9142-1252-42e4-aecd-e2e2e8a829f9"
+                        }
+                      ],
+                      "id": "9b61d93b-c849-4bf7-94c8-a9dc808b9c75",
+                      "createdAt": "2026-07-28T02:33:17.000Z",
+                      "updatedAt": "2026-07-28T02:33:17.000Z",
+                      "uid": "35240-9b61d93b-c849-4bf7-94c8-a9dc808b9c75"
+                    }
+                  ],
+                  "id": "248ceebd-9d8f-4394-9a19-d468f955bff2",
+                  "createdAt": "2026-07-28T02:33:17.000Z",
+                  "updatedAt": "2026-07-28T02:33:17.000Z",
+                  "uid": "35240-248ceebd-9d8f-4394-9a19-d468f955bff2"
+                }
+              ],
+              "id": "53c8a023-b3b2-4b39-9836-4b76206e2062",
+              "createdAt": "2026-07-28T02:33:17.000Z",
+              "updatedAt": "2026-07-28T02:33:17.000Z",
+              "uid": "35240-53c8a023-b3b2-4b39-9836-4b76206e2062"
+            }
+          ],
+          "id": "9702b287-8b53-4500-9ebd-0eef202ff65a",
+          "createdAt": "2026-07-28T02:33:17.000Z",
+          "updatedAt": "2026-07-28T02:33:17.000Z",
+          "uid": "35240-9702b287-8b53-4500-9ebd-0eef202ff65a"
+        }
+      ],
+      "id": "f2430432-7f5e-4a0b-962d-609ac96cf61f",
+      "createdAt": "2026-07-28T02:33:17.000Z",
+      "updatedAt": "2026-07-28T02:33:17.000Z",
+      "uid": "35240-f2430432-7f5e-4a0b-962d-609ac96cf61f"
+    }
+  ],
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://api-m.sandbox.paypal.com"
+    }
+  ]
+}

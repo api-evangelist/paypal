@@ -1,0 +1,1221 @@
+{
+  "info": {
+    "_postman_id": "7810b9be-93e2-4526-8e6c-94bef52fe7a2",
+    "name": "Paypal Subscriptions Authorizations Captures API",
+    "description": "You can use billing plans and subscriptions to create subscriptions that process recurring PayPal payments for physical or digital goods, or services. A plan includes pricing and billing cycle information that defines the amount and frequency of charge for a subscription. You can also define a fixed plan, such as a $5 basic plan or a volume- or graduated-based plan with pricing tiers based on the quantity purchased. For more information, see <a href=\"/docs/subscriptions/\">Subscriptions Overview</a>.",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-07-28T02:33:24.000Z",
+    "updatedAt": "2026-07-28T02:33:24.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-7810b9be-93e2-4526-8e6c-94bef52fe7a2"
+  },
+  "item": [
+    {
+      "name": "v2",
+      "item": [
+        {
+          "name": "payments",
+          "item": [
+            {
+              "name": "captures",
+              "item": [
+                {
+                  "name": "{capture_id}",
+                  "item": [
+                    {
+                      "name": "refund",
+                      "item": [
+                        {
+                          "name": "Paypal Refund captured payment",
+                          "id": "b7c7ddb9-608b-4031-9aca-bad174772c36",
+                          "protocolProfileBehavior": {
+                            "disableBodyPruning": true
+                          },
+                          "request": {
+                            "auth": {
+                              "type": "oauth2",
+                              "oauth2": [
+                                {
+                                  "key": "scope",
+                                  "value": "https://uri.paypal.com/services/subscriptions",
+                                  "type": "string"
+                                },
+                                {
+                                  "key": "accessTokenUrl",
+                                  "value": "/v1/oauth2/token",
+                                  "type": "string"
+                                },
+                                {
+                                  "key": "grant_type",
+                                  "value": "client_credentials",
+                                  "type": "string"
+                                }
+                              ]
+                            },
+                            "method": "POST",
+                            "header": [
+                              {
+                                "description": "The server stores keys for 45 days.",
+                                "key": "PayPal-Request-Id",
+                                "value": "<string>"
+                              },
+                              {
+                                "description": "The preferred server response upon successful completion of the request. Value is:<ul><li><code>return=minimal</code>. The server returns a minimal response to optimize communication between the API caller and the server. A minimal response includes the <code>id</code>, <code>status</code> and HATEOAS links.</li><li><code>return=representation</code>. The server returns a complete resource representation, including the current state of the resource.</li></ul>",
+                                "key": "Prefer",
+                                "value": "return=minimal"
+                              },
+                              {
+                                "description": "An API-caller-provided JSON Web Token (JWT) assertion that identifies the merchant. For details, see [PayPal-Auth-Assertion](/docs/api/reference/api-requests/#paypal-auth-assertion).<blockquote><strong>Note:</strong>For three party transactions in which a partner is managing the API calls on behalf of a merchant, the partner must identify the merchant using either a PayPal-Auth-Assertion header or an access token with target_subject.</blockquote>",
+                                "key": "PayPal-Auth-Assertion",
+                                "value": "<string>"
+                              },
+                              {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                              },
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "{\n  \"amount\": {\n    \"currency_code\": \"<string>\",\n    \"value\": \"-.662121\"\n  },\n  \"custom_id\": \" \",\n  \"invoice_id\": \" \",\n  \"note_to_payer\": \"}\",\n  \"payment_instruction\": {\n    \"platform_fees\": [\n      {\n        \"amount\": {\n          \"currency_code\": \"<string>\",\n          \"value\": \"084\"\n        },\n        \"payee\": {\n          \"email_address\": \"wCLe89.sv.=xbb~agAy`.gFI+ME7F.cu`VlGy8.D`.t7V=!1z{@[3.206.254.1]\",\n          \"merchant_id\": \"NM9J3JFYHDB8P\"\n        }\n      }\n    ]\n  }\n}",
+                              "options": {
+                                "raw": {
+                                  "headerFamily": "json",
+                                  "language": "json"
+                                }
+                              }
+                            },
+                            "url": {
+                              "raw": "{{baseUrl}}/v2/payments/captures/:capture_id/refund",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "v2",
+                                "payments",
+                                "captures",
+                                ":capture_id",
+                                "refund"
+                              ],
+                              "variable": [
+                                {
+                                  "id": "d6d9aeb1-7ece-45ed-9c39-860c1e272bfe",
+                                  "key": "capture_id",
+                                  "value": "<string>",
+                                  "description": "(Required) The PayPal-generated ID for the captured payment to refund."
+                                }
+                              ]
+                            },
+                            "description": "Refunds a captured payment, by ID. For a full refund, include an empty payload in the JSON request body. For a partial refund, include an <code>amount</code> object in the JSON request body."
+                          },
+                          "response": [
+                            {
+                              "id": "657272b2-10d5-49aa-b309-4582e722daef",
+                              "name": "A successful request returns the HTTP <code>201 Created</code> status code and a JSON response body that shows refund details.",
+                              "originalRequest": {
+                                "method": "POST",
+                                "header": [
+                                  {
+                                    "description": "The server stores keys for 45 days.",
+                                    "key": "PayPal-Request-Id",
+                                    "value": "<string>"
+                                  },
+                                  {
+                                    "description": "The preferred server response upon successful completion of the request. Value is:<ul><li><code>return=minimal</code>. The server returns a minimal response to optimize communication between the API caller and the server. A minimal response includes the <code>id</code>, <code>status</code> and HATEOAS links.</li><li><code>return=representation</code>. The server returns a complete resource representation, including the current state of the resource.</li></ul>",
+                                    "key": "Prefer",
+                                    "value": "return=minimal"
+                                  },
+                                  {
+                                    "description": "An API-caller-provided JSON Web Token (JWT) assertion that identifies the merchant. For details, see [PayPal-Auth-Assertion](/docs/api/reference/api-requests/#paypal-auth-assertion).<blockquote><strong>Note:</strong>For three party transactions in which a partner is managing the API calls on behalf of a merchant, the partner must identify the merchant using either a PayPal-Auth-Assertion header or an access token with target_subject.</blockquote>",
+                                    "key": "PayPal-Auth-Assertion",
+                                    "value": "<string>"
+                                  },
+                                  {
+                                    "key": "Content-Type",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: oauth2",
+                                    "key": "Authorization",
+                                    "value": "<token>"
+                                  }
+                                ],
+                                "body": {
+                                  "mode": "raw",
+                                  "raw": "{\n  \"amount\": {\n    \"currency_code\": \"<string>\",\n    \"value\": \"-.662121\"\n  },\n  \"custom_id\": \" \",\n  \"invoice_id\": \" \",\n  \"note_to_payer\": \"}\",\n  \"payment_instruction\": {\n    \"platform_fees\": [\n      {\n        \"amount\": {\n          \"currency_code\": \"<string>\",\n          \"value\": \"084\"\n        },\n        \"payee\": {\n          \"email_address\": \"wCLe89.sv.=xbb~agAy`.gFI+ME7F.cu`VlGy8.D`.t7V=!1z{@[3.206.254.1]\",\n          \"merchant_id\": \"NM9J3JFYHDB8P\"\n        }\n      }\n    ]\n  }\n}",
+                                  "options": {
+                                    "raw": {
+                                      "headerFamily": "json",
+                                      "language": "json"
+                                    }
+                                  }
+                                },
+                                "url": {
+                                  "raw": "{{baseUrl}}/v2/payments/captures/:capture_id/refund",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "v2",
+                                    "payments",
+                                    "captures",
+                                    ":capture_id",
+                                    "refund"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "capture_id"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "Created",
+                              "code": 201,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "{\n  \"status\": \"PENDING\",\n  \"status_details\": {\n    \"reason\": \"ECHECK\"\n  },\n  \"id\": \"<string>\",\n  \"amount\": {\n    \"currency_code\": \"<string>\",\n    \"value\": \"-.876\"\n  },\n  \"invoice_id\": \"<string>\",\n  \"custom_id\": \"Opv.\",\n  \"acquirer_reference_number\": \"9NchJ\",\n  \"note_to_payer\": \"<string>\",\n  \"seller_payable_breakdown\": {\n    \"gross_amount\": {\n      \"currency_code\": \"<string>\",\n      \"value\": \"9895972443\"\n    },\n    \"paypal_fee\": {\n      \"currency_code\": \"<string>\",\n      \"value\": \"-.9268909\"\n    },\n    \"paypal_fee_in_receivable_currency\": {\n      \"currency_code\": \"<string>\",\n      \"value\": \"-549.2391\"\n    },\n    \"net_amount\": {\n      \"currency_code\": \"<string>\",\n      \"value\": \"-9\"\n    },\n    \"net_amount_in_receivable_currency\": {\n      \"currency_code\": \"<string>\",\n      \"value\": \"-01429697\"\n    },\n    \"platform_fees\": [\n      {\n        \"amount\": {\n          \"currency_code\": \"<string>\",\n          \"value\": \"-847814333\"\n        },\n        \"payee\": {\n          \"email_address\": \"\\\"@i.M8QQB3ZCJzj.L\",\n          \"merchant_id\": \"EUEJT4ZMNJJ9J\"\n        }\n      }\n    ],\n    \"net_amount_breakdown\": [\n      {\n        \"payable_amount\": {\n          \"currency_code\": \"<string>\",\n          \"value\": \"-184040.887\"\n        },\n        \"converted_amount\": {\n          \"currency_code\": \"<string>\",\n          \"value\": \"-16704574669.7\"\n        },\n        \"exchange_rate\": {\n          \"source_currency\": \"<string>\",\n          \"target_currency\": \"<string>\",\n          \"value\": \"<string>\"\n        }\n      },\n      {\n        \"payable_amount\": {\n          \"currency_code\": \"<string>\",\n          \"value\": \"-869.6\"\n        },\n        \"converted_amount\": {\n          \"currency_code\": \"<string>\",\n          \"value\": \"-5724096438\"\n        },\n        \"exchange_rate\": {\n          \"source_currency\": \"<string>\",\n          \"target_currency\": \"<string>\",\n          \"value\": \"<string>\"\n        }\n      }\n    ],\n    \"total_refunded_amount\": {\n      \"currency_code\": \"<string>\",\n      \"value\": \"-1034756.970315\"\n    }\n  },\n  \"payer\": {\n    \"email_address\": \"x!^[\\u0001-\\tx0bx0cx0e-x7f][\\u0001-\\tx0bx0cx0e-x7f][\\u0001-\\tx0bx0cx0e-x7f][\\u0001-\\tx0bx0cx0e-x7f]g[\\u0001-\\tx0bx0cx0e-x7f]\\\"@P.W.z2FvrEypXCxY.2.eorP9rO7nU.t\",\n    \"merchant_id\": \"XQ7WBMQBABYU3\"\n  },\n  \"links\": [\n    {\n      \"href\": \"<string>\",\n      \"rel\": \"<string>\",\n      \"method\": \"CONNECT\"\n    },\n    {\n      \"href\": \"<string>\",\n      \"rel\": \"<string>\",\n      \"method\": \"PUT\"\n    }\n  ],\n  \"create_time\": \"0805-04-15t17:26:24Z\",\n  \"update_time\": \"7148-10-30T06:58:60.68-86:26\"\n}",
+                              "createdAt": "2026-07-28T02:33:24.000Z",
+                              "updatedAt": "2026-07-28T02:33:24.000Z",
+                              "uid": "35240-657272b2-10d5-49aa-b309-4582e722daef"
+                            },
+                            {
+                              "id": "bac4d829-d0f4-4564-b5f4-37c4b4b73f83",
+                              "name": "The request failed because it is not well-formed or is syntactically incorrect or violates schema.",
+                              "originalRequest": {
+                                "method": "POST",
+                                "header": [
+                                  {
+                                    "description": "The server stores keys for 45 days.",
+                                    "key": "PayPal-Request-Id",
+                                    "value": "<string>"
+                                  },
+                                  {
+                                    "description": "The preferred server response upon successful completion of the request. Value is:<ul><li><code>return=minimal</code>. The server returns a minimal response to optimize communication between the API caller and the server. A minimal response includes the <code>id</code>, <code>status</code> and HATEOAS links.</li><li><code>return=representation</code>. The server returns a complete resource representation, including the current state of the resource.</li></ul>",
+                                    "key": "Prefer",
+                                    "value": "return=minimal"
+                                  },
+                                  {
+                                    "description": "An API-caller-provided JSON Web Token (JWT) assertion that identifies the merchant. For details, see [PayPal-Auth-Assertion](/docs/api/reference/api-requests/#paypal-auth-assertion).<blockquote><strong>Note:</strong>For three party transactions in which a partner is managing the API calls on behalf of a merchant, the partner must identify the merchant using either a PayPal-Auth-Assertion header or an access token with target_subject.</blockquote>",
+                                    "key": "PayPal-Auth-Assertion",
+                                    "value": "<string>"
+                                  },
+                                  {
+                                    "key": "Content-Type",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: oauth2",
+                                    "key": "Authorization",
+                                    "value": "<token>"
+                                  }
+                                ],
+                                "body": {
+                                  "mode": "raw",
+                                  "raw": "{\n  \"amount\": {\n    \"currency_code\": \"<string>\",\n    \"value\": \"-.662121\"\n  },\n  \"custom_id\": \" \",\n  \"invoice_id\": \" \",\n  \"note_to_payer\": \"}\",\n  \"payment_instruction\": {\n    \"platform_fees\": [\n      {\n        \"amount\": {\n          \"currency_code\": \"<string>\",\n          \"value\": \"084\"\n        },\n        \"payee\": {\n          \"email_address\": \"wCLe89.sv.=xbb~agAy`.gFI+ME7F.cu`VlGy8.D`.t7V=!1z{@[3.206.254.1]\",\n          \"merchant_id\": \"NM9J3JFYHDB8P\"\n        }\n      }\n    ]\n  }\n}",
+                                  "options": {
+                                    "raw": {
+                                      "headerFamily": "json",
+                                      "language": "json"
+                                    }
+                                  }
+                                },
+                                "url": {
+                                  "raw": "{{baseUrl}}/v2/payments/captures/:capture_id/refund",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "v2",
+                                    "payments",
+                                    "captures",
+                                    ":capture_id",
+                                    "refund"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "capture_id"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "Bad Request",
+                              "code": 400,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "{\n  \"name\": \"INVALID_REQUEST\",\n  \"message\": \"Request is not well-formed, syntactically incorrect, or violates schema.\",\n  \"details\": [\n    {\n      \"issue\": \"<string>\",\n      \"field\": \"<string>\",\n      \"value\": \"<string>\",\n      \"location\": \"body\",\n      \"description\": \"<string>\"\n    },\n    {\n      \"issue\": \"<string>\",\n      \"field\": \"<string>\",\n      \"value\": \"<string>\",\n      \"location\": \"body\",\n      \"description\": \"<string>\"\n    }\n  ],\n  \"debug_id\": \"<string>\",\n  \"links\": [\n    {\n      \"href\": \"1\",\n      \"rel\": \"K_atPN\",\n      \"method\": \"PUT\"\n    },\n    {\n      \"href\": \"&W\",\n      \"rel\": \"HOP(>010E.\",\n      \"method\": \"PUT\"\n    },\n    {\n      \"href\": \"p\",\n      \"rel\": \"&#yr\",\n      \"method\": \"POST\"\n    },\n    {\n      \"href\": \"'`FcQq\",\n      \"rel\": \"hyZo\",\n      \"method\": \"GET\"\n    },\n    {\n      \"href\": \"9G)^Y\",\n      \"rel\": \"Qn[>4aY\",\n      \"method\": \"PATCH\"\n    },\n    {\n      \"href\": \"/d)1Hu\",\n      \"rel\": \"uhfM-`xD-\",\n      \"method\": \"DELETE\"\n    },\n    {\n      \"href\": \"T!\\\"F\",\n      \"rel\": \"V3\",\n      \"method\": \"PUT\"\n    },\n    {\n      \"href\": \"& ;w\",\n      \"rel\": \"rUy*Ls!Q5\",\n      \"method\": \"POST\"\n    },\n    {\n      \"href\": \"%Aze[U*oN\",\n      \"rel\": \"Xuj1 !mWa'\",\n      \"method\": \"PATCH\"\n    },\n    {\n      \"href\": \"j g\\\"m`3\",\n      \"rel\": \":aIb<oW\",\n      \"method\": \"GET\"\n    },\n    {\n      \"href\": \"\\\"RiL\\\\\",\n      \"rel\": \"Xb`U%)\",\n      \"method\": \"GET\"\n    },\n    {\n      \"href\": \";\\\"?\\\\\",\n      \"rel\": \"z~\",\n      \"method\": \"GET\"\n    },\n    {\n      \"href\": \"}cz]kwn4OV\",\n      \"rel\": \"c[X:w!)P;\",\n      \"method\": \"POST\"\n    },\n    {\n      \"href\": \"<u:MB'\",\n      \"rel\": \"gfEm.\\\\'FM\",\n      \"method\": \"GET\"\n    },\n    {\n      \"href\": \"rn\",\n      \"rel\": \"X^=FdBH|\",\n      \"method\": \"PUT\"\n    },\n    {\n      \"href\": \"mUJM\",\n      \"rel\": \"\",\n      \"method\": \"POST\"\n    },\n    {\n      \"href\": \"e%,\",\n      \"rel\": \"!r<g(\",\n      \"method\": \"GET\"\n    },\n    {\n      \"href\": \"H!lr;e/}A\",\n      \"rel\": \"tz]`\",\n      \"method\": \"GET\"\n    },\n    {\n      \"href\": \"#lw7b\",\n      \"rel\": \"g\",\n      \"method\": \"DELETE\"\n    },\n    {\n      \"href\": \"NPguYMj;6\",\n      \"rel\": \"_LV0\\\"`H#SN\",\n      \"method\": \"PUT\"\n    }\n  ]\n}",
+                              "createdAt": "2026-07-28T02:33:24.000Z",
+                              "updatedAt": "2026-07-28T02:33:24.000Z",
+                              "uid": "35240-bac4d829-d0f4-4564-b5f4-37c4b4b73f83"
+                            },
+                            {
+                              "id": "7de64106-238f-43b2-9ef2-c239e3e87654",
+                              "name": "Authentication failed due to missing authorization header, or invalid authentication credentials.",
+                              "originalRequest": {
+                                "method": "POST",
+                                "header": [
+                                  {
+                                    "description": "The server stores keys for 45 days.",
+                                    "key": "PayPal-Request-Id",
+                                    "value": "<string>"
+                                  },
+                                  {
+                                    "description": "The preferred server response upon successful completion of the request. Value is:<ul><li><code>return=minimal</code>. The server returns a minimal response to optimize communication between the API caller and the server. A minimal response includes the <code>id</code>, <code>status</code> and HATEOAS links.</li><li><code>return=representation</code>. The server returns a complete resource representation, including the current state of the resource.</li></ul>",
+                                    "key": "Prefer",
+                                    "value": "return=minimal"
+                                  },
+                                  {
+                                    "description": "An API-caller-provided JSON Web Token (JWT) assertion that identifies the merchant. For details, see [PayPal-Auth-Assertion](/docs/api/reference/api-requests/#paypal-auth-assertion).<blockquote><strong>Note:</strong>For three party transactions in which a partner is managing the API calls on behalf of a merchant, the partner must identify the merchant using either a PayPal-Auth-Assertion header or an access token with target_subject.</blockquote>",
+                                    "key": "PayPal-Auth-Assertion",
+                                    "value": "<string>"
+                                  },
+                                  {
+                                    "key": "Content-Type",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: oauth2",
+                                    "key": "Authorization",
+                                    "value": "<token>"
+                                  }
+                                ],
+                                "body": {
+                                  "mode": "raw",
+                                  "raw": "{\n  \"amount\": {\n    \"currency_code\": \"<string>\",\n    \"value\": \"-.662121\"\n  },\n  \"custom_id\": \" \",\n  \"invoice_id\": \" \",\n  \"note_to_payer\": \"}\",\n  \"payment_instruction\": {\n    \"platform_fees\": [\n      {\n        \"amount\": {\n          \"currency_code\": \"<string>\",\n          \"value\": \"084\"\n        },\n        \"payee\": {\n          \"email_address\": \"wCLe89.sv.=xbb~agAy`.gFI+ME7F.cu`VlGy8.D`.t7V=!1z{@[3.206.254.1]\",\n          \"merchant_id\": \"NM9J3JFYHDB8P\"\n        }\n      }\n    ]\n  }\n}",
+                                  "options": {
+                                    "raw": {
+                                      "headerFamily": "json",
+                                      "language": "json"
+                                    }
+                                  }
+                                },
+                                "url": {
+                                  "raw": "{{baseUrl}}/v2/payments/captures/:capture_id/refund",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "v2",
+                                    "payments",
+                                    "captures",
+                                    ":capture_id",
+                                    "refund"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "capture_id"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "Unauthorized",
+                              "code": 401,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "{\n  \"name\": \"AUTHENTICATION_FAILURE\",\n  \"message\": \"Authentication failed due to missing authorization header, or invalid authentication credentials.\",\n  \"details\": [\n    {\n      \"issue\": \"<string>\",\n      \"field\": \"<string>\",\n      \"value\": \"<string>\",\n      \"location\": \"body\",\n      \"description\": \"<string>\"\n    },\n    {\n      \"issue\": \"<string>\",\n      \"field\": \"<string>\",\n      \"value\": \"<string>\",\n      \"location\": \"body\",\n      \"description\": \"<string>\"\n    }\n  ],\n  \"debug_id\": \"<string>\",\n  \"links\": [\n    {\n      \"href\": \"F|&d'-5D\",\n      \"rel\": \",vh\",\n      \"method\": \"PATCH\"\n    },\n    {\n      \"href\": \"qBc\",\n      \"rel\": \"\",\n      \"method\": \"PATCH\"\n    },\n    {\n      \"href\": \"i\\\\bBeaP&lw\",\n      \"rel\": \"\",\n      \"method\": \"DELETE\"\n    },\n    {\n      \"href\": \".f\\\"\",\n      \"rel\": \"8mX0\",\n      \"method\": \"POST\"\n    },\n    {\n      \"href\": \".\",\n      \"rel\": \"C\",\n      \"method\": \"POST\"\n    },\n    {\n      \"href\": \" ~I\",\n      \"rel\": \"2Ih\",\n      \"method\": \"PUT\"\n    },\n    {\n      \"href\": \"tIkx}AY\",\n      \"rel\": \"\",\n      \"method\": \"PATCH\"\n    },\n    {\n      \"href\": \"6vmxZ\",\n      \"rel\": \"9_HdvUj<T,\",\n      \"method\": \"POST\"\n    },\n    {\n      \"href\": \"_}$'#Om\",\n      \"rel\": \"1O;D0{_9Lo\",\n      \"method\": \"GET\"\n    },\n    {\n      \"href\": \"xy=k-da,%2\",\n      \"rel\": \"ZMm\",\n      \"method\": \"PUT\"\n    },\n    {\n      \"href\": \"E\\\\reS [\",\n      \"rel\": \"ibG\",\n      \"method\": \"GET\"\n    },\n    {\n      \"href\": \">Pt'/ZO%n,\",\n      \"rel\": \"uaNVPCRG\",\n      \"method\": \"GET\"\n    },\n    {\n      \"href\": \"MN{b;Y\",\n      \"rel\": \"e\",\n      \"method\": \"PATCH\"\n    },\n    {\n      \"href\": \"@5h0K28\",\n      \"rel\": \"u\",\n      \"method\": \"PUT\"\n    },\n    {\n      \"href\": \"B\",\n      \"rel\": \"+G_iLUh4\",\n      \"method\": \"DELETE\"\n    },\n    {\n      \"href\": \";=j`ZAE\",\n      \"rel\": \"DU%36*eZKl\",\n      \"method\": \"PUT\"\n    },\n    {\n      \"href\": \"w.93'>?'n\",\n      \"rel\": \"eujO\",\n      \"method\": \"GET\"\n    },\n    {\n      \"href\": \"\",\n      \"rel\": \"\",\n      \"method\": \"POST\"\n    },\n    {\n      \"href\": \"Eg\",\n      \"rel\": \"\",\n      \"method\": \"PATCH\"\n    },\n    {\n      \"href\": \"W'8AY\",\n      \"rel\": \"\",\n      \"method\": \"POST\"\n    }\n  ]\n}",
+                              "createdAt": "2026-07-28T02:33:24.000Z",
+                              "updatedAt": "2026-07-28T02:33:24.000Z",
+                              "uid": "35240-7de64106-238f-43b2-9ef2-c239e3e87654"
+                            },
+                            {
+                              "id": "df7e0d3a-7c77-4b63-99c5-18664c217c90",
+                              "name": "The request failed because the caller has insufficient permissions.",
+                              "originalRequest": {
+                                "method": "POST",
+                                "header": [
+                                  {
+                                    "description": "The server stores keys for 45 days.",
+                                    "key": "PayPal-Request-Id",
+                                    "value": "<string>"
+                                  },
+                                  {
+                                    "description": "The preferred server response upon successful completion of the request. Value is:<ul><li><code>return=minimal</code>. The server returns a minimal response to optimize communication between the API caller and the server. A minimal response includes the <code>id</code>, <code>status</code> and HATEOAS links.</li><li><code>return=representation</code>. The server returns a complete resource representation, including the current state of the resource.</li></ul>",
+                                    "key": "Prefer",
+                                    "value": "return=minimal"
+                                  },
+                                  {
+                                    "description": "An API-caller-provided JSON Web Token (JWT) assertion that identifies the merchant. For details, see [PayPal-Auth-Assertion](/docs/api/reference/api-requests/#paypal-auth-assertion).<blockquote><strong>Note:</strong>For three party transactions in which a partner is managing the API calls on behalf of a merchant, the partner must identify the merchant using either a PayPal-Auth-Assertion header or an access token with target_subject.</blockquote>",
+                                    "key": "PayPal-Auth-Assertion",
+                                    "value": "<string>"
+                                  },
+                                  {
+                                    "key": "Content-Type",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: oauth2",
+                                    "key": "Authorization",
+                                    "value": "<token>"
+                                  }
+                                ],
+                                "body": {
+                                  "mode": "raw",
+                                  "raw": "{\n  \"amount\": {\n    \"currency_code\": \"<string>\",\n    \"value\": \"-.662121\"\n  },\n  \"custom_id\": \" \",\n  \"invoice_id\": \" \",\n  \"note_to_payer\": \"}\",\n  \"payment_instruction\": {\n    \"platform_fees\": [\n      {\n        \"amount\": {\n          \"currency_code\": \"<string>\",\n          \"value\": \"084\"\n        },\n        \"payee\": {\n          \"email_address\": \"wCLe89.sv.=xbb~agAy`.gFI+ME7F.cu`VlGy8.D`.t7V=!1z{@[3.206.254.1]\",\n          \"merchant_id\": \"NM9J3JFYHDB8P\"\n        }\n      }\n    ]\n  }\n}",
+                                  "options": {
+                                    "raw": {
+                                      "headerFamily": "json",
+                                      "language": "json"
+                                    }
+                                  }
+                                },
+                                "url": {
+                                  "raw": "{{baseUrl}}/v2/payments/captures/:capture_id/refund",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "v2",
+                                    "payments",
+                                    "captures",
+                                    ":capture_id",
+                                    "refund"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "capture_id"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "Forbidden",
+                              "code": 403,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "{\n  \"name\": \"NOT_AUTHORIZED\",\n  \"message\": \"Authorization failed due to insufficient permissions.\",\n  \"details\": [\n    {\n      \"issue\": \"<string>\",\n      \"field\": \"<string>\",\n      \"value\": \"<string>\",\n      \"location\": \"body\",\n      \"description\": \"<string>\"\n    },\n    {\n      \"issue\": \"<string>\",\n      \"field\": \"<string>\",\n      \"value\": \"<string>\",\n      \"location\": \"body\",\n      \"description\": \"<string>\"\n    }\n  ],\n  \"debug_id\": \"<string>\",\n  \"links\": [\n    {\n      \"href\": \"*6c#{\",\n      \"rel\": \"Q\",\n      \"method\": \"POST\"\n    },\n    {\n      \"href\": \"\\\\1n\",\n      \"rel\": \"$h3Td\",\n      \"method\": \"DELETE\"\n    },\n    {\n      \"href\": \"-kk\",\n      \"rel\": \"G:SLv?*\",\n      \"method\": \"PUT\"\n    },\n    {\n      \"href\": \"UYaz\",\n      \"rel\": \"E`LW|3%\",\n      \"method\": \"PATCH\"\n    },\n    {\n      \"href\": \"E\",\n      \"rel\": \"9av4?\",\n      \"method\": \"GET\"\n    },\n    {\n      \"href\": \"mW(\",\n      \"rel\": \"2'/Z0WA\",\n      \"method\": \"POST\"\n    },\n    {\n      \"href\": \"N)\\\\\",\n      \"rel\": \"P>']G!]\\\\\",\n      \"method\": \"DELETE\"\n    },\n    {\n      \"href\": \"[+n&K\",\n      \"rel\": \"}[-,\",\n      \"method\": \"DELETE\"\n    },\n    {\n      \"href\": \"\",\n      \"rel\": \"~-*G\",\n      \"method\": \"POST\"\n    },\n    {\n      \"href\": \"+\",\n      \"rel\": \"wfkl\\\\P\",\n      \"method\": \"PATCH\"\n    },\n    {\n      \"href\": \"dLH5y\",\n      \"rel\": \"Qu\",\n      \"method\": \"POST\"\n    },\n    {\n      \"href\": \"!_#sI\",\n      \"rel\": \"$\",\n      \"method\": \"GET\"\n    },\n    {\n      \"href\": \":<w\\\\EaF_\",\n      \"rel\": \"cx682\",\n      \"method\": \"PATCH\"\n    },\n    {\n      \"href\": \"aSym-\",\n      \"rel\": \"'[F)Jwnw6\",\n      \"method\": \"GET\"\n    },\n    {\n      \"href\": \"J{%)2O!\",\n      \"rel\": \"Ifa^\",\n      \"method\": \"PATCH\"\n    },\n    {\n      \"href\": \"<pP\",\n      \"rel\": \"\",\n      \"method\": \"PUT\"\n    },\n    {\n      \"href\": \"o8]\",\n      \"rel\": \"T\",\n      \"method\": \"POST\"\n    },\n    {\n      \"href\": \"vH\",\n      \"rel\": \"\",\n      \"method\": \"PATCH\"\n    },\n    {\n      \"href\": \"aEV='\",\n      \"rel\": \"Q:vr8\",\n      \"method\": \"DELETE\"\n    },\n    {\n      \"href\": \"'uZ\",\n      \"rel\": \"9%'u\",\n      \"method\": \"POST\"\n    }\n  ]\n}",
+                              "createdAt": "2026-07-28T02:33:24.000Z",
+                              "updatedAt": "2026-07-28T02:33:24.000Z",
+                              "uid": "35240-df7e0d3a-7c77-4b63-99c5-18664c217c90"
+                            },
+                            {
+                              "id": "f1c123ea-01ed-434e-8a6b-64167ce65620",
+                              "name": "The request failed because the resource does not exist.",
+                              "originalRequest": {
+                                "method": "POST",
+                                "header": [
+                                  {
+                                    "description": "The server stores keys for 45 days.",
+                                    "key": "PayPal-Request-Id",
+                                    "value": "<string>"
+                                  },
+                                  {
+                                    "description": "The preferred server response upon successful completion of the request. Value is:<ul><li><code>return=minimal</code>. The server returns a minimal response to optimize communication between the API caller and the server. A minimal response includes the <code>id</code>, <code>status</code> and HATEOAS links.</li><li><code>return=representation</code>. The server returns a complete resource representation, including the current state of the resource.</li></ul>",
+                                    "key": "Prefer",
+                                    "value": "return=minimal"
+                                  },
+                                  {
+                                    "description": "An API-caller-provided JSON Web Token (JWT) assertion that identifies the merchant. For details, see [PayPal-Auth-Assertion](/docs/api/reference/api-requests/#paypal-auth-assertion).<blockquote><strong>Note:</strong>For three party transactions in which a partner is managing the API calls on behalf of a merchant, the partner must identify the merchant using either a PayPal-Auth-Assertion header or an access token with target_subject.</blockquote>",
+                                    "key": "PayPal-Auth-Assertion",
+                                    "value": "<string>"
+                                  },
+                                  {
+                                    "key": "Content-Type",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: oauth2",
+                                    "key": "Authorization",
+                                    "value": "<token>"
+                                  }
+                                ],
+                                "body": {
+                                  "mode": "raw",
+                                  "raw": "{\n  \"amount\": {\n    \"currency_code\": \"<string>\",\n    \"value\": \"-.662121\"\n  },\n  \"custom_id\": \" \",\n  \"invoice_id\": \" \",\n  \"note_to_payer\": \"}\",\n  \"payment_instruction\": {\n    \"platform_fees\": [\n      {\n        \"amount\": {\n          \"currency_code\": \"<string>\",\n          \"value\": \"084\"\n        },\n        \"payee\": {\n          \"email_address\": \"wCLe89.sv.=xbb~agAy`.gFI+ME7F.cu`VlGy8.D`.t7V=!1z{@[3.206.254.1]\",\n          \"merchant_id\": \"NM9J3JFYHDB8P\"\n        }\n      }\n    ]\n  }\n}",
+                                  "options": {
+                                    "raw": {
+                                      "headerFamily": "json",
+                                      "language": "json"
+                                    }
+                                  }
+                                },
+                                "url": {
+                                  "raw": "{{baseUrl}}/v2/payments/captures/:capture_id/refund",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "v2",
+                                    "payments",
+                                    "captures",
+                                    ":capture_id",
+                                    "refund"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "capture_id"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "Not Found",
+                              "code": 404,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "{\n  \"name\": \"RESOURCE_NOT_FOUND\",\n  \"message\": \"The specified resource does not exist.\",\n  \"details\": [\n    {\n      \"issue\": \"<string>\",\n      \"field\": \"<string>\",\n      \"value\": \"<string>\",\n      \"location\": \"body\",\n      \"description\": \"<string>\"\n    },\n    {\n      \"issue\": \"<string>\",\n      \"field\": \"<string>\",\n      \"value\": \"<string>\",\n      \"location\": \"body\",\n      \"description\": \"<string>\"\n    }\n  ],\n  \"debug_id\": \"<string>\",\n  \"links\": [\n    {\n      \"href\": \"Cu2]&2\",\n      \"rel\": \"\",\n      \"method\": \"PUT\"\n    },\n    {\n      \"href\": \"~Lhe~\",\n      \"rel\": \"L83e8n>S!\",\n      \"method\": \"PATCH\"\n    },\n    {\n      \"href\": \"[<ucTvBCO\",\n      \"rel\": \"e-C;?qz3\",\n      \"method\": \"GET\"\n    },\n    {\n      \"href\": \"f()~}-ig*U\",\n      \"rel\": \"Q&\",\n      \"method\": \"POST\"\n    },\n    {\n      \"href\": \"SSBm8O9E\",\n      \"rel\": \"C@(]|7\",\n      \"method\": \"DELETE\"\n    },\n    {\n      \"href\": \"MZu#Ir/+\",\n      \"rel\": \"(.Ai|M`c\",\n      \"method\": \"GET\"\n    },\n    {\n      \"href\": \"i\",\n      \"rel\": \"~Y[gM(&\",\n      \"method\": \"POST\"\n    },\n    {\n      \"href\": \"[OB2#\",\n      \"rel\": \"\",\n      \"method\": \"PUT\"\n    },\n    {\n      \"href\": \"GGj\",\n      \"rel\": \"H?6}@#Ml\",\n      \"method\": \"DELETE\"\n    },\n    {\n      \"href\": \"I~G83Td\",\n      \"rel\": \",NB-Y%GbA\",\n      \"method\": \"PATCH\"\n    },\n    {\n      \"href\": \"]6M<q\\\"v_B\",\n      \"rel\": \"C=`/OWPK=&\",\n      \"method\": \"GET\"\n    },\n    {\n      \"href\": \"a\",\n      \"rel\": \":}R}\",\n      \"method\": \"PUT\"\n    },\n    {\n      \"href\": \":\",\n      \"rel\": \"!\",\n      \"method\": \"PUT\"\n    },\n    {\n      \"href\": \"S@.N7xt@d~\",\n      \"rel\": \"k>c\",\n      \"method\": \"PATCH\"\n    },\n    {\n      \"href\": \"kDk ,\\\\Uq.c\",\n      \"rel\": \"pAf>s,Rp9u\",\n      \"method\": \"GET\"\n    },\n    {\n      \"href\": \">`n;fMPIP\",\n      \"rel\": \"\\\\&\",\n      \"method\": \"GET\"\n    },\n    {\n      \"href\": \"<_)P\",\n      \"rel\": \"E%IP\",\n      \"method\": \"POST\"\n    },\n    {\n      \"href\": \">?W|V@.\",\n      \"rel\": \"}-Y#\",\n      \"method\": \"PUT\"\n    },\n    {\n      \"href\": \"F8\\\"\\\"I\",\n      \"rel\": \"o\\\\\",\n      \"method\": \"PUT\"\n    },\n    {\n      \"href\": \"<]ajx>(\",\n      \"rel\": \"`3d\",\n      \"method\": \"DELETE\"\n    }\n  ]\n}",
+                              "createdAt": "2026-07-28T02:33:24.000Z",
+                              "updatedAt": "2026-07-28T02:33:24.000Z",
+                              "uid": "35240-f1c123ea-01ed-434e-8a6b-64167ce65620"
+                            },
+                            {
+                              "id": "ae73ae60-fc79-42b0-a04b-42f5151b5bea",
+                              "name": "The request failed because a previous call for the given resource is in progress.",
+                              "originalRequest": {
+                                "method": "POST",
+                                "header": [
+                                  {
+                                    "description": "The server stores keys for 45 days.",
+                                    "key": "PayPal-Request-Id",
+                                    "value": "<string>"
+                                  },
+                                  {
+                                    "description": "The preferred server response upon successful completion of the request. Value is:<ul><li><code>return=minimal</code>. The server returns a minimal response to optimize communication between the API caller and the server. A minimal response includes the <code>id</code>, <code>status</code> and HATEOAS links.</li><li><code>return=representation</code>. The server returns a complete resource representation, including the current state of the resource.</li></ul>",
+                                    "key": "Prefer",
+                                    "value": "return=minimal"
+                                  },
+                                  {
+                                    "description": "An API-caller-provided JSON Web Token (JWT) assertion that identifies the merchant. For details, see [PayPal-Auth-Assertion](/docs/api/reference/api-requests/#paypal-auth-assertion).<blockquote><strong>Note:</strong>For three party transactions in which a partner is managing the API calls on behalf of a merchant, the partner must identify the merchant using either a PayPal-Auth-Assertion header or an access token with target_subject.</blockquote>",
+                                    "key": "PayPal-Auth-Assertion",
+                                    "value": "<string>"
+                                  },
+                                  {
+                                    "key": "Content-Type",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: oauth2",
+                                    "key": "Authorization",
+                                    "value": "<token>"
+                                  }
+                                ],
+                                "body": {
+                                  "mode": "raw",
+                                  "raw": "{\n  \"amount\": {\n    \"currency_code\": \"<string>\",\n    \"value\": \"-.662121\"\n  },\n  \"custom_id\": \" \",\n  \"invoice_id\": \" \",\n  \"note_to_payer\": \"}\",\n  \"payment_instruction\": {\n    \"platform_fees\": [\n      {\n        \"amount\": {\n          \"currency_code\": \"<string>\",\n          \"value\": \"084\"\n        },\n        \"payee\": {\n          \"email_address\": \"wCLe89.sv.=xbb~agAy`.gFI+ME7F.cu`VlGy8.D`.t7V=!1z{@[3.206.254.1]\",\n          \"merchant_id\": \"NM9J3JFYHDB8P\"\n        }\n      }\n    ]\n  }\n}",
+                                  "options": {
+                                    "raw": {
+                                      "headerFamily": "json",
+                                      "language": "json"
+                                    }
+                                  }
+                                },
+                                "url": {
+                                  "raw": "{{baseUrl}}/v2/payments/captures/:capture_id/refund",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "v2",
+                                    "payments",
+                                    "captures",
+                                    ":capture_id",
+                                    "refund"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "capture_id"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "Conflict",
+                              "code": 409,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "{\n  \"name\": \"RESOURCE_CONFLICT\",\n  \"message\": \"The server has detected a conflict while processing this request.\",\n  \"details\": [\n    {\n      \"issue\": \"<string>\",\n      \"field\": \"<string>\",\n      \"value\": \"<string>\",\n      \"location\": \"body\",\n      \"description\": \"<string>\"\n    },\n    {\n      \"issue\": \"<string>\",\n      \"field\": \"<string>\",\n      \"value\": \"<string>\",\n      \"location\": \"body\",\n      \"description\": \"<string>\"\n    }\n  ],\n  \"debug_id\": \"<string>\",\n  \"links\": [\n    {\n      \"href\": \"PzbqKSRy\",\n      \"rel\": \"si9t?\",\n      \"method\": \"POST\"\n    },\n    {\n      \"href\": \",\",\n      \"rel\": \"(Y_w2mH2\",\n      \"method\": \"DELETE\"\n    },\n    {\n      \"href\": \"T&Ly7\",\n      \"rel\": \"oQ?m{8U H\",\n      \"method\": \"DELETE\"\n    },\n    {\n      \"href\": \"\",\n      \"rel\": \"\\\\xu'/lxWi\",\n      \"method\": \"PUT\"\n    },\n    {\n      \"href\": \"2ui\",\n      \"rel\": \"m\",\n      \"method\": \"PUT\"\n    },\n    {\n      \"href\": \"o}.J#*%62\",\n      \"rel\": \"/5CS0a\",\n      \"method\": \"PUT\"\n    },\n    {\n      \"href\": \"\",\n      \"rel\": \"si]Dz~#Ua_\",\n      \"method\": \"DELETE\"\n    },\n    {\n      \"href\": \"l'\",\n      \"rel\": \"]\",\n      \"method\": \"DELETE\"\n    },\n    {\n      \"href\": \"7\",\n      \"rel\": \"+h2UVqd0\",\n      \"method\": \"PATCH\"\n    },\n    {\n      \"href\": \"~-p_)z_k]n\",\n      \"rel\": \"WzF||I+f\",\n      \"method\": \"DELETE\"\n    },\n    {\n      \"href\": \"?VB^\\\\B,\",\n      \"rel\": \"D99e\",\n      \"method\": \"PUT\"\n    },\n    {\n      \"href\": \"RsN;;lu[Ul\",\n      \"rel\": \"n:0}\\\\t1\",\n      \"method\": \"POST\"\n    },\n    {\n      \"href\": \"v\",\n      \"rel\": \"Ala\",\n      \"method\": \"DELETE\"\n    },\n    {\n      \"href\": \"l{_\",\n      \"rel\": \"_Igi/%\",\n      \"method\": \"DELETE\"\n    },\n    {\n      \"href\": \"#OCl\",\n      \"rel\": \"bh<1bU~*2\",\n      \"method\": \"PATCH\"\n    },\n    {\n      \"href\": \"ko&+XH`Y\",\n      \"rel\": \"m7\",\n      \"method\": \"GET\"\n    },\n    {\n      \"href\": \"ls\",\n      \"rel\": \"ctd{21\\\\$Cz\",\n      \"method\": \"POST\"\n    },\n    {\n      \"href\": \"(;C\",\n      \"rel\": \"c+e[\",\n      \"method\": \"PUT\"\n    },\n    {\n      \"href\": \"7\\\\J\",\n      \"rel\": \"m[>\",\n      \"method\": \"PATCH\"\n    },\n    {\n      \"href\": \"p`t(Q6\",\n      \"rel\": \"\",\n      \"method\": \"PATCH\"\n    }\n  ]\n}",
+                              "createdAt": "2026-07-28T02:33:24.000Z",
+                              "updatedAt": "2026-07-28T02:33:24.000Z",
+                              "uid": "35240-ae73ae60-fc79-42b0-a04b-42f5151b5bea"
+                            },
+                            {
+                              "id": "6224c22e-e918-4ef3-afa1-6b88606054e7",
+                              "name": "The request failed because it either is semantically incorrect or failed business validation.",
+                              "originalRequest": {
+                                "method": "POST",
+                                "header": [
+                                  {
+                                    "description": "The server stores keys for 45 days.",
+                                    "key": "PayPal-Request-Id",
+                                    "value": "<string>"
+                                  },
+                                  {
+                                    "description": "The preferred server response upon successful completion of the request. Value is:<ul><li><code>return=minimal</code>. The server returns a minimal response to optimize communication between the API caller and the server. A minimal response includes the <code>id</code>, <code>status</code> and HATEOAS links.</li><li><code>return=representation</code>. The server returns a complete resource representation, including the current state of the resource.</li></ul>",
+                                    "key": "Prefer",
+                                    "value": "return=minimal"
+                                  },
+                                  {
+                                    "description": "An API-caller-provided JSON Web Token (JWT) assertion that identifies the merchant. For details, see [PayPal-Auth-Assertion](/docs/api/reference/api-requests/#paypal-auth-assertion).<blockquote><strong>Note:</strong>For three party transactions in which a partner is managing the API calls on behalf of a merchant, the partner must identify the merchant using either a PayPal-Auth-Assertion header or an access token with target_subject.</blockquote>",
+                                    "key": "PayPal-Auth-Assertion",
+                                    "value": "<string>"
+                                  },
+                                  {
+                                    "key": "Content-Type",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: oauth2",
+                                    "key": "Authorization",
+                                    "value": "<token>"
+                                  }
+                                ],
+                                "body": {
+                                  "mode": "raw",
+                                  "raw": "{\n  \"amount\": {\n    \"currency_code\": \"<string>\",\n    \"value\": \"-.662121\"\n  },\n  \"custom_id\": \" \",\n  \"invoice_id\": \" \",\n  \"note_to_payer\": \"}\",\n  \"payment_instruction\": {\n    \"platform_fees\": [\n      {\n        \"amount\": {\n          \"currency_code\": \"<string>\",\n          \"value\": \"084\"\n        },\n        \"payee\": {\n          \"email_address\": \"wCLe89.sv.=xbb~agAy`.gFI+ME7F.cu`VlGy8.D`.t7V=!1z{@[3.206.254.1]\",\n          \"merchant_id\": \"NM9J3JFYHDB8P\"\n        }\n      }\n    ]\n  }\n}",
+                                  "options": {
+                                    "raw": {
+                                      "headerFamily": "json",
+                                      "language": "json"
+                                    }
+                                  }
+                                },
+                                "url": {
+                                  "raw": "{{baseUrl}}/v2/payments/captures/:capture_id/refund",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "v2",
+                                    "payments",
+                                    "captures",
+                                    ":capture_id",
+                                    "refund"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "capture_id"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+                              "code": 422,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "{\n  \"name\": \"UNPROCESSABLE_ENTITY\",\n  \"message\": \"The requested action could not be performed, semantically incorrect, or failed business validation.\",\n  \"details\": [\n    {\n      \"issue\": \"<string>\",\n      \"field\": \"<string>\",\n      \"value\": \"<string>\",\n      \"location\": \"body\",\n      \"description\": \"<string>\"\n    },\n    {\n      \"issue\": \"<string>\",\n      \"field\": \"<string>\",\n      \"value\": \"<string>\",\n      \"location\": \"body\",\n      \"description\": \"<string>\"\n    }\n  ],\n  \"debug_id\": \"<string>\",\n  \"links\": [\n    {\n      \"href\": \"\",\n      \"rel\": \"`YDQU\",\n      \"method\": \"GET\"\n    },\n    {\n      \"href\": \"(-km\",\n      \"rel\": \"HD,'[_FH\",\n      \"method\": \"DELETE\"\n    },\n    {\n      \"href\": \"E0Hz\",\n      \"rel\": \"P/!\",\n      \"method\": \"GET\"\n    },\n    {\n      \"href\": \"HsWq@\",\n      \"rel\": \"m8JO/LFb\",\n      \"method\": \"PUT\"\n    },\n    {\n      \"href\": \"\",\n      \"rel\": \"\\\\^4)0Lijh\",\n      \"method\": \"PUT\"\n    },\n    {\n      \"href\": \"zt<$\",\n      \"rel\": \"\\\"Gx(e_2\",\n      \"method\": \"DELETE\"\n    },\n    {\n      \"href\": \"$L#C=\",\n      \"rel\": \"fpi,Tx.q3X\",\n      \"method\": \"DELETE\"\n    },\n    {\n      \"href\": \"wAv\",\n      \"rel\": \"cOK[olGu;(\",\n      \"method\": \"DELETE\"\n    },\n    {\n      \"href\": \"?Qij\",\n      \"rel\": \"7$iZHfDr\",\n      \"method\": \"PATCH\"\n    },\n    {\n      \"href\": \"&jl Xxl7\",\n      \"rel\": \"\",\n      \"method\": \"GET\"\n    },\n    {\n      \"href\": \"aU<7N:\",\n      \"rel\": \"|4}PWH\",\n      \"method\": \"PUT\"\n    },\n    {\n      \"href\": \"g4!G\",\n      \"rel\": \"*7vKELjt70\",\n      \"method\": \"PATCH\"\n    },\n    {\n      \"href\": \"J&\\\\-KIZT)G\",\n      \"rel\": \"BYxl5g\",\n      \"method\": \"GET\"\n    },\n    {\n      \"href\": \"W[N*_G:lW\",\n      \"rel\": \"\\\\LO8XsK4\\\\\",\n      \"method\": \"POST\"\n    },\n    {\n      \"href\": \"Vx.\",\n      \"rel\": \"[oX\",\n      \"method\": \"PATCH\"\n    },\n    {\n      \"href\": \"TQ\\\\*'>Z=\",\n      \"rel\": \"9\",\n      \"method\": \"POST\"\n    },\n    {\n      \"href\": \"@921@U&s\\\\y\",\n      \"rel\": \"`'HC=\",\n      \"method\": \"GET\"\n    },\n    {\n      \"href\": \"7n:!P(\",\n      \"rel\": \"\\\"1*$8Q\",\n      \"method\": \"PUT\"\n    },\n    {\n      \"href\": \"z\",\n      \"rel\": \"n0\",\n      \"method\": \"PATCH\"\n    },\n    {\n      \"href\": \"*SSu\",\n      \"rel\": \";( fwUD@\",\n      \"method\": \"DELETE\"\n    }\n  ]\n}",
+                              "createdAt": "2026-07-28T02:33:24.000Z",
+                              "updatedAt": "2026-07-28T02:33:24.000Z",
+                              "uid": "35240-6224c22e-e918-4ef3-afa1-6b88606054e7"
+                            },
+                            {
+                              "id": "aa69c482-c30c-4b22-aa44-1f56b5c27873",
+                              "name": "The request failed because an internal server error occurred.",
+                              "originalRequest": {
+                                "method": "POST",
+                                "header": [
+                                  {
+                                    "description": "The server stores keys for 45 days.",
+                                    "key": "PayPal-Request-Id",
+                                    "value": "<string>"
+                                  },
+                                  {
+                                    "description": "The preferred server response upon successful completion of the request. Value is:<ul><li><code>return=minimal</code>. The server returns a minimal response to optimize communication between the API caller and the server. A minimal response includes the <code>id</code>, <code>status</code> and HATEOAS links.</li><li><code>return=representation</code>. The server returns a complete resource representation, including the current state of the resource.</li></ul>",
+                                    "key": "Prefer",
+                                    "value": "return=minimal"
+                                  },
+                                  {
+                                    "description": "An API-caller-provided JSON Web Token (JWT) assertion that identifies the merchant. For details, see [PayPal-Auth-Assertion](/docs/api/reference/api-requests/#paypal-auth-assertion).<blockquote><strong>Note:</strong>For three party transactions in which a partner is managing the API calls on behalf of a merchant, the partner must identify the merchant using either a PayPal-Auth-Assertion header or an access token with target_subject.</blockquote>",
+                                    "key": "PayPal-Auth-Assertion",
+                                    "value": "<string>"
+                                  },
+                                  {
+                                    "key": "Content-Type",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: oauth2",
+                                    "key": "Authorization",
+                                    "value": "<token>"
+                                  }
+                                ],
+                                "body": {
+                                  "mode": "raw",
+                                  "raw": "{\n  \"amount\": {\n    \"currency_code\": \"<string>\",\n    \"value\": \"-.662121\"\n  },\n  \"custom_id\": \" \",\n  \"invoice_id\": \" \",\n  \"note_to_payer\": \"}\",\n  \"payment_instruction\": {\n    \"platform_fees\": [\n      {\n        \"amount\": {\n          \"currency_code\": \"<string>\",\n          \"value\": \"084\"\n        },\n        \"payee\": {\n          \"email_address\": \"wCLe89.sv.=xbb~agAy`.gFI+ME7F.cu`VlGy8.D`.t7V=!1z{@[3.206.254.1]\",\n          \"merchant_id\": \"NM9J3JFYHDB8P\"\n        }\n      }\n    ]\n  }\n}",
+                                  "options": {
+                                    "raw": {
+                                      "headerFamily": "json",
+                                      "language": "json"
+                                    }
+                                  }
+                                },
+                                "url": {
+                                  "raw": "{{baseUrl}}/v2/payments/captures/:capture_id/refund",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "v2",
+                                    "payments",
+                                    "captures",
+                                    ":capture_id",
+                                    "refund"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "capture_id"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "Internal Server Error",
+                              "code": 500,
+                              "_postman_previewlanguage": "text",
+                              "header": [],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": null,
+                              "createdAt": "2026-07-28T02:33:24.000Z",
+                              "updatedAt": "2026-07-28T02:33:24.000Z",
+                              "uid": "35240-aa69c482-c30c-4b22-aa44-1f56b5c27873"
+                            },
+                            {
+                              "id": "075ef57e-c3d0-4ec1-943b-30cb52beeaf7",
+                              "name": "The default response.",
+                              "originalRequest": {
+                                "method": "POST",
+                                "header": [
+                                  {
+                                    "description": "The server stores keys for 45 days.",
+                                    "key": "PayPal-Request-Id",
+                                    "value": "<string>"
+                                  },
+                                  {
+                                    "description": "The preferred server response upon successful completion of the request. Value is:<ul><li><code>return=minimal</code>. The server returns a minimal response to optimize communication between the API caller and the server. A minimal response includes the <code>id</code>, <code>status</code> and HATEOAS links.</li><li><code>return=representation</code>. The server returns a complete resource representation, including the current state of the resource.</li></ul>",
+                                    "key": "Prefer",
+                                    "value": "return=minimal"
+                                  },
+                                  {
+                                    "description": "An API-caller-provided JSON Web Token (JWT) assertion that identifies the merchant. For details, see [PayPal-Auth-Assertion](/docs/api/reference/api-requests/#paypal-auth-assertion).<blockquote><strong>Note:</strong>For three party transactions in which a partner is managing the API calls on behalf of a merchant, the partner must identify the merchant using either a PayPal-Auth-Assertion header or an access token with target_subject.</blockquote>",
+                                    "key": "PayPal-Auth-Assertion",
+                                    "value": "<string>"
+                                  },
+                                  {
+                                    "key": "Content-Type",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: oauth2",
+                                    "key": "Authorization",
+                                    "value": "<token>"
+                                  }
+                                ],
+                                "body": {
+                                  "mode": "raw",
+                                  "raw": "{\n  \"amount\": {\n    \"currency_code\": \"<string>\",\n    \"value\": \"-.662121\"\n  },\n  \"custom_id\": \" \",\n  \"invoice_id\": \" \",\n  \"note_to_payer\": \"}\",\n  \"payment_instruction\": {\n    \"platform_fees\": [\n      {\n        \"amount\": {\n          \"currency_code\": \"<string>\",\n          \"value\": \"084\"\n        },\n        \"payee\": {\n          \"email_address\": \"wCLe89.sv.=xbb~agAy`.gFI+ME7F.cu`VlGy8.D`.t7V=!1z{@[3.206.254.1]\",\n          \"merchant_id\": \"NM9J3JFYHDB8P\"\n        }\n      }\n    ]\n  }\n}",
+                                  "options": {
+                                    "raw": {
+                                      "headerFamily": "json",
+                                      "language": "json"
+                                    }
+                                  }
+                                },
+                                "url": {
+                                  "raw": "{{baseUrl}}/v2/payments/captures/:capture_id/refund",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "v2",
+                                    "payments",
+                                    "captures",
+                                    ":capture_id",
+                                    "refund"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "capture_id"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "Internal Server Error",
+                              "code": 500,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "{\n  \"name\": \"INVALID_REQUEST\",\n  \"message\": \"Request is not well-formed, syntactically incorrect, or violates schema.\",\n  \"details\": [\n    {\n      \"issue\": \"<string>\",\n      \"field\": \"<string>\",\n      \"value\": \"<string>\",\n      \"location\": \"body\",\n      \"description\": \"<string>\"\n    },\n    {\n      \"issue\": \"<string>\",\n      \"field\": \"<string>\",\n      \"value\": \"<string>\",\n      \"location\": \"body\",\n      \"description\": \"<string>\"\n    }\n  ],\n  \"debug_id\": \"<string>\",\n  \"links\": [\n    {\n      \"href\": \"\",\n      \"rel\": \"H*h1-X8S\",\n      \"method\": \"POST\"\n    },\n    {\n      \"href\": \"5n]\",\n      \"rel\": \"g9N\",\n      \"method\": \"PUT\"\n    },\n    {\n      \"href\": \"HSw7byx,\",\n      \"rel\": \"\",\n      \"method\": \"PATCH\"\n    },\n    {\n      \"href\": \")w&xZ?\",\n      \"rel\": \"\",\n      \"method\": \"PUT\"\n    },\n    {\n      \"href\": \"Oxmwt\",\n      \"rel\": \";-aF2EH3\",\n      \"method\": \"PUT\"\n    },\n    {\n      \"href\": \"owO\",\n      \"rel\": \"\",\n      \"method\": \"GET\"\n    },\n    {\n      \"href\": \"D<D\",\n      \"rel\": \"V\",\n      \"method\": \"DELETE\"\n    },\n    {\n      \"href\": \"+zt{y\",\n      \"rel\": \">.g1\",\n      \"method\": \"GET\"\n    },\n    {\n      \"href\": \"`Av\",\n      \"rel\": \"rQ\\\"\",\n      \"method\": \"POST\"\n    },\n    {\n      \"href\": \"e=O$T~^aUj\",\n      \"rel\": \"6\",\n      \"method\": \"PUT\"\n    },\n    {\n      \"href\": \"j\",\n      \"rel\": \"mI\",\n      \"method\": \"PATCH\"\n    },\n    {\n      \"href\": \"8-Syup\",\n      \"rel\": \"O^Y[\",\n      \"method\": \"GET\"\n    },\n    {\n      \"href\": \".CZT\",\n      \"rel\": \"jx&w\",\n      \"method\": \"GET\"\n    },\n    {\n      \"href\": \"=C<lTFk~\",\n      \"rel\": \"er'eX\",\n      \"method\": \"POST\"\n    },\n    {\n      \"href\": \"}+LM@mMiE[\",\n      \"rel\": \"@ k\",\n      \"method\": \"POST\"\n    },\n    {\n      \"href\": \"kI/V\",\n      \"rel\": \"Rd\",\n      \"method\": \"PATCH\"\n    },\n    {\n      \"href\": \"5HGo]0J>\",\n      \"rel\": \"ns-4M\",\n      \"method\": \"PATCH\"\n    },\n    {\n      \"href\": \"=:\",\n      \"rel\": \"'t+ECIU)+\",\n      \"method\": \"PUT\"\n    },\n    {\n      \"href\": \"{2T?>#K\",\n      \"rel\": \"ge}<fp_]\",\n      \"method\": \"DELETE\"\n    },\n    {\n      \"href\": \"QG\",\n      \"rel\": \"-O,\\\"~a\",\n      \"method\": \"PUT\"\n    }\n  ]\n}",
+                              "createdAt": "2026-07-28T02:33:24.000Z",
+                              "updatedAt": "2026-07-28T02:33:24.000Z",
+                              "uid": "35240-075ef57e-c3d0-4ec1-943b-30cb52beeaf7"
+                            }
+                          ],
+                          "createdAt": "2026-07-28T02:33:24.000Z",
+                          "updatedAt": "2026-07-28T02:33:24.000Z",
+                          "uid": "35240-b7c7ddb9-608b-4031-9aca-bad174772c36"
+                        }
+                      ],
+                      "id": "4fe463fe-d007-4b58-8d8d-fda86ca1dc42",
+                      "createdAt": "2026-07-28T02:33:24.000Z",
+                      "updatedAt": "2026-07-28T02:33:24.000Z",
+                      "uid": "35240-4fe463fe-d007-4b58-8d8d-fda86ca1dc42"
+                    },
+                    {
+                      "name": "Paypal Show captured payment details",
+                      "id": "0966ece6-38c1-40e8-b935-f3160b661e8f",
+                      "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                      },
+                      "request": {
+                        "auth": {
+                          "type": "oauth2",
+                          "oauth2": [
+                            {
+                              "key": "scope",
+                              "value": "https://uri.paypal.com/services/subscriptions",
+                              "type": "string"
+                            },
+                            {
+                              "key": "accessTokenUrl",
+                              "value": "/v1/oauth2/token",
+                              "type": "string"
+                            },
+                            {
+                              "key": "grant_type",
+                              "value": "client_credentials",
+                              "type": "string"
+                            }
+                          ]
+                        },
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/v2/payments/captures/:capture_id",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v2",
+                            "payments",
+                            "captures",
+                            ":capture_id"
+                          ],
+                          "variable": [
+                            {
+                              "id": "f02b4ca5-ec59-43b2-8570-e83820e6bdaa",
+                              "key": "capture_id",
+                              "value": "<string>",
+                              "description": "(Required) The PayPal-generated ID for the captured payment to refund."
+                            }
+                          ]
+                        },
+                        "description": "Shows details for a captured payment, by ID."
+                      },
+                      "response": [
+                        {
+                          "id": "dd5d5559-51b5-4888-a41d-3caa34da73ea",
+                          "name": "A successful request returns the HTTP <code>200 OK</code> status code and a JSON response body that shows captured payment details.",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: oauth2",
+                                "key": "Authorization",
+                                "value": "<token>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/v2/payments/captures/:capture_id",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "v2",
+                                "payments",
+                                "captures",
+                                ":capture_id"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "capture_id"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "OK",
+                          "code": 200,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"status\": \"PENDING\",\n  \"status_details\": {\n    \"reason\": \"REFUNDED\"\n  },\n  \"id\": \"<string>\",\n  \"amount\": {\n    \"currency_code\": \"<string>\",\n    \"value\": \"-883\"\n  },\n  \"invoice_id\": \"<string>\",\n  \"custom_id\": \"<string>\",\n  \"network_transaction_reference\": {\n    \"id\": \"pBPl-pBPl-\",\n    \"date\": \"4809\",\n    \"network\": \"SOLO\",\n    \"acquirer_reference_number\": \"o51\"\n  },\n  \"seller_protection\": {\n    \"status\": \"PARTIALLY_ELIGIBLE\",\n    \"dispute_categories\": [\n      \"UNAUTHORIZED_TRANSACTION\",\n      \"ITEM_NOT_RECEIVED\"\n    ]\n  },\n  \"final_capture\": false,\n  \"seller_receivable_breakdown\": {\n    \"gross_amount\": {\n      \"currency_code\": \"<string>\",\n      \"value\": \"-23033156\"\n    },\n    \"paypal_fee\": {\n      \"currency_code\": \"<string>\",\n      \"value\": \"7143940\"\n    },\n    \"paypal_fee_in_receivable_currency\": {\n      \"currency_code\": \"<string>\",\n      \"value\": \"-3637930790.76327318\"\n    },\n    \"net_amount\": {\n      \"currency_code\": \"<string>\",\n      \"value\": \"-434024278\"\n    },\n    \"receivable_amount\": {\n      \"currency_code\": \"<string>\",\n      \"value\": \"62146708691\"\n    },\n    \"exchange_rate\": {\n      \"source_currency\": \"<string>\",\n      \"target_currency\": \"<string>\",\n      \"value\": \"<string>\"\n    },\n    \"platform_fees\": [\n      {\n        \"amount\": {\n          \"currency_code\": \"<string>\",\n          \"value\": \"71443563420\"\n        },\n        \"payee\": {\n          \"email_address\": \"tJpq.XN.+X}+*H'+1.56Pl#YPB.c|JMTx'F6.rLIv$u/.N+v~eo0}{.b_3.vOu'EN6@s.UJkQ7xKLp6oj.lfu.YGUwX.f.x.t.lQPzLE.j1lZDf8nDmx7\",\n          \"merchant_id\": \"CCDB6SV829437\"\n        }\n      }\n    ]\n  },\n  \"disbursement_mode\": \"INSTANT\",\n  \"links\": [\n    {\n      \"href\": \"<string>\",\n      \"rel\": \"<string>\",\n      \"method\": \"POST\"\n    },\n    {\n      \"href\": \"<string>\",\n      \"rel\": \"<string>\",\n      \"method\": \"POST\"\n    }\n  ],\n  \"processor_response\": {\n    \"avs_code\": \"W\",\n    \"cvv_code\": \"4\",\n    \"response_code\": \"8220\",\n    \"payment_advice_code\": \"21\"\n  },\n  \"create_time\": \"7934-08-30t09:08:01.3157138647-71:74\",\n  \"update_time\": \"6795-11-27T21:15:17.4326869-11:50\",\n  \"supplementary_data\": {\n    \"related_ids\": {\n      \"order_id\": \"4IG3D\",\n      \"authorization_id\": \"KLRG2UJ\",\n      \"capture_id\": \"OT2\"\n    }\n  },\n  \"payee\": {\n    \"email_address\": \"CIF|V-K2.4.'Rm-$fQZ.9lV8{_.XmifqWI.R.P/BM*~*.AnbDQ~SZdu6.zJvTiSkd4g.9^O@z.v.2d8.3W.I\",\n    \"merchant_id\": \"ASUJ2UQUVULZ9\"\n  }\n}",
+                          "createdAt": "2026-07-28T02:33:24.000Z",
+                          "updatedAt": "2026-07-28T02:33:24.000Z",
+                          "uid": "35240-dd5d5559-51b5-4888-a41d-3caa34da73ea"
+                        },
+                        {
+                          "id": "720e544a-1568-4f56-a140-10aac43d84c8",
+                          "name": "Authentication failed due to missing authorization header, or invalid authentication credentials.",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: oauth2",
+                                "key": "Authorization",
+                                "value": "<token>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/v2/payments/captures/:capture_id",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "v2",
+                                "payments",
+                                "captures",
+                                ":capture_id"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "capture_id"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Unauthorized",
+                          "code": 401,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"name\": \"AUTHENTICATION_FAILURE\",\n  \"message\": \"Authentication failed due to missing authorization header, or invalid authentication credentials.\",\n  \"details\": [\n    {\n      \"issue\": \"<string>\",\n      \"field\": \"<string>\",\n      \"value\": \"<string>\",\n      \"location\": \"body\",\n      \"description\": \"<string>\"\n    },\n    {\n      \"issue\": \"<string>\",\n      \"field\": \"<string>\",\n      \"value\": \"<string>\",\n      \"location\": \"body\",\n      \"description\": \"<string>\"\n    }\n  ],\n  \"debug_id\": \"<string>\",\n  \"links\": [\n    {\n      \"href\": \" 7@o!\\\\\",\n      \"rel\": \"h.C\",\n      \"method\": \"PATCH\"\n    },\n    {\n      \"href\": \"\",\n      \"rel\": \"L}XNAl|\",\n      \"method\": \"DELETE\"\n    },\n    {\n      \"href\": \"r`zrE3$5P\",\n      \"rel\": \"F5\",\n      \"method\": \"DELETE\"\n    },\n    {\n      \"href\": \"J`O\",\n      \"rel\": \"w@[!S)B:[\",\n      \"method\": \"PATCH\"\n    },\n    {\n      \"href\": \"Xk'OZ<\",\n      \"rel\": \"$pLv\",\n      \"method\": \"PUT\"\n    },\n    {\n      \"href\": \"$%_bU&P$\",\n      \"rel\": \"`vn\",\n      \"method\": \"DELETE\"\n    },\n    {\n      \"href\": \"~/RY`T:WH\",\n      \"rel\": \"I[xz@=]AD\",\n      \"method\": \"PUT\"\n    },\n    {\n      \"href\": \"jcfn\",\n      \"rel\": \"\",\n      \"method\": \"PUT\"\n    },\n    {\n      \"href\": \"\",\n      \"rel\": \"\",\n      \"method\": \"DELETE\"\n    },\n    {\n      \"href\": \"_\",\n      \"rel\": \"'+r.ib$\\\\\",\n      \"method\": \"POST\"\n    },\n    {\n      \"href\": \"3^d9\",\n      \"rel\": \"6Z\",\n      \"method\": \"PATCH\"\n    },\n    {\n      \"href\": \"'^Yv)\",\n      \"rel\": \"D!>\",\n      \"method\": \"PATCH\"\n    },\n    {\n      \"href\": \"e4gW=F1=_n\",\n      \"rel\": \"[d3\",\n      \"method\": \"PATCH\"\n    },\n    {\n      \"href\": \"tXrK0Se.\",\n      \"rel\": \"i.1VLd\",\n      \"method\": \"DELETE\"\n    },\n    {\n      \"href\": \",\",\n      \"rel\": \"7m\",\n      \"method\": \"POST\"\n    },\n    {\n      \"href\": \"]r]B\",\n      \"rel\": \"fwf'@7mM\",\n      \"method\": \"GET\"\n    },\n    {\n      \"href\": \"~>gDPL^c} \",\n      \"rel\": \"j95lKrp\",\n      \"method\": \"PUT\"\n    },\n    {\n      \"href\": \"u@Ld@r\",\n      \"rel\": \"D~V-[A+\",\n      \"method\": \"GET\"\n    },\n    {\n      \"href\": \"zFdxU<1tQ8\",\n      \"rel\": \"r8q\",\n      \"method\": \"PUT\"\n    },\n    {\n      \"href\": \"L]:k+__N\",\n      \"rel\": \"[0&A50>E\",\n      \"method\": \"PATCH\"\n    }\n  ]\n}",
+                          "createdAt": "2026-07-28T02:33:24.000Z",
+                          "updatedAt": "2026-07-28T02:33:24.000Z",
+                          "uid": "35240-720e544a-1568-4f56-a140-10aac43d84c8"
+                        },
+                        {
+                          "id": "458e721b-38a6-4cfe-bb6c-ebfb2de59596",
+                          "name": "The request failed because the caller has insufficient permissions.",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: oauth2",
+                                "key": "Authorization",
+                                "value": "<token>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/v2/payments/captures/:capture_id",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "v2",
+                                "payments",
+                                "captures",
+                                ":capture_id"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "capture_id"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Forbidden",
+                          "code": 403,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"name\": \"NOT_AUTHORIZED\",\n  \"message\": \"Authorization failed due to insufficient permissions.\",\n  \"details\": [\n    {\n      \"issue\": \"<string>\",\n      \"field\": \"<string>\",\n      \"value\": \"<string>\",\n      \"location\": \"body\",\n      \"description\": \"<string>\"\n    },\n    {\n      \"issue\": \"<string>\",\n      \"field\": \"<string>\",\n      \"value\": \"<string>\",\n      \"location\": \"body\",\n      \"description\": \"<string>\"\n    }\n  ],\n  \"debug_id\": \"<string>\",\n  \"links\": [\n    {\n      \"href\": \"*6c#{\",\n      \"rel\": \"Q\",\n      \"method\": \"POST\"\n    },\n    {\n      \"href\": \"\\\\1n\",\n      \"rel\": \"$h3Td\",\n      \"method\": \"DELETE\"\n    },\n    {\n      \"href\": \"-kk\",\n      \"rel\": \"G:SLv?*\",\n      \"method\": \"PUT\"\n    },\n    {\n      \"href\": \"UYaz\",\n      \"rel\": \"E`LW|3%\",\n      \"method\": \"PATCH\"\n    },\n    {\n      \"href\": \"E\",\n      \"rel\": \"9av4?\",\n      \"method\": \"GET\"\n    },\n    {\n      \"href\": \"mW(\",\n      \"rel\": \"2'/Z0WA\",\n      \"method\": \"POST\"\n    },\n    {\n      \"href\": \"N)\\\\\",\n      \"rel\": \"P>']G!]\\\\\",\n      \"method\": \"DELETE\"\n    },\n    {\n      \"href\": \"[+n&K\",\n      \"rel\": \"}[-,\",\n      \"method\": \"DELETE\"\n    },\n    {\n      \"href\": \"\",\n      \"rel\": \"~-*G\",\n      \"method\": \"POST\"\n    },\n    {\n      \"href\": \"+\",\n      \"rel\": \"wfkl\\\\P\",\n      \"method\": \"PATCH\"\n    },\n    {\n      \"href\": \"dLH5y\",\n      \"rel\": \"Qu\",\n      \"method\": \"POST\"\n    },\n    {\n      \"href\": \"!_#sI\",\n      \"rel\": \"$\",\n      \"method\": \"GET\"\n    },\n    {\n      \"href\": \":<w\\\\EaF_\",\n      \"rel\": \"cx682\",\n      \"method\": \"PATCH\"\n    },\n    {\n      \"href\": \"aSym-\",\n      \"rel\": \"'[F)Jwnw6\",\n      \"method\": \"GET\"\n    },\n    {\n      \"href\": \"J{%)2O!\",\n      \"rel\": \"Ifa^\",\n      \"method\": \"PATCH\"\n    },\n    {\n      \"href\": \"<pP\",\n      \"rel\": \"\",\n      \"method\": \"PUT\"\n    },\n    {\n      \"href\": \"o8]\",\n      \"rel\": \"T\",\n      \"method\": \"POST\"\n    },\n    {\n      \"href\": \"vH\",\n      \"rel\": \"\",\n      \"method\": \"PATCH\"\n    },\n    {\n      \"href\": \"aEV='\",\n      \"rel\": \"Q:vr8\",\n      \"method\": \"DELETE\"\n    },\n    {\n      \"href\": \"'uZ\",\n      \"rel\": \"9%'u\",\n      \"method\": \"POST\"\n    }\n  ]\n}",
+                          "createdAt": "2026-07-28T02:33:24.000Z",
+                          "updatedAt": "2026-07-28T02:33:24.000Z",
+                          "uid": "35240-458e721b-38a6-4cfe-bb6c-ebfb2de59596"
+                        },
+                        {
+                          "id": "3a93bb4c-ad43-4430-924c-f2aae1553462",
+                          "name": "The request failed because the resource does not exist.",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: oauth2",
+                                "key": "Authorization",
+                                "value": "<token>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/v2/payments/captures/:capture_id",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "v2",
+                                "payments",
+                                "captures",
+                                ":capture_id"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "capture_id"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Not Found",
+                          "code": 404,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"name\": \"RESOURCE_NOT_FOUND\",\n  \"message\": \"The specified resource does not exist.\",\n  \"details\": [\n    {\n      \"issue\": \"<string>\",\n      \"field\": \"<string>\",\n      \"value\": \"<string>\",\n      \"location\": \"body\",\n      \"description\": \"<string>\"\n    },\n    {\n      \"issue\": \"<string>\",\n      \"field\": \"<string>\",\n      \"value\": \"<string>\",\n      \"location\": \"body\",\n      \"description\": \"<string>\"\n    }\n  ],\n  \"debug_id\": \"<string>\",\n  \"links\": [\n    {\n      \"href\": \"Cu2]&2\",\n      \"rel\": \"\",\n      \"method\": \"PUT\"\n    },\n    {\n      \"href\": \"~Lhe~\",\n      \"rel\": \"L83e8n>S!\",\n      \"method\": \"PATCH\"\n    },\n    {\n      \"href\": \"[<ucTvBCO\",\n      \"rel\": \"e-C;?qz3\",\n      \"method\": \"GET\"\n    },\n    {\n      \"href\": \"f()~}-ig*U\",\n      \"rel\": \"Q&\",\n      \"method\": \"POST\"\n    },\n    {\n      \"href\": \"SSBm8O9E\",\n      \"rel\": \"C@(]|7\",\n      \"method\": \"DELETE\"\n    },\n    {\n      \"href\": \"MZu#Ir/+\",\n      \"rel\": \"(.Ai|M`c\",\n      \"method\": \"GET\"\n    },\n    {\n      \"href\": \"i\",\n      \"rel\": \"~Y[gM(&\",\n      \"method\": \"POST\"\n    },\n    {\n      \"href\": \"[OB2#\",\n      \"rel\": \"\",\n      \"method\": \"PUT\"\n    },\n    {\n      \"href\": \"GGj\",\n      \"rel\": \"H?6}@#Ml\",\n      \"method\": \"DELETE\"\n    },\n    {\n      \"href\": \"I~G83Td\",\n      \"rel\": \",NB-Y%GbA\",\n      \"method\": \"PATCH\"\n    },\n    {\n      \"href\": \"]6M<q\\\"v_B\",\n      \"rel\": \"C=`/OWPK=&\",\n      \"method\": \"GET\"\n    },\n    {\n      \"href\": \"a\",\n      \"rel\": \":}R}\",\n      \"method\": \"PUT\"\n    },\n    {\n      \"href\": \":\",\n      \"rel\": \"!\",\n      \"method\": \"PUT\"\n    },\n    {\n      \"href\": \"S@.N7xt@d~\",\n      \"rel\": \"k>c\",\n      \"method\": \"PATCH\"\n    },\n    {\n      \"href\": \"kDk ,\\\\Uq.c\",\n      \"rel\": \"pAf>s,Rp9u\",\n      \"method\": \"GET\"\n    },\n    {\n      \"href\": \">`n;fMPIP\",\n      \"rel\": \"\\\\&\",\n      \"method\": \"GET\"\n    },\n    {\n      \"href\": \"<_)P\",\n      \"rel\": \"E%IP\",\n      \"method\": \"POST\"\n    },\n    {\n      \"href\": \">?W|V@.\",\n      \"rel\": \"}-Y#\",\n      \"method\": \"PUT\"\n    },\n    {\n      \"href\": \"F8\\\"\\\"I\",\n      \"rel\": \"o\\\\\",\n      \"method\": \"PUT\"\n    },\n    {\n      \"href\": \"<]ajx>(\",\n      \"rel\": \"`3d\",\n      \"method\": \"DELETE\"\n    }\n  ]\n}",
+                          "createdAt": "2026-07-28T02:33:24.000Z",
+                          "updatedAt": "2026-07-28T02:33:24.000Z",
+                          "uid": "35240-3a93bb4c-ad43-4430-924c-f2aae1553462"
+                        },
+                        {
+                          "id": "c2ee56c7-7e9b-4ede-bb52-494ed958e2e7",
+                          "name": "The request failed because an internal server error occurred.",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "description": "Added as a part of security scheme: oauth2",
+                                "key": "Authorization",
+                                "value": "<token>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/v2/payments/captures/:capture_id",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "v2",
+                                "payments",
+                                "captures",
+                                ":capture_id"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "capture_id"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Internal Server Error",
+                          "code": 500,
+                          "_postman_previewlanguage": "text",
+                          "header": [],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": null,
+                          "createdAt": "2026-07-28T02:33:24.000Z",
+                          "updatedAt": "2026-07-28T02:33:24.000Z",
+                          "uid": "35240-c2ee56c7-7e9b-4ede-bb52-494ed958e2e7"
+                        },
+                        {
+                          "id": "7410f47c-a5fe-4fb2-a96f-4c6d49960b62",
+                          "name": "The default response.",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: oauth2",
+                                "key": "Authorization",
+                                "value": "<token>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/v2/payments/captures/:capture_id",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "v2",
+                                "payments",
+                                "captures",
+                                ":capture_id"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "capture_id"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Internal Server Error",
+                          "code": 500,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"name\": \"INVALID_REQUEST\",\n  \"message\": \"Request is not well-formed, syntactically incorrect, or violates schema.\",\n  \"details\": [\n    {\n      \"issue\": \"<string>\",\n      \"field\": \"<string>\",\n      \"value\": \"<string>\",\n      \"location\": \"body\",\n      \"description\": \"<string>\"\n    },\n    {\n      \"issue\": \"<string>\",\n      \"field\": \"<string>\",\n      \"value\": \"<string>\",\n      \"location\": \"body\",\n      \"description\": \"<string>\"\n    }\n  ],\n  \"debug_id\": \"<string>\",\n  \"links\": [\n    {\n      \"href\": \"\",\n      \"rel\": \"H*h1-X8S\",\n      \"method\": \"POST\"\n    },\n    {\n      \"href\": \"5n]\",\n      \"rel\": \"g9N\",\n      \"method\": \"PUT\"\n    },\n    {\n      \"href\": \"HSw7byx,\",\n      \"rel\": \"\",\n      \"method\": \"PATCH\"\n    },\n    {\n      \"href\": \")w&xZ?\",\n      \"rel\": \"\",\n      \"method\": \"PUT\"\n    },\n    {\n      \"href\": \"Oxmwt\",\n      \"rel\": \";-aF2EH3\",\n      \"method\": \"PUT\"\n    },\n    {\n      \"href\": \"owO\",\n      \"rel\": \"\",\n      \"method\": \"GET\"\n    },\n    {\n      \"href\": \"D<D\",\n      \"rel\": \"V\",\n      \"method\": \"DELETE\"\n    },\n    {\n      \"href\": \"+zt{y\",\n      \"rel\": \">.g1\",\n      \"method\": \"GET\"\n    },\n    {\n      \"href\": \"`Av\",\n      \"rel\": \"rQ\\\"\",\n      \"method\": \"POST\"\n    },\n    {\n      \"href\": \"e=O$T~^aUj\",\n      \"rel\": \"6\",\n      \"method\": \"PUT\"\n    },\n    {\n      \"href\": \"j\",\n      \"rel\": \"mI\",\n      \"method\": \"PATCH\"\n    },\n    {\n      \"href\": \"8-Syup\",\n      \"rel\": \"O^Y[\",\n      \"method\": \"GET\"\n    },\n    {\n      \"href\": \".CZT\",\n      \"rel\": \"jx&w\",\n      \"method\": \"GET\"\n    },\n    {\n      \"href\": \"=C<lTFk~\",\n      \"rel\": \"er'eX\",\n      \"method\": \"POST\"\n    },\n    {\n      \"href\": \"}+LM@mMiE[\",\n      \"rel\": \"@ k\",\n      \"method\": \"POST\"\n    },\n    {\n      \"href\": \"kI/V\",\n      \"rel\": \"Rd\",\n      \"method\": \"PATCH\"\n    },\n    {\n      \"href\": \"5HGo]0J>\",\n      \"rel\": \"ns-4M\",\n      \"method\": \"PATCH\"\n    },\n    {\n      \"href\": \"=:\",\n      \"rel\": \"'t+ECIU)+\",\n      \"method\": \"PUT\"\n    },\n    {\n      \"href\": \"{2T?>#K\",\n      \"rel\": \"ge}<fp_]\",\n      \"method\": \"DELETE\"\n    },\n    {\n      \"href\": \"QG\",\n      \"rel\": \"-O,\\\"~a\",\n      \"method\": \"PUT\"\n    }\n  ]\n}",
+                          "createdAt": "2026-07-28T02:33:24.000Z",
+                          "updatedAt": "2026-07-28T02:33:24.000Z",
+                          "uid": "35240-7410f47c-a5fe-4fb2-a96f-4c6d49960b62"
+                        }
+                      ],
+                      "createdAt": "2026-07-28T02:33:24.000Z",
+                      "updatedAt": "2026-07-28T02:33:24.000Z",
+                      "uid": "35240-0966ece6-38c1-40e8-b935-f3160b661e8f"
+                    }
+                  ],
+                  "id": "f439ff15-669d-4682-959e-a37b1b0c1c97",
+                  "createdAt": "2026-07-28T02:33:24.000Z",
+                  "updatedAt": "2026-07-28T02:33:24.000Z",
+                  "uid": "35240-f439ff15-669d-4682-959e-a37b1b0c1c97"
+                }
+              ],
+              "id": "656a4653-5431-4d2f-9558-4dc3fd5dca9b",
+              "createdAt": "2026-07-28T02:33:24.000Z",
+              "updatedAt": "2026-07-28T02:33:24.000Z",
+              "uid": "35240-656a4653-5431-4d2f-9558-4dc3fd5dca9b"
+            }
+          ],
+          "id": "b13e02d4-484d-452b-9cc6-06cf9946f249",
+          "createdAt": "2026-07-28T02:33:24.000Z",
+          "updatedAt": "2026-07-28T02:33:24.000Z",
+          "uid": "35240-b13e02d4-484d-452b-9cc6-06cf9946f249"
+        }
+      ],
+      "id": "4457178d-bf00-4948-a0d1-5f5b73abbde8",
+      "createdAt": "2026-07-28T02:33:24.000Z",
+      "updatedAt": "2026-07-28T02:33:24.000Z",
+      "uid": "35240-4457178d-bf00-4948-a0d1-5f5b73abbde8"
+    }
+  ],
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://api-m.sandbox.paypal.com"
+    }
+  ]
+}

@@ -1,0 +1,230 @@
+{
+  "info": {
+    "_postman_id": "04f26aac-17d6-45a7-90ee-41935a4b55ea",
+    "name": "Paypal Subscriptions Authorizations Simulate-Event API",
+    "description": "You can use billing plans and subscriptions to create subscriptions that process recurring PayPal payments for physical or digital goods, or services. A plan includes pricing and billing cycle information that defines the amount and frequency of charge for a subscription. You can also define a fixed plan, such as a $5 basic plan or a volume- or graduated-based plan with pricing tiers based on the quantity purchased. For more information, see <a href=\"/docs/subscriptions/\">Subscriptions Overview</a>.",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-07-28T02:34:46.000Z",
+    "updatedAt": "2026-07-28T02:34:46.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-04f26aac-17d6-45a7-90ee-41935a4b55ea"
+  },
+  "item": [
+    {
+      "name": "v1",
+      "item": [
+        {
+          "name": "notifications",
+          "item": [
+            {
+              "name": "simulate-event",
+              "item": [
+                {
+                  "name": "Paypal Simulate webhook event",
+                  "id": "4387ee8a-62f8-465a-8999-8d493a7c32b0",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "auth": {
+                      "type": "oauth2",
+                      "oauth2": [
+                        {
+                          "key": "scope",
+                          "value": "https://uri.paypal.com/services/subscriptions",
+                          "type": "string"
+                        },
+                        {
+                          "key": "accessTokenUrl",
+                          "value": "/v1/oauth2/token",
+                          "type": "string"
+                        },
+                        {
+                          "key": "grant_type",
+                          "value": "client_credentials",
+                          "type": "string"
+                        }
+                      ]
+                    },
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"event_type\": \"R6h\",\n  \"webhook_id\": \"OeSLyrQCBy\",\n  \"url\": \"<uri>\",\n  \"resource_version\": \"<string>\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/v1/notifications/simulate-event",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "v1",
+                        "notifications",
+                        "simulate-event"
+                      ]
+                    },
+                    "description": "Simulates a webhook event. In the JSON request body, specify a sample payload.<br>You need to subscribe to the following webhook events for Pay upon Invoice:<br><table><thead><tr><th>Event</th><th>Trigger</th></tr></thead><tbody><tr><td><code>PAYMENT.CAPTURE.COMPLETED</code></td><td>A payment capture completes.</td></tr><tr><td><code>PAYMENT.CAPTURE.DENIED</code></td><td>A payment capture is denied.</td></tr><tr><td><code>CHECKOUT.PAYMENT-APPROVAL.REVERSED</code></td><td>PayPal reverses a payment capture.</td></tr></tbody></table>"
+                  },
+                  "response": [
+                    {
+                      "id": "be999da6-2b8a-49ed-b0eb-85a676c57886",
+                      "name": "A successful request returns the HTTP `202 Accepted` status code and a JSON response body that shows details for the mock event.",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: oauth2",
+                            "key": "Authorization",
+                            "value": "<token>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"event_type\": \"R6h\",\n  \"webhook_id\": \"OeSLyrQCBy\",\n  \"url\": \"<uri>\",\n  \"resource_version\": \"<string>\"\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/v1/notifications/simulate-event",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v1",
+                            "notifications",
+                            "simulate-event"
+                          ]
+                        }
+                      },
+                      "status": "Accepted",
+                      "code": 202,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"id\": \"<string>\",\n  \"create_time\": \"<dateTime>\",\n  \"resource_type\": \"<string>\",\n  \"event_version\": \"466`704048632\",\n  \"event_type\": \"<string>\",\n  \"summary\": \"<string>\",\n  \"resource_version\": \"5229178340l14\",\n  \"resource\": {\n    \"qui_cf1\": -98934214,\n    \"ex_7c\": -35938133.283787586,\n    \"eu59\": false\n  },\n  \"links\": [\n    {\n      \"href\": \"<string>\",\n      \"rel\": \"<string>\",\n      \"method\": \"HEAD\"\n    },\n    {\n      \"href\": \"<string>\",\n      \"rel\": \"<string>\",\n      \"method\": \"GET\"\n    }\n  ]\n}",
+                      "createdAt": "2026-07-28T02:34:46.000Z",
+                      "updatedAt": "2026-07-28T02:34:46.000Z",
+                      "uid": "35240-be999da6-2b8a-49ed-b0eb-85a676c57886"
+                    },
+                    {
+                      "id": "34199e86-8b71-414c-846d-f077c91c27e4",
+                      "name": "The error response.",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: oauth2",
+                            "key": "Authorization",
+                            "value": "<token>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"event_type\": \"R6h\",\n  \"webhook_id\": \"OeSLyrQCBy\",\n  \"url\": \"<uri>\",\n  \"resource_version\": \"<string>\"\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/v1/notifications/simulate-event",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v1",
+                            "notifications",
+                            "simulate-event"
+                          ]
+                        }
+                      },
+                      "status": "Internal Server Error",
+                      "code": 500,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"name\": \"<string>\",\n  \"message\": \"<string>\",\n  \"debug_id\": \"<string>\",\n  \"information_link\": \"<string>\",\n  \"details\": [\n    {\n      \"issue\": \"<string>\",\n      \"field\": \"<string>\",\n      \"value\": \"<string>\",\n      \"location\": \"body\",\n      \"description\": \"<string>\"\n    },\n    {\n      \"issue\": \"<string>\",\n      \"field\": \"<string>\",\n      \"value\": \"<string>\",\n      \"location\": \"body\",\n      \"description\": \"<string>\"\n    }\n  ],\n  \"links\": [\n    {\n      \"href\": \"<string>\",\n      \"rel\": \"<string>\",\n      \"method\": \"POST\"\n    },\n    {\n      \"href\": \"<string>\",\n      \"rel\": \"<string>\",\n      \"method\": \"CONNECT\"\n    }\n  ]\n}",
+                      "createdAt": "2026-07-28T02:34:46.000Z",
+                      "updatedAt": "2026-07-28T02:34:46.000Z",
+                      "uid": "35240-34199e86-8b71-414c-846d-f077c91c27e4"
+                    }
+                  ],
+                  "createdAt": "2026-07-28T02:34:46.000Z",
+                  "updatedAt": "2026-07-28T02:34:46.000Z",
+                  "uid": "35240-4387ee8a-62f8-465a-8999-8d493a7c32b0"
+                }
+              ],
+              "id": "8dd8ec17-5456-48cd-8e5e-b7599510aa8e",
+              "createdAt": "2026-07-28T02:34:46.000Z",
+              "updatedAt": "2026-07-28T02:34:46.000Z",
+              "uid": "35240-8dd8ec17-5456-48cd-8e5e-b7599510aa8e"
+            }
+          ],
+          "id": "b4d3f594-5a60-4c91-bd15-dabd1ab4e243",
+          "createdAt": "2026-07-28T02:34:46.000Z",
+          "updatedAt": "2026-07-28T02:34:46.000Z",
+          "uid": "35240-b4d3f594-5a60-4c91-bd15-dabd1ab4e243"
+        }
+      ],
+      "id": "e2936421-6e6b-4976-a3d2-560d339c422f",
+      "createdAt": "2026-07-28T02:34:46.000Z",
+      "updatedAt": "2026-07-28T02:34:46.000Z",
+      "uid": "35240-e2936421-6e6b-4976-a3d2-560d339c422f"
+    }
+  ],
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://api-m.sandbox.paypal.com"
+    }
+  ]
+}

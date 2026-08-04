@@ -1,0 +1,1052 @@
+{
+  "info": {
+    "_postman_id": "101c7a54-5152-4927-8c3e-c33bb746f791",
+    "name": "Paypal Subscriptions Authorizations Disputes API",
+    "description": "You can use billing plans and subscriptions to create subscriptions that process recurring PayPal payments for physical or digital goods, or services. A plan includes pricing and billing cycle information that defines the amount and frequency of charge for a subscription. You can also define a fixed plan, such as a $5 basic plan or a volume- or graduated-based plan with pricing tiers based on the quantity purchased. For more information, see <a href=\"/docs/subscriptions/\">Subscriptions Overview</a>.",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-07-28T02:33:28.000Z",
+    "updatedAt": "2026-07-28T02:33:28.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-101c7a54-5152-4927-8c3e-c33bb746f791"
+  },
+  "item": [
+    {
+      "name": "v1",
+      "item": [
+        {
+          "name": "customer",
+          "item": [
+            {
+              "name": "disputes",
+              "item": [
+                {
+                  "name": "{id}",
+                  "item": [
+                    {
+                      "name": "Paypal Show dispute details",
+                      "id": "2c2dcf99-1cdf-4046-99c3-d87dce3b9528",
+                      "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                      },
+                      "request": {
+                        "auth": {
+                          "type": "oauth2",
+                          "oauth2": [
+                            {
+                              "key": "scope",
+                              "value": "https://uri.paypal.com/services/subscriptions",
+                              "type": "string"
+                            },
+                            {
+                              "key": "accessTokenUrl",
+                              "value": "/v1/oauth2/token",
+                              "type": "string"
+                            },
+                            {
+                              "key": "grant_type",
+                              "value": "client_credentials",
+                              "type": "string"
+                            }
+                          ]
+                        },
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/v1/customer/disputes/:id",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v1",
+                            "customer",
+                            "disputes",
+                            ":id"
+                          ],
+                          "variable": [
+                            {
+                              "id": "38f00054-acd0-4978-aea2-6ec6c18150c3",
+                              "key": "id",
+                              "value": "JXTBJ",
+                              "description": "(Required) The ID of the dispute for which to provide the supporting information."
+                            }
+                          ]
+                        },
+                        "description": "Shows details for a dispute, by ID.<blockquote><strong>Note:</strong> The fields that appear in the response depend on the access. For example, if the merchant requests shows dispute details, the customer's email ID does not appear.</blockquote>"
+                      },
+                      "response": [
+                        {
+                          "id": "51c6c033-ced2-45bc-ba4f-c8408a00b671",
+                          "name": "A successful request returns the HTTP `200 OK` status code and a JSON response body that shows dispute details.",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: oauth2",
+                                "key": "Authorization",
+                                "value": "<token>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/v1/customer/disputes/:id",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "v1",
+                                "customer",
+                                "disputes",
+                                ":id"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "id"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "OK",
+                          "code": 200,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"dispute_id\": \"Wt2Io8c\",\n  \"create_time\": \"0830-11-06,07:05:60.05455Z\",\n  \"update_time\": \"8892-11-02T06:56:41.34545-63:42\",\n  \"disputed_transactions\": [\n    {\n      \"buyer_transaction_id\": \"dx\",\n      \"seller_transaction_id\": \"OpGkb70R0a\",\n      \"reference_id\": \"uMmp2\",\n      \"create_time\": \"3354-06-05,23:19:60Z\",\n      \"transaction_status\": \"PARTIALLY_REFUNDED\",\n      \"gross_amount\": {\n        \"currency_code\": \"<string>\",\n        \"value\": \".9417044899\"\n      },\n      \"gross_asset\": {\n        \"asset_symbol\": \"ETH\",\n        \"quantity\": \"-93740723289.88\"\n      },\n      \"invoice_number\": \"GrAQErsTY\",\n      \"custom\": \"<string>\",\n      \"buyer\": {\n        \"name\": \"snjQq+R\"\n      },\n      \"seller\": {\n        \"email\": \"|L2>\\\"SG>@vjE\",\n        \"merchant_id\": \"F\",\n        \"name\": \"3?'m\"\n      },\n      \"items\": [\n        {\n          \"item_id\": \"yC4fQ419Ic\",\n          \"item_name\": \"<string>\",\n          \"item_description\": \"<string>\",\n          \"item_quantity\": \"1974017646\",\n          \"partner_transaction_id\": \"EApGZfoUeM\",\n          \"reason\": \"CREDIT_NOT_PROCESSED\",\n          \"dispute_amount\": {\n            \"currency_code\": \"<string>\",\n            \"value\": \"98\"\n          },\n          \"notes\": \"<string>\",\n          \"item_type\": \"BOOKING\",\n          \"product_details\": {},\n          \"service_details\": {},\n          \"booking_details\": {},\n          \"digital_download_details\": {},\n          \"cancellation_details\": {},\n          \"agreed_refund_details\": {}\n        }\n      ],\n      \"payment_processor\": {}\n    }\n  ],\n  \"reason\": \"UNAUTHORISED\",\n  \"status\": \"OTHER\",\n  \"dispute_amount\": {\n    \"currency_code\": \"<string>\",\n    \"value\": \"-.9998\"\n  },\n  \"dispute_asset\": {\n    \"asset_symbol\": \"BCH\",\n    \"quantity\": \"0638192\"\n  },\n  \"fee_policy\": {},\n  \"external_reason_code\": \"<string>\",\n  \"dispute_outcome\": {\n    \"outcome_code\": \"RESOLVED_WITH_PAYOUT\",\n    \"amount_refunded\": {\n      \"currency_code\": \"<string>\",\n      \"value\": \"54607.842565112\"\n    },\n    \"asset_refunded\": {\n      \"asset_symbol\": \"ETH\",\n      \"quantity\": \"-23505229621\"\n    }\n  },\n  \"adjudications\": [\n    {\n      \"type\": \"PAYOUT_TO_BUYER\",\n      \"adjudication_time\": \"9222-06-30T23:23:11.303771516Z\",\n      \"reason\": \"ITEM_NOT_SHIPPED\",\n      \"dispute_life_cycle_stage\": \"ARBITRATION\"\n    }\n  ],\n  \"money_movements\": [\n    {\n      \"affected_party\": \"SELLER\",\n      \"amount\": {\n        \"currency_code\": \"<string>\",\n        \"value\": \"-720\"\n      },\n      \"asset\": {\n        \"asset_symbol\": \"LTC\",\n        \"quantity\": \"-438810336\"\n      },\n      \"initiated_time\": \"2016-10-30T23:04:60-05:33\",\n      \"type\": \"CREDIT\",\n      \"reason\": \"CHARGEBACK_FEE\"\n    }\n  ],\n  \"dispute_life_cycle_stage\": \"CHARGEBACK\",\n  \"dispute_channel\": \"INTERNAL\",\n  \"messages\": [\n    {\n      \"posted_by\": \"SELLER\",\n      \"time_posted\": \"4344-04-30t22:56:60Z\",\n      \"content\": \"<string>\",\n      \"documents\": [\n        {\n          \"name\": \"q5H\u180e7.ozSiC\",\n          \"url\": \"<uri>\"\n        }\n      ]\n    }\n  ],\n  \"extensions\": {\n    \"merchant_contacted\": \"<boolean>\",\n    \"merchant_contacted_outcome\": \"NO_RESPONSE\",\n    \"merchant_contacted_time\": \"3845-05-31T11:02:42.068768Z\",\n    \"merchant_contacted_mode\": \"WRITTEN\",\n    \"buyer_contacted_time\": \"2309-05-09t17:06:60+33:94\",\n    \"buyer_contacted_channel\": \"<string>\",\n    \"billing_dispute_properties\": {\n      \"duplicate_transaction\": {\n        \"received_duplicate\": \"<boolean>\",\n        \"original_transaction\": {\n          \"buyer_transaction_id\": \"N-DKk\",\n          \"seller_transaction_id\": \"lsAWCxMfhWZ\",\n          \"reference_id\": \"d9e7lSdLM\",\n          \"create_time\": \"6544-10-07,20:08:09Z\",\n          \"transaction_status\": \"REVERSED\",\n          \"gross_amount\": {\n            \"currency_code\": \"<string>\",\n            \"value\": \"-081.823971050\"\n          },\n          \"gross_asset\": {\n            \"asset_symbol\": \"BCH\",\n            \"quantity\": \".99786736168\"\n          },\n          \"invoice_number\": \"f\",\n          \"custom\": \"<string>\",\n          \"buyer\": {\n            \"name\": \"BU[+3Hj\"\n          },\n          \"seller\": {\n            \"email\": \"cdRT]@0)Ukla\",\n            \"merchant_id\": \"ZMm55POE\",\n            \"name\": \"&&QSMB\"\n          },\n          \"items\": [\n            {\n              \"item_id\": \"Ken\",\n              \"item_name\": \"<string>\",\n              \"item_description\": \"<string>\",\n              \"item_quantity\": \"783944\",\n              \"partner_transaction_id\": \"FUy9WA\",\n              \"reason\": \"CREDIT_NOT_PROCESSED\",\n              \"dispute_amount\": {\n                \"currency_code\": \"<string>\",\n                \"value\": \".9175021272\"\n              },\n              \"notes\": \"<string>\",\n              \"item_type\": \"DIGITAL_DOWNLOAD\",\n              \"product_details\": {},\n              \"service_details\": {},\n              \"booking_details\": {},\n              \"digital_download_details\": {},\n              \"cancellation_details\": {},\n              \"agreed_refund_details\": {}\n            }\n          ],\n          \"payment_processor\": {}\n        }\n      },\n      \"incorrect_transaction_amount\": {\n        \"correct_transaction_amount\": {\n          \"currency_code\": \"<string>\",\n          \"value\": \"-84922754470\"\n        },\n        \"correct_transaction_asset\": {\n          \"asset_symbol\": \"BCH\",\n          \"quantity\": \"085\"\n        },\n        \"correct_transaction_time\": \"5947-12-16t06:53:42-77:38\"\n      },\n      \"payment_by_other_means\": {\n        \"charge_different_from_original\": \"<boolean>\",\n        \"received_duplicate\": \"<boolean>\",\n        \"payment_method\": \"BANK_TRANSFER\",\n        \"payment_instrument_suffix\": \"<string>\"\n      },\n      \"credit_not_processed\": {\n        \"issue_type\": \"PRODUCT\",\n        \"expected_refund\": {\n          \"currency_code\": \"<string>\",\n          \"value\": \"82\"\n        },\n        \"cancellation_details\": {\n          \"cancellation_date\": \"8837-11-30t08:41:60+51:16\",\n          \"cancellation_number\": \"V3\",\n          \"cancelled\": \"<boolean>\",\n          \"cancellation_mode\": \"EMAIL\"\n        },\n        \"product_details\": {\n          \"description\": \"<string>\",\n          \"product_received\": \"YES\",\n          \"product_received_time\": \"7928-04-10,09:11:60.12728Z\",\n          \"expected_delivery_date\": \"9098-01-18t20:05:16-79:22\",\n          \"sub_reasons\": [\n            \"MISSING_PARTS\"\n          ],\n          \"purchase_url\": \"<uri>\",\n          \"return_details\": {\n            \"return_time\": \"4890-04-25T12:44:37.999+48:84\",\n            \"mode\": \"SHIPPED\",\n            \"receipt\": \"<boolean>\",\n            \"return_confirmation_number\": \"Bi-kTOmi\",\n            \"returned\": \"<boolean>\"\n          }\n        },\n        \"service_details\": {\n          \"description\": \"<string>\",\n          \"service_started\": \"NO\",\n          \"note\": \"<string>\",\n          \"sub_reasons\": [\n            \"OTHER\"\n          ],\n          \"purchase_url\": \"<uri>\"\n        },\n        \"agreed_refund_details\": {\n          \"merchant_agreed_refund\": \"<boolean>\",\n          \"merchant_agreed_refund_time\": \"0623-05-10T16:04:54.36576883220z\"\n        }\n      },\n      \"canceled_recurring_billing\": {\n        \"expected_refund\": {\n          \"currency_code\": \"<string>\",\n          \"value\": \".547697\"\n        },\n        \"cancellation_details\": {\n          \"cancellation_date\": \"4599-03-15,20:37:16Z\",\n          \"cancellation_number\": \"SOeKQd7\",\n          \"cancelled\": \"<boolean>\",\n          \"cancellation_mode\": \"PHONE\"\n        }\n      }\n    },\n    \"merchandize_dispute_properties\": {\n      \"issue_type\": \"PRODUCT\",\n      \"product_details\": {\n        \"description\": \"<string>\",\n        \"product_received\": \"YES\",\n        \"product_received_time\": \"1285-10-09,21:39:60+29:11\",\n        \"expected_delivery_date\": \"5804-11-13,23:11:56-42:66\",\n        \"sub_reasons\": [\n          \"OTHER\"\n        ],\n        \"purchase_url\": \"<uri>\",\n        \"return_details\": {\n          \"return_time\": \"6103-07-31,23:02:60z\",\n          \"mode\": \"IN_PERSON\",\n          \"receipt\": \"<boolean>\",\n          \"return_confirmation_number\": \"QWDmxxnjMwZ\",\n          \"returned\": \"<boolean>\"\n        }\n      },\n      \"service_details\": {\n        \"description\": \"<string>\",\n        \"service_started\": \"CANCELLED\",\n        \"note\": \"<string>\",\n        \"sub_reasons\": [\n          \"INCOMPLETE\"\n        ],\n        \"purchase_url\": \"<uri>\"\n      },\n      \"cancellation_details\": {\n        \"cancellation_date\": \"1555-12-11T15:46:60.659+06:91\",\n        \"cancellation_number\": \"lsDj\",\n        \"cancelled\": \"<boolean>\",\n        \"cancellation_mode\": \"WRITTEN\"\n      },\n      \"return_shipping_address\": {\n        \"country_code\": \"KX\",\n        \"address_line_1\": \"<string>\",\n        \"address_line_2\": \"<string>\",\n        \"address_line_3\": \"<string>\",\n        \"admin_area_4\": \"<string>\",\n        \"admin_area_3\": \"<string>\",\n        \"admin_area_2\": \"<string>\",\n        \"admin_area_1\": \"<string>\",\n        \"postal_code\": \"<string>\",\n        \"address_details\": {\n          \"street_number\": \"<string>\",\n          \"street_name\": \"<string>\",\n          \"street_type\": \"<string>\",\n          \"delivery_service\": \"<string>\",\n          \"building_name\": \"<string>\",\n          \"sub_building\": \"<string>\"\n        }\n      }\n    }\n  },\n  \"evidences\": [\n    {\n      \"evidence_type\": \"REQUEST_CREDIT_RECEIPT\",\n      \"evidence_info\": {\n        \"tracking_info\": [\n          {\n            \"carrier_name\": \"FR_COLIPOSTE\",\n            \"tracking_number\": \"<string>\",\n            \"carrier_name_other\": \"<string>\",\n            \"tracking_url\": \"<uri>\"\n          }\n        ],\n        \"refund_ids\": [\n          \"<string>\"\n        ]\n      },\n      \"documents\": [\n        {\n          \"name\": \"\u2001h\u2028.vLckOzgDSIH\",\n          \"url\": \"<uri>\"\n        }\n      ],\n      \"notes\": \"<string>\",\n      \"source\": \"SUBMITTED_BY_SELLER\",\n      \"date\": \"9743-11-31,20:48:60.6133264122Z\",\n      \"item_id\": \"U\",\n      \"item_type\": \"PRODUCT\",\n      \"action_info\": {\n        \"action\": \"APPEAL\",\n        \"response_option\": \"GFHDJ_\",\n        \"mandatory\": \"<boolean>\"\n      },\n      \"dispute_life_cycle_stage\": \"PRE_ARBITRATION\"\n    }\n  ],\n  \"buyer_response_due_date\": \"4975-04-02,01:01:46Z\",\n  \"seller_response_due_date\": \"9011-06-30t04:28:60z\",\n  \"offer\": {\n    \"buyer_requested_amount\": {\n      \"currency_code\": \"<string>\",\n      \"value\": \"6569247.1\"\n    },\n    \"seller_offered_amount\": {\n      \"currency_code\": \"<string>\",\n      \"value\": \"-56239395901.457\"\n    },\n    \"offer_type\": \"REFUND\",\n    \"history\": [\n      {\n        \"offer_time\": \"2127-12-11,21:52:60+07:74\",\n        \"actor\": \"SELLER\",\n        \"event_type\": \"ACCEPTED\",\n        \"offer_type\": \"REPLACEMENT_WITHOUT_REFUND\",\n        \"offer_amount\": {\n          \"currency_code\": \"<string>\",\n          \"value\": \".31\"\n        },\n        \"notes\": \"<string>\",\n        \"dispute_life_cycle_stage\": \"CHARGEBACK\"\n      }\n    ]\n  },\n  \"refund_details\": {\n    \"allowed_refund_amount\": {\n      \"currency_code\": \"<string>\",\n      \"value\": \"-403\"\n    }\n  },\n  \"communication_details\": {\n    \"email\": \"[RQ=7J-$*@ PFt\",\n    \"note\": \"<string>\",\n    \"time_posted\": \"3805-12-15t21:06:60+29:16\"\n  },\n  \"supporting_info\": [\n    {\n      \"notes\": \"<string>\",\n      \"documents\": [\n        {\n          \"name\": \"Ii\u2029Oxv\ufeffa\u2008E.YuWX\",\n          \"url\": \"<uri>\"\n        }\n      ],\n      \"source\": \"SUBMITTED_BY_BUYER\",\n      \"provided_time\": \"8271-10-31,01:39:60-88:09\",\n      \"dispute_life_cycle_stage\": \"INQUIRY\"\n    }\n  ],\n  \"allowed_response_options\": {\n    \"acknowledge_return_item\": {\n      \"acknowledgement_types\": [\n        \"ITEM_RECEIVED\"\n      ]\n    },\n    \"accept_claim\": {\n      \"accept_claim_types\": [\n        \"PARTIAL_REFUND\"\n      ]\n    },\n    \"make_offer\": {\n      \"offer_types\": [\n        \"REPLACEMENT_WITHOUT_REFUND\"\n      ]\n    }\n  },\n  \"links\": [\n    {\n      \"href\": \"<string>\",\n      \"rel\": \"<string>\",\n      \"method\": \"GET\"\n    }\n  ]\n}",
+                          "createdAt": "2026-07-28T02:33:28.000Z",
+                          "updatedAt": "2026-07-28T02:33:28.000Z",
+                          "uid": "35240-51c6c033-ced2-45bc-ba4f-c8408a00b671"
+                        },
+                        {
+                          "id": "737c5d6f-9511-488e-87bc-44ec8a8451ae",
+                          "name": "An internal server error occurred. The request returns the HTTP `500 Internal Server Error` status code.",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: oauth2",
+                                "key": "Authorization",
+                                "value": "<token>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/v1/customer/disputes/:id",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "v1",
+                                "customer",
+                                "disputes",
+                                ":id"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "id"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Internal Server Error",
+                          "code": 500,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"name\": \"<string>\",\n  \"message\": \"<string>\",\n  \"debug_id\": \"<string>\",\n  \"information_link\": \"<string>\",\n  \"details\": [\n    {\n      \"issue\": \"<string>\",\n      \"field\": \"<string>\",\n      \"value\": \"<string>\",\n      \"location\": \"body\",\n      \"description\": \"<string>\"\n    },\n    {\n      \"issue\": \"<string>\",\n      \"field\": \"<string>\",\n      \"value\": \"<string>\",\n      \"location\": \"body\",\n      \"description\": \"<string>\"\n    }\n  ],\n  \"links\": [\n    {\n      \"href\": \"<string>\",\n      \"rel\": \"<string>\",\n      \"method\": \"GET\"\n    },\n    {\n      \"href\": \"<string>\",\n      \"rel\": \"<string>\",\n      \"method\": \"DELETE\"\n    }\n  ]\n}",
+                          "createdAt": "2026-07-28T02:33:28.000Z",
+                          "updatedAt": "2026-07-28T02:33:28.000Z",
+                          "uid": "35240-737c5d6f-9511-488e-87bc-44ec8a8451ae"
+                        },
+                        {
+                          "id": "16ef587c-9259-4e71-b351-828a83ee0c72",
+                          "name": "The error response.",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: oauth2",
+                                "key": "Authorization",
+                                "value": "<token>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/v1/customer/disputes/:id",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "v1",
+                                "customer",
+                                "disputes",
+                                ":id"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "id"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Internal Server Error",
+                          "code": 500,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"name\": \"<string>\",\n  \"message\": \"<string>\",\n  \"debug_id\": \"<string>\",\n  \"information_link\": \"<string>\",\n  \"details\": [\n    {\n      \"issue\": \"<string>\",\n      \"field\": \"<string>\",\n      \"value\": \"<string>\",\n      \"location\": \"body\",\n      \"description\": \"<string>\"\n    },\n    {\n      \"issue\": \"<string>\",\n      \"field\": \"<string>\",\n      \"value\": \"<string>\",\n      \"location\": \"body\",\n      \"description\": \"<string>\"\n    }\n  ],\n  \"links\": [\n    {\n      \"href\": \"<string>\",\n      \"rel\": \"<string>\",\n      \"method\": \"GET\"\n    },\n    {\n      \"href\": \"<string>\",\n      \"rel\": \"<string>\",\n      \"method\": \"DELETE\"\n    }\n  ]\n}",
+                          "createdAt": "2026-07-28T02:33:28.000Z",
+                          "updatedAt": "2026-07-28T02:33:28.000Z",
+                          "uid": "35240-16ef587c-9259-4e71-b351-828a83ee0c72"
+                        }
+                      ],
+                      "createdAt": "2026-07-28T02:33:28.000Z",
+                      "updatedAt": "2026-07-28T02:33:28.000Z",
+                      "uid": "35240-2c2dcf99-1cdf-4046-99c3-d87dce3b9528"
+                    },
+                    {
+                      "name": "Paypal Partially update dispute",
+                      "id": "878f3294-e827-4462-9aaf-7b514796fc31",
+                      "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                      },
+                      "request": {
+                        "auth": {
+                          "type": "oauth2",
+                          "oauth2": [
+                            {
+                              "key": "scope",
+                              "value": "https://uri.paypal.com/services/subscriptions",
+                              "type": "string"
+                            },
+                            {
+                              "key": "accessTokenUrl",
+                              "value": "/v1/oauth2/token",
+                              "type": "string"
+                            },
+                            {
+                              "key": "grant_type",
+                              "value": "client_credentials",
+                              "type": "string"
+                            }
+                          ]
+                        },
+                        "method": "PATCH",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "[\n  {\n    \"op\": \"replace\",\n    \"path\": \"<string>\",\n    \"value\": {\n      \"title\": \"Patch Value\",\n      \"description\": \"The value to apply. The <code>remove</code> operation does not require a value.\"\n    },\n    \"from\": \"<string>\"\n  },\n  {\n    \"op\": \"test\",\n    \"path\": \"<string>\",\n    \"value\": {\n      \"title\": \"Patch Value\",\n      \"description\": \"The value to apply. The <code>remove</code> operation does not require a value.\"\n    },\n    \"from\": \"<string>\"\n  }\n]",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/v1/customer/disputes/:id",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v1",
+                            "customer",
+                            "disputes",
+                            ":id"
+                          ],
+                          "variable": [
+                            {
+                              "id": "636ec612-aa07-4417-a80f-9194fc12e885",
+                              "key": "id",
+                              "value": "JXTBJ",
+                              "description": "(Required) The ID of the dispute for which to provide the supporting information."
+                            }
+                          ]
+                        },
+                        "description": "Partially updates a dispute, by ID. Seller can update the `communication_detail` value or The partner can add the `partner action` information."
+                      },
+                      "response": [
+                        {
+                          "id": "0f105de4-4d6f-4db8-8650-1c8c29a5970e",
+                          "name": "A successfully accepted request returns the HTTP `202 Accepted` status code and a JSON response body that includes a [HATEOAS link](/docs/api/reference/api-responses/#hateoas-links) to the ID of the request. The Clients can choose webhook option as well t",
+                          "originalRequest": {
+                            "method": "PATCH",
+                            "header": [
+                              {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                              },
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: oauth2",
+                                "key": "Authorization",
+                                "value": "<token>"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "[\n  {\n    \"op\": \"replace\",\n    \"path\": \"<string>\",\n    \"value\": {\n      \"title\": \"Patch Value\",\n      \"description\": \"The value to apply. The <code>remove</code> operation does not require a value.\"\n    },\n    \"from\": \"<string>\"\n  },\n  {\n    \"op\": \"test\",\n    \"path\": \"<string>\",\n    \"value\": {\n      \"title\": \"Patch Value\",\n      \"description\": \"The value to apply. The <code>remove</code> operation does not require a value.\"\n    },\n    \"from\": \"<string>\"\n  }\n]",
+                              "options": {
+                                "raw": {
+                                  "headerFamily": "json",
+                                  "language": "json"
+                                }
+                              }
+                            },
+                            "url": {
+                              "raw": "{{baseUrl}}/v1/customer/disputes/:id",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "v1",
+                                "customer",
+                                "disputes",
+                                ":id"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "id"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Accepted",
+                          "code": 202,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"links\": [\n    {\n      \"href\": \"<string>\",\n      \"rel\": \"<string>\",\n      \"method\": \"PUT\"\n    }\n  ]\n}",
+                          "createdAt": "2026-07-28T02:33:28.000Z",
+                          "updatedAt": "2026-07-28T02:33:28.000Z",
+                          "uid": "35240-0f105de4-4d6f-4db8-8650-1c8c29a5970e"
+                        },
+                        {
+                          "id": "4f5e7046-36b2-4141-a672-0a655d463f10",
+                          "name": "A successful request returns the HTTP `204 No Content` status code with no JSON response body.",
+                          "originalRequest": {
+                            "method": "PATCH",
+                            "header": [
+                              {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: oauth2",
+                                "key": "Authorization",
+                                "value": "<token>"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "[\n  {\n    \"op\": \"replace\",\n    \"path\": \"<string>\",\n    \"value\": {\n      \"title\": \"Patch Value\",\n      \"description\": \"The value to apply. The <code>remove</code> operation does not require a value.\"\n    },\n    \"from\": \"<string>\"\n  },\n  {\n    \"op\": \"test\",\n    \"path\": \"<string>\",\n    \"value\": {\n      \"title\": \"Patch Value\",\n      \"description\": \"The value to apply. The <code>remove</code> operation does not require a value.\"\n    },\n    \"from\": \"<string>\"\n  }\n]",
+                              "options": {
+                                "raw": {
+                                  "headerFamily": "json",
+                                  "language": "json"
+                                }
+                              }
+                            },
+                            "url": {
+                              "raw": "{{baseUrl}}/v1/customer/disputes/:id",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "v1",
+                                "customer",
+                                "disputes",
+                                ":id"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "id"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "No Content",
+                          "code": 204,
+                          "_postman_previewlanguage": "text",
+                          "header": [],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": null,
+                          "createdAt": "2026-07-28T02:33:28.000Z",
+                          "updatedAt": "2026-07-28T02:33:28.000Z",
+                          "uid": "35240-4f5e7046-36b2-4141-a672-0a655d463f10"
+                        },
+                        {
+                          "id": "3b3d49bc-9a92-425b-a2e8-16201e3bf4d8",
+                          "name": "The request failed due to a validation error. The request returns the HTTP `400 Bad Request` status code.",
+                          "originalRequest": {
+                            "method": "PATCH",
+                            "header": [
+                              {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                              },
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: oauth2",
+                                "key": "Authorization",
+                                "value": "<token>"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "[\n  {\n    \"op\": \"replace\",\n    \"path\": \"<string>\",\n    \"value\": {\n      \"title\": \"Patch Value\",\n      \"description\": \"The value to apply. The <code>remove</code> operation does not require a value.\"\n    },\n    \"from\": \"<string>\"\n  },\n  {\n    \"op\": \"test\",\n    \"path\": \"<string>\",\n    \"value\": {\n      \"title\": \"Patch Value\",\n      \"description\": \"The value to apply. The <code>remove</code> operation does not require a value.\"\n    },\n    \"from\": \"<string>\"\n  }\n]",
+                              "options": {
+                                "raw": {
+                                  "headerFamily": "json",
+                                  "language": "json"
+                                }
+                              }
+                            },
+                            "url": {
+                              "raw": "{{baseUrl}}/v1/customer/disputes/:id",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "v1",
+                                "customer",
+                                "disputes",
+                                ":id"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "id"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Bad Request",
+                          "code": 400,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"name\": \"<string>\",\n  \"message\": \"<string>\",\n  \"debug_id\": \"<string>\",\n  \"information_link\": \"<string>\",\n  \"details\": [\n    {\n      \"issue\": \"<string>\",\n      \"field\": \"<string>\",\n      \"value\": \"<string>\",\n      \"location\": \"body\",\n      \"description\": \"<string>\"\n    },\n    {\n      \"issue\": \"<string>\",\n      \"field\": \"<string>\",\n      \"value\": \"<string>\",\n      \"location\": \"body\",\n      \"description\": \"<string>\"\n    }\n  ],\n  \"links\": [\n    {\n      \"href\": \"<string>\",\n      \"rel\": \"<string>\",\n      \"method\": \"GET\"\n    },\n    {\n      \"href\": \"<string>\",\n      \"rel\": \"<string>\",\n      \"method\": \"DELETE\"\n    }\n  ]\n}",
+                          "createdAt": "2026-07-28T02:33:28.000Z",
+                          "updatedAt": "2026-07-28T02:33:28.000Z",
+                          "uid": "35240-3b3d49bc-9a92-425b-a2e8-16201e3bf4d8"
+                        },
+                        {
+                          "id": "de304f9e-1b48-4257-abb0-cad666f98c43",
+                          "name": "The requested action could not be completed. The request returns the HTTP `422 Unprocessable Entity` status code.",
+                          "originalRequest": {
+                            "method": "PATCH",
+                            "header": [
+                              {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                              },
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: oauth2",
+                                "key": "Authorization",
+                                "value": "<token>"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "[\n  {\n    \"op\": \"replace\",\n    \"path\": \"<string>\",\n    \"value\": {\n      \"title\": \"Patch Value\",\n      \"description\": \"The value to apply. The <code>remove</code> operation does not require a value.\"\n    },\n    \"from\": \"<string>\"\n  },\n  {\n    \"op\": \"test\",\n    \"path\": \"<string>\",\n    \"value\": {\n      \"title\": \"Patch Value\",\n      \"description\": \"The value to apply. The <code>remove</code> operation does not require a value.\"\n    },\n    \"from\": \"<string>\"\n  }\n]",
+                              "options": {
+                                "raw": {
+                                  "headerFamily": "json",
+                                  "language": "json"
+                                }
+                              }
+                            },
+                            "url": {
+                              "raw": "{{baseUrl}}/v1/customer/disputes/:id",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "v1",
+                                "customer",
+                                "disputes",
+                                ":id"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "id"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+                          "code": 422,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"name\": \"<string>\",\n  \"message\": \"<string>\",\n  \"debug_id\": \"<string>\",\n  \"information_link\": \"<string>\",\n  \"details\": [\n    {\n      \"issue\": \"<string>\",\n      \"field\": \"<string>\",\n      \"value\": \"<string>\",\n      \"location\": \"body\",\n      \"description\": \"<string>\"\n    },\n    {\n      \"issue\": \"<string>\",\n      \"field\": \"<string>\",\n      \"value\": \"<string>\",\n      \"location\": \"body\",\n      \"description\": \"<string>\"\n    }\n  ],\n  \"links\": [\n    {\n      \"href\": \"<string>\",\n      \"rel\": \"<string>\",\n      \"method\": \"GET\"\n    },\n    {\n      \"href\": \"<string>\",\n      \"rel\": \"<string>\",\n      \"method\": \"DELETE\"\n    }\n  ]\n}",
+                          "createdAt": "2026-07-28T02:33:28.000Z",
+                          "updatedAt": "2026-07-28T02:33:28.000Z",
+                          "uid": "35240-de304f9e-1b48-4257-abb0-cad666f98c43"
+                        },
+                        {
+                          "id": "6f7acbac-f212-4e01-bbcb-123d263eac5c",
+                          "name": "An internal server error occurred. The request returns the HTTP `500 Internal Server Error` status code.",
+                          "originalRequest": {
+                            "method": "PATCH",
+                            "header": [
+                              {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                              },
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: oauth2",
+                                "key": "Authorization",
+                                "value": "<token>"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "[\n  {\n    \"op\": \"replace\",\n    \"path\": \"<string>\",\n    \"value\": {\n      \"title\": \"Patch Value\",\n      \"description\": \"The value to apply. The <code>remove</code> operation does not require a value.\"\n    },\n    \"from\": \"<string>\"\n  },\n  {\n    \"op\": \"test\",\n    \"path\": \"<string>\",\n    \"value\": {\n      \"title\": \"Patch Value\",\n      \"description\": \"The value to apply. The <code>remove</code> operation does not require a value.\"\n    },\n    \"from\": \"<string>\"\n  }\n]",
+                              "options": {
+                                "raw": {
+                                  "headerFamily": "json",
+                                  "language": "json"
+                                }
+                              }
+                            },
+                            "url": {
+                              "raw": "{{baseUrl}}/v1/customer/disputes/:id",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "v1",
+                                "customer",
+                                "disputes",
+                                ":id"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "id"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Internal Server Error",
+                          "code": 500,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"name\": \"<string>\",\n  \"message\": \"<string>\",\n  \"debug_id\": \"<string>\",\n  \"information_link\": \"<string>\",\n  \"details\": [\n    {\n      \"issue\": \"<string>\",\n      \"field\": \"<string>\",\n      \"value\": \"<string>\",\n      \"location\": \"body\",\n      \"description\": \"<string>\"\n    },\n    {\n      \"issue\": \"<string>\",\n      \"field\": \"<string>\",\n      \"value\": \"<string>\",\n      \"location\": \"body\",\n      \"description\": \"<string>\"\n    }\n  ],\n  \"links\": [\n    {\n      \"href\": \"<string>\",\n      \"rel\": \"<string>\",\n      \"method\": \"GET\"\n    },\n    {\n      \"href\": \"<string>\",\n      \"rel\": \"<string>\",\n      \"method\": \"DELETE\"\n    }\n  ]\n}",
+                          "createdAt": "2026-07-28T02:33:28.000Z",
+                          "updatedAt": "2026-07-28T02:33:28.000Z",
+                          "uid": "35240-6f7acbac-f212-4e01-bbcb-123d263eac5c"
+                        },
+                        {
+                          "id": "df39b16e-6457-4ade-90dc-ab786ddf2c1e",
+                          "name": "The error response.",
+                          "originalRequest": {
+                            "method": "PATCH",
+                            "header": [
+                              {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                              },
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: oauth2",
+                                "key": "Authorization",
+                                "value": "<token>"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "[\n  {\n    \"op\": \"replace\",\n    \"path\": \"<string>\",\n    \"value\": {\n      \"title\": \"Patch Value\",\n      \"description\": \"The value to apply. The <code>remove</code> operation does not require a value.\"\n    },\n    \"from\": \"<string>\"\n  },\n  {\n    \"op\": \"test\",\n    \"path\": \"<string>\",\n    \"value\": {\n      \"title\": \"Patch Value\",\n      \"description\": \"The value to apply. The <code>remove</code> operation does not require a value.\"\n    },\n    \"from\": \"<string>\"\n  }\n]",
+                              "options": {
+                                "raw": {
+                                  "headerFamily": "json",
+                                  "language": "json"
+                                }
+                              }
+                            },
+                            "url": {
+                              "raw": "{{baseUrl}}/v1/customer/disputes/:id",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "v1",
+                                "customer",
+                                "disputes",
+                                ":id"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "id"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Internal Server Error",
+                          "code": 500,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"name\": \"<string>\",\n  \"message\": \"<string>\",\n  \"debug_id\": \"<string>\",\n  \"information_link\": \"<string>\",\n  \"details\": [\n    {\n      \"issue\": \"<string>\",\n      \"field\": \"<string>\",\n      \"value\": \"<string>\",\n      \"location\": \"body\",\n      \"description\": \"<string>\"\n    },\n    {\n      \"issue\": \"<string>\",\n      \"field\": \"<string>\",\n      \"value\": \"<string>\",\n      \"location\": \"body\",\n      \"description\": \"<string>\"\n    }\n  ],\n  \"links\": [\n    {\n      \"href\": \"<string>\",\n      \"rel\": \"<string>\",\n      \"method\": \"GET\"\n    },\n    {\n      \"href\": \"<string>\",\n      \"rel\": \"<string>\",\n      \"method\": \"DELETE\"\n    }\n  ]\n}",
+                          "createdAt": "2026-07-28T02:33:28.000Z",
+                          "updatedAt": "2026-07-28T02:33:28.000Z",
+                          "uid": "35240-df39b16e-6457-4ade-90dc-ab786ddf2c1e"
+                        }
+                      ],
+                      "createdAt": "2026-07-28T02:33:28.000Z",
+                      "updatedAt": "2026-07-28T02:33:28.000Z",
+                      "uid": "35240-878f3294-e827-4462-9aaf-7b514796fc31"
+                    }
+                  ],
+                  "id": "0511a3ce-2682-4ed7-a1f7-ffed47c5ae54",
+                  "createdAt": "2026-07-28T02:33:28.000Z",
+                  "updatedAt": "2026-07-28T02:33:28.000Z",
+                  "uid": "35240-0511a3ce-2682-4ed7-a1f7-ffed47c5ae54"
+                },
+                {
+                  "name": "Paypal List disputes",
+                  "id": "19bb471b-8ef4-4c93-92b2-93dbbae77c75",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "auth": {
+                      "type": "oauth2",
+                      "oauth2": [
+                        {
+                          "key": "scope",
+                          "value": "https://uri.paypal.com/services/subscriptions",
+                          "type": "string"
+                        },
+                        {
+                          "key": "accessTokenUrl",
+                          "value": "/v1/oauth2/token",
+                          "type": "string"
+                        },
+                        {
+                          "key": "grant_type",
+                          "value": "client_credentials",
+                          "type": "string"
+                        }
+                      ]
+                    },
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/v1/customer/disputes?start_time=Current date and time&disputed_transaction_id=ZLKG&page_size=10&next_page_token=The first page of data&dispute_state=8_AEFI8HO&update_time_before=4592-08-11T20:44:60+56:01&update_time_after=4592-08-11T20:44:60+56:01",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "v1",
+                        "customer",
+                        "disputes"
+                      ],
+                      "query": [
+                        {
+                          "description": "Filters the disputes in the response by a creation date and time. The start time must be within the last 180 days. Value is in [Internet date and time format](https://tools.ietf.org/html/rfc3339#section-5.6). For example, *`yyyy`*-*`MM`*-*`dd`*`T`*`HH`*:*`mm`*:*`ss`*.*`SSS`*`Z`.<br/><br/>You can specify either but not both the `start_time` and `disputed_transaction_id` query parameters.",
+                          "key": "start_time",
+                          "value": "Current date and time"
+                        },
+                        {
+                          "description": "Filters the disputes in the response by a transaction, by ID.<br/><br/>You can specify either but not both the `start_time` and `disputed_transaction_id` query parameter.",
+                          "key": "disputed_transaction_id",
+                          "value": "ZLKG"
+                        },
+                        {
+                          "description": "Limits the number of disputes in the response to this value.",
+                          "key": "page_size",
+                          "value": "10"
+                        },
+                        {
+                          "description": "The token that describes the next page of results to fetch. The <a href=\"/docs/api/customer-disputes/v1/#disputes_list\">list disputes</a> call returns this token in the HATEOAS links in the response.",
+                          "key": "next_page_token",
+                          "value": "The first page of data"
+                        },
+                        {
+                          "description": "Filters the disputes in the response by a state. Separate multiple values with a comma (`,`). When you specify more than one dispute_state, the response lists disputes that belong to any of the specified dispute_state. (This can only be one of REQUIRED_ACTION,REQUIRED_OTHER_PARTY_ACTION,UNDER_PAYPAL_REVIEW,RESOLVED,OPEN_INQUIRIES,APPEALABLE)",
+                          "key": "dispute_state",
+                          "value": "8_AEFI8HO"
+                        },
+                        {
+                          "description": "The date and time when the dispute was last updated, in [Internet date and time format](https://tools.ietf.org/html/rfc3339#section-5.6). For example, *`yyyy`*-*`MM`*-*`dd`*`T`*`HH`*:*`mm`*:*`ss`*.*`SSS`*`Z`. update_time_before must be within the last 180 days and the default is the current time.",
+                          "key": "update_time_before",
+                          "value": "4592-08-11T20:44:60+56:01"
+                        },
+                        {
+                          "description": "The date and time when the dispute was last updated, in [Internet date and time format](https://tools.ietf.org/html/rfc3339#section-5.6). For example, *`yyyy`*-*`MM`*-*`dd`*`T`*`HH`*:*`mm`*:*`ss`*.*`SSS`*`Z`. update_time_after must be within the last 180 days and the default is the maximum time (180 days) supported.",
+                          "key": "update_time_after",
+                          "value": "4592-08-11T20:44:60+56:01"
+                        }
+                      ]
+                    },
+                    "description": "Lists disputes with a summary set of details, which shows the <code>dispute_id</code>, <code>reason</code>, <code>status</code>, <code>dispute_state</code>, <code>dispute_life_cycle_stage</code>, <code>dispute_channel</code>, <code>dispute_amount</code>, <code>create_time</code> and <code>update_time</code> fields.<br/><br/>To filter the disputes in the response, specify one or more optional query parameters. To limit the number of disputes in the response, specify the <code>page_size</code> query parameter.<br/><br/>To list multiple disputes, set these query parameters in the request:<ul><li><code>page_size=2</code></li><li><code>start_time</code> instead of <code>disputed_transaction_id</code></li></ul><br/>If the response contains more than two disputes, it lists two disputes and includes a HATEOAS link to the next page of results."
+                  },
+                  "response": [
+                    {
+                      "id": "f33a89ff-1835-4349-9e70-1c39d2f07ea5",
+                      "name": "A successful request returns the HTTP <code>200 OK</code> status code and a JSON response body that lists disputes with a full or summary set of details. Default is a summary set of details, which shows the <code>dispute_id</code>, <code>reason</code>, <c",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: oauth2",
+                            "key": "Authorization",
+                            "value": "<token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/v1/customer/disputes?start_time=Current date and time&disputed_transaction_id=ZLKG&page_size=10&next_page_token=The first page of data&dispute_state=8_AEFI8HO&update_time_before=4592-08-11T20:44:60+56:01&update_time_after=4592-08-11T20:44:60+56:01",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v1",
+                            "customer",
+                            "disputes"
+                          ],
+                          "query": [
+                            {
+                              "description": "Filters the disputes in the response by a creation date and time. The start time must be within the last 180 days. Value is in [Internet date and time format](https://tools.ietf.org/html/rfc3339#section-5.6). For example, *`yyyy`*-*`MM`*-*`dd`*`T`*`HH`*:*`mm`*:*`ss`*.*`SSS`*`Z`.<br/><br/>You can specify either but not both the `start_time` and `disputed_transaction_id` query parameters.",
+                              "key": "start_time",
+                              "value": "Current date and time"
+                            },
+                            {
+                              "description": "Filters the disputes in the response by a transaction, by ID.<br/><br/>You can specify either but not both the `start_time` and `disputed_transaction_id` query parameter.",
+                              "key": "disputed_transaction_id",
+                              "value": "ZLKG"
+                            },
+                            {
+                              "description": "Limits the number of disputes in the response to this value.",
+                              "key": "page_size",
+                              "value": "10"
+                            },
+                            {
+                              "description": "The token that describes the next page of results to fetch. The <a href=\"/docs/api/customer-disputes/v1/#disputes_list\">list disputes</a> call returns this token in the HATEOAS links in the response.",
+                              "key": "next_page_token",
+                              "value": "The first page of data"
+                            },
+                            {
+                              "description": "Filters the disputes in the response by a state. Separate multiple values with a comma (`,`). When you specify more than one dispute_state, the response lists disputes that belong to any of the specified dispute_state. (This can only be one of REQUIRED_ACTION,REQUIRED_OTHER_PARTY_ACTION,UNDER_PAYPAL_REVIEW,RESOLVED,OPEN_INQUIRIES,APPEALABLE)",
+                              "key": "dispute_state",
+                              "value": "8_AEFI8HO"
+                            },
+                            {
+                              "description": "The date and time when the dispute was last updated, in [Internet date and time format](https://tools.ietf.org/html/rfc3339#section-5.6). For example, *`yyyy`*-*`MM`*-*`dd`*`T`*`HH`*:*`mm`*:*`ss`*.*`SSS`*`Z`. update_time_before must be within the last 180 days and the default is the current time.",
+                              "key": "update_time_before",
+                              "value": "4592-08-11T20:44:60+56:01"
+                            },
+                            {
+                              "description": "The date and time when the dispute was last updated, in [Internet date and time format](https://tools.ietf.org/html/rfc3339#section-5.6). For example, *`yyyy`*-*`MM`*-*`dd`*`T`*`HH`*:*`mm`*:*`ss`*.*`SSS`*`Z`. update_time_after must be within the last 180 days and the default is the maximum time (180 days) supported.",
+                              "key": "update_time_after",
+                              "value": "4592-08-11T20:44:60+56:01"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"items\": [\n    {\n      \"dispute_id\": \"MgIgjB9N\",\n      \"create_time\": \"5515-03-23T22:56:60.4-46:01\",\n      \"update_time\": \"4021-07-31,07:29:47Z\",\n      \"reason\": \"MERCHANDISE_OR_SERVICE_NOT_RECEIVED\",\n      \"status\": \"RESOLVED\",\n      \"dispute_state\": \"APPEALABLE\",\n      \"dispute_amount\": {\n        \"currency_code\": \"<string>\",\n        \"value\": \"430449\"\n      },\n      \"dispute_asset\": {\n        \"asset_symbol\": \"LTC\",\n        \"quantity\": \"-38497037\"\n      },\n      \"dispute_life_cycle_stage\": \"PRE_ARBITRATION\",\n      \"dispute_channel\": \"INTERNAL\",\n      \"buyer_response_due_date\": \"8714-01-09t09:16:48.16299177Z\",\n      \"seller_response_due_date\": \"0131-10-08t06:04:39+74:02\",\n      \"links\": [\n        {\n          \"href\": \"<string>\",\n          \"rel\": \"<string>\",\n          \"method\": \"OPTIONS\"\n        }\n      ]\n    }\n  ],\n  \"links\": [\n    {\n      \"href\": \"<string>\",\n      \"rel\": \"<string>\",\n      \"method\": \"PUT\"\n    }\n  ]\n}",
+                      "createdAt": "2026-07-28T02:33:28.000Z",
+                      "updatedAt": "2026-07-28T02:33:28.000Z",
+                      "uid": "35240-f33a89ff-1835-4349-9e70-1c39d2f07ea5"
+                    },
+                    {
+                      "id": "fd73c80a-7be5-407d-8da8-c3019d16b84e",
+                      "name": "The request failed due to a validation error. The request returns the HTTP `400 Bad Request` status code.",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: oauth2",
+                            "key": "Authorization",
+                            "value": "<token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/v1/customer/disputes?start_time=Current date and time&disputed_transaction_id=ZLKG&page_size=10&next_page_token=The first page of data&dispute_state=8_AEFI8HO&update_time_before=4592-08-11T20:44:60+56:01&update_time_after=4592-08-11T20:44:60+56:01",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v1",
+                            "customer",
+                            "disputes"
+                          ],
+                          "query": [
+                            {
+                              "description": "Filters the disputes in the response by a creation date and time. The start time must be within the last 180 days. Value is in [Internet date and time format](https://tools.ietf.org/html/rfc3339#section-5.6). For example, *`yyyy`*-*`MM`*-*`dd`*`T`*`HH`*:*`mm`*:*`ss`*.*`SSS`*`Z`.<br/><br/>You can specify either but not both the `start_time` and `disputed_transaction_id` query parameters.",
+                              "key": "start_time",
+                              "value": "Current date and time"
+                            },
+                            {
+                              "description": "Filters the disputes in the response by a transaction, by ID.<br/><br/>You can specify either but not both the `start_time` and `disputed_transaction_id` query parameter.",
+                              "key": "disputed_transaction_id",
+                              "value": "ZLKG"
+                            },
+                            {
+                              "description": "Limits the number of disputes in the response to this value.",
+                              "key": "page_size",
+                              "value": "10"
+                            },
+                            {
+                              "description": "The token that describes the next page of results to fetch. The <a href=\"/docs/api/customer-disputes/v1/#disputes_list\">list disputes</a> call returns this token in the HATEOAS links in the response.",
+                              "key": "next_page_token",
+                              "value": "The first page of data"
+                            },
+                            {
+                              "description": "Filters the disputes in the response by a state. Separate multiple values with a comma (`,`). When you specify more than one dispute_state, the response lists disputes that belong to any of the specified dispute_state. (This can only be one of REQUIRED_ACTION,REQUIRED_OTHER_PARTY_ACTION,UNDER_PAYPAL_REVIEW,RESOLVED,OPEN_INQUIRIES,APPEALABLE)",
+                              "key": "dispute_state",
+                              "value": "8_AEFI8HO"
+                            },
+                            {
+                              "description": "The date and time when the dispute was last updated, in [Internet date and time format](https://tools.ietf.org/html/rfc3339#section-5.6). For example, *`yyyy`*-*`MM`*-*`dd`*`T`*`HH`*:*`mm`*:*`ss`*.*`SSS`*`Z`. update_time_before must be within the last 180 days and the default is the current time.",
+                              "key": "update_time_before",
+                              "value": "4592-08-11T20:44:60+56:01"
+                            },
+                            {
+                              "description": "The date and time when the dispute was last updated, in [Internet date and time format](https://tools.ietf.org/html/rfc3339#section-5.6). For example, *`yyyy`*-*`MM`*-*`dd`*`T`*`HH`*:*`mm`*:*`ss`*.*`SSS`*`Z`. update_time_after must be within the last 180 days and the default is the maximum time (180 days) supported.",
+                              "key": "update_time_after",
+                              "value": "4592-08-11T20:44:60+56:01"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Bad Request",
+                      "code": 400,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"name\": \"<string>\",\n  \"message\": \"<string>\",\n  \"debug_id\": \"<string>\",\n  \"information_link\": \"<string>\",\n  \"details\": [\n    {\n      \"issue\": \"<string>\",\n      \"field\": \"<string>\",\n      \"value\": \"<string>\",\n      \"location\": \"body\",\n      \"description\": \"<string>\"\n    },\n    {\n      \"issue\": \"<string>\",\n      \"field\": \"<string>\",\n      \"value\": \"<string>\",\n      \"location\": \"body\",\n      \"description\": \"<string>\"\n    }\n  ],\n  \"links\": [\n    {\n      \"href\": \"<string>\",\n      \"rel\": \"<string>\",\n      \"method\": \"GET\"\n    },\n    {\n      \"href\": \"<string>\",\n      \"rel\": \"<string>\",\n      \"method\": \"DELETE\"\n    }\n  ]\n}",
+                      "createdAt": "2026-07-28T02:33:28.000Z",
+                      "updatedAt": "2026-07-28T02:33:28.000Z",
+                      "uid": "35240-fd73c80a-7be5-407d-8da8-c3019d16b84e"
+                    },
+                    {
+                      "id": "5bd24d12-a2e5-4c1b-8996-13d3278ce238",
+                      "name": "The error response.",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: oauth2",
+                            "key": "Authorization",
+                            "value": "<token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/v1/customer/disputes?start_time=Current date and time&disputed_transaction_id=ZLKG&page_size=10&next_page_token=The first page of data&dispute_state=8_AEFI8HO&update_time_before=4592-08-11T20:44:60+56:01&update_time_after=4592-08-11T20:44:60+56:01",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v1",
+                            "customer",
+                            "disputes"
+                          ],
+                          "query": [
+                            {
+                              "description": "Filters the disputes in the response by a creation date and time. The start time must be within the last 180 days. Value is in [Internet date and time format](https://tools.ietf.org/html/rfc3339#section-5.6). For example, *`yyyy`*-*`MM`*-*`dd`*`T`*`HH`*:*`mm`*:*`ss`*.*`SSS`*`Z`.<br/><br/>You can specify either but not both the `start_time` and `disputed_transaction_id` query parameters.",
+                              "key": "start_time",
+                              "value": "Current date and time"
+                            },
+                            {
+                              "description": "Filters the disputes in the response by a transaction, by ID.<br/><br/>You can specify either but not both the `start_time` and `disputed_transaction_id` query parameter.",
+                              "key": "disputed_transaction_id",
+                              "value": "ZLKG"
+                            },
+                            {
+                              "description": "Limits the number of disputes in the response to this value.",
+                              "key": "page_size",
+                              "value": "10"
+                            },
+                            {
+                              "description": "The token that describes the next page of results to fetch. The <a href=\"/docs/api/customer-disputes/v1/#disputes_list\">list disputes</a> call returns this token in the HATEOAS links in the response.",
+                              "key": "next_page_token",
+                              "value": "The first page of data"
+                            },
+                            {
+                              "description": "Filters the disputes in the response by a state. Separate multiple values with a comma (`,`). When you specify more than one dispute_state, the response lists disputes that belong to any of the specified dispute_state. (This can only be one of REQUIRED_ACTION,REQUIRED_OTHER_PARTY_ACTION,UNDER_PAYPAL_REVIEW,RESOLVED,OPEN_INQUIRIES,APPEALABLE)",
+                              "key": "dispute_state",
+                              "value": "8_AEFI8HO"
+                            },
+                            {
+                              "description": "The date and time when the dispute was last updated, in [Internet date and time format](https://tools.ietf.org/html/rfc3339#section-5.6). For example, *`yyyy`*-*`MM`*-*`dd`*`T`*`HH`*:*`mm`*:*`ss`*.*`SSS`*`Z`. update_time_before must be within the last 180 days and the default is the current time.",
+                              "key": "update_time_before",
+                              "value": "4592-08-11T20:44:60+56:01"
+                            },
+                            {
+                              "description": "The date and time when the dispute was last updated, in [Internet date and time format](https://tools.ietf.org/html/rfc3339#section-5.6). For example, *`yyyy`*-*`MM`*-*`dd`*`T`*`HH`*:*`mm`*:*`ss`*.*`SSS`*`Z`. update_time_after must be within the last 180 days and the default is the maximum time (180 days) supported.",
+                              "key": "update_time_after",
+                              "value": "4592-08-11T20:44:60+56:01"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Internal Server Error",
+                      "code": 500,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"name\": \"<string>\",\n  \"message\": \"<string>\",\n  \"debug_id\": \"<string>\",\n  \"information_link\": \"<string>\",\n  \"details\": [\n    {\n      \"issue\": \"<string>\",\n      \"field\": \"<string>\",\n      \"value\": \"<string>\",\n      \"location\": \"body\",\n      \"description\": \"<string>\"\n    },\n    {\n      \"issue\": \"<string>\",\n      \"field\": \"<string>\",\n      \"value\": \"<string>\",\n      \"location\": \"body\",\n      \"description\": \"<string>\"\n    }\n  ],\n  \"links\": [\n    {\n      \"href\": \"<string>\",\n      \"rel\": \"<string>\",\n      \"method\": \"GET\"\n    },\n    {\n      \"href\": \"<string>\",\n      \"rel\": \"<string>\",\n      \"method\": \"DELETE\"\n    }\n  ]\n}",
+                      "createdAt": "2026-07-28T02:33:28.000Z",
+                      "updatedAt": "2026-07-28T02:33:28.000Z",
+                      "uid": "35240-5bd24d12-a2e5-4c1b-8996-13d3278ce238"
+                    }
+                  ],
+                  "createdAt": "2026-07-28T02:33:28.000Z",
+                  "updatedAt": "2026-07-28T02:33:28.000Z",
+                  "uid": "35240-19bb471b-8ef4-4c93-92b2-93dbbae77c75"
+                }
+              ],
+              "id": "5568d7a2-199b-43f1-b7a1-cc388a3c7f21",
+              "createdAt": "2026-07-28T02:33:28.000Z",
+              "updatedAt": "2026-07-28T02:33:28.000Z",
+              "uid": "35240-5568d7a2-199b-43f1-b7a1-cc388a3c7f21"
+            }
+          ],
+          "id": "671683c2-fb0b-495c-a355-e4b8fd161ae6",
+          "createdAt": "2026-07-28T02:33:28.000Z",
+          "updatedAt": "2026-07-28T02:33:28.000Z",
+          "uid": "35240-671683c2-fb0b-495c-a355-e4b8fd161ae6"
+        }
+      ],
+      "id": "ede8bdd3-3e87-46f6-9763-a3ef79040c90",
+      "createdAt": "2026-07-28T02:33:28.000Z",
+      "updatedAt": "2026-07-28T02:33:28.000Z",
+      "uid": "35240-ede8bdd3-3e87-46f6-9763-a3ef79040c90"
+    }
+  ],
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://api-m.sandbox.paypal.com"
+    }
+  ]
+}

@@ -1,0 +1,230 @@
+{
+  "info": {
+    "_postman_id": "597bad5c-c172-4a6d-a543-dfe2bfe403b2",
+    "name": "Paypal Subscriptions Authorizations Verify-Webhook-Signature API",
+    "description": "You can use billing plans and subscriptions to create subscriptions that process recurring PayPal payments for physical or digital goods, or services. A plan includes pricing and billing cycle information that defines the amount and frequency of charge for a subscription. You can also define a fixed plan, such as a $5 basic plan or a volume- or graduated-based plan with pricing tiers based on the quantity purchased. For more information, see <a href=\"/docs/subscriptions/\">Subscriptions Overview</a>.",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-07-28T02:35:23.000Z",
+    "updatedAt": "2026-07-28T02:35:23.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-597bad5c-c172-4a6d-a543-dfe2bfe403b2"
+  },
+  "item": [
+    {
+      "name": "v1",
+      "item": [
+        {
+          "name": "notifications",
+          "item": [
+            {
+              "name": "verify-webhook-signature",
+              "item": [
+                {
+                  "name": "Paypal Verify webhook signature",
+                  "id": "ddbeba13-f828-45a7-896d-e6b2cd609350",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "auth": {
+                      "type": "oauth2",
+                      "oauth2": [
+                        {
+                          "key": "scope",
+                          "value": "https://uri.paypal.com/services/subscriptions",
+                          "type": "string"
+                        },
+                        {
+                          "key": "accessTokenUrl",
+                          "value": "/v1/oauth2/token",
+                          "type": "string"
+                        },
+                        {
+                          "key": "grant_type",
+                          "value": "client_credentials",
+                          "type": "string"
+                        }
+                      ]
+                    },
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"auth_algo\": \"prOF1Ivuy\",\n  \"cert_url\": \"<uri>\",\n  \"transmission_id\": \"tY5$ft`hH\",\n  \"transmission_sig\": \"UWd\",\n  \"transmission_time\": \"<dateTime>\",\n  \"webhook_id\": \"M6KIb\",\n  \"webhook_event\": {\n    \"id\": \"<string>\",\n    \"create_time\": \"<dateTime>\",\n    \"resource_type\": \"<string>\",\n    \"event_version\": \"9213t8796182680\",\n    \"event_type\": \"<string>\",\n    \"summary\": \"<string>\",\n    \"resource_version\": \"0963b6615579\",\n    \"resource\": {\n      \"incididunt_\": -24337517.640449807,\n      \"incididunt09b\": 58189424.429713815,\n      \"ad_c\": -89503297.12244818,\n      \"Excepteur0f\": 65025108.76513302\n    },\n    \"links\": [\n      {\n        \"href\": \"<string>\",\n        \"rel\": \"<string>\",\n        \"method\": \"OPTIONS\"\n      },\n      {\n        \"href\": \"<string>\",\n        \"rel\": \"<string>\",\n        \"method\": \"OPTIONS\"\n      }\n    ]\n  }\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/v1/notifications/verify-webhook-signature",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "v1",
+                        "notifications",
+                        "verify-webhook-signature"
+                      ]
+                    },
+                    "description": "Verifies a webhook signature."
+                  },
+                  "response": [
+                    {
+                      "id": "953d806e-d09d-4bc1-a4af-4d766f684ddc",
+                      "name": "A successful request returns the HTTP `200 OK` status code and a JSON response body that shows the verification status.",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: oauth2",
+                            "key": "Authorization",
+                            "value": "<token>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"auth_algo\": \"prOF1Ivuy\",\n  \"cert_url\": \"<uri>\",\n  \"transmission_id\": \"tY5$ft`hH\",\n  \"transmission_sig\": \"UWd\",\n  \"transmission_time\": \"<dateTime>\",\n  \"webhook_id\": \"M6KIb\",\n  \"webhook_event\": {\n    \"id\": \"<string>\",\n    \"create_time\": \"<dateTime>\",\n    \"resource_type\": \"<string>\",\n    \"event_version\": \"9213t8796182680\",\n    \"event_type\": \"<string>\",\n    \"summary\": \"<string>\",\n    \"resource_version\": \"0963b6615579\",\n    \"resource\": {\n      \"incididunt_\": -24337517.640449807,\n      \"incididunt09b\": 58189424.429713815,\n      \"ad_c\": -89503297.12244818,\n      \"Excepteur0f\": 65025108.76513302\n    },\n    \"links\": [\n      {\n        \"href\": \"<string>\",\n        \"rel\": \"<string>\",\n        \"method\": \"OPTIONS\"\n      },\n      {\n        \"href\": \"<string>\",\n        \"rel\": \"<string>\",\n        \"method\": \"OPTIONS\"\n      }\n    ]\n  }\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/v1/notifications/verify-webhook-signature",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v1",
+                            "notifications",
+                            "verify-webhook-signature"
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"verification_status\": \"FAILURE\"\n}",
+                      "createdAt": "2026-07-28T02:35:24.000Z",
+                      "updatedAt": "2026-07-28T02:35:24.000Z",
+                      "uid": "35240-953d806e-d09d-4bc1-a4af-4d766f684ddc"
+                    },
+                    {
+                      "id": "4f07ff3f-b84d-4fe8-9e25-07d1f3d1030b",
+                      "name": "The error response.",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: oauth2",
+                            "key": "Authorization",
+                            "value": "<token>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"auth_algo\": \"prOF1Ivuy\",\n  \"cert_url\": \"<uri>\",\n  \"transmission_id\": \"tY5$ft`hH\",\n  \"transmission_sig\": \"UWd\",\n  \"transmission_time\": \"<dateTime>\",\n  \"webhook_id\": \"M6KIb\",\n  \"webhook_event\": {\n    \"id\": \"<string>\",\n    \"create_time\": \"<dateTime>\",\n    \"resource_type\": \"<string>\",\n    \"event_version\": \"9213t8796182680\",\n    \"event_type\": \"<string>\",\n    \"summary\": \"<string>\",\n    \"resource_version\": \"0963b6615579\",\n    \"resource\": {\n      \"incididunt_\": -24337517.640449807,\n      \"incididunt09b\": 58189424.429713815,\n      \"ad_c\": -89503297.12244818,\n      \"Excepteur0f\": 65025108.76513302\n    },\n    \"links\": [\n      {\n        \"href\": \"<string>\",\n        \"rel\": \"<string>\",\n        \"method\": \"OPTIONS\"\n      },\n      {\n        \"href\": \"<string>\",\n        \"rel\": \"<string>\",\n        \"method\": \"OPTIONS\"\n      }\n    ]\n  }\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/v1/notifications/verify-webhook-signature",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v1",
+                            "notifications",
+                            "verify-webhook-signature"
+                          ]
+                        }
+                      },
+                      "status": "Internal Server Error",
+                      "code": 500,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"name\": \"<string>\",\n  \"message\": \"<string>\",\n  \"debug_id\": \"<string>\",\n  \"information_link\": \"<string>\",\n  \"details\": [\n    {\n      \"issue\": \"<string>\",\n      \"field\": \"<string>\",\n      \"value\": \"<string>\",\n      \"location\": \"body\",\n      \"description\": \"<string>\"\n    },\n    {\n      \"issue\": \"<string>\",\n      \"field\": \"<string>\",\n      \"value\": \"<string>\",\n      \"location\": \"body\",\n      \"description\": \"<string>\"\n    }\n  ],\n  \"links\": [\n    {\n      \"href\": \"<string>\",\n      \"rel\": \"<string>\",\n      \"method\": \"POST\"\n    },\n    {\n      \"href\": \"<string>\",\n      \"rel\": \"<string>\",\n      \"method\": \"HEAD\"\n    }\n  ]\n}",
+                      "createdAt": "2026-07-28T02:35:24.000Z",
+                      "updatedAt": "2026-07-28T02:35:24.000Z",
+                      "uid": "35240-4f07ff3f-b84d-4fe8-9e25-07d1f3d1030b"
+                    }
+                  ],
+                  "createdAt": "2026-07-28T02:35:24.000Z",
+                  "updatedAt": "2026-07-28T02:35:24.000Z",
+                  "uid": "35240-ddbeba13-f828-45a7-896d-e6b2cd609350"
+                }
+              ],
+              "id": "da9181c3-7705-4055-b752-2e2eac8ac713",
+              "createdAt": "2026-07-28T02:35:24.000Z",
+              "updatedAt": "2026-07-28T02:35:24.000Z",
+              "uid": "35240-da9181c3-7705-4055-b752-2e2eac8ac713"
+            }
+          ],
+          "id": "9fe06be9-433a-4ab1-9fc4-11a49f2916ad",
+          "createdAt": "2026-07-28T02:35:24.000Z",
+          "updatedAt": "2026-07-28T02:35:24.000Z",
+          "uid": "35240-9fe06be9-433a-4ab1-9fc4-11a49f2916ad"
+        }
+      ],
+      "id": "4f1e770a-5784-44f3-ae0c-229efc3b21af",
+      "createdAt": "2026-07-28T02:35:24.000Z",
+      "updatedAt": "2026-07-28T02:35:24.000Z",
+      "uid": "35240-4f1e770a-5784-44f3-ae0c-229efc3b21af"
+    }
+  ],
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://api-m.sandbox.paypal.com"
+    }
+  ]
+}

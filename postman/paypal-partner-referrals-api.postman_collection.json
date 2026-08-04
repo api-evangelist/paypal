@@ -1,0 +1,841 @@
+{
+  "info": {
+    "_postman_id": "5c2bb1aa-def9-438d-8775-6025126d9e0e",
+    "name": "Paypal Subscriptions Authorizations Partner-Referrals API",
+    "description": "You can use billing plans and subscriptions to create subscriptions that process recurring PayPal payments for physical or digital goods, or services. A plan includes pricing and billing cycle information that defines the amount and frequency of charge for a subscription. You can also define a fixed plan, such as a $5 basic plan or a volume- or graduated-based plan with pricing tiers based on the quantity purchased. For more information, see <a href=\"/docs/subscriptions/\">Subscriptions Overview</a>.",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-07-28T02:33:46.000Z",
+    "updatedAt": "2026-07-28T02:33:46.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-5c2bb1aa-def9-438d-8775-6025126d9e0e"
+  },
+  "item": [
+    {
+      "name": "v2",
+      "item": [
+        {
+          "name": "customer",
+          "item": [
+            {
+              "name": "partner-referrals",
+              "item": [
+                {
+                  "name": "{partner_referral_id}",
+                  "item": [
+                    {
+                      "name": "Paypal Show referral data",
+                      "id": "97500dec-1d7d-4a08-938e-f29f400817e2",
+                      "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                      },
+                      "request": {
+                        "auth": {
+                          "type": "oauth2",
+                          "oauth2": [
+                            {
+                              "key": "scope",
+                              "value": "https://uri.paypal.com/services/subscriptions",
+                              "type": "string"
+                            },
+                            {
+                              "key": "accessTokenUrl",
+                              "value": "/v1/oauth2/token",
+                              "type": "string"
+                            },
+                            {
+                              "key": "grant_type",
+                              "value": "client_credentials",
+                              "type": "string"
+                            }
+                          ]
+                        },
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/v2/customer/partner-referrals/:partner_referral_id",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v2",
+                            "customer",
+                            "partner-referrals",
+                            ":partner_referral_id"
+                          ],
+                          "variable": [
+                            {
+                              "id": "b501d337-bdeb-47c8-b498-15e86f8c4155",
+                              "key": "partner_referral_id",
+                              "value": "<string>",
+                              "description": "(Required) The ID of the partner-referrals data for which to show details."
+                            }
+                          ]
+                        },
+                        "description": "Shows details by ID for referral data that was shared by the partner or API caller."
+                      },
+                      "response": [
+                        {
+                          "id": "9eaa1660-fddb-41cf-8f84-c70c98d5eb35",
+                          "name": "A successful request returns the HTTP `200 OK` status code and a JSON response body that shows referral data.",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: oauth2",
+                                "key": "Authorization",
+                                "value": "<token>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/v2/customer/partner-referrals/:partner_referral_id",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "v2",
+                                "customer",
+                                "partner-referrals",
+                                ":partner_referral_id"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "partner_referral_id"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "OK",
+                          "code": 200,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "null",
+                          "createdAt": "2026-07-28T02:33:47.000Z",
+                          "updatedAt": "2026-07-28T02:33:47.000Z",
+                          "uid": "35240-9eaa1660-fddb-41cf-8f84-c70c98d5eb35"
+                        },
+                        {
+                          "id": "eb9d27a1-9529-4d0c-a529-270edd1ce3ed",
+                          "name": "The API call is not authorized.",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: oauth2",
+                                "key": "Authorization",
+                                "value": "<token>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/v2/customer/partner-referrals/:partner_referral_id",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "v2",
+                                "customer",
+                                "partner-referrals",
+                                ":partner_referral_id"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "partner_referral_id"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Unauthorized",
+                          "code": 401,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"name\": \"AUTHENTICATION_FAILURE\",\n  \"message\": \"Authentication failed due to missing authorization header, or invalid authentication credentials.\",\n  \"details\": [\n    {\n      \"issue\": \"<string>\",\n      \"field\": \"<string>\",\n      \"value\": \"<string>\",\n      \"location\": \"body\",\n      \"description\": \"<string>\"\n    },\n    {\n      \"issue\": \"<string>\",\n      \"field\": \"<string>\",\n      \"value\": \"<string>\",\n      \"location\": \"body\",\n      \"description\": \"<string>\"\n    }\n  ],\n  \"debug_id\": \"<string>\",\n  \"links\": [\n    {\n      \"href\": \"7bku&z~\",\n      \"rel\": \"Rf\",\n      \"method\": \"PATCH\"\n    },\n    {\n      \"href\": \"QfN35y]i``\",\n      \"rel\": \"Mqp\",\n      \"method\": \"GET\"\n    },\n    {\n      \"href\": \"u;xz<\",\n      \"rel\": \"\",\n      \"method\": \"PATCH\"\n    },\n    {\n      \"href\": \"Bg\",\n      \"rel\": \"\",\n      \"method\": \"POST\"\n    },\n    {\n      \"href\": \"i\",\n      \"rel\": \"_\",\n      \"method\": \"PATCH\"\n    },\n    {\n      \"href\": \":Ch2j;a\",\n      \"rel\": \"e\",\n      \"method\": \"PUT\"\n    },\n    {\n      \"href\": \"*psv\",\n      \"rel\": \"\\\\2\",\n      \"method\": \"PATCH\"\n    },\n    {\n      \"href\": \"g(YHbrj-\",\n      \"rel\": \".6\",\n      \"method\": \"PUT\"\n    },\n    {\n      \"href\": \"AG-K\",\n      \"rel\": \"R\",\n      \"method\": \"POST\"\n    },\n    {\n      \"href\": \"s4s\",\n      \"rel\": \">_\\\\\",\n      \"method\": \"POST\"\n    },\n    {\n      \"href\": \"qX<\\\\`\",\n      \"rel\": \"|\",\n      \"method\": \"PUT\"\n    },\n    {\n      \"href\": \"{q^^!I'U\",\n      \"rel\": \"k;W;4z\",\n      \"method\": \"POST\"\n    },\n    {\n      \"href\": \"^%#o|M\",\n      \"rel\": \"'yc_4J`xIY\",\n      \"method\": \"PATCH\"\n    },\n    {\n      \"href\": \"//W.bw\",\n      \"rel\": \"_\",\n      \"method\": \"PATCH\"\n    },\n    {\n      \"href\": \"V,7H!!rAr\",\n      \"rel\": \"(r\",\n      \"method\": \"DELETE\"\n    },\n    {\n      \"href\": \"f5kC[K!l<1\",\n      \"rel\": \"ww#@\",\n      \"method\": \"GET\"\n    },\n    {\n      \"href\": \"<M34;I~ 1%\",\n      \"rel\": \"<sR2CyEj|\",\n      \"method\": \"PATCH\"\n    },\n    {\n      \"href\": \"\",\n      \"rel\": \"7UaR]w[3H\",\n      \"method\": \"DELETE\"\n    },\n    {\n      \"href\": \"~i!G-{i\",\n      \"rel\": \"\",\n      \"method\": \"DELETE\"\n    },\n    {\n      \"href\": \"6oT)lIfDA\",\n      \"rel\": \"t3\",\n      \"method\": \"GET\"\n    }\n  ]\n}",
+                          "createdAt": "2026-07-28T02:33:47.000Z",
+                          "updatedAt": "2026-07-28T02:33:47.000Z",
+                          "uid": "35240-eb9d27a1-9529-4d0c-a529-270edd1ce3ed"
+                        },
+                        {
+                          "id": "3e119aaa-5b18-47fa-9692-dde3ef2a60a3",
+                          "name": "Authorization failed due to insufficient permissions or missing scopes on the caller Account.",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: oauth2",
+                                "key": "Authorization",
+                                "value": "<token>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/v2/customer/partner-referrals/:partner_referral_id",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "v2",
+                                "customer",
+                                "partner-referrals",
+                                ":partner_referral_id"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "partner_referral_id"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Forbidden",
+                          "code": 403,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"name\": \"NOT_AUTHORIZED\",\n  \"message\": \"Authorization failed due to insufficient permissions.\",\n  \"details\": [\n    {\n      \"issue\": \"<string>\",\n      \"field\": \"<string>\",\n      \"value\": \"<string>\",\n      \"location\": \"body\",\n      \"description\": \"<string>\"\n    },\n    {\n      \"issue\": \"<string>\",\n      \"field\": \"<string>\",\n      \"value\": \"<string>\",\n      \"location\": \"body\",\n      \"description\": \"<string>\"\n    }\n  ],\n  \"debug_id\": \"<string>\",\n  \"links\": [\n    {\n      \"href\": \"zA2y[\",\n      \"rel\": \">NtnO\",\n      \"method\": \"PUT\"\n    },\n    {\n      \"href\": \"SC!(%zU\",\n      \"rel\": \"+'Njq6Jd\",\n      \"method\": \"PATCH\"\n    },\n    {\n      \"href\": \"Z\",\n      \"rel\": \"i7W!j\",\n      \"method\": \"POST\"\n    },\n    {\n      \"href\": \"IxxQ$\",\n      \"rel\": \"pS78y_(eT>\",\n      \"method\": \"PATCH\"\n    },\n    {\n      \"href\": \"/WR+~\",\n      \"rel\": \" \",\n      \"method\": \"DELETE\"\n    },\n    {\n      \"href\": \"JlX1{3dJ\",\n      \"rel\": \">\",\n      \"method\": \"DELETE\"\n    },\n    {\n      \"href\": \"O\",\n      \"rel\": \"S(SXc+O_<\",\n      \"method\": \"GET\"\n    },\n    {\n      \"href\": \"\",\n      \"rel\": \">P:JMkC*\",\n      \"method\": \"PUT\"\n    },\n    {\n      \"href\": \"jKg)`'o;\",\n      \"rel\": \"\",\n      \"method\": \"GET\"\n    },\n    {\n      \"href\": \"\",\n      \"rel\": \");$6+qvmN!\",\n      \"method\": \"GET\"\n    },\n    {\n      \"href\": \"kMG&hd\",\n      \"rel\": \"uZ\",\n      \"method\": \"DELETE\"\n    },\n    {\n      \"href\": \"*;8$\",\n      \"rel\": \"KYlO_\",\n      \"method\": \"PUT\"\n    },\n    {\n      \"href\": \"\",\n      \"rel\": \"\",\n      \"method\": \"PUT\"\n    },\n    {\n      \"href\": \"#,WPhf\",\n      \"rel\": \"\",\n      \"method\": \"PATCH\"\n    },\n    {\n      \"href\": \"f9\",\n      \"rel\": \"{o\",\n      \"method\": \"GET\"\n    },\n    {\n      \"href\": \"@B\",\n      \"rel\": \"+7In&:\",\n      \"method\": \"POST\"\n    },\n    {\n      \"href\": \"of4`n\",\n      \"rel\": \"@DD z4,Y%*\",\n      \"method\": \"PATCH\"\n    },\n    {\n      \"href\": \"l\",\n      \"rel\": \">'!\",\n      \"method\": \"GET\"\n    },\n    {\n      \"href\": \"3p+*\",\n      \"rel\": \"c-s]r^X\",\n      \"method\": \"GET\"\n    },\n    {\n      \"href\": \";m0*\",\n      \"rel\": \"\",\n      \"method\": \"PUT\"\n    }\n  ]\n}",
+                          "createdAt": "2026-07-28T02:33:47.000Z",
+                          "updatedAt": "2026-07-28T02:33:47.000Z",
+                          "uid": "35240-3e119aaa-5b18-47fa-9692-dde3ef2a60a3"
+                        },
+                        {
+                          "id": "87a9998b-a541-4fde-845b-a8a5d1a22aaf",
+                          "name": "An internal server error has occurred.",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: oauth2",
+                                "key": "Authorization",
+                                "value": "<token>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/v2/customer/partner-referrals/:partner_referral_id",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "v2",
+                                "customer",
+                                "partner-referrals",
+                                ":partner_referral_id"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "partner_referral_id"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Internal Server Error",
+                          "code": 500,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"name\": \"INTERNAL_SERVER_ERROR\",\n  \"message\": \"An internal server error occurred.\",\n  \"debug_id\": \"<string>\",\n  \"links\": [\n    {\n      \"href\": \"19FNq _!\",\n      \"rel\": \"\",\n      \"method\": \"DELETE\"\n    },\n    {\n      \"href\": \"4S:0XiF0)&\",\n      \"rel\": \"'YDm\",\n      \"method\": \"DELETE\"\n    },\n    {\n      \"href\": \"j6j=TO\",\n      \"rel\": \"%/4BS1\",\n      \"method\": \"PUT\"\n    },\n    {\n      \"href\": \"+{Q6L{PV\",\n      \"rel\": \"u4a&&(>TNK\",\n      \"method\": \"PUT\"\n    },\n    {\n      \"href\": \"o\\\"d \\\"?)r~\",\n      \"rel\": \"\",\n      \"method\": \"PUT\"\n    },\n    {\n      \"href\": \"P/2*us2\\\"@u\",\n      \"rel\": \"EM!U\",\n      \"method\": \"PUT\"\n    },\n    {\n      \"href\": \"f'\",\n      \"rel\": \"c)=zj1O B\",\n      \"method\": \"GET\"\n    },\n    {\n      \"href\": \";\",\n      \"rel\": \"[\",\n      \"method\": \"GET\"\n    },\n    {\n      \"href\": \"\",\n      \"rel\": \".UAsK:/\",\n      \"method\": \"PUT\"\n    },\n    {\n      \"href\": \"Q\",\n      \"rel\": \"2NSALU<3#q\",\n      \"method\": \"DELETE\"\n    },\n    {\n      \"href\": \".288|\",\n      \"rel\": \"1|mN\",\n      \"method\": \"PATCH\"\n    },\n    {\n      \"href\": \"Zb:\",\n      \"rel\": \"(W@`[\",\n      \"method\": \"GET\"\n    },\n    {\n      \"href\": \"[z-j\\\"\\\\pi&\",\n      \"rel\": \"=T9e9W*8\",\n      \"method\": \"POST\"\n    },\n    {\n      \"href\": \".!o8C{\",\n      \"rel\": \"\",\n      \"method\": \"POST\"\n    },\n    {\n      \"href\": \"\",\n      \"rel\": \"P\",\n      \"method\": \"POST\"\n    },\n    {\n      \"href\": \"1$3K\",\n      \"rel\": \"@fUay|&QS\",\n      \"method\": \"PUT\"\n    },\n    {\n      \"href\": \";:D\\\"]Suy\",\n      \"rel\": \" v&T@A\",\n      \"method\": \"PATCH\"\n    },\n    {\n      \"href\": \"ER\",\n      \"rel\": \"X_T\",\n      \"method\": \"GET\"\n    },\n    {\n      \"href\": \"@>_\",\n      \"rel\": \"%\",\n      \"method\": \"PUT\"\n    },\n    {\n      \"href\": \"!\\\"/'$\",\n      \"rel\": \"WgGBED<6\",\n      \"method\": \"PATCH\"\n    }\n  ]\n}",
+                          "createdAt": "2026-07-28T02:33:47.000Z",
+                          "updatedAt": "2026-07-28T02:33:47.000Z",
+                          "uid": "35240-87a9998b-a541-4fde-845b-a8a5d1a22aaf"
+                        },
+                        {
+                          "id": "623f5c72-3b50-4e7a-a6f6-3b431fb582d2",
+                          "name": "The default response.",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: oauth2",
+                                "key": "Authorization",
+                                "value": "<token>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/v2/customer/partner-referrals/:partner_referral_id",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "v2",
+                                "customer",
+                                "partner-referrals",
+                                ":partner_referral_id"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "partner_referral_id"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Internal Server Error",
+                          "code": 500,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"name\": \"INVALID_REQUEST\",\n  \"message\": \"Request is not well-formed, syntactically incorrect, or violates schema.\",\n  \"details\": [\n    {\n      \"issue\": \"<string>\",\n      \"field\": \"<string>\",\n      \"value\": \"<string>\",\n      \"location\": \"body\",\n      \"description\": \"<string>\"\n    },\n    {\n      \"issue\": \"<string>\",\n      \"field\": \"<string>\",\n      \"value\": \"<string>\",\n      \"location\": \"body\",\n      \"description\": \"<string>\"\n    }\n  ],\n  \"debug_id\": \"<string>\",\n  \"links\": [\n    {\n      \"href\": \"4<uHw.\",\n      \"rel\": \"{{bf\",\n      \"method\": \"PUT\"\n    },\n    {\n      \"href\": \"QKCe\",\n      \"rel\": \"4q$.\",\n      \"method\": \"DELETE\"\n    },\n    {\n      \"href\": \"<F](o&:\",\n      \"rel\": \"CR\",\n      \"method\": \"PATCH\"\n    },\n    {\n      \"href\": \"got;8^gX\",\n      \"rel\": \"&p67xJ\",\n      \"method\": \"GET\"\n    },\n    {\n      \"href\": \"\",\n      \"rel\": \":l>y3v'\",\n      \"method\": \"PATCH\"\n    },\n    {\n      \"href\": \"\",\n      \"rel\": \"wa/O!\",\n      \"method\": \"POST\"\n    },\n    {\n      \"href\": \"u]('bV&Z@q\",\n      \"rel\": \"L;1(\",\n      \"method\": \"PUT\"\n    },\n    {\n      \"href\": \"K'{csK\",\n      \"rel\": \">CYmv]+y\\\\\",\n      \"method\": \"DELETE\"\n    },\n    {\n      \"href\": \"pu$|i7b\",\n      \"rel\": \"E?#\",\n      \"method\": \"PUT\"\n    },\n    {\n      \"href\": \"tIZw\",\n      \"rel\": \"c4\",\n      \"method\": \"GET\"\n    },\n    {\n      \"href\": \"J^\",\n      \"rel\": \",&J!<D[YT\",\n      \"method\": \"DELETE\"\n    },\n    {\n      \"href\": \"two\",\n      \"rel\": \"\",\n      \"method\": \"POST\"\n    },\n    {\n      \"href\": \"e~K\",\n      \"rel\": \"Nd\",\n      \"method\": \"PUT\"\n    },\n    {\n      \"href\": \"+%OU\",\n      \"rel\": \"{^ Q%\",\n      \"method\": \"DELETE\"\n    },\n    {\n      \"href\": \"F860C\",\n      \"rel\": \"i}\",\n      \"method\": \"POST\"\n    },\n    {\n      \"href\": \"-q=?%\",\n      \"rel\": \"orkdp5sU`\",\n      \"method\": \"POST\"\n    },\n    {\n      \"href\": \"[1m`\",\n      \"rel\": \"5km:a\",\n      \"method\": \"POST\"\n    },\n    {\n      \"href\": \"&\",\n      \"rel\": \"p\",\n      \"method\": \"GET\"\n    },\n    {\n      \"href\": \"4D!&XPD8nX\",\n      \"rel\": \"T\",\n      \"method\": \"PATCH\"\n    },\n    {\n      \"href\": \"-x{E\",\n      \"rel\": \"{&9\",\n      \"method\": \"PATCH\"\n    }\n  ]\n}",
+                          "createdAt": "2026-07-28T02:33:47.000Z",
+                          "updatedAt": "2026-07-28T02:33:47.000Z",
+                          "uid": "35240-623f5c72-3b50-4e7a-a6f6-3b431fb582d2"
+                        }
+                      ],
+                      "createdAt": "2026-07-28T02:33:47.000Z",
+                      "updatedAt": "2026-07-28T02:33:47.000Z",
+                      "uid": "35240-97500dec-1d7d-4a08-938e-f29f400817e2"
+                    }
+                  ],
+                  "id": "86faa558-d4e4-4f10-bde3-5fc82bfe2e24",
+                  "createdAt": "2026-07-28T02:33:47.000Z",
+                  "updatedAt": "2026-07-28T02:33:47.000Z",
+                  "uid": "35240-86faa558-d4e4-4f10-bde3-5fc82bfe2e24"
+                },
+                {
+                  "name": "Paypal Create partner referral",
+                  "id": "d992e99e-36e3-4edd-9093-ed6ff04615e4",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "auth": {
+                      "type": "oauth2",
+                      "oauth2": [
+                        {
+                          "key": "scope",
+                          "value": "https://uri.paypal.com/services/subscriptions",
+                          "type": "string"
+                        },
+                        {
+                          "key": "accessTokenUrl",
+                          "value": "/v1/oauth2/token",
+                          "type": "string"
+                        },
+                        {
+                          "key": "grant_type",
+                          "value": "client_credentials",
+                          "type": "string"
+                        }
+                      ]
+                    },
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "null",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/v2/customer/partner-referrals",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "v2",
+                        "customer",
+                        "partner-referrals"
+                      ]
+                    },
+                    "description": "Creates a partner referral that is shared by the partner or API caller. The partner referral is used to onboard the seller, and contains the seller's personal, business, financial and operations."
+                  },
+                  "response": [
+                    {
+                      "id": "20b31866-2076-41da-baee-b270dfc6d67c",
+                      "name": "A successful request returns the HTTP `201 Created` status code and a JSON response body that contains a [HATEOAS link](/docs/api/overview/#hateoas-links) to show the referral data and an `action_url` to which you redirect the customer in a browser to com",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: oauth2",
+                            "key": "Authorization",
+                            "value": "<token>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "null",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/v2/customer/partner-referrals",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v2",
+                            "customer",
+                            "partner-referrals"
+                          ]
+                        }
+                      },
+                      "status": "Created",
+                      "code": 201,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"links\": [\n    {\n      \"href\": \"<string>\",\n      \"rel\": \"<string>\",\n      \"method\": \"POST\"\n    },\n    {\n      \"href\": \"<string>\",\n      \"rel\": \"<string>\",\n      \"method\": \"PUT\"\n    }\n  ]\n}",
+                      "createdAt": "2026-07-28T02:33:47.000Z",
+                      "updatedAt": "2026-07-28T02:33:47.000Z",
+                      "uid": "35240-20b31866-2076-41da-baee-b270dfc6d67c"
+                    },
+                    {
+                      "id": "e08db082-764a-4ffd-ba8d-25e24f982f3a",
+                      "name": "Request is not well-formed, syntactically incorrect, or violates schema.",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: oauth2",
+                            "key": "Authorization",
+                            "value": "<token>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "null",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/v2/customer/partner-referrals",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v2",
+                            "customer",
+                            "partner-referrals"
+                          ]
+                        }
+                      },
+                      "status": "Bad Request",
+                      "code": 400,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"name\": \"INVALID_REQUEST\",\n  \"message\": \"Request is not well-formed, syntactically incorrect, or violates schema.\",\n  \"details\": [\n    {\n      \"issue\": \"<string>\",\n      \"field\": \"<string>\",\n      \"value\": \"<string>\",\n      \"location\": \"body\",\n      \"description\": \"<string>\"\n    },\n    {\n      \"issue\": \"<string>\",\n      \"field\": \"<string>\",\n      \"value\": \"<string>\",\n      \"location\": \"body\",\n      \"description\": \"<string>\"\n    }\n  ],\n  \"debug_id\": \"<string>\",\n  \"links\": [\n    {\n      \"href\": \"e\",\n      \"rel\": \"T-H-IaVQ\",\n      \"method\": \"POST\"\n    },\n    {\n      \"href\": \"}5,\",\n      \"rel\": \">pnS\\\"VT4\",\n      \"method\": \"GET\"\n    },\n    {\n      \"href\": \"tH\",\n      \"rel\": \"r`\",\n      \"method\": \"POST\"\n    },\n    {\n      \"href\": \"~_GkE'BcUf\",\n      \"rel\": \"Mg:1},?+\",\n      \"method\": \"PATCH\"\n    },\n    {\n      \"href\": \"\",\n      \"rel\": \"\",\n      \"method\": \"GET\"\n    },\n    {\n      \"href\": \"\",\n      \"rel\": \"\",\n      \"method\": \"PUT\"\n    },\n    {\n      \"href\": \"i.r[Nb6Bdg\",\n      \"rel\": \"#m$R \",\n      \"method\": \"DELETE\"\n    },\n    {\n      \"href\": \"K4yD`h\",\n      \"rel\": \"NaH`1o\",\n      \"method\": \"DELETE\"\n    },\n    {\n      \"href\": \"\",\n      \"rel\": \"__sHa+\",\n      \"method\": \"POST\"\n    },\n    {\n      \"href\": \"E99\\\\\",\n      \"rel\": \"\",\n      \"method\": \"GET\"\n    },\n    {\n      \"href\": \"^15aX\",\n      \"rel\": \"x` L5` \",\n      \"method\": \"GET\"\n    },\n    {\n      \"href\": \"bzor^\",\n      \"rel\": \"gm(vCX^D<z\",\n      \"method\": \"PATCH\"\n    },\n    {\n      \"href\": \"cJ\",\n      \"rel\": \"Rv[eJI\",\n      \"method\": \"PATCH\"\n    },\n    {\n      \"href\": \"r-a/iY\",\n      \"rel\": \":R1V?k\",\n      \"method\": \"PUT\"\n    },\n    {\n      \"href\": \"^reV\",\n      \"rel\": \"l\",\n      \"method\": \"PUT\"\n    },\n    {\n      \"href\": \"(6|\",\n      \"rel\": \"=f^T_rq@\",\n      \"method\": \"GET\"\n    },\n    {\n      \"href\": \"s30/\",\n      \"rel\": \"v}hd`w3\",\n      \"method\": \"GET\"\n    },\n    {\n      \"href\": \"Ui[}E'\",\n      \"rel\": \"zFB\",\n      \"method\": \"DELETE\"\n    },\n    {\n      \"href\": \"j2\",\n      \"rel\": \"L!r`\",\n      \"method\": \"GET\"\n    },\n    {\n      \"href\": \"N>`o\\\\z|xA\",\n      \"rel\": \"J9|jnchB$j\",\n      \"method\": \"GET\"\n    }\n  ]\n}",
+                      "createdAt": "2026-07-28T02:33:47.000Z",
+                      "updatedAt": "2026-07-28T02:33:47.000Z",
+                      "uid": "35240-e08db082-764a-4ffd-ba8d-25e24f982f3a"
+                    },
+                    {
+                      "id": "c8a8c667-52e0-4751-b564-a9212b06c5d9",
+                      "name": "The API call is not authorized.",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: oauth2",
+                            "key": "Authorization",
+                            "value": "<token>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "null",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/v2/customer/partner-referrals",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v2",
+                            "customer",
+                            "partner-referrals"
+                          ]
+                        }
+                      },
+                      "status": "Unauthorized",
+                      "code": 401,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"name\": \"AUTHENTICATION_FAILURE\",\n  \"message\": \"Authentication failed due to missing authorization header, or invalid authentication credentials.\",\n  \"details\": [\n    {\n      \"issue\": \"<string>\",\n      \"field\": \"<string>\",\n      \"value\": \"<string>\",\n      \"location\": \"body\",\n      \"description\": \"<string>\"\n    },\n    {\n      \"issue\": \"<string>\",\n      \"field\": \"<string>\",\n      \"value\": \"<string>\",\n      \"location\": \"body\",\n      \"description\": \"<string>\"\n    }\n  ],\n  \"debug_id\": \"<string>\",\n  \"links\": [\n    {\n      \"href\": \"7bku&z~\",\n      \"rel\": \"Rf\",\n      \"method\": \"PATCH\"\n    },\n    {\n      \"href\": \"QfN35y]i``\",\n      \"rel\": \"Mqp\",\n      \"method\": \"GET\"\n    },\n    {\n      \"href\": \"u;xz<\",\n      \"rel\": \"\",\n      \"method\": \"PATCH\"\n    },\n    {\n      \"href\": \"Bg\",\n      \"rel\": \"\",\n      \"method\": \"POST\"\n    },\n    {\n      \"href\": \"i\",\n      \"rel\": \"_\",\n      \"method\": \"PATCH\"\n    },\n    {\n      \"href\": \":Ch2j;a\",\n      \"rel\": \"e\",\n      \"method\": \"PUT\"\n    },\n    {\n      \"href\": \"*psv\",\n      \"rel\": \"\\\\2\",\n      \"method\": \"PATCH\"\n    },\n    {\n      \"href\": \"g(YHbrj-\",\n      \"rel\": \".6\",\n      \"method\": \"PUT\"\n    },\n    {\n      \"href\": \"AG-K\",\n      \"rel\": \"R\",\n      \"method\": \"POST\"\n    },\n    {\n      \"href\": \"s4s\",\n      \"rel\": \">_\\\\\",\n      \"method\": \"POST\"\n    },\n    {\n      \"href\": \"qX<\\\\`\",\n      \"rel\": \"|\",\n      \"method\": \"PUT\"\n    },\n    {\n      \"href\": \"{q^^!I'U\",\n      \"rel\": \"k;W;4z\",\n      \"method\": \"POST\"\n    },\n    {\n      \"href\": \"^%#o|M\",\n      \"rel\": \"'yc_4J`xIY\",\n      \"method\": \"PATCH\"\n    },\n    {\n      \"href\": \"//W.bw\",\n      \"rel\": \"_\",\n      \"method\": \"PATCH\"\n    },\n    {\n      \"href\": \"V,7H!!rAr\",\n      \"rel\": \"(r\",\n      \"method\": \"DELETE\"\n    },\n    {\n      \"href\": \"f5kC[K!l<1\",\n      \"rel\": \"ww#@\",\n      \"method\": \"GET\"\n    },\n    {\n      \"href\": \"<M34;I~ 1%\",\n      \"rel\": \"<sR2CyEj|\",\n      \"method\": \"PATCH\"\n    },\n    {\n      \"href\": \"\",\n      \"rel\": \"7UaR]w[3H\",\n      \"method\": \"DELETE\"\n    },\n    {\n      \"href\": \"~i!G-{i\",\n      \"rel\": \"\",\n      \"method\": \"DELETE\"\n    },\n    {\n      \"href\": \"6oT)lIfDA\",\n      \"rel\": \"t3\",\n      \"method\": \"GET\"\n    }\n  ]\n}",
+                      "createdAt": "2026-07-28T02:33:47.000Z",
+                      "updatedAt": "2026-07-28T02:33:47.000Z",
+                      "uid": "35240-c8a8c667-52e0-4751-b564-a9212b06c5d9"
+                    },
+                    {
+                      "id": "b9b2df64-5b35-4cda-a3c0-e274117420a7",
+                      "name": "Authorization failed due to insufficient permissions or missing scopes on the caller account.",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: oauth2",
+                            "key": "Authorization",
+                            "value": "<token>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "null",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/v2/customer/partner-referrals",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v2",
+                            "customer",
+                            "partner-referrals"
+                          ]
+                        }
+                      },
+                      "status": "Forbidden",
+                      "code": 403,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"name\": \"NOT_AUTHORIZED\",\n  \"message\": \"Authorization failed due to insufficient permissions.\",\n  \"details\": [\n    {\n      \"issue\": \"<string>\",\n      \"field\": \"<string>\",\n      \"value\": \"<string>\",\n      \"location\": \"body\",\n      \"description\": \"<string>\"\n    },\n    {\n      \"issue\": \"<string>\",\n      \"field\": \"<string>\",\n      \"value\": \"<string>\",\n      \"location\": \"body\",\n      \"description\": \"<string>\"\n    }\n  ],\n  \"debug_id\": \"<string>\",\n  \"links\": [\n    {\n      \"href\": \"zA2y[\",\n      \"rel\": \">NtnO\",\n      \"method\": \"PUT\"\n    },\n    {\n      \"href\": \"SC!(%zU\",\n      \"rel\": \"+'Njq6Jd\",\n      \"method\": \"PATCH\"\n    },\n    {\n      \"href\": \"Z\",\n      \"rel\": \"i7W!j\",\n      \"method\": \"POST\"\n    },\n    {\n      \"href\": \"IxxQ$\",\n      \"rel\": \"pS78y_(eT>\",\n      \"method\": \"PATCH\"\n    },\n    {\n      \"href\": \"/WR+~\",\n      \"rel\": \" \",\n      \"method\": \"DELETE\"\n    },\n    {\n      \"href\": \"JlX1{3dJ\",\n      \"rel\": \">\",\n      \"method\": \"DELETE\"\n    },\n    {\n      \"href\": \"O\",\n      \"rel\": \"S(SXc+O_<\",\n      \"method\": \"GET\"\n    },\n    {\n      \"href\": \"\",\n      \"rel\": \">P:JMkC*\",\n      \"method\": \"PUT\"\n    },\n    {\n      \"href\": \"jKg)`'o;\",\n      \"rel\": \"\",\n      \"method\": \"GET\"\n    },\n    {\n      \"href\": \"\",\n      \"rel\": \");$6+qvmN!\",\n      \"method\": \"GET\"\n    },\n    {\n      \"href\": \"kMG&hd\",\n      \"rel\": \"uZ\",\n      \"method\": \"DELETE\"\n    },\n    {\n      \"href\": \"*;8$\",\n      \"rel\": \"KYlO_\",\n      \"method\": \"PUT\"\n    },\n    {\n      \"href\": \"\",\n      \"rel\": \"\",\n      \"method\": \"PUT\"\n    },\n    {\n      \"href\": \"#,WPhf\",\n      \"rel\": \"\",\n      \"method\": \"PATCH\"\n    },\n    {\n      \"href\": \"f9\",\n      \"rel\": \"{o\",\n      \"method\": \"GET\"\n    },\n    {\n      \"href\": \"@B\",\n      \"rel\": \"+7In&:\",\n      \"method\": \"POST\"\n    },\n    {\n      \"href\": \"of4`n\",\n      \"rel\": \"@DD z4,Y%*\",\n      \"method\": \"PATCH\"\n    },\n    {\n      \"href\": \"l\",\n      \"rel\": \">'!\",\n      \"method\": \"GET\"\n    },\n    {\n      \"href\": \"3p+*\",\n      \"rel\": \"c-s]r^X\",\n      \"method\": \"GET\"\n    },\n    {\n      \"href\": \";m0*\",\n      \"rel\": \"\",\n      \"method\": \"PUT\"\n    }\n  ]\n}",
+                      "createdAt": "2026-07-28T02:33:47.000Z",
+                      "updatedAt": "2026-07-28T02:33:47.000Z",
+                      "uid": "35240-b9b2df64-5b35-4cda-a3c0-e274117420a7"
+                    },
+                    {
+                      "id": "2b00241f-6a30-42bf-976d-2da957fa874b",
+                      "name": "The caller is not a business account or the account is closed or locked.",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: oauth2",
+                            "key": "Authorization",
+                            "value": "<token>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "null",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/v2/customer/partner-referrals",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v2",
+                            "customer",
+                            "partner-referrals"
+                          ]
+                        }
+                      },
+                      "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+                      "code": 422,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"name\": \"UNPROCESSABLE_ENTITY\",\n  \"message\": \"The requested action could not be performed, semantically incorrect, or failed business validation.\",\n  \"details\": [\n    {\n      \"issue\": \"<string>\",\n      \"field\": \"<string>\",\n      \"value\": \"<string>\",\n      \"location\": \"body\",\n      \"description\": \"<string>\"\n    },\n    {\n      \"issue\": \"<string>\",\n      \"field\": \"<string>\",\n      \"value\": \"<string>\",\n      \"location\": \"body\",\n      \"description\": \"<string>\"\n    }\n  ],\n  \"debug_id\": \"<string>\",\n  \"links\": [\n    {\n      \"href\": \"A7\",\n      \"rel\": \"]B)35h]MQH\",\n      \"method\": \"GET\"\n    },\n    {\n      \"href\": \"^{7)i,:fdf\",\n      \"rel\": \"@J\",\n      \"method\": \"PATCH\"\n    },\n    {\n      \"href\": \"88HF\",\n      \"rel\": \"zI_cen\",\n      \"method\": \"GET\"\n    },\n    {\n      \"href\": \"lbil7efPH\",\n      \"rel\": \"3)q\\\"9$h\",\n      \"method\": \"GET\"\n    },\n    {\n      \"href\": \"[\",\n      \"rel\": \"_l7Jmk\",\n      \"method\": \"GET\"\n    },\n    {\n      \"href\": \";yqy`\",\n      \"rel\": \"X}\",\n      \"method\": \"DELETE\"\n    },\n    {\n      \"href\": \"lK{wTt<\",\n      \"rel\": \"T:\",\n      \"method\": \"GET\"\n    },\n    {\n      \"href\": \"jeE\",\n      \"rel\": \"4kC[XWV\",\n      \"method\": \"DELETE\"\n    },\n    {\n      \"href\": \"{#`Zz=!P\",\n      \"rel\": \"[Q9f\",\n      \"method\": \"PUT\"\n    },\n    {\n      \"href\": \"-]9PR\",\n      \"rel\": \"/$J!Pw8K+p\",\n      \"method\": \"PUT\"\n    },\n    {\n      \"href\": \"CJA)b:5l\",\n      \"rel\": \"uOqd8~K`\",\n      \"method\": \"GET\"\n    },\n    {\n      \"href\": \"WKG\\\"OCG\",\n      \"rel\": \"beXTJSw\",\n      \"method\": \"PUT\"\n    },\n    {\n      \"href\": \"_4tpza5gE1\",\n      \"rel\": \"UO;o\",\n      \"method\": \"POST\"\n    },\n    {\n      \"href\": \"\",\n      \"rel\": \"$E* ~q,\",\n      \"method\": \"POST\"\n    },\n    {\n      \"href\": \"\",\n      \"rel\": \"gr*\",\n      \"method\": \"PUT\"\n    },\n    {\n      \"href\": \",\\\\qt\",\n      \"rel\": \"<\\\"8I\",\n      \"method\": \"PUT\"\n    },\n    {\n      \"href\": \"SFn\",\n      \"rel\": \"j%\\\"\",\n      \"method\": \"PUT\"\n    },\n    {\n      \"href\": \"uKFdHz!H\",\n      \"rel\": \"X(3)|Jw\",\n      \"method\": \"GET\"\n    },\n    {\n      \"href\": \"R\",\n      \"rel\": \"\",\n      \"method\": \"PUT\"\n    },\n    {\n      \"href\": \"0RpoQf8\",\n      \"rel\": \"G?' Xv:}\",\n      \"method\": \"PUT\"\n    }\n  ]\n}",
+                      "createdAt": "2026-07-28T02:33:47.000Z",
+                      "updatedAt": "2026-07-28T02:33:47.000Z",
+                      "uid": "35240-2b00241f-6a30-42bf-976d-2da957fa874b"
+                    },
+                    {
+                      "id": "d3e42a4c-4eb6-4fa1-af88-a863ca38425f",
+                      "name": "An internal server error has occurred.",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: oauth2",
+                            "key": "Authorization",
+                            "value": "<token>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "null",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/v2/customer/partner-referrals",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v2",
+                            "customer",
+                            "partner-referrals"
+                          ]
+                        }
+                      },
+                      "status": "Internal Server Error",
+                      "code": 500,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"name\": \"INTERNAL_SERVER_ERROR\",\n  \"message\": \"An internal server error occurred.\",\n  \"debug_id\": \"<string>\",\n  \"links\": [\n    {\n      \"href\": \"19FNq _!\",\n      \"rel\": \"\",\n      \"method\": \"DELETE\"\n    },\n    {\n      \"href\": \"4S:0XiF0)&\",\n      \"rel\": \"'YDm\",\n      \"method\": \"DELETE\"\n    },\n    {\n      \"href\": \"j6j=TO\",\n      \"rel\": \"%/4BS1\",\n      \"method\": \"PUT\"\n    },\n    {\n      \"href\": \"+{Q6L{PV\",\n      \"rel\": \"u4a&&(>TNK\",\n      \"method\": \"PUT\"\n    },\n    {\n      \"href\": \"o\\\"d \\\"?)r~\",\n      \"rel\": \"\",\n      \"method\": \"PUT\"\n    },\n    {\n      \"href\": \"P/2*us2\\\"@u\",\n      \"rel\": \"EM!U\",\n      \"method\": \"PUT\"\n    },\n    {\n      \"href\": \"f'\",\n      \"rel\": \"c)=zj1O B\",\n      \"method\": \"GET\"\n    },\n    {\n      \"href\": \";\",\n      \"rel\": \"[\",\n      \"method\": \"GET\"\n    },\n    {\n      \"href\": \"\",\n      \"rel\": \".UAsK:/\",\n      \"method\": \"PUT\"\n    },\n    {\n      \"href\": \"Q\",\n      \"rel\": \"2NSALU<3#q\",\n      \"method\": \"DELETE\"\n    },\n    {\n      \"href\": \".288|\",\n      \"rel\": \"1|mN\",\n      \"method\": \"PATCH\"\n    },\n    {\n      \"href\": \"Zb:\",\n      \"rel\": \"(W@`[\",\n      \"method\": \"GET\"\n    },\n    {\n      \"href\": \"[z-j\\\"\\\\pi&\",\n      \"rel\": \"=T9e9W*8\",\n      \"method\": \"POST\"\n    },\n    {\n      \"href\": \".!o8C{\",\n      \"rel\": \"\",\n      \"method\": \"POST\"\n    },\n    {\n      \"href\": \"\",\n      \"rel\": \"P\",\n      \"method\": \"POST\"\n    },\n    {\n      \"href\": \"1$3K\",\n      \"rel\": \"@fUay|&QS\",\n      \"method\": \"PUT\"\n    },\n    {\n      \"href\": \";:D\\\"]Suy\",\n      \"rel\": \" v&T@A\",\n      \"method\": \"PATCH\"\n    },\n    {\n      \"href\": \"ER\",\n      \"rel\": \"X_T\",\n      \"method\": \"GET\"\n    },\n    {\n      \"href\": \"@>_\",\n      \"rel\": \"%\",\n      \"method\": \"PUT\"\n    },\n    {\n      \"href\": \"!\\\"/'$\",\n      \"rel\": \"WgGBED<6\",\n      \"method\": \"PATCH\"\n    }\n  ]\n}",
+                      "createdAt": "2026-07-28T02:33:47.000Z",
+                      "updatedAt": "2026-07-28T02:33:47.000Z",
+                      "uid": "35240-d3e42a4c-4eb6-4fa1-af88-a863ca38425f"
+                    },
+                    {
+                      "id": "3882dc7c-1797-495f-b888-7631224b6b56",
+                      "name": "The default response.",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: oauth2",
+                            "key": "Authorization",
+                            "value": "<token>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "null",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/v2/customer/partner-referrals",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v2",
+                            "customer",
+                            "partner-referrals"
+                          ]
+                        }
+                      },
+                      "status": "Internal Server Error",
+                      "code": 500,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"name\": \"INVALID_REQUEST\",\n  \"message\": \"Request is not well-formed, syntactically incorrect, or violates schema.\",\n  \"details\": [\n    {\n      \"issue\": \"<string>\",\n      \"field\": \"<string>\",\n      \"value\": \"<string>\",\n      \"location\": \"body\",\n      \"description\": \"<string>\"\n    },\n    {\n      \"issue\": \"<string>\",\n      \"field\": \"<string>\",\n      \"value\": \"<string>\",\n      \"location\": \"body\",\n      \"description\": \"<string>\"\n    }\n  ],\n  \"debug_id\": \"<string>\",\n  \"links\": [\n    {\n      \"href\": \"4<uHw.\",\n      \"rel\": \"{{bf\",\n      \"method\": \"PUT\"\n    },\n    {\n      \"href\": \"QKCe\",\n      \"rel\": \"4q$.\",\n      \"method\": \"DELETE\"\n    },\n    {\n      \"href\": \"<F](o&:\",\n      \"rel\": \"CR\",\n      \"method\": \"PATCH\"\n    },\n    {\n      \"href\": \"got;8^gX\",\n      \"rel\": \"&p67xJ\",\n      \"method\": \"GET\"\n    },\n    {\n      \"href\": \"\",\n      \"rel\": \":l>y3v'\",\n      \"method\": \"PATCH\"\n    },\n    {\n      \"href\": \"\",\n      \"rel\": \"wa/O!\",\n      \"method\": \"POST\"\n    },\n    {\n      \"href\": \"u]('bV&Z@q\",\n      \"rel\": \"L;1(\",\n      \"method\": \"PUT\"\n    },\n    {\n      \"href\": \"K'{csK\",\n      \"rel\": \">CYmv]+y\\\\\",\n      \"method\": \"DELETE\"\n    },\n    {\n      \"href\": \"pu$|i7b\",\n      \"rel\": \"E?#\",\n      \"method\": \"PUT\"\n    },\n    {\n      \"href\": \"tIZw\",\n      \"rel\": \"c4\",\n      \"method\": \"GET\"\n    },\n    {\n      \"href\": \"J^\",\n      \"rel\": \",&J!<D[YT\",\n      \"method\": \"DELETE\"\n    },\n    {\n      \"href\": \"two\",\n      \"rel\": \"\",\n      \"method\": \"POST\"\n    },\n    {\n      \"href\": \"e~K\",\n      \"rel\": \"Nd\",\n      \"method\": \"PUT\"\n    },\n    {\n      \"href\": \"+%OU\",\n      \"rel\": \"{^ Q%\",\n      \"method\": \"DELETE\"\n    },\n    {\n      \"href\": \"F860C\",\n      \"rel\": \"i}\",\n      \"method\": \"POST\"\n    },\n    {\n      \"href\": \"-q=?%\",\n      \"rel\": \"orkdp5sU`\",\n      \"method\": \"POST\"\n    },\n    {\n      \"href\": \"[1m`\",\n      \"rel\": \"5km:a\",\n      \"method\": \"POST\"\n    },\n    {\n      \"href\": \"&\",\n      \"rel\": \"p\",\n      \"method\": \"GET\"\n    },\n    {\n      \"href\": \"4D!&XPD8nX\",\n      \"rel\": \"T\",\n      \"method\": \"PATCH\"\n    },\n    {\n      \"href\": \"-x{E\",\n      \"rel\": \"{&9\",\n      \"method\": \"PATCH\"\n    }\n  ]\n}",
+                      "createdAt": "2026-07-28T02:33:47.000Z",
+                      "updatedAt": "2026-07-28T02:33:47.000Z",
+                      "uid": "35240-3882dc7c-1797-495f-b888-7631224b6b56"
+                    }
+                  ],
+                  "createdAt": "2026-07-28T02:33:47.000Z",
+                  "updatedAt": "2026-07-28T02:33:47.000Z",
+                  "uid": "35240-d992e99e-36e3-4edd-9093-ed6ff04615e4"
+                }
+              ],
+              "id": "9e91f86b-f804-4416-ae85-914d3260f20a",
+              "createdAt": "2026-07-28T02:33:47.000Z",
+              "updatedAt": "2026-07-28T02:33:47.000Z",
+              "uid": "35240-9e91f86b-f804-4416-ae85-914d3260f20a"
+            }
+          ],
+          "id": "4602dbed-36f5-450c-91bb-69713b46a320",
+          "createdAt": "2026-07-28T02:33:47.000Z",
+          "updatedAt": "2026-07-28T02:33:47.000Z",
+          "uid": "35240-4602dbed-36f5-450c-91bb-69713b46a320"
+        }
+      ],
+      "id": "5d76c7f7-2771-4e35-9d67-4ec9576be934",
+      "createdAt": "2026-07-28T02:33:47.000Z",
+      "updatedAt": "2026-07-28T02:33:47.000Z",
+      "uid": "35240-5d76c7f7-2771-4e35-9d67-4ec9576be934"
+    }
+  ],
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://api-m.sandbox.paypal.com"
+    }
+  ]
+}

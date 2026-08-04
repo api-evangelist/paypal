@@ -1,0 +1,431 @@
+{
+  "info": {
+    "_postman_id": "d9c63a9d-ac0c-4bd1-969a-1ddc06ff02ca",
+    "name": "Paypal Subscriptions Authorizations Search-Invoices API",
+    "description": "You can use billing plans and subscriptions to create subscriptions that process recurring PayPal payments for physical or digital goods, or services. A plan includes pricing and billing cycle information that defines the amount and frequency of charge for a subscription. You can also define a fixed plan, such as a $5 basic plan or a volume- or graduated-based plan with pricing tiers based on the quantity purchased. For more information, see <a href=\"/docs/subscriptions/\">Subscriptions Overview</a>.",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-07-28T02:34:37.000Z",
+    "updatedAt": "2026-07-28T02:34:37.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-d9c63a9d-ac0c-4bd1-969a-1ddc06ff02ca"
+  },
+  "item": [
+    {
+      "name": "v2",
+      "item": [
+        {
+          "name": "invoicing",
+          "item": [
+            {
+              "name": "search-invoices",
+              "item": [
+                {
+                  "name": "Paypal Search for invoices",
+                  "id": "2ca0a3a4-c53e-4ccf-9d04-1c48d0717795",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "auth": {
+                      "type": "oauth2",
+                      "oauth2": [
+                        {
+                          "key": "scope",
+                          "value": "https://uri.paypal.com/services/subscriptions",
+                          "type": "string"
+                        },
+                        {
+                          "key": "accessTokenUrl",
+                          "value": "/v1/oauth2/token",
+                          "type": "string"
+                        },
+                        {
+                          "key": "grant_type",
+                          "value": "client_credentials",
+                          "type": "string"
+                        }
+                      ]
+                    },
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"recipient_email\": \"<string>\",\n  \"recipient_first_name\": \"<string>\",\n  \"recipient_last_name\": \"<string>\",\n  \"recipient_business_name\": \"<string>\",\n  \"invoice_number\": \"<string>\",\n  \"status\": [\n    \"REFUNDED\",\n    \"PARTIALLY_REFUNDED\"\n  ],\n  \"reference\": \"<string>\",\n  \"currency_code\": \"<string>\",\n  \"memo\": \"<string>\",\n  \"total_amount_range\": {\n    \"lower_amount\": {\n      \"currency_code\": \"<string>\",\n      \"value\": \"07313892740.2\"\n    },\n    \"upper_amount\": {\n      \"currency_code\": \"<string>\",\n      \"value\": \".894\"\n    }\n  },\n  \"invoice_date_range\": {\n    \"start\": \"6926-12-10\",\n    \"end\": \"3301-10-31\"\n  },\n  \"due_date_range\": {\n    \"start\": \"2871-07-30\",\n    \"end\": \"8628-06-19\"\n  },\n  \"payment_date_range\": {\n    \"start\": \"3096-11-30t20:01:03+96:47\",\n    \"end\": \"4197-10-31T23:37:60Z\"\n  },\n  \"creation_date_range\": {\n    \"start\": \"8481-12-29T16:13:47Z\",\n    \"end\": \"6462-08-30,20:08:60Z\"\n  },\n  \"archived\": \"<boolean>\",\n  \"fields\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/v2/invoicing/search-invoices?page=1&page_size=20&total_required=false",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "v2",
+                        "invoicing",
+                        "search-invoices"
+                      ],
+                      "query": [
+                        {
+                          "description": "The page number to be retrieved, for the list of templates. So, a combination of `page=1` and `page_size=20` returns the first 20 templates. A combination of `page=2` and `page_size=20` returns the next 20 templates.",
+                          "key": "page",
+                          "value": "1"
+                        },
+                        {
+                          "description": "The maximum number of templates to return in the response.",
+                          "key": "page_size",
+                          "value": "20"
+                        },
+                        {
+                          "description": "Indicates whether the to show <code>total_pages</code> and <code>total_items</code> in the response.",
+                          "key": "total_required",
+                          "value": "false"
+                        }
+                      ]
+                    },
+                    "description": "Searches for and lists invoices that match search criteria. If you pass multiple criteria, the response lists invoices that match all criteria."
+                  },
+                  "response": [
+                    {
+                      "id": "8d61c61c-2889-4279-8b79-50575bceffd4",
+                      "name": "A successful request returns the HTTP `200 OK` status code and a JSON response body that lists the invoices that match the search criteria.",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: oauth2",
+                            "key": "Authorization",
+                            "value": "<token>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"recipient_email\": \"<string>\",\n  \"recipient_first_name\": \"<string>\",\n  \"recipient_last_name\": \"<string>\",\n  \"recipient_business_name\": \"<string>\",\n  \"invoice_number\": \"<string>\",\n  \"status\": [\n    \"REFUNDED\",\n    \"PARTIALLY_REFUNDED\"\n  ],\n  \"reference\": \"<string>\",\n  \"currency_code\": \"<string>\",\n  \"memo\": \"<string>\",\n  \"total_amount_range\": {\n    \"lower_amount\": {\n      \"currency_code\": \"<string>\",\n      \"value\": \"07313892740.2\"\n    },\n    \"upper_amount\": {\n      \"currency_code\": \"<string>\",\n      \"value\": \".894\"\n    }\n  },\n  \"invoice_date_range\": {\n    \"start\": \"6926-12-10\",\n    \"end\": \"3301-10-31\"\n  },\n  \"due_date_range\": {\n    \"start\": \"2871-07-30\",\n    \"end\": \"8628-06-19\"\n  },\n  \"payment_date_range\": {\n    \"start\": \"3096-11-30t20:01:03+96:47\",\n    \"end\": \"4197-10-31T23:37:60Z\"\n  },\n  \"creation_date_range\": {\n    \"start\": \"8481-12-29T16:13:47Z\",\n    \"end\": \"6462-08-30,20:08:60Z\"\n  },\n  \"archived\": \"<boolean>\",\n  \"fields\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/v2/invoicing/search-invoices?page=1&page_size=20&total_required=false",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v2",
+                            "invoicing",
+                            "search-invoices"
+                          ],
+                          "query": [
+                            {
+                              "description": "The page number to be retrieved, for the list of templates. So, a combination of `page=1` and `page_size=20` returns the first 20 templates. A combination of `page=2` and `page_size=20` returns the next 20 templates.",
+                              "key": "page",
+                              "value": "1"
+                            },
+                            {
+                              "description": "The maximum number of templates to return in the response.",
+                              "key": "page_size",
+                              "value": "20"
+                            },
+                            {
+                              "description": "Indicates whether the to show <code>total_pages</code> and <code>total_items</code> in the response.",
+                              "key": "total_required",
+                              "value": "false"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"total_pages\": \"<integer>\",\n  \"total_items\": \"<integer>\",\n  \"items\": [\n    {\n      \"detail\": {\n        \"currency_code\": \"<string>\",\n        \"reference\": \"<string>\",\n        \"note\": \"<string>\",\n        \"terms_and_conditions\": \"<string>\",\n        \"memo\": \"<string>\",\n        \"attachments\": [\n          {\n            \"id\": \"<string>\",\n            \"reference_url\": \"<uri>\",\n            \"content_type\": \"<string>\",\n            \"create_time\": \"8583-01-03T23:38:10-75:59\",\n            \"size\": \"2904193082\"\n          }\n        ],\n        \"invoice_number\": \"<string>\",\n        \"invoice_date\": \"0721-10-05\",\n        \"payment_term\": {\n          \"term_type\": \"NET_45\",\n          \"due_date\": \"2774-12-09\"\n        },\n        \"metadata\": {\n          \"create_time\": \"6020-12-20T23:16:60-05:79\",\n          \"created_by\": \"<string>\",\n          \"last_update_time\": \"2845-11-30,05:31:57z\",\n          \"last_updated_by\": \"<string>\",\n          \"cancel_time\": \"0287-12-25,18:49:60.8202-01:60\",\n          \"cancelled_by\": \"<string>\",\n          \"first_sent_time\": \"3992-09-03,11:30:60Z\",\n          \"last_sent_time\": \"3415-03-28t23:00:10-38:02\",\n          \"last_sent_by\": \"<string>\",\n          \"created_by_flow\": \"BATCH\",\n          \"recipient_view_url\": \"<uri>\",\n          \"invoicer_view_url\": \"<uri>\"\n        }\n      },\n      \"id\": \"<string>\",\n      \"parent_id\": \"<string>\",\n      \"status\": \"DRAFT\",\n      \"invoicer\": {\n        \"business_name\": \"<string>\",\n        \"name\": {\n          \"prefix\": \"<string>\",\n          \"given_name\": \"<string>\",\n          \"surname\": \"<string>\",\n          \"middle_name\": \"<string>\",\n          \"suffix\": \"<string>\",\n          \"alternate_full_name\": \"<string>\",\n          \"full_name\": \"<string>\"\n        },\n        \"address\": {\n          \"country_code\": \"YI\",\n          \"address_line_1\": \"<string>\",\n          \"address_line_2\": \"<string>\",\n          \"address_line_3\": \"<string>\",\n          \"admin_area_4\": \"<string>\",\n          \"admin_area_3\": \"<string>\",\n          \"admin_area_2\": \"<string>\",\n          \"admin_area_1\": \"<string>\",\n          \"postal_code\": \"<string>\",\n          \"address_details\": {\n            \"street_number\": \"<string>\",\n            \"street_name\": \"<string>\",\n            \"street_type\": \"<string>\",\n            \"delivery_service\": \"<string>\",\n            \"building_name\": \"<string>\",\n            \"sub_building\": \"<string>\"\n          }\n        },\n        \"email_address\": \"[osJwNg@9!>R&d4.(L\",\n        \"phones\": [\n          {\n            \"country_code\": \" \",\n            \"national_number\": \"837886006599\",\n            \"phone_type\": \"FAX\",\n            \"extension_number\": \" \"\n          }\n        ],\n        \"website\": \"<uri>\",\n        \"tax_id\": \"<string>\",\n        \"additional_notes\": \"<string>\",\n        \"logo_url\": \"<uri>\"\n      },\n      \"primary_recipients\": [\n        {\n          \"billing_info\": {\n            \"business_name\": \"<string>\",\n            \"name\": {\n              \"prefix\": \"<string>\",\n              \"given_name\": \"<string>\",\n              \"surname\": \"<string>\",\n              \"middle_name\": \"<string>\",\n              \"suffix\": \"<string>\",\n              \"alternate_full_name\": \"<string>\",\n              \"full_name\": \"<string>\"\n            },\n            \"address\": {\n              \"country_code\": \"NC\",\n              \"address_line_1\": \"<string>\",\n              \"address_line_2\": \"<string>\",\n              \"address_line_3\": \"<string>\",\n              \"admin_area_4\": \"<string>\",\n              \"admin_area_3\": \"<string>\",\n              \"admin_area_2\": \"<string>\",\n              \"admin_area_1\": \"<string>\",\n              \"postal_code\": \"<string>\",\n              \"address_details\": {\n                \"street_number\": \"<string>\",\n                \"street_name\": \"<string>\",\n                \"street_type\": \"<string>\",\n                \"delivery_service\": \"<string>\",\n                \"building_name\": \"<string>\",\n                \"sub_building\": \"<string>\"\n              }\n            },\n            \"email_address\": \"S4ix@yJkCh$0*_n~\",\n            \"phones\": [\n              {\n                \"country_code\": \" \",\n                \"national_number\": \" \",\n                \"phone_type\": \"OTHER\",\n                \"extension_number\": \"962564227811\"\n              }\n            ],\n            \"additional_info\": \"<string>\",\n            \"language\": \"mw-Urtb-WO\"\n          },\n          \"shipping_info\": {\n            \"business_name\": \"<string>\",\n            \"name\": {\n              \"prefix\": \"<string>\",\n              \"given_name\": \"<string>\",\n              \"surname\": \"<string>\",\n              \"middle_name\": \"<string>\",\n              \"suffix\": \"<string>\",\n              \"alternate_full_name\": \"<string>\",\n              \"full_name\": \"<string>\"\n            },\n            \"address\": {\n              \"country_code\": \"AV\",\n              \"address_line_1\": \"<string>\",\n              \"address_line_2\": \"<string>\",\n              \"address_line_3\": \"<string>\",\n              \"admin_area_4\": \"<string>\",\n              \"admin_area_3\": \"<string>\",\n              \"admin_area_2\": \"<string>\",\n              \"admin_area_1\": \"<string>\",\n              \"postal_code\": \"<string>\",\n              \"address_details\": {\n                \"street_number\": \"<string>\",\n                \"street_name\": \"<string>\",\n                \"street_type\": \"<string>\",\n                \"delivery_service\": \"<string>\",\n                \"building_name\": \"<string>\",\n                \"sub_building\": \"<string>\"\n              }\n            }\n          }\n        }\n      ],\n      \"additional_recipients\": [\n        \"KVS U_[@DkcBP9D\"\n      ],\n      \"items\": [\n        {\n          \"name\": \"<string>\",\n          \"quantity\": \"<string>\",\n          \"unit_amount\": {\n            \"currency_code\": \"<string>\",\n            \"value\": \"84813690064.26362\"\n          },\n          \"id\": \"<string>\",\n          \"description\": \"<string>\",\n          \"tax\": {\n            \"name\": \"<string>\",\n            \"percent\": \"-38420.26292530\",\n            \"amount\": {\n              \"currency_code\": \"<string>\",\n              \"value\": \"-66483454651.146\"\n            }\n          },\n          \"item_date\": \"1567-10-02\",\n          \"discount\": {\n            \"percent\": \"16\",\n            \"amount\": {\n              \"currency_code\": \"<string>\",\n              \"value\": \"-97157989\"\n            }\n          },\n          \"unit_of_measure\": \"QUANTITY\"\n        }\n      ],\n      \"configuration\": {\n        \"tax_calculated_after_discount\": true,\n        \"tax_inclusive\": false,\n        \"allow_tip\": false,\n        \"partial_payment\": {\n          \"allow_partial_payment\": false,\n          \"minimum_amount_due\": {\n            \"currency_code\": \"<string>\",\n            \"value\": \".74704654697\"\n          }\n        },\n        \"template_id\": \"PayPal system template\"\n      },\n      \"amount\": {\n        \"currency_code\": \"<string>\",\n        \"value\": \"16103\",\n        \"breakdown\": {\n          \"item_total\": {\n            \"currency_code\": \"<string>\",\n            \"value\": \"-759972\"\n          },\n          \"discount\": {\n            \"invoice_discount\": {\n              \"percent\": \"-02444496558.503080270\",\n              \"amount\": {\n                \"currency_code\": \"<string>\",\n                \"value\": \"-8391\"\n              }\n            },\n            \"item_discount\": {\n              \"currency_code\": \"<string>\",\n              \"value\": \"-07\"\n            }\n          },\n          \"tax_total\": {\n            \"currency_code\": \"<string>\",\n            \"value\": \"029999154.8525116\"\n          },\n          \"shipping\": {\n            \"amount\": {\n              \"currency_code\": \"<string>\",\n              \"value\": \"-.058490\"\n            },\n            \"tax\": {\n              \"name\": \"<string>\",\n              \"percent\": \"-2890315651\",\n              \"amount\": {\n                \"currency_code\": \"<string>\",\n                \"value\": \"-656809\"\n              }\n            }\n          },\n          \"custom\": {\n            \"label\": \"<string>\",\n            \"amount\": {\n              \"currency_code\": \"<string>\",\n              \"value\": \"295355406.334\"\n            }\n          }\n        }\n      },\n      \"due_amount\": {\n        \"currency_code\": \"<string>\",\n        \"value\": \"-30218485.16374010\"\n      },\n      \"gratuity\": {\n        \"currency_code\": \"<string>\",\n        \"value\": \"-.6810067\"\n      },\n      \"payments\": {\n        \"paid_amount\": {\n          \"currency_code\": \"<string>\",\n          \"value\": \"-62\"\n        },\n        \"transactions\": [\n          {\n            \"method\": \"WIRE_TRANSFER\",\n            \"type\": \"PAYPAL\",\n            \"payment_id\": \"<string>\",\n            \"payment_date\": \"7845-11-30\",\n            \"note\": \"<string>\",\n            \"amount\": {\n              \"currency_code\": \"<string>\",\n              \"value\": \"-94140413223.155970\"\n            },\n            \"shipping_info\": {\n              \"business_name\": \"<string>\",\n              \"name\": {\n                \"prefix\": \"<string>\",\n                \"given_name\": \"<string>\",\n                \"surname\": \"<string>\",\n                \"middle_name\": \"<string>\",\n                \"suffix\": \"<string>\",\n                \"alternate_full_name\": \"<string>\",\n                \"full_name\": \"<string>\"\n              },\n              \"address\": {\n                \"country_code\": \"C2\",\n                \"address_line_1\": \"<string>\",\n                \"address_line_2\": \"<string>\",\n                \"address_line_3\": \"<string>\",\n                \"admin_area_4\": \"<string>\",\n                \"admin_area_3\": \"<string>\",\n                \"admin_area_2\": \"<string>\",\n                \"admin_area_1\": \"<string>\",\n                \"postal_code\": \"<string>\",\n                \"address_details\": {\n                  \"street_number\": \"<string>\",\n                  \"street_name\": \"<string>\",\n                  \"street_type\": \"<string>\",\n                  \"delivery_service\": \"<string>\",\n                  \"building_name\": \"<string>\",\n                  \"sub_building\": \"<string>\"\n                }\n              }\n            }\n          }\n        ]\n      },\n      \"refunds\": {\n        \"refund_amount\": {\n          \"currency_code\": \"<string>\",\n          \"value\": \"-44398034\"\n        },\n        \"transactions\": [\n          {\n            \"method\": \"CHECK\",\n            \"type\": \"EXTERNAL\",\n            \"refund_id\": \"<string>\",\n            \"refund_date\": \"4439-11-09\",\n            \"amount\": {\n              \"currency_code\": \"<string>\",\n              \"value\": \"-75894002989\"\n            }\n          }\n        ]\n      },\n      \"links\": [\n        {\n          \"href\": \"<string>\",\n          \"rel\": \"<string>\",\n          \"method\": \"OPTIONS\"\n        }\n      ]\n    }\n  ],\n  \"links\": [\n    {\n      \"href\": \"<string>\",\n      \"rel\": \"<string>\",\n      \"method\": \"HEAD\"\n    }\n  ]\n}",
+                      "createdAt": "2026-07-28T02:34:37.000Z",
+                      "updatedAt": "2026-07-28T02:34:37.000Z",
+                      "uid": "35240-8d61c61c-2889-4279-8b79-50575bceffd4"
+                    },
+                    {
+                      "id": "14dea367-3c79-4e45-a3e2-a0f90459eff2",
+                      "name": "Invalid request.",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: oauth2",
+                            "key": "Authorization",
+                            "value": "<token>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"recipient_email\": \"<string>\",\n  \"recipient_first_name\": \"<string>\",\n  \"recipient_last_name\": \"<string>\",\n  \"recipient_business_name\": \"<string>\",\n  \"invoice_number\": \"<string>\",\n  \"status\": [\n    \"REFUNDED\",\n    \"PARTIALLY_REFUNDED\"\n  ],\n  \"reference\": \"<string>\",\n  \"currency_code\": \"<string>\",\n  \"memo\": \"<string>\",\n  \"total_amount_range\": {\n    \"lower_amount\": {\n      \"currency_code\": \"<string>\",\n      \"value\": \"07313892740.2\"\n    },\n    \"upper_amount\": {\n      \"currency_code\": \"<string>\",\n      \"value\": \".894\"\n    }\n  },\n  \"invoice_date_range\": {\n    \"start\": \"6926-12-10\",\n    \"end\": \"3301-10-31\"\n  },\n  \"due_date_range\": {\n    \"start\": \"2871-07-30\",\n    \"end\": \"8628-06-19\"\n  },\n  \"payment_date_range\": {\n    \"start\": \"3096-11-30t20:01:03+96:47\",\n    \"end\": \"4197-10-31T23:37:60Z\"\n  },\n  \"creation_date_range\": {\n    \"start\": \"8481-12-29T16:13:47Z\",\n    \"end\": \"6462-08-30,20:08:60Z\"\n  },\n  \"archived\": \"<boolean>\",\n  \"fields\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/v2/invoicing/search-invoices?page=1&page_size=20&total_required=false",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v2",
+                            "invoicing",
+                            "search-invoices"
+                          ],
+                          "query": [
+                            {
+                              "description": "The page number to be retrieved, for the list of templates. So, a combination of `page=1` and `page_size=20` returns the first 20 templates. A combination of `page=2` and `page_size=20` returns the next 20 templates.",
+                              "key": "page",
+                              "value": "1"
+                            },
+                            {
+                              "description": "The maximum number of templates to return in the response.",
+                              "key": "page_size",
+                              "value": "20"
+                            },
+                            {
+                              "description": "Indicates whether the to show <code>total_pages</code> and <code>total_items</code> in the response.",
+                              "key": "total_required",
+                              "value": "false"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Bad Request",
+                      "code": 400,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"name\": \"INVALID_REQUEST\",\n  \"message\": \"Request is not well-formed, syntactically incorrect, or violates schema.\",\n  \"details\": [\n    {\n      \"issue\": \"<string>\",\n      \"field\": \"<string>\",\n      \"value\": \"<string>\",\n      \"location\": \"body\",\n      \"description\": \"<string>\"\n    },\n    {\n      \"issue\": \"<string>\",\n      \"field\": \"<string>\",\n      \"value\": \"<string>\",\n      \"location\": \"body\",\n      \"description\": \"<string>\"\n    }\n  ],\n  \"debug_id\": \"<string>\",\n  \"links\": [\n    {\n      \"href\": \"\\\\J)xF-\",\n      \"rel\": \":\",\n      \"method\": \"HEAD\"\n    },\n    {\n      \"href\": \"CR.\",\n      \"rel\": \" D>2=IH(\",\n      \"method\": \"PATCH\"\n    },\n    {\n      \"href\": \"C5}7KSF!\",\n      \"rel\": \" }HfR?k\",\n      \"method\": \"DELETE\"\n    },\n    {\n      \"href\": \"T{2{@Idl*\",\n      \"rel\": \"p5Q=Nv=D$;\",\n      \"method\": \"CONNECT\"\n    },\n    {\n      \"href\": \"_6LfX\",\n      \"rel\": \"=DeZt\",\n      \"method\": \"PUT\"\n    },\n    {\n      \"href\": \"-l|{e8F{V@\",\n      \"rel\": \"Fe\",\n      \"method\": \"HEAD\"\n    },\n    {\n      \"href\": \".09~*/jVaC\",\n      \"rel\": \";\",\n      \"method\": \"CONNECT\"\n    },\n    {\n      \"href\": \"-\",\n      \"rel\": \"\",\n      \"method\": \"PUT\"\n    },\n    {\n      \"href\": \"~;QC\\\\h\",\n      \"rel\": \"8Cp~{&*Zw4\",\n      \"method\": \"GET\"\n    },\n    {\n      \"href\": \"lejzl\",\n      \"rel\": \"5CVLb?l\",\n      \"method\": \"HEAD\"\n    },\n    {\n      \"href\": \"fx^1L\\\"24Wg\",\n      \"rel\": \"XxqVk$[RE\",\n      \"method\": \"DELETE\"\n    },\n    {\n      \"href\": \"-Gq\",\n      \"rel\": \"o((H:h\",\n      \"method\": \"HEAD\"\n    },\n    {\n      \"href\": \"ik{WvUZS?\",\n      \"rel\": \",i\",\n      \"method\": \"CONNECT\"\n    },\n    {\n      \"href\": \"\",\n      \"rel\": \"5`-~3\",\n      \"method\": \"OPTIONS\"\n    },\n    {\n      \"href\": \"`RHlYQj3\",\n      \"rel\": \"\",\n      \"method\": \"PUT\"\n    },\n    {\n      \"href\": \"ey \",\n      \"rel\": \"\",\n      \"method\": \"DELETE\"\n    },\n    {\n      \"href\": \"r%PmEC]Bx\",\n      \"rel\": \"d%w\",\n      \"method\": \"HEAD\"\n    },\n    {\n      \"href\": \"\",\n      \"rel\": \",;jW&%asf:\",\n      \"method\": \"DELETE\"\n    },\n    {\n      \"href\": \"F~a\",\n      \"rel\": \"h\",\n      \"method\": \"GET\"\n    },\n    {\n      \"href\": \".GF4*C\",\n      \"rel\": \"o!6\",\n      \"method\": \"HEAD\"\n    }\n  ]\n}",
+                      "createdAt": "2026-07-28T02:34:37.000Z",
+                      "updatedAt": "2026-07-28T02:34:37.000Z",
+                      "uid": "35240-14dea367-3c79-4e45-a3e2-a0f90459eff2"
+                    },
+                    {
+                      "id": "4988e153-fe1f-48ca-a0a4-3163704fcf92",
+                      "name": "Authorization Error.",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: oauth2",
+                            "key": "Authorization",
+                            "value": "<token>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"recipient_email\": \"<string>\",\n  \"recipient_first_name\": \"<string>\",\n  \"recipient_last_name\": \"<string>\",\n  \"recipient_business_name\": \"<string>\",\n  \"invoice_number\": \"<string>\",\n  \"status\": [\n    \"REFUNDED\",\n    \"PARTIALLY_REFUNDED\"\n  ],\n  \"reference\": \"<string>\",\n  \"currency_code\": \"<string>\",\n  \"memo\": \"<string>\",\n  \"total_amount_range\": {\n    \"lower_amount\": {\n      \"currency_code\": \"<string>\",\n      \"value\": \"07313892740.2\"\n    },\n    \"upper_amount\": {\n      \"currency_code\": \"<string>\",\n      \"value\": \".894\"\n    }\n  },\n  \"invoice_date_range\": {\n    \"start\": \"6926-12-10\",\n    \"end\": \"3301-10-31\"\n  },\n  \"due_date_range\": {\n    \"start\": \"2871-07-30\",\n    \"end\": \"8628-06-19\"\n  },\n  \"payment_date_range\": {\n    \"start\": \"3096-11-30t20:01:03+96:47\",\n    \"end\": \"4197-10-31T23:37:60Z\"\n  },\n  \"creation_date_range\": {\n    \"start\": \"8481-12-29T16:13:47Z\",\n    \"end\": \"6462-08-30,20:08:60Z\"\n  },\n  \"archived\": \"<boolean>\",\n  \"fields\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/v2/invoicing/search-invoices?page=1&page_size=20&total_required=false",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v2",
+                            "invoicing",
+                            "search-invoices"
+                          ],
+                          "query": [
+                            {
+                              "description": "The page number to be retrieved, for the list of templates. So, a combination of `page=1` and `page_size=20` returns the first 20 templates. A combination of `page=2` and `page_size=20` returns the next 20 templates.",
+                              "key": "page",
+                              "value": "1"
+                            },
+                            {
+                              "description": "The maximum number of templates to return in the response.",
+                              "key": "page_size",
+                              "value": "20"
+                            },
+                            {
+                              "description": "Indicates whether the to show <code>total_pages</code> and <code>total_items</code> in the response.",
+                              "key": "total_required",
+                              "value": "false"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Forbidden",
+                      "code": 403,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"name\": \"NOT_AUTHORIZED\",\n  \"message\": \"Authorization failed due to insufficient permissions.\",\n  \"details\": [\n    {\n      \"issue\": \"<string>\",\n      \"field\": \"<string>\",\n      \"value\": \"<string>\",\n      \"location\": \"body\",\n      \"description\": \"<string>\"\n    },\n    {\n      \"issue\": \"<string>\",\n      \"field\": \"<string>\",\n      \"value\": \"<string>\",\n      \"location\": \"body\",\n      \"description\": \"<string>\"\n    }\n  ],\n  \"debug_id\": \"<string>\",\n  \"links\": [\n    {\n      \"href\": \"$\",\n      \"rel\": \"\\\\\",\n      \"method\": \"PUT\"\n    },\n    {\n      \"href\": \"\",\n      \"rel\": \"}FgE\",\n      \"method\": \"HEAD\"\n    },\n    {\n      \"href\": \"%9;m,r\",\n      \"rel\": \"\",\n      \"method\": \"DELETE\"\n    },\n    {\n      \"href\": \"i/f%:K7Yo\",\n      \"rel\": \"^x(z]w\",\n      \"method\": \"CONNECT\"\n    },\n    {\n      \"href\": \"9u@2 ;A\",\n      \"rel\": \"!\",\n      \"method\": \"DELETE\"\n    },\n    {\n      \"href\": \"wSA6I\",\n      \"rel\": \"@)p6a'$S\",\n      \"method\": \"CONNECT\"\n    },\n    {\n      \"href\": \"FAU\",\n      \"rel\": \"EV.|\",\n      \"method\": \"POST\"\n    },\n    {\n      \"href\": \"I^`\",\n      \"rel\": \"Ls{8:4O\",\n      \"method\": \"PATCH\"\n    },\n    {\n      \"href\": \"_v\",\n      \"rel\": \"Qx,MSdJ3k\",\n      \"method\": \"HEAD\"\n    },\n    {\n      \"href\": \"1%McE:cuc\",\n      \"rel\": \"*R U~ZP,AI\",\n      \"method\": \"DELETE\"\n    },\n    {\n      \"href\": \"9{1_k)g<h\",\n      \"rel\": \"o>[lu\",\n      \"method\": \"POST\"\n    },\n    {\n      \"href\": \"0$(gBc6)7a\",\n      \"rel\": \"O}6\",\n      \"method\": \"PATCH\"\n    },\n    {\n      \"href\": \"=V)<,q\",\n      \"rel\": \"^v\",\n      \"method\": \"OPTIONS\"\n    },\n    {\n      \"href\": \"o|hTUR?\",\n      \"rel\": \"e^u~R#;]J\",\n      \"method\": \"CONNECT\"\n    },\n    {\n      \"href\": \"ONRQ.p\",\n      \"rel\": \"@;\\\"Yx\",\n      \"method\": \"POST\"\n    },\n    {\n      \"href\": \"t)i1f7\\\"7\",\n      \"rel\": \"-<\",\n      \"method\": \"PATCH\"\n    },\n    {\n      \"href\": \"y\",\n      \"rel\": \"A\",\n      \"method\": \"HEAD\"\n    },\n    {\n      \"href\": \"whs7\",\n      \"rel\": \"I\",\n      \"method\": \"DELETE\"\n    },\n    {\n      \"href\": \"\",\n      \"rel\": \"T]_vfV\",\n      \"method\": \"PATCH\"\n    },\n    {\n      \"href\": \"eY2PrSh\",\n      \"rel\": \"iSTm.\",\n      \"method\": \"GET\"\n    }\n  ]\n}",
+                      "createdAt": "2026-07-28T02:34:37.000Z",
+                      "updatedAt": "2026-07-28T02:34:37.000Z",
+                      "uid": "35240-4988e153-fe1f-48ca-a0a4-3163704fcf92"
+                    },
+                    {
+                      "id": "0a1667a3-9ae3-4d8e-abcd-0a178b884a22",
+                      "name": "The default response.",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: oauth2",
+                            "key": "Authorization",
+                            "value": "<token>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"recipient_email\": \"<string>\",\n  \"recipient_first_name\": \"<string>\",\n  \"recipient_last_name\": \"<string>\",\n  \"recipient_business_name\": \"<string>\",\n  \"invoice_number\": \"<string>\",\n  \"status\": [\n    \"REFUNDED\",\n    \"PARTIALLY_REFUNDED\"\n  ],\n  \"reference\": \"<string>\",\n  \"currency_code\": \"<string>\",\n  \"memo\": \"<string>\",\n  \"total_amount_range\": {\n    \"lower_amount\": {\n      \"currency_code\": \"<string>\",\n      \"value\": \"07313892740.2\"\n    },\n    \"upper_amount\": {\n      \"currency_code\": \"<string>\",\n      \"value\": \".894\"\n    }\n  },\n  \"invoice_date_range\": {\n    \"start\": \"6926-12-10\",\n    \"end\": \"3301-10-31\"\n  },\n  \"due_date_range\": {\n    \"start\": \"2871-07-30\",\n    \"end\": \"8628-06-19\"\n  },\n  \"payment_date_range\": {\n    \"start\": \"3096-11-30t20:01:03+96:47\",\n    \"end\": \"4197-10-31T23:37:60Z\"\n  },\n  \"creation_date_range\": {\n    \"start\": \"8481-12-29T16:13:47Z\",\n    \"end\": \"6462-08-30,20:08:60Z\"\n  },\n  \"archived\": \"<boolean>\",\n  \"fields\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/v2/invoicing/search-invoices?page=1&page_size=20&total_required=false",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v2",
+                            "invoicing",
+                            "search-invoices"
+                          ],
+                          "query": [
+                            {
+                              "description": "The page number to be retrieved, for the list of templates. So, a combination of `page=1` and `page_size=20` returns the first 20 templates. A combination of `page=2` and `page_size=20` returns the next 20 templates.",
+                              "key": "page",
+                              "value": "1"
+                            },
+                            {
+                              "description": "The maximum number of templates to return in the response.",
+                              "key": "page_size",
+                              "value": "20"
+                            },
+                            {
+                              "description": "Indicates whether the to show <code>total_pages</code> and <code>total_items</code> in the response.",
+                              "key": "total_required",
+                              "value": "false"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Internal Server Error",
+                      "code": 500,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"name\": \"INVALID_REQUEST\",\n  \"message\": \"Request is not well-formed, syntactically incorrect, or violates schema.\",\n  \"details\": [\n    {\n      \"issue\": \"<string>\",\n      \"field\": \"<string>\",\n      \"value\": \"<string>\",\n      \"location\": \"body\",\n      \"description\": \"<string>\"\n    },\n    {\n      \"issue\": \"<string>\",\n      \"field\": \"<string>\",\n      \"value\": \"<string>\",\n      \"location\": \"body\",\n      \"description\": \"<string>\"\n    }\n  ],\n  \"debug_id\": \"<string>\",\n  \"links\": [\n    {\n      \"href\": \"ILF+p{v\",\n      \"rel\": \"r\",\n      \"method\": \"OPTIONS\"\n    },\n    {\n      \"href\": \"\",\n      \"rel\": \"@@k_a.nFza\",\n      \"method\": \"GET\"\n    },\n    {\n      \"href\": \"qtTHLr#\",\n      \"rel\": \"F?Ssq+*S,\",\n      \"method\": \"HEAD\"\n    },\n    {\n      \"href\": \"<=v.[F.=|\",\n      \"rel\": \"*9b*s\",\n      \"method\": \"PUT\"\n    },\n    {\n      \"href\": \"[OQpr}Fv*\",\n      \"rel\": \"Ey?|\",\n      \"method\": \"OPTIONS\"\n    },\n    {\n      \"href\": \"Ih\",\n      \"rel\": \"t\",\n      \"method\": \"PATCH\"\n    },\n    {\n      \"href\": \"O$z\",\n      \"rel\": \"0>Cd%(\",\n      \"method\": \"PATCH\"\n    },\n    {\n      \"href\": \"xvZ@@v\",\n      \"rel\": \"Ab%F?Xp\",\n      \"method\": \"OPTIONS\"\n    },\n    {\n      \"href\": \"53q;AV_&`\",\n      \"rel\": \"R_\",\n      \"method\": \"OPTIONS\"\n    },\n    {\n      \"href\": \"&[n*MZ~\",\n      \"rel\": \"_$oKTdy\",\n      \"method\": \"CONNECT\"\n    },\n    {\n      \"href\": \"ZrQ?|_Vbr\",\n      \"rel\": \"vSw\",\n      \"method\": \"POST\"\n    },\n    {\n      \"href\": \"\\\"0Ob_vjT\",\n      \"rel\": \"eS\",\n      \"method\": \"PUT\"\n    },\n    {\n      \"href\": \"Wx6Z<6vz\",\n      \"rel\": \"AA1RX3IG\",\n      \"method\": \"DELETE\"\n    },\n    {\n      \"href\": \"PXP%M\",\n      \"rel\": \"jj\",\n      \"method\": \"GET\"\n    },\n    {\n      \"href\": \"?EUeQZ$[\",\n      \"rel\": \"b:H$W/}!\",\n      \"method\": \"POST\"\n    },\n    {\n      \"href\": \"vI+J\",\n      \"rel\": \"OnDnLvd\",\n      \"method\": \"PUT\"\n    },\n    {\n      \"href\": \"ezWkzy@I\",\n      \"rel\": \".N\",\n      \"method\": \"PUT\"\n    },\n    {\n      \"href\": \".g{)M\",\n      \"rel\": \";5czq\",\n      \"method\": \"POST\"\n    },\n    {\n      \"href\": \"zfMON:ER\",\n      \"rel\": \",-\",\n      \"method\": \"POST\"\n    },\n    {\n      \"href\": \"^fE`@\",\n      \"rel\": \"C,rR_\",\n      \"method\": \"POST\"\n    }\n  ]\n}",
+                      "createdAt": "2026-07-28T02:34:37.000Z",
+                      "updatedAt": "2026-07-28T02:34:37.000Z",
+                      "uid": "35240-0a1667a3-9ae3-4d8e-abcd-0a178b884a22"
+                    }
+                  ],
+                  "createdAt": "2026-07-28T02:34:37.000Z",
+                  "updatedAt": "2026-07-28T02:34:37.000Z",
+                  "uid": "35240-2ca0a3a4-c53e-4ccf-9d04-1c48d0717795"
+                }
+              ],
+              "id": "03a6e74d-50ac-4bf7-bd5a-90ab154a483f",
+              "createdAt": "2026-07-28T02:34:37.000Z",
+              "updatedAt": "2026-07-28T02:34:37.000Z",
+              "uid": "35240-03a6e74d-50ac-4bf7-bd5a-90ab154a483f"
+            }
+          ],
+          "id": "e5e7b649-d542-4d70-9e27-47574198ab6b",
+          "createdAt": "2026-07-28T02:34:37.000Z",
+          "updatedAt": "2026-07-28T02:34:37.000Z",
+          "uid": "35240-e5e7b649-d542-4d70-9e27-47574198ab6b"
+        }
+      ],
+      "id": "651a6b60-1749-4e74-8a0c-8e971b1e41c0",
+      "createdAt": "2026-07-28T02:34:37.000Z",
+      "updatedAt": "2026-07-28T02:34:37.000Z",
+      "uid": "35240-651a6b60-1749-4e74-8a0c-8e971b1e41c0"
+    }
+  ],
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://api-m.sandbox.paypal.com"
+    }
+  ]
+}

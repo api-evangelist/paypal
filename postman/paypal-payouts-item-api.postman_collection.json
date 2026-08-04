@@ -1,0 +1,645 @@
+{
+  "info": {
+    "_postman_id": "d8801888-6acf-4e2b-b53e-59cd8e605f41",
+    "name": "Paypal Subscriptions Authorizations Payouts-Item API",
+    "description": "You can use billing plans and subscriptions to create subscriptions that process recurring PayPal payments for physical or digital goods, or services. A plan includes pricing and billing cycle information that defines the amount and frequency of charge for a subscription. You can also define a fixed plan, such as a $5 basic plan or a volume- or graduated-based plan with pricing tiers based on the quantity purchased. For more information, see <a href=\"/docs/subscriptions/\">Subscriptions Overview</a>.",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-07-28T02:33:53.000Z",
+    "updatedAt": "2026-07-28T02:33:53.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-d8801888-6acf-4e2b-b53e-59cd8e605f41"
+  },
+  "item": [
+    {
+      "name": "v1",
+      "item": [
+        {
+          "name": "payments",
+          "item": [
+            {
+              "name": "payouts-item",
+              "item": [
+                {
+                  "name": "{payout_item_id}",
+                  "item": [
+                    {
+                      "name": "cancel",
+                      "item": [
+                        {
+                          "name": "Paypal Cancel unclaimed payout item",
+                          "id": "1f73e6c4-d1c1-4bea-9c44-e880351548c4",
+                          "protocolProfileBehavior": {
+                            "disableBodyPruning": true
+                          },
+                          "request": {
+                            "auth": {
+                              "type": "oauth2",
+                              "oauth2": [
+                                {
+                                  "key": "scope",
+                                  "value": "https://uri.paypal.com/services/subscriptions",
+                                  "type": "string"
+                                },
+                                {
+                                  "key": "accessTokenUrl",
+                                  "value": "/v1/oauth2/token",
+                                  "type": "string"
+                                },
+                                {
+                                  "key": "grant_type",
+                                  "value": "client_credentials",
+                                  "type": "string"
+                                }
+                              ]
+                            },
+                            "method": "POST",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/v1/payments/payouts-item/:payout_item_id/cancel",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "v1",
+                                "payments",
+                                "payouts-item",
+                                ":payout_item_id",
+                                "cancel"
+                              ],
+                              "variable": [
+                                {
+                                  "id": "28601213-20ae-481b-914a-642ea3c97d20",
+                                  "key": "payout_item_id",
+                                  "value": "6AL[",
+                                  "description": "(Required) The ID of the payout item to cancel."
+                                }
+                              ]
+                            },
+                            "description": "Cancels an unclaimed payout item, by ID. If no one claims the unclaimed item within 30 days, the API automatically returns the funds to the sender. Use this call to cancel the unclaimed item before the automatic 30-day refund. You can cancel payout items with a <code>transaction_status</code> of <code>UNCLAIMED</code>."
+                          },
+                          "response": [
+                            {
+                              "id": "53c4dfbc-0530-4423-b224-a357d9c5808b",
+                              "name": "A successful request returns the HTTP `200 OK` status code with a JSON response body that shows payout item details.",
+                              "originalRequest": {
+                                "method": "POST",
+                                "header": [
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: oauth2",
+                                    "key": "Authorization",
+                                    "value": "<token>"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/v1/payments/payouts-item/:payout_item_id/cancel",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "v1",
+                                    "payments",
+                                    "payouts-item",
+                                    ":payout_item_id",
+                                    "cancel"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "payout_item_id"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "OK",
+                              "code": 200,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "{\n  \"payout_item_id\": \"\\\\A(WbM-g\",\n  \"payout_batch_id\": \"N~\",\n  \"payout_item\": {\n    \"amount\": {\n      \"currency\": \"<string>\",\n      \"value\": \"<string>\"\n    },\n    \"receiver\": \"c/XV\",\n    \"recipient_type\": \"PHONE\",\n    \"note\": \" yM\\\\`\",\n    \"sender_item_id\": \"|,\",\n    \"recipient_name\": {\n      \"prefix\": \"<string>\",\n      \"given_name\": \"<string>\",\n      \"surname\": \"<string>\",\n      \"middle_name\": \"<string>\",\n      \"suffix\": \"<string>\",\n      \"alternate_full_name\": \"<string>\",\n      \"full_name\": \"<string>\"\n    },\n    \"recipient_wallet\": \"PAYPAL\",\n    \"purpose\": \"GOODS\"\n  },\n  \"transaction_id\": \"g0[_]w!vR\",\n  \"activity_id\": \";csixj\",\n  \"transaction_status\": \"FAILED\",\n  \"payout_item_fee\": {\n    \"currency\": \"<string>\",\n    \"value\": \"<string>\"\n  },\n  \"sender_batch_id\": \"]0I&-vO\",\n  \"currency_conversion\": {\n    \"from_amount\": {\n      \"currency\": \"<string>\",\n      \"value\": \"<string>\"\n    },\n    \"to_amount\": {\n      \"currency\": \"<string>\",\n      \"value\": \"<string>\"\n    },\n    \"exchange_rate\": \",N)O-=+fv\"\n  },\n  \"time_processed\": \"<dateTime>\",\n  \"errors\": {\n    \"name\": \"<string>\",\n    \"message\": \"<string>\",\n    \"debug_id\": \"<string>\",\n    \"information_link\": \"<string>\",\n    \"details\": [\n      {\n        \"issue\": \"<string>\",\n        \"field\": \"<string>\",\n        \"value\": \"<string>\",\n        \"location\": \"body\",\n        \"description\": \"<string>\"\n      },\n      {\n        \"issue\": \"<string>\",\n        \"field\": \"<string>\",\n        \"value\": \"<string>\",\n        \"location\": \"body\",\n        \"description\": \"<string>\"\n      }\n    ],\n    \"links\": [\n      {\n        \"href\": \"<string>\",\n        \"rel\": \"<string>\",\n        \"method\": \"OPTIONS\"\n      },\n      {\n        \"href\": \"<string>\",\n        \"rel\": \"<string>\",\n        \"method\": \"OPTIONS\"\n      }\n    ]\n  },\n  \"links\": [\n    {\n      \"href\": \"<string>\",\n      \"rel\": \"<string>\",\n      \"method\": \"OPTIONS\"\n    },\n    {\n      \"href\": \"<string>\",\n      \"rel\": \"<string>\",\n      \"method\": \"DELETE\"\n    },\n    {\n      \"href\": \"<string>\",\n      \"rel\": \"<string>\",\n      \"method\": \"POST\"\n    },\n    {\n      \"href\": \"<string>\",\n      \"rel\": \"<string>\",\n      \"method\": \"OPTIONS\"\n    },\n    {\n      \"href\": \"<string>\",\n      \"rel\": \"<string>\",\n      \"method\": \"HEAD\"\n    },\n    {\n      \"href\": \"<string>\",\n      \"rel\": \"<string>\",\n      \"method\": \"PUT\"\n    },\n    {\n      \"href\": \"<string>\",\n      \"rel\": \"<string>\",\n      \"method\": \"PATCH\"\n    },\n    {\n      \"href\": \"<string>\",\n      \"rel\": \"<string>\",\n      \"method\": \"PUT\"\n    },\n    {\n      \"href\": \"<string>\",\n      \"rel\": \"<string>\",\n      \"method\": \"DELETE\"\n    },\n    {\n      \"href\": \"<string>\",\n      \"rel\": \"<string>\",\n      \"method\": \"PATCH\"\n    },\n    {\n      \"href\": \"<string>\",\n      \"rel\": \"<string>\",\n      \"method\": \"GET\"\n    },\n    {\n      \"href\": \"<string>\",\n      \"rel\": \"<string>\",\n      \"method\": \"HEAD\"\n    },\n    {\n      \"href\": \"<string>\",\n      \"rel\": \"<string>\",\n      \"method\": \"GET\"\n    },\n    {\n      \"href\": \"<string>\",\n      \"rel\": \"<string>\",\n      \"method\": \"POST\"\n    },\n    {\n      \"href\": \"<string>\",\n      \"rel\": \"<string>\",\n      \"method\": \"PATCH\"\n    },\n    {\n      \"href\": \"<string>\",\n      \"rel\": \"<string>\",\n      \"method\": \"PUT\"\n    },\n    {\n      \"href\": \"<string>\",\n      \"rel\": \"<string>\",\n      \"method\": \"OPTIONS\"\n    },\n    {\n      \"href\": \"<string>\",\n      \"rel\": \"<string>\",\n      \"method\": \"CONNECT\"\n    },\n    {\n      \"href\": \"<string>\",\n      \"rel\": \"<string>\",\n      \"method\": \"GET\"\n    },\n    {\n      \"href\": \"<string>\",\n      \"rel\": \"<string>\",\n      \"method\": \"CONNECT\"\n    }\n  ]\n}",
+                              "createdAt": "2026-07-28T02:33:54.000Z",
+                              "updatedAt": "2026-07-28T02:33:54.000Z",
+                              "uid": "35240-53c4dfbc-0530-4423-b224-a357d9c5808b"
+                            },
+                            {
+                              "id": "1fa8d630-f35c-4f56-994c-813c5d3c3487",
+                              "name": "Request is not well-formed, syntactically incorrect, or violates schema.",
+                              "originalRequest": {
+                                "method": "POST",
+                                "header": [
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: oauth2",
+                                    "key": "Authorization",
+                                    "value": "<token>"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/v1/payments/payouts-item/:payout_item_id/cancel",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "v1",
+                                    "payments",
+                                    "payouts-item",
+                                    ":payout_item_id",
+                                    "cancel"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "payout_item_id"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "Bad Request",
+                              "code": 400,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "{\n  \"name\": \"<string>\",\n  \"message\": \"<string>\",\n  \"debug_id\": \"<string>\",\n  \"information_link\": \"<string>\",\n  \"details\": [\n    {\n      \"issue\": \"<string>\",\n      \"field\": \"<string>\",\n      \"value\": \"<string>\",\n      \"location\": \"body\",\n      \"description\": \"<string>\"\n    },\n    {\n      \"issue\": \"<string>\",\n      \"field\": \"<string>\",\n      \"value\": \"<string>\",\n      \"location\": \"body\",\n      \"description\": \"<string>\"\n    }\n  ],\n  \"links\": [\n    {\n      \"href\": \"<string>\",\n      \"rel\": \"<string>\",\n      \"method\": \"DELETE\"\n    },\n    {\n      \"href\": \"<string>\",\n      \"rel\": \"<string>\",\n      \"method\": \"PATCH\"\n    }\n  ]\n}",
+                              "createdAt": "2026-07-28T02:33:54.000Z",
+                              "updatedAt": "2026-07-28T02:33:54.000Z",
+                              "uid": "35240-1fa8d630-f35c-4f56-994c-813c5d3c3487"
+                            },
+                            {
+                              "id": "76867669-7935-4adb-b801-466e410b2712",
+                              "name": "Resource Not Found.",
+                              "originalRequest": {
+                                "method": "POST",
+                                "header": [
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: oauth2",
+                                    "key": "Authorization",
+                                    "value": "<token>"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/v1/payments/payouts-item/:payout_item_id/cancel",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "v1",
+                                    "payments",
+                                    "payouts-item",
+                                    ":payout_item_id",
+                                    "cancel"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "payout_item_id"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "Not Found",
+                              "code": 404,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "{\n  \"name\": \"<string>\",\n  \"message\": \"<string>\",\n  \"debug_id\": \"<string>\",\n  \"information_link\": \"<string>\",\n  \"details\": [\n    {\n      \"issue\": \"<string>\",\n      \"field\": \"<string>\",\n      \"value\": \"<string>\",\n      \"location\": \"body\",\n      \"description\": \"<string>\"\n    },\n    {\n      \"issue\": \"<string>\",\n      \"field\": \"<string>\",\n      \"value\": \"<string>\",\n      \"location\": \"body\",\n      \"description\": \"<string>\"\n    }\n  ],\n  \"links\": [\n    {\n      \"href\": \"<string>\",\n      \"rel\": \"<string>\",\n      \"method\": \"DELETE\"\n    },\n    {\n      \"href\": \"<string>\",\n      \"rel\": \"<string>\",\n      \"method\": \"PATCH\"\n    }\n  ]\n}",
+                              "createdAt": "2026-07-28T02:33:54.000Z",
+                              "updatedAt": "2026-07-28T02:33:54.000Z",
+                              "uid": "35240-76867669-7935-4adb-b801-466e410b2712"
+                            },
+                            {
+                              "id": "dc89ddf3-cc27-462f-8c73-d4ce59de4d34",
+                              "name": "An internal server error has occurred.",
+                              "originalRequest": {
+                                "method": "POST",
+                                "header": [
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: oauth2",
+                                    "key": "Authorization",
+                                    "value": "<token>"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/v1/payments/payouts-item/:payout_item_id/cancel",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "v1",
+                                    "payments",
+                                    "payouts-item",
+                                    ":payout_item_id",
+                                    "cancel"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "payout_item_id"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "Internal Server Error",
+                              "code": 500,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "{\n  \"name\": \"<string>\",\n  \"message\": \"<string>\",\n  \"debug_id\": \"<string>\",\n  \"information_link\": \"<string>\",\n  \"details\": [\n    {\n      \"issue\": \"<string>\",\n      \"field\": \"<string>\",\n      \"value\": \"<string>\",\n      \"location\": \"body\",\n      \"description\": \"<string>\"\n    },\n    {\n      \"issue\": \"<string>\",\n      \"field\": \"<string>\",\n      \"value\": \"<string>\",\n      \"location\": \"body\",\n      \"description\": \"<string>\"\n    }\n  ],\n  \"links\": [\n    {\n      \"href\": \"<string>\",\n      \"rel\": \"<string>\",\n      \"method\": \"DELETE\"\n    },\n    {\n      \"href\": \"<string>\",\n      \"rel\": \"<string>\",\n      \"method\": \"PATCH\"\n    }\n  ]\n}",
+                              "createdAt": "2026-07-28T02:33:54.000Z",
+                              "updatedAt": "2026-07-28T02:33:54.000Z",
+                              "uid": "35240-dc89ddf3-cc27-462f-8c73-d4ce59de4d34"
+                            },
+                            {
+                              "id": "8d6458f3-6f07-4c2f-985d-ea17c364615f",
+                              "name": "The error response.",
+                              "originalRequest": {
+                                "method": "POST",
+                                "header": [
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: oauth2",
+                                    "key": "Authorization",
+                                    "value": "<token>"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/v1/payments/payouts-item/:payout_item_id/cancel",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "v1",
+                                    "payments",
+                                    "payouts-item",
+                                    ":payout_item_id",
+                                    "cancel"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "payout_item_id"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "Internal Server Error",
+                              "code": 500,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "{\n  \"name\": \"<string>\",\n  \"message\": \"<string>\",\n  \"debug_id\": \"<string>\",\n  \"information_link\": \"<string>\",\n  \"details\": [\n    {\n      \"issue\": \"<string>\",\n      \"field\": \"<string>\",\n      \"value\": \"<string>\",\n      \"location\": \"body\",\n      \"description\": \"<string>\"\n    },\n    {\n      \"issue\": \"<string>\",\n      \"field\": \"<string>\",\n      \"value\": \"<string>\",\n      \"location\": \"body\",\n      \"description\": \"<string>\"\n    }\n  ],\n  \"links\": [\n    {\n      \"href\": \"<string>\",\n      \"rel\": \"<string>\",\n      \"method\": \"DELETE\"\n    },\n    {\n      \"href\": \"<string>\",\n      \"rel\": \"<string>\",\n      \"method\": \"PATCH\"\n    }\n  ]\n}",
+                              "createdAt": "2026-07-28T02:33:54.000Z",
+                              "updatedAt": "2026-07-28T02:33:54.000Z",
+                              "uid": "35240-8d6458f3-6f07-4c2f-985d-ea17c364615f"
+                            }
+                          ],
+                          "createdAt": "2026-07-28T02:33:54.000Z",
+                          "updatedAt": "2026-07-28T02:33:54.000Z",
+                          "uid": "35240-1f73e6c4-d1c1-4bea-9c44-e880351548c4"
+                        }
+                      ],
+                      "id": "ec389944-ab29-452c-865d-2ad9ab072edd",
+                      "createdAt": "2026-07-28T02:33:54.000Z",
+                      "updatedAt": "2026-07-28T02:33:54.000Z",
+                      "uid": "35240-ec389944-ab29-452c-865d-2ad9ab072edd"
+                    },
+                    {
+                      "name": "Paypal Show payout item details",
+                      "id": "3b4296ef-a9fb-41d5-af0c-c6be4eaa1545",
+                      "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                      },
+                      "request": {
+                        "auth": {
+                          "type": "oauth2",
+                          "oauth2": [
+                            {
+                              "key": "scope",
+                              "value": "https://uri.paypal.com/services/subscriptions",
+                              "type": "string"
+                            },
+                            {
+                              "key": "accessTokenUrl",
+                              "value": "/v1/oauth2/token",
+                              "type": "string"
+                            },
+                            {
+                              "key": "grant_type",
+                              "value": "client_credentials",
+                              "type": "string"
+                            }
+                          ]
+                        },
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/v1/payments/payouts-item/:payout_item_id",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v1",
+                            "payments",
+                            "payouts-item",
+                            ":payout_item_id"
+                          ],
+                          "variable": [
+                            {
+                              "id": "c66c3948-a438-4e4c-83e3-328527936650",
+                              "key": "payout_item_id",
+                              "value": "6AL[",
+                              "description": "(Required) The ID of the payout item to cancel."
+                            }
+                          ]
+                        },
+                        "description": "Shows details for a payout item, by ID. A <code>payout_item_id</code> helps you identify denied payments. If a payment is denied, you can use the <code>payout_item_id</code> to identify the payment even if it lacks a <code>transaction_id</code>."
+                      },
+                      "response": [
+                        {
+                          "id": "e1aa7308-fedc-488b-86d9-15b0032f659d",
+                          "name": "A successful request returns the HTTP <code>200 OK</code> status code and a JSON response body with a <code>payout_item_details</code> object, which contains data about a payout item including the transaction status.",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: oauth2",
+                                "key": "Authorization",
+                                "value": "<token>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/v1/payments/payouts-item/:payout_item_id",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "v1",
+                                "payments",
+                                "payouts-item",
+                                ":payout_item_id"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "payout_item_id"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "OK",
+                          "code": 200,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"payout_item_id\": \"\\\\A(WbM-g\",\n  \"payout_batch_id\": \"N~\",\n  \"payout_item\": {\n    \"amount\": {\n      \"currency\": \"<string>\",\n      \"value\": \"<string>\"\n    },\n    \"receiver\": \"c/XV\",\n    \"recipient_type\": \"PHONE\",\n    \"note\": \" yM\\\\`\",\n    \"sender_item_id\": \"|,\",\n    \"recipient_name\": {\n      \"prefix\": \"<string>\",\n      \"given_name\": \"<string>\",\n      \"surname\": \"<string>\",\n      \"middle_name\": \"<string>\",\n      \"suffix\": \"<string>\",\n      \"alternate_full_name\": \"<string>\",\n      \"full_name\": \"<string>\"\n    },\n    \"recipient_wallet\": \"PAYPAL\",\n    \"purpose\": \"GOODS\"\n  },\n  \"transaction_id\": \"g0[_]w!vR\",\n  \"activity_id\": \";csixj\",\n  \"transaction_status\": \"FAILED\",\n  \"payout_item_fee\": {\n    \"currency\": \"<string>\",\n    \"value\": \"<string>\"\n  },\n  \"sender_batch_id\": \"]0I&-vO\",\n  \"currency_conversion\": {\n    \"from_amount\": {\n      \"currency\": \"<string>\",\n      \"value\": \"<string>\"\n    },\n    \"to_amount\": {\n      \"currency\": \"<string>\",\n      \"value\": \"<string>\"\n    },\n    \"exchange_rate\": \",N)O-=+fv\"\n  },\n  \"time_processed\": \"<dateTime>\",\n  \"errors\": {\n    \"name\": \"<string>\",\n    \"message\": \"<string>\",\n    \"debug_id\": \"<string>\",\n    \"information_link\": \"<string>\",\n    \"details\": [\n      {\n        \"issue\": \"<string>\",\n        \"field\": \"<string>\",\n        \"value\": \"<string>\",\n        \"location\": \"body\",\n        \"description\": \"<string>\"\n      },\n      {\n        \"issue\": \"<string>\",\n        \"field\": \"<string>\",\n        \"value\": \"<string>\",\n        \"location\": \"body\",\n        \"description\": \"<string>\"\n      }\n    ],\n    \"links\": [\n      {\n        \"href\": \"<string>\",\n        \"rel\": \"<string>\",\n        \"method\": \"OPTIONS\"\n      },\n      {\n        \"href\": \"<string>\",\n        \"rel\": \"<string>\",\n        \"method\": \"OPTIONS\"\n      }\n    ]\n  },\n  \"links\": [\n    {\n      \"href\": \"<string>\",\n      \"rel\": \"<string>\",\n      \"method\": \"OPTIONS\"\n    },\n    {\n      \"href\": \"<string>\",\n      \"rel\": \"<string>\",\n      \"method\": \"DELETE\"\n    },\n    {\n      \"href\": \"<string>\",\n      \"rel\": \"<string>\",\n      \"method\": \"POST\"\n    },\n    {\n      \"href\": \"<string>\",\n      \"rel\": \"<string>\",\n      \"method\": \"OPTIONS\"\n    },\n    {\n      \"href\": \"<string>\",\n      \"rel\": \"<string>\",\n      \"method\": \"HEAD\"\n    },\n    {\n      \"href\": \"<string>\",\n      \"rel\": \"<string>\",\n      \"method\": \"PUT\"\n    },\n    {\n      \"href\": \"<string>\",\n      \"rel\": \"<string>\",\n      \"method\": \"PATCH\"\n    },\n    {\n      \"href\": \"<string>\",\n      \"rel\": \"<string>\",\n      \"method\": \"PUT\"\n    },\n    {\n      \"href\": \"<string>\",\n      \"rel\": \"<string>\",\n      \"method\": \"DELETE\"\n    },\n    {\n      \"href\": \"<string>\",\n      \"rel\": \"<string>\",\n      \"method\": \"PATCH\"\n    },\n    {\n      \"href\": \"<string>\",\n      \"rel\": \"<string>\",\n      \"method\": \"GET\"\n    },\n    {\n      \"href\": \"<string>\",\n      \"rel\": \"<string>\",\n      \"method\": \"HEAD\"\n    },\n    {\n      \"href\": \"<string>\",\n      \"rel\": \"<string>\",\n      \"method\": \"GET\"\n    },\n    {\n      \"href\": \"<string>\",\n      \"rel\": \"<string>\",\n      \"method\": \"POST\"\n    },\n    {\n      \"href\": \"<string>\",\n      \"rel\": \"<string>\",\n      \"method\": \"PATCH\"\n    },\n    {\n      \"href\": \"<string>\",\n      \"rel\": \"<string>\",\n      \"method\": \"PUT\"\n    },\n    {\n      \"href\": \"<string>\",\n      \"rel\": \"<string>\",\n      \"method\": \"OPTIONS\"\n    },\n    {\n      \"href\": \"<string>\",\n      \"rel\": \"<string>\",\n      \"method\": \"CONNECT\"\n    },\n    {\n      \"href\": \"<string>\",\n      \"rel\": \"<string>\",\n      \"method\": \"GET\"\n    },\n    {\n      \"href\": \"<string>\",\n      \"rel\": \"<string>\",\n      \"method\": \"CONNECT\"\n    }\n  ]\n}",
+                          "createdAt": "2026-07-28T02:33:54.000Z",
+                          "updatedAt": "2026-07-28T02:33:54.000Z",
+                          "uid": "35240-e1aa7308-fedc-488b-86d9-15b0032f659d"
+                        },
+                        {
+                          "id": "501a6b89-2ac0-4095-95d9-44a85f3160f6",
+                          "name": "Resource Not Found.",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: oauth2",
+                                "key": "Authorization",
+                                "value": "<token>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/v1/payments/payouts-item/:payout_item_id",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "v1",
+                                "payments",
+                                "payouts-item",
+                                ":payout_item_id"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "payout_item_id"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Not Found",
+                          "code": 404,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"name\": \"<string>\",\n  \"message\": \"<string>\",\n  \"debug_id\": \"<string>\",\n  \"information_link\": \"<string>\",\n  \"details\": [\n    {\n      \"issue\": \"<string>\",\n      \"field\": \"<string>\",\n      \"value\": \"<string>\",\n      \"location\": \"body\",\n      \"description\": \"<string>\"\n    },\n    {\n      \"issue\": \"<string>\",\n      \"field\": \"<string>\",\n      \"value\": \"<string>\",\n      \"location\": \"body\",\n      \"description\": \"<string>\"\n    }\n  ],\n  \"links\": [\n    {\n      \"href\": \"<string>\",\n      \"rel\": \"<string>\",\n      \"method\": \"DELETE\"\n    },\n    {\n      \"href\": \"<string>\",\n      \"rel\": \"<string>\",\n      \"method\": \"PATCH\"\n    }\n  ]\n}",
+                          "createdAt": "2026-07-28T02:33:54.000Z",
+                          "updatedAt": "2026-07-28T02:33:54.000Z",
+                          "uid": "35240-501a6b89-2ac0-4095-95d9-44a85f3160f6"
+                        },
+                        {
+                          "id": "e7d70f94-2783-4b65-a64c-b80e1b00e2eb",
+                          "name": "An internal server error has occurred.",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: oauth2",
+                                "key": "Authorization",
+                                "value": "<token>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/v1/payments/payouts-item/:payout_item_id",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "v1",
+                                "payments",
+                                "payouts-item",
+                                ":payout_item_id"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "payout_item_id"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Internal Server Error",
+                          "code": 500,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"name\": \"<string>\",\n  \"message\": \"<string>\",\n  \"debug_id\": \"<string>\",\n  \"information_link\": \"<string>\",\n  \"details\": [\n    {\n      \"issue\": \"<string>\",\n      \"field\": \"<string>\",\n      \"value\": \"<string>\",\n      \"location\": \"body\",\n      \"description\": \"<string>\"\n    },\n    {\n      \"issue\": \"<string>\",\n      \"field\": \"<string>\",\n      \"value\": \"<string>\",\n      \"location\": \"body\",\n      \"description\": \"<string>\"\n    }\n  ],\n  \"links\": [\n    {\n      \"href\": \"<string>\",\n      \"rel\": \"<string>\",\n      \"method\": \"DELETE\"\n    },\n    {\n      \"href\": \"<string>\",\n      \"rel\": \"<string>\",\n      \"method\": \"PATCH\"\n    }\n  ]\n}",
+                          "createdAt": "2026-07-28T02:33:54.000Z",
+                          "updatedAt": "2026-07-28T02:33:54.000Z",
+                          "uid": "35240-e7d70f94-2783-4b65-a64c-b80e1b00e2eb"
+                        },
+                        {
+                          "id": "d682685d-bddb-42f1-8fff-a1d9016bb6fe",
+                          "name": "The error response.",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: oauth2",
+                                "key": "Authorization",
+                                "value": "<token>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/v1/payments/payouts-item/:payout_item_id",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "v1",
+                                "payments",
+                                "payouts-item",
+                                ":payout_item_id"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "payout_item_id"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Internal Server Error",
+                          "code": 500,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"name\": \"<string>\",\n  \"message\": \"<string>\",\n  \"debug_id\": \"<string>\",\n  \"information_link\": \"<string>\",\n  \"details\": [\n    {\n      \"issue\": \"<string>\",\n      \"field\": \"<string>\",\n      \"value\": \"<string>\",\n      \"location\": \"body\",\n      \"description\": \"<string>\"\n    },\n    {\n      \"issue\": \"<string>\",\n      \"field\": \"<string>\",\n      \"value\": \"<string>\",\n      \"location\": \"body\",\n      \"description\": \"<string>\"\n    }\n  ],\n  \"links\": [\n    {\n      \"href\": \"<string>\",\n      \"rel\": \"<string>\",\n      \"method\": \"DELETE\"\n    },\n    {\n      \"href\": \"<string>\",\n      \"rel\": \"<string>\",\n      \"method\": \"PATCH\"\n    }\n  ]\n}",
+                          "createdAt": "2026-07-28T02:33:54.000Z",
+                          "updatedAt": "2026-07-28T02:33:54.000Z",
+                          "uid": "35240-d682685d-bddb-42f1-8fff-a1d9016bb6fe"
+                        }
+                      ],
+                      "createdAt": "2026-07-28T02:33:54.000Z",
+                      "updatedAt": "2026-07-28T02:33:54.000Z",
+                      "uid": "35240-3b4296ef-a9fb-41d5-af0c-c6be4eaa1545"
+                    }
+                  ],
+                  "id": "2822dcf4-33e0-4c89-b68f-50e18615472c",
+                  "createdAt": "2026-07-28T02:33:54.000Z",
+                  "updatedAt": "2026-07-28T02:33:54.000Z",
+                  "uid": "35240-2822dcf4-33e0-4c89-b68f-50e18615472c"
+                }
+              ],
+              "id": "cc50eeee-a60b-4316-b1eb-4fb609cec081",
+              "createdAt": "2026-07-28T02:33:54.000Z",
+              "updatedAt": "2026-07-28T02:33:54.000Z",
+              "uid": "35240-cc50eeee-a60b-4316-b1eb-4fb609cec081"
+            }
+          ],
+          "id": "972393bb-a7f3-4115-92a2-24a9bf474645",
+          "createdAt": "2026-07-28T02:33:54.000Z",
+          "updatedAt": "2026-07-28T02:33:54.000Z",
+          "uid": "35240-972393bb-a7f3-4115-92a2-24a9bf474645"
+        }
+      ],
+      "id": "d58e732a-cc77-4913-99bd-671ed0e8de0b",
+      "createdAt": "2026-07-28T02:33:54.000Z",
+      "updatedAt": "2026-07-28T02:33:54.000Z",
+      "uid": "35240-d58e732a-cc77-4913-99bd-671ed0e8de0b"
+    }
+  ],
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://api-m.sandbox.paypal.com"
+    }
+  ]
+}

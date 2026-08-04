@@ -1,0 +1,1498 @@
+{
+  "info": {
+    "_postman_id": "6efaff2b-5458-411a-b51d-e2c0d7410fee",
+    "name": "Paypal Subscriptions Authorizations Web-Profiles API",
+    "description": "You can use billing plans and subscriptions to create subscriptions that process recurring PayPal payments for physical or digital goods, or services. A plan includes pricing and billing cycle information that defines the amount and frequency of charge for a subscription. You can also define a fixed plan, such as a $5 basic plan or a volume- or graduated-based plan with pricing tiers based on the quantity purchased. For more information, see <a href=\"/docs/subscriptions/\">Subscriptions Overview</a>.",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-07-28T02:35:27.000Z",
+    "updatedAt": "2026-07-28T02:35:28.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-6efaff2b-5458-411a-b51d-e2c0d7410fee"
+  },
+  "item": [
+    {
+      "name": "v1",
+      "item": [
+        {
+          "name": "payment-experience",
+          "item": [
+            {
+              "name": "web-profiles",
+              "item": [
+                {
+                  "name": "{id}",
+                  "item": [
+                    {
+                      "name": "Paypal Update web experience profile",
+                      "id": "fa684223-e066-404f-be27-60575be14c00",
+                      "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                      },
+                      "request": {
+                        "auth": {
+                          "type": "oauth2",
+                          "oauth2": [
+                            {
+                              "key": "scope",
+                              "value": "https://uri.paypal.com/services/subscriptions",
+                              "type": "string"
+                            },
+                            {
+                              "key": "accessTokenUrl",
+                              "value": "/v1/oauth2/token",
+                              "type": "string"
+                            },
+                            {
+                              "key": "grant_type",
+                              "value": "client_credentials",
+                              "type": "string"
+                            }
+                          ]
+                        },
+                        "method": "PUT",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"name\": \"<string>\",\n  \"id\": \"<string>\",\n  \"temporary\": \"<boolean>\",\n  \"flow_config\": {\n    \"landing_page_type\": \"login\",\n    \"bank_txn_pending_url\": \"<uri>\",\n    \"user_action\": \"COMMIT\",\n    \"return_uri_http_method\": \"POST\"\n  },\n  \"input_fields\": {\n    \"no_shipping\": \"<integer>\",\n    \"address_override\": \"<integer>\"\n  },\n  \"presentation\": {\n    \"brand_name\": \"<string>\",\n    \"logo_image\": \"<string>\",\n    \"locale_code\": \"<string>\"\n  }\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/v1/payment-experience/web-profiles/:id",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v1",
+                            "payment-experience",
+                            "web-profiles",
+                            ":id"
+                          ],
+                          "variable": [
+                            {
+                              "id": "215abd9b-755b-4836-9cbc-2c177029168a",
+                              "key": "id",
+                              "value": "<string>",
+                              "description": "(Required) The ID of the profile to delete."
+                            }
+                          ]
+                        },
+                        "description": "Updates a web experience profile, by ID. In the JSON request body, specify the profile details. If your request omits any profile parameters, any previously set values for those parameters are removed."
+                      },
+                      "response": [
+                        {
+                          "id": "6af76e67-26c4-449d-82d4-49fadbb0477b",
+                          "name": "A successful request returns the HTTP `204 No Content` status code with no JSON response body.",
+                          "originalRequest": {
+                            "method": "PUT",
+                            "header": [
+                              {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: oauth2",
+                                "key": "Authorization",
+                                "value": "<token>"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "{\n  \"name\": \"<string>\",\n  \"id\": \"<string>\",\n  \"temporary\": \"<boolean>\",\n  \"flow_config\": {\n    \"landing_page_type\": \"login\",\n    \"bank_txn_pending_url\": \"<uri>\",\n    \"user_action\": \"COMMIT\",\n    \"return_uri_http_method\": \"POST\"\n  },\n  \"input_fields\": {\n    \"no_shipping\": \"<integer>\",\n    \"address_override\": \"<integer>\"\n  },\n  \"presentation\": {\n    \"brand_name\": \"<string>\",\n    \"logo_image\": \"<string>\",\n    \"locale_code\": \"<string>\"\n  }\n}",
+                              "options": {
+                                "raw": {
+                                  "headerFamily": "json",
+                                  "language": "json"
+                                }
+                              }
+                            },
+                            "url": {
+                              "raw": "{{baseUrl}}/v1/payment-experience/web-profiles/:id",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "v1",
+                                "payment-experience",
+                                "web-profiles",
+                                ":id"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "id"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "No Content",
+                          "code": 204,
+                          "_postman_previewlanguage": "text",
+                          "header": [],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": null,
+                          "createdAt": "2026-07-28T02:35:28.000Z",
+                          "updatedAt": "2026-07-28T02:35:28.000Z",
+                          "uid": "35240-6af76e67-26c4-449d-82d4-49fadbb0477b"
+                        },
+                        {
+                          "id": "b53586b4-793b-4dbf-8f26-c6bc7190dcfd",
+                          "name": "An internal server error occurred. The request returns the HTTP `500 Internal Server Error` status code.",
+                          "originalRequest": {
+                            "method": "PUT",
+                            "header": [
+                              {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                              },
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: oauth2",
+                                "key": "Authorization",
+                                "value": "<token>"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "{\n  \"name\": \"<string>\",\n  \"id\": \"<string>\",\n  \"temporary\": \"<boolean>\",\n  \"flow_config\": {\n    \"landing_page_type\": \"login\",\n    \"bank_txn_pending_url\": \"<uri>\",\n    \"user_action\": \"COMMIT\",\n    \"return_uri_http_method\": \"POST\"\n  },\n  \"input_fields\": {\n    \"no_shipping\": \"<integer>\",\n    \"address_override\": \"<integer>\"\n  },\n  \"presentation\": {\n    \"brand_name\": \"<string>\",\n    \"logo_image\": \"<string>\",\n    \"locale_code\": \"<string>\"\n  }\n}",
+                              "options": {
+                                "raw": {
+                                  "headerFamily": "json",
+                                  "language": "json"
+                                }
+                              }
+                            },
+                            "url": {
+                              "raw": "{{baseUrl}}/v1/payment-experience/web-profiles/:id",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "v1",
+                                "payment-experience",
+                                "web-profiles",
+                                ":id"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "id"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Internal Server Error",
+                          "code": 500,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"name\": \"<string>\",\n  \"message\": \"<string>\",\n  \"information_link\": \"<string>\",\n  \"debug_id\": \"<string>\",\n  \"details\": [\n    {\n      \"field\": \"<string>\",\n      \"issue\": \"<string>\"\n    },\n    {\n      \"field\": \"<string>\",\n      \"issue\": \"<string>\"\n    }\n  ]\n}",
+                          "createdAt": "2026-07-28T02:35:28.000Z",
+                          "updatedAt": "2026-07-28T02:35:28.000Z",
+                          "uid": "35240-b53586b4-793b-4dbf-8f26-c6bc7190dcfd"
+                        },
+                        {
+                          "id": "0fe943f7-f693-486b-8d91-bb45d9409895",
+                          "name": "The error response.",
+                          "originalRequest": {
+                            "method": "PUT",
+                            "header": [
+                              {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                              },
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: oauth2",
+                                "key": "Authorization",
+                                "value": "<token>"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "{\n  \"name\": \"<string>\",\n  \"id\": \"<string>\",\n  \"temporary\": \"<boolean>\",\n  \"flow_config\": {\n    \"landing_page_type\": \"login\",\n    \"bank_txn_pending_url\": \"<uri>\",\n    \"user_action\": \"COMMIT\",\n    \"return_uri_http_method\": \"POST\"\n  },\n  \"input_fields\": {\n    \"no_shipping\": \"<integer>\",\n    \"address_override\": \"<integer>\"\n  },\n  \"presentation\": {\n    \"brand_name\": \"<string>\",\n    \"logo_image\": \"<string>\",\n    \"locale_code\": \"<string>\"\n  }\n}",
+                              "options": {
+                                "raw": {
+                                  "headerFamily": "json",
+                                  "language": "json"
+                                }
+                              }
+                            },
+                            "url": {
+                              "raw": "{{baseUrl}}/v1/payment-experience/web-profiles/:id",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "v1",
+                                "payment-experience",
+                                "web-profiles",
+                                ":id"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "id"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Internal Server Error",
+                          "code": 500,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"name\": \"<string>\",\n  \"message\": \"<string>\",\n  \"information_link\": \"<string>\",\n  \"debug_id\": \"<string>\",\n  \"details\": [\n    {\n      \"field\": \"<string>\",\n      \"issue\": \"<string>\"\n    },\n    {\n      \"field\": \"<string>\",\n      \"issue\": \"<string>\"\n    }\n  ]\n}",
+                          "createdAt": "2026-07-28T02:35:28.000Z",
+                          "updatedAt": "2026-07-28T02:35:28.000Z",
+                          "uid": "35240-0fe943f7-f693-486b-8d91-bb45d9409895"
+                        }
+                      ],
+                      "createdAt": "2026-07-28T02:35:28.000Z",
+                      "updatedAt": "2026-07-28T02:35:28.000Z",
+                      "uid": "35240-fa684223-e066-404f-be27-60575be14c00"
+                    },
+                    {
+                      "name": "Paypal Partially update web experience profile",
+                      "id": "1f43990d-0f14-4b38-ac7a-2c36c92f19b4",
+                      "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                      },
+                      "request": {
+                        "auth": {
+                          "type": "oauth2",
+                          "oauth2": [
+                            {
+                              "key": "scope",
+                              "value": "https://uri.paypal.com/services/subscriptions",
+                              "type": "string"
+                            },
+                            {
+                              "key": "accessTokenUrl",
+                              "value": "/v1/oauth2/token",
+                              "type": "string"
+                            },
+                            {
+                              "key": "grant_type",
+                              "value": "client_credentials",
+                              "type": "string"
+                            }
+                          ]
+                        },
+                        "method": "PATCH",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "[\n  {\n    \"op\": \"remove\",\n    \"path\": \"<string>\",\n    \"value\": {\n      \"title\": \"Patch Value\",\n      \"description\": \"The value to apply. The <code>remove</code> operation does not require a value.\"\n    },\n    \"from\": \"<string>\"\n  },\n  {\n    \"op\": \"copy\",\n    \"path\": \"<string>\",\n    \"value\": {\n      \"title\": \"Patch Value\",\n      \"description\": \"The value to apply. The <code>remove</code> operation does not require a value.\"\n    },\n    \"from\": \"<string>\"\n  }\n]",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/v1/payment-experience/web-profiles/:id",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v1",
+                            "payment-experience",
+                            "web-profiles",
+                            ":id"
+                          ],
+                          "variable": [
+                            {
+                              "id": "a1eeb941-eb46-4e53-8610-89ffafb390d4",
+                              "key": "id",
+                              "value": "<string>",
+                              "description": "(Required) The ID of the profile to delete."
+                            }
+                          ]
+                        },
+                        "description": "Partially-updates a web experience profile, by ID. In the JSON request body, specify a patch object, the path of the profile location to update, and a new value."
+                      },
+                      "response": [
+                        {
+                          "id": "a05377af-7fc1-47e5-b5e4-0732fa8623f9",
+                          "name": "A successful request returns the HTTP `204 No Content` status code with no JSON response body.",
+                          "originalRequest": {
+                            "method": "PATCH",
+                            "header": [
+                              {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: oauth2",
+                                "key": "Authorization",
+                                "value": "<token>"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "[\n  {\n    \"op\": \"remove\",\n    \"path\": \"<string>\",\n    \"value\": {\n      \"title\": \"Patch Value\",\n      \"description\": \"The value to apply. The <code>remove</code> operation does not require a value.\"\n    },\n    \"from\": \"<string>\"\n  },\n  {\n    \"op\": \"copy\",\n    \"path\": \"<string>\",\n    \"value\": {\n      \"title\": \"Patch Value\",\n      \"description\": \"The value to apply. The <code>remove</code> operation does not require a value.\"\n    },\n    \"from\": \"<string>\"\n  }\n]",
+                              "options": {
+                                "raw": {
+                                  "headerFamily": "json",
+                                  "language": "json"
+                                }
+                              }
+                            },
+                            "url": {
+                              "raw": "{{baseUrl}}/v1/payment-experience/web-profiles/:id",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "v1",
+                                "payment-experience",
+                                "web-profiles",
+                                ":id"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "id"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "No Content",
+                          "code": 204,
+                          "_postman_previewlanguage": "text",
+                          "header": [],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": null,
+                          "createdAt": "2026-07-28T02:35:28.000Z",
+                          "updatedAt": "2026-07-28T02:35:28.000Z",
+                          "uid": "35240-a05377af-7fc1-47e5-b5e4-0732fa8623f9"
+                        },
+                        {
+                          "id": "5a3905af-29f2-45e2-aa33-4ed924d3a939",
+                          "name": "An internal server error occurred. The request returns the HTTP `500 Internal Server Error` status code.",
+                          "originalRequest": {
+                            "method": "PATCH",
+                            "header": [
+                              {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                              },
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: oauth2",
+                                "key": "Authorization",
+                                "value": "<token>"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "[\n  {\n    \"op\": \"remove\",\n    \"path\": \"<string>\",\n    \"value\": {\n      \"title\": \"Patch Value\",\n      \"description\": \"The value to apply. The <code>remove</code> operation does not require a value.\"\n    },\n    \"from\": \"<string>\"\n  },\n  {\n    \"op\": \"copy\",\n    \"path\": \"<string>\",\n    \"value\": {\n      \"title\": \"Patch Value\",\n      \"description\": \"The value to apply. The <code>remove</code> operation does not require a value.\"\n    },\n    \"from\": \"<string>\"\n  }\n]",
+                              "options": {
+                                "raw": {
+                                  "headerFamily": "json",
+                                  "language": "json"
+                                }
+                              }
+                            },
+                            "url": {
+                              "raw": "{{baseUrl}}/v1/payment-experience/web-profiles/:id",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "v1",
+                                "payment-experience",
+                                "web-profiles",
+                                ":id"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "id"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Internal Server Error",
+                          "code": 500,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"name\": \"<string>\",\n  \"message\": \"<string>\",\n  \"information_link\": \"<string>\",\n  \"debug_id\": \"<string>\",\n  \"details\": [\n    {\n      \"field\": \"<string>\",\n      \"issue\": \"<string>\"\n    },\n    {\n      \"field\": \"<string>\",\n      \"issue\": \"<string>\"\n    }\n  ]\n}",
+                          "createdAt": "2026-07-28T02:35:28.000Z",
+                          "updatedAt": "2026-07-28T02:35:28.000Z",
+                          "uid": "35240-5a3905af-29f2-45e2-aa33-4ed924d3a939"
+                        },
+                        {
+                          "id": "6fc8ad88-e83b-4870-a26b-8683c735de68",
+                          "name": "The error response.",
+                          "originalRequest": {
+                            "method": "PATCH",
+                            "header": [
+                              {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                              },
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: oauth2",
+                                "key": "Authorization",
+                                "value": "<token>"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "[\n  {\n    \"op\": \"remove\",\n    \"path\": \"<string>\",\n    \"value\": {\n      \"title\": \"Patch Value\",\n      \"description\": \"The value to apply. The <code>remove</code> operation does not require a value.\"\n    },\n    \"from\": \"<string>\"\n  },\n  {\n    \"op\": \"copy\",\n    \"path\": \"<string>\",\n    \"value\": {\n      \"title\": \"Patch Value\",\n      \"description\": \"The value to apply. The <code>remove</code> operation does not require a value.\"\n    },\n    \"from\": \"<string>\"\n  }\n]",
+                              "options": {
+                                "raw": {
+                                  "headerFamily": "json",
+                                  "language": "json"
+                                }
+                              }
+                            },
+                            "url": {
+                              "raw": "{{baseUrl}}/v1/payment-experience/web-profiles/:id",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "v1",
+                                "payment-experience",
+                                "web-profiles",
+                                ":id"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "id"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Internal Server Error",
+                          "code": 500,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"name\": \"<string>\",\n  \"message\": \"<string>\",\n  \"information_link\": \"<string>\",\n  \"debug_id\": \"<string>\",\n  \"details\": [\n    {\n      \"field\": \"<string>\",\n      \"issue\": \"<string>\"\n    },\n    {\n      \"field\": \"<string>\",\n      \"issue\": \"<string>\"\n    }\n  ]\n}",
+                          "createdAt": "2026-07-28T02:35:28.000Z",
+                          "updatedAt": "2026-07-28T02:35:28.000Z",
+                          "uid": "35240-6fc8ad88-e83b-4870-a26b-8683c735de68"
+                        }
+                      ],
+                      "createdAt": "2026-07-28T02:35:28.000Z",
+                      "updatedAt": "2026-07-28T02:35:28.000Z",
+                      "uid": "35240-1f43990d-0f14-4b38-ac7a-2c36c92f19b4"
+                    },
+                    {
+                      "name": "Paypal Show web experience profile details by ID",
+                      "id": "840b1fa3-ef65-447d-871c-5cf6e215d437",
+                      "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                      },
+                      "request": {
+                        "auth": {
+                          "type": "oauth2",
+                          "oauth2": [
+                            {
+                              "key": "scope",
+                              "value": "https://uri.paypal.com/services/subscriptions",
+                              "type": "string"
+                            },
+                            {
+                              "key": "accessTokenUrl",
+                              "value": "/v1/oauth2/token",
+                              "type": "string"
+                            },
+                            {
+                              "key": "grant_type",
+                              "value": "client_credentials",
+                              "type": "string"
+                            }
+                          ]
+                        },
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/v1/payment-experience/web-profiles/:id",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v1",
+                            "payment-experience",
+                            "web-profiles",
+                            ":id"
+                          ],
+                          "variable": [
+                            {
+                              "id": "48cca907-754a-43d5-8276-89f2413d9726",
+                              "key": "id",
+                              "value": "<string>",
+                              "description": "(Required) The ID of the profile to delete."
+                            }
+                          ]
+                        },
+                        "description": "Shows details for a web experience profile, by ID."
+                      },
+                      "response": [
+                        {
+                          "id": "9064d725-351e-4bef-ae25-f8168517cc7a",
+                          "name": "A successful request returns the HTTP `200 OK` status code and a JSON response body that shows the profile details.",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: oauth2",
+                                "key": "Authorization",
+                                "value": "<token>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/v1/payment-experience/web-profiles/:id",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "v1",
+                                "payment-experience",
+                                "web-profiles",
+                                ":id"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "id"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "OK",
+                          "code": 200,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"name\": \"<string>\",\n  \"id\": \"<string>\",\n  \"temporary\": \"<boolean>\",\n  \"flow_config\": {\n    \"landing_page_type\": \"login\",\n    \"bank_txn_pending_url\": \"<uri>\",\n    \"user_action\": \"COMMIT\",\n    \"return_uri_http_method\": \"POST\"\n  },\n  \"input_fields\": {\n    \"no_shipping\": \"<integer>\",\n    \"address_override\": \"<integer>\"\n  },\n  \"presentation\": {\n    \"brand_name\": \"<string>\",\n    \"logo_image\": \"<string>\",\n    \"locale_code\": \"<string>\"\n  }\n}",
+                          "createdAt": "2026-07-28T02:35:28.000Z",
+                          "updatedAt": "2026-07-28T02:35:28.000Z",
+                          "uid": "35240-9064d725-351e-4bef-ae25-f8168517cc7a"
+                        },
+                        {
+                          "id": "5b921fd4-2c0c-4609-9f1e-e289eb77cf72",
+                          "name": "An internal server error occurred. The request returns the HTTP `500 Internal Server Error` status code.",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: oauth2",
+                                "key": "Authorization",
+                                "value": "<token>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/v1/payment-experience/web-profiles/:id",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "v1",
+                                "payment-experience",
+                                "web-profiles",
+                                ":id"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "id"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Internal Server Error",
+                          "code": 500,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"name\": \"<string>\",\n  \"message\": \"<string>\",\n  \"information_link\": \"<string>\",\n  \"debug_id\": \"<string>\",\n  \"details\": [\n    {\n      \"field\": \"<string>\",\n      \"issue\": \"<string>\"\n    },\n    {\n      \"field\": \"<string>\",\n      \"issue\": \"<string>\"\n    }\n  ]\n}",
+                          "createdAt": "2026-07-28T02:35:28.000Z",
+                          "updatedAt": "2026-07-28T02:35:28.000Z",
+                          "uid": "35240-5b921fd4-2c0c-4609-9f1e-e289eb77cf72"
+                        },
+                        {
+                          "id": "7584b5f2-ca6a-43e3-b3dc-275352527e2d",
+                          "name": "The error response.",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: oauth2",
+                                "key": "Authorization",
+                                "value": "<token>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/v1/payment-experience/web-profiles/:id",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "v1",
+                                "payment-experience",
+                                "web-profiles",
+                                ":id"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "id"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Internal Server Error",
+                          "code": 500,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"name\": \"<string>\",\n  \"message\": \"<string>\",\n  \"information_link\": \"<string>\",\n  \"debug_id\": \"<string>\",\n  \"details\": [\n    {\n      \"field\": \"<string>\",\n      \"issue\": \"<string>\"\n    },\n    {\n      \"field\": \"<string>\",\n      \"issue\": \"<string>\"\n    }\n  ]\n}",
+                          "createdAt": "2026-07-28T02:35:28.000Z",
+                          "updatedAt": "2026-07-28T02:35:28.000Z",
+                          "uid": "35240-7584b5f2-ca6a-43e3-b3dc-275352527e2d"
+                        }
+                      ],
+                      "createdAt": "2026-07-28T02:35:28.000Z",
+                      "updatedAt": "2026-07-28T02:35:28.000Z",
+                      "uid": "35240-840b1fa3-ef65-447d-871c-5cf6e215d437"
+                    },
+                    {
+                      "name": "Paypal Delete web experience profile",
+                      "id": "3fa9c021-ba59-4fd1-ae25-7d894f6602b0",
+                      "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                      },
+                      "request": {
+                        "auth": {
+                          "type": "oauth2",
+                          "oauth2": [
+                            {
+                              "key": "scope",
+                              "value": "https://uri.paypal.com/services/subscriptions",
+                              "type": "string"
+                            },
+                            {
+                              "key": "accessTokenUrl",
+                              "value": "/v1/oauth2/token",
+                              "type": "string"
+                            },
+                            {
+                              "key": "grant_type",
+                              "value": "client_credentials",
+                              "type": "string"
+                            }
+                          ]
+                        },
+                        "method": "DELETE",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/v1/payment-experience/web-profiles/:id",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v1",
+                            "payment-experience",
+                            "web-profiles",
+                            ":id"
+                          ],
+                          "variable": [
+                            {
+                              "id": "627dd29f-23c1-4104-894a-48f78fcc88d9",
+                              "key": "id",
+                              "value": "<string>",
+                              "description": "(Required) The ID of the profile to delete."
+                            }
+                          ]
+                        },
+                        "description": "Deletes a web experience profile, by ID."
+                      },
+                      "response": [
+                        {
+                          "id": "075e685f-8061-4785-a500-caa9376d1d59",
+                          "name": "A successful request returns the HTTP `204 No Content` status code with no JSON response body.",
+                          "originalRequest": {
+                            "method": "DELETE",
+                            "header": [
+                              {
+                                "description": "Added as a part of security scheme: oauth2",
+                                "key": "Authorization",
+                                "value": "<token>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/v1/payment-experience/web-profiles/:id",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "v1",
+                                "payment-experience",
+                                "web-profiles",
+                                ":id"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "id"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "No Content",
+                          "code": 204,
+                          "_postman_previewlanguage": "text",
+                          "header": [],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": null,
+                          "createdAt": "2026-07-28T02:35:28.000Z",
+                          "updatedAt": "2026-07-28T02:35:28.000Z",
+                          "uid": "35240-075e685f-8061-4785-a500-caa9376d1d59"
+                        },
+                        {
+                          "id": "001b7a46-da38-4288-9d56-b43c732f7d67",
+                          "name": "An internal server error occurred. The request returns the HTTP `500 Internal Server Error` status code.",
+                          "originalRequest": {
+                            "method": "DELETE",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: oauth2",
+                                "key": "Authorization",
+                                "value": "<token>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/v1/payment-experience/web-profiles/:id",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "v1",
+                                "payment-experience",
+                                "web-profiles",
+                                ":id"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "id"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Internal Server Error",
+                          "code": 500,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"name\": \"<string>\",\n  \"message\": \"<string>\",\n  \"information_link\": \"<string>\",\n  \"debug_id\": \"<string>\",\n  \"details\": [\n    {\n      \"field\": \"<string>\",\n      \"issue\": \"<string>\"\n    },\n    {\n      \"field\": \"<string>\",\n      \"issue\": \"<string>\"\n    }\n  ]\n}",
+                          "createdAt": "2026-07-28T02:35:28.000Z",
+                          "updatedAt": "2026-07-28T02:35:28.000Z",
+                          "uid": "35240-001b7a46-da38-4288-9d56-b43c732f7d67"
+                        },
+                        {
+                          "id": "16146333-a480-4302-8aa0-79c46acf68b0",
+                          "name": "The error response.",
+                          "originalRequest": {
+                            "method": "DELETE",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: oauth2",
+                                "key": "Authorization",
+                                "value": "<token>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/v1/payment-experience/web-profiles/:id",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "v1",
+                                "payment-experience",
+                                "web-profiles",
+                                ":id"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "id"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Internal Server Error",
+                          "code": 500,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"name\": \"<string>\",\n  \"message\": \"<string>\",\n  \"information_link\": \"<string>\",\n  \"debug_id\": \"<string>\",\n  \"details\": [\n    {\n      \"field\": \"<string>\",\n      \"issue\": \"<string>\"\n    },\n    {\n      \"field\": \"<string>\",\n      \"issue\": \"<string>\"\n    }\n  ]\n}",
+                          "createdAt": "2026-07-28T02:35:28.000Z",
+                          "updatedAt": "2026-07-28T02:35:28.000Z",
+                          "uid": "35240-16146333-a480-4302-8aa0-79c46acf68b0"
+                        }
+                      ],
+                      "createdAt": "2026-07-28T02:35:28.000Z",
+                      "updatedAt": "2026-07-28T02:35:28.000Z",
+                      "uid": "35240-3fa9c021-ba59-4fd1-ae25-7d894f6602b0"
+                    }
+                  ],
+                  "id": "bffa3443-261c-4b76-8879-73c6a6f89932",
+                  "createdAt": "2026-07-28T02:35:28.000Z",
+                  "updatedAt": "2026-07-28T02:35:28.000Z",
+                  "uid": "35240-bffa3443-261c-4b76-8879-73c6a6f89932"
+                },
+                {
+                  "name": "Paypal Create web experience profile",
+                  "id": "e99b908e-b391-472d-9290-22867fb4380b",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "auth": {
+                      "type": "oauth2",
+                      "oauth2": [
+                        {
+                          "key": "scope",
+                          "value": "https://uri.paypal.com/services/subscriptions",
+                          "type": "string"
+                        },
+                        {
+                          "key": "accessTokenUrl",
+                          "value": "/v1/oauth2/token",
+                          "type": "string"
+                        },
+                        {
+                          "key": "grant_type",
+                          "value": "client_credentials",
+                          "type": "string"
+                        }
+                      ]
+                    },
+                    "method": "POST",
+                    "header": [
+                      {
+                        "description": "(Required) The server stores keys for three hours.",
+                        "key": "PayPal-Request-Id",
+                        "value": "<string>"
+                      },
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"name\": \"<string>\",\n  \"id\": \"<string>\",\n  \"temporary\": \"<boolean>\",\n  \"flow_config\": {\n    \"landing_page_type\": \"login\",\n    \"bank_txn_pending_url\": \"<uri>\",\n    \"user_action\": \"COMMIT\",\n    \"return_uri_http_method\": \"POST\"\n  },\n  \"input_fields\": {\n    \"no_shipping\": \"<integer>\",\n    \"address_override\": \"<integer>\"\n  },\n  \"presentation\": {\n    \"brand_name\": \"<string>\",\n    \"logo_image\": \"<string>\",\n    \"locale_code\": \"<string>\"\n  }\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/v1/payment-experience/web-profiles",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "v1",
+                        "payment-experience",
+                        "web-profiles"
+                      ]
+                    },
+                    "description": "Creates a web experience profile. In the JSON request body, specify the profile name and details."
+                  },
+                  "response": [
+                    {
+                      "id": "8b01a5d5-df55-42cd-a9e7-009fe318a63c",
+                      "name": "A successful request, with or without the optional <code>PayPal-Request-Id</code> request header, returns the HTTP <code>201 Created</code> status code and a JSON response body that shows the profile details and the ID of the profile. Any subsequent calls",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "description": "(Required) The server stores keys for three hours.",
+                            "key": "PayPal-Request-Id",
+                            "value": "<string>"
+                          },
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: oauth2",
+                            "key": "Authorization",
+                            "value": "<token>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"name\": \"<string>\",\n  \"id\": \"<string>\",\n  \"temporary\": \"<boolean>\",\n  \"flow_config\": {\n    \"landing_page_type\": \"login\",\n    \"bank_txn_pending_url\": \"<uri>\",\n    \"user_action\": \"COMMIT\",\n    \"return_uri_http_method\": \"POST\"\n  },\n  \"input_fields\": {\n    \"no_shipping\": \"<integer>\",\n    \"address_override\": \"<integer>\"\n  },\n  \"presentation\": {\n    \"brand_name\": \"<string>\",\n    \"logo_image\": \"<string>\",\n    \"locale_code\": \"<string>\"\n  }\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/v1/payment-experience/web-profiles",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v1",
+                            "payment-experience",
+                            "web-profiles"
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"name\": \"<string>\",\n  \"id\": \"<string>\",\n  \"temporary\": \"<boolean>\",\n  \"flow_config\": {\n    \"landing_page_type\": \"login\",\n    \"bank_txn_pending_url\": \"<uri>\",\n    \"user_action\": \"COMMIT\",\n    \"return_uri_http_method\": \"POST\"\n  },\n  \"input_fields\": {\n    \"no_shipping\": \"<integer>\",\n    \"address_override\": \"<integer>\"\n  },\n  \"presentation\": {\n    \"brand_name\": \"<string>\",\n    \"logo_image\": \"<string>\",\n    \"locale_code\": \"<string>\"\n  }\n}",
+                      "createdAt": "2026-07-28T02:35:28.000Z",
+                      "updatedAt": "2026-07-28T02:35:28.000Z",
+                      "uid": "35240-8b01a5d5-df55-42cd-a9e7-009fe318a63c"
+                    },
+                    {
+                      "id": "9804dcff-0a92-4791-a0e9-b585120213f6",
+                      "name": "A successful request, with or without the optional <code>PayPal-Request-Id</code> request header, returns the HTTP <code>201 Created</code> status code and a JSON response body that shows the profile details and the ID of the profile. Any subsequent calls",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "description": "(Required) The server stores keys for three hours.",
+                            "key": "PayPal-Request-Id",
+                            "value": "<string>"
+                          },
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: oauth2",
+                            "key": "Authorization",
+                            "value": "<token>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"name\": \"<string>\",\n  \"id\": \"<string>\",\n  \"temporary\": \"<boolean>\",\n  \"flow_config\": {\n    \"landing_page_type\": \"login\",\n    \"bank_txn_pending_url\": \"<uri>\",\n    \"user_action\": \"COMMIT\",\n    \"return_uri_http_method\": \"POST\"\n  },\n  \"input_fields\": {\n    \"no_shipping\": \"<integer>\",\n    \"address_override\": \"<integer>\"\n  },\n  \"presentation\": {\n    \"brand_name\": \"<string>\",\n    \"logo_image\": \"<string>\",\n    \"locale_code\": \"<string>\"\n  }\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/v1/payment-experience/web-profiles",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v1",
+                            "payment-experience",
+                            "web-profiles"
+                          ]
+                        }
+                      },
+                      "status": "Created",
+                      "code": 201,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"name\": \"<string>\",\n  \"id\": \"<string>\",\n  \"temporary\": \"<boolean>\",\n  \"flow_config\": {\n    \"landing_page_type\": \"login\",\n    \"bank_txn_pending_url\": \"<uri>\",\n    \"user_action\": \"COMMIT\",\n    \"return_uri_http_method\": \"POST\"\n  },\n  \"input_fields\": {\n    \"no_shipping\": \"<integer>\",\n    \"address_override\": \"<integer>\"\n  },\n  \"presentation\": {\n    \"brand_name\": \"<string>\",\n    \"logo_image\": \"<string>\",\n    \"locale_code\": \"<string>\"\n  }\n}",
+                      "createdAt": "2026-07-28T02:35:28.000Z",
+                      "updatedAt": "2026-07-28T02:35:28.000Z",
+                      "uid": "35240-9804dcff-0a92-4791-a0e9-b585120213f6"
+                    },
+                    {
+                      "id": "1336f247-0005-4a96-879d-c728a04db6c5",
+                      "name": "An internal server error occurred. The request returns the HTTP `500 Internal Server Error` status code.",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "description": "(Required) The server stores keys for three hours.",
+                            "key": "PayPal-Request-Id",
+                            "value": "<string>"
+                          },
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: oauth2",
+                            "key": "Authorization",
+                            "value": "<token>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"name\": \"<string>\",\n  \"id\": \"<string>\",\n  \"temporary\": \"<boolean>\",\n  \"flow_config\": {\n    \"landing_page_type\": \"login\",\n    \"bank_txn_pending_url\": \"<uri>\",\n    \"user_action\": \"COMMIT\",\n    \"return_uri_http_method\": \"POST\"\n  },\n  \"input_fields\": {\n    \"no_shipping\": \"<integer>\",\n    \"address_override\": \"<integer>\"\n  },\n  \"presentation\": {\n    \"brand_name\": \"<string>\",\n    \"logo_image\": \"<string>\",\n    \"locale_code\": \"<string>\"\n  }\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/v1/payment-experience/web-profiles",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v1",
+                            "payment-experience",
+                            "web-profiles"
+                          ]
+                        }
+                      },
+                      "status": "Internal Server Error",
+                      "code": 500,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"name\": \"<string>\",\n  \"message\": \"<string>\",\n  \"information_link\": \"<string>\",\n  \"debug_id\": \"<string>\",\n  \"details\": [\n    {\n      \"field\": \"<string>\",\n      \"issue\": \"<string>\"\n    },\n    {\n      \"field\": \"<string>\",\n      \"issue\": \"<string>\"\n    }\n  ]\n}",
+                      "createdAt": "2026-07-28T02:35:28.000Z",
+                      "updatedAt": "2026-07-28T02:35:28.000Z",
+                      "uid": "35240-1336f247-0005-4a96-879d-c728a04db6c5"
+                    },
+                    {
+                      "id": "ca268747-ac7a-481b-973a-9f3c67df91e8",
+                      "name": "The error response.",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "description": "(Required) The server stores keys for three hours.",
+                            "key": "PayPal-Request-Id",
+                            "value": "<string>"
+                          },
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: oauth2",
+                            "key": "Authorization",
+                            "value": "<token>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"name\": \"<string>\",\n  \"id\": \"<string>\",\n  \"temporary\": \"<boolean>\",\n  \"flow_config\": {\n    \"landing_page_type\": \"login\",\n    \"bank_txn_pending_url\": \"<uri>\",\n    \"user_action\": \"COMMIT\",\n    \"return_uri_http_method\": \"POST\"\n  },\n  \"input_fields\": {\n    \"no_shipping\": \"<integer>\",\n    \"address_override\": \"<integer>\"\n  },\n  \"presentation\": {\n    \"brand_name\": \"<string>\",\n    \"logo_image\": \"<string>\",\n    \"locale_code\": \"<string>\"\n  }\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/v1/payment-experience/web-profiles",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v1",
+                            "payment-experience",
+                            "web-profiles"
+                          ]
+                        }
+                      },
+                      "status": "Internal Server Error",
+                      "code": 500,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"name\": \"<string>\",\n  \"message\": \"<string>\",\n  \"information_link\": \"<string>\",\n  \"debug_id\": \"<string>\",\n  \"details\": [\n    {\n      \"field\": \"<string>\",\n      \"issue\": \"<string>\"\n    },\n    {\n      \"field\": \"<string>\",\n      \"issue\": \"<string>\"\n    }\n  ]\n}",
+                      "createdAt": "2026-07-28T02:35:28.000Z",
+                      "updatedAt": "2026-07-28T02:35:28.000Z",
+                      "uid": "35240-ca268747-ac7a-481b-973a-9f3c67df91e8"
+                    }
+                  ],
+                  "createdAt": "2026-07-28T02:35:28.000Z",
+                  "updatedAt": "2026-07-28T02:35:28.000Z",
+                  "uid": "35240-e99b908e-b391-472d-9290-22867fb4380b"
+                },
+                {
+                  "name": "Paypal List web experience profiles",
+                  "id": "3e91cfdb-fd7b-4159-9a1e-5d2c4153c3c1",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "auth": {
+                      "type": "oauth2",
+                      "oauth2": [
+                        {
+                          "key": "scope",
+                          "value": "https://uri.paypal.com/services/subscriptions",
+                          "type": "string"
+                        },
+                        {
+                          "key": "accessTokenUrl",
+                          "value": "/v1/oauth2/token",
+                          "type": "string"
+                        },
+                        {
+                          "key": "grant_type",
+                          "value": "client_credentials",
+                          "type": "string"
+                        }
+                      ]
+                    },
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/v1/payment-experience/web-profiles",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "v1",
+                        "payment-experience",
+                        "web-profiles"
+                      ]
+                    },
+                    "description": "Lists the latest 20 web experience profiles for a merchant or subject. To show details for these or additional profiles, you can show web experience profile details by ID."
+                  },
+                  "response": [
+                    {
+                      "id": "9ef7cfb7-44d8-4e82-8b65-72b2f08a524e",
+                      "name": "A successful request returns the HTTP `200 OK` status code and a JSON response body that lists the latest 20 profiles that the merchant owns, with details. To show details for these or additional profiles, you can show web experience profile details by ID",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: oauth2",
+                            "key": "Authorization",
+                            "value": "<token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/v1/payment-experience/web-profiles",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v1",
+                            "payment-experience",
+                            "web-profiles"
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "[\n  {\n    \"name\": \"<string>\",\n    \"id\": \"<string>\",\n    \"temporary\": \"<boolean>\",\n    \"flow_config\": {\n      \"landing_page_type\": \"login\",\n      \"bank_txn_pending_url\": \"<uri>\",\n      \"user_action\": \"COMMIT\",\n      \"return_uri_http_method\": \"GET\"\n    },\n    \"input_fields\": {\n      \"no_shipping\": \"<integer>\",\n      \"address_override\": \"<integer>\"\n    },\n    \"presentation\": {\n      \"brand_name\": \"<string>\",\n      \"logo_image\": \"<string>\",\n      \"locale_code\": \"<string>\"\n    }\n  }\n]",
+                      "createdAt": "2026-07-28T02:35:28.000Z",
+                      "updatedAt": "2026-07-28T02:35:28.000Z",
+                      "uid": "35240-9ef7cfb7-44d8-4e82-8b65-72b2f08a524e"
+                    },
+                    {
+                      "id": "d0c2a758-6df8-4497-b7d4-107f8d1176a2",
+                      "name": "An internal server error occurred. The request returns the HTTP `500 Internal Server Error` status code.",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: oauth2",
+                            "key": "Authorization",
+                            "value": "<token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/v1/payment-experience/web-profiles",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v1",
+                            "payment-experience",
+                            "web-profiles"
+                          ]
+                        }
+                      },
+                      "status": "Internal Server Error",
+                      "code": 500,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"name\": \"<string>\",\n  \"message\": \"<string>\",\n  \"information_link\": \"<string>\",\n  \"debug_id\": \"<string>\",\n  \"details\": [\n    {\n      \"field\": \"<string>\",\n      \"issue\": \"<string>\"\n    },\n    {\n      \"field\": \"<string>\",\n      \"issue\": \"<string>\"\n    }\n  ]\n}",
+                      "createdAt": "2026-07-28T02:35:28.000Z",
+                      "updatedAt": "2026-07-28T02:35:28.000Z",
+                      "uid": "35240-d0c2a758-6df8-4497-b7d4-107f8d1176a2"
+                    },
+                    {
+                      "id": "baa22816-6504-408f-affd-79db3907a8a7",
+                      "name": "The error response.",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: oauth2",
+                            "key": "Authorization",
+                            "value": "<token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/v1/payment-experience/web-profiles",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v1",
+                            "payment-experience",
+                            "web-profiles"
+                          ]
+                        }
+                      },
+                      "status": "Internal Server Error",
+                      "code": 500,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"name\": \"<string>\",\n  \"message\": \"<string>\",\n  \"information_link\": \"<string>\",\n  \"debug_id\": \"<string>\",\n  \"details\": [\n    {\n      \"field\": \"<string>\",\n      \"issue\": \"<string>\"\n    },\n    {\n      \"field\": \"<string>\",\n      \"issue\": \"<string>\"\n    }\n  ]\n}",
+                      "createdAt": "2026-07-28T02:35:28.000Z",
+                      "updatedAt": "2026-07-28T02:35:28.000Z",
+                      "uid": "35240-baa22816-6504-408f-affd-79db3907a8a7"
+                    }
+                  ],
+                  "createdAt": "2026-07-28T02:35:28.000Z",
+                  "updatedAt": "2026-07-28T02:35:28.000Z",
+                  "uid": "35240-3e91cfdb-fd7b-4159-9a1e-5d2c4153c3c1"
+                }
+              ],
+              "id": "92ff8204-8f46-4037-b9d9-98e97ae3a7a0",
+              "createdAt": "2026-07-28T02:35:28.000Z",
+              "updatedAt": "2026-07-28T02:35:28.000Z",
+              "uid": "35240-92ff8204-8f46-4037-b9d9-98e97ae3a7a0"
+            }
+          ],
+          "id": "967dde02-bae4-4a42-b821-4ef0cbc1c403",
+          "createdAt": "2026-07-28T02:35:28.000Z",
+          "updatedAt": "2026-07-28T02:35:28.000Z",
+          "uid": "35240-967dde02-bae4-4a42-b821-4ef0cbc1c403"
+        }
+      ],
+      "id": "1bf4990b-b34f-4884-8217-6eb9c33e3c61",
+      "createdAt": "2026-07-28T02:35:28.000Z",
+      "updatedAt": "2026-07-28T02:35:28.000Z",
+      "uid": "35240-1bf4990b-b34f-4884-8217-6eb9c33e3c61"
+    }
+  ],
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://api-m.sandbox.paypal.com"
+    }
+  ]
+}

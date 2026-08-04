@@ -1,0 +1,1094 @@
+{
+  "info": {
+    "_postman_id": "03e9af69-2aec-495c-a305-ec5d3a0df9b4",
+    "name": "Paypal Subscriptions Authorizations Webhooks API",
+    "description": "You can use billing plans and subscriptions to create subscriptions that process recurring PayPal payments for physical or digital goods, or services. A plan includes pricing and billing cycle information that defines the amount and frequency of charge for a subscription. You can also define a fixed plan, such as a $5 basic plan or a volume- or graduated-based plan with pricing tiers based on the quantity purchased. For more information, see <a href=\"/docs/subscriptions/\">Subscriptions Overview</a>.",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-07-28T02:35:29.000Z",
+    "updatedAt": "2026-07-28T02:35:29.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-03e9af69-2aec-495c-a305-ec5d3a0df9b4"
+  },
+  "item": [
+    {
+      "name": "v1",
+      "item": [
+        {
+          "name": "notifications",
+          "item": [
+            {
+              "name": "webhooks",
+              "item": [
+                {
+                  "name": "{webhook_id}",
+                  "item": [
+                    {
+                      "name": "event-types",
+                      "item": [
+                        {
+                          "name": "Paypal List event subscriptions for webhook",
+                          "id": "41400865-c32b-4895-8007-cb61a9d8dc4f",
+                          "protocolProfileBehavior": {
+                            "disableBodyPruning": true
+                          },
+                          "request": {
+                            "auth": {
+                              "type": "oauth2",
+                              "oauth2": [
+                                {
+                                  "key": "scope",
+                                  "value": "https://uri.paypal.com/services/subscriptions",
+                                  "type": "string"
+                                },
+                                {
+                                  "key": "accessTokenUrl",
+                                  "value": "/v1/oauth2/token",
+                                  "type": "string"
+                                },
+                                {
+                                  "key": "grant_type",
+                                  "value": "client_credentials",
+                                  "type": "string"
+                                }
+                              ]
+                            },
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/v1/notifications/webhooks/:webhook_id/event-types",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "v1",
+                                "notifications",
+                                "webhooks",
+                                ":webhook_id",
+                                "event-types"
+                              ],
+                              "variable": [
+                                {
+                                  "id": "3072f00b-6122-4d34-93aa-5e78004459c8",
+                                  "key": "webhook_id",
+                                  "value": "<string>",
+                                  "description": "(Required) The ID of the webhook for which to list subscriptions."
+                                }
+                              ]
+                            },
+                            "description": "Lists event subscriptions for a webhook, by ID."
+                          },
+                          "response": [
+                            {
+                              "id": "867e96b4-0047-4b5f-b749-51441eef9382",
+                              "name": "A successful request returns the HTTP `200 OK` status code and a JSON response body that lists event subscriptions for a webhook.",
+                              "originalRequest": {
+                                "method": "GET",
+                                "header": [
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: oauth2",
+                                    "key": "Authorization",
+                                    "value": "<token>"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/v1/notifications/webhooks/:webhook_id/event-types",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "v1",
+                                    "notifications",
+                                    "webhooks",
+                                    ":webhook_id",
+                                    "event-types"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "webhook_id"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "OK",
+                              "code": 200,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "{\n  \"event_types\": [\n    {\n      \"name\": \"<string>\",\n      \"description\": \"<string>\",\n      \"status\": \"<string>\",\n      \"resource_versions\": [\n        \"<string>\",\n        \"<string>\"\n      ]\n    },\n    {\n      \"name\": \"<string>\",\n      \"description\": \"<string>\",\n      \"status\": \"<string>\",\n      \"resource_versions\": [\n        \"<string>\",\n        \"<string>\"\n      ]\n    }\n  ]\n}",
+                              "createdAt": "2026-07-28T02:35:29.000Z",
+                              "updatedAt": "2026-07-28T02:35:29.000Z",
+                              "uid": "35240-867e96b4-0047-4b5f-b749-51441eef9382"
+                            },
+                            {
+                              "id": "e9509d3a-5a9c-4275-95cf-f35ed0ab33c8",
+                              "name": "The error response.",
+                              "originalRequest": {
+                                "method": "GET",
+                                "header": [
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: oauth2",
+                                    "key": "Authorization",
+                                    "value": "<token>"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/v1/notifications/webhooks/:webhook_id/event-types",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "v1",
+                                    "notifications",
+                                    "webhooks",
+                                    ":webhook_id",
+                                    "event-types"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "webhook_id"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "Internal Server Error",
+                              "code": 500,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "{\n  \"name\": \"<string>\",\n  \"message\": \"<string>\",\n  \"debug_id\": \"<string>\",\n  \"information_link\": \"<string>\",\n  \"details\": [\n    {\n      \"issue\": \"<string>\",\n      \"field\": \"<string>\",\n      \"value\": \"<string>\",\n      \"location\": \"body\",\n      \"description\": \"<string>\"\n    },\n    {\n      \"issue\": \"<string>\",\n      \"field\": \"<string>\",\n      \"value\": \"<string>\",\n      \"location\": \"body\",\n      \"description\": \"<string>\"\n    }\n  ],\n  \"links\": [\n    {\n      \"href\": \"<string>\",\n      \"rel\": \"<string>\",\n      \"method\": \"PATCH\"\n    },\n    {\n      \"href\": \"<string>\",\n      \"rel\": \"<string>\",\n      \"method\": \"PUT\"\n    }\n  ]\n}",
+                              "createdAt": "2026-07-28T02:35:29.000Z",
+                              "updatedAt": "2026-07-28T02:35:29.000Z",
+                              "uid": "35240-e9509d3a-5a9c-4275-95cf-f35ed0ab33c8"
+                            }
+                          ],
+                          "createdAt": "2026-07-28T02:35:29.000Z",
+                          "updatedAt": "2026-07-28T02:35:29.000Z",
+                          "uid": "35240-41400865-c32b-4895-8007-cb61a9d8dc4f"
+                        }
+                      ],
+                      "id": "17dfab2a-5821-4091-ab2f-7abec8dfebdb",
+                      "createdAt": "2026-07-28T02:35:29.000Z",
+                      "updatedAt": "2026-07-28T02:35:29.000Z",
+                      "uid": "35240-17dfab2a-5821-4091-ab2f-7abec8dfebdb"
+                    },
+                    {
+                      "name": "Paypal Show webhook details",
+                      "id": "57b519e9-27be-4ca6-bbb3-369da984237b",
+                      "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                      },
+                      "request": {
+                        "auth": {
+                          "type": "oauth2",
+                          "oauth2": [
+                            {
+                              "key": "scope",
+                              "value": "https://uri.paypal.com/services/subscriptions",
+                              "type": "string"
+                            },
+                            {
+                              "key": "accessTokenUrl",
+                              "value": "/v1/oauth2/token",
+                              "type": "string"
+                            },
+                            {
+                              "key": "grant_type",
+                              "value": "client_credentials",
+                              "type": "string"
+                            }
+                          ]
+                        },
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/v1/notifications/webhooks/:webhook_id",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v1",
+                            "notifications",
+                            "webhooks",
+                            ":webhook_id"
+                          ],
+                          "variable": [
+                            {
+                              "id": "ac4fb8a9-b6cb-4d8d-b9b3-fd69aa0053ea",
+                              "key": "webhook_id",
+                              "value": "<string>",
+                              "description": "(Required) The ID of the webhook for which to list subscriptions."
+                            }
+                          ]
+                        },
+                        "description": "Shows details for a webhook, by ID."
+                      },
+                      "response": [
+                        {
+                          "id": "28499543-e935-44f3-bb67-4798c72a174b",
+                          "name": "A successful request returns the HTTP `200 OK` status code and a JSON response body that shows webhook details.",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: oauth2",
+                                "key": "Authorization",
+                                "value": "<token>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/v1/notifications/webhooks/:webhook_id",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "v1",
+                                "notifications",
+                                "webhooks",
+                                ":webhook_id"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "webhook_id"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "OK",
+                          "code": 200,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"url\": \"<uri>\",\n  \"event_types\": [\n    {\n      \"name\": \"<string>\",\n      \"description\": \"<string>\",\n      \"status\": \"<string>\",\n      \"resource_versions\": [\n        \"<string>\",\n        \"<string>\"\n      ]\n    },\n    {\n      \"name\": \"<string>\",\n      \"description\": \"<string>\",\n      \"status\": \"<string>\",\n      \"resource_versions\": [\n        \"<string>\",\n        \"<string>\"\n      ]\n    }\n  ],\n  \"id\": \"<string>\",\n  \"links\": [\n    {\n      \"href\": \"<string>\",\n      \"rel\": \"<string>\",\n      \"method\": \"PATCH\"\n    },\n    {\n      \"href\": \"<string>\",\n      \"rel\": \"<string>\",\n      \"method\": \"GET\"\n    }\n  ]\n}",
+                          "createdAt": "2026-07-28T02:35:29.000Z",
+                          "updatedAt": "2026-07-28T02:35:29.000Z",
+                          "uid": "35240-28499543-e935-44f3-bb67-4798c72a174b"
+                        },
+                        {
+                          "id": "865c4ffd-d2ae-454b-85a1-80666d977a21",
+                          "name": "The error response.",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: oauth2",
+                                "key": "Authorization",
+                                "value": "<token>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/v1/notifications/webhooks/:webhook_id",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "v1",
+                                "notifications",
+                                "webhooks",
+                                ":webhook_id"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "webhook_id"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Internal Server Error",
+                          "code": 500,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"name\": \"<string>\",\n  \"message\": \"<string>\",\n  \"debug_id\": \"<string>\",\n  \"information_link\": \"<string>\",\n  \"details\": [\n    {\n      \"issue\": \"<string>\",\n      \"field\": \"<string>\",\n      \"value\": \"<string>\",\n      \"location\": \"body\",\n      \"description\": \"<string>\"\n    },\n    {\n      \"issue\": \"<string>\",\n      \"field\": \"<string>\",\n      \"value\": \"<string>\",\n      \"location\": \"body\",\n      \"description\": \"<string>\"\n    }\n  ],\n  \"links\": [\n    {\n      \"href\": \"<string>\",\n      \"rel\": \"<string>\",\n      \"method\": \"PATCH\"\n    },\n    {\n      \"href\": \"<string>\",\n      \"rel\": \"<string>\",\n      \"method\": \"PUT\"\n    }\n  ]\n}",
+                          "createdAt": "2026-07-28T02:35:29.000Z",
+                          "updatedAt": "2026-07-28T02:35:29.000Z",
+                          "uid": "35240-865c4ffd-d2ae-454b-85a1-80666d977a21"
+                        }
+                      ],
+                      "createdAt": "2026-07-28T02:35:29.000Z",
+                      "updatedAt": "2026-07-28T02:35:29.000Z",
+                      "uid": "35240-57b519e9-27be-4ca6-bbb3-369da984237b"
+                    },
+                    {
+                      "name": "Paypal Update webhook",
+                      "id": "ec979934-8238-48f4-a7cf-823095129603",
+                      "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                      },
+                      "request": {
+                        "auth": {
+                          "type": "oauth2",
+                          "oauth2": [
+                            {
+                              "key": "scope",
+                              "value": "https://uri.paypal.com/services/subscriptions",
+                              "type": "string"
+                            },
+                            {
+                              "key": "accessTokenUrl",
+                              "value": "/v1/oauth2/token",
+                              "type": "string"
+                            },
+                            {
+                              "key": "grant_type",
+                              "value": "client_credentials",
+                              "type": "string"
+                            }
+                          ]
+                        },
+                        "method": "PATCH",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "[\n  {\n    \"op\": \"remove\",\n    \"path\": \"<string>\",\n    \"value\": {\n      \"title\": \"Patch Value\",\n      \"description\": \"The value to apply. The <code>remove</code> operation does not require a value.\"\n    },\n    \"from\": \"<string>\"\n  },\n  {\n    \"op\": \"replace\",\n    \"path\": \"<string>\",\n    \"value\": {\n      \"title\": \"Patch Value\",\n      \"description\": \"The value to apply. The <code>remove</code> operation does not require a value.\"\n    },\n    \"from\": \"<string>\"\n  }\n]",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/v1/notifications/webhooks/:webhook_id",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v1",
+                            "notifications",
+                            "webhooks",
+                            ":webhook_id"
+                          ],
+                          "variable": [
+                            {
+                              "id": "f935de9c-c174-44d7-afda-0de306023088",
+                              "key": "webhook_id",
+                              "value": "<string>",
+                              "description": "(Required) The ID of the webhook for which to list subscriptions."
+                            }
+                          ]
+                        },
+                        "description": "Updates a webhook to replace webhook fields with new values. Supports only the `replace` operation. Pass a `json_patch` object with `replace` operation and `path`, which is `/url` for a URL or `/event_types` for events. The `value` is either the URL or a list of events."
+                      },
+                      "response": [
+                        {
+                          "id": "da47a45b-e1c2-43df-8891-559b70a081a4",
+                          "name": "A successful request returns the HTTP `200 OK` status code and a JSON response body that shows webhook details.",
+                          "originalRequest": {
+                            "method": "PATCH",
+                            "header": [
+                              {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                              },
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: oauth2",
+                                "key": "Authorization",
+                                "value": "<token>"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "[\n  {\n    \"op\": \"remove\",\n    \"path\": \"<string>\",\n    \"value\": {\n      \"title\": \"Patch Value\",\n      \"description\": \"The value to apply. The <code>remove</code> operation does not require a value.\"\n    },\n    \"from\": \"<string>\"\n  },\n  {\n    \"op\": \"replace\",\n    \"path\": \"<string>\",\n    \"value\": {\n      \"title\": \"Patch Value\",\n      \"description\": \"The value to apply. The <code>remove</code> operation does not require a value.\"\n    },\n    \"from\": \"<string>\"\n  }\n]",
+                              "options": {
+                                "raw": {
+                                  "headerFamily": "json",
+                                  "language": "json"
+                                }
+                              }
+                            },
+                            "url": {
+                              "raw": "{{baseUrl}}/v1/notifications/webhooks/:webhook_id",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "v1",
+                                "notifications",
+                                "webhooks",
+                                ":webhook_id"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "webhook_id"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "OK",
+                          "code": 200,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"url\": \"<uri>\",\n  \"event_types\": [\n    {\n      \"name\": \"<string>\",\n      \"description\": \"<string>\",\n      \"status\": \"<string>\",\n      \"resource_versions\": [\n        \"<string>\",\n        \"<string>\"\n      ]\n    },\n    {\n      \"name\": \"<string>\",\n      \"description\": \"<string>\",\n      \"status\": \"<string>\",\n      \"resource_versions\": [\n        \"<string>\",\n        \"<string>\"\n      ]\n    }\n  ],\n  \"id\": \"<string>\",\n  \"links\": [\n    {\n      \"href\": \"<string>\",\n      \"rel\": \"<string>\",\n      \"method\": \"PATCH\"\n    },\n    {\n      \"href\": \"<string>\",\n      \"rel\": \"<string>\",\n      \"method\": \"GET\"\n    }\n  ]\n}",
+                          "createdAt": "2026-07-28T02:35:29.000Z",
+                          "updatedAt": "2026-07-28T02:35:29.000Z",
+                          "uid": "35240-da47a45b-e1c2-43df-8891-559b70a081a4"
+                        },
+                        {
+                          "id": "53cba807-1512-476b-bdc4-20e2c9b8fcb7",
+                          "name": "The error response.",
+                          "originalRequest": {
+                            "method": "PATCH",
+                            "header": [
+                              {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                              },
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: oauth2",
+                                "key": "Authorization",
+                                "value": "<token>"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "[\n  {\n    \"op\": \"remove\",\n    \"path\": \"<string>\",\n    \"value\": {\n      \"title\": \"Patch Value\",\n      \"description\": \"The value to apply. The <code>remove</code> operation does not require a value.\"\n    },\n    \"from\": \"<string>\"\n  },\n  {\n    \"op\": \"replace\",\n    \"path\": \"<string>\",\n    \"value\": {\n      \"title\": \"Patch Value\",\n      \"description\": \"The value to apply. The <code>remove</code> operation does not require a value.\"\n    },\n    \"from\": \"<string>\"\n  }\n]",
+                              "options": {
+                                "raw": {
+                                  "headerFamily": "json",
+                                  "language": "json"
+                                }
+                              }
+                            },
+                            "url": {
+                              "raw": "{{baseUrl}}/v1/notifications/webhooks/:webhook_id",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "v1",
+                                "notifications",
+                                "webhooks",
+                                ":webhook_id"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "webhook_id"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Internal Server Error",
+                          "code": 500,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"name\": \"<string>\",\n  \"message\": \"<string>\",\n  \"debug_id\": \"<string>\",\n  \"information_link\": \"<string>\",\n  \"details\": [\n    {\n      \"issue\": \"<string>\",\n      \"field\": \"<string>\",\n      \"value\": \"<string>\",\n      \"location\": \"body\",\n      \"description\": \"<string>\"\n    },\n    {\n      \"issue\": \"<string>\",\n      \"field\": \"<string>\",\n      \"value\": \"<string>\",\n      \"location\": \"body\",\n      \"description\": \"<string>\"\n    }\n  ],\n  \"links\": [\n    {\n      \"href\": \"<string>\",\n      \"rel\": \"<string>\",\n      \"method\": \"PATCH\"\n    },\n    {\n      \"href\": \"<string>\",\n      \"rel\": \"<string>\",\n      \"method\": \"PUT\"\n    }\n  ]\n}",
+                          "createdAt": "2026-07-28T02:35:29.000Z",
+                          "updatedAt": "2026-07-28T02:35:29.000Z",
+                          "uid": "35240-53cba807-1512-476b-bdc4-20e2c9b8fcb7"
+                        }
+                      ],
+                      "createdAt": "2026-07-28T02:35:29.000Z",
+                      "updatedAt": "2026-07-28T02:35:29.000Z",
+                      "uid": "35240-ec979934-8238-48f4-a7cf-823095129603"
+                    },
+                    {
+                      "name": "Paypal Delete webhook",
+                      "id": "e08e4f38-64e1-4022-a341-57d0518d8e46",
+                      "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                      },
+                      "request": {
+                        "auth": {
+                          "type": "oauth2",
+                          "oauth2": [
+                            {
+                              "key": "scope",
+                              "value": "https://uri.paypal.com/services/subscriptions",
+                              "type": "string"
+                            },
+                            {
+                              "key": "accessTokenUrl",
+                              "value": "/v1/oauth2/token",
+                              "type": "string"
+                            },
+                            {
+                              "key": "grant_type",
+                              "value": "client_credentials",
+                              "type": "string"
+                            }
+                          ]
+                        },
+                        "method": "DELETE",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/v1/notifications/webhooks/:webhook_id",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v1",
+                            "notifications",
+                            "webhooks",
+                            ":webhook_id"
+                          ],
+                          "variable": [
+                            {
+                              "id": "e8c4b109-14ef-48b2-9891-b13f9e0ffd28",
+                              "key": "webhook_id",
+                              "value": "<string>",
+                              "description": "(Required) The ID of the webhook for which to list subscriptions."
+                            }
+                          ]
+                        },
+                        "description": "Deletes a webhook, by ID."
+                      },
+                      "response": [
+                        {
+                          "id": "e7800d12-c07a-49f6-8727-f632ddf8b224",
+                          "name": "A successful request returns the HTTP `204 No Content` status code with no JSON response body.",
+                          "originalRequest": {
+                            "method": "DELETE",
+                            "header": [
+                              {
+                                "description": "Added as a part of security scheme: oauth2",
+                                "key": "Authorization",
+                                "value": "<token>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/v1/notifications/webhooks/:webhook_id",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "v1",
+                                "notifications",
+                                "webhooks",
+                                ":webhook_id"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "webhook_id"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "No Content",
+                          "code": 204,
+                          "_postman_previewlanguage": "text",
+                          "header": [],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": null,
+                          "createdAt": "2026-07-28T02:35:29.000Z",
+                          "updatedAt": "2026-07-28T02:35:29.000Z",
+                          "uid": "35240-e7800d12-c07a-49f6-8727-f632ddf8b224"
+                        },
+                        {
+                          "id": "33f8e04d-06a4-448d-99ea-22716ac477ad",
+                          "name": "The error response.",
+                          "originalRequest": {
+                            "method": "DELETE",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: oauth2",
+                                "key": "Authorization",
+                                "value": "<token>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/v1/notifications/webhooks/:webhook_id",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "v1",
+                                "notifications",
+                                "webhooks",
+                                ":webhook_id"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "webhook_id"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Internal Server Error",
+                          "code": 500,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"name\": \"<string>\",\n  \"message\": \"<string>\",\n  \"debug_id\": \"<string>\",\n  \"information_link\": \"<string>\",\n  \"details\": [\n    {\n      \"issue\": \"<string>\",\n      \"field\": \"<string>\",\n      \"value\": \"<string>\",\n      \"location\": \"body\",\n      \"description\": \"<string>\"\n    },\n    {\n      \"issue\": \"<string>\",\n      \"field\": \"<string>\",\n      \"value\": \"<string>\",\n      \"location\": \"body\",\n      \"description\": \"<string>\"\n    }\n  ],\n  \"links\": [\n    {\n      \"href\": \"<string>\",\n      \"rel\": \"<string>\",\n      \"method\": \"PATCH\"\n    },\n    {\n      \"href\": \"<string>\",\n      \"rel\": \"<string>\",\n      \"method\": \"PUT\"\n    }\n  ]\n}",
+                          "createdAt": "2026-07-28T02:35:29.000Z",
+                          "updatedAt": "2026-07-28T02:35:29.000Z",
+                          "uid": "35240-33f8e04d-06a4-448d-99ea-22716ac477ad"
+                        }
+                      ],
+                      "createdAt": "2026-07-28T02:35:29.000Z",
+                      "updatedAt": "2026-07-28T02:35:29.000Z",
+                      "uid": "35240-e08e4f38-64e1-4022-a341-57d0518d8e46"
+                    }
+                  ],
+                  "id": "49a059dd-521f-40d7-94eb-202b203d7af5",
+                  "createdAt": "2026-07-28T02:35:29.000Z",
+                  "updatedAt": "2026-07-28T02:35:29.000Z",
+                  "uid": "35240-49a059dd-521f-40d7-94eb-202b203d7af5"
+                },
+                {
+                  "name": "Paypal Create webhook",
+                  "id": "06442d00-1665-462b-875b-fe0b0525cfde",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "auth": {
+                      "type": "oauth2",
+                      "oauth2": [
+                        {
+                          "key": "scope",
+                          "value": "https://uri.paypal.com/services/subscriptions",
+                          "type": "string"
+                        },
+                        {
+                          "key": "accessTokenUrl",
+                          "value": "/v1/oauth2/token",
+                          "type": "string"
+                        },
+                        {
+                          "key": "grant_type",
+                          "value": "client_credentials",
+                          "type": "string"
+                        }
+                      ]
+                    },
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"url\": \"<uri>\",\n  \"event_types\": [\n    {\n      \"name\": \"<string>\",\n      \"description\": \"<string>\",\n      \"status\": \"<string>\",\n      \"resource_versions\": [\n        \"<string>\",\n        \"<string>\"\n      ]\n    },\n    {\n      \"name\": \"<string>\",\n      \"description\": \"<string>\",\n      \"status\": \"<string>\",\n      \"resource_versions\": [\n        \"<string>\",\n        \"<string>\"\n      ]\n    }\n  ],\n  \"id\": \"<string>\",\n  \"links\": [\n    {\n      \"href\": \"<string>\",\n      \"rel\": \"<string>\",\n      \"method\": \"PATCH\"\n    },\n    {\n      \"href\": \"<string>\",\n      \"rel\": \"<string>\",\n      \"method\": \"GET\"\n    }\n  ]\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/v1/notifications/webhooks",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "v1",
+                        "notifications",
+                        "webhooks"
+                      ]
+                    },
+                    "description": "Subscribes your webhook listener to events."
+                  },
+                  "response": [
+                    {
+                      "id": "858a38b0-7eca-45d6-8f91-845d4b55c103",
+                      "name": "A successful request returns the HTTP `201 Created` status code and a JSON response body with a [`webhook`](/docs/api/webhooks/v1/#definition-webhook) object that includes the webhook ID for later use.",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: oauth2",
+                            "key": "Authorization",
+                            "value": "<token>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"url\": \"<uri>\",\n  \"event_types\": [\n    {\n      \"name\": \"<string>\",\n      \"description\": \"<string>\",\n      \"status\": \"<string>\",\n      \"resource_versions\": [\n        \"<string>\",\n        \"<string>\"\n      ]\n    },\n    {\n      \"name\": \"<string>\",\n      \"description\": \"<string>\",\n      \"status\": \"<string>\",\n      \"resource_versions\": [\n        \"<string>\",\n        \"<string>\"\n      ]\n    }\n  ],\n  \"id\": \"<string>\",\n  \"links\": [\n    {\n      \"href\": \"<string>\",\n      \"rel\": \"<string>\",\n      \"method\": \"PATCH\"\n    },\n    {\n      \"href\": \"<string>\",\n      \"rel\": \"<string>\",\n      \"method\": \"GET\"\n    }\n  ]\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/v1/notifications/webhooks",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v1",
+                            "notifications",
+                            "webhooks"
+                          ]
+                        }
+                      },
+                      "status": "Created",
+                      "code": 201,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"url\": \"<uri>\",\n  \"event_types\": [\n    {\n      \"name\": \"<string>\",\n      \"description\": \"<string>\",\n      \"status\": \"<string>\",\n      \"resource_versions\": [\n        \"<string>\",\n        \"<string>\"\n      ]\n    },\n    {\n      \"name\": \"<string>\",\n      \"description\": \"<string>\",\n      \"status\": \"<string>\",\n      \"resource_versions\": [\n        \"<string>\",\n        \"<string>\"\n      ]\n    }\n  ],\n  \"id\": \"<string>\",\n  \"links\": [\n    {\n      \"href\": \"<string>\",\n      \"rel\": \"<string>\",\n      \"method\": \"PATCH\"\n    },\n    {\n      \"href\": \"<string>\",\n      \"rel\": \"<string>\",\n      \"method\": \"GET\"\n    }\n  ]\n}",
+                      "createdAt": "2026-07-28T02:35:29.000Z",
+                      "updatedAt": "2026-07-28T02:35:29.000Z",
+                      "uid": "35240-858a38b0-7eca-45d6-8f91-845d4b55c103"
+                    },
+                    {
+                      "id": "8a7caeaf-532f-4c39-8935-ec6fddf6a51e",
+                      "name": "The error response.",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: oauth2",
+                            "key": "Authorization",
+                            "value": "<token>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"url\": \"<uri>\",\n  \"event_types\": [\n    {\n      \"name\": \"<string>\",\n      \"description\": \"<string>\",\n      \"status\": \"<string>\",\n      \"resource_versions\": [\n        \"<string>\",\n        \"<string>\"\n      ]\n    },\n    {\n      \"name\": \"<string>\",\n      \"description\": \"<string>\",\n      \"status\": \"<string>\",\n      \"resource_versions\": [\n        \"<string>\",\n        \"<string>\"\n      ]\n    }\n  ],\n  \"id\": \"<string>\",\n  \"links\": [\n    {\n      \"href\": \"<string>\",\n      \"rel\": \"<string>\",\n      \"method\": \"PATCH\"\n    },\n    {\n      \"href\": \"<string>\",\n      \"rel\": \"<string>\",\n      \"method\": \"GET\"\n    }\n  ]\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/v1/notifications/webhooks",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v1",
+                            "notifications",
+                            "webhooks"
+                          ]
+                        }
+                      },
+                      "status": "Internal Server Error",
+                      "code": 500,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"name\": \"<string>\",\n  \"message\": \"<string>\",\n  \"debug_id\": \"<string>\",\n  \"information_link\": \"<string>\",\n  \"details\": [\n    {\n      \"issue\": \"<string>\",\n      \"field\": \"<string>\",\n      \"value\": \"<string>\",\n      \"location\": \"body\",\n      \"description\": \"<string>\"\n    },\n    {\n      \"issue\": \"<string>\",\n      \"field\": \"<string>\",\n      \"value\": \"<string>\",\n      \"location\": \"body\",\n      \"description\": \"<string>\"\n    }\n  ],\n  \"links\": [\n    {\n      \"href\": \"<string>\",\n      \"rel\": \"<string>\",\n      \"method\": \"PATCH\"\n    },\n    {\n      \"href\": \"<string>\",\n      \"rel\": \"<string>\",\n      \"method\": \"PUT\"\n    }\n  ]\n}",
+                      "createdAt": "2026-07-28T02:35:29.000Z",
+                      "updatedAt": "2026-07-28T02:35:29.000Z",
+                      "uid": "35240-8a7caeaf-532f-4c39-8935-ec6fddf6a51e"
+                    }
+                  ],
+                  "createdAt": "2026-07-28T02:35:29.000Z",
+                  "updatedAt": "2026-07-28T02:35:29.000Z",
+                  "uid": "35240-06442d00-1665-462b-875b-fe0b0525cfde"
+                },
+                {
+                  "name": "Paypal List webhooks",
+                  "id": "2d97a4ce-e087-489a-9fc0-e706ddd7de89",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "auth": {
+                      "type": "oauth2",
+                      "oauth2": [
+                        {
+                          "key": "scope",
+                          "value": "https://uri.paypal.com/services/subscriptions",
+                          "type": "string"
+                        },
+                        {
+                          "key": "accessTokenUrl",
+                          "value": "/v1/oauth2/token",
+                          "type": "string"
+                        },
+                        {
+                          "key": "grant_type",
+                          "value": "client_credentials",
+                          "type": "string"
+                        }
+                      ]
+                    },
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/v1/notifications/webhooks?anchor_type=APPLICATION",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "v1",
+                        "notifications",
+                        "webhooks"
+                      ],
+                      "query": [
+                        {
+                          "description": "Filters the webhooks in the response by an `anchor_id` entity type.",
+                          "key": "anchor_type",
+                          "value": "APPLICATION"
+                        }
+                      ]
+                    },
+                    "description": "Lists webhooks for an app."
+                  },
+                  "response": [
+                    {
+                      "id": "306566dd-3405-4ddd-8db4-f016b6174641",
+                      "name": "A successful request returns the HTTP `200 OK` status code and a JSON response body that lists webhooks with webhook details.",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: oauth2",
+                            "key": "Authorization",
+                            "value": "<token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/v1/notifications/webhooks?anchor_type=APPLICATION",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v1",
+                            "notifications",
+                            "webhooks"
+                          ],
+                          "query": [
+                            {
+                              "description": "Filters the webhooks in the response by an `anchor_id` entity type.",
+                              "key": "anchor_type",
+                              "value": "APPLICATION"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"webhooks\": [\n    {\n      \"url\": \"<uri>\",\n      \"event_types\": [\n        {\n          \"name\": \"<string>\",\n          \"description\": \"<string>\",\n          \"status\": \"<string>\",\n          \"resource_versions\": [\n            \"<string>\",\n            \"<string>\"\n          ]\n        },\n        {\n          \"name\": \"<string>\",\n          \"description\": \"<string>\",\n          \"status\": \"<string>\",\n          \"resource_versions\": [\n            \"<string>\",\n            \"<string>\"\n          ]\n        }\n      ],\n      \"id\": \"<string>\",\n      \"links\": [\n        {\n          \"href\": \"<string>\",\n          \"rel\": \"<string>\",\n          \"method\": \"HEAD\"\n        },\n        {\n          \"href\": \"<string>\",\n          \"rel\": \"<string>\",\n          \"method\": \"PUT\"\n        }\n      ]\n    },\n    {\n      \"url\": \"<uri>\",\n      \"event_types\": [\n        {\n          \"name\": \"<string>\",\n          \"description\": \"<string>\",\n          \"status\": \"<string>\",\n          \"resource_versions\": [\n            \"<string>\",\n            \"<string>\"\n          ]\n        },\n        {\n          \"name\": \"<string>\",\n          \"description\": \"<string>\",\n          \"status\": \"<string>\",\n          \"resource_versions\": [\n            \"<string>\",\n            \"<string>\"\n          ]\n        }\n      ],\n      \"id\": \"<string>\",\n      \"links\": [\n        {\n          \"href\": \"<string>\",\n          \"rel\": \"<string>\",\n          \"method\": \"PATCH\"\n        },\n        {\n          \"href\": \"<string>\",\n          \"rel\": \"<string>\",\n          \"method\": \"POST\"\n        }\n      ]\n    }\n  ]\n}",
+                      "createdAt": "2026-07-28T02:35:29.000Z",
+                      "updatedAt": "2026-07-28T02:35:29.000Z",
+                      "uid": "35240-306566dd-3405-4ddd-8db4-f016b6174641"
+                    },
+                    {
+                      "id": "55c38879-2028-4eb2-ae46-490a40f2b131",
+                      "name": "The error response.",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: oauth2",
+                            "key": "Authorization",
+                            "value": "<token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/v1/notifications/webhooks?anchor_type=APPLICATION",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v1",
+                            "notifications",
+                            "webhooks"
+                          ],
+                          "query": [
+                            {
+                              "description": "Filters the webhooks in the response by an `anchor_id` entity type.",
+                              "key": "anchor_type",
+                              "value": "APPLICATION"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Internal Server Error",
+                      "code": 500,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"name\": \"<string>\",\n  \"message\": \"<string>\",\n  \"debug_id\": \"<string>\",\n  \"information_link\": \"<string>\",\n  \"details\": [\n    {\n      \"issue\": \"<string>\",\n      \"field\": \"<string>\",\n      \"value\": \"<string>\",\n      \"location\": \"body\",\n      \"description\": \"<string>\"\n    },\n    {\n      \"issue\": \"<string>\",\n      \"field\": \"<string>\",\n      \"value\": \"<string>\",\n      \"location\": \"body\",\n      \"description\": \"<string>\"\n    }\n  ],\n  \"links\": [\n    {\n      \"href\": \"<string>\",\n      \"rel\": \"<string>\",\n      \"method\": \"PATCH\"\n    },\n    {\n      \"href\": \"<string>\",\n      \"rel\": \"<string>\",\n      \"method\": \"PUT\"\n    }\n  ]\n}",
+                      "createdAt": "2026-07-28T02:35:29.000Z",
+                      "updatedAt": "2026-07-28T02:35:29.000Z",
+                      "uid": "35240-55c38879-2028-4eb2-ae46-490a40f2b131"
+                    }
+                  ],
+                  "createdAt": "2026-07-28T02:35:29.000Z",
+                  "updatedAt": "2026-07-28T02:35:29.000Z",
+                  "uid": "35240-2d97a4ce-e087-489a-9fc0-e706ddd7de89"
+                }
+              ],
+              "id": "e0623bbd-3327-49d1-90e2-2c76d92b80cb",
+              "createdAt": "2026-07-28T02:35:29.000Z",
+              "updatedAt": "2026-07-28T02:35:29.000Z",
+              "uid": "35240-e0623bbd-3327-49d1-90e2-2c76d92b80cb"
+            }
+          ],
+          "id": "4ecc9818-3cc1-45d9-9a28-77c444e46f60",
+          "createdAt": "2026-07-28T02:35:29.000Z",
+          "updatedAt": "2026-07-28T02:35:29.000Z",
+          "uid": "35240-4ecc9818-3cc1-45d9-9a28-77c444e46f60"
+        }
+      ],
+      "id": "a3adfc24-85d1-4d6e-af98-0fa53cd8a086",
+      "createdAt": "2026-07-28T02:35:29.000Z",
+      "updatedAt": "2026-07-28T02:35:29.000Z",
+      "uid": "35240-a3adfc24-85d1-4d6e-af98-0fa53cd8a086"
+    }
+  ],
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://api-m.sandbox.paypal.com"
+    }
+  ]
+}

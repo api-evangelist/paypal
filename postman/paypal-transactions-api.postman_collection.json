@@ -1,0 +1,956 @@
+{
+  "info": {
+    "_postman_id": "7c10d269-1948-42ce-9559-d98088c1315f",
+    "name": "Paypal Subscriptions Authorizations Transactions API",
+    "description": "You can use billing plans and subscriptions to create subscriptions that process recurring PayPal payments for physical or digital goods, or services. A plan includes pricing and billing cycle information that defines the amount and frequency of charge for a subscription. You can also define a fixed plan, such as a $5 basic plan or a volume- or graduated-based plan with pricing tiers based on the quantity purchased. For more information, see <a href=\"/docs/subscriptions/\">Subscriptions Overview</a>.",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-07-28T02:35:22.000Z",
+    "updatedAt": "2026-07-28T02:35:22.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-7c10d269-1948-42ce-9559-d98088c1315f"
+  },
+  "item": [
+    {
+      "name": "v1",
+      "item": [
+        {
+          "name": "billing",
+          "item": [
+            {
+              "name": "subscriptions",
+              "item": [
+                {
+                  "name": "{id}",
+                  "item": [
+                    {
+                      "name": "transactions",
+                      "item": [
+                        {
+                          "name": "List transactions for subscription",
+                          "id": "6f4bb402-86e3-4ec8-9501-517e2dbbf395",
+                          "protocolProfileBehavior": {
+                            "disableBodyPruning": true
+                          },
+                          "request": {
+                            "auth": {
+                              "type": "oauth2",
+                              "oauth2": [
+                                {
+                                  "key": "scope",
+                                  "value": "https://uri.paypal.com/services/subscriptions",
+                                  "type": "string"
+                                },
+                                {
+                                  "key": "accessTokenUrl",
+                                  "value": "/v1/oauth2/token",
+                                  "type": "string"
+                                },
+                                {
+                                  "key": "grant_type",
+                                  "value": "client_credentials",
+                                  "type": "string"
+                                }
+                              ]
+                            },
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/v1/billing/subscriptions/:id/transactions?start_time=8955-11-31T22:57:60Z&end_time=8955-11-31T22:57:60Z",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "v1",
+                                "billing",
+                                "subscriptions",
+                                ":id",
+                                "transactions"
+                              ],
+                              "query": [
+                                {
+                                  "description": "(Required) The start time of the range of transactions to list.",
+                                  "key": "start_time",
+                                  "value": "8955-11-31T22:57:60Z"
+                                },
+                                {
+                                  "description": "(Required) The end time of the range of transactions to list.",
+                                  "key": "end_time",
+                                  "value": "8955-11-31T22:57:60Z"
+                                }
+                              ],
+                              "variable": [
+                                {
+                                  "id": "a4348ac7-afda-4e3a-96e5-12f57a788df5",
+                                  "key": "id",
+                                  "value": "<string>",
+                                  "description": "(Required) The ID of the subscription."
+                                }
+                              ]
+                            },
+                            "description": "Lists transactions for a subscription."
+                          },
+                          "response": [
+                            {
+                              "id": "03c57b71-d222-4ec4-8f66-c5fa77f3dd4e",
+                              "name": "A successful request returns the HTTP `200 OK` status code and a JSON response body that shows subscription details.",
+                              "originalRequest": {
+                                "method": "GET",
+                                "header": [
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: oauth2",
+                                    "key": "Authorization",
+                                    "value": "<token>"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/v1/billing/subscriptions/:id/transactions?start_time=8955-11-31T22:57:60Z&end_time=8955-11-31T22:57:60Z",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "v1",
+                                    "billing",
+                                    "subscriptions",
+                                    ":id",
+                                    "transactions"
+                                  ],
+                                  "query": [
+                                    {
+                                      "description": "(Required) The start time of the range of transactions to list.",
+                                      "key": "start_time",
+                                      "value": "8955-11-31T22:57:60Z"
+                                    },
+                                    {
+                                      "description": "(Required) The end time of the range of transactions to list.",
+                                      "key": "end_time",
+                                      "value": "8955-11-31T22:57:60Z"
+                                    }
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "id"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "OK",
+                              "code": 200,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "{\n  \"transactions\": [\n    {\n      \"id\": \"<string>\",\n      \"amount_with_breakdown\": {\n        \"gross_amount\": {\n          \"currency_code\": \"<string>\",\n          \"value\": \"-644.7029\"\n        },\n        \"total_item_amount\": {\n          \"currency_code\": \"<string>\",\n          \"value\": \"-00487635474.3462354\"\n        },\n        \"fee_amount\": {\n          \"currency_code\": \"<string>\",\n          \"value\": \"912.586199\"\n        },\n        \"shipping_amount\": {\n          \"currency_code\": \"<string>\",\n          \"value\": \"-6158077\"\n        },\n        \"tax_amount\": {\n          \"currency_code\": \"<string>\",\n          \"value\": \"25\"\n        },\n        \"net_amount\": {\n          \"currency_code\": \"<string>\",\n          \"value\": \"24860\"\n        }\n      },\n      \"time\": \"1814-12-09t08:58:60-79:32\",\n      \"status\": \"REFUNDED\",\n      \"status_details\": {\n        \"reason\": \"RECEIVING_PREFERENCE_MANDATES_MANUAL_ACTION\"\n      },\n      \"payer_name\": {\n        \"prefix\": \"<string>\",\n        \"given_name\": \"<string>\",\n        \"surname\": \"<string>\",\n        \"middle_name\": \"<string>\",\n        \"suffix\": \"<string>\",\n        \"alternate_full_name\": \"<string>\",\n        \"full_name\": \"<string>\"\n      },\n      \"payer_email\": \"=@f%6?webjH0\"\n    },\n    {\n      \"id\": \"<string>\",\n      \"amount_with_breakdown\": {\n        \"gross_amount\": {\n          \"currency_code\": \"<string>\",\n          \"value\": \"-23524580484\"\n        },\n        \"total_item_amount\": {\n          \"currency_code\": \"<string>\",\n          \"value\": \".6169251475\"\n        },\n        \"fee_amount\": {\n          \"currency_code\": \"<string>\",\n          \"value\": \"3\"\n        },\n        \"shipping_amount\": {\n          \"currency_code\": \"<string>\",\n          \"value\": \"99\"\n        },\n        \"tax_amount\": {\n          \"currency_code\": \"<string>\",\n          \"value\": \"-7786725912.7075051\"\n        },\n        \"net_amount\": {\n          \"currency_code\": \"<string>\",\n          \"value\": \"6718534.6899595939\"\n        }\n      },\n      \"time\": \"6981-03-30T20:16:56+12:20\",\n      \"status\": \"PENDING\",\n      \"status_details\": {\n        \"reason\": \"OTHER\"\n      },\n      \"payer_name\": {\n        \"prefix\": \"<string>\",\n        \"given_name\": \"<string>\",\n        \"surname\": \"<string>\",\n        \"middle_name\": \"<string>\",\n        \"suffix\": \"<string>\",\n        \"alternate_full_name\": \"<string>\",\n        \"full_name\": \"<string>\"\n      },\n      \"payer_email\": \"=&k6@>>}WSC\"\n    },\n    {\n      \"id\": \"<string>\",\n      \"amount_with_breakdown\": {\n        \"gross_amount\": {\n          \"currency_code\": \"<string>\",\n          \"value\": \"-54\"\n        },\n        \"total_item_amount\": {\n          \"currency_code\": \"<string>\",\n          \"value\": \"16366146656\"\n        },\n        \"fee_amount\": {\n          \"currency_code\": \"<string>\",\n          \"value\": \"4942.472966491\"\n        },\n        \"shipping_amount\": {\n          \"currency_code\": \"<string>\",\n          \"value\": \"48.80975431\"\n        },\n        \"tax_amount\": {\n          \"currency_code\": \"<string>\",\n          \"value\": \"-.56\"\n        },\n        \"net_amount\": {\n          \"currency_code\": \"<string>\",\n          \"value\": \"03.6309186889\"\n        }\n      },\n      \"time\": \"5706-12-30T06:03:60.61254750+36:63\",\n      \"status\": \"COMPLETED\",\n      \"status_details\": {\n        \"reason\": \"RECEIVING_PREFERENCE_MANDATES_MANUAL_ACTION\"\n      },\n      \"payer_name\": {\n        \"prefix\": \"<string>\",\n        \"given_name\": \"<string>\",\n        \"surname\": \"<string>\",\n        \"middle_name\": \"<string>\",\n        \"suffix\": \"<string>\",\n        \"alternate_full_name\": \"<string>\",\n        \"full_name\": \"<string>\"\n      },\n      \"payer_email\": \"#9R@]X@HR)\"\n    },\n    {\n      \"id\": \"<string>\",\n      \"amount_with_breakdown\": {\n        \"gross_amount\": {\n          \"currency_code\": \"<string>\",\n          \"value\": \"-6759715\"\n        },\n        \"total_item_amount\": {\n          \"currency_code\": \"<string>\",\n          \"value\": \".81\"\n        },\n        \"fee_amount\": {\n          \"currency_code\": \"<string>\",\n          \"value\": \"00507973893\"\n        },\n        \"shipping_amount\": {\n          \"currency_code\": \"<string>\",\n          \"value\": \"60\"\n        },\n        \"tax_amount\": {\n          \"currency_code\": \"<string>\",\n          \"value\": \"-.27745380\"\n        },\n        \"net_amount\": {\n          \"currency_code\": \"<string>\",\n          \"value\": \"-84392980.6411736\"\n        }\n      },\n      \"time\": \"5888-12-07t20:04:60.8295738091z\",\n      \"status\": \"PENDING\",\n      \"status_details\": {\n        \"reason\": \"CHARGEBACK\"\n      },\n      \"payer_name\": {\n        \"prefix\": \"<string>\",\n        \"given_name\": \"<string>\",\n        \"surname\": \"<string>\",\n        \"middle_name\": \"<string>\",\n        \"suffix\": \"<string>\",\n        \"alternate_full_name\": \"<string>\",\n        \"full_name\": \"<string>\"\n      },\n      \"payer_email\": \"L&<_Fq&`s@^dEF(/XRTI\"\n    },\n    {\n      \"id\": \"<string>\",\n      \"amount_with_breakdown\": {\n        \"gross_amount\": {\n          \"currency_code\": \"<string>\",\n          \"value\": \"-08223.78720\"\n        },\n        \"total_item_amount\": {\n          \"currency_code\": \"<string>\",\n          \"value\": \"-.11197481022\"\n        },\n        \"fee_amount\": {\n          \"currency_code\": \"<string>\",\n          \"value\": \".0057383546\"\n        },\n        \"shipping_amount\": {\n          \"currency_code\": \"<string>\",\n          \"value\": \".87819118982\"\n        },\n        \"tax_amount\": {\n          \"currency_code\": \"<string>\",\n          \"value\": \"-997\"\n        },\n        \"net_amount\": {\n          \"currency_code\": \"<string>\",\n          \"value\": \"500723413\"\n        }\n      },\n      \"time\": \"5346-11-22t19:33:60.403Z\",\n      \"status\": \"COMPLETED\",\n      \"status_details\": {\n        \"reason\": \"INTERNATIONAL_WITHDRAWAL\"\n      },\n      \"payer_name\": {\n        \"prefix\": \"<string>\",\n        \"given_name\": \"<string>\",\n        \"surname\": \"<string>\",\n        \"middle_name\": \"<string>\",\n        \"suffix\": \"<string>\",\n        \"alternate_full_name\": \"<string>\",\n        \"full_name\": \"<string>\"\n      },\n      \"payer_email\": \";@kD*sDm'\"\n    },\n    {\n      \"id\": \"<string>\",\n      \"amount_with_breakdown\": {\n        \"gross_amount\": {\n          \"currency_code\": \"<string>\",\n          \"value\": \"-154\"\n        },\n        \"total_item_amount\": {\n          \"currency_code\": \"<string>\",\n          \"value\": \"-.773293622\"\n        },\n        \"fee_amount\": {\n          \"currency_code\": \"<string>\",\n          \"value\": \".796686088\"\n        },\n        \"shipping_amount\": {\n          \"currency_code\": \"<string>\",\n          \"value\": \"-29342913223\"\n        },\n        \"tax_amount\": {\n          \"currency_code\": \"<string>\",\n          \"value\": \"-573611394.037\"\n        },\n        \"net_amount\": {\n          \"currency_code\": \"<string>\",\n          \"value\": \".5\"\n        }\n      },\n      \"time\": \"7033-11-20,23:11:49-42:68\",\n      \"status\": \"REFUNDED\",\n      \"status_details\": {\n        \"reason\": \"CHARGEBACK\"\n      },\n      \"payer_name\": {\n        \"prefix\": \"<string>\",\n        \"given_name\": \"<string>\",\n        \"surname\": \"<string>\",\n        \"middle_name\": \"<string>\",\n        \"suffix\": \"<string>\",\n        \"alternate_full_name\": \"<string>\",\n        \"full_name\": \"<string>\"\n      },\n      \"payer_email\": \"nA@1ocgAOd\"\n    },\n    {\n      \"id\": \"<string>\",\n      \"amount_with_breakdown\": {\n        \"gross_amount\": {\n          \"currency_code\": \"<string>\",\n          \"value\": \"-363404\"\n        },\n        \"total_item_amount\": {\n          \"currency_code\": \"<string>\",\n          \"value\": \"-97042\"\n        },\n        \"fee_amount\": {\n          \"currency_code\": \"<string>\",\n          \"value\": \"3720004\"\n        },\n        \"shipping_amount\": {\n          \"currency_code\": \"<string>\",\n          \"value\": \"2765\"\n        },\n        \"tax_amount\": {\n          \"currency_code\": \"<string>\",\n          \"value\": \"-.80671260024\"\n        },\n        \"net_amount\": {\n          \"currency_code\": \"<string>\",\n          \"value\": \"-9660050807.11029782\"\n        }\n      },\n      \"time\": \"2057-04-31T02:45:26.5050244+67:83\",\n      \"status\": \"PENDING\",\n      \"status_details\": {\n        \"reason\": \"OTHER\"\n      },\n      \"payer_name\": {\n        \"prefix\": \"<string>\",\n        \"given_name\": \"<string>\",\n        \"surname\": \"<string>\",\n        \"middle_name\": \"<string>\",\n        \"suffix\": \"<string>\",\n        \"alternate_full_name\": \"<string>\",\n        \"full_name\": \"<string>\"\n      },\n      \"payer_email\": \"54~l0@7,Y[*@I c0GI<N87@*\"\n    },\n    {\n      \"id\": \"<string>\",\n      \"amount_with_breakdown\": {\n        \"gross_amount\": {\n          \"currency_code\": \"<string>\",\n          \"value\": \"421.0911888626\"\n        },\n        \"total_item_amount\": {\n          \"currency_code\": \"<string>\",\n          \"value\": \"-20315700\"\n        },\n        \"fee_amount\": {\n          \"currency_code\": \"<string>\",\n          \"value\": \"-465295\"\n        },\n        \"shipping_amount\": {\n          \"currency_code\": \"<string>\",\n          \"value\": \"-23.27544978847\"\n        },\n        \"tax_amount\": {\n          \"currency_code\": \"<string>\",\n          \"value\": \"941559\"\n        },\n        \"net_amount\": {\n          \"currency_code\": \"<string>\",\n          \"value\": \"-02790258.8514\"\n        }\n      },\n      \"time\": \"6512-07-23,08:19:14.41404z\",\n      \"status\": \"REFUNDED\",\n      \"status_details\": {\n        \"reason\": \"OTHER\"\n      },\n      \"payer_name\": {\n        \"prefix\": \"<string>\",\n        \"given_name\": \"<string>\",\n        \"surname\": \"<string>\",\n        \"middle_name\": \"<string>\",\n        \"suffix\": \"<string>\",\n        \"alternate_full_name\": \"<string>\",\n        \"full_name\": \"<string>\"\n      },\n      \"payer_email\": \">D:)}<YPq@xiJ$vCgRH7\"\n    },\n    {\n      \"id\": \"<string>\",\n      \"amount_with_breakdown\": {\n        \"gross_amount\": {\n          \"currency_code\": \"<string>\",\n          \"value\": \"-4460\"\n        },\n        \"total_item_amount\": {\n          \"currency_code\": \"<string>\",\n          \"value\": \"0\"\n        },\n        \"fee_amount\": {\n          \"currency_code\": \"<string>\",\n          \"value\": \"-0\"\n        },\n        \"shipping_amount\": {\n          \"currency_code\": \"<string>\",\n          \"value\": \"-.76980\"\n        },\n        \"tax_amount\": {\n          \"currency_code\": \"<string>\",\n          \"value\": \"-19881\"\n        },\n        \"net_amount\": {\n          \"currency_code\": \"<string>\",\n          \"value\": \".2\"\n        }\n      },\n      \"time\": \"7696-08-30T21:59:35+43:62\",\n      \"status\": \"PARTIALLY_REFUNDED\",\n      \"status_details\": {\n        \"reason\": \"TRANSACTION_APPROVED_AWAITING_FUNDING\"\n      },\n      \"payer_name\": {\n        \"prefix\": \"<string>\",\n        \"given_name\": \"<string>\",\n        \"surname\": \"<string>\",\n        \"middle_name\": \"<string>\",\n        \"suffix\": \"<string>\",\n        \"alternate_full_name\": \"<string>\",\n        \"full_name\": \"<string>\"\n      },\n      \"payer_email\": \"8>@^t7@jz_St{V\"\n    },\n    {\n      \"id\": \"<string>\",\n      \"amount_with_breakdown\": {\n        \"gross_amount\": {\n          \"currency_code\": \"<string>\",\n          \"value\": \"-411\"\n        },\n        \"total_item_amount\": {\n          \"currency_code\": \"<string>\",\n          \"value\": \"-291440\"\n        },\n        \"fee_amount\": {\n          \"currency_code\": \"<string>\",\n          \"value\": \".30854019\"\n        },\n        \"shipping_amount\": {\n          \"currency_code\": \"<string>\",\n          \"value\": \"-.8\"\n        },\n        \"tax_amount\": {\n          \"currency_code\": \"<string>\",\n          \"value\": \"2076849499.86595152\"\n        },\n        \"net_amount\": {\n          \"currency_code\": \"<string>\",\n          \"value\": \"-4\"\n        }\n      },\n      \"time\": \"5067-12-09T21:42:13.433436896Z\",\n      \"status\": \"COMPLETED\",\n      \"status_details\": {\n        \"reason\": \"INTERNATIONAL_WITHDRAWAL\"\n      },\n      \"payer_name\": {\n        \"prefix\": \"<string>\",\n        \"given_name\": \"<string>\",\n        \"surname\": \"<string>\",\n        \"middle_name\": \"<string>\",\n        \"suffix\": \"<string>\",\n        \"alternate_full_name\": \"<string>\",\n        \"full_name\": \"<string>\"\n      },\n      \"payer_email\": \"@e^-M@z_=O}\"\n    },\n    {\n      \"id\": \"<string>\",\n      \"amount_with_breakdown\": {\n        \"gross_amount\": {\n          \"currency_code\": \"<string>\",\n          \"value\": \"723010\"\n        },\n        \"total_item_amount\": {\n          \"currency_code\": \"<string>\",\n          \"value\": \"-38311103860\"\n        },\n        \"fee_amount\": {\n          \"currency_code\": \"<string>\",\n          \"value\": \"634423928\"\n        },\n        \"shipping_amount\": {\n          \"currency_code\": \"<string>\",\n          \"value\": \"8490690240\"\n        },\n        \"tax_amount\": {\n          \"currency_code\": \"<string>\",\n          \"value\": \"-1\"\n        },\n        \"net_amount\": {\n          \"currency_code\": \"<string>\",\n          \"value\": \"-.500\"\n        }\n      },\n      \"time\": \"2885-10-31,20:47:07z\",\n      \"status\": \"DECLINED\",\n      \"status_details\": {\n        \"reason\": \"ECHECK\"\n      },\n      \"payer_name\": {\n        \"prefix\": \"<string>\",\n        \"given_name\": \"<string>\",\n        \"surname\": \"<string>\",\n        \"middle_name\": \"<string>\",\n        \"suffix\": \"<string>\",\n        \"alternate_full_name\": \"<string>\",\n        \"full_name\": \"<string>\"\n      },\n      \"payer_email\": \":u2sd@ZN}7aF}b`;\"\n    },\n    {\n      \"id\": \"<string>\",\n      \"amount_with_breakdown\": {\n        \"gross_amount\": {\n          \"currency_code\": \"<string>\",\n          \"value\": \"-327548\"\n        },\n        \"total_item_amount\": {\n          \"currency_code\": \"<string>\",\n          \"value\": \".959598752\"\n        },\n        \"fee_amount\": {\n          \"currency_code\": \"<string>\",\n          \"value\": \"-.02\"\n        },\n        \"shipping_amount\": {\n          \"currency_code\": \"<string>\",\n          \"value\": \"-01432.8998015105\"\n        },\n        \"tax_amount\": {\n          \"currency_code\": \"<string>\",\n          \"value\": \"-15241882.532834668\"\n        },\n        \"net_amount\": {\n          \"currency_code\": \"<string>\",\n          \"value\": \".6041389872\"\n        }\n      },\n      \"time\": \"1809-12-10,23:10:60z\",\n      \"status\": \"PENDING\",\n      \"status_details\": {\n        \"reason\": \"UNILATERAL\"\n      },\n      \"payer_name\": {\n        \"prefix\": \"<string>\",\n        \"given_name\": \"<string>\",\n        \"surname\": \"<string>\",\n        \"middle_name\": \"<string>\",\n        \"suffix\": \"<string>\",\n        \"alternate_full_name\": \"<string>\",\n        \"full_name\": \"<string>\"\n      },\n      \"payer_email\": \"9,m%;@q9_O6vj[^Wi\"\n    },\n    {\n      \"id\": \"<string>\",\n      \"amount_with_breakdown\": {\n        \"gross_amount\": {\n          \"currency_code\": \"<string>\",\n          \"value\": \"42267299840\"\n        },\n        \"total_item_amount\": {\n          \"currency_code\": \"<string>\",\n          \"value\": \"910661\"\n        },\n        \"fee_amount\": {\n          \"currency_code\": \"<string>\",\n          \"value\": \".4\"\n        },\n        \"shipping_amount\": {\n          \"currency_code\": \"<string>\",\n          \"value\": \"-216082895.3424240295\"\n        },\n        \"tax_amount\": {\n          \"currency_code\": \"<string>\",\n          \"value\": \"-790394121\"\n        },\n        \"net_amount\": {\n          \"currency_code\": \"<string>\",\n          \"value\": \"-472478689\"\n        }\n      },\n      \"time\": \"2574-08-02,20:33:60.736365576Z\",\n      \"status\": \"PENDING\",\n      \"status_details\": {\n        \"reason\": \"VERIFICATION_REQUIRED\"\n      },\n      \"payer_name\": {\n        \"prefix\": \"<string>\",\n        \"given_name\": \"<string>\",\n        \"surname\": \"<string>\",\n        \"middle_name\": \"<string>\",\n        \"suffix\": \"<string>\",\n        \"alternate_full_name\": \"<string>\",\n        \"full_name\": \"<string>\"\n      },\n      \"payer_email\": \"Z@Jy0M2\"\n    },\n    {\n      \"id\": \"<string>\",\n      \"amount_with_breakdown\": {\n        \"gross_amount\": {\n          \"currency_code\": \"<string>\",\n          \"value\": \"-02559655\"\n        },\n        \"total_item_amount\": {\n          \"currency_code\": \"<string>\",\n          \"value\": \"-.4606506065\"\n        },\n        \"fee_amount\": {\n          \"currency_code\": \"<string>\",\n          \"value\": \"-.649730\"\n        },\n        \"shipping_amount\": {\n          \"currency_code\": \"<string>\",\n          \"value\": \"-86401905126\"\n        },\n        \"tax_amount\": {\n          \"currency_code\": \"<string>\",\n          \"value\": \"7.67\"\n        },\n        \"net_amount\": {\n          \"currency_code\": \"<string>\",\n          \"value\": \"-04858203.789842\"\n        }\n      },\n      \"time\": \"5602-11-30T06:53:60+44:04\",\n      \"status\": \"REFUNDED\",\n      \"status_details\": {\n        \"reason\": \"PENDING_REVIEW\"\n      },\n      \"payer_name\": {\n        \"prefix\": \"<string>\",\n        \"given_name\": \"<string>\",\n        \"surname\": \"<string>\",\n        \"middle_name\": \"<string>\",\n        \"suffix\": \"<string>\",\n        \"alternate_full_name\": \"<string>\",\n        \"full_name\": \"<string>\"\n      },\n      \"payer_email\": \"HrfByX@,iAx-CJKmz\"\n    },\n    {\n      \"id\": \"<string>\",\n      \"amount_with_breakdown\": {\n        \"gross_amount\": {\n          \"currency_code\": \"<string>\",\n          \"value\": \"-559139\"\n        },\n        \"total_item_amount\": {\n          \"currency_code\": \"<string>\",\n          \"value\": \"443750\"\n        },\n        \"fee_amount\": {\n          \"currency_code\": \"<string>\",\n          \"value\": \"7831243\"\n        },\n        \"shipping_amount\": {\n          \"currency_code\": \"<string>\",\n          \"value\": \"-.69\"\n        },\n        \"tax_amount\": {\n          \"currency_code\": \"<string>\",\n          \"value\": \"-4152\"\n        },\n        \"net_amount\": {\n          \"currency_code\": \"<string>\",\n          \"value\": \"826733273\"\n        }\n      },\n      \"time\": \"1610-11-08,03:29:31Z\",\n      \"status\": \"COMPLETED\",\n      \"status_details\": {\n        \"reason\": \"INTERNATIONAL_WITHDRAWAL\"\n      },\n      \"payer_name\": {\n        \"prefix\": \"<string>\",\n        \"given_name\": \"<string>\",\n        \"surname\": \"<string>\",\n        \"middle_name\": \"<string>\",\n        \"suffix\": \"<string>\",\n        \"alternate_full_name\": \"<string>\",\n        \"full_name\": \"<string>\"\n      },\n      \"payer_email\": \"x*4]U@/%(:E\"\n    },\n    {\n      \"id\": \"<string>\",\n      \"amount_with_breakdown\": {\n        \"gross_amount\": {\n          \"currency_code\": \"<string>\",\n          \"value\": \".18754999401\"\n        },\n        \"total_item_amount\": {\n          \"currency_code\": \"<string>\",\n          \"value\": \"-741067565.62808\"\n        },\n        \"fee_amount\": {\n          \"currency_code\": \"<string>\",\n          \"value\": \"5155035.610295794\"\n        },\n        \"shipping_amount\": {\n          \"currency_code\": \"<string>\",\n          \"value\": \"9018234.28642207946\"\n        },\n        \"tax_amount\": {\n          \"currency_code\": \"<string>\",\n          \"value\": \"5657.08290634734\"\n        },\n        \"net_amount\": {\n          \"currency_code\": \"<string>\",\n          \"value\": \".0\"\n        }\n      },\n      \"time\": \"0823-01-30,15:05:52.492370+64:50\",\n      \"status\": \"REFUNDED\",\n      \"status_details\": {\n        \"reason\": \"VERIFICATION_REQUIRED\"\n      },\n      \"payer_name\": {\n        \"prefix\": \"<string>\",\n        \"given_name\": \"<string>\",\n        \"surname\": \"<string>\",\n        \"middle_name\": \"<string>\",\n        \"suffix\": \"<string>\",\n        \"alternate_full_name\": \"<string>\",\n        \"full_name\": \"<string>\"\n      },\n      \"payer_email\": \"QgDfyFoY;@hMHUI\"\n    },\n    {\n      \"id\": \"<string>\",\n      \"amount_with_breakdown\": {\n        \"gross_amount\": {\n          \"currency_code\": \"<string>\",\n          \"value\": \"-.64105\"\n        },\n        \"total_item_amount\": {\n          \"currency_code\": \"<string>\",\n          \"value\": \"6864594.19315\"\n        },\n        \"fee_amount\": {\n          \"currency_code\": \"<string>\",\n          \"value\": \"-.91817\"\n        },\n        \"shipping_amount\": {\n          \"currency_code\": \"<string>\",\n          \"value\": \"18\"\n        },\n        \"tax_amount\": {\n          \"currency_code\": \"<string>\",\n          \"value\": \"123853063.44\"\n        },\n        \"net_amount\": {\n          \"currency_code\": \"<string>\",\n          \"value\": \"-.435611\"\n        }\n      },\n      \"time\": \"6790-10-08T15:35:60-25:10\",\n      \"status\": \"PARTIALLY_REFUNDED\",\n      \"status_details\": {\n        \"reason\": \"BUYER_COMPLAINT\"\n      },\n      \"payer_name\": {\n        \"prefix\": \"<string>\",\n        \"given_name\": \"<string>\",\n        \"surname\": \"<string>\",\n        \"middle_name\": \"<string>\",\n        \"suffix\": \"<string>\",\n        \"alternate_full_name\": \"<string>\",\n        \"full_name\": \"<string>\"\n      },\n      \"payer_email\": \"7qRKS6o<@Q[f!+!^tW\"\n    },\n    {\n      \"id\": \"<string>\",\n      \"amount_with_breakdown\": {\n        \"gross_amount\": {\n          \"currency_code\": \"<string>\",\n          \"value\": \".769313881\"\n        },\n        \"total_item_amount\": {\n          \"currency_code\": \"<string>\",\n          \"value\": \".6024\"\n        },\n        \"fee_amount\": {\n          \"currency_code\": \"<string>\",\n          \"value\": \"-98840242\"\n        },\n        \"shipping_amount\": {\n          \"currency_code\": \"<string>\",\n          \"value\": \"-0671468\"\n        },\n        \"tax_amount\": {\n          \"currency_code\": \"<string>\",\n          \"value\": \"-.1635894\"\n        },\n        \"net_amount\": {\n          \"currency_code\": \"<string>\",\n          \"value\": \"5593209096.9803651266\"\n        }\n      },\n      \"time\": \"6084-04-31T00:40:60Z\",\n      \"status\": \"PARTIALLY_REFUNDED\",\n      \"status_details\": {\n        \"reason\": \"ECHECK\"\n      },\n      \"payer_name\": {\n        \"prefix\": \"<string>\",\n        \"given_name\": \"<string>\",\n        \"surname\": \"<string>\",\n        \"middle_name\": \"<string>\",\n        \"suffix\": \"<string>\",\n        \"alternate_full_name\": \"<string>\",\n        \"full_name\": \"<string>\"\n      },\n      \"payer_email\": \"t _FDR@{}9l>Ty1m\"\n    },\n    {\n      \"id\": \"<string>\",\n      \"amount_with_breakdown\": {\n        \"gross_amount\": {\n          \"currency_code\": \"<string>\",\n          \"value\": \"-0222411\"\n        },\n        \"total_item_amount\": {\n          \"currency_code\": \"<string>\",\n          \"value\": \"-352\"\n        },\n        \"fee_amount\": {\n          \"currency_code\": \"<string>\",\n          \"value\": \".46089\"\n        },\n        \"shipping_amount\": {\n          \"currency_code\": \"<string>\",\n          \"value\": \".009829840\"\n        },\n        \"tax_amount\": {\n          \"currency_code\": \"<string>\",\n          \"value\": \"-4\"\n        },\n        \"net_amount\": {\n          \"currency_code\": \"<string>\",\n          \"value\": \"77065756021\"\n        }\n      },\n      \"time\": \"2747-12-09t14:16:54Z\",\n      \"status\": \"REFUNDED\",\n      \"status_details\": {\n        \"reason\": \"INTERNATIONAL_WITHDRAWAL\"\n      },\n      \"payer_name\": {\n        \"prefix\": \"<string>\",\n        \"given_name\": \"<string>\",\n        \"surname\": \"<string>\",\n        \"middle_name\": \"<string>\",\n        \"suffix\": \"<string>\",\n        \"alternate_full_name\": \"<string>\",\n        \"full_name\": \"<string>\"\n      },\n      \"payer_email\": \"{jB@#7IK)\"\n    },\n    {\n      \"id\": \"<string>\",\n      \"amount_with_breakdown\": {\n        \"gross_amount\": {\n          \"currency_code\": \"<string>\",\n          \"value\": \"8897712291\"\n        },\n        \"total_item_amount\": {\n          \"currency_code\": \"<string>\",\n          \"value\": \"45407.136\"\n        },\n        \"fee_amount\": {\n          \"currency_code\": \"<string>\",\n          \"value\": \"062951.13565\"\n        },\n        \"shipping_amount\": {\n          \"currency_code\": \"<string>\",\n          \"value\": \"-.01\"\n        },\n        \"tax_amount\": {\n          \"currency_code\": \"<string>\",\n          \"value\": \"-.9\"\n        },\n        \"net_amount\": {\n          \"currency_code\": \"<string>\",\n          \"value\": \"-33531724898.766265253\"\n        }\n      },\n      \"time\": \"1438-05-03t10:04:14z\",\n      \"status\": \"DECLINED\",\n      \"status_details\": {\n        \"reason\": \"RECEIVING_PREFERENCE_MANDATES_MANUAL_ACTION\"\n      },\n      \"payer_name\": {\n        \"prefix\": \"<string>\",\n        \"given_name\": \"<string>\",\n        \"surname\": \"<string>\",\n        \"middle_name\": \"<string>\",\n        \"suffix\": \"<string>\",\n        \"alternate_full_name\": \"<string>\",\n        \"full_name\": \"<string>\"\n      },\n      \"payer_email\": \"~fEM\\\\@]O%M-Lsro;Kh\"\n    }\n  ],\n  \"total_items\": \"<integer>\",\n  \"total_pages\": \"<integer>\",\n  \"links\": [\n    {\n      \"href\": \"<string>\",\n      \"rel\": \"<string>\",\n      \"method\": \"CONNECT\"\n    }\n  ]\n}",
+                              "createdAt": "2026-07-28T02:35:23.000Z",
+                              "updatedAt": "2026-07-28T02:35:23.000Z",
+                              "uid": "35240-03c57b71-d222-4ec4-8f66-c5fa77f3dd4e"
+                            },
+                            {
+                              "id": "712f03a1-e039-442b-a65b-0b5c5c927af2",
+                              "name": "Bad Request. Request is not well-formed, syntactically incorrect, or violates schema.",
+                              "originalRequest": {
+                                "method": "GET",
+                                "header": [
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: oauth2",
+                                    "key": "Authorization",
+                                    "value": "<token>"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/v1/billing/subscriptions/:id/transactions?start_time=8955-11-31T22:57:60Z&end_time=8955-11-31T22:57:60Z",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "v1",
+                                    "billing",
+                                    "subscriptions",
+                                    ":id",
+                                    "transactions"
+                                  ],
+                                  "query": [
+                                    {
+                                      "description": "(Required) The start time of the range of transactions to list.",
+                                      "key": "start_time",
+                                      "value": "8955-11-31T22:57:60Z"
+                                    },
+                                    {
+                                      "description": "(Required) The end time of the range of transactions to list.",
+                                      "key": "end_time",
+                                      "value": "8955-11-31T22:57:60Z"
+                                    }
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "id"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "Bad Request",
+                              "code": 400,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "{\n  \"name\": \"INVALID_REQUEST\",\n  \"message\": \"Request is not well-formed, syntactically incorrect, or violates schema.\",\n  \"details\": [\n    {\n      \"issue\": \"<string>\",\n      \"field\": \"<string>\",\n      \"value\": \"<string>\",\n      \"location\": \"body\",\n      \"description\": \"<string>\"\n    },\n    {\n      \"issue\": \"<string>\",\n      \"field\": \"<string>\",\n      \"value\": \"<string>\",\n      \"location\": \"body\",\n      \"description\": \"<string>\"\n    }\n  ],\n  \"debug_id\": \"<string>\",\n  \"links\": [\n    {\n      \"href\": \"\",\n      \"rel\": \"-FD;K|s&G \",\n      \"method\": \"PUT\"\n    },\n    {\n      \"href\": \"NvaZ\",\n      \"rel\": \"Z\",\n      \"method\": \"GET\"\n    },\n    {\n      \"href\": \"n[mkgf\\\\S\",\n      \"rel\": \"fSxC\",\n      \"method\": \"PATCH\"\n    },\n    {\n      \"href\": \"$50L 4qi?\",\n      \"rel\": \"}~QXgAVq:q\",\n      \"method\": \"DELETE\"\n    },\n    {\n      \"href\": \"Z<v8:p rL\",\n      \"rel\": \"mC<\",\n      \"method\": \"POST\"\n    },\n    {\n      \"href\": \")`]o&b\",\n      \"rel\": \"\\\"/nm1\",\n      \"method\": \"POST\"\n    },\n    {\n      \"href\": \";-^.l\\\\;\",\n      \"rel\": \"i>]e%&R0\",\n      \"method\": \"DELETE\"\n    },\n    {\n      \"href\": \"#DXTM&'\",\n      \"rel\": \":P*pohs\",\n      \"method\": \"POST\"\n    },\n    {\n      \"href\": \"kG#WdWL\",\n      \"rel\": \"d1IA>\",\n      \"method\": \"POST\"\n    },\n    {\n      \"href\": \"m>\",\n      \"rel\": \"4)v3v|]t_/\",\n      \"method\": \"DELETE\"\n    },\n    {\n      \"href\": \"=!7Bv~*Y[\",\n      \"rel\": \"Xt\",\n      \"method\": \"PATCH\"\n    },\n    {\n      \"href\": \"zb!\",\n      \"rel\": \"\\\\2E#IyZGK\",\n      \"method\": \"GET\"\n    },\n    {\n      \"href\": \"j\",\n      \"rel\": \"d[JD*eu\",\n      \"method\": \"POST\"\n    },\n    {\n      \"href\": \"\",\n      \"rel\": \"G{V\\\"`\",\n      \"method\": \"DELETE\"\n    },\n    {\n      \"href\": \"NeBr3\",\n      \"rel\": \"d/F$Y}y\",\n      \"method\": \"GET\"\n    },\n    {\n      \"href\": \"98m.@\",\n      \"rel\": \"B|n\",\n      \"method\": \"PUT\"\n    },\n    {\n      \"href\": \"PU\",\n      \"rel\": \"]gEu=6L\",\n      \"method\": \"PUT\"\n    },\n    {\n      \"href\": \"^<tl6?o!u/\",\n      \"rel\": \"\",\n      \"method\": \"DELETE\"\n    },\n    {\n      \"href\": \"S\",\n      \"rel\": \"\",\n      \"method\": \"GET\"\n    },\n    {\n      \"href\": \";J$6\",\n      \"rel\": \"s/?HmctF\",\n      \"method\": \"POST\"\n    }\n  ]\n}",
+                              "createdAt": "2026-07-28T02:35:23.000Z",
+                              "updatedAt": "2026-07-28T02:35:23.000Z",
+                              "uid": "35240-712f03a1-e039-442b-a65b-0b5c5c927af2"
+                            },
+                            {
+                              "id": "b3a8198c-da0d-4d83-8474-f922dff9cbf6",
+                              "name": "Authentication failed due to missing authorization header, or invalid authentication credentials.",
+                              "originalRequest": {
+                                "method": "GET",
+                                "header": [
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: oauth2",
+                                    "key": "Authorization",
+                                    "value": "<token>"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/v1/billing/subscriptions/:id/transactions?start_time=8955-11-31T22:57:60Z&end_time=8955-11-31T22:57:60Z",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "v1",
+                                    "billing",
+                                    "subscriptions",
+                                    ":id",
+                                    "transactions"
+                                  ],
+                                  "query": [
+                                    {
+                                      "description": "(Required) The start time of the range of transactions to list.",
+                                      "key": "start_time",
+                                      "value": "8955-11-31T22:57:60Z"
+                                    },
+                                    {
+                                      "description": "(Required) The end time of the range of transactions to list.",
+                                      "key": "end_time",
+                                      "value": "8955-11-31T22:57:60Z"
+                                    }
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "id"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "Unauthorized",
+                              "code": 401,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "{\n  \"name\": \"AUTHENTICATION_FAILURE\",\n  \"message\": \"Authentication failed due to missing authorization header, or invalid authentication credentials.\",\n  \"details\": [\n    {\n      \"issue\": \"<string>\",\n      \"field\": \"<string>\",\n      \"value\": \"<string>\",\n      \"location\": \"body\",\n      \"description\": \"<string>\"\n    },\n    {\n      \"issue\": \"<string>\",\n      \"field\": \"<string>\",\n      \"value\": \"<string>\",\n      \"location\": \"body\",\n      \"description\": \"<string>\"\n    }\n  ],\n  \"debug_id\": \"<string>\",\n  \"links\": [\n    {\n      \"href\": \"&mI-3q\\\\^y\",\n      \"rel\": \"64!R7gL\",\n      \"method\": \"PUT\"\n    },\n    {\n      \"href\": \"U\",\n      \"rel\": \"&x5$4JQC\",\n      \"method\": \"POST\"\n    },\n    {\n      \"href\": \"[*NM\",\n      \"rel\": \"L3yykdtDW\",\n      \"method\": \"POST\"\n    },\n    {\n      \"href\": \"b+;L^B/\",\n      \"rel\": \"KFY7Vb&\",\n      \"method\": \"POST\"\n    },\n    {\n      \"href\": \"*<\",\n      \"rel\": \"p3\",\n      \"method\": \"GET\"\n    },\n    {\n      \"href\": \"}Eib 0\",\n      \"rel\": \"mN,\",\n      \"method\": \"GET\"\n    },\n    {\n      \"href\": \"l,HP\",\n      \"rel\": \"5 0;Up2f\",\n      \"method\": \"PATCH\"\n    },\n    {\n      \"href\": \"@]op`Et+\",\n      \"rel\": \",b<Ut96-@T\",\n      \"method\": \"GET\"\n    },\n    {\n      \"href\": \"i:hDu0\",\n      \"rel\": \"e Y5d?;\",\n      \"method\": \"PATCH\"\n    },\n    {\n      \"href\": \"\",\n      \"rel\": \"d^\\\\X)\",\n      \"method\": \"DELETE\"\n    },\n    {\n      \"href\": \" vi6}GH6TX\",\n      \"rel\": \"SxNe\",\n      \"method\": \"POST\"\n    },\n    {\n      \"href\": \"Q8.e4L4a\",\n      \"rel\": \"i8auB'o\",\n      \"method\": \"DELETE\"\n    },\n    {\n      \"href\": \"\",\n      \"rel\": \".\",\n      \"method\": \"GET\"\n    },\n    {\n      \"href\": \",*\",\n      \"rel\": \"%^_i,hQJ7\",\n      \"method\": \"PUT\"\n    },\n    {\n      \"href\": \"dwR\\\\\",\n      \"rel\": \"\\\\s %>0\",\n      \"method\": \"DELETE\"\n    },\n    {\n      \"href\": \"k7sfW-TN\",\n      \"rel\": \"xt\",\n      \"method\": \"POST\"\n    },\n    {\n      \"href\": \"#Y}\",\n      \"rel\": \"HO\\\";h3|hh(\",\n      \"method\": \"PUT\"\n    },\n    {\n      \"href\": \"YITex\",\n      \"rel\": \"gF>MSc#,O\",\n      \"method\": \"GET\"\n    },\n    {\n      \"href\": \"\",\n      \"rel\": \"'>1>\",\n      \"method\": \"GET\"\n    },\n    {\n      \"href\": \">VoQG\",\n      \"rel\": \"_>w%\",\n      \"method\": \"DELETE\"\n    }\n  ]\n}",
+                              "createdAt": "2026-07-28T02:35:23.000Z",
+                              "updatedAt": "2026-07-28T02:35:23.000Z",
+                              "uid": "35240-b3a8198c-da0d-4d83-8474-f922dff9cbf6"
+                            },
+                            {
+                              "id": "36e78c96-6859-4273-81f3-616b34267c5c",
+                              "name": "Authorization failed due to insufficient permissions.",
+                              "originalRequest": {
+                                "method": "GET",
+                                "header": [
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: oauth2",
+                                    "key": "Authorization",
+                                    "value": "<token>"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/v1/billing/subscriptions/:id/transactions?start_time=8955-11-31T22:57:60Z&end_time=8955-11-31T22:57:60Z",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "v1",
+                                    "billing",
+                                    "subscriptions",
+                                    ":id",
+                                    "transactions"
+                                  ],
+                                  "query": [
+                                    {
+                                      "description": "(Required) The start time of the range of transactions to list.",
+                                      "key": "start_time",
+                                      "value": "8955-11-31T22:57:60Z"
+                                    },
+                                    {
+                                      "description": "(Required) The end time of the range of transactions to list.",
+                                      "key": "end_time",
+                                      "value": "8955-11-31T22:57:60Z"
+                                    }
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "id"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "Forbidden",
+                              "code": 403,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "{\n  \"name\": \"NOT_AUTHORIZED\",\n  \"message\": \"Authorization failed due to insufficient permissions.\",\n  \"details\": [\n    {\n      \"issue\": \"<string>\",\n      \"field\": \"<string>\",\n      \"value\": \"<string>\",\n      \"location\": \"body\",\n      \"description\": \"<string>\"\n    },\n    {\n      \"issue\": \"<string>\",\n      \"field\": \"<string>\",\n      \"value\": \"<string>\",\n      \"location\": \"body\",\n      \"description\": \"<string>\"\n    }\n  ],\n  \"debug_id\": \"<string>\",\n  \"links\": [\n    {\n      \"href\": \"\",\n      \"rel\": \"> )4\\\"Azj\",\n      \"method\": \"PATCH\"\n    },\n    {\n      \"href\": \"XDd.2\",\n      \"rel\": \"0X3#9^L\",\n      \"method\": \"POST\"\n    },\n    {\n      \"href\": \"6=BM\",\n      \"rel\": \"|#\",\n      \"method\": \"GET\"\n    },\n    {\n      \"href\": \"`H]s]:#\",\n      \"rel\": \"<Di;;S49 _\",\n      \"method\": \"POST\"\n    },\n    {\n      \"href\": \"Y VZ_gJ-b\",\n      \"rel\": \"5Yg3fH\",\n      \"method\": \"GET\"\n    },\n    {\n      \"href\": \"JZ\",\n      \"rel\": \"8#\",\n      \"method\": \"POST\"\n    },\n    {\n      \"href\": \"pI{~=+\",\n      \"rel\": \"wyW~;6z\",\n      \"method\": \"GET\"\n    },\n    {\n      \"href\": \"C.qm\",\n      \"rel\": \"X&oB\",\n      \"method\": \"DELETE\"\n    },\n    {\n      \"href\": \"[r<B=fbr\",\n      \"rel\": \"diH\",\n      \"method\": \"POST\"\n    },\n    {\n      \"href\": \"(16>.vA!6p\",\n      \"rel\": \">#8WX+\",\n      \"method\": \"POST\"\n    },\n    {\n      \"href\": \"~xID{9)m9_\",\n      \"rel\": \"7<d\",\n      \"method\": \"DELETE\"\n    },\n    {\n      \"href\": \"<'1}_d,\",\n      \"rel\": \"9Dq\\\\5=!\",\n      \"method\": \"DELETE\"\n    },\n    {\n      \"href\": \"IQ5E\",\n      \"rel\": \"9b.\",\n      \"method\": \"PATCH\"\n    },\n    {\n      \"href\": \"-!\",\n      \"rel\": \"xAev.\",\n      \"method\": \"DELETE\"\n    },\n    {\n      \"href\": \"tn!Gh\",\n      \"rel\": \"T\",\n      \"method\": \"GET\"\n    },\n    {\n      \"href\": \"$\\\\l\",\n      \"rel\": \"B\",\n      \"method\": \"DELETE\"\n    },\n    {\n      \"href\": \"*\\\"\",\n      \"rel\": \"0UX\",\n      \"method\": \"PATCH\"\n    },\n    {\n      \"href\": \"b+'iZ\",\n      \"rel\": \"9^O\",\n      \"method\": \"DELETE\"\n    },\n    {\n      \"href\": \"NWz_!t\",\n      \"rel\": \"3-1'\\\"iaL\",\n      \"method\": \"PATCH\"\n    },\n    {\n      \"href\": \"$P\",\n      \"rel\": \"?!\",\n      \"method\": \"POST\"\n    }\n  ]\n}",
+                              "createdAt": "2026-07-28T02:35:23.000Z",
+                              "updatedAt": "2026-07-28T02:35:23.000Z",
+                              "uid": "35240-36e78c96-6859-4273-81f3-616b34267c5c"
+                            },
+                            {
+                              "id": "72c58964-7f47-4e43-a225-76c30fdae910",
+                              "name": "The specified resource does not exist.",
+                              "originalRequest": {
+                                "method": "GET",
+                                "header": [
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: oauth2",
+                                    "key": "Authorization",
+                                    "value": "<token>"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/v1/billing/subscriptions/:id/transactions?start_time=8955-11-31T22:57:60Z&end_time=8955-11-31T22:57:60Z",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "v1",
+                                    "billing",
+                                    "subscriptions",
+                                    ":id",
+                                    "transactions"
+                                  ],
+                                  "query": [
+                                    {
+                                      "description": "(Required) The start time of the range of transactions to list.",
+                                      "key": "start_time",
+                                      "value": "8955-11-31T22:57:60Z"
+                                    },
+                                    {
+                                      "description": "(Required) The end time of the range of transactions to list.",
+                                      "key": "end_time",
+                                      "value": "8955-11-31T22:57:60Z"
+                                    }
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "id"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "Not Found",
+                              "code": 404,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "{\n  \"name\": \"RESOURCE_NOT_FOUND\",\n  \"message\": \"The specified resource does not exist.\",\n  \"details\": [\n    {\n      \"issue\": \"<string>\",\n      \"field\": \"<string>\",\n      \"value\": \"<string>\",\n      \"location\": \"body\",\n      \"description\": \"<string>\"\n    },\n    {\n      \"issue\": \"<string>\",\n      \"field\": \"<string>\",\n      \"value\": \"<string>\",\n      \"location\": \"body\",\n      \"description\": \"<string>\"\n    }\n  ],\n  \"debug_id\": \"<string>\",\n  \"links\": [\n    {\n      \"href\": \"F:>lah\",\n      \"rel\": \"\",\n      \"method\": \"PUT\"\n    },\n    {\n      \"href\": \"'S`!!\",\n      \"rel\": \"E&%0\\\"Ua61d\",\n      \"method\": \"PATCH\"\n    },\n    {\n      \"href\": \"O+X7_r\",\n      \"rel\": \"d\",\n      \"method\": \"DELETE\"\n    },\n    {\n      \"href\": \"\",\n      \"rel\": \";~f7y\",\n      \"method\": \"DELETE\"\n    },\n    {\n      \"href\": \"]T'@\\\\\",\n      \"rel\": \"8P_x: ;\",\n      \"method\": \"PUT\"\n    },\n    {\n      \"href\": \";x|KP,T[K\",\n      \"rel\": \"LdIj;iT\",\n      \"method\": \"POST\"\n    },\n    {\n      \"href\": \"\",\n      \"rel\": \"&}\",\n      \"method\": \"DELETE\"\n    },\n    {\n      \"href\": \"]M\",\n      \"rel\": \"e_%'11nc,&\",\n      \"method\": \"GET\"\n    },\n    {\n      \"href\": \"\",\n      \"rel\": \"rHWh>\",\n      \"method\": \"POST\"\n    },\n    {\n      \"href\": \"YC~bx@&\",\n      \"rel\": \"u%m?S_A'jF\",\n      \"method\": \"DELETE\"\n    },\n    {\n      \"href\": \"aF#]`/VP(\",\n      \"rel\": \"E!;%\",\n      \"method\": \"PUT\"\n    },\n    {\n      \"href\": \"#\",\n      \"rel\": \"\",\n      \"method\": \"POST\"\n    },\n    {\n      \"href\": \"JhCM9*`*\",\n      \"rel\": \"q@SZ*d\",\n      \"method\": \"DELETE\"\n    },\n    {\n      \"href\": \"o='!\",\n      \"rel\": \"\",\n      \"method\": \"PUT\"\n    },\n    {\n      \"href\": \"B'H*2\\\\9n*\",\n      \"rel\": \": *9qzZ\",\n      \"method\": \"POST\"\n    },\n    {\n      \"href\": \".9uVBN$\",\n      \"rel\": \"f.U.{,\",\n      \"method\": \"GET\"\n    },\n    {\n      \"href\": \"z}SUc[^Y8\",\n      \"rel\": \"(O/\",\n      \"method\": \"DELETE\"\n    },\n    {\n      \"href\": \"HiAPH1\",\n      \"rel\": \"|Do']^\",\n      \"method\": \"POST\"\n    },\n    {\n      \"href\": \"ByUX@hp+li\",\n      \"rel\": \"8F6u\",\n      \"method\": \"PUT\"\n    },\n    {\n      \"href\": \"+[a\\\"4^V'\",\n      \"rel\": \"h\\\"#\",\n      \"method\": \"PATCH\"\n    }\n  ]\n}",
+                              "createdAt": "2026-07-28T02:35:23.000Z",
+                              "updatedAt": "2026-07-28T02:35:23.000Z",
+                              "uid": "35240-72c58964-7f47-4e43-a225-76c30fdae910"
+                            },
+                            {
+                              "id": "3c59b0a4-90f5-463d-a853-1f068eb266a8",
+                              "name": "An internal server error has occurred.",
+                              "originalRequest": {
+                                "method": "GET",
+                                "header": [
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: oauth2",
+                                    "key": "Authorization",
+                                    "value": "<token>"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/v1/billing/subscriptions/:id/transactions?start_time=8955-11-31T22:57:60Z&end_time=8955-11-31T22:57:60Z",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "v1",
+                                    "billing",
+                                    "subscriptions",
+                                    ":id",
+                                    "transactions"
+                                  ],
+                                  "query": [
+                                    {
+                                      "description": "(Required) The start time of the range of transactions to list.",
+                                      "key": "start_time",
+                                      "value": "8955-11-31T22:57:60Z"
+                                    },
+                                    {
+                                      "description": "(Required) The end time of the range of transactions to list.",
+                                      "key": "end_time",
+                                      "value": "8955-11-31T22:57:60Z"
+                                    }
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "id"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "Internal Server Error",
+                              "code": 500,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "{\n  \"name\": \"INTERNAL_SERVER_ERROR\",\n  \"message\": \"An internal server error occurred.\",\n  \"debug_id\": \"<string>\",\n  \"links\": [\n    {\n      \"href\": \"dVQgsZT\",\n      \"rel\": \"|z\\\"%Ml]J=\",\n      \"method\": \"PUT\"\n    },\n    {\n      \"href\": \"}oR) }\",\n      \"rel\": \"Y#^~?/E~/e\",\n      \"method\": \"GET\"\n    },\n    {\n      \"href\": \";}>jYtHRqH\",\n      \"rel\": \"\",\n      \"method\": \"PATCH\"\n    },\n    {\n      \"href\": \"uJxZ'wmh2\",\n      \"rel\": \"RyN1R7Sj]\",\n      \"method\": \"POST\"\n    },\n    {\n      \"href\": \"qF|e\",\n      \"rel\": \":\",\n      \"method\": \"PUT\"\n    },\n    {\n      \"href\": \"e\",\n      \"rel\": \"LN>\",\n      \"method\": \"GET\"\n    },\n    {\n      \"href\": \"6lSQ*hh\",\n      \"rel\": \")5fwq;L;;w\",\n      \"method\": \"PUT\"\n    },\n    {\n      \"href\": \"T%u'\",\n      \"rel\": \";2d@bN\",\n      \"method\": \"PATCH\"\n    },\n    {\n      \"href\": \";\",\n      \"rel\": \"\",\n      \"method\": \"PATCH\"\n    },\n    {\n      \"href\": \"qxZ{P1Yr\",\n      \"rel\": \"^%R\",\n      \"method\": \"DELETE\"\n    },\n    {\n      \"href\": \"\",\n      \"rel\": \"^j&#P\",\n      \"method\": \"GET\"\n    },\n    {\n      \"href\": \"iCuj8V|\",\n      \"rel\": \"iR\",\n      \"method\": \"POST\"\n    },\n    {\n      \"href\": \"V9Zj\",\n      \"rel\": \"\",\n      \"method\": \"POST\"\n    },\n    {\n      \"href\": \"e%1d>\",\n      \"rel\": \"NY}\\\"Tw\",\n      \"method\": \"PUT\"\n    },\n    {\n      \"href\": \"TG3ocl\",\n      \"rel\": \"&X$]9Ka7x&\",\n      \"method\": \"GET\"\n    },\n    {\n      \"href\": \"!i\",\n      \"rel\": \"ZmK&.k36t\",\n      \"method\": \"GET\"\n    },\n    {\n      \"href\": \"-<DyUDjcs\",\n      \"rel\": \"m/Dk\",\n      \"method\": \"GET\"\n    },\n    {\n      \"href\": \"?1c\",\n      \"rel\": \"j\\\"qvt6*E,]\",\n      \"method\": \"PATCH\"\n    },\n    {\n      \"href\": \"S\",\n      \"rel\": \"R>tzMN\",\n      \"method\": \"GET\"\n    },\n    {\n      \"href\": \"N<!Z9$\",\n      \"rel\": \"::t5*Ze\",\n      \"method\": \"DELETE\"\n    }\n  ]\n}",
+                              "createdAt": "2026-07-28T02:35:23.000Z",
+                              "updatedAt": "2026-07-28T02:35:23.000Z",
+                              "uid": "35240-3c59b0a4-90f5-463d-a853-1f068eb266a8"
+                            },
+                            {
+                              "id": "39c79561-993d-4adc-9675-75221ab1fd8c",
+                              "name": "The default response.",
+                              "originalRequest": {
+                                "method": "GET",
+                                "header": [
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: oauth2",
+                                    "key": "Authorization",
+                                    "value": "<token>"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/v1/billing/subscriptions/:id/transactions?start_time=8955-11-31T22:57:60Z&end_time=8955-11-31T22:57:60Z",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "v1",
+                                    "billing",
+                                    "subscriptions",
+                                    ":id",
+                                    "transactions"
+                                  ],
+                                  "query": [
+                                    {
+                                      "description": "(Required) The start time of the range of transactions to list.",
+                                      "key": "start_time",
+                                      "value": "8955-11-31T22:57:60Z"
+                                    },
+                                    {
+                                      "description": "(Required) The end time of the range of transactions to list.",
+                                      "key": "end_time",
+                                      "value": "8955-11-31T22:57:60Z"
+                                    }
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "id"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "Internal Server Error",
+                              "code": 500,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "{\n  \"name\": \"INVALID_REQUEST\",\n  \"message\": \"Request is not well-formed, syntactically incorrect, or violates schema.\",\n  \"details\": [\n    {\n      \"issue\": \"<string>\",\n      \"field\": \"<string>\",\n      \"value\": \"<string>\",\n      \"location\": \"body\",\n      \"description\": \"<string>\"\n    },\n    {\n      \"issue\": \"<string>\",\n      \"field\": \"<string>\",\n      \"value\": \"<string>\",\n      \"location\": \"body\",\n      \"description\": \"<string>\"\n    }\n  ],\n  \"debug_id\": \"<string>\",\n  \"links\": [\n    {\n      \"href\": \"72y#`|A5TO\",\n      \"rel\": \".~Q{(+9b\",\n      \"method\": \"PUT\"\n    },\n    {\n      \"href\": \")0J]\",\n      \"rel\": \"#{FKi\",\n      \"method\": \"PATCH\"\n    },\n    {\n      \"href\": \"FLBdB{8~ \",\n      \"rel\": \"b@:m\",\n      \"method\": \"DELETE\"\n    },\n    {\n      \"href\": \"zg,\",\n      \"rel\": \"_oc\\\"[#dp8\",\n      \"method\": \"GET\"\n    },\n    {\n      \"href\": \"_MM\",\n      \"rel\": \"9h;ko;S}^\",\n      \"method\": \"POST\"\n    },\n    {\n      \"href\": \":@h~.!Yz9I\",\n      \"rel\": \"5Z\\\\P?>2\",\n      \"method\": \"GET\"\n    },\n    {\n      \"href\": \"@\",\n      \"rel\": \"D\",\n      \"method\": \"PATCH\"\n    },\n    {\n      \"href\": \"~Lj\\\"1<[$]\",\n      \"rel\": \"r\",\n      \"method\": \"DELETE\"\n    },\n    {\n      \"href\": \"uV`Q@,\",\n      \"rel\": \"po\\\\\",\n      \"method\": \"POST\"\n    },\n    {\n      \"href\": \"\\\\yTV\",\n      \"rel\": \" sV\",\n      \"method\": \"POST\"\n    },\n    {\n      \"href\": \"\",\n      \"rel\": \"-WqD9;@\",\n      \"method\": \"DELETE\"\n    },\n    {\n      \"href\": \"3^\",\n      \"rel\": \"|)|{M\",\n      \"method\": \"POST\"\n    },\n    {\n      \"href\": \"%j v;\\\"\",\n      \"rel\": \"F*Vozjd+M@\",\n      \"method\": \"GET\"\n    },\n    {\n      \"href\": \"'rO_z?d(H\",\n      \"rel\": \"e*:\",\n      \"method\": \"DELETE\"\n    },\n    {\n      \"href\": \"/GjIO\",\n      \"rel\": \"\\\\J*~{E4Pr\",\n      \"method\": \"PATCH\"\n    },\n    {\n      \"href\": \"LgBkgRv6_\",\n      \"rel\": \"i6hL$hH\",\n      \"method\": \"DELETE\"\n    },\n    {\n      \"href\": \"C>(f\",\n      \"rel\": \"3ho2Z8\",\n      \"method\": \"PUT\"\n    },\n    {\n      \"href\": \"cylgrg\",\n      \"rel\": \"*WMyRZGsv2\",\n      \"method\": \"PATCH\"\n    },\n    {\n      \"href\": \"C;g|%\",\n      \"rel\": \"w\",\n      \"method\": \"DELETE\"\n    },\n    {\n      \"href\": \"i\\\\n@lxd'X\",\n      \"rel\": \"+}n\",\n      \"method\": \"PUT\"\n    }\n  ]\n}",
+                              "createdAt": "2026-07-28T02:35:23.000Z",
+                              "updatedAt": "2026-07-28T02:35:23.000Z",
+                              "uid": "35240-39c79561-993d-4adc-9675-75221ab1fd8c"
+                            }
+                          ],
+                          "createdAt": "2026-07-28T02:35:23.000Z",
+                          "updatedAt": "2026-07-28T02:35:23.000Z",
+                          "uid": "35240-6f4bb402-86e3-4ec8-9501-517e2dbbf395"
+                        }
+                      ],
+                      "id": "e6550037-caf4-4d6d-9300-fec3012b4e8e",
+                      "createdAt": "2026-07-28T02:35:23.000Z",
+                      "updatedAt": "2026-07-28T02:35:23.000Z",
+                      "uid": "35240-e6550037-caf4-4d6d-9300-fec3012b4e8e"
+                    }
+                  ],
+                  "id": "1a44b090-b047-4593-8643-a7e16863360e",
+                  "createdAt": "2026-07-28T02:35:23.000Z",
+                  "updatedAt": "2026-07-28T02:35:23.000Z",
+                  "uid": "35240-1a44b090-b047-4593-8643-a7e16863360e"
+                }
+              ],
+              "id": "8a73c9f7-b104-47b3-8883-4380cbafe216",
+              "createdAt": "2026-07-28T02:35:23.000Z",
+              "updatedAt": "2026-07-28T02:35:23.000Z",
+              "uid": "35240-8a73c9f7-b104-47b3-8883-4380cbafe216"
+            }
+          ],
+          "id": "1501e773-2553-4bc9-9c91-cda0c30b4563",
+          "createdAt": "2026-07-28T02:35:23.000Z",
+          "updatedAt": "2026-07-28T02:35:23.000Z",
+          "uid": "35240-1501e773-2553-4bc9-9c91-cda0c30b4563"
+        },
+        {
+          "name": "reporting",
+          "item": [
+            {
+              "name": "transactions",
+              "item": [
+                {
+                  "name": "Paypal List transactions",
+                  "id": "9e7ff242-39ec-4d6f-a2ff-7e95ff51ec14",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "auth": {
+                      "type": "oauth2",
+                      "oauth2": [
+                        {
+                          "key": "scope",
+                          "value": "https://uri.paypal.com/services/subscriptions",
+                          "type": "string"
+                        },
+                        {
+                          "key": "accessTokenUrl",
+                          "value": "/v1/oauth2/token",
+                          "type": "string"
+                        },
+                        {
+                          "key": "grant_type",
+                          "value": "client_credentials",
+                          "type": "string"
+                        }
+                      ]
+                    },
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/v1/reporting/transactions?transaction_id=<string>&transaction_type=<string>&transaction_status=<string>&transaction_amount=<string>&transaction_currency=<string>&start_date=8955-11-31T22:57:60Z&end_date=8955-11-31T22:57:60Z&payment_instrument_type=<string>&store_id=<string>&terminal_id=<string>&fields=transaction_info&balance_affecting_records_only=Y&page_size=100&page=1",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "v1",
+                        "reporting",
+                        "transactions"
+                      ],
+                      "query": [
+                        {
+                          "description": "Filters the transactions in the response by a PayPal transaction ID. A valid transaction ID is 17 characters long, except for an <a href=\"/docs/api/payments/v1/#definition-order\">order ID</a>, which is 19 characters long.<blockquote><strong>Note:</strong> A transaction ID is not unique in the reporting system. The response can list two transactions with the same ID. One transaction can be balance affecting while the other is non-balance affecting.</blockquote>",
+                          "key": "transaction_id",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "Filters the transactions in the response by a PayPal transaction event code. See [Transaction event codes](/docs/integration/direct/transaction-search/transaction-event-codes/).",
+                          "key": "transaction_type",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "Filters the transactions in the response by a PayPal transaction status code. Value is:<table><thead><tr><th>Status&nbsp;code</th><th>Description</th></tr></thead><tbody><tr><td><code>D</code></td><td>PayPal or merchant rules denied the transaction.</td></tr><tr><td><code>P</code></td><td>The transaction is pending. The transaction was created but waits for another payment process to complete, such as an ACH transaction, before the status changes to <code>S</code>.</td></tr><tr><td><code>S</code></td><td>The transaction successfully completed without a denial and after any pending statuses.</td></tr><tr><td><code>V</code></td><td>A successful transaction was reversed and funds were refunded to the original sender.</td></tr></tbody></table>",
+                          "key": "transaction_status",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "Filters the transactions in the response by a gross transaction amount range. Specify the range as `<start-range> TO <end-range>`, where `<start-range>` is the lower limit of the gross PayPal transaction amount and `<end-range>` is the upper limit of the gross transaction amount. Specify the amounts in lower denominations. For example, to search for transactions from $5.00 to $10.05, specify `[500 TO 1005]`.<blockquote><strong>Note:</strong>The values must be URL encoded.</blockquote>",
+                          "key": "transaction_amount",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "Filters the transactions in the response by a [three-character ISO-4217 currency code](/api/rest/reference/currency-codes/) for the PayPal transaction currency.",
+                          "key": "transaction_currency",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "(Required) Filters the transactions in the response by a start date and time, in [Internet date and time format](https://tools.ietf.org/html/rfc3339#section-5.6). Seconds are required. Fractional seconds are optional.",
+                          "key": "start_date",
+                          "value": "8955-11-31T22:57:60Z"
+                        },
+                        {
+                          "description": "(Required) Filters the transactions in the response by an end date and time, in [Internet date and time format](https://tools.ietf.org/html/rfc3339#section-5.6). Seconds are required. Fractional seconds are optional. The maximum supported range is 31 days.",
+                          "key": "end_date",
+                          "value": "8955-11-31T22:57:60Z"
+                        },
+                        {
+                          "description": "Filters the transactions in the response by a payment instrument type. Value is either:<ul><li><code>CREDITCARD</code>. Returns a direct credit card transaction with a corresponding value.</li><li><code>DEBITCARD</code>. Returns a debit card transaction with a corresponding value.</li></ul>If you omit this parameter, the API does not apply this filter.",
+                          "key": "payment_instrument_type",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "Filters the transactions in the response by a store ID.",
+                          "key": "store_id",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "Filters the transactions in the response by a terminal ID.",
+                          "key": "terminal_id",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "Indicates which fields appear in the response. Value is a single field or a comma-separated list of fields. The <code>transaction_info</code> value returns only the transaction details in the response. To include all fields in the response, specify <code>fields=all</code>. Valid fields are:<ul><li><a href=\"/docs/api/transaction-search/v1/#definition-transaction_info\"><code>transaction_info</code></a>. The transaction information. Includes the ID of the PayPal account of the payee, the PayPal-generated transaction ID, the PayPal-generated base ID, the PayPal reference ID type, the transaction event code, the date and time when the transaction was initiated and was last updated, the transaction amounts including the PayPal fee, any discounts, insurance, the transaction status, and other information about the transaction.</li><li><a href=\"/docs/api/transaction-search/v1/#definition-payer_info\"><code>payer_info</code></a>. The payer information. Includes the PayPal customer account ID and the payer's email address, primary phone number, name, country code, address, and whether the payer is verified or unverified.</li><li><a href=\"/docs/api/transaction-search/v1/#definition-shipping_info\"><code>shipping_info</code></a>. The shipping information. Includes the recipient's name, the shipping method for this order, the shipping address for this order, and the secondary address associated with this order.</li><li><a href=\"/docs/api/transaction-search/v1/#definition-auction_info\"><code>auction_info</code></a>. The auction information. Includes the name of the auction site, the auction site URL, the ID of the customer who makes the purchase in the auction, and the date and time when the auction closes.</li><li><a href=\"/docs/api/transaction-search/v1/#definition-cart_info\"><code>cart_info</code></a>. The cart information. Includes an array of item details, whether the item amount or the shipping amount already includes tax, and the ID of the invoice for PayPal-generated invoices.</li><li><a href=\"/docs/api/transaction-search/v1/#definition-incentive_info\"><code>incentive_info</code></a>. An array of incentive detail objects. Each object includes the incentive, such as a special offer or coupon, the incentive amount, and the incentive program code that identifies a merchant loyalty or incentive program.</li><li><a href=\"/docs/api/transaction-search/v1/#definition-store_info\"><code>store_info</code></a>. The store information. Includes the ID of the merchant store and the terminal ID for the checkout stand in the merchant store.</li></ul>",
+                          "key": "fields",
+                          "value": "transaction_info"
+                        },
+                        {
+                          "description": "Indicates whether the response includes only balance-impacting transactions or all transactions. Value is either:<ul><li><code>Y</code>. The default. The response includes only balance transactions.</li><li><code>N</code>. The response includes all transactions.</li></ul>",
+                          "key": "balance_affecting_records_only",
+                          "value": "Y"
+                        },
+                        {
+                          "description": "The number of items to return in the response. So, the combination of `page=1` and `page_size=20` returns the first 20 items. The combination of `page=2` and `page_size=20` returns the next 20 items.",
+                          "key": "page_size",
+                          "value": "100"
+                        },
+                        {
+                          "description": "The zero-relative start index of the entire list of items that are returned in the response. So, the combination of `page=1` and `page_size=20` returns the first 20 items.",
+                          "key": "page",
+                          "value": "1"
+                        }
+                      ]
+                    },
+                    "description": "Lists transactions. Specify one or more query parameters to filter the transaction that appear in the response.<blockquote><strong>Notes:</strong> <ul><li>If you specify one or more optional query parameters, the <code>ending_balance</code> response field is empty.</li><li>It takes a maximum of three hours for executed transactions to appear in the list transactions call.</li><li>This call lists transaction for the previous three years.</li></ul></blockquote>"
+                  },
+                  "response": [
+                    {
+                      "id": "ae939e28-fe19-475b-adbc-b534a084f060",
+                      "name": "A successful request returns the HTTP `200 OK` status code and a JSON response body that lists transactions .",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: oauth2",
+                            "key": "Authorization",
+                            "value": "<token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/v1/reporting/transactions?transaction_id=<string>&transaction_type=<string>&transaction_status=<string>&transaction_amount=<string>&transaction_currency=<string>&start_date=8955-11-31T22:57:60Z&end_date=8955-11-31T22:57:60Z&payment_instrument_type=<string>&store_id=<string>&terminal_id=<string>&fields=transaction_info&balance_affecting_records_only=Y&page_size=100&page=1",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v1",
+                            "reporting",
+                            "transactions"
+                          ],
+                          "query": [
+                            {
+                              "description": "Filters the transactions in the response by a PayPal transaction ID. A valid transaction ID is 17 characters long, except for an <a href=\"/docs/api/payments/v1/#definition-order\">order ID</a>, which is 19 characters long.<blockquote><strong>Note:</strong> A transaction ID is not unique in the reporting system. The response can list two transactions with the same ID. One transaction can be balance affecting while the other is non-balance affecting.</blockquote>",
+                              "key": "transaction_id",
+                              "value": "<string>"
+                            },
+                            {
+                              "description": "Filters the transactions in the response by a PayPal transaction event code. See [Transaction event codes](/docs/integration/direct/transaction-search/transaction-event-codes/).",
+                              "key": "transaction_type",
+                              "value": "<string>"
+                            },
+                            {
+                              "description": "Filters the transactions in the response by a PayPal transaction status code. Value is:<table><thead><tr><th>Status&nbsp;code</th><th>Description</th></tr></thead><tbody><tr><td><code>D</code></td><td>PayPal or merchant rules denied the transaction.</td></tr><tr><td><code>P</code></td><td>The transaction is pending. The transaction was created but waits for another payment process to complete, such as an ACH transaction, before the status changes to <code>S</code>.</td></tr><tr><td><code>S</code></td><td>The transaction successfully completed without a denial and after any pending statuses.</td></tr><tr><td><code>V</code></td><td>A successful transaction was reversed and funds were refunded to the original sender.</td></tr></tbody></table>",
+                              "key": "transaction_status",
+                              "value": "<string>"
+                            },
+                            {
+                              "description": "Filters the transactions in the response by a gross transaction amount range. Specify the range as `<start-range> TO <end-range>`, where `<start-range>` is the lower limit of the gross PayPal transaction amount and `<end-range>` is the upper limit of the gross transaction amount. Specify the amounts in lower denominations. For example, to search for transactions from $5.00 to $10.05, specify `[500 TO 1005]`.<blockquote><strong>Note:</strong>The values must be URL encoded.</blockquote>",
+                              "key": "transaction_amount",
+                              "value": "<string>"
+                            },
+                            {
+                              "description": "Filters the transactions in the response by a [three-character ISO-4217 currency code](/api/rest/reference/currency-codes/) for the PayPal transaction currency.",
+                              "key": "transaction_currency",
+                              "value": "<string>"
+                            },
+                            {
+                              "description": "(Required) Filters the transactions in the response by a start date and time, in [Internet date and time format](https://tools.ietf.org/html/rfc3339#section-5.6). Seconds are required. Fractional seconds are optional.",
+                              "key": "start_date",
+                              "value": "8955-11-31T22:57:60Z"
+                            },
+                            {
+                              "description": "(Required) Filters the transactions in the response by an end date and time, in [Internet date and time format](https://tools.ietf.org/html/rfc3339#section-5.6). Seconds are required. Fractional seconds are optional. The maximum supported range is 31 days.",
+                              "key": "end_date",
+                              "value": "8955-11-31T22:57:60Z"
+                            },
+                            {
+                              "description": "Filters the transactions in the response by a payment instrument type. Value is either:<ul><li><code>CREDITCARD</code>. Returns a direct credit card transaction with a corresponding value.</li><li><code>DEBITCARD</code>. Returns a debit card transaction with a corresponding value.</li></ul>If you omit this parameter, the API does not apply this filter.",
+                              "key": "payment_instrument_type",
+                              "value": "<string>"
+                            },
+                            {
+                              "description": "Filters the transactions in the response by a store ID.",
+                              "key": "store_id",
+                              "value": "<string>"
+                            },
+                            {
+                              "description": "Filters the transactions in the response by a terminal ID.",
+                              "key": "terminal_id",
+                              "value": "<string>"
+                            },
+                            {
+                              "description": "Indicates which fields appear in the response. Value is a single field or a comma-separated list of fields. The <code>transaction_info</code> value returns only the transaction details in the response. To include all fields in the response, specify <code>fields=all</code>. Valid fields are:<ul><li><a href=\"/docs/api/transaction-search/v1/#definition-transaction_info\"><code>transaction_info</code></a>. The transaction information. Includes the ID of the PayPal account of the payee, the PayPal-generated transaction ID, the PayPal-generated base ID, the PayPal reference ID type, the transaction event code, the date and time when the transaction was initiated and was last updated, the transaction amounts including the PayPal fee, any discounts, insurance, the transaction status, and other information about the transaction.</li><li><a href=\"/docs/api/transaction-search/v1/#definition-payer_info\"><code>payer_info</code></a>. The payer information. Includes the PayPal customer account ID and the payer's email address, primary phone number, name, country code, address, and whether the payer is verified or unverified.</li><li><a href=\"/docs/api/transaction-search/v1/#definition-shipping_info\"><code>shipping_info</code></a>. The shipping information. Includes the recipient's name, the shipping method for this order, the shipping address for this order, and the secondary address associated with this order.</li><li><a href=\"/docs/api/transaction-search/v1/#definition-auction_info\"><code>auction_info</code></a>. The auction information. Includes the name of the auction site, the auction site URL, the ID of the customer who makes the purchase in the auction, and the date and time when the auction closes.</li><li><a href=\"/docs/api/transaction-search/v1/#definition-cart_info\"><code>cart_info</code></a>. The cart information. Includes an array of item details, whether the item amount or the shipping amount already includes tax, and the ID of the invoice for PayPal-generated invoices.</li><li><a href=\"/docs/api/transaction-search/v1/#definition-incentive_info\"><code>incentive_info</code></a>. An array of incentive detail objects. Each object includes the incentive, such as a special offer or coupon, the incentive amount, and the incentive program code that identifies a merchant loyalty or incentive program.</li><li><a href=\"/docs/api/transaction-search/v1/#definition-store_info\"><code>store_info</code></a>. The store information. Includes the ID of the merchant store and the terminal ID for the checkout stand in the merchant store.</li></ul>",
+                              "key": "fields",
+                              "value": "transaction_info"
+                            },
+                            {
+                              "description": "Indicates whether the response includes only balance-impacting transactions or all transactions. Value is either:<ul><li><code>Y</code>. The default. The response includes only balance transactions.</li><li><code>N</code>. The response includes all transactions.</li></ul>",
+                              "key": "balance_affecting_records_only",
+                              "value": "Y"
+                            },
+                            {
+                              "description": "The number of items to return in the response. So, the combination of `page=1` and `page_size=20` returns the first 20 items. The combination of `page=2` and `page_size=20` returns the next 20 items.",
+                              "key": "page_size",
+                              "value": "100"
+                            },
+                            {
+                              "description": "The zero-relative start index of the entire list of items that are returned in the response. So, the combination of `page=1` and `page_size=20` returns the first 20 items.",
+                              "key": "page",
+                              "value": "1"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"transaction_details\": [\n    {\n      \"transaction_info\": {\n        \"paypal_account_id\": \"CVf6zne\",\n        \"transaction_id\": \"lxZBp0Qlgb\",\n        \"paypal_reference_id\": \"MmvQyzm\",\n        \"paypal_reference_id_type\": \"PAP\",\n        \"transaction_event_code\": \"hNgQl\",\n        \"transaction_initiation_date\": \"5438-05-24T15:21:36z\",\n        \"transaction_updated_date\": \"8636-05-31t18:07:46.4645208z\",\n        \"transaction_amount\": {\n          \"currency_code\": \"<string>\",\n          \"value\": \"-25863307602\"\n        },\n        \"fee_amount\": {\n          \"currency_code\": \"<string>\",\n          \"value\": \"838089\"\n        },\n        \"discount_amount\": {\n          \"currency_code\": \"<string>\",\n          \"value\": \"971\"\n        },\n        \"insurance_amount\": {\n          \"currency_code\": \"<string>\",\n          \"value\": \".74957048987\"\n        },\n        \"sales_tax_amount\": {\n          \"currency_code\": \"<string>\",\n          \"value\": \"-64\"\n        },\n        \"shipping_amount\": {\n          \"currency_code\": \"<string>\",\n          \"value\": \"-38\"\n        },\n        \"shipping_discount_amount\": {\n          \"currency_code\": \"<string>\",\n          \"value\": \"82775\"\n        },\n        \"shipping_tax_amount\": {\n          \"currency_code\": \"<string>\",\n          \"value\": \"38\"\n        },\n        \"other_amount\": {\n          \"currency_code\": \"<string>\",\n          \"value\": \"799818040\"\n        },\n        \"tip_amount\": {\n          \"currency_code\": \"<string>\",\n          \"value\": \"-1250.597682\"\n        },\n        \"transaction_status\": \" \",\n        \"transaction_subject\": \"b\",\n        \"transaction_note\": \"I XaiR\",\n        \"payment_tracking_id\": \"nWUhA29\",\n        \"bank_reference_id\": \"kCHk8F0S\",\n        \"ending_balance\": {\n          \"currency_code\": \"<string>\",\n          \"value\": \"23440913529.82169421\"\n        },\n        \"available_balance\": {\n          \"currency_code\": \"<string>\",\n          \"value\": \"-.3\"\n        },\n        \"invoice_id\": \"O2r8\",\n        \"custom_field\": \"NJee\\\"SdRl\",\n        \"protection_eligibility\": \"VF\",\n        \"credit_term\": \"eEHtSs\",\n        \"credit_transactional_fee\": {\n          \"currency_code\": \"<string>\",\n          \"value\": \"525162.204153109\"\n        },\n        \"credit_promotional_fee\": {\n          \"currency_code\": \"<string>\",\n          \"value\": \"8983317190.0\"\n        },\n        \"annual_percentage_rate\": \"-141\",\n        \"payment_method_type\": \"ZkFM\",\n        \"instrument_type\": \"<string>\",\n        \"instrument_sub_type\": \"<string>\"\n      },\n      \"payer_info\": {\n        \"account_id\": \"EUO\",\n        \"email_address\": \"sH%G(-8tpA@ZWTxp\",\n        \"phone_number\": {\n          \"country_code\": \" \",\n          \"national_number\": \"1459176043\",\n          \"extension_number\": \"3375\"\n        },\n        \"address_status\": \"Y\",\n        \"payer_status\": \"Y\",\n        \"payer_name\": {\n          \"prefix\": \"<string>\",\n          \"given_name\": \"<string>\",\n          \"surname\": \"<string>\",\n          \"middle_name\": \"<string>\",\n          \"suffix\": \"<string>\",\n          \"alternate_full_name\": \"<string>\",\n          \"full_name\": \"<string>\"\n        },\n        \"country_code\": \"BF\",\n        \"address\": {\n          \"line1\": \"<string>\",\n          \"city\": \"<string>\",\n          \"country_code\": \"PB\",\n          \"line2\": \"<string>\",\n          \"state\": \"<string>\",\n          \"postal_code\": \"<string>\"\n        }\n      },\n      \"shipping_info\": {\n        \"name\": \",d2nI,\",\n        \"method\": \"z1CQGP\",\n        \"address\": {\n          \"line1\": \"<string>\",\n          \"city\": \"<string>\",\n          \"country_code\": \"C2\",\n          \"line2\": \"<string>\",\n          \"state\": \"<string>\",\n          \"postal_code\": \"<string>\"\n        },\n        \"secondary_shipping_address\": {\n          \"line1\": \"<string>\",\n          \"city\": \"<string>\",\n          \"country_code\": \"GT\",\n          \"line2\": \"<string>\",\n          \"state\": \"<string>\",\n          \"postal_code\": \"<string>\"\n        }\n      },\n      \"cart_info\": {\n        \"item_details\": [\n          {\n            \"item_code\": \"BCnCz\",\n            \"item_name\": \"6 LUor?8s6\",\n            \"item_description\": \"b;.kA9Em\",\n            \"item_options\": \"GUxTw0\",\n            \"item_quantity\": \"r!\",\n            \"item_unit_price\": {\n              \"currency_code\": \"<string>\",\n              \"value\": \"-70.08045324188\"\n            },\n            \"item_amount\": {\n              \"currency_code\": \"<string>\",\n              \"value\": \"-.298600\"\n            },\n            \"discount_amount\": {\n              \"currency_code\": \"<string>\",\n              \"value\": \".0883\"\n            },\n            \"adjustment_amount\": {\n              \"currency_code\": \"<string>\",\n              \"value\": \".27613846969\"\n            },\n            \"gift_wrap_amount\": {\n              \"currency_code\": \"<string>\",\n              \"value\": \".7167227636\"\n            },\n            \"tax_percentage\": \"-12627706976\",\n            \"tax_amounts\": [\n              {\n                \"tax_amount\": {\n                  \"currency_code\": \"<string>\",\n                  \"value\": \"-201294.53037068\"\n                }\n              }\n            ],\n            \"basic_shipping_amount\": {\n              \"currency_code\": \"<string>\",\n              \"value\": \"-55764830712\"\n            },\n            \"extra_shipping_amount\": {\n              \"currency_code\": \"<string>\",\n              \"value\": \".187\"\n            },\n            \"handling_amount\": {\n              \"currency_code\": \"<string>\",\n              \"value\": \"-864.42901866883\"\n            },\n            \"insurance_amount\": {\n              \"currency_code\": \"<string>\",\n              \"value\": \"43\"\n            },\n            \"total_item_amount\": {\n              \"currency_code\": \"<string>\",\n              \"value\": \".9535719749\"\n            },\n            \"invoice_number\": \"k8H\\\":TS\\\"Cf\",\n            \"checkout_options\": [\n              {\n                \"checkout_option_name\": \"A\",\n                \"checkout_option_value\": \"NOT_aS: L\"\n              }\n            ]\n          }\n        ],\n        \"tax_inclusive\": false,\n        \"paypal_invoice_id\": \"I\"\n      },\n      \"store_info\": {\n        \"store_id\": \"My9hCP\",\n        \"terminal_id\": \"A4vhChT\"\n      },\n      \"auction_info\": {\n        \"auction_site\": \"Dci\\\"6.?\",\n        \"auction_item_site\": \"3\\\"fgqHQKM\",\n        \"auction_buyer_id\": \"\\\"M4\",\n        \"auction_closing_date\": \"8840-08-16,22:04:60.98576-36:20\"\n      },\n      \"incentive_info\": {\n        \"incentive_details\": [\n          {\n            \"incentive_type\": \"O\",\n            \"incentive_code\": \"po;\",\n            \"incentive_amount\": {\n              \"currency_code\": \"<string>\",\n              \"value\": \"41681\"\n            },\n            \"incentive_program_code\": \"XO\"\n          }\n        ]\n      }\n    }\n  ],\n  \"account_number\": \"a397a\",\n  \"start_date\": \"3802-10-02T03:01:14.42226-80:43\",\n  \"end_date\": \"4853-09-20T22:24:60.08718698-10:52\",\n  \"last_refreshed_datetime\": \"5126-09-31t02:29:60z\",\n  \"page\": \"<integer>\",\n  \"total_items\": \"<integer>\",\n  \"total_pages\": \"<integer>\",\n  \"links\": [\n    {\n      \"href\": \"<string>\",\n      \"rel\": \"<string>\",\n      \"method\": \"DELETE\"\n    }\n  ]\n}",
+                      "createdAt": "2026-07-28T02:35:23.000Z",
+                      "updatedAt": "2026-07-28T02:35:23.000Z",
+                      "uid": "35240-ae939e28-fe19-475b-adbc-b534a084f060"
+                    },
+                    {
+                      "id": "99ca234b-1dbb-45be-9525-c59a5d548712",
+                      "name": "The default response.",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: oauth2",
+                            "key": "Authorization",
+                            "value": "<token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/v1/reporting/transactions?transaction_id=<string>&transaction_type=<string>&transaction_status=<string>&transaction_amount=<string>&transaction_currency=<string>&start_date=8955-11-31T22:57:60Z&end_date=8955-11-31T22:57:60Z&payment_instrument_type=<string>&store_id=<string>&terminal_id=<string>&fields=transaction_info&balance_affecting_records_only=Y&page_size=100&page=1",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v1",
+                            "reporting",
+                            "transactions"
+                          ],
+                          "query": [
+                            {
+                              "description": "Filters the transactions in the response by a PayPal transaction ID. A valid transaction ID is 17 characters long, except for an <a href=\"/docs/api/payments/v1/#definition-order\">order ID</a>, which is 19 characters long.<blockquote><strong>Note:</strong> A transaction ID is not unique in the reporting system. The response can list two transactions with the same ID. One transaction can be balance affecting while the other is non-balance affecting.</blockquote>",
+                              "key": "transaction_id",
+                              "value": "<string>"
+                            },
+                            {
+                              "description": "Filters the transactions in the response by a PayPal transaction event code. See [Transaction event codes](/docs/integration/direct/transaction-search/transaction-event-codes/).",
+                              "key": "transaction_type",
+                              "value": "<string>"
+                            },
+                            {
+                              "description": "Filters the transactions in the response by a PayPal transaction status code. Value is:<table><thead><tr><th>Status&nbsp;code</th><th>Description</th></tr></thead><tbody><tr><td><code>D</code></td><td>PayPal or merchant rules denied the transaction.</td></tr><tr><td><code>P</code></td><td>The transaction is pending. The transaction was created but waits for another payment process to complete, such as an ACH transaction, before the status changes to <code>S</code>.</td></tr><tr><td><code>S</code></td><td>The transaction successfully completed without a denial and after any pending statuses.</td></tr><tr><td><code>V</code></td><td>A successful transaction was reversed and funds were refunded to the original sender.</td></tr></tbody></table>",
+                              "key": "transaction_status",
+                              "value": "<string>"
+                            },
+                            {
+                              "description": "Filters the transactions in the response by a gross transaction amount range. Specify the range as `<start-range> TO <end-range>`, where `<start-range>` is the lower limit of the gross PayPal transaction amount and `<end-range>` is the upper limit of the gross transaction amount. Specify the amounts in lower denominations. For example, to search for transactions from $5.00 to $10.05, specify `[500 TO 1005]`.<blockquote><strong>Note:</strong>The values must be URL encoded.</blockquote>",
+                              "key": "transaction_amount",
+                              "value": "<string>"
+                            },
+                            {
+                              "description": "Filters the transactions in the response by a [three-character ISO-4217 currency code](/api/rest/reference/currency-codes/) for the PayPal transaction currency.",
+                              "key": "transaction_currency",
+                              "value": "<string>"
+                            },
+                            {
+                              "description": "(Required) Filters the transactions in the response by a start date and time, in [Internet date and time format](https://tools.ietf.org/html/rfc3339#section-5.6). Seconds are required. Fractional seconds are optional.",
+                              "key": "start_date",
+                              "value": "8955-11-31T22:57:60Z"
+                            },
+                            {
+                              "description": "(Required) Filters the transactions in the response by an end date and time, in [Internet date and time format](https://tools.ietf.org/html/rfc3339#section-5.6). Seconds are required. Fractional seconds are optional. The maximum supported range is 31 days.",
+                              "key": "end_date",
+                              "value": "8955-11-31T22:57:60Z"
+                            },
+                            {
+                              "description": "Filters the transactions in the response by a payment instrument type. Value is either:<ul><li><code>CREDITCARD</code>. Returns a direct credit card transaction with a corresponding value.</li><li><code>DEBITCARD</code>. Returns a debit card transaction with a corresponding value.</li></ul>If you omit this parameter, the API does not apply this filter.",
+                              "key": "payment_instrument_type",
+                              "value": "<string>"
+                            },
+                            {
+                              "description": "Filters the transactions in the response by a store ID.",
+                              "key": "store_id",
+                              "value": "<string>"
+                            },
+                            {
+                              "description": "Filters the transactions in the response by a terminal ID.",
+                              "key": "terminal_id",
+                              "value": "<string>"
+                            },
+                            {
+                              "description": "Indicates which fields appear in the response. Value is a single field or a comma-separated list of fields. The <code>transaction_info</code> value returns only the transaction details in the response. To include all fields in the response, specify <code>fields=all</code>. Valid fields are:<ul><li><a href=\"/docs/api/transaction-search/v1/#definition-transaction_info\"><code>transaction_info</code></a>. The transaction information. Includes the ID of the PayPal account of the payee, the PayPal-generated transaction ID, the PayPal-generated base ID, the PayPal reference ID type, the transaction event code, the date and time when the transaction was initiated and was last updated, the transaction amounts including the PayPal fee, any discounts, insurance, the transaction status, and other information about the transaction.</li><li><a href=\"/docs/api/transaction-search/v1/#definition-payer_info\"><code>payer_info</code></a>. The payer information. Includes the PayPal customer account ID and the payer's email address, primary phone number, name, country code, address, and whether the payer is verified or unverified.</li><li><a href=\"/docs/api/transaction-search/v1/#definition-shipping_info\"><code>shipping_info</code></a>. The shipping information. Includes the recipient's name, the shipping method for this order, the shipping address for this order, and the secondary address associated with this order.</li><li><a href=\"/docs/api/transaction-search/v1/#definition-auction_info\"><code>auction_info</code></a>. The auction information. Includes the name of the auction site, the auction site URL, the ID of the customer who makes the purchase in the auction, and the date and time when the auction closes.</li><li><a href=\"/docs/api/transaction-search/v1/#definition-cart_info\"><code>cart_info</code></a>. The cart information. Includes an array of item details, whether the item amount or the shipping amount already includes tax, and the ID of the invoice for PayPal-generated invoices.</li><li><a href=\"/docs/api/transaction-search/v1/#definition-incentive_info\"><code>incentive_info</code></a>. An array of incentive detail objects. Each object includes the incentive, such as a special offer or coupon, the incentive amount, and the incentive program code that identifies a merchant loyalty or incentive program.</li><li><a href=\"/docs/api/transaction-search/v1/#definition-store_info\"><code>store_info</code></a>. The store information. Includes the ID of the merchant store and the terminal ID for the checkout stand in the merchant store.</li></ul>",
+                              "key": "fields",
+                              "value": "transaction_info"
+                            },
+                            {
+                              "description": "Indicates whether the response includes only balance-impacting transactions or all transactions. Value is either:<ul><li><code>Y</code>. The default. The response includes only balance transactions.</li><li><code>N</code>. The response includes all transactions.</li></ul>",
+                              "key": "balance_affecting_records_only",
+                              "value": "Y"
+                            },
+                            {
+                              "description": "The number of items to return in the response. So, the combination of `page=1` and `page_size=20` returns the first 20 items. The combination of `page=2` and `page_size=20` returns the next 20 items.",
+                              "key": "page_size",
+                              "value": "100"
+                            },
+                            {
+                              "description": "The zero-relative start index of the entire list of items that are returned in the response. So, the combination of `page=1` and `page_size=20` returns the first 20 items.",
+                              "key": "page",
+                              "value": "1"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Internal Server Error",
+                      "code": 500,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"name\": \"INVALID_REQUEST\",\n  \"message\": \"Request is not well-formed, syntactically incorrect, or violates schema.\",\n  \"details\": [\n    {\n      \"issue\": \"<string>\",\n      \"field\": \"<string>\",\n      \"value\": \"<string>\",\n      \"location\": \"body\",\n      \"description\": \"<string>\"\n    },\n    {\n      \"issue\": \"<string>\",\n      \"field\": \"<string>\",\n      \"value\": \"<string>\",\n      \"location\": \"body\",\n      \"description\": \"<string>\"\n    }\n  ],\n  \"debug_id\": \"<string>\",\n  \"links\": [\n    {\n      \"href\": \"72y#`|A5TO\",\n      \"rel\": \".~Q{(+9b\",\n      \"method\": \"PUT\"\n    },\n    {\n      \"href\": \")0J]\",\n      \"rel\": \"#{FKi\",\n      \"method\": \"PATCH\"\n    },\n    {\n      \"href\": \"FLBdB{8~ \",\n      \"rel\": \"b@:m\",\n      \"method\": \"DELETE\"\n    },\n    {\n      \"href\": \"zg,\",\n      \"rel\": \"_oc\\\"[#dp8\",\n      \"method\": \"GET\"\n    },\n    {\n      \"href\": \"_MM\",\n      \"rel\": \"9h;ko;S}^\",\n      \"method\": \"POST\"\n    },\n    {\n      \"href\": \":@h~.!Yz9I\",\n      \"rel\": \"5Z\\\\P?>2\",\n      \"method\": \"GET\"\n    },\n    {\n      \"href\": \"@\",\n      \"rel\": \"D\",\n      \"method\": \"PATCH\"\n    },\n    {\n      \"href\": \"~Lj\\\"1<[$]\",\n      \"rel\": \"r\",\n      \"method\": \"DELETE\"\n    },\n    {\n      \"href\": \"uV`Q@,\",\n      \"rel\": \"po\\\\\",\n      \"method\": \"POST\"\n    },\n    {\n      \"href\": \"\\\\yTV\",\n      \"rel\": \" sV\",\n      \"method\": \"POST\"\n    },\n    {\n      \"href\": \"\",\n      \"rel\": \"-WqD9;@\",\n      \"method\": \"DELETE\"\n    },\n    {\n      \"href\": \"3^\",\n      \"rel\": \"|)|{M\",\n      \"method\": \"POST\"\n    },\n    {\n      \"href\": \"%j v;\\\"\",\n      \"rel\": \"F*Vozjd+M@\",\n      \"method\": \"GET\"\n    },\n    {\n      \"href\": \"'rO_z?d(H\",\n      \"rel\": \"e*:\",\n      \"method\": \"DELETE\"\n    },\n    {\n      \"href\": \"/GjIO\",\n      \"rel\": \"\\\\J*~{E4Pr\",\n      \"method\": \"PATCH\"\n    },\n    {\n      \"href\": \"LgBkgRv6_\",\n      \"rel\": \"i6hL$hH\",\n      \"method\": \"DELETE\"\n    },\n    {\n      \"href\": \"C>(f\",\n      \"rel\": \"3ho2Z8\",\n      \"method\": \"PUT\"\n    },\n    {\n      \"href\": \"cylgrg\",\n      \"rel\": \"*WMyRZGsv2\",\n      \"method\": \"PATCH\"\n    },\n    {\n      \"href\": \"C;g|%\",\n      \"rel\": \"w\",\n      \"method\": \"DELETE\"\n    },\n    {\n      \"href\": \"i\\\\n@lxd'X\",\n      \"rel\": \"+}n\",\n      \"method\": \"PUT\"\n    }\n  ]\n}",
+                      "createdAt": "2026-07-28T02:35:23.000Z",
+                      "updatedAt": "2026-07-28T02:35:23.000Z",
+                      "uid": "35240-99ca234b-1dbb-45be-9525-c59a5d548712"
+                    }
+                  ],
+                  "createdAt": "2026-07-28T02:35:23.000Z",
+                  "updatedAt": "2026-07-28T02:35:23.000Z",
+                  "uid": "35240-9e7ff242-39ec-4d6f-a2ff-7e95ff51ec14"
+                }
+              ],
+              "id": "65e5c6ef-b152-4674-8336-9e4cfdd5cc05",
+              "createdAt": "2026-07-28T02:35:23.000Z",
+              "updatedAt": "2026-07-28T02:35:23.000Z",
+              "uid": "35240-65e5c6ef-b152-4674-8336-9e4cfdd5cc05"
+            }
+          ],
+          "id": "681030f9-79fb-4e40-bcec-b3075d02dc20",
+          "createdAt": "2026-07-28T02:35:23.000Z",
+          "updatedAt": "2026-07-28T02:35:23.000Z",
+          "uid": "35240-681030f9-79fb-4e40-bcec-b3075d02dc20"
+        }
+      ],
+      "id": "90e27316-1cc5-4c2e-b9de-27f55aeda63c",
+      "createdAt": "2026-07-28T02:35:23.000Z",
+      "updatedAt": "2026-07-28T02:35:23.000Z",
+      "uid": "35240-90e27316-1cc5-4c2e-b9de-27f55aeda63c"
+    }
+  ],
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://api-m.sandbox.paypal.com"
+    }
+  ]
+}

@@ -1,0 +1,662 @@
+{
+  "info": {
+    "_postman_id": "01be4e79-2a1b-4c32-a198-68362bec0276",
+    "name": "Paypal Subscriptions Authorizations Revise API",
+    "description": "You can use billing plans and subscriptions to create subscriptions that process recurring PayPal payments for physical or digital goods, or services. A plan includes pricing and billing cycle information that defines the amount and frequency of charge for a subscription. You can also define a fixed plan, such as a $5 basic plan or a volume- or graduated-based plan with pricing tiers based on the quantity purchased. For more information, see <a href=\"/docs/subscriptions/\">Subscriptions Overview</a>.",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-07-28T02:34:32.000Z",
+    "updatedAt": "2026-07-28T02:34:32.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-01be4e79-2a1b-4c32-a198-68362bec0276"
+  },
+  "item": [
+    {
+      "name": "v1",
+      "item": [
+        {
+          "name": "billing",
+          "item": [
+            {
+              "name": "subscriptions",
+              "item": [
+                {
+                  "name": "{id}",
+                  "item": [
+                    {
+                      "name": "revise",
+                      "item": [
+                        {
+                          "name": "Revise plan or quantity of subscription",
+                          "id": "5b74d1f5-52c7-493b-bf82-207099274d73",
+                          "protocolProfileBehavior": {
+                            "disableBodyPruning": true
+                          },
+                          "request": {
+                            "auth": {
+                              "type": "oauth2",
+                              "oauth2": [
+                                {
+                                  "key": "scope",
+                                  "value": "https://uri.paypal.com/services/subscriptions",
+                                  "type": "string"
+                                },
+                                {
+                                  "key": "accessTokenUrl",
+                                  "value": "/v1/oauth2/token",
+                                  "type": "string"
+                                },
+                                {
+                                  "key": "grant_type",
+                                  "value": "client_credentials",
+                                  "type": "string"
+                                }
+                              ]
+                            },
+                            "method": "POST",
+                            "header": [
+                              {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                              },
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "{\n  \"plan_id\": \"<string>\",\n  \"quantity\": \"054.76\",\n  \"shipping_amount\": {\n    \"currency_code\": \"<string>\",\n    \"value\": \".11596\"\n  },\n  \"shipping_address\": {\n    \"name\": {\n      \"prefix\": \"<string>\",\n      \"given_name\": \"<string>\",\n      \"surname\": \"<string>\",\n      \"middle_name\": \"<string>\",\n      \"suffix\": \"<string>\",\n      \"alternate_full_name\": \"<string>\",\n      \"full_name\": \"<string>\"\n    },\n    \"type\": \"SHIPPING\",\n    \"address\": {\n      \"country_code\": \"C2\",\n      \"address_line_1\": \"<string>\",\n      \"address_line_2\": \"<string>\",\n      \"address_line_3\": \"<string>\",\n      \"admin_area_4\": \"<string>\",\n      \"admin_area_3\": \"<string>\",\n      \"admin_area_2\": \"<string>\",\n      \"admin_area_1\": \"<string>\",\n      \"postal_code\": \"<string>\",\n      \"address_details\": {\n        \"street_number\": \"<string>\",\n        \"street_name\": \"<string>\",\n        \"street_type\": \"<string>\",\n        \"delivery_service\": \"<string>\",\n        \"building_name\": \"<string>\",\n        \"sub_building\": \"<string>\"\n      }\n    }\n  },\n  \"application_context\": {\n    \"return_url\": \"<uri>\",\n    \"cancel_url\": \"<uri>\",\n    \"brand_name\": \"<string>\",\n    \"locale\": \"ge-AR\",\n    \"shipping_preference\": \"GET_FROM_FILE\",\n    \"user_action\": \"SUBSCRIBE_NOW\",\n    \"payment_method\": {\n      \"payer_selected\": \"PAYPAL\",\n      \"payee_preferred\": \"UNRESTRICTED\",\n      \"standard_entry_class_code\": \"WEB\"\n    }\n  },\n  \"plan\": {\n    \"billing_cycles\": [\n      {\n        \"sequence\": \"<integer>\",\n        \"pricing_scheme\": {\n          \"version\": \"<integer>\",\n          \"fixed_price\": {\n            \"currency_code\": \"<string>\",\n            \"value\": \".0\"\n          },\n          \"pricing_model\": \"VOLUME\",\n          \"tiers\": [\n            {\n              \"starting_quantity\": \"955\",\n              \"amount\": {\n                \"currency_code\": \"<string>\",\n                \"value\": \"780959\"\n              },\n              \"ending_quantity\": \"08\"\n            }\n          ],\n          \"create_time\": \"1780-02-31,07:18:29.4880-55:77\",\n          \"update_time\": \"3934-10-22T21:20:27.1+87:61\"\n        },\n        \"total_cycles\": \"<integer>\"\n      }\n    ],\n    \"payment_preferences\": {\n      \"auto_bill_outstanding\": \"<boolean>\",\n      \"setup_fee\": {\n        \"currency_code\": \"<string>\",\n        \"value\": \"9241600976\"\n      },\n      \"setup_fee_failure_action\": \"CANCEL\",\n      \"payment_failure_threshold\": \"<integer>\"\n    },\n    \"taxes\": {\n      \"percentage\": \"-15774\",\n      \"inclusive\": \"<boolean>\"\n    }\n  }\n}",
+                              "options": {
+                                "raw": {
+                                  "headerFamily": "json",
+                                  "language": "json"
+                                }
+                              }
+                            },
+                            "url": {
+                              "raw": "{{baseUrl}}/v1/billing/subscriptions/:id/revise",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "v1",
+                                "billing",
+                                "subscriptions",
+                                ":id",
+                                "revise"
+                              ],
+                              "variable": [
+                                {
+                                  "id": "5ed705ce-6e1e-49f8-b883-06ccc09840a7",
+                                  "key": "id",
+                                  "value": "<string>",
+                                  "description": "(Required) The ID of the subscription."
+                                }
+                              ]
+                            },
+                            "description": "Updates the quantity of the product or service in a subscription. You can also use this method to switch the plan and update the `shipping_amount`, `shipping_address` values for the subscription. This type of update requires the buyer's consent."
+                          },
+                          "response": [
+                            {
+                              "id": "da8b4b62-9dcd-4a41-8822-46c5cab5af05",
+                              "name": "A successful request returns the HTTP `200 OK` status code and a JSON response body that shows subscription details.",
+                              "originalRequest": {
+                                "method": "POST",
+                                "header": [
+                                  {
+                                    "key": "Content-Type",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: oauth2",
+                                    "key": "Authorization",
+                                    "value": "<token>"
+                                  }
+                                ],
+                                "body": {
+                                  "mode": "raw",
+                                  "raw": "{\n  \"plan_id\": \"<string>\",\n  \"quantity\": \"054.76\",\n  \"shipping_amount\": {\n    \"currency_code\": \"<string>\",\n    \"value\": \".11596\"\n  },\n  \"shipping_address\": {\n    \"name\": {\n      \"prefix\": \"<string>\",\n      \"given_name\": \"<string>\",\n      \"surname\": \"<string>\",\n      \"middle_name\": \"<string>\",\n      \"suffix\": \"<string>\",\n      \"alternate_full_name\": \"<string>\",\n      \"full_name\": \"<string>\"\n    },\n    \"type\": \"SHIPPING\",\n    \"address\": {\n      \"country_code\": \"C2\",\n      \"address_line_1\": \"<string>\",\n      \"address_line_2\": \"<string>\",\n      \"address_line_3\": \"<string>\",\n      \"admin_area_4\": \"<string>\",\n      \"admin_area_3\": \"<string>\",\n      \"admin_area_2\": \"<string>\",\n      \"admin_area_1\": \"<string>\",\n      \"postal_code\": \"<string>\",\n      \"address_details\": {\n        \"street_number\": \"<string>\",\n        \"street_name\": \"<string>\",\n        \"street_type\": \"<string>\",\n        \"delivery_service\": \"<string>\",\n        \"building_name\": \"<string>\",\n        \"sub_building\": \"<string>\"\n      }\n    }\n  },\n  \"application_context\": {\n    \"return_url\": \"<uri>\",\n    \"cancel_url\": \"<uri>\",\n    \"brand_name\": \"<string>\",\n    \"locale\": \"ge-AR\",\n    \"shipping_preference\": \"GET_FROM_FILE\",\n    \"user_action\": \"SUBSCRIBE_NOW\",\n    \"payment_method\": {\n      \"payer_selected\": \"PAYPAL\",\n      \"payee_preferred\": \"UNRESTRICTED\",\n      \"standard_entry_class_code\": \"WEB\"\n    }\n  },\n  \"plan\": {\n    \"billing_cycles\": [\n      {\n        \"sequence\": \"<integer>\",\n        \"pricing_scheme\": {\n          \"version\": \"<integer>\",\n          \"fixed_price\": {\n            \"currency_code\": \"<string>\",\n            \"value\": \".0\"\n          },\n          \"pricing_model\": \"VOLUME\",\n          \"tiers\": [\n            {\n              \"starting_quantity\": \"955\",\n              \"amount\": {\n                \"currency_code\": \"<string>\",\n                \"value\": \"780959\"\n              },\n              \"ending_quantity\": \"08\"\n            }\n          ],\n          \"create_time\": \"1780-02-31,07:18:29.4880-55:77\",\n          \"update_time\": \"3934-10-22T21:20:27.1+87:61\"\n        },\n        \"total_cycles\": \"<integer>\"\n      }\n    ],\n    \"payment_preferences\": {\n      \"auto_bill_outstanding\": \"<boolean>\",\n      \"setup_fee\": {\n        \"currency_code\": \"<string>\",\n        \"value\": \"9241600976\"\n      },\n      \"setup_fee_failure_action\": \"CANCEL\",\n      \"payment_failure_threshold\": \"<integer>\"\n    },\n    \"taxes\": {\n      \"percentage\": \"-15774\",\n      \"inclusive\": \"<boolean>\"\n    }\n  }\n}",
+                                  "options": {
+                                    "raw": {
+                                      "headerFamily": "json",
+                                      "language": "json"
+                                    }
+                                  }
+                                },
+                                "url": {
+                                  "raw": "{{baseUrl}}/v1/billing/subscriptions/:id/revise",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "v1",
+                                    "billing",
+                                    "subscriptions",
+                                    ":id",
+                                    "revise"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "id"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "OK",
+                              "code": 200,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "{\n  \"plan_id\": \"<string>\",\n  \"quantity\": \".9304255\",\n  \"shipping_amount\": {\n    \"currency_code\": \"<string>\",\n    \"value\": \"-04127247.8170121\"\n  },\n  \"shipping_address\": {\n    \"name\": {\n      \"prefix\": \"<string>\",\n      \"given_name\": \"<string>\",\n      \"surname\": \"<string>\",\n      \"middle_name\": \"<string>\",\n      \"suffix\": \"<string>\",\n      \"alternate_full_name\": \"<string>\",\n      \"full_name\": \"<string>\"\n    },\n    \"type\": \"PICKUP_IN_PERSON\",\n    \"address\": {\n      \"country_code\": \"C2\",\n      \"address_line_1\": \"<string>\",\n      \"address_line_2\": \"<string>\",\n      \"address_line_3\": \"<string>\",\n      \"admin_area_4\": \"<string>\",\n      \"admin_area_3\": \"<string>\",\n      \"admin_area_2\": \"<string>\",\n      \"admin_area_1\": \"<string>\",\n      \"postal_code\": \"<string>\",\n      \"address_details\": {\n        \"street_number\": \"<string>\",\n        \"street_name\": \"<string>\",\n        \"street_type\": \"<string>\",\n        \"delivery_service\": \"<string>\",\n        \"building_name\": \"<string>\",\n        \"sub_building\": \"<string>\"\n      }\n    }\n  },\n  \"application_context\": {\n    \"return_url\": \"<uri>\",\n    \"cancel_url\": \"<uri>\",\n    \"brand_name\": \"<string>\",\n    \"locale\": \"ow-IO\",\n    \"shipping_preference\": \"GET_FROM_FILE\",\n    \"user_action\": \"SUBSCRIBE_NOW\",\n    \"payment_method\": {\n      \"payer_selected\": \"PAYPAL\",\n      \"payee_preferred\": \"UNRESTRICTED\",\n      \"standard_entry_class_code\": \"WEB\"\n    }\n  },\n  \"plan\": {\n    \"billing_cycles\": [\n      {\n        \"sequence\": \"<integer>\",\n        \"pricing_scheme\": {\n          \"version\": \"<integer>\",\n          \"fixed_price\": {\n            \"currency_code\": \"<string>\",\n            \"value\": \"22856740.8609925\"\n          },\n          \"pricing_model\": \"TIERED\",\n          \"tiers\": [\n            {\n              \"starting_quantity\": \".2971212\",\n              \"amount\": {\n                \"currency_code\": \"<string>\",\n                \"value\": \"-06351696012.9505934601\"\n              },\n              \"ending_quantity\": \"561\"\n            }\n          ],\n          \"create_time\": \"3342-10-31,09:24:23.48z\",\n          \"update_time\": \"7700-04-22T21:40:60Z\"\n        },\n        \"total_cycles\": \"<integer>\"\n      }\n    ],\n    \"payment_preferences\": {\n      \"auto_bill_outstanding\": \"<boolean>\",\n      \"setup_fee\": {\n        \"currency_code\": \"<string>\",\n        \"value\": \"6334683.4\"\n      },\n      \"setup_fee_failure_action\": \"CONTINUE\",\n      \"payment_failure_threshold\": \"<integer>\"\n    },\n    \"taxes\": {\n      \"percentage\": \"-880689793.54119\",\n      \"inclusive\": \"<boolean>\"\n    }\n  },\n  \"plan_overridden\": \"<boolean>\",\n  \"links\": [\n    {\n      \"href\": \"<string>\",\n      \"rel\": \"<string>\",\n      \"method\": \"PUT\"\n    },\n    {\n      \"href\": \"<string>\",\n      \"rel\": \"<string>\",\n      \"method\": \"PATCH\"\n    }\n  ]\n}",
+                              "createdAt": "2026-07-28T02:34:32.000Z",
+                              "updatedAt": "2026-07-28T02:34:32.000Z",
+                              "uid": "35240-da8b4b62-9dcd-4a41-8822-46c5cab5af05"
+                            },
+                            {
+                              "id": "d25a3259-a4a3-4d11-88da-37dc53b5d1d2",
+                              "name": "Bad Request. Request is not well-formed, syntactically incorrect, or violates schema.",
+                              "originalRequest": {
+                                "method": "POST",
+                                "header": [
+                                  {
+                                    "key": "Content-Type",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: oauth2",
+                                    "key": "Authorization",
+                                    "value": "<token>"
+                                  }
+                                ],
+                                "body": {
+                                  "mode": "raw",
+                                  "raw": "{\n  \"plan_id\": \"<string>\",\n  \"quantity\": \"054.76\",\n  \"shipping_amount\": {\n    \"currency_code\": \"<string>\",\n    \"value\": \".11596\"\n  },\n  \"shipping_address\": {\n    \"name\": {\n      \"prefix\": \"<string>\",\n      \"given_name\": \"<string>\",\n      \"surname\": \"<string>\",\n      \"middle_name\": \"<string>\",\n      \"suffix\": \"<string>\",\n      \"alternate_full_name\": \"<string>\",\n      \"full_name\": \"<string>\"\n    },\n    \"type\": \"SHIPPING\",\n    \"address\": {\n      \"country_code\": \"C2\",\n      \"address_line_1\": \"<string>\",\n      \"address_line_2\": \"<string>\",\n      \"address_line_3\": \"<string>\",\n      \"admin_area_4\": \"<string>\",\n      \"admin_area_3\": \"<string>\",\n      \"admin_area_2\": \"<string>\",\n      \"admin_area_1\": \"<string>\",\n      \"postal_code\": \"<string>\",\n      \"address_details\": {\n        \"street_number\": \"<string>\",\n        \"street_name\": \"<string>\",\n        \"street_type\": \"<string>\",\n        \"delivery_service\": \"<string>\",\n        \"building_name\": \"<string>\",\n        \"sub_building\": \"<string>\"\n      }\n    }\n  },\n  \"application_context\": {\n    \"return_url\": \"<uri>\",\n    \"cancel_url\": \"<uri>\",\n    \"brand_name\": \"<string>\",\n    \"locale\": \"ge-AR\",\n    \"shipping_preference\": \"GET_FROM_FILE\",\n    \"user_action\": \"SUBSCRIBE_NOW\",\n    \"payment_method\": {\n      \"payer_selected\": \"PAYPAL\",\n      \"payee_preferred\": \"UNRESTRICTED\",\n      \"standard_entry_class_code\": \"WEB\"\n    }\n  },\n  \"plan\": {\n    \"billing_cycles\": [\n      {\n        \"sequence\": \"<integer>\",\n        \"pricing_scheme\": {\n          \"version\": \"<integer>\",\n          \"fixed_price\": {\n            \"currency_code\": \"<string>\",\n            \"value\": \".0\"\n          },\n          \"pricing_model\": \"VOLUME\",\n          \"tiers\": [\n            {\n              \"starting_quantity\": \"955\",\n              \"amount\": {\n                \"currency_code\": \"<string>\",\n                \"value\": \"780959\"\n              },\n              \"ending_quantity\": \"08\"\n            }\n          ],\n          \"create_time\": \"1780-02-31,07:18:29.4880-55:77\",\n          \"update_time\": \"3934-10-22T21:20:27.1+87:61\"\n        },\n        \"total_cycles\": \"<integer>\"\n      }\n    ],\n    \"payment_preferences\": {\n      \"auto_bill_outstanding\": \"<boolean>\",\n      \"setup_fee\": {\n        \"currency_code\": \"<string>\",\n        \"value\": \"9241600976\"\n      },\n      \"setup_fee_failure_action\": \"CANCEL\",\n      \"payment_failure_threshold\": \"<integer>\"\n    },\n    \"taxes\": {\n      \"percentage\": \"-15774\",\n      \"inclusive\": \"<boolean>\"\n    }\n  }\n}",
+                                  "options": {
+                                    "raw": {
+                                      "headerFamily": "json",
+                                      "language": "json"
+                                    }
+                                  }
+                                },
+                                "url": {
+                                  "raw": "{{baseUrl}}/v1/billing/subscriptions/:id/revise",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "v1",
+                                    "billing",
+                                    "subscriptions",
+                                    ":id",
+                                    "revise"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "id"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "Bad Request",
+                              "code": 400,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "{\n  \"name\": \"INVALID_REQUEST\",\n  \"message\": \"Request is not well-formed, syntactically incorrect, or violates schema.\",\n  \"details\": [\n    {\n      \"issue\": \"<string>\",\n      \"field\": \"<string>\",\n      \"value\": \"<string>\",\n      \"location\": \"body\",\n      \"description\": \"<string>\"\n    },\n    {\n      \"issue\": \"<string>\",\n      \"field\": \"<string>\",\n      \"value\": \"<string>\",\n      \"location\": \"body\",\n      \"description\": \"<string>\"\n    }\n  ],\n  \"debug_id\": \"<string>\",\n  \"links\": [\n    {\n      \"href\": \"&ltS\",\n      \"rel\": \"d\",\n      \"method\": \"DELETE\"\n    },\n    {\n      \"href\": \"EP?0.s~\",\n      \"rel\": \"\",\n      \"method\": \"POST\"\n    },\n    {\n      \"href\": \"'|S\",\n      \"rel\": \"0Pv=wX\",\n      \"method\": \"POST\"\n    },\n    {\n      \"href\": \"qHBG]s\",\n      \"rel\": \"i}1s\",\n      \"method\": \"GET\"\n    },\n    {\n      \"href\": \"'\",\n      \"rel\": \"cz^}R-b->\",\n      \"method\": \"PATCH\"\n    },\n    {\n      \"href\": \"(Cx\",\n      \"rel\": \"X`;p<w,Z\",\n      \"method\": \"PATCH\"\n    },\n    {\n      \"href\": \"q72]P,q\",\n      \"rel\": \"=q27-{O\",\n      \"method\": \"DELETE\"\n    },\n    {\n      \"href\": \"t\",\n      \"rel\": \"B$F2z\",\n      \"method\": \"GET\"\n    },\n    {\n      \"href\": \"cW\\\"7z\",\n      \"rel\": \"/~F\",\n      \"method\": \"PATCH\"\n    },\n    {\n      \"href\": \"y*-,5Izj\",\n      \"rel\": \"|'hu^lTf\",\n      \"method\": \"POST\"\n    },\n    {\n      \"href\": \"h>6_\",\n      \"rel\": \"59\\\\D\",\n      \"method\": \"POST\"\n    },\n    {\n      \"href\": \"DXADNn\",\n      \"rel\": \"Nga\",\n      \"method\": \"DELETE\"\n    },\n    {\n      \"href\": \"#&qm8!3\",\n      \"rel\": \"(aJ\",\n      \"method\": \"POST\"\n    },\n    {\n      \"href\": \"`Y\",\n      \"rel\": \".*9(SE@R\",\n      \"method\": \"GET\"\n    },\n    {\n      \"href\": \"zTcL`4KQ\",\n      \"rel\": \"JMsov!\",\n      \"method\": \"PUT\"\n    },\n    {\n      \"href\": \"cqk\",\n      \"rel\": \"ll$rU!C]\",\n      \"method\": \"POST\"\n    },\n    {\n      \"href\": \"Cd{J5_\",\n      \"rel\": \"Od\",\n      \"method\": \"PUT\"\n    },\n    {\n      \"href\": \">>\",\n      \"rel\": \"oAT\",\n      \"method\": \"GET\"\n    },\n    {\n      \"href\": \"7/~z@~\",\n      \"rel\": \",Iq\",\n      \"method\": \"POST\"\n    },\n    {\n      \"href\": \"~8t'rgL2gu\",\n      \"rel\": \"d^|.\",\n      \"method\": \"POST\"\n    }\n  ]\n}",
+                              "createdAt": "2026-07-28T02:34:32.000Z",
+                              "updatedAt": "2026-07-28T02:34:32.000Z",
+                              "uid": "35240-d25a3259-a4a3-4d11-88da-37dc53b5d1d2"
+                            },
+                            {
+                              "id": "9a53e651-c6ee-4b9a-9a75-f0e6adbd2537",
+                              "name": "Authentication failed due to missing authorization header, or invalid authentication credentials.",
+                              "originalRequest": {
+                                "method": "POST",
+                                "header": [
+                                  {
+                                    "key": "Content-Type",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: oauth2",
+                                    "key": "Authorization",
+                                    "value": "<token>"
+                                  }
+                                ],
+                                "body": {
+                                  "mode": "raw",
+                                  "raw": "{\n  \"plan_id\": \"<string>\",\n  \"quantity\": \"054.76\",\n  \"shipping_amount\": {\n    \"currency_code\": \"<string>\",\n    \"value\": \".11596\"\n  },\n  \"shipping_address\": {\n    \"name\": {\n      \"prefix\": \"<string>\",\n      \"given_name\": \"<string>\",\n      \"surname\": \"<string>\",\n      \"middle_name\": \"<string>\",\n      \"suffix\": \"<string>\",\n      \"alternate_full_name\": \"<string>\",\n      \"full_name\": \"<string>\"\n    },\n    \"type\": \"SHIPPING\",\n    \"address\": {\n      \"country_code\": \"C2\",\n      \"address_line_1\": \"<string>\",\n      \"address_line_2\": \"<string>\",\n      \"address_line_3\": \"<string>\",\n      \"admin_area_4\": \"<string>\",\n      \"admin_area_3\": \"<string>\",\n      \"admin_area_2\": \"<string>\",\n      \"admin_area_1\": \"<string>\",\n      \"postal_code\": \"<string>\",\n      \"address_details\": {\n        \"street_number\": \"<string>\",\n        \"street_name\": \"<string>\",\n        \"street_type\": \"<string>\",\n        \"delivery_service\": \"<string>\",\n        \"building_name\": \"<string>\",\n        \"sub_building\": \"<string>\"\n      }\n    }\n  },\n  \"application_context\": {\n    \"return_url\": \"<uri>\",\n    \"cancel_url\": \"<uri>\",\n    \"brand_name\": \"<string>\",\n    \"locale\": \"ge-AR\",\n    \"shipping_preference\": \"GET_FROM_FILE\",\n    \"user_action\": \"SUBSCRIBE_NOW\",\n    \"payment_method\": {\n      \"payer_selected\": \"PAYPAL\",\n      \"payee_preferred\": \"UNRESTRICTED\",\n      \"standard_entry_class_code\": \"WEB\"\n    }\n  },\n  \"plan\": {\n    \"billing_cycles\": [\n      {\n        \"sequence\": \"<integer>\",\n        \"pricing_scheme\": {\n          \"version\": \"<integer>\",\n          \"fixed_price\": {\n            \"currency_code\": \"<string>\",\n            \"value\": \".0\"\n          },\n          \"pricing_model\": \"VOLUME\",\n          \"tiers\": [\n            {\n              \"starting_quantity\": \"955\",\n              \"amount\": {\n                \"currency_code\": \"<string>\",\n                \"value\": \"780959\"\n              },\n              \"ending_quantity\": \"08\"\n            }\n          ],\n          \"create_time\": \"1780-02-31,07:18:29.4880-55:77\",\n          \"update_time\": \"3934-10-22T21:20:27.1+87:61\"\n        },\n        \"total_cycles\": \"<integer>\"\n      }\n    ],\n    \"payment_preferences\": {\n      \"auto_bill_outstanding\": \"<boolean>\",\n      \"setup_fee\": {\n        \"currency_code\": \"<string>\",\n        \"value\": \"9241600976\"\n      },\n      \"setup_fee_failure_action\": \"CANCEL\",\n      \"payment_failure_threshold\": \"<integer>\"\n    },\n    \"taxes\": {\n      \"percentage\": \"-15774\",\n      \"inclusive\": \"<boolean>\"\n    }\n  }\n}",
+                                  "options": {
+                                    "raw": {
+                                      "headerFamily": "json",
+                                      "language": "json"
+                                    }
+                                  }
+                                },
+                                "url": {
+                                  "raw": "{{baseUrl}}/v1/billing/subscriptions/:id/revise",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "v1",
+                                    "billing",
+                                    "subscriptions",
+                                    ":id",
+                                    "revise"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "id"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "Unauthorized",
+                              "code": 401,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "{\n  \"name\": \"AUTHENTICATION_FAILURE\",\n  \"message\": \"Authentication failed due to missing authorization header, or invalid authentication credentials.\",\n  \"details\": [\n    {\n      \"issue\": \"<string>\",\n      \"field\": \"<string>\",\n      \"value\": \"<string>\",\n      \"location\": \"body\",\n      \"description\": \"<string>\"\n    },\n    {\n      \"issue\": \"<string>\",\n      \"field\": \"<string>\",\n      \"value\": \"<string>\",\n      \"location\": \"body\",\n      \"description\": \"<string>\"\n    }\n  ],\n  \"debug_id\": \"<string>\",\n  \"links\": [\n    {\n      \"href\": \"+l\",\n      \"rel\": \"ey>s[Uq\",\n      \"method\": \"DELETE\"\n    },\n    {\n      \"href\": \"cFE4\",\n      \"rel\": \" Z9/Dp9r\",\n      \"method\": \"DELETE\"\n    },\n    {\n      \"href\": \"`fWs~-8)\",\n      \"rel\": \"(8/W=`4\",\n      \"method\": \"POST\"\n    },\n    {\n      \"href\": \"XYRu)D3F)\",\n      \"rel\": \"7lLUd%gGc\",\n      \"method\": \"DELETE\"\n    },\n    {\n      \"href\": \"`HE%+\",\n      \"rel\": \"_2%FI`.<Q\",\n      \"method\": \"POST\"\n    },\n    {\n      \"href\": \"o\",\n      \"rel\": \"]}Ri\",\n      \"method\": \"PUT\"\n    },\n    {\n      \"href\": \"\",\n      \"rel\": \"l\",\n      \"method\": \"PUT\"\n    },\n    {\n      \"href\": \"_^T)+\",\n      \"rel\": \"E8-m-\",\n      \"method\": \"PATCH\"\n    },\n    {\n      \"href\": \"4Cof<My'\",\n      \"rel\": \"\",\n      \"method\": \"PATCH\"\n    },\n    {\n      \"href\": \"Ke66_\",\n      \"rel\": \"C\",\n      \"method\": \"PUT\"\n    },\n    {\n      \"href\": \"!,c$jkVIC(\",\n      \"rel\": \"'<\",\n      \"method\": \"POST\"\n    },\n    {\n      \"href\": \"YZ@8n.4BH\",\n      \"rel\": \"3x!h<pmca\\\"\",\n      \"method\": \"PATCH\"\n    },\n    {\n      \"href\": \"euKW'\",\n      \"rel\": \"?\",\n      \"method\": \"PATCH\"\n    },\n    {\n      \"href\": \"4`V#P\",\n      \"rel\": \"&fV6v~T[\",\n      \"method\": \"POST\"\n    },\n    {\n      \"href\": \"vmx\",\n      \"rel\": \"W\",\n      \"method\": \"POST\"\n    },\n    {\n      \"href\": \"$\",\n      \"rel\": \"\",\n      \"method\": \"PATCH\"\n    },\n    {\n      \"href\": \"q\",\n      \"rel\": \"T}.t0[\\\"k\",\n      \"method\": \"POST\"\n    },\n    {\n      \"href\": \"~jx\",\n      \"rel\": \"$UjCn@?@Y\",\n      \"method\": \"PUT\"\n    },\n    {\n      \"href\": \"Y&A^3cfs\",\n      \"rel\": \".dbWZm&\",\n      \"method\": \"GET\"\n    },\n    {\n      \"href\": \"$w)n\",\n      \"rel\": \"]2B'5~n%L\",\n      \"method\": \"POST\"\n    }\n  ]\n}",
+                              "createdAt": "2026-07-28T02:34:32.000Z",
+                              "updatedAt": "2026-07-28T02:34:32.000Z",
+                              "uid": "35240-9a53e651-c6ee-4b9a-9a75-f0e6adbd2537"
+                            },
+                            {
+                              "id": "d8b97bdd-22ef-47e0-b4f9-4a55fe99ded4",
+                              "name": "Authorization failed due to insufficient permissions.",
+                              "originalRequest": {
+                                "method": "POST",
+                                "header": [
+                                  {
+                                    "key": "Content-Type",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: oauth2",
+                                    "key": "Authorization",
+                                    "value": "<token>"
+                                  }
+                                ],
+                                "body": {
+                                  "mode": "raw",
+                                  "raw": "{\n  \"plan_id\": \"<string>\",\n  \"quantity\": \"054.76\",\n  \"shipping_amount\": {\n    \"currency_code\": \"<string>\",\n    \"value\": \".11596\"\n  },\n  \"shipping_address\": {\n    \"name\": {\n      \"prefix\": \"<string>\",\n      \"given_name\": \"<string>\",\n      \"surname\": \"<string>\",\n      \"middle_name\": \"<string>\",\n      \"suffix\": \"<string>\",\n      \"alternate_full_name\": \"<string>\",\n      \"full_name\": \"<string>\"\n    },\n    \"type\": \"SHIPPING\",\n    \"address\": {\n      \"country_code\": \"C2\",\n      \"address_line_1\": \"<string>\",\n      \"address_line_2\": \"<string>\",\n      \"address_line_3\": \"<string>\",\n      \"admin_area_4\": \"<string>\",\n      \"admin_area_3\": \"<string>\",\n      \"admin_area_2\": \"<string>\",\n      \"admin_area_1\": \"<string>\",\n      \"postal_code\": \"<string>\",\n      \"address_details\": {\n        \"street_number\": \"<string>\",\n        \"street_name\": \"<string>\",\n        \"street_type\": \"<string>\",\n        \"delivery_service\": \"<string>\",\n        \"building_name\": \"<string>\",\n        \"sub_building\": \"<string>\"\n      }\n    }\n  },\n  \"application_context\": {\n    \"return_url\": \"<uri>\",\n    \"cancel_url\": \"<uri>\",\n    \"brand_name\": \"<string>\",\n    \"locale\": \"ge-AR\",\n    \"shipping_preference\": \"GET_FROM_FILE\",\n    \"user_action\": \"SUBSCRIBE_NOW\",\n    \"payment_method\": {\n      \"payer_selected\": \"PAYPAL\",\n      \"payee_preferred\": \"UNRESTRICTED\",\n      \"standard_entry_class_code\": \"WEB\"\n    }\n  },\n  \"plan\": {\n    \"billing_cycles\": [\n      {\n        \"sequence\": \"<integer>\",\n        \"pricing_scheme\": {\n          \"version\": \"<integer>\",\n          \"fixed_price\": {\n            \"currency_code\": \"<string>\",\n            \"value\": \".0\"\n          },\n          \"pricing_model\": \"VOLUME\",\n          \"tiers\": [\n            {\n              \"starting_quantity\": \"955\",\n              \"amount\": {\n                \"currency_code\": \"<string>\",\n                \"value\": \"780959\"\n              },\n              \"ending_quantity\": \"08\"\n            }\n          ],\n          \"create_time\": \"1780-02-31,07:18:29.4880-55:77\",\n          \"update_time\": \"3934-10-22T21:20:27.1+87:61\"\n        },\n        \"total_cycles\": \"<integer>\"\n      }\n    ],\n    \"payment_preferences\": {\n      \"auto_bill_outstanding\": \"<boolean>\",\n      \"setup_fee\": {\n        \"currency_code\": \"<string>\",\n        \"value\": \"9241600976\"\n      },\n      \"setup_fee_failure_action\": \"CANCEL\",\n      \"payment_failure_threshold\": \"<integer>\"\n    },\n    \"taxes\": {\n      \"percentage\": \"-15774\",\n      \"inclusive\": \"<boolean>\"\n    }\n  }\n}",
+                                  "options": {
+                                    "raw": {
+                                      "headerFamily": "json",
+                                      "language": "json"
+                                    }
+                                  }
+                                },
+                                "url": {
+                                  "raw": "{{baseUrl}}/v1/billing/subscriptions/:id/revise",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "v1",
+                                    "billing",
+                                    "subscriptions",
+                                    ":id",
+                                    "revise"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "id"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "Forbidden",
+                              "code": 403,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "{\n  \"name\": \"NOT_AUTHORIZED\",\n  \"message\": \"Authorization failed due to insufficient permissions.\",\n  \"details\": [\n    {\n      \"issue\": \"<string>\",\n      \"field\": \"<string>\",\n      \"value\": \"<string>\",\n      \"location\": \"body\",\n      \"description\": \"<string>\"\n    },\n    {\n      \"issue\": \"<string>\",\n      \"field\": \"<string>\",\n      \"value\": \"<string>\",\n      \"location\": \"body\",\n      \"description\": \"<string>\"\n    }\n  ],\n  \"debug_id\": \"<string>\",\n  \"links\": [\n    {\n      \"href\": \"WUxjOL\",\n      \"rel\": \"W1|\",\n      \"method\": \"GET\"\n    },\n    {\n      \"href\": \"C=\",\n      \"rel\": \"\",\n      \"method\": \"POST\"\n    },\n    {\n      \"href\": \"]s*K\",\n      \"rel\": \"4\\\"gQ*yS\",\n      \"method\": \"PUT\"\n    },\n    {\n      \"href\": \"_$!lv\\\\\",\n      \"rel\": \"\",\n      \"method\": \"GET\"\n    },\n    {\n      \"href\": \" #(\",\n      \"rel\": \"\",\n      \"method\": \"PUT\"\n    },\n    {\n      \"href\": \"\\\\H_8M'\",\n      \"rel\": \"^7j\",\n      \"method\": \"GET\"\n    },\n    {\n      \"href\": \"<_S\",\n      \"rel\": \"g1'lo\",\n      \"method\": \"PUT\"\n    },\n    {\n      \"href\": \"+uIi'MlNDu\",\n      \"rel\": \"_XN:=}agZN\",\n      \"method\": \"PATCH\"\n    },\n    {\n      \"href\": \"Uk$A!\",\n      \"rel\": \"T\",\n      \"method\": \"GET\"\n    },\n    {\n      \"href\": \"Ha0;\",\n      \"rel\": \":S\\\"16fagl?\",\n      \"method\": \"POST\"\n    },\n    {\n      \"href\": \">!A*-&'NR\",\n      \"rel\": \"2Y*r</_z\",\n      \"method\": \"PUT\"\n    },\n    {\n      \"href\": \"](p^.^&MSx\",\n      \"rel\": \"0\",\n      \"method\": \"PUT\"\n    },\n    {\n      \"href\": \"=$j) 6td[\",\n      \"rel\": \"vxL&Fjh\",\n      \"method\": \"DELETE\"\n    },\n    {\n      \"href\": \"\",\n      \"rel\": \"+Z\",\n      \"method\": \"PATCH\"\n    },\n    {\n      \"href\": \"QZ$sCt1ty\",\n      \"rel\": \"7;\",\n      \"method\": \"PATCH\"\n    },\n    {\n      \"href\": \"!4+sc9XC\",\n      \"rel\": \"vVpH/*-kG$\",\n      \"method\": \"POST\"\n    },\n    {\n      \"href\": \"(7;[|).j\",\n      \"rel\": \")OXO1aP+\",\n      \"method\": \"DELETE\"\n    },\n    {\n      \"href\": \";q?*sndx.k\",\n      \"rel\": \"*1\",\n      \"method\": \"POST\"\n    },\n    {\n      \"href\": \"0&\",\n      \"rel\": \"0*\",\n      \"method\": \"PUT\"\n    },\n    {\n      \"href\": \"8/1NLo\",\n      \"rel\": \"H~4=.GtN\",\n      \"method\": \"DELETE\"\n    }\n  ]\n}",
+                              "createdAt": "2026-07-28T02:34:32.000Z",
+                              "updatedAt": "2026-07-28T02:34:32.000Z",
+                              "uid": "35240-d8b97bdd-22ef-47e0-b4f9-4a55fe99ded4"
+                            },
+                            {
+                              "id": "64beebc7-7e64-4faa-aec7-61c1afb4503e",
+                              "name": "The specified resource does not exist.",
+                              "originalRequest": {
+                                "method": "POST",
+                                "header": [
+                                  {
+                                    "key": "Content-Type",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: oauth2",
+                                    "key": "Authorization",
+                                    "value": "<token>"
+                                  }
+                                ],
+                                "body": {
+                                  "mode": "raw",
+                                  "raw": "{\n  \"plan_id\": \"<string>\",\n  \"quantity\": \"054.76\",\n  \"shipping_amount\": {\n    \"currency_code\": \"<string>\",\n    \"value\": \".11596\"\n  },\n  \"shipping_address\": {\n    \"name\": {\n      \"prefix\": \"<string>\",\n      \"given_name\": \"<string>\",\n      \"surname\": \"<string>\",\n      \"middle_name\": \"<string>\",\n      \"suffix\": \"<string>\",\n      \"alternate_full_name\": \"<string>\",\n      \"full_name\": \"<string>\"\n    },\n    \"type\": \"SHIPPING\",\n    \"address\": {\n      \"country_code\": \"C2\",\n      \"address_line_1\": \"<string>\",\n      \"address_line_2\": \"<string>\",\n      \"address_line_3\": \"<string>\",\n      \"admin_area_4\": \"<string>\",\n      \"admin_area_3\": \"<string>\",\n      \"admin_area_2\": \"<string>\",\n      \"admin_area_1\": \"<string>\",\n      \"postal_code\": \"<string>\",\n      \"address_details\": {\n        \"street_number\": \"<string>\",\n        \"street_name\": \"<string>\",\n        \"street_type\": \"<string>\",\n        \"delivery_service\": \"<string>\",\n        \"building_name\": \"<string>\",\n        \"sub_building\": \"<string>\"\n      }\n    }\n  },\n  \"application_context\": {\n    \"return_url\": \"<uri>\",\n    \"cancel_url\": \"<uri>\",\n    \"brand_name\": \"<string>\",\n    \"locale\": \"ge-AR\",\n    \"shipping_preference\": \"GET_FROM_FILE\",\n    \"user_action\": \"SUBSCRIBE_NOW\",\n    \"payment_method\": {\n      \"payer_selected\": \"PAYPAL\",\n      \"payee_preferred\": \"UNRESTRICTED\",\n      \"standard_entry_class_code\": \"WEB\"\n    }\n  },\n  \"plan\": {\n    \"billing_cycles\": [\n      {\n        \"sequence\": \"<integer>\",\n        \"pricing_scheme\": {\n          \"version\": \"<integer>\",\n          \"fixed_price\": {\n            \"currency_code\": \"<string>\",\n            \"value\": \".0\"\n          },\n          \"pricing_model\": \"VOLUME\",\n          \"tiers\": [\n            {\n              \"starting_quantity\": \"955\",\n              \"amount\": {\n                \"currency_code\": \"<string>\",\n                \"value\": \"780959\"\n              },\n              \"ending_quantity\": \"08\"\n            }\n          ],\n          \"create_time\": \"1780-02-31,07:18:29.4880-55:77\",\n          \"update_time\": \"3934-10-22T21:20:27.1+87:61\"\n        },\n        \"total_cycles\": \"<integer>\"\n      }\n    ],\n    \"payment_preferences\": {\n      \"auto_bill_outstanding\": \"<boolean>\",\n      \"setup_fee\": {\n        \"currency_code\": \"<string>\",\n        \"value\": \"9241600976\"\n      },\n      \"setup_fee_failure_action\": \"CANCEL\",\n      \"payment_failure_threshold\": \"<integer>\"\n    },\n    \"taxes\": {\n      \"percentage\": \"-15774\",\n      \"inclusive\": \"<boolean>\"\n    }\n  }\n}",
+                                  "options": {
+                                    "raw": {
+                                      "headerFamily": "json",
+                                      "language": "json"
+                                    }
+                                  }
+                                },
+                                "url": {
+                                  "raw": "{{baseUrl}}/v1/billing/subscriptions/:id/revise",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "v1",
+                                    "billing",
+                                    "subscriptions",
+                                    ":id",
+                                    "revise"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "id"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "Not Found",
+                              "code": 404,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "{\n  \"name\": \"RESOURCE_NOT_FOUND\",\n  \"message\": \"The specified resource does not exist.\",\n  \"details\": [\n    {\n      \"issue\": \"<string>\",\n      \"field\": \"<string>\",\n      \"value\": \"<string>\",\n      \"location\": \"body\",\n      \"description\": \"<string>\"\n    },\n    {\n      \"issue\": \"<string>\",\n      \"field\": \"<string>\",\n      \"value\": \"<string>\",\n      \"location\": \"body\",\n      \"description\": \"<string>\"\n    }\n  ],\n  \"debug_id\": \"<string>\",\n  \"links\": [\n    {\n      \"href\": \"V=iJDQG\",\n      \"rel\": \":~ZL\",\n      \"method\": \"PUT\"\n    },\n    {\n      \"href\": \":R\",\n      \"rel\": \"*j6Y58`%\",\n      \"method\": \"PATCH\"\n    },\n    {\n      \"href\": \"I1O|mm<JAF\",\n      \"rel\": \"O\",\n      \"method\": \"POST\"\n    },\n    {\n      \"href\": \"4mwOxZ!V\",\n      \"rel\": \"Ynm_\",\n      \"method\": \"POST\"\n    },\n    {\n      \"href\": \",H+g4@|b_\",\n      \"rel\": \"g!$FmwT5H\",\n      \"method\": \"DELETE\"\n    },\n    {\n      \"href\": \"]W\",\n      \"rel\": \"?upS\",\n      \"method\": \"GET\"\n    },\n    {\n      \"href\": \"Cb#n1-wl\",\n      \"rel\": \"#fYyYR}782\",\n      \"method\": \"DELETE\"\n    },\n    {\n      \"href\": \"%^Y\",\n      \"rel\": \"<:5)\",\n      \"method\": \"PUT\"\n    },\n    {\n      \"href\": \"w\",\n      \"rel\": \"v\",\n      \"method\": \"POST\"\n    },\n    {\n      \"href\": \"ed^_*rJ`e&\",\n      \"rel\": \"?W@\",\n      \"method\": \"GET\"\n    },\n    {\n      \"href\": \"4LA#8cg\",\n      \"rel\": \"yWf*\",\n      \"method\": \"DELETE\"\n    },\n    {\n      \"href\": \"LA.AI\",\n      \"rel\": \"8+pbL_NI\",\n      \"method\": \"DELETE\"\n    },\n    {\n      \"href\": \"Od*)8<M\",\n      \"rel\": \"7V1g\\\\cD_t\\\"\",\n      \"method\": \"PUT\"\n    },\n    {\n      \"href\": \"MKQ>q\",\n      \"rel\": \"\",\n      \"method\": \"DELETE\"\n    },\n    {\n      \"href\": \"\",\n      \"rel\": \"M|*EfgMQT2\",\n      \"method\": \"PUT\"\n    },\n    {\n      \"href\": \"+sr]'<\",\n      \"rel\": \"\",\n      \"method\": \"POST\"\n    },\n    {\n      \"href\": \"3J\",\n      \"rel\": \"qP)]hjmL#}\",\n      \"method\": \"PUT\"\n    },\n    {\n      \"href\": \"E`_d\",\n      \"rel\": \"\",\n      \"method\": \"DELETE\"\n    },\n    {\n      \"href\": \"V{\",\n      \"rel\": \";tZAzn4h\",\n      \"method\": \"PATCH\"\n    },\n    {\n      \"href\": \"kQ+3++&r:\",\n      \"rel\": \"&Cm9|}X\",\n      \"method\": \"PUT\"\n    }\n  ]\n}",
+                              "createdAt": "2026-07-28T02:34:32.000Z",
+                              "updatedAt": "2026-07-28T02:34:32.000Z",
+                              "uid": "35240-64beebc7-7e64-4faa-aec7-61c1afb4503e"
+                            },
+                            {
+                              "id": "74b85386-7e44-406b-87b2-5a6fc466259f",
+                              "name": "The requested action could not be performed, semantically incorrect, or failed business validation.",
+                              "originalRequest": {
+                                "method": "POST",
+                                "header": [
+                                  {
+                                    "key": "Content-Type",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: oauth2",
+                                    "key": "Authorization",
+                                    "value": "<token>"
+                                  }
+                                ],
+                                "body": {
+                                  "mode": "raw",
+                                  "raw": "{\n  \"plan_id\": \"<string>\",\n  \"quantity\": \"054.76\",\n  \"shipping_amount\": {\n    \"currency_code\": \"<string>\",\n    \"value\": \".11596\"\n  },\n  \"shipping_address\": {\n    \"name\": {\n      \"prefix\": \"<string>\",\n      \"given_name\": \"<string>\",\n      \"surname\": \"<string>\",\n      \"middle_name\": \"<string>\",\n      \"suffix\": \"<string>\",\n      \"alternate_full_name\": \"<string>\",\n      \"full_name\": \"<string>\"\n    },\n    \"type\": \"SHIPPING\",\n    \"address\": {\n      \"country_code\": \"C2\",\n      \"address_line_1\": \"<string>\",\n      \"address_line_2\": \"<string>\",\n      \"address_line_3\": \"<string>\",\n      \"admin_area_4\": \"<string>\",\n      \"admin_area_3\": \"<string>\",\n      \"admin_area_2\": \"<string>\",\n      \"admin_area_1\": \"<string>\",\n      \"postal_code\": \"<string>\",\n      \"address_details\": {\n        \"street_number\": \"<string>\",\n        \"street_name\": \"<string>\",\n        \"street_type\": \"<string>\",\n        \"delivery_service\": \"<string>\",\n        \"building_name\": \"<string>\",\n        \"sub_building\": \"<string>\"\n      }\n    }\n  },\n  \"application_context\": {\n    \"return_url\": \"<uri>\",\n    \"cancel_url\": \"<uri>\",\n    \"brand_name\": \"<string>\",\n    \"locale\": \"ge-AR\",\n    \"shipping_preference\": \"GET_FROM_FILE\",\n    \"user_action\": \"SUBSCRIBE_NOW\",\n    \"payment_method\": {\n      \"payer_selected\": \"PAYPAL\",\n      \"payee_preferred\": \"UNRESTRICTED\",\n      \"standard_entry_class_code\": \"WEB\"\n    }\n  },\n  \"plan\": {\n    \"billing_cycles\": [\n      {\n        \"sequence\": \"<integer>\",\n        \"pricing_scheme\": {\n          \"version\": \"<integer>\",\n          \"fixed_price\": {\n            \"currency_code\": \"<string>\",\n            \"value\": \".0\"\n          },\n          \"pricing_model\": \"VOLUME\",\n          \"tiers\": [\n            {\n              \"starting_quantity\": \"955\",\n              \"amount\": {\n                \"currency_code\": \"<string>\",\n                \"value\": \"780959\"\n              },\n              \"ending_quantity\": \"08\"\n            }\n          ],\n          \"create_time\": \"1780-02-31,07:18:29.4880-55:77\",\n          \"update_time\": \"3934-10-22T21:20:27.1+87:61\"\n        },\n        \"total_cycles\": \"<integer>\"\n      }\n    ],\n    \"payment_preferences\": {\n      \"auto_bill_outstanding\": \"<boolean>\",\n      \"setup_fee\": {\n        \"currency_code\": \"<string>\",\n        \"value\": \"9241600976\"\n      },\n      \"setup_fee_failure_action\": \"CANCEL\",\n      \"payment_failure_threshold\": \"<integer>\"\n    },\n    \"taxes\": {\n      \"percentage\": \"-15774\",\n      \"inclusive\": \"<boolean>\"\n    }\n  }\n}",
+                                  "options": {
+                                    "raw": {
+                                      "headerFamily": "json",
+                                      "language": "json"
+                                    }
+                                  }
+                                },
+                                "url": {
+                                  "raw": "{{baseUrl}}/v1/billing/subscriptions/:id/revise",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "v1",
+                                    "billing",
+                                    "subscriptions",
+                                    ":id",
+                                    "revise"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "id"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+                              "code": 422,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "{\n  \"name\": \"UNPROCESSABLE_ENTITY\",\n  \"message\": \"The requested action could not be performed, semantically incorrect, or failed business validation.\",\n  \"details\": [\n    {\n      \"issue\": \"<string>\",\n      \"field\": \"<string>\",\n      \"value\": \"<string>\",\n      \"location\": \"body\",\n      \"description\": \"<string>\"\n    },\n    {\n      \"issue\": \"<string>\",\n      \"field\": \"<string>\",\n      \"value\": \"<string>\",\n      \"location\": \"body\",\n      \"description\": \"<string>\"\n    }\n  ],\n  \"debug_id\": \"<string>\",\n  \"links\": [\n    {\n      \"href\": \"mT=~\",\n      \"rel\": \"^lxLSu8\",\n      \"method\": \"DELETE\"\n    },\n    {\n      \"href\": \"\",\n      \"rel\": \"O\",\n      \"method\": \"PUT\"\n    },\n    {\n      \"href\": \"V{VW@DK5a\",\n      \"rel\": \"gbpC/M`6HT\",\n      \"method\": \"PATCH\"\n    },\n    {\n      \"href\": \"FRd<@b\",\n      \"rel\": \"\",\n      \"method\": \"PUT\"\n    },\n    {\n      \"href\": \"?^\",\n      \"rel\": \"]!\",\n      \"method\": \"GET\"\n    },\n    {\n      \"href\": \"?*y0 rJgl\",\n      \"rel\": \"0D]JB\\\"G:(w\",\n      \"method\": \"DELETE\"\n    },\n    {\n      \"href\": \"\",\n      \"rel\": \"vM') N\",\n      \"method\": \"PATCH\"\n    },\n    {\n      \"href\": \"R\\\"F$r|\",\n      \"rel\": \"\",\n      \"method\": \"GET\"\n    },\n    {\n      \"href\": \"uPOTk1\",\n      \"rel\": \"!9hRZ84G\",\n      \"method\": \"PATCH\"\n    },\n    {\n      \"href\": \"kf\",\n      \"rel\": \"tO(Dl!$\",\n      \"method\": \"PUT\"\n    },\n    {\n      \"href\": \"qK\",\n      \"rel\": \"\",\n      \"method\": \"PATCH\"\n    },\n    {\n      \"href\": \"@M{[W3\",\n      \"rel\": \"T<79lol\",\n      \"method\": \"PATCH\"\n    },\n    {\n      \"href\": \"V/TE){+>R<\",\n      \"rel\": \"MDCsmKxl\",\n      \"method\": \"PUT\"\n    },\n    {\n      \"href\": \"jucm4M$\",\n      \"rel\": \"pz_{{\",\n      \"method\": \"PATCH\"\n    },\n    {\n      \"href\": \"Fgqm&C\",\n      \"rel\": \"(RBs5`\",\n      \"method\": \"PUT\"\n    },\n    {\n      \"href\": \" 0Pwk=>s\",\n      \"rel\": \"q@cDH+\",\n      \"method\": \"GET\"\n    },\n    {\n      \"href\": \"D\",\n      \"rel\": \"]8;4\",\n      \"method\": \"POST\"\n    },\n    {\n      \"href\": \"H%G)\",\n      \"rel\": \"!/+\",\n      \"method\": \"GET\"\n    },\n    {\n      \"href\": \"J\",\n      \"rel\": \"AaG*\",\n      \"method\": \"GET\"\n    },\n    {\n      \"href\": \"nTy>\",\n      \"rel\": \"psymYdR\",\n      \"method\": \"PUT\"\n    }\n  ]\n}",
+                              "createdAt": "2026-07-28T02:34:32.000Z",
+                              "updatedAt": "2026-07-28T02:34:32.000Z",
+                              "uid": "35240-74b85386-7e44-406b-87b2-5a6fc466259f"
+                            },
+                            {
+                              "id": "ed44bcd2-9727-4ccc-9b8a-5b32f12fedd1",
+                              "name": "An internal server error has occurred.",
+                              "originalRequest": {
+                                "method": "POST",
+                                "header": [
+                                  {
+                                    "key": "Content-Type",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: oauth2",
+                                    "key": "Authorization",
+                                    "value": "<token>"
+                                  }
+                                ],
+                                "body": {
+                                  "mode": "raw",
+                                  "raw": "{\n  \"plan_id\": \"<string>\",\n  \"quantity\": \"054.76\",\n  \"shipping_amount\": {\n    \"currency_code\": \"<string>\",\n    \"value\": \".11596\"\n  },\n  \"shipping_address\": {\n    \"name\": {\n      \"prefix\": \"<string>\",\n      \"given_name\": \"<string>\",\n      \"surname\": \"<string>\",\n      \"middle_name\": \"<string>\",\n      \"suffix\": \"<string>\",\n      \"alternate_full_name\": \"<string>\",\n      \"full_name\": \"<string>\"\n    },\n    \"type\": \"SHIPPING\",\n    \"address\": {\n      \"country_code\": \"C2\",\n      \"address_line_1\": \"<string>\",\n      \"address_line_2\": \"<string>\",\n      \"address_line_3\": \"<string>\",\n      \"admin_area_4\": \"<string>\",\n      \"admin_area_3\": \"<string>\",\n      \"admin_area_2\": \"<string>\",\n      \"admin_area_1\": \"<string>\",\n      \"postal_code\": \"<string>\",\n      \"address_details\": {\n        \"street_number\": \"<string>\",\n        \"street_name\": \"<string>\",\n        \"street_type\": \"<string>\",\n        \"delivery_service\": \"<string>\",\n        \"building_name\": \"<string>\",\n        \"sub_building\": \"<string>\"\n      }\n    }\n  },\n  \"application_context\": {\n    \"return_url\": \"<uri>\",\n    \"cancel_url\": \"<uri>\",\n    \"brand_name\": \"<string>\",\n    \"locale\": \"ge-AR\",\n    \"shipping_preference\": \"GET_FROM_FILE\",\n    \"user_action\": \"SUBSCRIBE_NOW\",\n    \"payment_method\": {\n      \"payer_selected\": \"PAYPAL\",\n      \"payee_preferred\": \"UNRESTRICTED\",\n      \"standard_entry_class_code\": \"WEB\"\n    }\n  },\n  \"plan\": {\n    \"billing_cycles\": [\n      {\n        \"sequence\": \"<integer>\",\n        \"pricing_scheme\": {\n          \"version\": \"<integer>\",\n          \"fixed_price\": {\n            \"currency_code\": \"<string>\",\n            \"value\": \".0\"\n          },\n          \"pricing_model\": \"VOLUME\",\n          \"tiers\": [\n            {\n              \"starting_quantity\": \"955\",\n              \"amount\": {\n                \"currency_code\": \"<string>\",\n                \"value\": \"780959\"\n              },\n              \"ending_quantity\": \"08\"\n            }\n          ],\n          \"create_time\": \"1780-02-31,07:18:29.4880-55:77\",\n          \"update_time\": \"3934-10-22T21:20:27.1+87:61\"\n        },\n        \"total_cycles\": \"<integer>\"\n      }\n    ],\n    \"payment_preferences\": {\n      \"auto_bill_outstanding\": \"<boolean>\",\n      \"setup_fee\": {\n        \"currency_code\": \"<string>\",\n        \"value\": \"9241600976\"\n      },\n      \"setup_fee_failure_action\": \"CANCEL\",\n      \"payment_failure_threshold\": \"<integer>\"\n    },\n    \"taxes\": {\n      \"percentage\": \"-15774\",\n      \"inclusive\": \"<boolean>\"\n    }\n  }\n}",
+                                  "options": {
+                                    "raw": {
+                                      "headerFamily": "json",
+                                      "language": "json"
+                                    }
+                                  }
+                                },
+                                "url": {
+                                  "raw": "{{baseUrl}}/v1/billing/subscriptions/:id/revise",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "v1",
+                                    "billing",
+                                    "subscriptions",
+                                    ":id",
+                                    "revise"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "id"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "Internal Server Error",
+                              "code": 500,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "{\n  \"name\": \"INTERNAL_SERVER_ERROR\",\n  \"message\": \"An internal server error occurred.\",\n  \"debug_id\": \"<string>\",\n  \"links\": [\n    {\n      \"href\": \"UeiB\",\n      \"rel\": \"8|&p\",\n      \"method\": \"PUT\"\n    },\n    {\n      \"href\": \"pb\\\\sy\",\n      \"rel\": \"Oc\",\n      \"method\": \"GET\"\n    },\n    {\n      \"href\": \"+RE\",\n      \"rel\": \"\",\n      \"method\": \"DELETE\"\n    },\n    {\n      \"href\": \"\",\n      \"rel\": \"=*k1\",\n      \"method\": \"PATCH\"\n    },\n    {\n      \"href\": \"f\",\n      \"rel\": \"Tat36,adjO\",\n      \"method\": \"DELETE\"\n    },\n    {\n      \"href\": \"DkE%G??a\",\n      \"rel\": \"V&M\",\n      \"method\": \"GET\"\n    },\n    {\n      \"href\": \" QG3N\",\n      \"rel\": \"<u*R\",\n      \"method\": \"POST\"\n    },\n    {\n      \"href\": \"+me|_WvjT\",\n      \"rel\": \"xO\",\n      \"method\": \"PUT\"\n    },\n    {\n      \"href\": \"]\",\n      \"rel\": \"|BWl2u\",\n      \"method\": \"PATCH\"\n    },\n    {\n      \"href\": \"(Xs2<(FTM'\",\n      \"rel\": \"M)T'FuR\",\n      \"method\": \"DELETE\"\n    },\n    {\n      \"href\": \"g6Hw^'C\",\n      \"rel\": \"J\",\n      \"method\": \"POST\"\n    },\n    {\n      \"href\": \"tIc5:ca\",\n      \"rel\": \"W\",\n      \"method\": \"POST\"\n    },\n    {\n      \"href\": \"%B\\\\jI0&.j\",\n      \"rel\": \"rI~Y\",\n      \"method\": \"PATCH\"\n    },\n    {\n      \"href\": \":@jH/Zb\",\n      \"rel\": \"<f=$x{/\",\n      \"method\": \"PUT\"\n    },\n    {\n      \"href\": \"yiZ)Gz1 E|\",\n      \"rel\": \";:$r2b\",\n      \"method\": \"PUT\"\n    },\n    {\n      \"href\": \"g\",\n      \"rel\": \"\",\n      \"method\": \"DELETE\"\n    },\n    {\n      \"href\": \"/q-e=x(a|\",\n      \"rel\": \"5Mhh]<e{p\",\n      \"method\": \"GET\"\n    },\n    {\n      \"href\": \"F<\",\n      \"rel\": \"@xc\",\n      \"method\": \"GET\"\n    },\n    {\n      \"href\": \"-Y_Gk4\",\n      \"rel\": \"L_m^<wk|`o\",\n      \"method\": \"DELETE\"\n    },\n    {\n      \"href\": \"(\",\n      \"rel\": \"8-#2_-Yq4\",\n      \"method\": \"POST\"\n    }\n  ]\n}",
+                              "createdAt": "2026-07-28T02:34:32.000Z",
+                              "updatedAt": "2026-07-28T02:34:32.000Z",
+                              "uid": "35240-ed44bcd2-9727-4ccc-9b8a-5b32f12fedd1"
+                            },
+                            {
+                              "id": "44f27db3-a353-48ea-b81e-6aecc39df665",
+                              "name": "The default response.",
+                              "originalRequest": {
+                                "method": "POST",
+                                "header": [
+                                  {
+                                    "key": "Content-Type",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: oauth2",
+                                    "key": "Authorization",
+                                    "value": "<token>"
+                                  }
+                                ],
+                                "body": {
+                                  "mode": "raw",
+                                  "raw": "{\n  \"plan_id\": \"<string>\",\n  \"quantity\": \"054.76\",\n  \"shipping_amount\": {\n    \"currency_code\": \"<string>\",\n    \"value\": \".11596\"\n  },\n  \"shipping_address\": {\n    \"name\": {\n      \"prefix\": \"<string>\",\n      \"given_name\": \"<string>\",\n      \"surname\": \"<string>\",\n      \"middle_name\": \"<string>\",\n      \"suffix\": \"<string>\",\n      \"alternate_full_name\": \"<string>\",\n      \"full_name\": \"<string>\"\n    },\n    \"type\": \"SHIPPING\",\n    \"address\": {\n      \"country_code\": \"C2\",\n      \"address_line_1\": \"<string>\",\n      \"address_line_2\": \"<string>\",\n      \"address_line_3\": \"<string>\",\n      \"admin_area_4\": \"<string>\",\n      \"admin_area_3\": \"<string>\",\n      \"admin_area_2\": \"<string>\",\n      \"admin_area_1\": \"<string>\",\n      \"postal_code\": \"<string>\",\n      \"address_details\": {\n        \"street_number\": \"<string>\",\n        \"street_name\": \"<string>\",\n        \"street_type\": \"<string>\",\n        \"delivery_service\": \"<string>\",\n        \"building_name\": \"<string>\",\n        \"sub_building\": \"<string>\"\n      }\n    }\n  },\n  \"application_context\": {\n    \"return_url\": \"<uri>\",\n    \"cancel_url\": \"<uri>\",\n    \"brand_name\": \"<string>\",\n    \"locale\": \"ge-AR\",\n    \"shipping_preference\": \"GET_FROM_FILE\",\n    \"user_action\": \"SUBSCRIBE_NOW\",\n    \"payment_method\": {\n      \"payer_selected\": \"PAYPAL\",\n      \"payee_preferred\": \"UNRESTRICTED\",\n      \"standard_entry_class_code\": \"WEB\"\n    }\n  },\n  \"plan\": {\n    \"billing_cycles\": [\n      {\n        \"sequence\": \"<integer>\",\n        \"pricing_scheme\": {\n          \"version\": \"<integer>\",\n          \"fixed_price\": {\n            \"currency_code\": \"<string>\",\n            \"value\": \".0\"\n          },\n          \"pricing_model\": \"VOLUME\",\n          \"tiers\": [\n            {\n              \"starting_quantity\": \"955\",\n              \"amount\": {\n                \"currency_code\": \"<string>\",\n                \"value\": \"780959\"\n              },\n              \"ending_quantity\": \"08\"\n            }\n          ],\n          \"create_time\": \"1780-02-31,07:18:29.4880-55:77\",\n          \"update_time\": \"3934-10-22T21:20:27.1+87:61\"\n        },\n        \"total_cycles\": \"<integer>\"\n      }\n    ],\n    \"payment_preferences\": {\n      \"auto_bill_outstanding\": \"<boolean>\",\n      \"setup_fee\": {\n        \"currency_code\": \"<string>\",\n        \"value\": \"9241600976\"\n      },\n      \"setup_fee_failure_action\": \"CANCEL\",\n      \"payment_failure_threshold\": \"<integer>\"\n    },\n    \"taxes\": {\n      \"percentage\": \"-15774\",\n      \"inclusive\": \"<boolean>\"\n    }\n  }\n}",
+                                  "options": {
+                                    "raw": {
+                                      "headerFamily": "json",
+                                      "language": "json"
+                                    }
+                                  }
+                                },
+                                "url": {
+                                  "raw": "{{baseUrl}}/v1/billing/subscriptions/:id/revise",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "v1",
+                                    "billing",
+                                    "subscriptions",
+                                    ":id",
+                                    "revise"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "id"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "Internal Server Error",
+                              "code": 500,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "{\n  \"name\": \"INVALID_REQUEST\",\n  \"message\": \"Request is not well-formed, syntactically incorrect, or violates schema.\",\n  \"details\": [\n    {\n      \"issue\": \"<string>\",\n      \"field\": \"<string>\",\n      \"value\": \"<string>\",\n      \"location\": \"body\",\n      \"description\": \"<string>\"\n    },\n    {\n      \"issue\": \"<string>\",\n      \"field\": \"<string>\",\n      \"value\": \"<string>\",\n      \"location\": \"body\",\n      \"description\": \"<string>\"\n    }\n  ],\n  \"debug_id\": \"<string>\",\n  \"links\": [\n    {\n      \"href\": \"jPUQfN?\",\n      \"rel\": \"hW_~ix}\",\n      \"method\": \"GET\"\n    },\n    {\n      \"href\": \"\",\n      \"rel\": \">\",\n      \"method\": \"POST\"\n    },\n    {\n      \"href\": \"#5(\",\n      \"rel\": \"m*s[\",\n      \"method\": \"GET\"\n    },\n    {\n      \"href\": \"rUzW$U.1B\",\n      \"rel\": \"BR\",\n      \"method\": \"POST\"\n    },\n    {\n      \"href\": \",Po\",\n      \"rel\": \"\",\n      \"method\": \"GET\"\n    },\n    {\n      \"href\": \"U\\\\c\",\n      \"rel\": \"An|kTpG\",\n      \"method\": \"PUT\"\n    },\n    {\n      \"href\": \"Lc2iRMy2^\",\n      \"rel\": \"/\",\n      \"method\": \"PATCH\"\n    },\n    {\n      \"href\": \"b4b#7 thL\",\n      \"rel\": \"=fiBk\",\n      \"method\": \"DELETE\"\n    },\n    {\n      \"href\": \"\",\n      \"rel\": \"&:nv0\",\n      \"method\": \"GET\"\n    },\n    {\n      \"href\": \";E#-7}\",\n      \"rel\": \"{UC:G~W;[\",\n      \"method\": \"PUT\"\n    },\n    {\n      \"href\": \"T+x:|\",\n      \"rel\": \"R\",\n      \"method\": \"POST\"\n    },\n    {\n      \"href\": \"S\",\n      \"rel\": \".6E?MxNY{g\",\n      \"method\": \"GET\"\n    },\n    {\n      \"href\": \"sUiS~8c7vt\",\n      \"rel\": \"gkEiy7\\\\\",\n      \"method\": \"DELETE\"\n    },\n    {\n      \"href\": \"n(\",\n      \"rel\": \"F/VWiP\",\n      \"method\": \"GET\"\n    },\n    {\n      \"href\": \"0z+)f+*G\",\n      \"rel\": \"+=P =%\",\n      \"method\": \"POST\"\n    },\n    {\n      \"href\": \"_]$v\",\n      \"rel\": \"\\\"^HV+h5\",\n      \"method\": \"GET\"\n    },\n    {\n      \"href\": \"Fec\",\n      \"rel\": \"=_$\\\"_U1<\",\n      \"method\": \"PUT\"\n    },\n    {\n      \"href\": \"i\",\n      \"rel\": \";<(Rz\",\n      \"method\": \"DELETE\"\n    },\n    {\n      \"href\": \"Of| v\",\n      \"rel\": \"s!M*C$\",\n      \"method\": \"POST\"\n    },\n    {\n      \"href\": \"eW#J$$V|1\",\n      \"rel\": \"TYJ3Gh9N\",\n      \"method\": \"PUT\"\n    }\n  ]\n}",
+                              "createdAt": "2026-07-28T02:34:32.000Z",
+                              "updatedAt": "2026-07-28T02:34:32.000Z",
+                              "uid": "35240-44f27db3-a353-48ea-b81e-6aecc39df665"
+                            }
+                          ],
+                          "createdAt": "2026-07-28T02:34:32.000Z",
+                          "updatedAt": "2026-07-28T02:34:32.000Z",
+                          "uid": "35240-5b74d1f5-52c7-493b-bf82-207099274d73"
+                        }
+                      ],
+                      "id": "a7e6f48c-5b84-4847-a791-c7cdce48acd5",
+                      "createdAt": "2026-07-28T02:34:32.000Z",
+                      "updatedAt": "2026-07-28T02:34:32.000Z",
+                      "uid": "35240-a7e6f48c-5b84-4847-a791-c7cdce48acd5"
+                    }
+                  ],
+                  "id": "8d78dc8d-c234-4bbb-927c-84bb92e89740",
+                  "createdAt": "2026-07-28T02:34:32.000Z",
+                  "updatedAt": "2026-07-28T02:34:32.000Z",
+                  "uid": "35240-8d78dc8d-c234-4bbb-927c-84bb92e89740"
+                }
+              ],
+              "id": "710f5a45-3092-4c35-b139-4db5920a2882",
+              "createdAt": "2026-07-28T02:34:32.000Z",
+              "updatedAt": "2026-07-28T02:34:32.000Z",
+              "uid": "35240-710f5a45-3092-4c35-b139-4db5920a2882"
+            }
+          ],
+          "id": "f50b706a-2428-4276-9326-ae29795ff544",
+          "createdAt": "2026-07-28T02:34:32.000Z",
+          "updatedAt": "2026-07-28T02:34:32.000Z",
+          "uid": "35240-f50b706a-2428-4276-9326-ae29795ff544"
+        }
+      ],
+      "id": "723fd3a1-ed48-422c-b9a2-12a4236dff53",
+      "createdAt": "2026-07-28T02:34:32.000Z",
+      "updatedAt": "2026-07-28T02:34:32.000Z",
+      "uid": "35240-723fd3a1-ed48-422c-b9a2-12a4236dff53"
+    }
+  ],
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://api-m.sandbox.paypal.com"
+    }
+  ]
+}

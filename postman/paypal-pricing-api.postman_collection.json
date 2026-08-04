@@ -1,0 +1,653 @@
+{
+  "info": {
+    "_postman_id": "3516011a-94ec-49db-a6f1-f7647971a39c",
+    "name": "Paypal Subscriptions Authorizations Pricing API",
+    "description": "You can use billing plans and subscriptions to create subscriptions that process recurring PayPal payments for physical or digital goods, or services. A plan includes pricing and billing cycle information that defines the amount and frequency of charge for a subscription. You can also define a fixed plan, such as a $5 basic plan or a volume- or graduated-based plan with pricing tiers based on the quantity purchased. For more information, see <a href=\"/docs/subscriptions/\">Subscriptions Overview</a>.",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-07-28T02:34:16.000Z",
+    "updatedAt": "2026-07-28T02:34:16.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-3516011a-94ec-49db-a6f1-f7647971a39c"
+  },
+  "item": [
+    {
+      "name": "v1",
+      "item": [
+        {
+          "name": "billing",
+          "item": [
+            {
+              "name": "plans",
+              "item": [
+                {
+                  "name": "{id}",
+                  "item": [
+                    {
+                      "name": "update-pricing-schemes",
+                      "item": [
+                        {
+                          "name": "Update pricing",
+                          "id": "cd7b7b7c-4af2-475f-8b19-b2c9a8332beb",
+                          "protocolProfileBehavior": {
+                            "disableBodyPruning": true
+                          },
+                          "request": {
+                            "auth": {
+                              "type": "oauth2",
+                              "oauth2": [
+                                {
+                                  "key": "scope",
+                                  "value": "https://uri.paypal.com/services/subscriptions",
+                                  "type": "string"
+                                },
+                                {
+                                  "key": "accessTokenUrl",
+                                  "value": "/v1/oauth2/token",
+                                  "type": "string"
+                                },
+                                {
+                                  "key": "grant_type",
+                                  "value": "client_credentials",
+                                  "type": "string"
+                                }
+                              ]
+                            },
+                            "method": "POST",
+                            "header": [
+                              {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                              },
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "{\n  \"pricing_schemes\": [\n    {\n      \"billing_cycle_sequence\": \"<integer>\",\n      \"pricing_scheme\": {\n        \"version\": \"<integer>\",\n        \"fixed_price\": {\n          \"currency_code\": \"<string>\",\n          \"value\": \"721698.09187627156\"\n        },\n        \"pricing_model\": \"VOLUME\",\n        \"tiers\": [\n          {\n            \"starting_quantity\": \".187\",\n            \"amount\": {\n              \"currency_code\": \"<string>\",\n              \"value\": \"908.5625\"\n            },\n            \"ending_quantity\": \"0295\"\n          }\n        ],\n        \"create_time\": \"8189-06-27T01:51:59.3074138582+33:65\",\n        \"update_time\": \"1643-11-13T23:15:06+32:02\"\n      }\n    }\n  ]\n}",
+                              "options": {
+                                "raw": {
+                                  "headerFamily": "json",
+                                  "language": "json"
+                                }
+                              }
+                            },
+                            "url": {
+                              "raw": "{{baseUrl}}/v1/billing/plans/:id/update-pricing-schemes",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "v1",
+                                "billing",
+                                "plans",
+                                ":id",
+                                "update-pricing-schemes"
+                              ],
+                              "variable": [
+                                {
+                                  "id": "41d0b527-862e-46a9-8250-80a1e066929b",
+                                  "key": "id",
+                                  "value": "<string>",
+                                  "description": "(Required) The ID of the subscription."
+                                }
+                              ]
+                            },
+                            "description": "Updates pricing for a plan. For example, you can update a regular billing cycle from $5 per month to $7 per month."
+                          },
+                          "response": [
+                            {
+                              "id": "089f0440-fe70-44a1-882b-afda30a39a9a",
+                              "name": "A successful request returns the HTTP `204 No Content` status code with no JSON response body.",
+                              "originalRequest": {
+                                "method": "POST",
+                                "header": [
+                                  {
+                                    "key": "Content-Type",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: oauth2",
+                                    "key": "Authorization",
+                                    "value": "<token>"
+                                  }
+                                ],
+                                "body": {
+                                  "mode": "raw",
+                                  "raw": "{\n  \"pricing_schemes\": [\n    {\n      \"billing_cycle_sequence\": \"<integer>\",\n      \"pricing_scheme\": {\n        \"version\": \"<integer>\",\n        \"fixed_price\": {\n          \"currency_code\": \"<string>\",\n          \"value\": \"721698.09187627156\"\n        },\n        \"pricing_model\": \"VOLUME\",\n        \"tiers\": [\n          {\n            \"starting_quantity\": \".187\",\n            \"amount\": {\n              \"currency_code\": \"<string>\",\n              \"value\": \"908.5625\"\n            },\n            \"ending_quantity\": \"0295\"\n          }\n        ],\n        \"create_time\": \"8189-06-27T01:51:59.3074138582+33:65\",\n        \"update_time\": \"1643-11-13T23:15:06+32:02\"\n      }\n    }\n  ]\n}",
+                                  "options": {
+                                    "raw": {
+                                      "headerFamily": "json",
+                                      "language": "json"
+                                    }
+                                  }
+                                },
+                                "url": {
+                                  "raw": "{{baseUrl}}/v1/billing/plans/:id/update-pricing-schemes",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "v1",
+                                    "billing",
+                                    "plans",
+                                    ":id",
+                                    "update-pricing-schemes"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "id"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "No Content",
+                              "code": 204,
+                              "_postman_previewlanguage": "text",
+                              "header": [],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": null,
+                              "createdAt": "2026-07-28T02:34:17.000Z",
+                              "updatedAt": "2026-07-28T02:34:17.000Z",
+                              "uid": "35240-089f0440-fe70-44a1-882b-afda30a39a9a"
+                            },
+                            {
+                              "id": "614b8957-7d9c-4725-abb0-89bf07636f05",
+                              "name": "Bad Request. Request is not well-formed, syntactically incorrect, or violates schema.",
+                              "originalRequest": {
+                                "method": "POST",
+                                "header": [
+                                  {
+                                    "key": "Content-Type",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: oauth2",
+                                    "key": "Authorization",
+                                    "value": "<token>"
+                                  }
+                                ],
+                                "body": {
+                                  "mode": "raw",
+                                  "raw": "{\n  \"pricing_schemes\": [\n    {\n      \"billing_cycle_sequence\": \"<integer>\",\n      \"pricing_scheme\": {\n        \"version\": \"<integer>\",\n        \"fixed_price\": {\n          \"currency_code\": \"<string>\",\n          \"value\": \"721698.09187627156\"\n        },\n        \"pricing_model\": \"VOLUME\",\n        \"tiers\": [\n          {\n            \"starting_quantity\": \".187\",\n            \"amount\": {\n              \"currency_code\": \"<string>\",\n              \"value\": \"908.5625\"\n            },\n            \"ending_quantity\": \"0295\"\n          }\n        ],\n        \"create_time\": \"8189-06-27T01:51:59.3074138582+33:65\",\n        \"update_time\": \"1643-11-13T23:15:06+32:02\"\n      }\n    }\n  ]\n}",
+                                  "options": {
+                                    "raw": {
+                                      "headerFamily": "json",
+                                      "language": "json"
+                                    }
+                                  }
+                                },
+                                "url": {
+                                  "raw": "{{baseUrl}}/v1/billing/plans/:id/update-pricing-schemes",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "v1",
+                                    "billing",
+                                    "plans",
+                                    ":id",
+                                    "update-pricing-schemes"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "id"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "Bad Request",
+                              "code": 400,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "{\n  \"name\": \"INVALID_REQUEST\",\n  \"message\": \"Request is not well-formed, syntactically incorrect, or violates schema.\",\n  \"details\": [\n    {\n      \"issue\": \"<string>\",\n      \"field\": \"<string>\",\n      \"value\": \"<string>\",\n      \"location\": \"body\",\n      \"description\": \"<string>\"\n    },\n    {\n      \"issue\": \"<string>\",\n      \"field\": \"<string>\",\n      \"value\": \"<string>\",\n      \"location\": \"body\",\n      \"description\": \"<string>\"\n    }\n  ],\n  \"debug_id\": \"<string>\",\n  \"links\": [\n    {\n      \"href\": \"\",\n      \"rel\": \"1FIb\",\n      \"method\": \"GET\"\n    },\n    {\n      \"href\": \"``<^!rsTp\",\n      \"rel\": \"\",\n      \"method\": \"PATCH\"\n    },\n    {\n      \"href\": \"-\",\n      \"rel\": \"pe1{9-#'\",\n      \"method\": \"GET\"\n    },\n    {\n      \"href\": \"\",\n      \"rel\": \"1\",\n      \"method\": \"PUT\"\n    },\n    {\n      \"href\": \"L6pgdp9\",\n      \"rel\": \"gf]w6x\",\n      \"method\": \"GET\"\n    },\n    {\n      \"href\": \"h+I;1SU\",\n      \"rel\": \"U~:D~]cmJ(\",\n      \"method\": \"GET\"\n    },\n    {\n      \"href\": \"]>d\",\n      \"rel\": \"S]+q!}/S7O\",\n      \"method\": \"POST\"\n    },\n    {\n      \"href\": \"C0=G/oR$M,\",\n      \"rel\": \"PaOV]\",\n      \"method\": \"DELETE\"\n    },\n    {\n      \"href\": \"/wBR \",\n      \"rel\": \";.9n\",\n      \"method\": \"DELETE\"\n    },\n    {\n      \"href\": \"WlL)}}?NS\",\n      \"rel\": \"|A{7\",\n      \"method\": \"GET\"\n    },\n    {\n      \"href\": \"\",\n      \"rel\": \"8aR ?yl\",\n      \"method\": \"GET\"\n    },\n    {\n      \"href\": \"<p=\",\n      \"rel\": \"'!\",\n      \"method\": \"DELETE\"\n    },\n    {\n      \"href\": \"IJ :U\",\n      \"rel\": \"8?BOG\\\"H+w\",\n      \"method\": \"PATCH\"\n    },\n    {\n      \"href\": \"'U#:<:%\",\n      \"rel\": \"Tlg\",\n      \"method\": \"GET\"\n    },\n    {\n      \"href\": \"T:p\",\n      \"rel\": \"3b-\",\n      \"method\": \"PUT\"\n    },\n    {\n      \"href\": \"=\",\n      \"rel\": \"U+7\",\n      \"method\": \"GET\"\n    },\n    {\n      \"href\": \"\",\n      \"rel\": \"?GKC\\\"@@+I\",\n      \"method\": \"GET\"\n    },\n    {\n      \"href\": \"{\",\n      \"rel\": \"'=f.;k\",\n      \"method\": \"PUT\"\n    },\n    {\n      \"href\": \"\",\n      \"rel\": \"#\",\n      \"method\": \"PUT\"\n    },\n    {\n      \"href\": \"7~9@\",\n      \"rel\": \"[\",\n      \"method\": \"DELETE\"\n    }\n  ]\n}",
+                              "createdAt": "2026-07-28T02:34:17.000Z",
+                              "updatedAt": "2026-07-28T02:34:17.000Z",
+                              "uid": "35240-614b8957-7d9c-4725-abb0-89bf07636f05"
+                            },
+                            {
+                              "id": "3260896d-9f93-460f-8ea3-5583f676b7f4",
+                              "name": "Authentication failed due to missing authorization header, or invalid authentication credentials.",
+                              "originalRequest": {
+                                "method": "POST",
+                                "header": [
+                                  {
+                                    "key": "Content-Type",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: oauth2",
+                                    "key": "Authorization",
+                                    "value": "<token>"
+                                  }
+                                ],
+                                "body": {
+                                  "mode": "raw",
+                                  "raw": "{\n  \"pricing_schemes\": [\n    {\n      \"billing_cycle_sequence\": \"<integer>\",\n      \"pricing_scheme\": {\n        \"version\": \"<integer>\",\n        \"fixed_price\": {\n          \"currency_code\": \"<string>\",\n          \"value\": \"721698.09187627156\"\n        },\n        \"pricing_model\": \"VOLUME\",\n        \"tiers\": [\n          {\n            \"starting_quantity\": \".187\",\n            \"amount\": {\n              \"currency_code\": \"<string>\",\n              \"value\": \"908.5625\"\n            },\n            \"ending_quantity\": \"0295\"\n          }\n        ],\n        \"create_time\": \"8189-06-27T01:51:59.3074138582+33:65\",\n        \"update_time\": \"1643-11-13T23:15:06+32:02\"\n      }\n    }\n  ]\n}",
+                                  "options": {
+                                    "raw": {
+                                      "headerFamily": "json",
+                                      "language": "json"
+                                    }
+                                  }
+                                },
+                                "url": {
+                                  "raw": "{{baseUrl}}/v1/billing/plans/:id/update-pricing-schemes",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "v1",
+                                    "billing",
+                                    "plans",
+                                    ":id",
+                                    "update-pricing-schemes"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "id"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "Unauthorized",
+                              "code": 401,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "{\n  \"name\": \"AUTHENTICATION_FAILURE\",\n  \"message\": \"Authentication failed due to missing authorization header, or invalid authentication credentials.\",\n  \"details\": [\n    {\n      \"issue\": \"<string>\",\n      \"field\": \"<string>\",\n      \"value\": \"<string>\",\n      \"location\": \"body\",\n      \"description\": \"<string>\"\n    },\n    {\n      \"issue\": \"<string>\",\n      \"field\": \"<string>\",\n      \"value\": \"<string>\",\n      \"location\": \"body\",\n      \"description\": \"<string>\"\n    }\n  ],\n  \"debug_id\": \"<string>\",\n  \"links\": [\n    {\n      \"href\": \"$1'\",\n      \"rel\": \"|t0L4\\\"c1H\",\n      \"method\": \"DELETE\"\n    },\n    {\n      \"href\": \"]Pvq]\",\n      \"rel\": \"\",\n      \"method\": \"POST\"\n    },\n    {\n      \"href\": \"f,yO3]\",\n      \"rel\": \"?owIi\",\n      \"method\": \"PUT\"\n    },\n    {\n      \"href\": \"r\\\"M~M^JF\",\n      \"rel\": \"1EpS~\",\n      \"method\": \"GET\"\n    },\n    {\n      \"href\": \"a\",\n      \"rel\": \"d 5\",\n      \"method\": \"DELETE\"\n    },\n    {\n      \"href\": \">):dG'e9\",\n      \"rel\": \"a[/l 2\",\n      \"method\": \"POST\"\n    },\n    {\n      \"href\": \"Ur^*ZP=EdB\",\n      \"rel\": \"\",\n      \"method\": \"POST\"\n    },\n    {\n      \"href\": \"COGJBwn\\\"'\",\n      \"rel\": \"(A7X\",\n      \"method\": \"DELETE\"\n    },\n    {\n      \"href\": \"a2,@F|3!\",\n      \"rel\": \"9rRZ$9\",\n      \"method\": \"DELETE\"\n    },\n    {\n      \"href\": \"VvbHX<[b\",\n      \"rel\": \"!)[Lr\",\n      \"method\": \"POST\"\n    },\n    {\n      \"href\": \"oTB*e:'N\",\n      \"rel\": \"\",\n      \"method\": \"PATCH\"\n    },\n    {\n      \"href\": \"]6R\",\n      \"rel\": \"{9$B\",\n      \"method\": \"PUT\"\n    },\n    {\n      \"href\": \"Z8QfUu7v\\\"\",\n      \"rel\": \"JD-\",\n      \"method\": \"GET\"\n    },\n    {\n      \"href\": \"JEy@\",\n      \"rel\": \".po*\",\n      \"method\": \"POST\"\n    },\n    {\n      \"href\": \"k)/t#?pjo'\",\n      \"rel\": \"\",\n      \"method\": \"GET\"\n    },\n    {\n      \"href\": \"U\",\n      \"rel\": \"'fWu\",\n      \"method\": \"PUT\"\n    },\n    {\n      \"href\": \"c;[0\",\n      \"rel\": \"Gz6~3$)I6,\",\n      \"method\": \"GET\"\n    },\n    {\n      \"href\": \"Ce.YZ8\",\n      \"rel\": \"K]\\\\lJ~6vr\",\n      \"method\": \"GET\"\n    },\n    {\n      \"href\": \"RdM>Bd\",\n      \"rel\": \"J2 )\",\n      \"method\": \"DELETE\"\n    },\n    {\n      \"href\": \"\\\\B%t:@\\\\S\",\n      \"rel\": \"A4\",\n      \"method\": \"PUT\"\n    }\n  ]\n}",
+                              "createdAt": "2026-07-28T02:34:17.000Z",
+                              "updatedAt": "2026-07-28T02:34:17.000Z",
+                              "uid": "35240-3260896d-9f93-460f-8ea3-5583f676b7f4"
+                            },
+                            {
+                              "id": "8ac018cb-5958-4fe5-b96c-afeb91709e3c",
+                              "name": "Authorization failed due to insufficient permissions.",
+                              "originalRequest": {
+                                "method": "POST",
+                                "header": [
+                                  {
+                                    "key": "Content-Type",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: oauth2",
+                                    "key": "Authorization",
+                                    "value": "<token>"
+                                  }
+                                ],
+                                "body": {
+                                  "mode": "raw",
+                                  "raw": "{\n  \"pricing_schemes\": [\n    {\n      \"billing_cycle_sequence\": \"<integer>\",\n      \"pricing_scheme\": {\n        \"version\": \"<integer>\",\n        \"fixed_price\": {\n          \"currency_code\": \"<string>\",\n          \"value\": \"721698.09187627156\"\n        },\n        \"pricing_model\": \"VOLUME\",\n        \"tiers\": [\n          {\n            \"starting_quantity\": \".187\",\n            \"amount\": {\n              \"currency_code\": \"<string>\",\n              \"value\": \"908.5625\"\n            },\n            \"ending_quantity\": \"0295\"\n          }\n        ],\n        \"create_time\": \"8189-06-27T01:51:59.3074138582+33:65\",\n        \"update_time\": \"1643-11-13T23:15:06+32:02\"\n      }\n    }\n  ]\n}",
+                                  "options": {
+                                    "raw": {
+                                      "headerFamily": "json",
+                                      "language": "json"
+                                    }
+                                  }
+                                },
+                                "url": {
+                                  "raw": "{{baseUrl}}/v1/billing/plans/:id/update-pricing-schemes",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "v1",
+                                    "billing",
+                                    "plans",
+                                    ":id",
+                                    "update-pricing-schemes"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "id"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "Forbidden",
+                              "code": 403,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "{\n  \"name\": \"NOT_AUTHORIZED\",\n  \"message\": \"Authorization failed due to insufficient permissions.\",\n  \"details\": [\n    {\n      \"issue\": \"<string>\",\n      \"field\": \"<string>\",\n      \"value\": \"<string>\",\n      \"location\": \"body\",\n      \"description\": \"<string>\"\n    },\n    {\n      \"issue\": \"<string>\",\n      \"field\": \"<string>\",\n      \"value\": \"<string>\",\n      \"location\": \"body\",\n      \"description\": \"<string>\"\n    }\n  ],\n  \"debug_id\": \"<string>\",\n  \"links\": [\n    {\n      \"href\": \">/\",\n      \"rel\": \"{{Em-:/\",\n      \"method\": \"POST\"\n    },\n    {\n      \"href\": \"+2PD%i\",\n      \"rel\": \"s\",\n      \"method\": \"DELETE\"\n    },\n    {\n      \"href\": \"Hq7'^:'VBH\",\n      \"rel\": \"c3m\",\n      \"method\": \"POST\"\n    },\n    {\n      \"href\": \"i3)t\",\n      \"rel\": \".}@c:f EA\",\n      \"method\": \"POST\"\n    },\n    {\n      \"href\": \"WeF\",\n      \"rel\": \"lvhoYj/Q\",\n      \"method\": \"GET\"\n    },\n    {\n      \"href\": \"A01\",\n      \"rel\": \"GoR-56k|J\",\n      \"method\": \"PATCH\"\n    },\n    {\n      \"href\": \"j_8..+v>\",\n      \"rel\": \"0^\",\n      \"method\": \"POST\"\n    },\n    {\n      \"href\": \"j\\\\KzjKD0rR\",\n      \"rel\": \"\\\"b`v6w\",\n      \"method\": \"PATCH\"\n    },\n    {\n      \"href\": \"\",\n      \"rel\": \"f{a,)N6q\",\n      \"method\": \"POST\"\n    },\n    {\n      \"href\": \"`c%\",\n      \"rel\": \"Tm6Y{@oQbi\",\n      \"method\": \"PUT\"\n    },\n    {\n      \"href\": \"kfb0\",\n      \"rel\": \"bzIkdVI-^{\",\n      \"method\": \"PUT\"\n    },\n    {\n      \"href\": \"]{d$8<\",\n      \"rel\": \"zs;~l`_\",\n      \"method\": \"GET\"\n    },\n    {\n      \"href\": \".GKyA[N$%:\",\n      \"rel\": \"GBV[\",\n      \"method\": \"GET\"\n    },\n    {\n      \"href\": \"+Y,5S{L!\",\n      \"rel\": \"Tc#\",\n      \"method\": \"DELETE\"\n    },\n    {\n      \"href\": \"]4gh}\",\n      \"rel\": \"->+x;JnE\",\n      \"method\": \"DELETE\"\n    },\n    {\n      \"href\": \"G4RWm[P/~-\",\n      \"rel\": \"#nHgvVB;\",\n      \"method\": \"GET\"\n    },\n    {\n      \"href\": \"Ga_~\",\n      \"rel\": \"%g\",\n      \"method\": \"DELETE\"\n    },\n    {\n      \"href\": \";g4 \",\n      \"rel\": \"(nS<~YA_\",\n      \"method\": \"POST\"\n    },\n    {\n      \"href\": \"<\",\n      \"rel\": \"3mcCo~`*!\",\n      \"method\": \"GET\"\n    },\n    {\n      \"href\": \"t}}Rl\",\n      \"rel\": \"0'^j#z\",\n      \"method\": \"POST\"\n    }\n  ]\n}",
+                              "createdAt": "2026-07-28T02:34:17.000Z",
+                              "updatedAt": "2026-07-28T02:34:17.000Z",
+                              "uid": "35240-8ac018cb-5958-4fe5-b96c-afeb91709e3c"
+                            },
+                            {
+                              "id": "1ce258a7-3dfc-4559-ac9a-74e114652ad6",
+                              "name": "The specified resource does not exist.",
+                              "originalRequest": {
+                                "method": "POST",
+                                "header": [
+                                  {
+                                    "key": "Content-Type",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: oauth2",
+                                    "key": "Authorization",
+                                    "value": "<token>"
+                                  }
+                                ],
+                                "body": {
+                                  "mode": "raw",
+                                  "raw": "{\n  \"pricing_schemes\": [\n    {\n      \"billing_cycle_sequence\": \"<integer>\",\n      \"pricing_scheme\": {\n        \"version\": \"<integer>\",\n        \"fixed_price\": {\n          \"currency_code\": \"<string>\",\n          \"value\": \"721698.09187627156\"\n        },\n        \"pricing_model\": \"VOLUME\",\n        \"tiers\": [\n          {\n            \"starting_quantity\": \".187\",\n            \"amount\": {\n              \"currency_code\": \"<string>\",\n              \"value\": \"908.5625\"\n            },\n            \"ending_quantity\": \"0295\"\n          }\n        ],\n        \"create_time\": \"8189-06-27T01:51:59.3074138582+33:65\",\n        \"update_time\": \"1643-11-13T23:15:06+32:02\"\n      }\n    }\n  ]\n}",
+                                  "options": {
+                                    "raw": {
+                                      "headerFamily": "json",
+                                      "language": "json"
+                                    }
+                                  }
+                                },
+                                "url": {
+                                  "raw": "{{baseUrl}}/v1/billing/plans/:id/update-pricing-schemes",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "v1",
+                                    "billing",
+                                    "plans",
+                                    ":id",
+                                    "update-pricing-schemes"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "id"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "Not Found",
+                              "code": 404,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "{\n  \"name\": \"RESOURCE_NOT_FOUND\",\n  \"message\": \"The specified resource does not exist.\",\n  \"details\": [\n    {\n      \"issue\": \"<string>\",\n      \"field\": \"<string>\",\n      \"value\": \"<string>\",\n      \"location\": \"body\",\n      \"description\": \"<string>\"\n    },\n    {\n      \"issue\": \"<string>\",\n      \"field\": \"<string>\",\n      \"value\": \"<string>\",\n      \"location\": \"body\",\n      \"description\": \"<string>\"\n    }\n  ],\n  \"debug_id\": \"<string>\",\n  \"links\": [\n    {\n      \"href\": \"Q,q6\",\n      \"rel\": \"l}9H8kL6\",\n      \"method\": \"PUT\"\n    },\n    {\n      \"href\": \",QF@~15\",\n      \"rel\": \"%3\",\n      \"method\": \"GET\"\n    },\n    {\n      \"href\": \"3r'5XV\",\n      \"rel\": \"W\\\"f0F\",\n      \"method\": \"POST\"\n    },\n    {\n      \"href\": \"F%mGy$X<\",\n      \"rel\": \"G/IiUsjtK\",\n      \"method\": \"DELETE\"\n    },\n    {\n      \"href\": \"Ds\",\n      \"rel\": \"A`d1\",\n      \"method\": \"PATCH\"\n    },\n    {\n      \"href\": \"!^rK\",\n      \"rel\": \"\",\n      \"method\": \"DELETE\"\n    },\n    {\n      \"href\": \"(1v!\",\n      \"rel\": \"N1!BN\",\n      \"method\": \"PATCH\"\n    },\n    {\n      \"href\": \";KZ'J:t\",\n      \"rel\": \",(_1XP+Q5k\",\n      \"method\": \"PATCH\"\n    },\n    {\n      \"href\": \"Y*\",\n      \"rel\": \"r}T5}/)o\",\n      \"method\": \"DELETE\"\n    },\n    {\n      \"href\": \"t^Z$JZ iw!\",\n      \"rel\": \"M.$lL8VYS\",\n      \"method\": \"PUT\"\n    },\n    {\n      \"href\": \"N\\\"w $b} \",\n      \"rel\": \"F_]YE08XA\",\n      \"method\": \"GET\"\n    },\n    {\n      \"href\": \"_ \",\n      \"rel\": \"%+\",\n      \"method\": \"POST\"\n    },\n    {\n      \"href\": \"v4_1\",\n      \"rel\": \"]E\",\n      \"method\": \"DELETE\"\n    },\n    {\n      \"href\": \"T:b\",\n      \"rel\": \";1( {\",\n      \"method\": \"DELETE\"\n    },\n    {\n      \"href\": \"mDMz|Oys7\",\n      \"rel\": \"OUU19\",\n      \"method\": \"PUT\"\n    },\n    {\n      \"href\": \"o5{j.Q'C\",\n      \"rel\": \"rcR )RX\",\n      \"method\": \"DELETE\"\n    },\n    {\n      \"href\": \"7.oLYvA\",\n      \"rel\": \"Vd.PO\",\n      \"method\": \"PATCH\"\n    },\n    {\n      \"href\": \"5okpq\",\n      \"rel\": \"o4\",\n      \"method\": \"PATCH\"\n    },\n    {\n      \"href\": \"Z\",\n      \"rel\": \"\\\"\",\n      \"method\": \"GET\"\n    },\n    {\n      \"href\": \"GYhT@LE\",\n      \"rel\": \"zK/\",\n      \"method\": \"POST\"\n    }\n  ]\n}",
+                              "createdAt": "2026-07-28T02:34:17.000Z",
+                              "updatedAt": "2026-07-28T02:34:17.000Z",
+                              "uid": "35240-1ce258a7-3dfc-4559-ac9a-74e114652ad6"
+                            },
+                            {
+                              "id": "c7df8b01-c5a5-4071-b692-d1462d06832f",
+                              "name": "The requested action could not be performed, semantically incorrect, or failed business validation.",
+                              "originalRequest": {
+                                "method": "POST",
+                                "header": [
+                                  {
+                                    "key": "Content-Type",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: oauth2",
+                                    "key": "Authorization",
+                                    "value": "<token>"
+                                  }
+                                ],
+                                "body": {
+                                  "mode": "raw",
+                                  "raw": "{\n  \"pricing_schemes\": [\n    {\n      \"billing_cycle_sequence\": \"<integer>\",\n      \"pricing_scheme\": {\n        \"version\": \"<integer>\",\n        \"fixed_price\": {\n          \"currency_code\": \"<string>\",\n          \"value\": \"721698.09187627156\"\n        },\n        \"pricing_model\": \"VOLUME\",\n        \"tiers\": [\n          {\n            \"starting_quantity\": \".187\",\n            \"amount\": {\n              \"currency_code\": \"<string>\",\n              \"value\": \"908.5625\"\n            },\n            \"ending_quantity\": \"0295\"\n          }\n        ],\n        \"create_time\": \"8189-06-27T01:51:59.3074138582+33:65\",\n        \"update_time\": \"1643-11-13T23:15:06+32:02\"\n      }\n    }\n  ]\n}",
+                                  "options": {
+                                    "raw": {
+                                      "headerFamily": "json",
+                                      "language": "json"
+                                    }
+                                  }
+                                },
+                                "url": {
+                                  "raw": "{{baseUrl}}/v1/billing/plans/:id/update-pricing-schemes",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "v1",
+                                    "billing",
+                                    "plans",
+                                    ":id",
+                                    "update-pricing-schemes"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "id"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+                              "code": 422,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "{\n  \"name\": \"UNPROCESSABLE_ENTITY\",\n  \"message\": \"The requested action could not be performed, semantically incorrect, or failed business validation.\",\n  \"details\": [\n    {\n      \"issue\": \"<string>\",\n      \"field\": \"<string>\",\n      \"value\": \"<string>\",\n      \"location\": \"body\",\n      \"description\": \"<string>\"\n    },\n    {\n      \"issue\": \"<string>\",\n      \"field\": \"<string>\",\n      \"value\": \"<string>\",\n      \"location\": \"body\",\n      \"description\": \"<string>\"\n    }\n  ],\n  \"debug_id\": \"<string>\",\n  \"links\": [\n    {\n      \"href\": \"\",\n      \"rel\": \"u`o7Xc\",\n      \"method\": \"DELETE\"\n    },\n    {\n      \"href\": \"/G0mH^\",\n      \"rel\": \"CAV[s..\",\n      \"method\": \"PATCH\"\n    },\n    {\n      \"href\": \"]U2,\",\n      \"rel\": \"]P\",\n      \"method\": \"PATCH\"\n    },\n    {\n      \"href\": \"\",\n      \"rel\": \"\",\n      \"method\": \"PATCH\"\n    },\n    {\n      \"href\": \"|R [[cT~&@\",\n      \"rel\": \"\",\n      \"method\": \"GET\"\n    },\n    {\n      \"href\": \"F6]N'~6h\",\n      \"rel\": \"_n(g~\",\n      \"method\": \"POST\"\n    },\n    {\n      \"href\": \".m\",\n      \"rel\": \"n${\",\n      \"method\": \"GET\"\n    },\n    {\n      \"href\": \"+Dc=6JKN\",\n      \"rel\": \"d.?|\",\n      \"method\": \"GET\"\n    },\n    {\n      \"href\": \"`;H\\\\BVgZ\",\n      \"rel\": \"KR\\\"L,T9I2\",\n      \"method\": \"GET\"\n    },\n    {\n      \"href\": \"oJa?|#!FHI\",\n      \"rel\": \"liIf_?.aWm\",\n      \"method\": \"PUT\"\n    },\n    {\n      \"href\": \"\",\n      \"rel\": \"eYi)>0!z\",\n      \"method\": \"DELETE\"\n    },\n    {\n      \"href\": \"Ya\",\n      \"rel\": \"RB@`\",\n      \"method\": \"PUT\"\n    },\n    {\n      \"href\": \".T~o5\",\n      \"rel\": \".Hec\",\n      \"method\": \"DELETE\"\n    },\n    {\n      \"href\": \"l\",\n      \"rel\": \"T8\\\\<^FaU\",\n      \"method\": \"PUT\"\n    },\n    {\n      \"href\": \"[]\",\n      \"rel\": \"n (e-`+!_D\",\n      \"method\": \"PUT\"\n    },\n    {\n      \"href\": \"U\",\n      \"rel\": \"\",\n      \"method\": \"GET\"\n    },\n    {\n      \"href\": \"1qw#$=XD+\",\n      \"rel\": \"6Y^r\",\n      \"method\": \"PUT\"\n    },\n    {\n      \"href\": \"#kaTLBG=\",\n      \"rel\": \"4Ze-:t0\",\n      \"method\": \"PUT\"\n    },\n    {\n      \"href\": \"AnsksLD#K\",\n      \"rel\": \"(M9\\\\6>\",\n      \"method\": \"DELETE\"\n    },\n    {\n      \"href\": \"_6b^\",\n      \"rel\": \"\",\n      \"method\": \"POST\"\n    }\n  ]\n}",
+                              "createdAt": "2026-07-28T02:34:17.000Z",
+                              "updatedAt": "2026-07-28T02:34:17.000Z",
+                              "uid": "35240-c7df8b01-c5a5-4071-b692-d1462d06832f"
+                            },
+                            {
+                              "id": "b354bc0a-2124-4367-8d57-f7417ac96d00",
+                              "name": "An internal server error has occurred.",
+                              "originalRequest": {
+                                "method": "POST",
+                                "header": [
+                                  {
+                                    "key": "Content-Type",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: oauth2",
+                                    "key": "Authorization",
+                                    "value": "<token>"
+                                  }
+                                ],
+                                "body": {
+                                  "mode": "raw",
+                                  "raw": "{\n  \"pricing_schemes\": [\n    {\n      \"billing_cycle_sequence\": \"<integer>\",\n      \"pricing_scheme\": {\n        \"version\": \"<integer>\",\n        \"fixed_price\": {\n          \"currency_code\": \"<string>\",\n          \"value\": \"721698.09187627156\"\n        },\n        \"pricing_model\": \"VOLUME\",\n        \"tiers\": [\n          {\n            \"starting_quantity\": \".187\",\n            \"amount\": {\n              \"currency_code\": \"<string>\",\n              \"value\": \"908.5625\"\n            },\n            \"ending_quantity\": \"0295\"\n          }\n        ],\n        \"create_time\": \"8189-06-27T01:51:59.3074138582+33:65\",\n        \"update_time\": \"1643-11-13T23:15:06+32:02\"\n      }\n    }\n  ]\n}",
+                                  "options": {
+                                    "raw": {
+                                      "headerFamily": "json",
+                                      "language": "json"
+                                    }
+                                  }
+                                },
+                                "url": {
+                                  "raw": "{{baseUrl}}/v1/billing/plans/:id/update-pricing-schemes",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "v1",
+                                    "billing",
+                                    "plans",
+                                    ":id",
+                                    "update-pricing-schemes"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "id"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "Internal Server Error",
+                              "code": 500,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "{\n  \"name\": \"INTERNAL_SERVER_ERROR\",\n  \"message\": \"An internal server error occurred.\",\n  \"debug_id\": \"<string>\",\n  \"links\": [\n    {\n      \"href\": \"a'r/; r\",\n      \"rel\": \"w[sgD^\",\n      \"method\": \"GET\"\n    },\n    {\n      \"href\": \"\\\\%T}!<h\",\n      \"rel\": \"3@@=IKNYBp\",\n      \"method\": \"GET\"\n    },\n    {\n      \"href\": \"[QMC^Z2\",\n      \"rel\": \"tw]4#WtR\",\n      \"method\": \"GET\"\n    },\n    {\n      \"href\": \"Y4f\",\n      \"rel\": \"@&IL\\\"H:\",\n      \"method\": \"DELETE\"\n    },\n    {\n      \"href\": \"ZkqF}FAY@\",\n      \"rel\": \"|\",\n      \"method\": \"DELETE\"\n    },\n    {\n      \"href\": \"u%9CIMrC<\",\n      \"rel\": \"/F%}MU\",\n      \"method\": \"POST\"\n    },\n    {\n      \"href\": \"u3l FxZla\",\n      \"rel\": \"\",\n      \"method\": \"POST\"\n    },\n    {\n      \"href\": \"k\",\n      \"rel\": \">D'Uy94vq7\",\n      \"method\": \"GET\"\n    },\n    {\n      \"href\": \"gq\",\n      \"rel\": \"\",\n      \"method\": \"PUT\"\n    },\n    {\n      \"href\": \"ox9<)H0dZW\",\n      \"rel\": \"k:_K%jr/Sq\",\n      \"method\": \"POST\"\n    },\n    {\n      \"href\": \"wL9\",\n      \"rel\": \"yNxA$]:eL\",\n      \"method\": \"PATCH\"\n    },\n    {\n      \"href\": \"n\",\n      \"rel\": \" $9Qc4)\",\n      \"method\": \"POST\"\n    },\n    {\n      \"href\": \"#SlO\",\n      \"rel\": \"n\\\"`\",\n      \"method\": \"POST\"\n    },\n    {\n      \"href\": \"a\",\n      \"rel\": \"U.D\",\n      \"method\": \"POST\"\n    },\n    {\n      \"href\": \"l\\\"%446tG\",\n      \"rel\": \"IK~sJ\",\n      \"method\": \"GET\"\n    },\n    {\n      \"href\": \"cAQrl_/x\",\n      \"rel\": \"k0!7&\",\n      \"method\": \"PATCH\"\n    },\n    {\n      \"href\": \"[3M2Q^Z\",\n      \"rel\": \"*kT\",\n      \"method\": \"POST\"\n    },\n    {\n      \"href\": \"ix\",\n      \"rel\": \"tL\",\n      \"method\": \"PUT\"\n    },\n    {\n      \"href\": \"$KU\",\n      \"rel\": \"\",\n      \"method\": \"POST\"\n    },\n    {\n      \"href\": \"Q4'QLY&/\",\n      \"rel\": \"FXRDG4?gd\",\n      \"method\": \"PUT\"\n    }\n  ]\n}",
+                              "createdAt": "2026-07-28T02:34:17.000Z",
+                              "updatedAt": "2026-07-28T02:34:17.000Z",
+                              "uid": "35240-b354bc0a-2124-4367-8d57-f7417ac96d00"
+                            },
+                            {
+                              "id": "d3ec7f98-1bc3-474a-90f5-6b0410ce904f",
+                              "name": "The default response.",
+                              "originalRequest": {
+                                "method": "POST",
+                                "header": [
+                                  {
+                                    "key": "Content-Type",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: oauth2",
+                                    "key": "Authorization",
+                                    "value": "<token>"
+                                  }
+                                ],
+                                "body": {
+                                  "mode": "raw",
+                                  "raw": "{\n  \"pricing_schemes\": [\n    {\n      \"billing_cycle_sequence\": \"<integer>\",\n      \"pricing_scheme\": {\n        \"version\": \"<integer>\",\n        \"fixed_price\": {\n          \"currency_code\": \"<string>\",\n          \"value\": \"721698.09187627156\"\n        },\n        \"pricing_model\": \"VOLUME\",\n        \"tiers\": [\n          {\n            \"starting_quantity\": \".187\",\n            \"amount\": {\n              \"currency_code\": \"<string>\",\n              \"value\": \"908.5625\"\n            },\n            \"ending_quantity\": \"0295\"\n          }\n        ],\n        \"create_time\": \"8189-06-27T01:51:59.3074138582+33:65\",\n        \"update_time\": \"1643-11-13T23:15:06+32:02\"\n      }\n    }\n  ]\n}",
+                                  "options": {
+                                    "raw": {
+                                      "headerFamily": "json",
+                                      "language": "json"
+                                    }
+                                  }
+                                },
+                                "url": {
+                                  "raw": "{{baseUrl}}/v1/billing/plans/:id/update-pricing-schemes",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "v1",
+                                    "billing",
+                                    "plans",
+                                    ":id",
+                                    "update-pricing-schemes"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "id"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "Internal Server Error",
+                              "code": 500,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "{\n  \"name\": \"INVALID_REQUEST\",\n  \"message\": \"Request is not well-formed, syntactically incorrect, or violates schema.\",\n  \"details\": [\n    {\n      \"issue\": \"<string>\",\n      \"field\": \"<string>\",\n      \"value\": \"<string>\",\n      \"location\": \"body\",\n      \"description\": \"<string>\"\n    },\n    {\n      \"issue\": \"<string>\",\n      \"field\": \"<string>\",\n      \"value\": \"<string>\",\n      \"location\": \"body\",\n      \"description\": \"<string>\"\n    }\n  ],\n  \"debug_id\": \"<string>\",\n  \"links\": [\n    {\n      \"href\": \"`\",\n      \"rel\": \"~\",\n      \"method\": \"GET\"\n    },\n    {\n      \"href\": \"23I'2RB2Nu\",\n      \"rel\": \"7}8\",\n      \"method\": \"PATCH\"\n    },\n    {\n      \"href\": \"uYz+`)A6\",\n      \"rel\": \"1C\",\n      \"method\": \"POST\"\n    },\n    {\n      \"href\": \"k;_TISHJ\",\n      \"rel\": \"R%dJh@6!\",\n      \"method\": \"POST\"\n    },\n    {\n      \"href\": \"D5b\",\n      \"rel\": \"Eehuo\",\n      \"method\": \"PUT\"\n    },\n    {\n      \"href\": \"e{P\",\n      \"rel\": \"#Z#\",\n      \"method\": \"POST\"\n    },\n    {\n      \"href\": \"h{)I\\\"%z-\",\n      \"rel\": \"t4Q0TOB/z\",\n      \"method\": \"DELETE\"\n    },\n    {\n      \"href\": \"\",\n      \"rel\": \"G+U\",\n      \"method\": \"PUT\"\n    },\n    {\n      \"href\": \"[SQ&epY$i5\",\n      \"rel\": \"1th&f4LP\",\n      \"method\": \"DELETE\"\n    },\n    {\n      \"href\": \"TI6KY6>#\",\n      \"rel\": \";;g[5lV\",\n      \"method\": \"PATCH\"\n    },\n    {\n      \"href\": \"*ad/ldn$T\",\n      \"rel\": \"'fE\",\n      \"method\": \"POST\"\n    },\n    {\n      \"href\": \"\",\n      \"rel\": \"HfL\",\n      \"method\": \"POST\"\n    },\n    {\n      \"href\": \"AY1\\\\v%Kb\",\n      \"rel\": \")V'%cm^$h\",\n      \"method\": \"GET\"\n    },\n    {\n      \"href\": \"3p6xEE`amC\",\n      \"rel\": \"zwf/R(@Av\",\n      \"method\": \"PUT\"\n    },\n    {\n      \"href\": \"&Cf9R\",\n      \"rel\": \"f':8`#h\",\n      \"method\": \"PUT\"\n    },\n    {\n      \"href\": \"MS9;L\",\n      \"rel\": \"TJRAm`eF\",\n      \"method\": \"PATCH\"\n    },\n    {\n      \"href\": \"-%]aB?\",\n      \"rel\": \"i`vhWE[\",\n      \"method\": \"GET\"\n    },\n    {\n      \"href\": \"E\",\n      \"rel\": \"V*8!6\",\n      \"method\": \"POST\"\n    },\n    {\n      \"href\": \"\",\n      \"rel\": \"U_YF\",\n      \"method\": \"DELETE\"\n    },\n    {\n      \"href\": \"u{X~s$U@\",\n      \"rel\": \"GCvX\",\n      \"method\": \"GET\"\n    }\n  ]\n}",
+                              "createdAt": "2026-07-28T02:34:17.000Z",
+                              "updatedAt": "2026-07-28T02:34:17.000Z",
+                              "uid": "35240-d3ec7f98-1bc3-474a-90f5-6b0410ce904f"
+                            }
+                          ],
+                          "createdAt": "2026-07-28T02:34:17.000Z",
+                          "updatedAt": "2026-07-28T02:34:17.000Z",
+                          "uid": "35240-cd7b7b7c-4af2-475f-8b19-b2c9a8332beb"
+                        }
+                      ],
+                      "id": "78b5b674-d58c-4fd7-98bf-f2210461ddeb",
+                      "createdAt": "2026-07-28T02:34:17.000Z",
+                      "updatedAt": "2026-07-28T02:34:17.000Z",
+                      "uid": "35240-78b5b674-d58c-4fd7-98bf-f2210461ddeb"
+                    }
+                  ],
+                  "id": "98ffeb45-5455-4960-a99e-5667c7f8d9fd",
+                  "createdAt": "2026-07-28T02:34:17.000Z",
+                  "updatedAt": "2026-07-28T02:34:17.000Z",
+                  "uid": "35240-98ffeb45-5455-4960-a99e-5667c7f8d9fd"
+                }
+              ],
+              "id": "b7bb6d6b-ca16-48cf-8fa7-c17e822c4513",
+              "createdAt": "2026-07-28T02:34:17.000Z",
+              "updatedAt": "2026-07-28T02:34:17.000Z",
+              "uid": "35240-b7bb6d6b-ca16-48cf-8fa7-c17e822c4513"
+            }
+          ],
+          "id": "cfd0b1c5-9d96-481e-ab1f-be4669480600",
+          "createdAt": "2026-07-28T02:34:17.000Z",
+          "updatedAt": "2026-07-28T02:34:17.000Z",
+          "uid": "35240-cfd0b1c5-9d96-481e-ab1f-be4669480600"
+        }
+      ],
+      "id": "a7bd609e-0362-4737-89a2-a9572760228d",
+      "createdAt": "2026-07-28T02:34:17.000Z",
+      "updatedAt": "2026-07-28T02:34:17.000Z",
+      "uid": "35240-a7bd609e-0362-4737-89a2-a9572760228d"
+    }
+  ],
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://api-m.sandbox.paypal.com"
+    }
+  ]
+}
