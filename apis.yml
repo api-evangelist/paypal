@@ -1527,6 +1527,16 @@ apis:
   - type: Documentation
     url: https://developer.paypal.com/docs/api/payment-tokens/v3/
 common:
+- type: Subsidiary
+  name: Braintree
+  url: https://www.braintreepayments.com/
+- type: Subsidiary
+  name: Venmo
+  url: https://venmo.com/
+- type: Community
+  url: https://developer.paypal.com/community
+- type: SDKs
+  url: https://developer.paypal.com/sdk/ios/
 - type: PostmanWorkspace
   url: https://www.postman.com/kinlaneapi/paypal/overview
 - type: AgenticAccess
