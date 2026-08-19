@@ -48,7 +48,7 @@ tags:
 created: '2024-04-14'
 modified: '2026-05-30'
 url: https://raw.githubusercontent.com/api-evangelist/paypal/refs/heads/main/apis.yml
-specificationVersion: '0.20'
+specificationVersion: '0.23'
 apis:
 - aid: paypal:paypal-activate-api
   name: PayPal Activate API
