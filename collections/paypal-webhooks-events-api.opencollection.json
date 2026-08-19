@@ -1,0 +1,130 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Paypal Subscriptions Authorizations Webhooks-Events API",
+    "version": "1.6"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Webhooks-Events",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Paypal List event notifications",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api-m.sandbox.paypal.com/v1/notifications/webhooks-events",
+            "params": [
+              {
+                "name": "page_size",
+                "value": "",
+                "type": "query",
+                "description": "The number of webhook event notifications to return in the response."
+              },
+              {
+                "name": "start_time",
+                "value": "",
+                "type": "query",
+                "description": "Filters the webhook event notifications in the response to those created on or after this date and time and on or before the `end_time` value. Both values are in [Internet date and time format](https://tools.ietf.org/html/rfc3339#section-5.6) format. Example: `start_time=2013-03-06T11:00:00Z`."
+              },
+              {
+                "name": "end_time",
+                "value": "",
+                "type": "query",
+                "description": "Filters the webhook event notifications in the response to those created on or after the `start_time` and on or before this date and time. Both values are in [Internet date and time format](https://tools.ietf.org/html/rfc3339#section-5.6) format. Example: `end_time=2013-03-06T11:00:00Z`."
+              },
+              {
+                "name": "transaction_id",
+                "value": "",
+                "type": "query",
+                "description": "Filters the response to a single transaction, by ID."
+              },
+              {
+                "name": "event_type",
+                "value": "",
+                "type": "query",
+                "description": "Filters the response to a single event."
+              }
+            ],
+            "auth": {
+              "type": "oauth2",
+              "flow": "client_credentials",
+              "accessTokenUrl": "/v1/oauth2/token",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "Lists webhooks event notifications. Use query parameters to filter the response."
+        },
+        {
+          "info": {
+            "name": "Paypal Show event notification details",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api-m.sandbox.paypal.com/v1/notifications/webhooks-events/:event_id",
+            "params": [
+              {
+                "name": "event_id",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the webhook event notification to resend."
+              }
+            ],
+            "auth": {
+              "type": "oauth2",
+              "flow": "client_credentials",
+              "accessTokenUrl": "/v1/oauth2/token",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "Shows details for a webhooks event notification, by ID."
+        },
+        {
+          "info": {
+            "name": "Paypal Resend event notification",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api-m.sandbox.paypal.com/v1/notifications/webhooks-events/:event_id/resend",
+            "params": [
+              {
+                "name": "event_id",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the webhook event notification to resend."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "oauth2",
+              "flow": "client_credentials",
+              "accessTokenUrl": "/v1/oauth2/token",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "Resends a webhook event notification, by ID. Any pending notifications are not resent."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

@@ -1,0 +1,46 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Paypal Subscriptions Authorizations Refunds API",
+    "version": "1.6"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Refunds",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Paypal Show refund details",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api-m.sandbox.paypal.com/v2/payments/refunds/:refund_id",
+            "params": [
+              {
+                "name": "refund_id",
+                "value": "",
+                "type": "path",
+                "description": "The PayPal-generated ID for the refund for which to show details."
+              }
+            ],
+            "auth": {
+              "type": "oauth2",
+              "flow": "client_credentials",
+              "accessTokenUrl": "/v1/oauth2/token",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "Shows details for a refund, by ID."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

@@ -1,0 +1,468 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Paypal Subscriptions Authorizations Invoices API",
+    "version": "1.6"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Invoices",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Paypal List invoices",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api-m.sandbox.paypal.com/v2/invoicing/invoices",
+            "params": [
+              {
+                "name": "page",
+                "value": "",
+                "type": "query",
+                "description": "The page number to be retrieved, for the list of templates. So, a combination of `page=1` and `page_size=20` returns the first 20 templates. A combination of `page=2` and `page_size=20` returns the next 20 templates."
+              },
+              {
+                "name": "page_size",
+                "value": "",
+                "type": "query",
+                "description": "The maximum number of templates to return in the response."
+              },
+              {
+                "name": "total_required",
+                "value": "",
+                "type": "query",
+                "description": "Indicates whether the to show <code>total_pages</code> and <code>total_items</code> in the response."
+              },
+              {
+                "name": "fields",
+                "value": "",
+                "type": "query",
+                "description": "The fields to return in the response. Value is `all` or `none`. To return only the template name, ID, and default attributes, specify `none`."
+              }
+            ],
+            "auth": {
+              "type": "oauth2",
+              "flow": "client_credentials",
+              "accessTokenUrl": "/v1/oauth2/token",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "Lists invoices. To filter the invoices that appear in the response, you can specify one or more optional query parameters."
+        },
+        {
+          "info": {
+            "name": "Paypal Create draft invoice",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api-m.sandbox.paypal.com/v2/invoicing/invoices",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "oauth2",
+              "flow": "client_credentials",
+              "accessTokenUrl": "/v1/oauth2/token",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "Creates a draft invoice. To move the invoice from a draft to payable state, you must <a href=\"#invoices_send\">send the invoice</a>.<br/><br/>In the JSON request body, include invoice details including merchant information. The <code>invoice</code> object must include an <code>items</code> array.<blockquote><strong>Note:</strong> The merchant that you specify in an invoice must have a PayPal account in good standing.</blockquote>."
+        },
+        {
+          "info": {
+            "name": "Paypal Send invoice",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api-m.sandbox.paypal.com/v2/invoicing/invoices/:invoice_id/send",
+            "params": [
+              {
+                "name": "invoice_id",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the draft invoice to delete."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "oauth2",
+              "flow": "client_credentials",
+              "accessTokenUrl": "/v1/oauth2/token",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "Sends or schedules an invoice, by ID, to be sent to a customer. The action depends on the invoice issue date:<ul><li>If the invoice issue date is current or in the past, sends the invoice immediately.</li><li>If the invoice issue date is in the future, schedules the invoice to be sent on that date.</li></ul>To suppress the merchant's email notification, set the `send_to_invoicer` body parameter to `false`. To send the invoice through a share link and not through PayPal, set the <code>send_to_rec"
+        },
+        {
+          "info": {
+            "name": "Paypal Send invoice reminder",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api-m.sandbox.paypal.com/v2/invoicing/invoices/:invoice_id/remind",
+            "params": [
+              {
+                "name": "invoice_id",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the draft invoice to delete."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "oauth2",
+              "flow": "client_credentials",
+              "accessTokenUrl": "/v1/oauth2/token",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "Sends a reminder to the payer about an invoice, by ID. In the JSON request body, include a `notification` object that defines the subject of the reminder and other details."
+        },
+        {
+          "info": {
+            "name": "Paypal Cancel sent invoice",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api-m.sandbox.paypal.com/v2/invoicing/invoices/:invoice_id/cancel",
+            "params": [
+              {
+                "name": "invoice_id",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the draft invoice to delete."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "oauth2",
+              "flow": "client_credentials",
+              "accessTokenUrl": "/v1/oauth2/token",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "Cancels a sent invoice, by ID, and, optionally, sends a notification about the cancellation to the payer, merchant, and CC: emails."
+        },
+        {
+          "info": {
+            "name": "Paypal Record payment for invoice",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api-m.sandbox.paypal.com/v2/invoicing/invoices/:invoice_id/payments",
+            "params": [
+              {
+                "name": "invoice_id",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the draft invoice to delete."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "oauth2",
+              "flow": "client_credentials",
+              "accessTokenUrl": "/v1/oauth2/token",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "Records a payment for the invoice. If no payment is due, the invoice is marked as `PAID`. Otherwise, the invoice is marked as `PARTIALLY PAID`."
+        },
+        {
+          "info": {
+            "name": "Paypal Delete external payment",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api-m.sandbox.paypal.com/v2/invoicing/invoices/:invoice_id/payments/:transaction_id",
+            "params": [
+              {
+                "name": "invoice_id",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the draft invoice to delete."
+              },
+              {
+                "name": "transaction_id",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the external refund transaction to delete."
+              }
+            ],
+            "auth": {
+              "type": "oauth2",
+              "flow": "client_credentials",
+              "accessTokenUrl": "/v1/oauth2/token",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "Deletes an external payment, by invoice ID and transaction ID."
+        },
+        {
+          "info": {
+            "name": "Paypal Record refund for invoice",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api-m.sandbox.paypal.com/v2/invoicing/invoices/:invoice_id/refunds",
+            "params": [
+              {
+                "name": "invoice_id",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the draft invoice to delete."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "oauth2",
+              "flow": "client_credentials",
+              "accessTokenUrl": "/v1/oauth2/token",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "Records a refund for the invoice. If all payments are refunded, the invoice is marked as `REFUNDED`. Otherwise, the invoice is marked as `PARTIALLY REFUNDED`."
+        },
+        {
+          "info": {
+            "name": "Paypal Delete external refund",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api-m.sandbox.paypal.com/v2/invoicing/invoices/:invoice_id/refunds/:transaction_id",
+            "params": [
+              {
+                "name": "invoice_id",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the draft invoice to delete."
+              },
+              {
+                "name": "transaction_id",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the external refund transaction to delete."
+              }
+            ],
+            "auth": {
+              "type": "oauth2",
+              "flow": "client_credentials",
+              "accessTokenUrl": "/v1/oauth2/token",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "Deletes an external refund, by invoice ID and transaction ID."
+        },
+        {
+          "info": {
+            "name": "Paypal Generate QR code",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api-m.sandbox.paypal.com/v2/invoicing/invoices/:invoice_id/generate-qr-code",
+            "params": [
+              {
+                "name": "invoice_id",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the draft invoice to delete."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "oauth2",
+              "flow": "client_credentials",
+              "accessTokenUrl": "/v1/oauth2/token",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "Generates a QR code for an invoice, by ID. The QR code is a PNG image in <a href=\"https://www.base64encode.org/\">Base64-encoded</a> format that corresponds to the invoice ID. You can generate a QR code for an invoice and add it to a paper or PDF invoice. When customers use their mobile devices to scan the QR code, they are redirected to the PayPal mobile payment flow where they can view the invoice and pay online with PayPal or a credit card. Before you get a QR code, you must <a href=\"#invoices"
+        },
+        {
+          "info": {
+            "name": "Paypal Generate invoice number",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api-m.sandbox.paypal.com/v2/invoicing/generate-next-invoice-number",
+            "auth": {
+              "type": "oauth2",
+              "flow": "client_credentials",
+              "accessTokenUrl": "/v1/oauth2/token",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "Generates the next invoice number that is available to the merchant. The next invoice number uses the prefix and suffix from the last invoice number and increments the number by one. For example, the next invoice number after `INVOICE-1234` is `INVOICE-1235`."
+        },
+        {
+          "info": {
+            "name": "Paypal Show invoice details",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api-m.sandbox.paypal.com/v2/invoicing/invoices/:invoice_id",
+            "params": [
+              {
+                "name": "invoice_id",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the draft invoice to delete."
+              }
+            ],
+            "auth": {
+              "type": "oauth2",
+              "flow": "client_credentials",
+              "accessTokenUrl": "/v1/oauth2/token",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "Shows details for an invoice, by ID."
+        },
+        {
+          "info": {
+            "name": "Paypal Fully update invoice",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://api-m.sandbox.paypal.com/v2/invoicing/invoices/:invoice_id",
+            "params": [
+              {
+                "name": "invoice_id",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the draft invoice to delete."
+              },
+              {
+                "name": "send_to_recipient",
+                "value": "",
+                "type": "query",
+                "description": "Indicates whether to send the invoice update notification to the recipient."
+              },
+              {
+                "name": "send_to_invoicer",
+                "value": "",
+                "type": "query",
+                "description": "Indicates whether to send the invoice update notification to the merchant."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "oauth2",
+              "flow": "client_credentials",
+              "accessTokenUrl": "/v1/oauth2/token",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "Fully updates an invoice, by ID. In the JSON request body, include a complete `invoice` object. This call does not support partial updates."
+        },
+        {
+          "info": {
+            "name": "Paypal Delete invoice",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api-m.sandbox.paypal.com/v2/invoicing/invoices/:invoice_id",
+            "params": [
+              {
+                "name": "invoice_id",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the draft invoice to delete."
+              }
+            ],
+            "auth": {
+              "type": "oauth2",
+              "flow": "client_credentials",
+              "accessTokenUrl": "/v1/oauth2/token",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "Deletes a draft or scheduled invoice, by ID. Deletes invoices in the draft or scheduled state only. For invoices that have already been sent, you can <a href=\"/docs/api/invoicing/v2/#invoices_cancel\">cancel the invoice</a>. After you delete a draft or scheduled invoice, you can no longer use it or show its details. However, you can reuse its invoice number."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

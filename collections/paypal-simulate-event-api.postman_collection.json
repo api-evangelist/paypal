@@ -1,0 +1,204 @@
+{
+  "item": [
+    {
+      "id": "9c33d6fe-0ad2-48f9-8e2f-7d4b984b1412",
+      "name": "Simulate-Event",
+      "description": {
+        "content": "Use the `/simulate-event` resource to use a sample payload to simulate a webhook event. The events that this call generates only serve to validate the connection to the listener URL and to show how webhook events look. <blockquote><strong>Note:</strong> You can also use the <a href=\"/docs/api/notifications/webhooks/simulator/\">Webhooks simulator</a> to simulate webhook events.</blockquote>",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "fd52098c-7504-4c10-942d-b535a4021ca0",
+          "name": "Paypal Simulate webhook event",
+          "request": {
+            "name": "Paypal Simulate webhook event",
+            "description": {
+              "content": "Simulates a webhook event. In the JSON request body, specify a sample payload.<br>You need to subscribe to the following webhook events for Pay upon Invoice:<br><table><thead><tr><th>Event</th><th>Trigger</th></tr></thead><tbody><tr><td><code>PAYMENT.CAPTURE.COMPLETED</code></td><td>A payment capture completes.</td></tr><tr><td><code>PAYMENT.CAPTURE.DENIED</code></td><td>A payment capture is denied.</td></tr><tr><td><code>CHECKOUT.PAYMENT-APPROVAL.REVERSED</code></td><td>PayPal reverses a payment capture.</td></tr></tbody></table>",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "notifications",
+                "simulate-event"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": {
+              "type": "oauth2",
+              "oauth2": [
+                {
+                  "key": "scope",
+                  "value": "https://uri.paypal.com/services/subscriptions"
+                },
+                {
+                  "key": "accessTokenUrl",
+                  "value": "/v1/oauth2/token"
+                },
+                {
+                  "key": "grant_type",
+                  "value": "client_credentials"
+                }
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"event_type\": \"<string>\",\n  \"webhook_id\": \"<string>\",\n  \"url\": \"<uri>\",\n  \"resource_version\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "356398dd-11b2-4ede-9957-a74fb39705d6",
+              "name": "A successful request returns the HTTP `202 Accepted` status code and a JSON response body that shows details for the mock event.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "notifications",
+                    "simulate-event"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"url\": \"https://example.com/example_webhook\",\n  \"event_type\": \"PAYMENT.AUTHORIZATION.CREATED\",\n  \"resource_version\": \"1.0\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Accepted",
+              "code": 202,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"string\",\n  \"create_time\": \"2012-10-14T07:09:41.635Z\",\n  \"resource_type\": \"string\",\n  \"event_version\": \"01349x01065\",\n  \"event_type\": \"string\",\n  \"summary\": \"string\",\n  \"resource_version\": \"6096429288968519\",\n  \"resource\": {\n    \"key_0\": \"string\"\n  },\n  \"links\": [\n    {\n      \"href\": \"string\",\n      \"rel\": \"string\",\n      \"method\": \"PUT\"\n    },\n    {\n      \"href\": \"string\",\n      \"rel\": \"string\",\n      \"method\": \"PUT\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "3dc31a22-2fb0-40b4-8e85-6886147a0d8d",
+              "name": "The error response.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "notifications",
+                    "simulate-event"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"url\": \"https://example.com/example_webhook\",\n  \"event_type\": \"PAYMENT.AUTHORIZATION.CREATED\",\n  \"resource_version\": \"1.0\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"name\": \"string\",\n  \"message\": \"string\",\n  \"debug_id\": \"string\",\n  \"information_link\": \"string\",\n  \"details\": [\n    {\n      \"issue\": \"string\",\n      \"field\": \"string\",\n      \"value\": \"string\",\n      \"location\": \"body\",\n      \"description\": \"string\"\n    },\n    {\n      \"issue\": \"string\",\n      \"field\": \"string\",\n      \"value\": \"string\",\n      \"location\": \"body\",\n      \"description\": \"string\"\n    }\n  ],\n  \"links\": [\n    {\n      \"href\": \"string\",\n      \"rel\": \"string\",\n      \"method\": \"GET\"\n    },\n    {\n      \"href\": \"string\",\n      \"rel\": \"string\",\n      \"method\": \"HEAD\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api-m.sandbox.paypal.com",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "561432f3-5f2f-4e18-ac94-ae13cecd80cf",
+    "name": "Paypal Subscriptions Authorizations Simulate-Event API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "You can use billing plans and subscriptions to create subscriptions that process recurring PayPal payments for physical or digital goods, or services. A plan includes pricing and billing cycle information that defines the amount and frequency of charge for a subscription. You can also define a fixed plan, such as a $5 basic plan or a volume- or graduated-based plan with pricing tiers based on the quantity purchased. For more information, see <a href=\"/docs/subscriptions/\">Subscriptions Overview</a>.",
+      "type": "text/plain"
+    }
+  }
+}

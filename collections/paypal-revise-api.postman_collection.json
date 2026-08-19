@@ -1,0 +1,612 @@
+{
+  "item": [
+    {
+      "id": "69634858-7470-4256-8751-b6c3c60f6e0e",
+      "name": "Revise",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "2ffe0a25-3cca-4a16-be2b-224fd8d3e669",
+          "name": "Revise plan or quantity of subscription",
+          "request": {
+            "name": "Revise plan or quantity of subscription",
+            "description": {
+              "content": "Updates the quantity of the product or service in a subscription. You can also use this method to switch the plan and update the `shipping_amount`, `shipping_address` values for the subscription. This type of update requires the buyer's consent.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "billing",
+                "subscriptions",
+                ":id",
+                "revise"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) The ID of the subscription."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": {
+              "type": "oauth2",
+              "oauth2": [
+                {
+                  "key": "scope",
+                  "value": "https://uri.paypal.com/services/subscriptions"
+                },
+                {
+                  "key": "accessTokenUrl",
+                  "value": "/v1/oauth2/token"
+                },
+                {
+                  "key": "grant_type",
+                  "value": "client_credentials"
+                }
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"plan_id\": \"<string>\",\n  \"quantity\": \"<string>\",\n  \"shipping_amount\": {\n    \"currency_code\": \"<ppaas_common_currency_code_v2>\",\n    \"value\": \"<string>\"\n  },\n  \"shipping_address\": {\n    \"name\": {\n      \"prefix\": \"<string>\",\n      \"given_name\": \"<string>\",\n      \"surname\": \"<string>\",\n      \"middle_name\": \"<string>\",\n      \"suffix\": \"<string>\",\n      \"alternate_full_name\": \"<string>\",\n      \"full_name\": \"<string>\"\n    },\n    \"type\": \"<string>\",\n    \"address\": {\n      \"country_code\": \"<ppaas_common_country_code_v2>\",\n      \"address_line_1\": \"<string>\",\n      \"address_line_2\": \"<string>\",\n      \"address_line_3\": \"<string>\",\n      \"admin_area_4\": \"<string>\",\n      \"admin_area_3\": \"<string>\",\n      \"admin_area_2\": \"<string>\",\n      \"admin_area_1\": \"<string>\",\n      \"postal_code\": \"<string>\",\n      \"address_details\": {\n        \"street_number\": \"<string>\",\n        \"street_name\": \"<string>\",\n        \"street_type\": \"<string>\",\n        \"delivery_service\": \"<string>\",\n        \"building_name\": \"<string>\",\n        \"sub_building\": \"<string>\"\n      }\n    }\n  },\n  \"application_context\": {\n    \"return_url\": \"<uri>\",\n    \"cancel_url\": \"<uri>\",\n    \"brand_name\": \"<string>\",\n    \"locale\": \"<ppaas_common_language_v3>\",\n    \"shipping_preference\": \"GET_FROM_FILE\",\n    \"user_action\": \"SUBSCRIBE_NOW\",\n    \"payment_method\": {\n      \"payer_selected\": \"PAYPAL\",\n      \"payee_preferred\": \"UNRESTRICTED\",\n      \"standard_entry_class_code\": \"WEB\"\n    }\n  },\n  \"plan\": {\n    \"billing_cycles\": [\n      {\n        \"sequence\": \"<integer>\",\n        \"pricing_scheme\": {\n          \"fixed_price\": {\n            \"currency_code\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"value\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          \"pricing_model\": \"<string>\",\n          \"tiers\": [\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          ]\n        },\n        \"total_cycles\": \"<integer>\"\n      }\n    ],\n    \"payment_preferences\": {\n      \"auto_bill_outstanding\": \"<boolean>\",\n      \"setup_fee\": {\n        \"currency_code\": \"<ppaas_common_currency_code_v2>\",\n        \"value\": \"<string>\"\n      },\n      \"setup_fee_failure_action\": \"<string>\",\n      \"payment_failure_threshold\": \"<integer>\"\n    },\n    \"taxes\": {\n      \"percentage\": \"<ppaas_common_percentage_v2>\",\n      \"inclusive\": \"<boolean>\"\n    }\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "2b9388ae-e537-429d-9ea0-ad5916c55873",
+              "name": "A successful request returns the HTTP `200 OK` status code and a JSON response body that shows subscription details.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "billing",
+                    "subscriptions",
+                    ":id",
+                    "revise"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) The ID of the subscription."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"plan_id\": \"P-5ML4271244454362WXNWU5NQ\",\n  \"shipping_amount\": {\n    \"currency_code\": \"USD\",\n    \"value\": \"10.00\"\n  },\n  \"shipping_address\": {\n    \"name\": {\n      \"full_name\": \"John Doe\"\n    },\n    \"address\": {\n      \"address_line_1\": \"2211 N First Street\",\n      \"address_line_2\": \"Building 17\",\n      \"admin_area_2\": \"San Jose\",\n      \"admin_area_1\": \"CA\",\n      \"postal_code\": \"95131\",\n      \"country_code\": \"US\"\n    }\n  },\n  \"application_context\": {\n    \"brand_name\": \"walmart\",\n    \"locale\": \"en-US\",\n    \"shipping_preference\": \"SET_PROVIDED_ADDRESS\",\n    \"payment_method\": {\n      \"payer_selected\": \"PAYPAL\",\n      \"payee_preferred\": \"IMMEDIATE_PAYMENT_REQUIRED\"\n    },\n    \"return_url\": \"https://example.com/returnUrl\",\n    \"cancel_url\": \"https://example.com/cancelUrl\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"plan_id\": \"P-5ML4271244454362WXNWU5NQ\",\n  \"plan_overridden\": false,\n  \"shipping_amount\": {\n    \"currency_code\": \"USD\",\n    \"value\": \"10.00\"\n  },\n  \"shipping_address\": {\n    \"name\": {\n      \"full_name\": \"John Doe\"\n    },\n    \"address\": {\n      \"address_line_1\": \"2211 N First Street\",\n      \"address_line_2\": \"Building 17\",\n      \"admin_area_2\": \"San Jose\",\n      \"admin_area_1\": \"CA\",\n      \"postal_code\": \"95131\",\n      \"country_code\": \"US\"\n    }\n  },\n  \"links\": [\n    {\n      \"href\": \"https://www.paypal.com/webapps/billing/subscriptions/update?ba_token=BA-2M539689T3856352J\",\n      \"rel\": \"approve\",\n      \"method\": \"GET\"\n    },\n    {\n      \"href\": \"https://api-m.paypal.com/v1/billing/subscriptions/I-BW452GLLEP1G\",\n      \"rel\": \"edit\",\n      \"method\": \"PATCH\"\n    },\n    {\n      \"href\": \"https://api-m.paypal.com/v1/billing/subscriptions/I-BW452GLLEP1G\",\n      \"rel\": \"self\",\n      \"method\": \"GET\"\n    },\n    {\n      \"href\": \"https://api-m.paypal.com/v1/billing/subscriptions/I-BW452GLLEP1G/cancel\",\n      \"rel\": \"cancel\",\n      \"method\": \"POST\"\n    },\n    {\n      \"href\": \"https://api-m.paypal.com/v1/billing/subscriptions/I-BW452GLLEP1G/suspend\",\n      \"rel\": \"suspend\",\n      \"method\": \"POST\"\n    },\n    {\n      \"href\": \"https://api-m.paypal.com/v1/billing/subscriptions/I-BW452GLLEP1G/capture\",\n      \"rel\": \"capture\",\n      \"method\": \"POST\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "d05718eb-c974-46c9-beef-4534f8554bd0",
+              "name": "Bad Request. Request is not well-formed, syntactically incorrect, or violates schema.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "billing",
+                    "subscriptions",
+                    ":id",
+                    "revise"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) The ID of the subscription."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"plan_id\": \"P-5ML4271244454362WXNWU5NQ\",\n  \"shipping_amount\": {\n    \"currency_code\": \"USD\",\n    \"value\": \"10.00\"\n  },\n  \"shipping_address\": {\n    \"name\": {\n      \"full_name\": \"John Doe\"\n    },\n    \"address\": {\n      \"address_line_1\": \"2211 N First Street\",\n      \"address_line_2\": \"Building 17\",\n      \"admin_area_2\": \"San Jose\",\n      \"admin_area_1\": \"CA\",\n      \"postal_code\": \"95131\",\n      \"country_code\": \"US\"\n    }\n  },\n  \"application_context\": {\n    \"brand_name\": \"walmart\",\n    \"locale\": \"en-US\",\n    \"shipping_preference\": \"SET_PROVIDED_ADDRESS\",\n    \"payment_method\": {\n      \"payer_selected\": \"PAYPAL\",\n      \"payee_preferred\": \"IMMEDIATE_PAYMENT_REQUIRED\"\n    },\n    \"return_url\": \"https://example.com/returnUrl\",\n    \"cancel_url\": \"https://example.com/cancelUrl\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"name\": \"INVALID_REQUEST\",\n  \"message\": \"Request is not well-formed, syntactically incorrect, or violates schema.\",\n  \"details\": [\n    {\n      \"issue\": \"INVALID_PARAMETER_SYNTAX\",\n      \"field\": \"string\",\n      \"value\": \"string\",\n      \"location\": \"body\",\n      \"description\": \"The value of a field does not conform to the expected format.\"\n    },\n    {\n      \"issue\": \"INVALID_PARAMETER_SYNTAX\",\n      \"field\": \"string\",\n      \"value\": \"string\",\n      \"location\": \"body\",\n      \"description\": \"The value of a field does not conform to the expected format.\"\n    }\n  ],\n  \"debug_id\": \"string\",\n  \"links\": [\n    {\n      \"href\": \"I0n?S_\",\n      \"rel\": \"9!\",\n      \"method\": \"PUT\"\n    },\n    {\n      \"href\": \"c\",\n      \"rel\": \";wWv{[Z\",\n      \"method\": \"GET\"\n    },\n    {\n      \"href\": \"e?|&ve\",\n      \"rel\": \"!Oizf]\\\"@9l\",\n      \"method\": \"DELETE\"\n    },\n    {\n      \"href\": \"ni\",\n      \"rel\": \"H]R=;O8&8w\",\n      \"method\": \"POST\"\n    },\n    {\n      \"href\": \"J}D\",\n      \"rel\": \"\",\n      \"method\": \"DELETE\"\n    },\n    {\n      \"href\": \"ZP1=Q-o\",\n      \"rel\": \"\\\\GUo0#0Y\",\n      \"method\": \"PATCH\"\n    },\n    {\n      \"href\": \"+xSc=(6\",\n      \"rel\": \"\",\n      \"method\": \"DELETE\"\n    },\n    {\n      \"href\": \"J^L.z@#n\",\n      \"rel\": \"&Q.D\",\n      \"method\": \"PUT\"\n    },\n    {\n      \"href\": \"mA$|S2$D%a\",\n      \"rel\": \"\",\n      \"method\": \"DELETE\"\n    },\n    {\n      \"href\": \"\",\n      \"rel\": \"tG#\",\n      \"method\": \"GET\"\n    },\n    {\n      \"href\": \"hLuV\",\n      \"rel\": \"m_\",\n      \"method\": \"PUT\"\n    },\n    {\n      \"href\": \".6\",\n      \"rel\": \"|Ds&/,\",\n      \"method\": \"GET\"\n    },\n    {\n      \"href\": \")lT\",\n      \"rel\": \"qe\\\"N+$RK\",\n      \"method\": \"GET\"\n    },\n    {\n      \"href\": \"bLXca9\",\n      \"rel\": \"G&=w\",\n      \"method\": \"DELETE\"\n    },\n    {\n      \"href\": \"%L\",\n      \"rel\": \"'XQP~1^k\",\n      \"method\": \"POST\"\n    },\n    {\n      \"href\": \"T7J5,F%>\",\n      \"rel\": \"3\",\n      \"method\": \"DELETE\"\n    },\n    {\n      \"href\": \"{R0{?n\",\n      \"rel\": \"%\",\n      \"method\": \"DELETE\"\n    },\n    {\n      \"href\": \"@pnzB:rJGT\",\n      \"rel\": \"faKVmL%\",\n      \"method\": \"POST\"\n    },\n    {\n      \"href\": \"y%CO iZL@\",\n      \"rel\": \"RZQD*0\",\n      \"method\": \"GET\"\n    },\n    {\n      \"href\": \"AO1bZOm2+C\",\n      \"rel\": \"Yh5;$y8%2,\",\n      \"method\": \"GET\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "87c9cd29-4fdc-4853-9f89-8f581bb39348",
+              "name": "Authentication failed due to missing authorization header, or invalid authentication credentials.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "billing",
+                    "subscriptions",
+                    ":id",
+                    "revise"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) The ID of the subscription."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"plan_id\": \"P-5ML4271244454362WXNWU5NQ\",\n  \"shipping_amount\": {\n    \"currency_code\": \"USD\",\n    \"value\": \"10.00\"\n  },\n  \"shipping_address\": {\n    \"name\": {\n      \"full_name\": \"John Doe\"\n    },\n    \"address\": {\n      \"address_line_1\": \"2211 N First Street\",\n      \"address_line_2\": \"Building 17\",\n      \"admin_area_2\": \"San Jose\",\n      \"admin_area_1\": \"CA\",\n      \"postal_code\": \"95131\",\n      \"country_code\": \"US\"\n    }\n  },\n  \"application_context\": {\n    \"brand_name\": \"walmart\",\n    \"locale\": \"en-US\",\n    \"shipping_preference\": \"SET_PROVIDED_ADDRESS\",\n    \"payment_method\": {\n      \"payer_selected\": \"PAYPAL\",\n      \"payee_preferred\": \"IMMEDIATE_PAYMENT_REQUIRED\"\n    },\n    \"return_url\": \"https://example.com/returnUrl\",\n    \"cancel_url\": \"https://example.com/cancelUrl\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"name\": \"AUTHENTICATION_FAILURE\",\n  \"message\": \"Authentication failed due to missing authorization header, or invalid authentication credentials.\",\n  \"details\": [\n    {\n      \"issue\": \"INVALID_ACCOUNT_STATUS\",\n      \"field\": \"string\",\n      \"value\": \"string\",\n      \"location\": \"body\",\n      \"description\": \"Account validations failed for the user.\"\n    },\n    {\n      \"issue\": \"INVALID_ACCOUNT_STATUS\",\n      \"field\": \"string\",\n      \"value\": \"string\",\n      \"location\": \"body\",\n      \"description\": \"Account validations failed for the user.\"\n    }\n  ],\n  \"debug_id\": \"string\",\n  \"links\": [\n    {\n      \"href\": \"^Q@i\",\n      \"rel\": \"=R\",\n      \"method\": \"POST\"\n    },\n    {\n      \"href\": \"jL})i)'\",\n      \"rel\": \"c q>}DPyY\",\n      \"method\": \"PUT\"\n    },\n    {\n      \"href\": \"h[Kf6\",\n      \"rel\": \"e^C='j\",\n      \"method\": \"POST\"\n    },\n    {\n      \"href\": \" 6e*qgzil\",\n      \"rel\": \"}*G_&o~*\",\n      \"method\": \"DELETE\"\n    },\n    {\n      \"href\": \"n0L$7+j~\",\n      \"rel\": \"%Sd\",\n      \"method\": \"PATCH\"\n    },\n    {\n      \"href\": \"Xmn\",\n      \"rel\": \"$rj@\\\\M5t:\",\n      \"method\": \"PATCH\"\n    },\n    {\n      \"href\": \"v?u(rRhhmK\",\n      \"rel\": \"_THy;IZAt?\",\n      \"method\": \"PUT\"\n    },\n    {\n      \"href\": \"BS{x,Pj5UW\",\n      \"rel\": \"=\",\n      \"method\": \"POST\"\n    },\n    {\n      \"href\": \"}XkD,VH z\",\n      \"rel\": \"s\",\n      \"method\": \"PUT\"\n    },\n    {\n      \"href\": \"i1\",\n      \"rel\": \"4N<g}IzW\",\n      \"method\": \"POST\"\n    },\n    {\n      \"href\": \"7Jd;\",\n      \"rel\": \"\\\"N;^hBV:Q\",\n      \"method\": \"POST\"\n    },\n    {\n      \"href\": \"5*\",\n      \"rel\": \"4#;D]lX|G\",\n      \"method\": \"DELETE\"\n    },\n    {\n      \"href\": \"\",\n      \"rel\": \"f\",\n      \"method\": \"PUT\"\n    },\n    {\n      \"href\": \"|:t9WfPP\",\n      \"rel\": \"jqRu%#/d\",\n      \"method\": \"PATCH\"\n    },\n    {\n      \"href\": \"l\",\n      \"rel\": \"_4ye\",\n      \"method\": \"PATCH\"\n    },\n    {\n      \"href\": \"oBcqDL)(t&\",\n      \"rel\": \"HJ~Xm>Qul\",\n      \"method\": \"DELETE\"\n    },\n    {\n      \"href\": \"Q4FDPU\\\\6\",\n      \"rel\": \"C]\",\n      \"method\": \"PATCH\"\n    },\n    {\n      \"href\": \"^6y;^_,o)c\",\n      \"rel\": \"cN+q\",\n      \"method\": \"POST\"\n    },\n    {\n      \"href\": \"R/Y}.d9-Au\",\n      \"rel\": \"\\\"z^[[,\",\n      \"method\": \"GET\"\n    },\n    {\n      \"href\": \"8[.oB\",\n      \"rel\": \"aL{p)rxs2'\",\n      \"method\": \"PATCH\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "55f16724-bab5-4a14-8943-26ecd83629d8",
+              "name": "Authorization failed due to insufficient permissions.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "billing",
+                    "subscriptions",
+                    ":id",
+                    "revise"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) The ID of the subscription."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"plan_id\": \"P-5ML4271244454362WXNWU5NQ\",\n  \"shipping_amount\": {\n    \"currency_code\": \"USD\",\n    \"value\": \"10.00\"\n  },\n  \"shipping_address\": {\n    \"name\": {\n      \"full_name\": \"John Doe\"\n    },\n    \"address\": {\n      \"address_line_1\": \"2211 N First Street\",\n      \"address_line_2\": \"Building 17\",\n      \"admin_area_2\": \"San Jose\",\n      \"admin_area_1\": \"CA\",\n      \"postal_code\": \"95131\",\n      \"country_code\": \"US\"\n    }\n  },\n  \"application_context\": {\n    \"brand_name\": \"walmart\",\n    \"locale\": \"en-US\",\n    \"shipping_preference\": \"SET_PROVIDED_ADDRESS\",\n    \"payment_method\": {\n      \"payer_selected\": \"PAYPAL\",\n      \"payee_preferred\": \"IMMEDIATE_PAYMENT_REQUIRED\"\n    },\n    \"return_url\": \"https://example.com/returnUrl\",\n    \"cancel_url\": \"https://example.com/cancelUrl\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"name\": \"NOT_AUTHORIZED\",\n  \"message\": \"Authorization failed due to insufficient permissions.\",\n  \"details\": [\n    {\n      \"issue\": \"PERMISSION_DENIED\",\n      \"field\": \"string\",\n      \"value\": \"string\",\n      \"location\": \"body\",\n      \"description\": \"You do not have permission to access or perform operations on this resource.\"\n    },\n    {\n      \"issue\": \"PERMISSION_DENIED\",\n      \"field\": \"string\",\n      \"value\": \"string\",\n      \"location\": \"body\",\n      \"description\": \"You do not have permission to access or perform operations on this resource.\"\n    }\n  ],\n  \"debug_id\": \"string\",\n  \"links\": [\n    {\n      \"href\": \")qYw\\\"'vXOi\",\n      \"rel\": \"%A,$N\",\n      \"method\": \"PUT\"\n    },\n    {\n      \"href\": \"Hr}hI4\",\n      \"rel\": \"\",\n      \"method\": \"PATCH\"\n    },\n    {\n      \"href\": \"r'G/:0FXl1\",\n      \"rel\": \"5{N(f\",\n      \"method\": \"POST\"\n    },\n    {\n      \"href\": \"g\",\n      \"rel\": \"+)<\",\n      \"method\": \"GET\"\n    },\n    {\n      \"href\": \"h\",\n      \"rel\": \"V!9\",\n      \"method\": \"POST\"\n    },\n    {\n      \"href\": \"6-0L2\",\n      \"rel\": \"\",\n      \"method\": \"POST\"\n    },\n    {\n      \"href\": \"Q<\",\n      \"rel\": \"ox4i#^d3\",\n      \"method\": \"DELETE\"\n    },\n    {\n      \"href\": \"}<Y}h\",\n      \"rel\": \":P'yFe<7\\\\\",\n      \"method\": \"PUT\"\n    },\n    {\n      \"href\": \"u0L\",\n      \"rel\": \"FX2\",\n      \"method\": \"PUT\"\n    },\n    {\n      \"href\": \"#'d\",\n      \"rel\": \"1yq$XpeH6\",\n      \"method\": \"DELETE\"\n    },\n    {\n      \"href\": \"2CGf$\",\n      \"rel\": \"fLwc*]\",\n      \"method\": \"PATCH\"\n    },\n    {\n      \"href\": \">(W}X\",\n      \"rel\": \"H\",\n      \"method\": \"POST\"\n    },\n    {\n      \"href\": \"{V/\",\n      \"rel\": \"Cq:\",\n      \"method\": \"GET\"\n    },\n    {\n      \"href\": \"&S~i'|\",\n      \"rel\": \">%:6\",\n      \"method\": \"PUT\"\n    },\n    {\n      \"href\": \"r\",\n      \"rel\": \"\",\n      \"method\": \"PATCH\"\n    },\n    {\n      \"href\": \"ZSMI-W#H\",\n      \"rel\": \"m+<0)3EVc}\",\n      \"method\": \"DELETE\"\n    },\n    {\n      \"href\": \"sMa<]:\",\n      \"rel\": \"$f\",\n      \"method\": \"POST\"\n    },\n    {\n      \"href\": \">RIjhUHN/\",\n      \"rel\": \"At(mV\",\n      \"method\": \"GET\"\n    },\n    {\n      \"href\": \"52}\",\n      \"rel\": \"t_&O!95)%<\",\n      \"method\": \"GET\"\n    },\n    {\n      \"href\": \"5_}%\",\n      \"rel\": \"eY_y+Uh<|v\",\n      \"method\": \"DELETE\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "8c560c83-3560-464a-84df-ce3383130140",
+              "name": "The specified resource does not exist.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "billing",
+                    "subscriptions",
+                    ":id",
+                    "revise"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) The ID of the subscription."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"plan_id\": \"P-5ML4271244454362WXNWU5NQ\",\n  \"shipping_amount\": {\n    \"currency_code\": \"USD\",\n    \"value\": \"10.00\"\n  },\n  \"shipping_address\": {\n    \"name\": {\n      \"full_name\": \"John Doe\"\n    },\n    \"address\": {\n      \"address_line_1\": \"2211 N First Street\",\n      \"address_line_2\": \"Building 17\",\n      \"admin_area_2\": \"San Jose\",\n      \"admin_area_1\": \"CA\",\n      \"postal_code\": \"95131\",\n      \"country_code\": \"US\"\n    }\n  },\n  \"application_context\": {\n    \"brand_name\": \"walmart\",\n    \"locale\": \"en-US\",\n    \"shipping_preference\": \"SET_PROVIDED_ADDRESS\",\n    \"payment_method\": {\n      \"payer_selected\": \"PAYPAL\",\n      \"payee_preferred\": \"IMMEDIATE_PAYMENT_REQUIRED\"\n    },\n    \"return_url\": \"https://example.com/returnUrl\",\n    \"cancel_url\": \"https://example.com/cancelUrl\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"name\": \"RESOURCE_NOT_FOUND\",\n  \"message\": \"The specified resource does not exist.\",\n  \"details\": [\n    {\n      \"issue\": \"INVALID_RESOURCE_ID\",\n      \"field\": \"string\",\n      \"value\": \"string\",\n      \"location\": \"body\",\n      \"description\": \"Requested resource ID was not found.\"\n    },\n    {\n      \"issue\": \"INVALID_RESOURCE_ID\",\n      \"field\": \"string\",\n      \"value\": \"string\",\n      \"location\": \"body\",\n      \"description\": \"Requested resource ID was not found.\"\n    }\n  ],\n  \"debug_id\": \"string\",\n  \"links\": [\n    {\n      \"href\": \"]'-$Qa.c\",\n      \"rel\": \"OV^xw\",\n      \"method\": \"POST\"\n    },\n    {\n      \"href\": \"\\\\L%pnh_|F\",\n      \"rel\": \"qt8N~rAg\",\n      \"method\": \"PUT\"\n    },\n    {\n      \"href\": \"07\",\n      \"rel\": \"~kL~fpm~\",\n      \"method\": \"PATCH\"\n    },\n    {\n      \"href\": \"NHtZd\",\n      \"rel\": \"pn\",\n      \"method\": \"POST\"\n    },\n    {\n      \"href\": \"|afP~\\\\\",\n      \"rel\": \"?\",\n      \"method\": \"PUT\"\n    },\n    {\n      \"href\": \"\",\n      \"rel\": \"\",\n      \"method\": \"POST\"\n    },\n    {\n      \"href\": \"P]1\",\n      \"rel\": \"Ts8vM,\",\n      \"method\": \"PATCH\"\n    },\n    {\n      \"href\": \"o\",\n      \"rel\": \")L.2xk\",\n      \"method\": \"GET\"\n    },\n    {\n      \"href\": \"zB\",\n      \"rel\": \"5'\",\n      \"method\": \"DELETE\"\n    },\n    {\n      \"href\": \"TgOG\\\\]>\",\n      \"rel\": \"\\\\|:\",\n      \"method\": \"GET\"\n    },\n    {\n      \"href\": \"\",\n      \"rel\": \"fLBT%Z*H'r\",\n      \"method\": \"PATCH\"\n    },\n    {\n      \"href\": \"y[rM zp\",\n      \"rel\": \"\",\n      \"method\": \"POST\"\n    },\n    {\n      \"href\": \"$\",\n      \"rel\": \"\",\n      \"method\": \"PUT\"\n    },\n    {\n      \"href\": \"i.\",\n      \"rel\": \"|''tQDE5\",\n      \"method\": \"DELETE\"\n    },\n    {\n      \"href\": \"UZTe3E\",\n      \"rel\": \"D9;?)Pnb$]\",\n      \"method\": \"PUT\"\n    },\n    {\n      \"href\": \"-C::\",\n      \"rel\": \"cy2/>':Vgt\",\n      \"method\": \"PATCH\"\n    },\n    {\n      \"href\": \"woFh}3K~k\",\n      \"rel\": \"#d.E\",\n      \"method\": \"POST\"\n    },\n    {\n      \"href\": \"E\",\n      \"rel\": \"wO$0\",\n      \"method\": \"DELETE\"\n    },\n    {\n      \"href\": \"Pq\",\n      \"rel\": \"J vpUD\",\n      \"method\": \"POST\"\n    },\n    {\n      \"href\": \"%ZS\",\n      \"rel\": \"G4[[U\",\n      \"method\": \"DELETE\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "5c050676-bdd4-4b57-9c7f-e82a4a88d1ef",
+              "name": "The requested action could not be performed, semantically incorrect, or failed business validation.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "billing",
+                    "subscriptions",
+                    ":id",
+                    "revise"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) The ID of the subscription."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"plan_id\": \"P-5ML4271244454362WXNWU5NQ\",\n  \"shipping_amount\": {\n    \"currency_code\": \"USD\",\n    \"value\": \"10.00\"\n  },\n  \"shipping_address\": {\n    \"name\": {\n      \"full_name\": \"John Doe\"\n    },\n    \"address\": {\n      \"address_line_1\": \"2211 N First Street\",\n      \"address_line_2\": \"Building 17\",\n      \"admin_area_2\": \"San Jose\",\n      \"admin_area_1\": \"CA\",\n      \"postal_code\": \"95131\",\n      \"country_code\": \"US\"\n    }\n  },\n  \"application_context\": {\n    \"brand_name\": \"walmart\",\n    \"locale\": \"en-US\",\n    \"shipping_preference\": \"SET_PROVIDED_ADDRESS\",\n    \"payment_method\": {\n      \"payer_selected\": \"PAYPAL\",\n      \"payee_preferred\": \"IMMEDIATE_PAYMENT_REQUIRED\"\n    },\n    \"return_url\": \"https://example.com/returnUrl\",\n    \"cancel_url\": \"https://example.com/cancelUrl\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+              "code": 422,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"name\": \"UNPROCESSABLE_ENTITY\",\n  \"message\": \"The requested action could not be performed, semantically incorrect, or failed business validation.\",\n  \"details\": [\n    {\n      \"issue\": \"USER_ACCOUNT_CLOSED\",\n      \"field\": \"string\",\n      \"value\": \"string\",\n      \"location\": \"body\",\n      \"description\": \"User account locked or closed.\"\n    },\n    {\n      \"issue\": \"USER_ACCOUNT_CLOSED\",\n      \"field\": \"string\",\n      \"value\": \"string\",\n      \"location\": \"body\",\n      \"description\": \"User account locked or closed.\"\n    }\n  ],\n  \"debug_id\": \"string\",\n  \"links\": [\n    {\n      \"href\": \"z^A\",\n      \"rel\": \"+H6/Pj%V;`\",\n      \"method\": \"PATCH\"\n    },\n    {\n      \"href\": \"\",\n      \"rel\": \"RFQn\",\n      \"method\": \"PUT\"\n    },\n    {\n      \"href\": \"dH;1/HJGI2\",\n      \"rel\": \"![RC\",\n      \"method\": \"GET\"\n    },\n    {\n      \"href\": \"`-\",\n      \"rel\": \"q/\\\"d9\",\n      \"method\": \"GET\"\n    },\n    {\n      \"href\": \"dS*Pj\",\n      \"rel\": \"so(=CmM'?\",\n      \"method\": \"POST\"\n    },\n    {\n      \"href\": \")3G[\",\n      \"rel\": \"BlRF1?Uj\",\n      \"method\": \"DELETE\"\n    },\n    {\n      \"href\": \"`\",\n      \"rel\": \"}jT\",\n      \"method\": \"GET\"\n    },\n    {\n      \"href\": \"]/A\",\n      \"rel\": \"*\",\n      \"method\": \"POST\"\n    },\n    {\n      \"href\": \"{Jx>M=\",\n      \"rel\": \"RR\",\n      \"method\": \"PUT\"\n    },\n    {\n      \"href\": \"jcQ\",\n      \"rel\": \"\\\\@|U *YX[9\",\n      \"method\": \"PATCH\"\n    },\n    {\n      \"href\": \"A\",\n      \"rel\": \"F\",\n      \"method\": \"POST\"\n    },\n    {\n      \"href\": \"@_W#c\",\n      \"rel\": \"\\\\&\",\n      \"method\": \"PATCH\"\n    },\n    {\n      \"href\": \"n\\\\},Fy1V=G\",\n      \"rel\": \"AZ\",\n      \"method\": \"GET\"\n    },\n    {\n      \"href\": \"ij\",\n      \"rel\": \"<\\\"(~\",\n      \"method\": \"GET\"\n    },\n    {\n      \"href\": \"47D\",\n      \"rel\": \"}B^Raf\",\n      \"method\": \"PUT\"\n    },\n    {\n      \"href\": \"r2|D\",\n      \"rel\": \"a;Z%F:}\",\n      \"method\": \"POST\"\n    },\n    {\n      \"href\": \"K9\",\n      \"rel\": \"@|YEGM\",\n      \"method\": \"DELETE\"\n    },\n    {\n      \"href\": \"C\",\n      \"rel\": \"OO\",\n      \"method\": \"PATCH\"\n    },\n    {\n      \"href\": \"k\",\n      \"rel\": \"A\",\n      \"method\": \"PATCH\"\n    },\n    {\n      \"href\": \"W&vp'@S\",\n      \"rel\": \"\",\n      \"method\": \"GET\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "c529edb5-2ba5-464d-887f-0d9ec15a2bd3",
+              "name": "An internal server error has occurred.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "billing",
+                    "subscriptions",
+                    ":id",
+                    "revise"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) The ID of the subscription."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"plan_id\": \"P-5ML4271244454362WXNWU5NQ\",\n  \"shipping_amount\": {\n    \"currency_code\": \"USD\",\n    \"value\": \"10.00\"\n  },\n  \"shipping_address\": {\n    \"name\": {\n      \"full_name\": \"John Doe\"\n    },\n    \"address\": {\n      \"address_line_1\": \"2211 N First Street\",\n      \"address_line_2\": \"Building 17\",\n      \"admin_area_2\": \"San Jose\",\n      \"admin_area_1\": \"CA\",\n      \"postal_code\": \"95131\",\n      \"country_code\": \"US\"\n    }\n  },\n  \"application_context\": {\n    \"brand_name\": \"walmart\",\n    \"locale\": \"en-US\",\n    \"shipping_preference\": \"SET_PROVIDED_ADDRESS\",\n    \"payment_method\": {\n      \"payer_selected\": \"PAYPAL\",\n      \"payee_preferred\": \"IMMEDIATE_PAYMENT_REQUIRED\"\n    },\n    \"return_url\": \"https://example.com/returnUrl\",\n    \"cancel_url\": \"https://example.com/cancelUrl\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"name\": \"INTERNAL_SERVER_ERROR\",\n  \"message\": \"An internal server error occurred.\",\n  \"debug_id\": \"90957fca61718\",\n  \"links\": [\n    {\n      \"href\": \"https://developer.paypal.com/api/orders/v2/#error-INTERNAL_SERVER_ERROR\",\n      \"rel\": \"information_link\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "6ec57160-271d-4837-b514-cc37476ec077",
+              "name": "The default response.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "billing",
+                    "subscriptions",
+                    ":id",
+                    "revise"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) The ID of the subscription."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"plan_id\": \"P-5ML4271244454362WXNWU5NQ\",\n  \"shipping_amount\": {\n    \"currency_code\": \"USD\",\n    \"value\": \"10.00\"\n  },\n  \"shipping_address\": {\n    \"name\": {\n      \"full_name\": \"John Doe\"\n    },\n    \"address\": {\n      \"address_line_1\": \"2211 N First Street\",\n      \"address_line_2\": \"Building 17\",\n      \"admin_area_2\": \"San Jose\",\n      \"admin_area_1\": \"CA\",\n      \"postal_code\": \"95131\",\n      \"country_code\": \"US\"\n    }\n  },\n  \"application_context\": {\n    \"brand_name\": \"walmart\",\n    \"locale\": \"en-US\",\n    \"shipping_preference\": \"SET_PROVIDED_ADDRESS\",\n    \"payment_method\": {\n      \"payer_selected\": \"PAYPAL\",\n      \"payee_preferred\": \"IMMEDIATE_PAYMENT_REQUIRED\"\n    },\n    \"return_url\": \"https://example.com/returnUrl\",\n    \"cancel_url\": \"https://example.com/cancelUrl\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"name\": \"INVALID_REQUEST\",\n  \"message\": \"Request is not well-formed, syntactically incorrect, or violates schema.\",\n  \"details\": [\n    {\n      \"issue\": \"string\",\n      \"field\": \"string\",\n      \"value\": \"string\",\n      \"location\": \"body\",\n      \"description\": \"string\"\n    },\n    {\n      \"issue\": \"string\",\n      \"field\": \"string\",\n      \"value\": \"string\",\n      \"location\": \"body\",\n      \"description\": \"string\"\n    }\n  ],\n  \"debug_id\": \"string\",\n  \"links\": [\n    {\n      \"href\": \"]:V==\",\n      \"rel\": \"p;[+`\",\n      \"method\": \"PATCH\"\n    },\n    {\n      \"href\": \"*{7Bi)BerZ\",\n      \"rel\": \"H]^)Vc\",\n      \"method\": \"PUT\"\n    },\n    {\n      \"href\": \"G4D~0s1Afn\",\n      \"rel\": \"\",\n      \"method\": \"PUT\"\n    },\n    {\n      \"href\": \"-a\\\"6\",\n      \"rel\": \"ra.f`Q$S@2\",\n      \"method\": \"PUT\"\n    },\n    {\n      \"href\": \"dOX'w%sH\",\n      \"rel\": \"o?\",\n      \"method\": \"GET\"\n    },\n    {\n      \"href\": \"zb2\",\n      \"rel\": \";8d\",\n      \"method\": \"GET\"\n    },\n    {\n      \"href\": \"TMrpo8\",\n      \"rel\": \"\",\n      \"method\": \"GET\"\n    },\n    {\n      \"href\": \"<l/|%\",\n      \"rel\": \"!H:f&~QA\",\n      \"method\": \"PUT\"\n    },\n    {\n      \"href\": \"xD+M/9;\",\n      \"rel\": \",g]nL15$K+\",\n      \"method\": \"DELETE\"\n    },\n    {\n      \"href\": \"Ps!=3:#6\",\n      \"rel\": \":vVC24H\",\n      \"method\": \"PATCH\"\n    },\n    {\n      \"href\": \"\",\n      \"rel\": \"!K\",\n      \"method\": \"GET\"\n    },\n    {\n      \"href\": \"n6QM\\\"l$\",\n      \"rel\": \"Fl\",\n      \"method\": \"PUT\"\n    },\n    {\n      \"href\": \" +pu!\",\n      \"rel\": \"?E}^4?B5&\",\n      \"method\": \"GET\"\n    },\n    {\n      \"href\": \"0\",\n      \"rel\": \"[FrrO\",\n      \"method\": \"POST\"\n    },\n    {\n      \"href\": \"t\",\n      \"rel\": \"8gF\",\n      \"method\": \"POST\"\n    },\n    {\n      \"href\": \"\",\n      \"rel\": \"-Mhdy/m^\",\n      \"method\": \"GET\"\n    },\n    {\n      \"href\": \"\",\n      \"rel\": \"\",\n      \"method\": \"DELETE\"\n    },\n    {\n      \"href\": \"q8Bh|ELY\",\n      \"rel\": \"I&T/p\",\n      \"method\": \"POST\"\n    },\n    {\n      \"href\": \"7G?\",\n      \"rel\": \"(s!@}QXDYg\",\n      \"method\": \"GET\"\n    },\n    {\n      \"href\": \":mt~/=\",\n      \"rel\": \">(Kh[\",\n      \"method\": \"PATCH\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api-m.sandbox.paypal.com",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "1b847755-f798-464c-8fad-3b16e5f3c86c",
+    "name": "Paypal Subscriptions Authorizations Revise API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "You can use billing plans and subscriptions to create subscriptions that process recurring PayPal payments for physical or digital goods, or services. A plan includes pricing and billing cycle information that defines the amount and frequency of charge for a subscription. You can also define a fixed plan, such as a $5 basic plan or a volume- or graduated-based plan with pricing tiers based on the quantity purchased. For more information, see <a href=\"/docs/subscriptions/\">Subscriptions Overview</a>.",
+      "type": "text/plain"
+    }
+  }
+}

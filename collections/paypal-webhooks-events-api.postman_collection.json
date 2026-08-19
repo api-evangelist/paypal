@@ -1,0 +1,620 @@
+{
+  "item": [
+    {
+      "id": "fcbfcf33-b125-4e41-a813-dd0364ccfec6",
+      "name": "Webhooks-Events",
+      "description": {
+        "content": "Use the `/webhooks-events` resource to list, show details for, and resend event notifications.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "e964bb93-1c00-476a-ba12-f920740c0df5",
+          "name": "Paypal List event notifications",
+          "request": {
+            "name": "Paypal List event notifications",
+            "description": {
+              "content": "Lists webhooks event notifications. Use query parameters to filter the response.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "notifications",
+                "webhooks-events"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "page_size",
+                  "value": "10",
+                  "description": "The number of webhook event notifications to return in the response."
+                },
+                {
+                  "disabled": false,
+                  "key": "start_time",
+                  "value": "<string>",
+                  "description": "Filters the webhook event notifications in the response to those created on or after this date and time and on or before the `end_time` value. Both values are in [Internet date and time format](https://tools.ietf.org/html/rfc3339#section-5.6) format. Example: `start_time=2013-03-06T11:00:00Z`."
+                },
+                {
+                  "disabled": false,
+                  "key": "end_time",
+                  "value": "<string>",
+                  "description": "Filters the webhook event notifications in the response to those created on or after the `start_time` and on or before this date and time. Both values are in [Internet date and time format](https://tools.ietf.org/html/rfc3339#section-5.6) format. Example: `end_time=2013-03-06T11:00:00Z`."
+                },
+                {
+                  "disabled": false,
+                  "key": "transaction_id",
+                  "value": "<string>",
+                  "description": "Filters the response to a single transaction, by ID."
+                },
+                {
+                  "disabled": false,
+                  "key": "event_type",
+                  "value": "<string>",
+                  "description": "Filters the response to a single event."
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "oauth2",
+              "oauth2": [
+                {
+                  "key": "scope",
+                  "value": "https://uri.paypal.com/services/subscriptions"
+                },
+                {
+                  "key": "accessTokenUrl",
+                  "value": "/v1/oauth2/token"
+                },
+                {
+                  "key": "grant_type",
+                  "value": "client_credentials"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "d159a5b9-0b2a-413d-8b27-2b440dd9fd2c",
+              "name": "A successful request returns the HTTP `200 OK` status code and a JSON response body that lists webhooks event notifications.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "notifications",
+                    "webhooks-events"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "page_size",
+                      "value": "10"
+                    },
+                    {
+                      "key": "start_time",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "end_time",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "transaction_id",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "event_type",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"events\": [\n    {\n      \"id\": \"string\",\n      \"create_time\": \"1973-05-31T03:58:34.193Z\",\n      \"resource_type\": \"string\",\n      \"event_version\": \"413154955\",\n      \"event_type\": \"string\",\n      \"summary\": \"string\",\n      \"resource_version\": \"425438!548644950\",\n      \"resource\": {\n        \"key_0\": 9511.336909089,\n        \"key_1\": 5802\n      },\n      \"links\": [\n        {\n          \"href\": \"string\",\n          \"rel\": \"string\",\n          \"method\": \"DELETE\"\n        },\n        {\n          \"href\": \"string\",\n          \"rel\": \"string\",\n          \"method\": \"GET\"\n        }\n      ]\n    },\n    {\n      \"id\": \"string\",\n      \"create_time\": \"1974-01-09T06:49:00.919Z\",\n      \"resource_type\": \"string\",\n      \"event_version\": \"890769553B5680228\",\n      \"event_type\": \"string\",\n      \"summary\": \"string\",\n      \"resource_version\": \"343]1230062\",\n      \"resource\": {\n        \"key_0\": 2442,\n        \"key_1\": 7558.329577132476\n      },\n      \"links\": [\n        {\n          \"href\": \"string\",\n          \"rel\": \"string\",\n          \"method\": \"CONNECT\"\n        },\n        {\n          \"href\": \"string\",\n          \"rel\": \"string\",\n          \"method\": \"PATCH\"\n        }\n      ]\n    }\n  ],\n  \"count\": 2956,\n  \"links\": [\n    {\n      \"href\": \"string\",\n      \"rel\": \"string\",\n      \"method\": \"PATCH\"\n    },\n    {\n      \"href\": \"string\",\n      \"rel\": \"string\",\n      \"method\": \"PATCH\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "9b78b6a3-4c69-4711-9c81-a72f74a7b129",
+              "name": "The error response.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "notifications",
+                    "webhooks-events"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "page_size",
+                      "value": "10"
+                    },
+                    {
+                      "key": "start_time",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "end_time",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "transaction_id",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "event_type",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"name\": \"string\",\n  \"message\": \"string\",\n  \"debug_id\": \"string\",\n  \"information_link\": \"string\",\n  \"details\": [\n    {\n      \"issue\": \"string\",\n      \"field\": \"string\",\n      \"value\": \"string\",\n      \"location\": \"body\",\n      \"description\": \"string\"\n    },\n    {\n      \"issue\": \"string\",\n      \"field\": \"string\",\n      \"value\": \"string\",\n      \"location\": \"body\",\n      \"description\": \"string\"\n    }\n  ],\n  \"links\": [\n    {\n      \"href\": \"string\",\n      \"rel\": \"string\",\n      \"method\": \"HEAD\"\n    },\n    {\n      \"href\": \"string\",\n      \"rel\": \"string\",\n      \"method\": \"PATCH\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "0a241750-aa35-43b2-bded-d489cc1bd7f5",
+          "name": "Paypal Show event notification details",
+          "request": {
+            "name": "Paypal Show event notification details",
+            "description": {
+              "content": "Shows details for a webhooks event notification, by ID.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "notifications",
+                "webhooks-events",
+                ":event_id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "event_id",
+                  "description": "(Required) The ID of the webhook event notification to resend."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "oauth2",
+              "oauth2": [
+                {
+                  "key": "scope",
+                  "value": "https://uri.paypal.com/services/subscriptions"
+                },
+                {
+                  "key": "accessTokenUrl",
+                  "value": "/v1/oauth2/token"
+                },
+                {
+                  "key": "grant_type",
+                  "value": "client_credentials"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "cacb64c5-9cf5-4b7b-a347-bbdf0c33e08a",
+              "name": "A successful request returns the HTTP `200 OK` status code and a JSON response body that shows webhooks event notification details.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "notifications",
+                    "webhooks-events",
+                    ":event_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "event_id",
+                      "description": "(Required) The ID of the webhook event notification to resend."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"string\",\n  \"create_time\": \"1990-01-11T13:25:23.520Z\",\n  \"resource_type\": \"string\",\n  \"event_version\": \"475L852234817\",\n  \"event_type\": \"string\",\n  \"summary\": \"string\",\n  \"resource_version\": \"4204441076\\\"53\",\n  \"resource\": {\n    \"key_0\": 6666.605980072862\n  },\n  \"links\": [\n    {\n      \"href\": \"string\",\n      \"rel\": \"string\",\n      \"method\": \"POST\"\n    },\n    {\n      \"href\": \"string\",\n      \"rel\": \"string\",\n      \"method\": \"PUT\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "3cf9aff2-939a-40cd-93e6-8ea8b6b0b25b",
+              "name": "The error response.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "notifications",
+                    "webhooks-events",
+                    ":event_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "event_id",
+                      "description": "(Required) The ID of the webhook event notification to resend."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"name\": \"string\",\n  \"message\": \"string\",\n  \"debug_id\": \"string\",\n  \"information_link\": \"string\",\n  \"details\": [\n    {\n      \"issue\": \"string\",\n      \"field\": \"string\",\n      \"value\": \"string\",\n      \"location\": \"body\",\n      \"description\": \"string\"\n    },\n    {\n      \"issue\": \"string\",\n      \"field\": \"string\",\n      \"value\": \"string\",\n      \"location\": \"body\",\n      \"description\": \"string\"\n    }\n  ],\n  \"links\": [\n    {\n      \"href\": \"string\",\n      \"rel\": \"string\",\n      \"method\": \"PATCH\"\n    },\n    {\n      \"href\": \"string\",\n      \"rel\": \"string\",\n      \"method\": \"DELETE\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "2b6106e8-e565-4b20-9cf0-39f8f1336902",
+          "name": "Paypal Resend event notification",
+          "request": {
+            "name": "Paypal Resend event notification",
+            "description": {
+              "content": "Resends a webhook event notification, by ID. Any pending notifications are not resent.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "notifications",
+                "webhooks-events",
+                ":event_id",
+                "resend"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "event_id",
+                  "description": "(Required) The ID of the webhook event notification to resend."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": {
+              "type": "oauth2",
+              "oauth2": [
+                {
+                  "key": "scope",
+                  "value": "https://uri.paypal.com/services/subscriptions"
+                },
+                {
+                  "key": "accessTokenUrl",
+                  "value": "/v1/oauth2/token"
+                },
+                {
+                  "key": "grant_type",
+                  "value": "client_credentials"
+                }
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"webhook_ids\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "2f700669-5bae-4805-aa50-75029c850ecc",
+              "name": "A successful request returns the HTTP `202 Accepted` status code and a JSON response body that shows webhook event notification details.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "notifications",
+                    "webhooks-events",
+                    ":event_id",
+                    "resend"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "event_id",
+                      "description": "(Required) The ID of the webhook event notification to resend."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"webhook_ids\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Accepted",
+              "code": 202,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"string\",\n  \"create_time\": \"1990-01-11T13:25:23.520Z\",\n  \"resource_type\": \"string\",\n  \"event_version\": \"475L852234817\",\n  \"event_type\": \"string\",\n  \"summary\": \"string\",\n  \"resource_version\": \"4204441076\\\"53\",\n  \"resource\": {\n    \"key_0\": 6666.605980072862\n  },\n  \"links\": [\n    {\n      \"href\": \"string\",\n      \"rel\": \"string\",\n      \"method\": \"POST\"\n    },\n    {\n      \"href\": \"string\",\n      \"rel\": \"string\",\n      \"method\": \"PUT\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "5fb8937f-b3d9-4379-9bd7-45797066de25",
+              "name": "The error response.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "notifications",
+                    "webhooks-events",
+                    ":event_id",
+                    "resend"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "event_id",
+                      "description": "(Required) The ID of the webhook event notification to resend."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"webhook_ids\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"name\": \"string\",\n  \"message\": \"string\",\n  \"debug_id\": \"string\",\n  \"information_link\": \"string\",\n  \"details\": [\n    {\n      \"issue\": \"string\",\n      \"field\": \"string\",\n      \"value\": \"string\",\n      \"location\": \"body\",\n      \"description\": \"string\"\n    },\n    {\n      \"issue\": \"string\",\n      \"field\": \"string\",\n      \"value\": \"string\",\n      \"location\": \"body\",\n      \"description\": \"string\"\n    }\n  ],\n  \"links\": [\n    {\n      \"href\": \"string\",\n      \"rel\": \"string\",\n      \"method\": \"PATCH\"\n    },\n    {\n      \"href\": \"string\",\n      \"rel\": \"string\",\n      \"method\": \"DELETE\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api-m.sandbox.paypal.com",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "a231c55f-5e3c-4b7a-88c7-9ac02d8935b5",
+    "name": "Paypal Subscriptions Authorizations Webhooks-Events API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "You can use billing plans and subscriptions to create subscriptions that process recurring PayPal payments for physical or digital goods, or services. A plan includes pricing and billing cycle information that defines the amount and frequency of charge for a subscription. You can also define a fixed plan, such as a $5 basic plan or a volume- or graduated-based plan with pricing tiers based on the quantity purchased. For more information, see <a href=\"/docs/subscriptions/\">Subscriptions Overview</a>.",
+      "type": "text/plain"
+    }
+  }
+}

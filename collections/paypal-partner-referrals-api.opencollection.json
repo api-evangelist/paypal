@@ -1,0 +1,70 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Paypal Subscriptions Authorizations Partner-Referrals API",
+    "version": "1.6"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Partner-Referrals",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Paypal Create partner referral",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api-m.sandbox.paypal.com/v2/customer/partner-referrals",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "oauth2",
+              "flow": "client_credentials",
+              "accessTokenUrl": "/v1/oauth2/token",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "Creates a partner referral that is shared by the partner or API caller. The partner referral is used to onboard the seller, and contains the seller's personal, business, financial and operations."
+        },
+        {
+          "info": {
+            "name": "Paypal Show referral data",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api-m.sandbox.paypal.com/v2/customer/partner-referrals/:partner_referral_id",
+            "params": [
+              {
+                "name": "partner_referral_id",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the partner-referrals data for which to show details."
+              }
+            ],
+            "auth": {
+              "type": "oauth2",
+              "flow": "client_credentials",
+              "accessTokenUrl": "/v1/oauth2/token",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "Shows details by ID for referral data that was shared by the partner or API caller."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

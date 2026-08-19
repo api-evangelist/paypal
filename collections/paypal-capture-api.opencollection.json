@@ -1,0 +1,56 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Paypal Subscriptions Authorizations Capture API",
+    "version": "1.6"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Capture",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Capture authorized payment on subscription",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api-m.sandbox.paypal.com/v1/billing/subscriptions/:id/capture",
+            "headers": [
+              {
+                "name": "PayPal-Request-Id",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the subscription."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "oauth2",
+              "flow": "client_credentials",
+              "accessTokenUrl": "/v1/oauth2/token",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "Captures an authorized payment from the subscriber on the subscription."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

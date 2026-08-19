@@ -1,0 +1,204 @@
+{
+  "item": [
+    {
+      "id": "dfeb4915-3ab2-4b07-8f65-fed14ddf433d",
+      "name": "Verify-Webhook-Signature",
+      "description": {
+        "content": "Use the `/verify-webhook-signature` resource to verify a webhook signature.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "09921b88-0699-43f7-856b-b7e6b3b8d3e3",
+          "name": "Paypal Verify webhook signature",
+          "request": {
+            "name": "Paypal Verify webhook signature",
+            "description": {
+              "content": "Verifies a webhook signature.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "notifications",
+                "verify-webhook-signature"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": {
+              "type": "oauth2",
+              "oauth2": [
+                {
+                  "key": "scope",
+                  "value": "https://uri.paypal.com/services/subscriptions"
+                },
+                {
+                  "key": "accessTokenUrl",
+                  "value": "/v1/oauth2/token"
+                },
+                {
+                  "key": "grant_type",
+                  "value": "client_credentials"
+                }
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"auth_algo\": \"<string>\",\n  \"cert_url\": \"<uri>\",\n  \"transmission_id\": \"<string>\",\n  \"transmission_sig\": \"<string>\",\n  \"transmission_time\": \"<dateTime>\",\n  \"webhook_id\": \"<string>\",\n  \"webhook_event\": {\n    \"event_version\": \"<string>\",\n    \"resource_version\": \"<string>\"\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "f57201b5-83de-420c-903b-261d6c31f9c7",
+              "name": "A successful request returns the HTTP `200 OK` status code and a JSON response body that shows the verification status.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "notifications",
+                    "verify-webhook-signature"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"transmission_id\": \"69cd13f0-d67a-11e5-baa3-778b53f4ae55\",\n  \"transmission_time\": \"2016-02-18T20:01:35Z\",\n  \"cert_url\": \"cert_url\",\n  \"auth_algo\": \"SHA256withRSA\",\n  \"transmission_sig\": \"lmI95Jx3Y9nhR5SJWlHVIWpg4AgFk7n9bCHSRxbrd8A9zrhdu2rMyFrmz+Zjh3s3boXB07VXCXUZy/UFzUlnGJn0wDugt7FlSvdKeIJenLRemUxYCPVoEZzg9VFNqOa48gMkvF+XTpxBeUx/kWy6B5cp7GkT2+pOowfRK7OaynuxUoKW3JcMWw272VKjLTtTAShncla7tGF+55rxyt2KNZIIqxNMJ48RDZheGU5w1npu9dZHnPgTXB9iomeVRoD8O/jhRpnKsGrDschyNdkeh81BJJMH4Ctc6lnCCquoP/GzCzz33MMsNdid7vL/NIWaCsekQpW26FpWPi/tfj8nLA==\",\n  \"webhook_id\": \"1JE4291016473214C\",\n  \"webhook_event\": {\n    \"id\": \"8PT597110X687430LKGECATA\",\n    \"create_time\": \"2013-06-25T21:41:28Z\",\n    \"resource_type\": \"authorization\",\n    \"event_type\": \"PAYMENT.AUTHORIZATION.CREATED\",\n    \"summary\": \"A payment authorization was created\",\n    \"resource\": {\n      \"id\": \"2DC87612EK520411B\",\n      \"create_time\": \"2013-06-25T21:39:15Z\",\n      \"update_time\": \"2013-06-25T21:39:17Z\",\n      \"state\": \"authorized\",\n      \"amount\": {\n        \"total\": \"7.47\",\n        \"currency\": \"USD\",\n        \"details\": {\n          \"subtotal\": \"7.47\"\n        }\n      },\n      \"parent_payment\": \"PAY-36246664YD343335CKHFA4AY\",\n      \"valid_until\": \"2013-07-24T21:39:15Z\",\n      \"links\": [\n        {\n          \"href\": \"https://api-m.paypal.com/v1/payments/authorization/2DC87612EK520411B\",\n          \"rel\": \"self\",\n          \"method\": \"GET\"\n        },\n        {\n          \"href\": \"https://api-m.paypal.com/v1/payments/authorization/2DC87612EK520411B/capture\",\n          \"rel\": \"capture\",\n          \"method\": \"POST\"\n        },\n        {\n          \"href\": \"https://api-m.paypal.com/v1/payments/authorization/2DC87612EK520411B/void\",\n          \"rel\": \"void\",\n          \"method\": \"POST\"\n        },\n        {\n          \"href\": \"https://api-m.paypal.com/v1/payments/payment/PAY-36246664YD343335CKHFA4AY\",\n          \"rel\": \"parent_payment\",\n          \"method\": \"GET\"\n        }\n      ]\n    }\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"verification_status\": \"SUCCESS\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "6c1c1544-177f-4409-a891-9553d2daaacd",
+              "name": "The error response.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "notifications",
+                    "verify-webhook-signature"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"transmission_id\": \"69cd13f0-d67a-11e5-baa3-778b53f4ae55\",\n  \"transmission_time\": \"2016-02-18T20:01:35Z\",\n  \"cert_url\": \"cert_url\",\n  \"auth_algo\": \"SHA256withRSA\",\n  \"transmission_sig\": \"lmI95Jx3Y9nhR5SJWlHVIWpg4AgFk7n9bCHSRxbrd8A9zrhdu2rMyFrmz+Zjh3s3boXB07VXCXUZy/UFzUlnGJn0wDugt7FlSvdKeIJenLRemUxYCPVoEZzg9VFNqOa48gMkvF+XTpxBeUx/kWy6B5cp7GkT2+pOowfRK7OaynuxUoKW3JcMWw272VKjLTtTAShncla7tGF+55rxyt2KNZIIqxNMJ48RDZheGU5w1npu9dZHnPgTXB9iomeVRoD8O/jhRpnKsGrDschyNdkeh81BJJMH4Ctc6lnCCquoP/GzCzz33MMsNdid7vL/NIWaCsekQpW26FpWPi/tfj8nLA==\",\n  \"webhook_id\": \"1JE4291016473214C\",\n  \"webhook_event\": {\n    \"id\": \"8PT597110X687430LKGECATA\",\n    \"create_time\": \"2013-06-25T21:41:28Z\",\n    \"resource_type\": \"authorization\",\n    \"event_type\": \"PAYMENT.AUTHORIZATION.CREATED\",\n    \"summary\": \"A payment authorization was created\",\n    \"resource\": {\n      \"id\": \"2DC87612EK520411B\",\n      \"create_time\": \"2013-06-25T21:39:15Z\",\n      \"update_time\": \"2013-06-25T21:39:17Z\",\n      \"state\": \"authorized\",\n      \"amount\": {\n        \"total\": \"7.47\",\n        \"currency\": \"USD\",\n        \"details\": {\n          \"subtotal\": \"7.47\"\n        }\n      },\n      \"parent_payment\": \"PAY-36246664YD343335CKHFA4AY\",\n      \"valid_until\": \"2013-07-24T21:39:15Z\",\n      \"links\": [\n        {\n          \"href\": \"https://api-m.paypal.com/v1/payments/authorization/2DC87612EK520411B\",\n          \"rel\": \"self\",\n          \"method\": \"GET\"\n        },\n        {\n          \"href\": \"https://api-m.paypal.com/v1/payments/authorization/2DC87612EK520411B/capture\",\n          \"rel\": \"capture\",\n          \"method\": \"POST\"\n        },\n        {\n          \"href\": \"https://api-m.paypal.com/v1/payments/authorization/2DC87612EK520411B/void\",\n          \"rel\": \"void\",\n          \"method\": \"POST\"\n        },\n        {\n          \"href\": \"https://api-m.paypal.com/v1/payments/payment/PAY-36246664YD343335CKHFA4AY\",\n          \"rel\": \"parent_payment\",\n          \"method\": \"GET\"\n        }\n      ]\n    }\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"name\": \"string\",\n  \"message\": \"string\",\n  \"debug_id\": \"string\",\n  \"information_link\": \"string\",\n  \"details\": [\n    {\n      \"issue\": \"string\",\n      \"field\": \"string\",\n      \"value\": \"string\",\n      \"location\": \"body\",\n      \"description\": \"string\"\n    },\n    {\n      \"issue\": \"string\",\n      \"field\": \"string\",\n      \"value\": \"string\",\n      \"location\": \"body\",\n      \"description\": \"string\"\n    }\n  ],\n  \"links\": [\n    {\n      \"href\": \"string\",\n      \"rel\": \"string\",\n      \"method\": \"DELETE\"\n    },\n    {\n      \"href\": \"string\",\n      \"rel\": \"string\",\n      \"method\": \"PATCH\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api-m.sandbox.paypal.com",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "f6628544-4b45-4cb4-869c-13a87665839c",
+    "name": "Paypal Subscriptions Authorizations Verify-Webhook-Signature API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "You can use billing plans and subscriptions to create subscriptions that process recurring PayPal payments for physical or digital goods, or services. A plan includes pricing and billing cycle information that defines the amount and frequency of charge for a subscription. You can also define a fixed plan, such as a $5 basic plan or a volume- or graduated-based plan with pricing tiers based on the quantity purchased. For more information, see <a href=\"/docs/subscriptions/\">Subscriptions Overview</a>.",
+      "type": "text/plain"
+    }
+  }
+}

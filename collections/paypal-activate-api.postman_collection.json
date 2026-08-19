@@ -1,0 +1,1052 @@
+{
+  "item": [
+    {
+      "id": "88b18aaa-3ea3-44b0-bf79-1b7a1f9e94d0",
+      "name": "Activate",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "72d34f7d-755c-4261-9d63-13cf40f1820a",
+          "name": "Activate plan",
+          "request": {
+            "name": "Activate plan",
+            "description": {
+              "content": "Activates a plan, by ID.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "billing",
+                "plans",
+                ":id",
+                "activate"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) The ID of the subscription."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": {
+              "type": "oauth2",
+              "oauth2": [
+                {
+                  "key": "scope",
+                  "value": "https://uri.paypal.com/services/subscriptions"
+                },
+                {
+                  "key": "accessTokenUrl",
+                  "value": "/v1/oauth2/token"
+                },
+                {
+                  "key": "grant_type",
+                  "value": "client_credentials"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "04b7c074-40eb-4287-a759-3d3a190820b6",
+              "name": "A successful request returns the HTTP `204 No Content` status code with no JSON response body.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "billing",
+                    "plans",
+                    ":id",
+                    "activate"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) The ID of the subscription."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "No Content",
+              "code": 204,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "eb093514-469d-4a4a-82fc-4466680f68bb",
+              "name": "Authentication failed due to missing authorization header, or invalid authentication credentials.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "billing",
+                    "plans",
+                    ":id",
+                    "activate"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) The ID of the subscription."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"name\": \"AUTHENTICATION_FAILURE\",\n  \"message\": \"Authentication failed due to missing authorization header, or invalid authentication credentials.\",\n  \"details\": [\n    {\n      \"issue\": \"INVALID_ACCOUNT_STATUS\",\n      \"field\": \"string\",\n      \"value\": \"string\",\n      \"location\": \"body\",\n      \"description\": \"Account validations failed for the user.\"\n    },\n    {\n      \"issue\": \"INVALID_ACCOUNT_STATUS\",\n      \"field\": \"string\",\n      \"value\": \"string\",\n      \"location\": \"body\",\n      \"description\": \"Account validations failed for the user.\"\n    }\n  ],\n  \"debug_id\": \"string\",\n  \"links\": [\n    {\n      \"href\": \"p?P,mp\",\n      \"rel\": \"&sry\",\n      \"method\": \"DELETE\"\n    },\n    {\n      \"href\": \"hV^_TX\\\\b.D\",\n      \"rel\": \"_\",\n      \"method\": \"DELETE\"\n    },\n    {\n      \"href\": \"y<`ORP0fjc\",\n      \"rel\": \"~0D\\\\(YXw1\",\n      \"method\": \"POST\"\n    },\n    {\n      \"href\": \"z\",\n      \"rel\": \"D9m(Rp0@\",\n      \"method\": \"PUT\"\n    },\n    {\n      \"href\": \"KZ71\",\n      \"rel\": \"N}VylF#Uxm\",\n      \"method\": \"PATCH\"\n    },\n    {\n      \"href\": \"v\\\\,Sd\",\n      \"rel\": \" Y1~f!=+q0\",\n      \"method\": \"PATCH\"\n    },\n    {\n      \"href\": \"%3UI*L#\",\n      \"rel\": \"d.?HqS \",\n      \"method\": \"PUT\"\n    },\n    {\n      \"href\": \"_Gvzv/;m1A\",\n      \"rel\": \"Cu\",\n      \"method\": \"DELETE\"\n    },\n    {\n      \"href\": \"\",\n      \"rel\": \"(?!}.#3Ppy\",\n      \"method\": \"DELETE\"\n    },\n    {\n      \"href\": \"t\",\n      \"rel\": \"x0ZwU~2?$\",\n      \"method\": \"DELETE\"\n    },\n    {\n      \"href\": \"R1zaaO;w\",\n      \"rel\": \"E\",\n      \"method\": \"DELETE\"\n    },\n    {\n      \"href\": \"\",\n      \"rel\": \"j>w\",\n      \"method\": \"POST\"\n    },\n    {\n      \"href\": \"Bv\",\n      \"rel\": \"g2wn\\\\N\\\\I!\",\n      \"method\": \"DELETE\"\n    },\n    {\n      \"href\": \"!CQEP-\",\n      \"rel\": \"M]F 6G\",\n      \"method\": \"PATCH\"\n    },\n    {\n      \"href\": \"QsU#3/<57'\",\n      \"rel\": \"!&1FGB\",\n      \"method\": \"POST\"\n    },\n    {\n      \"href\": \"8F\",\n      \"rel\": \"v~y|Xqdp=\",\n      \"method\": \"PATCH\"\n    },\n    {\n      \"href\": \"mt=O\",\n      \"rel\": \"g*}[S&e(JK\",\n      \"method\": \"GET\"\n    },\n    {\n      \"href\": \"`h^~\",\n      \"rel\": \"Vk\",\n      \"method\": \"PATCH\"\n    },\n    {\n      \"href\": \":\\\\6\",\n      \"rel\": \"M\\\"\",\n      \"method\": \"DELETE\"\n    },\n    {\n      \"href\": \"\",\n      \"rel\": \"Je0\\\\c\\\"\\\"5\",\n      \"method\": \"PUT\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "3443b12c-477d-4371-a009-05718d9313f6",
+              "name": "Authorization failed due to insufficient permissions.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "billing",
+                    "plans",
+                    ":id",
+                    "activate"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) The ID of the subscription."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"name\": \"NOT_AUTHORIZED\",\n  \"message\": \"Authorization failed due to insufficient permissions.\",\n  \"details\": [\n    {\n      \"issue\": \"PERMISSION_DENIED\",\n      \"field\": \"string\",\n      \"value\": \"string\",\n      \"location\": \"body\",\n      \"description\": \"You do not have permission to access or perform operations on this resource.\"\n    },\n    {\n      \"issue\": \"PERMISSION_DENIED\",\n      \"field\": \"string\",\n      \"value\": \"string\",\n      \"location\": \"body\",\n      \"description\": \"You do not have permission to access or perform operations on this resource.\"\n    }\n  ],\n  \"debug_id\": \"string\",\n  \"links\": [\n    {\n      \"href\": \"u1\",\n      \"rel\": \"E#m_Z`8\",\n      \"method\": \"POST\"\n    },\n    {\n      \"href\": \"H&(R%[X>EP\",\n      \"rel\": \"-o\",\n      \"method\": \"PUT\"\n    },\n    {\n      \"href\": \"ATN\",\n      \"rel\": \"F,xo\\\"j]z\",\n      \"method\": \"PATCH\"\n    },\n    {\n      \"href\": \"4NLD\",\n      \"rel\": \"AJxrsQ/;g.\",\n      \"method\": \"DELETE\"\n    },\n    {\n      \"href\": \"|J'@cgp1L\",\n      \"rel\": \"hCk7P=+A\",\n      \"method\": \"POST\"\n    },\n    {\n      \"href\": \" u\",\n      \"rel\": \"mC|eRt\",\n      \"method\": \"GET\"\n    },\n    {\n      \"href\": \"7kv'}p,\\\\A?\",\n      \"rel\": \"i\",\n      \"method\": \"PATCH\"\n    },\n    {\n      \"href\": \"zKhE\",\n      \"rel\": \"lTEs\",\n      \"method\": \"POST\"\n    },\n    {\n      \"href\": \"QKd;50\",\n      \"rel\": \"<Cv`]*\",\n      \"method\": \"PATCH\"\n    },\n    {\n      \"href\": \"4\",\n      \"rel\": \"8\",\n      \"method\": \"PUT\"\n    },\n    {\n      \"href\": \"0B\",\n      \"rel\": \"@[eLz\",\n      \"method\": \"PATCH\"\n    },\n    {\n      \"href\": \"\",\n      \"rel\": \"R 6LYs\",\n      \"method\": \"POST\"\n    },\n    {\n      \"href\": \"O\",\n      \"rel\": \"bp\",\n      \"method\": \"PATCH\"\n    },\n    {\n      \"href\": \"ZQn`.t$nX\",\n      \"rel\": \"eyE&Sry*\",\n      \"method\": \"DELETE\"\n    },\n    {\n      \"href\": \"8`E\",\n      \"rel\": \"AG\",\n      \"method\": \"GET\"\n    },\n    {\n      \"href\": \"oWKk~2e\",\n      \"rel\": \"#4Yo8>W?\",\n      \"method\": \"PATCH\"\n    },\n    {\n      \"href\": \"'\",\n      \"rel\": \"lcx\\\\F\",\n      \"method\": \"POST\"\n    },\n    {\n      \"href\": \"\",\n      \"rel\": \"z}!\",\n      \"method\": \"PATCH\"\n    },\n    {\n      \"href\": \"_B[FQ\",\n      \"rel\": \"X\",\n      \"method\": \"GET\"\n    },\n    {\n      \"href\": \"@\\\"u\",\n      \"rel\": \"M%M?(|6W6n\",\n      \"method\": \"GET\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "3949ef3b-8e3c-45fb-aaac-afa9616c0250",
+              "name": "The specified resource does not exist.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "billing",
+                    "plans",
+                    ":id",
+                    "activate"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) The ID of the subscription."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"name\": \"RESOURCE_NOT_FOUND\",\n  \"message\": \"The specified resource does not exist.\",\n  \"details\": [\n    {\n      \"issue\": \"INVALID_RESOURCE_ID\",\n      \"field\": \"string\",\n      \"value\": \"string\",\n      \"location\": \"body\",\n      \"description\": \"Specified resource ID does not exist. Please check the resource ID and try again.\"\n    },\n    {\n      \"issue\": \"INVALID_RESOURCE_ID\",\n      \"field\": \"string\",\n      \"value\": \"string\",\n      \"location\": \"body\",\n      \"description\": \"Specified resource ID does not exist. Please check the resource ID and try again.\"\n    }\n  ],\n  \"debug_id\": \"string\",\n  \"links\": [\n    {\n      \"href\": \"B>|RY0t)X\",\n      \"rel\": \"l\",\n      \"method\": \"PATCH\"\n    },\n    {\n      \"href\": \"j'nKBk\",\n      \"rel\": \"\",\n      \"method\": \"GET\"\n    },\n    {\n      \"href\": \"\\\\T^'/\",\n      \"rel\": \"!RW%Tab\",\n      \"method\": \"GET\"\n    },\n    {\n      \"href\": \"l{Vvu.b5\",\n      \"rel\": \"/4\",\n      \"method\": \"PUT\"\n    },\n    {\n      \"href\": \"+q3Qtk\\\"\",\n      \"rel\": \"L:l)2q:K\",\n      \"method\": \"PUT\"\n    },\n    {\n      \"href\": \"z{OGg9\",\n      \"rel\": \"\",\n      \"method\": \"POST\"\n    },\n    {\n      \"href\": \"$K~`\",\n      \"rel\": \"#XIRh|7q\",\n      \"method\": \"GET\"\n    },\n    {\n      \"href\": \"LbVi{4+Al\",\n      \"rel\": \"b2Rt;rc5\",\n      \"method\": \"DELETE\"\n    },\n    {\n      \"href\": \"&Dz0rU#KA\",\n      \"rel\": \"\",\n      \"method\": \"GET\"\n    },\n    {\n      \"href\": \"=\",\n      \"rel\": \".Pz}-B\\\"4\",\n      \"method\": \"GET\"\n    },\n    {\n      \"href\": \"drfudfOtn\",\n      \"rel\": \"{p@|7lq\",\n      \"method\": \"PUT\"\n    },\n    {\n      \"href\": \"Wj\",\n      \"rel\": \"\",\n      \"method\": \"PUT\"\n    },\n    {\n      \"href\": \"DS\",\n      \"rel\": \"x\",\n      \"method\": \"GET\"\n    },\n    {\n      \"href\": \"xdHO@@mCzT\",\n      \"rel\": \"-.1\",\n      \"method\": \"DELETE\"\n    },\n    {\n      \"href\": \"l.`10\",\n      \"rel\": \"K\\\\\",\n      \"method\": \"POST\"\n    },\n    {\n      \"href\": \"zo\\\".2B\",\n      \"rel\": \"Qi^\",\n      \"method\": \"PATCH\"\n    },\n    {\n      \"href\": \"9jCD+N.^2>\",\n      \"rel\": \"'\",\n      \"method\": \"PUT\"\n    },\n    {\n      \"href\": \"+\",\n      \"rel\": \"v&=e!\",\n      \"method\": \"PATCH\"\n    },\n    {\n      \"href\": \"Qm\",\n      \"rel\": \"U$NbIm\",\n      \"method\": \"POST\"\n    },\n    {\n      \"href\": \"7OD&@.oa\",\n      \"rel\": \"Meut\",\n      \"method\": \"PATCH\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "be45cb62-37f1-4392-8a81-bdde3d46978a",
+              "name": "The requested action could not be performed, semantically incorrect, or failed business validation.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "billing",
+                    "plans",
+                    ":id",
+                    "activate"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) The ID of the subscription."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+              "code": 422,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"name\": \"UNPROCESSABLE_ENTITY\",\n  \"message\": \"The requested action could not be performed, semantically incorrect, or failed business validation.\",\n  \"details\": [\n    {\n      \"issue\": \"USER_ACCOUNT_CLOSED\",\n      \"field\": \"string\",\n      \"value\": \"string\",\n      \"location\": \"body\",\n      \"description\": \"User account locked or closed.\"\n    },\n    {\n      \"issue\": \"USER_ACCOUNT_CLOSED\",\n      \"field\": \"string\",\n      \"value\": \"string\",\n      \"location\": \"body\",\n      \"description\": \"User account locked or closed.\"\n    }\n  ],\n  \"debug_id\": \"string\",\n  \"links\": [\n    {\n      \"href\": \"=\",\n      \"rel\": \"T7B{R]\\\\=[}\",\n      \"method\": \"PATCH\"\n    },\n    {\n      \"href\": \"MnD(?1;<k\",\n      \"rel\": \"4u\",\n      \"method\": \"POST\"\n    },\n    {\n      \"href\": \"\",\n      \"rel\": \"`Wo7(#B\",\n      \"method\": \"PATCH\"\n    },\n    {\n      \"href\": \"T>+$_^:\",\n      \"rel\": \"dEB=jq\",\n      \"method\": \"DELETE\"\n    },\n    {\n      \"href\": \"&)8#Xol\",\n      \"rel\": \"Q]-\",\n      \"method\": \"POST\"\n    },\n    {\n      \"href\": \"\",\n      \"rel\": \"K/#,LZG_)\",\n      \"method\": \"DELETE\"\n    },\n    {\n      \"href\": \"R>_u&,Q\",\n      \"rel\": \"4+:1\\\\fH\",\n      \"method\": \"PUT\"\n    },\n    {\n      \"href\": \"QD@x%v!B\",\n      \"rel\": \"KdsL\",\n      \"method\": \"GET\"\n    },\n    {\n      \"href\": \"K&=s\",\n      \"rel\": \"C8$EkpcGjy\",\n      \"method\": \"PATCH\"\n    },\n    {\n      \"href\": \"mY8'|Yt\\\\\",\n      \"rel\": \"ti~v@2>\",\n      \"method\": \"GET\"\n    },\n    {\n      \"href\": \"kg{\\\\+z\",\n      \"rel\": \"VuqQ\\\"ghJ^[\",\n      \"method\": \"PUT\"\n    },\n    {\n      \"href\": \"_Fq~P#f!WD\",\n      \"rel\": \"$+(,E~i\",\n      \"method\": \"GET\"\n    },\n    {\n      \"href\": \"\",\n      \"rel\": \"~l&\",\n      \"method\": \"PATCH\"\n    },\n    {\n      \"href\": \"!a_\",\n      \"rel\": \"YAF\",\n      \"method\": \"GET\"\n    },\n    {\n      \"href\": \"k\",\n      \"rel\": \"BN`N~fe\",\n      \"method\": \"PUT\"\n    },\n    {\n      \"href\": \";XFM\",\n      \"rel\": \"i\",\n      \"method\": \"PUT\"\n    },\n    {\n      \"href\": \"FDY @\",\n      \"rel\": \"e%*]\",\n      \"method\": \"POST\"\n    },\n    {\n      \"href\": \"6z'\",\n      \"rel\": \"!E=y\",\n      \"method\": \"GET\"\n    },\n    {\n      \"href\": \"}~\",\n      \"rel\": \"t.!tC$y?\",\n      \"method\": \"GET\"\n    },\n    {\n      \"href\": \"c\\\\|d\",\n      \"rel\": \"C/tFe\",\n      \"method\": \"PATCH\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "e87358b5-3160-453b-ab42-db0794811c67",
+              "name": "An internal server error has occurred.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "billing",
+                    "plans",
+                    ":id",
+                    "activate"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) The ID of the subscription."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"name\": \"INTERNAL_SERVER_ERROR\",\n  \"message\": \"An internal server error occurred.\",\n  \"debug_id\": \"90957fca61718\",\n  \"links\": [\n    {\n      \"href\": \"https://developer.paypal.com/api/orders/v2/#error-INTERNAL_SERVER_ERROR\",\n      \"rel\": \"information_link\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "8bfaa232-4e8a-45be-b99f-32bdf66743c8",
+              "name": "The default response.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "billing",
+                    "plans",
+                    ":id",
+                    "activate"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) The ID of the subscription."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"name\": \"INVALID_REQUEST\",\n  \"message\": \"Request is not well-formed, syntactically incorrect, or violates schema.\",\n  \"details\": [\n    {\n      \"issue\": \"string\",\n      \"field\": \"string\",\n      \"value\": \"string\",\n      \"location\": \"body\",\n      \"description\": \"string\"\n    },\n    {\n      \"issue\": \"string\",\n      \"field\": \"string\",\n      \"value\": \"string\",\n      \"location\": \"body\",\n      \"description\": \"string\"\n    }\n  ],\n  \"debug_id\": \"string\",\n  \"links\": [\n    {\n      \"href\": \"R\",\n      \"rel\": \"~1)s3%\",\n      \"method\": \"POST\"\n    },\n    {\n      \"href\": \"LR*cST7|'L\",\n      \"rel\": \"-8/^\",\n      \"method\": \"POST\"\n    },\n    {\n      \"href\": \"I~b{piBM2$\",\n      \"rel\": \"N@j/Kf&TF\",\n      \"method\": \"PUT\"\n    },\n    {\n      \"href\": \"R2:\",\n      \"rel\": \"[\",\n      \"method\": \"DELETE\"\n    },\n    {\n      \"href\": \"3MR/22orl\",\n      \"rel\": \"z\",\n      \"method\": \"DELETE\"\n    },\n    {\n      \"href\": \"TI4Ps;\",\n      \"rel\": \"A\",\n      \"method\": \"POST\"\n    },\n    {\n      \"href\": \".5U\",\n      \"rel\": \"|<n)bGd^\",\n      \"method\": \"POST\"\n    },\n    {\n      \"href\": \"Ww4::^\",\n      \"rel\": \"\",\n      \"method\": \"DELETE\"\n    },\n    {\n      \"href\": \"da\",\n      \"rel\": \"y6os\",\n      \"method\": \"PATCH\"\n    },\n    {\n      \"href\": \"_X]:yj\",\n      \"rel\": \".W_ZW~\",\n      \"method\": \"POST\"\n    },\n    {\n      \"href\": \"%Q4.-S!\\\\ZA\",\n      \"rel\": \"g\\\"y4\",\n      \"method\": \"PUT\"\n    },\n    {\n      \"href\": \"_mug^8r,j$\",\n      \"rel\": \"?s'GK#)Y\",\n      \"method\": \"PUT\"\n    },\n    {\n      \"href\": \"`e#Sh\",\n      \"rel\": \"5N )A)\",\n      \"method\": \"DELETE\"\n    },\n    {\n      \"href\": \"AClo<ln{6O\",\n      \"rel\": \",D3B\",\n      \"method\": \"PATCH\"\n    },\n    {\n      \"href\": \"\",\n      \"rel\": \")\",\n      \"method\": \"PUT\"\n    },\n    {\n      \"href\": \")KjIq\",\n      \"rel\": \"VROIx\",\n      \"method\": \"PATCH\"\n    },\n    {\n      \"href\": \"JDEt\",\n      \"rel\": \"u44\",\n      \"method\": \"GET\"\n    },\n    {\n      \"href\": \"r\\\\,HFQ\",\n      \"rel\": \"S+D#=Ya\\\\T\",\n      \"method\": \"GET\"\n    },\n    {\n      \"href\": \"eG>;-HX2\",\n      \"rel\": \"\",\n      \"method\": \"PATCH\"\n    },\n    {\n      \"href\": \"^\",\n      \"rel\": \"][E\",\n      \"method\": \"PATCH\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "553a1b1b-2441-476f-99c7-0436b9807909",
+          "name": "Activate subscription",
+          "request": {
+            "name": "Activate subscription",
+            "description": {
+              "content": "Activates the subscription.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "billing",
+                "subscriptions",
+                ":id",
+                "activate"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) The ID of the subscription."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": {
+              "type": "oauth2",
+              "oauth2": [
+                {
+                  "key": "scope",
+                  "value": "https://uri.paypal.com/services/subscriptions"
+                },
+                {
+                  "key": "accessTokenUrl",
+                  "value": "/v1/oauth2/token"
+                },
+                {
+                  "key": "grant_type",
+                  "value": "client_credentials"
+                }
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"reason\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "24b64e09-0f9d-47c9-954a-0b3a420ce932",
+              "name": "A successful request returns the HTTP `204 No Content` status code with no JSON response body.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "billing",
+                    "subscriptions",
+                    ":id",
+                    "activate"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) The ID of the subscription."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"reason\": \"Reactivating the subscription\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "No Content",
+              "code": 204,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "d1e1e4f9-2367-4bf1-a317-d43d85a80d79",
+              "name": "Bad Request. Request is not well-formed, syntactically incorrect, or violates schema.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "billing",
+                    "subscriptions",
+                    ":id",
+                    "activate"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) The ID of the subscription."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"reason\": \"Reactivating the subscription\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"name\": \"INVALID_REQUEST\",\n  \"message\": \"Request is not well-formed, syntactically incorrect, or violates schema.\",\n  \"details\": [\n    {\n      \"issue\": \"INVALID_STRING_MAX_LENGTH\",\n      \"field\": \"string\",\n      \"value\": \"string\",\n      \"location\": \"body\",\n      \"description\": \"The value of a field is too long.\"\n    },\n    {\n      \"issue\": \"INVALID_STRING_MAX_LENGTH\",\n      \"field\": \"string\",\n      \"value\": \"string\",\n      \"location\": \"body\",\n      \"description\": \"The value of a field is too long.\"\n    }\n  ],\n  \"debug_id\": \"string\",\n  \"links\": [\n    {\n      \"href\": \"7Lg\",\n      \"rel\": \"H(\",\n      \"method\": \"PUT\"\n    },\n    {\n      \"href\": \"S>sl%!D,\",\n      \"rel\": \"T~/Wl#TO!M\",\n      \"method\": \"PUT\"\n    },\n    {\n      \"href\": \"zO;#\",\n      \"rel\": \"j(s:{43m\",\n      \"method\": \"POST\"\n    },\n    {\n      \"href\": \"!G<NQ>\\\"\",\n      \"rel\": \"bX7qG@Cv_\",\n      \"method\": \"PUT\"\n    },\n    {\n      \"href\": \":RhBbI\",\n      \"rel\": \":8tC~n)\",\n      \"method\": \"POST\"\n    },\n    {\n      \"href\": \"<GiLp\",\n      \"rel\": \"e3Q59\",\n      \"method\": \"POST\"\n    },\n    {\n      \"href\": \")I9&|(s$d\",\n      \"rel\": \"Ppew&F\",\n      \"method\": \"POST\"\n    },\n    {\n      \"href\": \"F\\\\:\",\n      \"rel\": \"NLy|AX_nq\",\n      \"method\": \"PATCH\"\n    },\n    {\n      \"href\": \"ka>\",\n      \"rel\": \"i<%104H\",\n      \"method\": \"PUT\"\n    },\n    {\n      \"href\": \"1\",\n      \"rel\": \"\",\n      \"method\": \"POST\"\n    },\n    {\n      \"href\": \"z'vR\",\n      \"rel\": \"\\\\\",\n      \"method\": \"GET\"\n    },\n    {\n      \"href\": \"36pT[+aXa[\",\n      \"rel\": \"E XN\",\n      \"method\": \"POST\"\n    },\n    {\n      \"href\": \"dX0~)ox)4T\",\n      \"rel\": \"r>}Mq\",\n      \"method\": \"GET\"\n    },\n    {\n      \"href\": \"Vsf\",\n      \"rel\": \")ES\",\n      \"method\": \"GET\"\n    },\n    {\n      \"href\": \"\\\\Q-]n?Xd\",\n      \"rel\": \"*>\",\n      \"method\": \"DELETE\"\n    },\n    {\n      \"href\": \"(5h%#z\",\n      \"rel\": \"ev5X [\",\n      \"method\": \"PATCH\"\n    },\n    {\n      \"href\": \"K\",\n      \"rel\": \"*6Y4K*=b\",\n      \"method\": \"DELETE\"\n    },\n    {\n      \"href\": \"SafI\",\n      \"rel\": \"TQ}d\",\n      \"method\": \"PATCH\"\n    },\n    {\n      \"href\": \"@?K 1p_Y.R\",\n      \"rel\": \"AA%\",\n      \"method\": \"PATCH\"\n    },\n    {\n      \"href\": \" [C\\\\]R\",\n      \"rel\": \"v|S]\",\n      \"method\": \"PUT\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "edfeeb14-a895-4fa2-ba42-7da7b819a4fc",
+              "name": "Authentication failed due to missing authorization header, or invalid authentication credentials.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "billing",
+                    "subscriptions",
+                    ":id",
+                    "activate"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) The ID of the subscription."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"reason\": \"Reactivating the subscription\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"name\": \"AUTHENTICATION_FAILURE\",\n  \"message\": \"Authentication failed due to missing authorization header, or invalid authentication credentials.\",\n  \"details\": [\n    {\n      \"issue\": \"INVALID_ACCOUNT_STATUS\",\n      \"field\": \"string\",\n      \"value\": \"string\",\n      \"location\": \"body\",\n      \"description\": \"Account validations failed for the user.\"\n    },\n    {\n      \"issue\": \"INVALID_ACCOUNT_STATUS\",\n      \"field\": \"string\",\n      \"value\": \"string\",\n      \"location\": \"body\",\n      \"description\": \"Account validations failed for the user.\"\n    }\n  ],\n  \"debug_id\": \"string\",\n  \"links\": [\n    {\n      \"href\": \"&\",\n      \"rel\": \"c]]Rt5+\",\n      \"method\": \"DELETE\"\n    },\n    {\n      \"href\": \"2j\",\n      \"rel\": \"z2;AY\",\n      \"method\": \"DELETE\"\n    },\n    {\n      \"href\": \"9C:\",\n      \"rel\": \"x;I8MQP\\\"J\",\n      \"method\": \"PUT\"\n    },\n    {\n      \"href\": \"q4Rb\",\n      \"rel\": \"4!>}$\",\n      \"method\": \"POST\"\n    },\n    {\n      \"href\": \"Q8{Gz&v^\",\n      \"rel\": \"5$+J\",\n      \"method\": \"POST\"\n    },\n    {\n      \"href\": \"TlcN\",\n      \"rel\": \"x-[&+,!X\",\n      \"method\": \"PUT\"\n    },\n    {\n      \"href\": \"#auF3*\",\n      \"rel\": \"/?wKG*HA&i\",\n      \"method\": \"GET\"\n    },\n    {\n      \"href\": \"F\",\n      \"rel\": \"~j!v=[.<\",\n      \"method\": \"PUT\"\n    },\n    {\n      \"href\": \"CjoH;\",\n      \"rel\": \"]\",\n      \"method\": \"PATCH\"\n    },\n    {\n      \"href\": \"\",\n      \"rel\": \"qE\",\n      \"method\": \"POST\"\n    },\n    {\n      \"href\": \"h\",\n      \"rel\": \":LvM[o!9\",\n      \"method\": \"PATCH\"\n    },\n    {\n      \"href\": \"~gZ@\",\n      \"rel\": \"\",\n      \"method\": \"DELETE\"\n    },\n    {\n      \"href\": \",l+<u\",\n      \"rel\": \"B.=\",\n      \"method\": \"DELETE\"\n    },\n    {\n      \"href\": \"_0\",\n      \"rel\": \"}szax\",\n      \"method\": \"PATCH\"\n    },\n    {\n      \"href\": \"e8_^=zXcA?\",\n      \"rel\": \"wj\",\n      \"method\": \"GET\"\n    },\n    {\n      \"href\": \"].|4j04x\",\n      \"rel\": \"!\",\n      \"method\": \"PATCH\"\n    },\n    {\n      \"href\": \"#w}~\",\n      \"rel\": \"mJ1\",\n      \"method\": \"PUT\"\n    },\n    {\n      \"href\": \"fXQpSJ;n)\",\n      \"rel\": \"&mX\",\n      \"method\": \"GET\"\n    },\n    {\n      \"href\": \"M\",\n      \"rel\": \"wqj\",\n      \"method\": \"DELETE\"\n    },\n    {\n      \"href\": \"D.ZQ8$fTO\",\n      \"rel\": \"\",\n      \"method\": \"DELETE\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "03a13039-1337-4415-8e48-463c01adf68d",
+              "name": "Authorization failed due to insufficient permissions.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "billing",
+                    "subscriptions",
+                    ":id",
+                    "activate"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) The ID of the subscription."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"reason\": \"Reactivating the subscription\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"name\": \"NOT_AUTHORIZED\",\n  \"message\": \"Authorization failed due to insufficient permissions.\",\n  \"details\": [\n    {\n      \"issue\": \"PERMISSION_DENIED\",\n      \"field\": \"string\",\n      \"value\": \"string\",\n      \"location\": \"body\",\n      \"description\": \"You do not have permission to access or perform operations on this resource.\"\n    },\n    {\n      \"issue\": \"PERMISSION_DENIED\",\n      \"field\": \"string\",\n      \"value\": \"string\",\n      \"location\": \"body\",\n      \"description\": \"You do not have permission to access or perform operations on this resource.\"\n    }\n  ],\n  \"debug_id\": \"string\",\n  \"links\": [\n    {\n      \"href\": \")w1LIXdl\",\n      \"rel\": \"eOEKS|\",\n      \"method\": \"GET\"\n    },\n    {\n      \"href\": \"=QB\\\\Gnm)\\\\\",\n      \"rel\": \"&g7\",\n      \"method\": \"DELETE\"\n    },\n    {\n      \"href\": \"JW-xp\",\n      \"rel\": \"\",\n      \"method\": \"GET\"\n    },\n    {\n      \"href\": \"\",\n      \"rel\": \"a-\",\n      \"method\": \"GET\"\n    },\n    {\n      \"href\": \"%K+skY!bEj\",\n      \"rel\": \"MqiF~Jk-\",\n      \"method\": \"PATCH\"\n    },\n    {\n      \"href\": \"F\",\n      \"rel\": \"9{f&9\",\n      \"method\": \"PATCH\"\n    },\n    {\n      \"href\": \"m\",\n      \"rel\": \"~]7|(F%c|\",\n      \"method\": \"PUT\"\n    },\n    {\n      \"href\": \"3}Z#$*0Ao\",\n      \"rel\": \"fk}\\\\_\",\n      \"method\": \"GET\"\n    },\n    {\n      \"href\": \"0g8\",\n      \"rel\": \"2WMw^\",\n      \"method\": \"PUT\"\n    },\n    {\n      \"href\": \"Y<cb\",\n      \"rel\": \"po`\",\n      \"method\": \"PATCH\"\n    },\n    {\n      \"href\": \"Zvx]r\\\\q9Ph\",\n      \"rel\": \"\",\n      \"method\": \"PUT\"\n    },\n    {\n      \"href\": \";(Af+#\",\n      \"rel\": \"Jn.,t\",\n      \"method\": \"PATCH\"\n    },\n    {\n      \"href\": \"\",\n      \"rel\": \"@\\\\>H_C\",\n      \"method\": \"PUT\"\n    },\n    {\n      \"href\": \"eFT\",\n      \"rel\": \"\",\n      \"method\": \"DELETE\"\n    },\n    {\n      \"href\": \"C\",\n      \"rel\": \"9dOM}\",\n      \"method\": \"PATCH\"\n    },\n    {\n      \"href\": \"\\\"L$bEI8o&Z\",\n      \"rel\": \"AR~SN9\",\n      \"method\": \"GET\"\n    },\n    {\n      \"href\": \"eMeLoP/m5x\",\n      \"rel\": \"nOJ{_jlb\",\n      \"method\": \"GET\"\n    },\n    {\n      \"href\": \"r\",\n      \"rel\": \"J<26\",\n      \"method\": \"GET\"\n    },\n    {\n      \"href\": \"^/m.kV&PQ\",\n      \"rel\": \"p\",\n      \"method\": \"PATCH\"\n    },\n    {\n      \"href\": \"zj/xbK\\\"|\",\n      \"rel\": \"\",\n      \"method\": \"DELETE\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "ee539aef-d426-4939-92b8-8920ac25df59",
+              "name": "The specified resource does not exist.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "billing",
+                    "subscriptions",
+                    ":id",
+                    "activate"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) The ID of the subscription."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"reason\": \"Reactivating the subscription\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"name\": \"RESOURCE_NOT_FOUND\",\n  \"message\": \"The specified resource does not exist.\",\n  \"details\": [\n    {\n      \"issue\": \"INVALID_RESOURCE_ID\",\n      \"field\": \"string\",\n      \"value\": \"string\",\n      \"location\": \"body\",\n      \"description\": \"Specified resource ID does not exist. Please check the resource ID and try again.\"\n    },\n    {\n      \"issue\": \"INVALID_RESOURCE_ID\",\n      \"field\": \"string\",\n      \"value\": \"string\",\n      \"location\": \"body\",\n      \"description\": \"Specified resource ID does not exist. Please check the resource ID and try again.\"\n    }\n  ],\n  \"debug_id\": \"string\",\n  \"links\": [\n    {\n      \"href\": \"t\",\n      \"rel\": \"|\",\n      \"method\": \"PUT\"\n    },\n    {\n      \"href\": \"j6'jK\",\n      \"rel\": \"\",\n      \"method\": \"PUT\"\n    },\n    {\n      \"href\": \"O\",\n      \"rel\": \"=t\",\n      \"method\": \"DELETE\"\n    },\n    {\n      \"href\": \"cVp\",\n      \"rel\": \"joMh7@mJ\",\n      \"method\": \"POST\"\n    },\n    {\n      \"href\": \"O^3DY\",\n      \"rel\": \"znf}Wq{. f\",\n      \"method\": \"DELETE\"\n    },\n    {\n      \"href\": \"Ujbn8\",\n      \"rel\": \"m}X5& TI\",\n      \"method\": \"DELETE\"\n    },\n    {\n      \"href\": \"\",\n      \"rel\": \"d=F+%S#\",\n      \"method\": \"PUT\"\n    },\n    {\n      \"href\": \"\",\n      \"rel\": \"{d`4_)!\",\n      \"method\": \"DELETE\"\n    },\n    {\n      \"href\": \"J IG&N\",\n      \"rel\": \"=y*$@%fJm>\",\n      \"method\": \"PUT\"\n    },\n    {\n      \"href\": \")PLOmH]l7k\",\n      \"rel\": \"f\",\n      \"method\": \"POST\"\n    },\n    {\n      \"href\": \"<R'\",\n      \"rel\": \"~:H#z;C/i*\",\n      \"method\": \"POST\"\n    },\n    {\n      \"href\": \"L^\",\n      \"rel\": \"VDS/S~\",\n      \"method\": \"PUT\"\n    },\n    {\n      \"href\": \"^x'F;p\",\n      \"rel\": \"/kVb~H\",\n      \"method\": \"GET\"\n    },\n    {\n      \"href\": \"I]r\",\n      \"rel\": \"1oqu\",\n      \"method\": \"POST\"\n    },\n    {\n      \"href\": \"6xF6^\",\n      \"rel\": \"URIN`6U<1\",\n      \"method\": \"DELETE\"\n    },\n    {\n      \"href\": \">-nM>-#ay\",\n      \"rel\": \"\\\\&(j(\",\n      \"method\": \"POST\"\n    },\n    {\n      \"href\": \"Rr\",\n      \"rel\": \"'nsCOumJ\",\n      \"method\": \"POST\"\n    },\n    {\n      \"href\": \"mIXyth.P0\",\n      \"rel\": \"Zw9M{nZP\",\n      \"method\": \"GET\"\n    },\n    {\n      \"href\": \"|J|ro}z-^\",\n      \"rel\": \"y]TZA[a^\",\n      \"method\": \"PATCH\"\n    },\n    {\n      \"href\": \"uz\",\n      \"rel\": \"#\",\n      \"method\": \"PUT\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "e2c2fa43-7e0f-402d-b0dc-ee05e33f80b1",
+              "name": "The requested action could not be performed, semantically incorrect, or failed business validation.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "billing",
+                    "subscriptions",
+                    ":id",
+                    "activate"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) The ID of the subscription."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"reason\": \"Reactivating the subscription\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+              "code": 422,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"name\": \"UNPROCESSABLE_ENTITY\",\n  \"message\": \"The requested action could not be performed, semantically incorrect, or failed business validation.\",\n  \"details\": [\n    {\n      \"issue\": \"USER_ACCOUNT_CLOSED\",\n      \"field\": \"string\",\n      \"value\": \"string\",\n      \"location\": \"body\",\n      \"description\": \"User account locked or closed.\"\n    },\n    {\n      \"issue\": \"USER_ACCOUNT_CLOSED\",\n      \"field\": \"string\",\n      \"value\": \"string\",\n      \"location\": \"body\",\n      \"description\": \"User account locked or closed.\"\n    }\n  ],\n  \"debug_id\": \"string\",\n  \"links\": [\n    {\n      \"href\": \"y_\\\\IB`FJ7\",\n      \"rel\": \"\",\n      \"method\": \"DELETE\"\n    },\n    {\n      \"href\": \"yE9<Pb_\",\n      \"rel\": \"X9K2x\\\"\",\n      \"method\": \"POST\"\n    },\n    {\n      \"href\": \"b|Qglz\\\\=\",\n      \"rel\": \"/?TH{_\",\n      \"method\": \"GET\"\n    },\n    {\n      \"href\": \"Y\",\n      \"rel\": \"4h'@7uh\",\n      \"method\": \"POST\"\n    },\n    {\n      \"href\": \"J\",\n      \"rel\": \"#3\",\n      \"method\": \"PUT\"\n    },\n    {\n      \"href\": \"X -I8u<P\",\n      \"rel\": \"}JUp&\",\n      \"method\": \"GET\"\n    },\n    {\n      \"href\": \"3=y/\",\n      \"rel\": \"2~k?^G3\",\n      \"method\": \"POST\"\n    },\n    {\n      \"href\": \"dZ\",\n      \"rel\": \"5WB/`\",\n      \"method\": \"PATCH\"\n    },\n    {\n      \"href\": \";V\",\n      \"rel\": \"Ju\",\n      \"method\": \"DELETE\"\n    },\n    {\n      \"href\": \"HVVzK'[v\",\n      \"rel\": \"C_=Q\",\n      \"method\": \"GET\"\n    },\n    {\n      \"href\": \"<G\",\n      \"rel\": \"p0)A`xnR;z\",\n      \"method\": \"DELETE\"\n    },\n    {\n      \"href\": \"1 iq\",\n      \"rel\": \"\",\n      \"method\": \"POST\"\n    },\n    {\n      \"href\": \":\",\n      \"rel\": \"~G54ub{Ij*\",\n      \"method\": \"PATCH\"\n    },\n    {\n      \"href\": \"@rI/ZbMUF\",\n      \"rel\": \"zVG2|P\",\n      \"method\": \"POST\"\n    },\n    {\n      \"href\": \"\",\n      \"rel\": \"Ph}_\\\\\",\n      \"method\": \"GET\"\n    },\n    {\n      \"href\": \"<lj\",\n      \"rel\": \"\",\n      \"method\": \"DELETE\"\n    },\n    {\n      \"href\": \":jdV\",\n      \"rel\": \"t%\",\n      \"method\": \"POST\"\n    },\n    {\n      \"href\": \"uO]'eG#o}Z\",\n      \"rel\": \"m=Trvkj2`9\",\n      \"method\": \"POST\"\n    },\n    {\n      \"href\": \" \\\"SvsKC @Q\",\n      \"rel\": \"\",\n      \"method\": \"PUT\"\n    },\n    {\n      \"href\": \">l\",\n      \"rel\": \"=V<#J9dsG\",\n      \"method\": \"POST\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "fe893f97-3f61-4f0d-b2a3-d2c4c409d347",
+              "name": "An internal server error has occurred.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "billing",
+                    "subscriptions",
+                    ":id",
+                    "activate"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) The ID of the subscription."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"reason\": \"Reactivating the subscription\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"name\": \"INTERNAL_SERVER_ERROR\",\n  \"message\": \"An internal server error occurred.\",\n  \"debug_id\": \"90957fca61718\",\n  \"links\": [\n    {\n      \"href\": \"https://developer.paypal.com/api/orders/v2/#error-INTERNAL_SERVER_ERROR\",\n      \"rel\": \"information_link\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "1db72fdf-7f7c-45e5-811f-a99ea35613e3",
+              "name": "The default response.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "billing",
+                    "subscriptions",
+                    ":id",
+                    "activate"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) The ID of the subscription."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"reason\": \"Reactivating the subscription\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"name\": \"INVALID_REQUEST\",\n  \"message\": \"Request is not well-formed, syntactically incorrect, or violates schema.\",\n  \"details\": [\n    {\n      \"issue\": \"string\",\n      \"field\": \"string\",\n      \"value\": \"string\",\n      \"location\": \"body\",\n      \"description\": \"string\"\n    },\n    {\n      \"issue\": \"string\",\n      \"field\": \"string\",\n      \"value\": \"string\",\n      \"location\": \"body\",\n      \"description\": \"string\"\n    }\n  ],\n  \"debug_id\": \"string\",\n  \"links\": [\n    {\n      \"href\": \"NFFOJ\",\n      \"rel\": \"mWbu'D#\",\n      \"method\": \"PATCH\"\n    },\n    {\n      \"href\": \"El)\",\n      \"rel\": \"MZvtSBKaq\",\n      \"method\": \"PUT\"\n    },\n    {\n      \"href\": \"]\",\n      \"rel\": \"dTLV_\",\n      \"method\": \"GET\"\n    },\n    {\n      \"href\": \"1OoVPW+:T\",\n      \"rel\": \"\",\n      \"method\": \"PATCH\"\n    },\n    {\n      \"href\": \"y{^\",\n      \"rel\": \"^W\",\n      \"method\": \"PUT\"\n    },\n    {\n      \"href\": \"c\",\n      \"rel\": \"jQL)8\",\n      \"method\": \"PATCH\"\n    },\n    {\n      \"href\": \"Wu)0[=?-8\",\n      \"rel\": \"sq2Yr8\",\n      \"method\": \"PUT\"\n    },\n    {\n      \"href\": \"m~C\",\n      \"rel\": \"4I\",\n      \"method\": \"DELETE\"\n    },\n    {\n      \"href\": \"AuzJ@?)\",\n      \"rel\": \"81:k\",\n      \"method\": \"PUT\"\n    },\n    {\n      \"href\": \"m=q!wjf`\",\n      \"rel\": \":e/=%MN=\",\n      \"method\": \"GET\"\n    },\n    {\n      \"href\": \"v\",\n      \"rel\": \"\",\n      \"method\": \"DELETE\"\n    },\n    {\n      \"href\": \"ad|aGyD\",\n      \"rel\": \"\",\n      \"method\": \"PATCH\"\n    },\n    {\n      \"href\": \"iN\",\n      \"rel\": \"\\\"#yR[2Jl5\",\n      \"method\": \"DELETE\"\n    },\n    {\n      \"href\": \"8\",\n      \"rel\": \"sgf1.(\",\n      \"method\": \"POST\"\n    },\n    {\n      \"href\": \"io\",\n      \"rel\": \"0u\",\n      \"method\": \"DELETE\"\n    },\n    {\n      \"href\": \"2u|\",\n      \"rel\": \"\",\n      \"method\": \"POST\"\n    },\n    {\n      \"href\": \"u%!\",\n      \"rel\": \"^qU\",\n      \"method\": \"DELETE\"\n    },\n    {\n      \"href\": \"QJvi!i[G*\",\n      \"rel\": \"2~\\\"lB3>f36\",\n      \"method\": \"PUT\"\n    },\n    {\n      \"href\": \";;AM\",\n      \"rel\": \"(DwlO8\",\n      \"method\": \"POST\"\n    },\n    {\n      \"href\": \"T\",\n      \"rel\": \" VqrV\",\n      \"method\": \"PATCH\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api-m.sandbox.paypal.com",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "85d2f748-adfd-44b2-8ed2-ee846da6ae8c",
+    "name": "Paypal Subscriptions Authorizations Activate API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "You can use billing plans and subscriptions to create subscriptions that process recurring PayPal payments for physical or digital goods, or services. A plan includes pricing and billing cycle information that defines the amount and frequency of charge for a subscription. You can also define a fixed plan, such as a $5 basic plan or a volume- or graduated-based plan with pricing tiers based on the quantity purchased. For more information, see <a href=\"/docs/subscriptions/\">Subscriptions Overview</a>.",
+      "type": "text/plain"
+    }
+  }
+}

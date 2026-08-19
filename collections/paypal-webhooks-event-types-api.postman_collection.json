@@ -1,0 +1,143 @@
+{
+  "item": [
+    {
+      "id": "0a30cd16-fb17-4790-ba69-8e55a74c15c3",
+      "name": "Webhooks-Event-Types",
+      "description": {
+        "content": "Use the `/webhooks-event-types` resource to list available events to which any webhook can subscribe.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "f6bee441-bbb3-4df4-ba23-d16c45a892a1",
+          "name": "Paypal List available events",
+          "request": {
+            "name": "Paypal List available events",
+            "description": {
+              "content": "Lists available events to which any webhook can subscribe. For a list of supported events, see [Webhook event names](/docs/api/notifications/webhooks/event-names/).",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "notifications",
+                "webhooks-event-types"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "e7a21439-360e-47a3-99b9-d0ee3c255c91",
+              "name": "A successful request returns the HTTP `200 OK` status code and a JSON response body that lists available events to which any webhook can subscribe.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "notifications",
+                    "webhooks-event-types"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"event_types\": [\n    {\n      \"name\": \"string\",\n      \"description\": \"string\",\n      \"status\": \"string\",\n      \"resource_versions\": [\n        \"string\",\n        \"string\"\n      ]\n    },\n    {\n      \"name\": \"string\",\n      \"description\": \"string\",\n      \"status\": \"string\",\n      \"resource_versions\": [\n        \"string\",\n        \"string\"\n      ]\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "beb4171e-fa25-4127-8ab1-5035dff369fe",
+              "name": "The error response.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "notifications",
+                    "webhooks-event-types"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"name\": \"string\",\n  \"message\": \"string\",\n  \"debug_id\": \"string\",\n  \"information_link\": \"string\",\n  \"details\": [\n    {\n      \"issue\": \"string\",\n      \"field\": \"string\",\n      \"value\": \"string\",\n      \"location\": \"body\",\n      \"description\": \"string\"\n    },\n    {\n      \"issue\": \"string\",\n      \"field\": \"string\",\n      \"value\": \"string\",\n      \"location\": \"body\",\n      \"description\": \"string\"\n    }\n  ],\n  \"links\": [\n    {\n      \"href\": \"string\",\n      \"rel\": \"string\",\n      \"method\": \"OPTIONS\"\n    },\n    {\n      \"href\": \"string\",\n      \"rel\": \"string\",\n      \"method\": \"CONNECT\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api-m.sandbox.paypal.com",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "4374b3b0-2d63-40ed-a2b7-14e1435a9a94",
+    "name": "Paypal Subscriptions Authorizations Webhooks-Event-Types API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "You can use billing plans and subscriptions to create subscriptions that process recurring PayPal payments for physical or digital goods, or services. A plan includes pricing and billing cycle information that defines the amount and frequency of charge for a subscription. You can also define a fixed plan, such as a $5 basic plan or a volume- or graduated-based plan with pricing tiers based on the quantity purchased. For more information, see <a href=\"/docs/subscriptions/\">Subscriptions Overview</a>.",
+      "type": "text/plain"
+    }
+  }
+}

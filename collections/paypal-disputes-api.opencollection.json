@@ -1,0 +1,142 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Paypal Subscriptions Authorizations Disputes API",
+    "version": "1.6"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Disputes",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Paypal List disputes",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api-m.sandbox.paypal.com/v1/customer/disputes",
+            "params": [
+              {
+                "name": "start_time",
+                "value": "",
+                "type": "query",
+                "description": "Filters the disputes in the response by a creation date and time. The start time must be within the last 180 days. Value is in [Internet date and time format](https://tools.ietf.org/html/rfc3339#section-5.6). For example, *`yyyy`*-*`MM`*-*`dd`*`T`*`HH`*:*`mm`*:*`ss`*.*`SSS`*`Z`.<br/><br/>You can specify either but not both the `start_time` and `disputed_transaction_id` query parameters."
+              },
+              {
+                "name": "disputed_transaction_id",
+                "value": "",
+                "type": "query",
+                "description": "Filters the disputes in the response by a transaction, by ID.<br/><br/>You can specify either but not both the `start_time` and `disputed_transaction_id` query parameter."
+              },
+              {
+                "name": "page_size",
+                "value": "",
+                "type": "query",
+                "description": "Limits the number of disputes in the response to this value."
+              },
+              {
+                "name": "next_page_token",
+                "value": "",
+                "type": "query",
+                "description": "The token that describes the next page of results to fetch. The <a href=\"/docs/api/customer-disputes/v1/#disputes_list\">list disputes</a> call returns this token in the HATEOAS links in the response."
+              },
+              {
+                "name": "dispute_state",
+                "value": "",
+                "type": "query",
+                "description": "Filters the disputes in the response by a state. Separate multiple values with a comma (`,`). When you specify more than one dispute_state, the response lists disputes that belong to any of the specified dispute_state."
+              },
+              {
+                "name": "update_time_before",
+                "value": "",
+                "type": "query",
+                "description": "The date and time when the dispute was last updated, in [Internet date and time format](https://tools.ietf.org/html/rfc3339#section-5.6). For example, *`yyyy`*-*`MM`*-*`dd`*`T`*`HH`*:*`mm`*:*`ss`*.*`SSS`*`Z`. update_time_before must be within the last 180 days and the default is the current time."
+              },
+              {
+                "name": "update_time_after",
+                "value": "",
+                "type": "query",
+                "description": "The date and time when the dispute was last updated, in [Internet date and time format](https://tools.ietf.org/html/rfc3339#section-5.6). For example, *`yyyy`*-*`MM`*-*`dd`*`T`*`HH`*:*`mm`*:*`ss`*.*`SSS`*`Z`. update_time_after must be within the last 180 days and the default is the maximum time (180 days) supported."
+              }
+            ],
+            "auth": {
+              "type": "oauth2",
+              "flow": "client_credentials",
+              "accessTokenUrl": "/v1/oauth2/token",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "Lists disputes with a summary set of details, which shows the <code>dispute_id</code>, <code>reason</code>, <code>status</code>, <code>dispute_state</code>, <code>dispute_life_cycle_stage</code>, <code>dispute_channel</code>, <code>dispute_amount</code>, <code>create_time</code> and <code>update_time</code> fields.<br/><br/>To filter the disputes in the response, specify one or more optional query parameters. To limit the number of disputes in the response, specify the <code>page_size</code> que"
+        },
+        {
+          "info": {
+            "name": "Paypal Show dispute details",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api-m.sandbox.paypal.com/v1/customer/disputes/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the dispute for which to provide the supporting information."
+              }
+            ],
+            "auth": {
+              "type": "oauth2",
+              "flow": "client_credentials",
+              "accessTokenUrl": "/v1/oauth2/token",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "Shows details for a dispute, by ID.<blockquote><strong>Note:</strong> The fields that appear in the response depend on the access. For example, if the merchant requests shows dispute details, the customer's email ID does not appear.</blockquote>"
+        },
+        {
+          "info": {
+            "name": "Paypal Partially update dispute",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "https://api-m.sandbox.paypal.com/v1/customer/disputes/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the dispute for which to provide the supporting information."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "oauth2",
+              "flow": "client_credentials",
+              "accessTokenUrl": "/v1/oauth2/token",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "Partially updates a dispute, by ID. Seller can update the `communication_detail` value or The partner can add the `partner action` information."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

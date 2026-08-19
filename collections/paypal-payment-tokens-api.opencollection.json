@@ -1,0 +1,150 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Paypal Subscriptions Authorizations Payment-Tokens API",
+    "version": "1.6"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Payment-Tokens",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Paypal List all payment tokens",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api-m.sandbox.paypal.com/v3/vault/payment-tokens",
+            "params": [
+              {
+                "name": "customer_id",
+                "value": "",
+                "type": "query",
+                "description": "A unique identifier representing a specific customer in merchant's/partner's system or records."
+              },
+              {
+                "name": "page_size",
+                "value": "",
+                "type": "query",
+                "description": "A non-negative, non-zero integer indicating the maximum number of results to return at one time."
+              },
+              {
+                "name": "page",
+                "value": "",
+                "type": "query",
+                "description": "A non-negative, non-zero integer representing the page of the results."
+              },
+              {
+                "name": "total_required",
+                "value": "",
+                "type": "query",
+                "description": "A boolean indicating total number of items (total_items) and pages (total_pages) are expected to be returned in the response."
+              }
+            ],
+            "auth": {
+              "type": "oauth2",
+              "flow": "client_credentials",
+              "accessTokenUrl": "/v1/oauth2/token",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "Returns all payment tokens for a customer."
+        },
+        {
+          "info": {
+            "name": "Paypal Create payment token for a given payment source",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api-m.sandbox.paypal.com/v3/vault/payment-tokens",
+            "headers": [
+              {
+                "name": "PayPal-Request-Id",
+                "value": ""
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "oauth2",
+              "flow": "client_credentials",
+              "accessTokenUrl": "/v1/oauth2/token",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "Creates a Payment Token from the given payment source and adds it to the Vault of the associated customer."
+        },
+        {
+          "info": {
+            "name": "Paypal Retrieve a payment token",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api-m.sandbox.paypal.com/v3/vault/payment-tokens/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "ID of the setup token."
+              }
+            ],
+            "auth": {
+              "type": "oauth2",
+              "flow": "client_credentials",
+              "accessTokenUrl": "/v1/oauth2/token",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "Returns a readable representation of vaulted payment source associated with the payment token id."
+        },
+        {
+          "info": {
+            "name": "Paypal Delete payment token",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api-m.sandbox.paypal.com/v3/vault/payment-tokens/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "ID of the setup token."
+              }
+            ],
+            "auth": {
+              "type": "oauth2",
+              "flow": "client_credentials",
+              "accessTokenUrl": "/v1/oauth2/token",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "Delete the payment token associated with the payment token id."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

@@ -1,0 +1,1430 @@
+{
+  "item": [
+    {
+      "id": "2c1de0d2-bf7e-4f0b-b692-3092b0ac1e31",
+      "name": "Web-Profiles",
+      "description": {
+        "content": "Use the `/payment-experience/web-profiles` resource to create, show details for, list, update, partially update, and delete web experience profiles.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "6a3b0a47-279c-4f74-b001-387e685e7967",
+          "name": "Paypal Create web experience profile",
+          "request": {
+            "name": "Paypal Create web experience profile",
+            "description": {
+              "content": "Creates a web experience profile. In the JSON request body, specify the profile name and details.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "payment-experience",
+                "web-profiles"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "(Required) The server stores keys for three hours.",
+                "key": "PayPal-Request-Id",
+                "value": "<string>"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": {
+              "type": "oauth2",
+              "oauth2": [
+                {
+                  "key": "scope",
+                  "value": "https://uri.paypal.com/services/subscriptions"
+                },
+                {
+                  "key": "accessTokenUrl",
+                  "value": "/v1/oauth2/token"
+                },
+                {
+                  "key": "grant_type",
+                  "value": "client_credentials"
+                }
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"<string>\",\n  \"temporary\": \"<boolean>\",\n  \"flow_config\": {\n    \"landing_page_type\": \"<string>\",\n    \"bank_txn_pending_url\": \"<uri>\",\n    \"user_action\": \"<string>\",\n    \"return_uri_http_method\": \"<string>\"\n  },\n  \"input_fields\": {\n    \"no_shipping\": \"<integer>\",\n    \"address_override\": \"<integer>\"\n  },\n  \"presentation\": {\n    \"brand_name\": \"<string>\",\n    \"logo_image\": \"<string>\",\n    \"locale_code\": \"<string>\"\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "71c9322c-8f0e-4c9d-b91e-a6f225fdf785",
+              "name": "A successful request, with or without the optional <code>PayPal-Request-Id</code> request header, returns the HTTP <code>201 Created</code> status code and a JSON response body that shows the profile details and the ID of the profile. Any subsequent calls with the same <code>PayPal-Request-Id</code> request header value within a three-hour window returns the HTTP <code>200 OK</code> status code and a JSON response body that shows the profile details and the ID of the profile.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "payment-experience",
+                    "web-profiles"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) The server stores keys for three hours.",
+                    "key": "PayPal-Request-Id",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"name\": \"<string>\",\n  \"id\": \"stringstringstringstri\",\n  \"temporary\": \"<boolean>\",\n  \"flow_config\": {\n    \"landing_page_type\": \"<string>\",\n    \"bank_txn_pending_url\": \"<uri>\",\n    \"user_action\": \"<string>\",\n    \"return_uri_http_method\": \"<string>\"\n  },\n  \"input_fields\": {\n    \"no_shipping\": \"<integer>\",\n    \"address_override\": \"<integer>\"\n  },\n  \"presentation\": {\n    \"brand_name\": \"<string>\",\n    \"logo_image\": \"<string>\",\n    \"locale_code\": \"<string>\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "05b5eb27-4ac0-48f5-8a77-d8796418f0ae",
+              "name": "A successful request, with or without the optional <code>PayPal-Request-Id</code> request header, returns the HTTP <code>201 Created</code> status code and a JSON response body that shows the profile details and the ID of the profile. Any subsequent calls with the same <code>PayPal-Request-Id</code> request header value within a three-hour window returns the HTTP <code>200 OK</code> status code and a JSON response body that shows the profile details and the ID of the profile.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "payment-experience",
+                    "web-profiles"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) The server stores keys for three hours.",
+                    "key": "PayPal-Request-Id",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"name\": \"<string>\",\n  \"id\": \"stringstringstringstri\",\n  \"temporary\": \"<boolean>\",\n  \"flow_config\": {\n    \"landing_page_type\": \"<string>\",\n    \"bank_txn_pending_url\": \"<uri>\",\n    \"user_action\": \"<string>\",\n    \"return_uri_http_method\": \"<string>\"\n  },\n  \"input_fields\": {\n    \"no_shipping\": \"<integer>\",\n    \"address_override\": \"<integer>\"\n  },\n  \"presentation\": {\n    \"brand_name\": \"<string>\",\n    \"logo_image\": \"<string>\",\n    \"locale_code\": \"<string>\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "6122d2e0-4738-40c8-bdad-eb340972c14f",
+              "name": "An internal server error occurred. The request returns the HTTP `500 Internal Server Error` status code.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "payment-experience",
+                    "web-profiles"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) The server stores keys for three hours.",
+                    "key": "PayPal-Request-Id",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"name\": \"string\",\n  \"message\": \"string\",\n  \"information_link\": \"string\",\n  \"debug_id\": \"string\",\n  \"details\": [\n    {\n      \"field\": \"string\",\n      \"issue\": \"string\"\n    },\n    {\n      \"field\": \"string\",\n      \"issue\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "d7448951-67e6-45ba-8ea5-e52452c4b7e5",
+              "name": "The error response.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "payment-experience",
+                    "web-profiles"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) The server stores keys for three hours.",
+                    "key": "PayPal-Request-Id",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"name\": \"string\",\n  \"message\": \"string\",\n  \"information_link\": \"string\",\n  \"debug_id\": \"string\",\n  \"details\": [\n    {\n      \"field\": \"string\",\n      \"issue\": \"string\"\n    },\n    {\n      \"field\": \"string\",\n      \"issue\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "0f6c3d5f-80c7-42df-9c4c-95c287829b5c",
+          "name": "Paypal List web experience profiles",
+          "request": {
+            "name": "Paypal List web experience profiles",
+            "description": {
+              "content": "Lists the latest 20 web experience profiles for a merchant or subject. To show details for these or additional profiles, you can show web experience profile details by ID.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "payment-experience",
+                "web-profiles"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "oauth2",
+              "oauth2": [
+                {
+                  "key": "scope",
+                  "value": "https://uri.paypal.com/services/subscriptions"
+                },
+                {
+                  "key": "accessTokenUrl",
+                  "value": "/v1/oauth2/token"
+                },
+                {
+                  "key": "grant_type",
+                  "value": "client_credentials"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "bb73d363-079a-45f3-853f-46dc8a182564",
+              "name": "A successful request returns the HTTP `200 OK` status code and a JSON response body that lists the latest 20 profiles that the merchant owns, with details. To show details for these or additional profiles, you can show web experience profile details by ID.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "payment-experience",
+                    "web-profiles"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"name\": \"<string>\",\n    \"id\": \"stringstringstringstri\",\n    \"temporary\": \"<boolean>\",\n    \"flow_config\": {\n      \"landing_page_type\": \"<string>\",\n      \"bank_txn_pending_url\": \"<uri>\",\n      \"user_action\": \"<string>\",\n      \"return_uri_http_method\": \"<string>\"\n    },\n    \"input_fields\": {\n      \"no_shipping\": \"<integer>\",\n      \"address_override\": \"<integer>\"\n    },\n    \"presentation\": {\n      \"brand_name\": \"<string>\",\n      \"logo_image\": \"<string>\",\n      \"locale_code\": \"<string>\"\n    }\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "c01fc491-d4f2-492f-b1db-dcd412483530",
+              "name": "An internal server error occurred. The request returns the HTTP `500 Internal Server Error` status code.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "payment-experience",
+                    "web-profiles"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"name\": \"string\",\n  \"message\": \"string\",\n  \"information_link\": \"string\",\n  \"debug_id\": \"string\",\n  \"details\": [\n    {\n      \"field\": \"string\",\n      \"issue\": \"string\"\n    },\n    {\n      \"field\": \"string\",\n      \"issue\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "77e64565-c55e-43d1-a49e-03bb49ffeea7",
+              "name": "The error response.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "payment-experience",
+                    "web-profiles"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"name\": \"string\",\n  \"message\": \"string\",\n  \"information_link\": \"string\",\n  \"debug_id\": \"string\",\n  \"details\": [\n    {\n      \"field\": \"string\",\n      \"issue\": \"string\"\n    },\n    {\n      \"field\": \"string\",\n      \"issue\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "258d40ef-196a-41c0-8d99-a47cae892bd1",
+          "name": "Paypal Update web experience profile",
+          "request": {
+            "name": "Paypal Update web experience profile",
+            "description": {
+              "content": "Updates a web experience profile, by ID. In the JSON request body, specify the profile details. If your request omits any profile parameters, any previously set values for those parameters are removed.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "payment-experience",
+                "web-profiles",
+                ":id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) The ID of the profile to delete."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PUT",
+            "auth": {
+              "type": "oauth2",
+              "oauth2": [
+                {
+                  "key": "scope",
+                  "value": "https://uri.paypal.com/services/subscriptions"
+                },
+                {
+                  "key": "accessTokenUrl",
+                  "value": "/v1/oauth2/token"
+                },
+                {
+                  "key": "grant_type",
+                  "value": "client_credentials"
+                }
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"<string>\",\n  \"temporary\": \"<boolean>\",\n  \"flow_config\": {\n    \"landing_page_type\": \"<string>\",\n    \"bank_txn_pending_url\": \"<uri>\",\n    \"user_action\": \"<string>\",\n    \"return_uri_http_method\": \"<string>\"\n  },\n  \"input_fields\": {\n    \"no_shipping\": \"<integer>\",\n    \"address_override\": \"<integer>\"\n  },\n  \"presentation\": {\n    \"brand_name\": \"<string>\",\n    \"logo_image\": \"<string>\",\n    \"locale_code\": \"<string>\"\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "9a025762-9765-4a46-84b7-b33c28fa759b",
+              "name": "A successful request returns the HTTP `204 No Content` status code with no JSON response body.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "payment-experience",
+                    "web-profiles",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) The ID of the profile to delete."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "method": "PUT",
+                "body": {}
+              },
+              "status": "No Content",
+              "code": 204,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "248a70e1-cfb9-4ab7-8f34-83efd2aa5dc5",
+              "name": "An internal server error occurred. The request returns the HTTP `500 Internal Server Error` status code.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "payment-experience",
+                    "web-profiles",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) The ID of the profile to delete."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"name\": \"string\",\n  \"message\": \"string\",\n  \"information_link\": \"string\",\n  \"debug_id\": \"string\",\n  \"details\": [\n    {\n      \"field\": \"string\",\n      \"issue\": \"string\"\n    },\n    {\n      \"field\": \"string\",\n      \"issue\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "ebc5e6ad-abb4-4856-b0f6-31a597034411",
+              "name": "The error response.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "payment-experience",
+                    "web-profiles",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) The ID of the profile to delete."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"name\": \"string\",\n  \"message\": \"string\",\n  \"information_link\": \"string\",\n  \"debug_id\": \"string\",\n  \"details\": [\n    {\n      \"field\": \"string\",\n      \"issue\": \"string\"\n    },\n    {\n      \"field\": \"string\",\n      \"issue\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "794f2dd3-bf36-430d-ab2e-04d5c9333368",
+          "name": "Paypal Partially update web experience profile",
+          "request": {
+            "name": "Paypal Partially update web experience profile",
+            "description": {
+              "content": "Partially-updates a web experience profile, by ID. In the JSON request body, specify a patch object, the path of the profile location to update, and a new value.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "payment-experience",
+                "web-profiles",
+                ":id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) The ID of the profile to delete."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PATCH",
+            "auth": {
+              "type": "oauth2",
+              "oauth2": [
+                {
+                  "key": "scope",
+                  "value": "https://uri.paypal.com/services/subscriptions"
+                },
+                {
+                  "key": "accessTokenUrl",
+                  "value": "/v1/oauth2/token"
+                },
+                {
+                  "key": "grant_type",
+                  "value": "client_credentials"
+                }
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "[\n  {\n    \"op\": \"<string>\",\n    \"path\": \"<string>\",\n    \"value\": {},\n    \"from\": \"<string>\"\n  },\n  {\n    \"op\": \"<string>\",\n    \"path\": \"<string>\",\n    \"value\": {},\n    \"from\": \"<string>\"\n  }\n]",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "202c30c6-8a55-4410-8b4c-867b95c90958",
+              "name": "A successful request returns the HTTP `204 No Content` status code with no JSON response body.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "payment-experience",
+                    "web-profiles",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) The ID of the profile to delete."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "[\n  {\n    \"op\": \"add\",\n    \"path\": \"/presentation/brand_name\",\n    \"value\": \"new_brand_name\"\n  },\n  {\n    \"op\": \"remove\",\n    \"path\": \"/flow_config/landing_page_type\"\n  }\n]",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "No Content",
+              "code": 204,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "0cd423ce-fe9e-4e47-838a-7435a03a818e",
+              "name": "An internal server error occurred. The request returns the HTTP `500 Internal Server Error` status code.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "payment-experience",
+                    "web-profiles",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) The ID of the profile to delete."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "[\n  {\n    \"op\": \"add\",\n    \"path\": \"/presentation/brand_name\",\n    \"value\": \"new_brand_name\"\n  },\n  {\n    \"op\": \"remove\",\n    \"path\": \"/flow_config/landing_page_type\"\n  }\n]",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"name\": \"string\",\n  \"message\": \"string\",\n  \"information_link\": \"string\",\n  \"debug_id\": \"string\",\n  \"details\": [\n    {\n      \"field\": \"string\",\n      \"issue\": \"string\"\n    },\n    {\n      \"field\": \"string\",\n      \"issue\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "34cdb96b-a87c-4049-ac0e-59c205a5c962",
+              "name": "The error response.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "payment-experience",
+                    "web-profiles",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) The ID of the profile to delete."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "[\n  {\n    \"op\": \"add\",\n    \"path\": \"/presentation/brand_name\",\n    \"value\": \"new_brand_name\"\n  },\n  {\n    \"op\": \"remove\",\n    \"path\": \"/flow_config/landing_page_type\"\n  }\n]",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"name\": \"string\",\n  \"message\": \"string\",\n  \"information_link\": \"string\",\n  \"debug_id\": \"string\",\n  \"details\": [\n    {\n      \"field\": \"string\",\n      \"issue\": \"string\"\n    },\n    {\n      \"field\": \"string\",\n      \"issue\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "0ac949b9-5932-4d2a-bf9a-b94879b3e7f0",
+          "name": "Paypal Show web experience profile details by ID",
+          "request": {
+            "name": "Paypal Show web experience profile details by ID",
+            "description": {
+              "content": "Shows details for a web experience profile, by ID.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "payment-experience",
+                "web-profiles",
+                ":id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) The ID of the profile to delete."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "oauth2",
+              "oauth2": [
+                {
+                  "key": "scope",
+                  "value": "https://uri.paypal.com/services/subscriptions"
+                },
+                {
+                  "key": "accessTokenUrl",
+                  "value": "/v1/oauth2/token"
+                },
+                {
+                  "key": "grant_type",
+                  "value": "client_credentials"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "baf20153-53e2-45a3-975a-82c41ee83bdf",
+              "name": "A successful request returns the HTTP `200 OK` status code and a JSON response body that shows the profile details.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "payment-experience",
+                    "web-profiles",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) The ID of the profile to delete."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"name\": \"<string>\",\n  \"id\": \"stringstringstringstri\",\n  \"temporary\": \"<boolean>\",\n  \"flow_config\": {\n    \"landing_page_type\": \"<string>\",\n    \"bank_txn_pending_url\": \"<uri>\",\n    \"user_action\": \"<string>\",\n    \"return_uri_http_method\": \"<string>\"\n  },\n  \"input_fields\": {\n    \"no_shipping\": \"<integer>\",\n    \"address_override\": \"<integer>\"\n  },\n  \"presentation\": {\n    \"brand_name\": \"<string>\",\n    \"logo_image\": \"<string>\",\n    \"locale_code\": \"<string>\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "dd5196d3-3267-4a2b-bb68-a383a3db6719",
+              "name": "An internal server error occurred. The request returns the HTTP `500 Internal Server Error` status code.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "payment-experience",
+                    "web-profiles",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) The ID of the profile to delete."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"name\": \"string\",\n  \"message\": \"string\",\n  \"information_link\": \"string\",\n  \"debug_id\": \"string\",\n  \"details\": [\n    {\n      \"field\": \"string\",\n      \"issue\": \"string\"\n    },\n    {\n      \"field\": \"string\",\n      \"issue\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "fd834eab-85d6-4dd9-9967-70db04f9c95c",
+              "name": "The error response.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "payment-experience",
+                    "web-profiles",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) The ID of the profile to delete."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"name\": \"string\",\n  \"message\": \"string\",\n  \"information_link\": \"string\",\n  \"debug_id\": \"string\",\n  \"details\": [\n    {\n      \"field\": \"string\",\n      \"issue\": \"string\"\n    },\n    {\n      \"field\": \"string\",\n      \"issue\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "6fd408c3-64ad-49c2-95bc-355971f96de2",
+          "name": "Paypal Delete web experience profile",
+          "request": {
+            "name": "Paypal Delete web experience profile",
+            "description": {
+              "content": "Deletes a web experience profile, by ID.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "payment-experience",
+                "web-profiles",
+                ":id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) The ID of the profile to delete."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "DELETE",
+            "auth": {
+              "type": "oauth2",
+              "oauth2": [
+                {
+                  "key": "scope",
+                  "value": "https://uri.paypal.com/services/subscriptions"
+                },
+                {
+                  "key": "accessTokenUrl",
+                  "value": "/v1/oauth2/token"
+                },
+                {
+                  "key": "grant_type",
+                  "value": "client_credentials"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "f51db247-f2bc-48db-ac2b-c46ee836938a",
+              "name": "A successful request returns the HTTP `204 No Content` status code with no JSON response body.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "payment-experience",
+                    "web-profiles",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) The ID of the profile to delete."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "No Content",
+              "code": 204,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "efa1aa89-291b-4670-b3b6-62d1e6cfdac0",
+              "name": "An internal server error occurred. The request returns the HTTP `500 Internal Server Error` status code.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "payment-experience",
+                    "web-profiles",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) The ID of the profile to delete."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"name\": \"string\",\n  \"message\": \"string\",\n  \"information_link\": \"string\",\n  \"debug_id\": \"string\",\n  \"details\": [\n    {\n      \"field\": \"string\",\n      \"issue\": \"string\"\n    },\n    {\n      \"field\": \"string\",\n      \"issue\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "6609a2ae-ec13-4f33-b873-34d339e1e8dc",
+              "name": "The error response.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "payment-experience",
+                    "web-profiles",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) The ID of the profile to delete."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"name\": \"string\",\n  \"message\": \"string\",\n  \"information_link\": \"string\",\n  \"debug_id\": \"string\",\n  \"details\": [\n    {\n      \"field\": \"string\",\n      \"issue\": \"string\"\n    },\n    {\n      \"field\": \"string\",\n      \"issue\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api-m.sandbox.paypal.com",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "9cfe207e-bd60-45f8-bd2b-961b9d4927ff",
+    "name": "Paypal Subscriptions Authorizations Web-Profiles API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "You can use billing plans and subscriptions to create subscriptions that process recurring PayPal payments for physical or digital goods, or services. A plan includes pricing and billing cycle information that defines the amount and frequency of charge for a subscription. You can also define a fixed plan, such as a $5 basic plan or a volume- or graduated-based plan with pricing tiers based on the quantity purchased. For more information, see <a href=\"/docs/subscriptions/\">Subscriptions Overview</a>.",
+      "type": "text/plain"
+    }
+  }
+}

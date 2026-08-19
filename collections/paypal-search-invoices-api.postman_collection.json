@@ -1,0 +1,381 @@
+{
+  "item": [
+    {
+      "id": "aa1f0396-a7d2-414f-b97c-b62b720e183a",
+      "name": "Search-Invoices",
+      "description": {
+        "content": "Use the `/search-invoices` resource to search for and list invoices that match search criteria.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "d12a743e-da1a-4343-8267-546aa20d92d0",
+          "name": "Paypal Search for invoices",
+          "request": {
+            "name": "Paypal Search for invoices",
+            "description": {
+              "content": "Searches for and lists invoices that match search criteria. If you pass multiple criteria, the response lists invoices that match all criteria.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v2",
+                "invoicing",
+                "search-invoices"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "page",
+                  "value": "1",
+                  "description": "The page number to be retrieved, for the list of templates. So, a combination of `page=1` and `page_size=20` returns the first 20 templates. A combination of `page=2` and `page_size=20` returns the next 20 templates."
+                },
+                {
+                  "disabled": false,
+                  "key": "page_size",
+                  "value": "20",
+                  "description": "The maximum number of templates to return in the response."
+                },
+                {
+                  "disabled": false,
+                  "key": "total_required",
+                  "value": "false",
+                  "description": "Indicates whether the to show <code>total_pages</code> and <code>total_items</code> in the response."
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": {
+              "type": "oauth2",
+              "oauth2": [
+                {
+                  "key": "scope",
+                  "value": "https://uri.paypal.com/services/subscriptions"
+                },
+                {
+                  "key": "accessTokenUrl",
+                  "value": "/v1/oauth2/token"
+                },
+                {
+                  "key": "grant_type",
+                  "value": "client_credentials"
+                }
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"recipient_email\": \"<string>\",\n  \"recipient_first_name\": \"<string>\",\n  \"recipient_last_name\": \"<string>\",\n  \"recipient_business_name\": \"<string>\",\n  \"invoice_number\": \"<string>\",\n  \"status\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"reference\": \"<string>\",\n  \"currency_code\": \"<ppaas_common_currency_code_v2>\",\n  \"memo\": \"<string>\",\n  \"total_amount_range\": {\n    \"lower_amount\": {\n      \"currency_code\": \"<ppaas_common_currency_code_v2>\",\n      \"value\": \"<string>\"\n    },\n    \"upper_amount\": {\n      \"currency_code\": \"<ppaas_common_currency_code_v2>\",\n      \"value\": \"<string>\"\n    }\n  },\n  \"invoice_date_range\": {\n    \"start\": \"<ppaas_date_notime_v2>\",\n    \"end\": \"<ppaas_date_notime_v2>\"\n  },\n  \"due_date_range\": {\n    \"start\": \"<ppaas_date_notime_v2>\",\n    \"end\": \"<ppaas_date_notime_v2>\"\n  },\n  \"payment_date_range\": {\n    \"start\": \"<ppaas_date_time_v3>\",\n    \"end\": \"<ppaas_date_time_v3>\"\n  },\n  \"creation_date_range\": {\n    \"start\": \"<ppaas_date_time_v3>\",\n    \"end\": \"<ppaas_date_time_v3>\"\n  },\n  \"archived\": \"<boolean>\",\n  \"fields\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "a2e64492-9bbb-453a-95c4-a2bbec868cae",
+              "name": "A successful request returns the HTTP `200 OK` status code and a JSON response body that lists the invoices that match the search criteria.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "invoicing",
+                    "search-invoices"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "page",
+                      "value": "1"
+                    },
+                    {
+                      "key": "page_size",
+                      "value": "20"
+                    },
+                    {
+                      "key": "total_required",
+                      "value": "false"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"total_amount_range\": {\n    \"lower_amount\": {\n      \"currency_code\": \"USD\",\n      \"value\": \"50.00\"\n    },\n    \"upper_amount\": {\n      \"currency_code\": \"USD\",\n      \"value\": \"50.00\"\n    }\n  },\n  \"invoice_date_range\": {\n    \"start\": \"2018-06-01\",\n    \"end\": \"2018-06-21\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"total_pages\": 5141,\n  \"total_items\": 1474,\n  \"items\": [\n    {\n      \"detail\": {\n        \"currency_code\": \"<ppaas_common_currency_code_v2>\",\n        \"reference\": \"string\",\n        \"note\": \"string\",\n        \"terms_and_conditions\": \"string\",\n        \"memo\": \"string\",\n        \"attachments\": [\n          {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        ],\n        \"invoice_number\": \"string\",\n        \"invoice_date\": \"<ppaas_date_notime_v2>\",\n        \"payment_term\": {\n          \"due_date\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        },\n        \"metadata\": {\n          \"cancel_time\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"cancelled_by\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"first_sent_time\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"last_sent_time\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"last_sent_by\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"created_by_flow\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"recipient_view_url\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"invoicer_view_url\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        }\n      },\n      \"id\": \"string\",\n      \"parent_id\": \"string\",\n      \"status\": \"<string>\",\n      \"invoicer\": {\n        \"business_name\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"name\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"address\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"email_address\": \"G\\\\{6\\\\m~0@kNh'r4}@\",\n        \"phones\": [\n          {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        ],\n        \"website\": \"https://NHn.ddeuTr2-UwkRyx\",\n        \"tax_id\": \"string\",\n        \"additional_notes\": \"string\",\n        \"logo_url\": \"https://rSVnLUWuAmraTjTjbcmH.hqzxx+pMr\"\n      },\n      \"primary_recipients\": [\n        {\n          \"billing_info\": {\n            \"email_address\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"phones\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"additional_info\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"language\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          \"shipping_info\": {\n            \"name\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"address\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          }\n        },\n        {\n          \"billing_info\": {\n            \"email_address\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"phones\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"additional_info\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"language\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          \"shipping_info\": {\n            \"name\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"address\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          }\n        }\n      ],\n      \"additional_recipients\": [\n        \"?F<o_j@Mdt,\",\n        \"fE}Y@u@F6H\"\n      ],\n      \"items\": [\n        {\n          \"name\": \"string\",\n          \"quantity\": \"string\",\n          \"unit_amount\": {\n            \"currency_code\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"value\": \"<string>\"\n          },\n          \"id\": \"string\",\n          \"description\": \"string\",\n          \"tax\": {\n            \"name\": \"string\",\n            \"percent\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"amount\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          \"item_date\": \"<ppaas_date_notime_v2>\",\n          \"discount\": {\n            \"percent\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"amount\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          \"unit_of_measure\": \"QUANTITY\"\n        },\n        {\n          \"name\": \"string\",\n          \"quantity\": \"string\",\n          \"unit_amount\": {\n            \"currency_code\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"value\": \"<string>\"\n          },\n          \"id\": \"string\",\n          \"description\": \"string\",\n          \"tax\": {\n            \"name\": \"string\",\n            \"percent\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"amount\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          \"item_date\": \"<ppaas_date_notime_v2>\",\n          \"discount\": {\n            \"percent\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"amount\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          \"unit_of_measure\": \"HOURS\"\n        }\n      ],\n      \"configuration\": {\n        \"tax_calculated_after_discount\": true,\n        \"tax_inclusive\": false,\n        \"allow_tip\": false,\n        \"partial_payment\": {\n          \"allow_partial_payment\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"minimum_amount_due\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        },\n        \"template_id\": \"PayPal system template\"\n      },\n      \"amount\": {\n        \"currency_code\": \"<ppaas_common_currency_code_v2>\",\n        \"value\": \"-.5844\",\n        \"breakdown\": {\n          \"item_total\": {\n            \"currency_code\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"value\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          \"discount\": {\n            \"invoice_discount\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"item_discount\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          \"tax_total\": {\n            \"currency_code\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"value\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          \"shipping\": {\n            \"amount\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"tax\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          \"custom\": {\n            \"label\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"amount\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          }\n        }\n      },\n      \"due_amount\": {\n        \"currency_code\": \"<ppaas_common_currency_code_v2>\",\n        \"value\": \"<string>\"\n      },\n      \"gratuity\": {\n        \"currency_code\": \"<ppaas_common_currency_code_v2>\",\n        \"value\": \"<string>\"\n      },\n      \"payments\": {\n        \"paid_amount\": {\n          \"currency_code\": \"<ppaas_common_currency_code_v2>\",\n          \"value\": \"<string>\"\n        },\n        \"transactions\": [\n          {\n            \"method\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"type\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"payment_id\": \"string\",\n            \"payment_date\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"note\": \"string\",\n            \"amount\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"shipping_info\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          {\n            \"method\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"type\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"payment_id\": \"string\",\n            \"payment_date\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"note\": \"string\",\n            \"amount\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"shipping_info\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          }\n        ]\n      },\n      \"refunds\": {\n        \"refund_amount\": {\n          \"currency_code\": \"<ppaas_common_currency_code_v2>\",\n          \"value\": \"<string>\"\n        },\n        \"transactions\": [\n          {\n            \"method\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"type\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"refund_id\": \"string\",\n            \"refund_date\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"amount\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          {\n            \"method\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"type\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"refund_id\": \"string\",\n            \"refund_date\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"amount\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          }\n        ]\n      },\n      \"links\": [\n        {\n          \"href\": \"string\",\n          \"rel\": \"string\",\n          \"method\": \"CONNECT\"\n        },\n        {\n          \"href\": \"string\",\n          \"rel\": \"string\",\n          \"method\": \"POST\"\n        }\n      ]\n    },\n    {\n      \"detail\": {\n        \"currency_code\": \"<ppaas_common_currency_code_v2>\",\n        \"reference\": \"string\",\n        \"note\": \"string\",\n        \"terms_and_conditions\": \"string\",\n        \"memo\": \"string\",\n        \"attachments\": [\n          {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        ],\n        \"invoice_number\": \"string\",\n        \"invoice_date\": \"<ppaas_date_notime_v2>\",\n        \"payment_term\": {\n          \"due_date\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        },\n        \"metadata\": {\n          \"cancel_time\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"cancelled_by\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"first_sent_time\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"last_sent_time\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"last_sent_by\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"created_by_flow\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"recipient_view_url\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"invoicer_view_url\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        }\n      },\n      \"id\": \"string\",\n      \"parent_id\": \"string\",\n      \"status\": \"<string>\",\n      \"invoicer\": {\n        \"business_name\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"name\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"address\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"email_address\": \"4CJ&2L6\\\".@qBCPcbuV\",\n        \"phones\": [\n          {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        ],\n        \"website\": \"http://YFXUfrFCAGaqxlfLWGCiDzJxuOipwSZl.tujWuOTja5X36SxwnxovvoHfnfGfw9NukqafwF5o9M,keg5gFRi6xeSyy0kWT8a\",\n        \"tax_id\": \"string\",\n        \"additional_notes\": \"string\",\n        \"logo_url\": \"https://TDJuaxZUDdpo.llnAboPguAC3UWstXzE\"\n      },\n      \"primary_recipients\": [\n        {\n          \"billing_info\": {\n            \"email_address\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"phones\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"additional_info\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"language\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          \"shipping_info\": {\n            \"name\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"address\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          }\n        },\n        {\n          \"billing_info\": {\n            \"email_address\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"phones\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"additional_info\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"language\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          \"shipping_info\": {\n            \"name\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"address\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          }\n        }\n      ],\n      \"additional_recipients\": [\n        \"!@6R>\\\\OVXoXQ^V\",\n        \"a:@=Rgqi8$\"\n      ],\n      \"items\": [\n        {\n          \"name\": \"string\",\n          \"quantity\": \"string\",\n          \"unit_amount\": {\n            \"currency_code\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"value\": \"<string>\"\n          },\n          \"id\": \"string\",\n          \"description\": \"string\",\n          \"tax\": {\n            \"name\": \"string\",\n            \"percent\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"amount\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          \"item_date\": \"<ppaas_date_notime_v2>\",\n          \"discount\": {\n            \"percent\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"amount\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          \"unit_of_measure\": \"HOURS\"\n        },\n        {\n          \"name\": \"string\",\n          \"quantity\": \"string\",\n          \"unit_amount\": {\n            \"currency_code\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"value\": \"<string>\"\n          },\n          \"id\": \"string\",\n          \"description\": \"string\",\n          \"tax\": {\n            \"name\": \"string\",\n            \"percent\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"amount\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          \"item_date\": \"<ppaas_date_notime_v2>\",\n          \"discount\": {\n            \"percent\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"amount\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          \"unit_of_measure\": \"QUANTITY\"\n        }\n      ],\n      \"configuration\": {\n        \"tax_calculated_after_discount\": true,\n        \"tax_inclusive\": false,\n        \"allow_tip\": false,\n        \"partial_payment\": {\n          \"allow_partial_payment\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"minimum_amount_due\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        },\n        \"template_id\": \"PayPal system template\"\n      },\n      \"amount\": {\n        \"currency_code\": \"<ppaas_common_currency_code_v2>\",\n        \"value\": \"-67746\",\n        \"breakdown\": {\n          \"item_total\": {\n            \"currency_code\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"value\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          \"discount\": {\n            \"invoice_discount\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"item_discount\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          \"tax_total\": {\n            \"currency_code\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"value\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          \"shipping\": {\n            \"amount\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"tax\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          \"custom\": {\n            \"label\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"amount\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          }\n        }\n      },\n      \"due_amount\": {\n        \"currency_code\": \"<ppaas_common_currency_code_v2>\",\n        \"value\": \"<string>\"\n      },\n      \"gratuity\": {\n        \"currency_code\": \"<ppaas_common_currency_code_v2>\",\n        \"value\": \"<string>\"\n      },\n      \"payments\": {\n        \"paid_amount\": {\n          \"currency_code\": \"<ppaas_common_currency_code_v2>\",\n          \"value\": \"<string>\"\n        },\n        \"transactions\": [\n          {\n            \"method\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"type\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"payment_id\": \"string\",\n            \"payment_date\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"note\": \"string\",\n            \"amount\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"shipping_info\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          {\n            \"method\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"type\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"payment_id\": \"string\",\n            \"payment_date\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"note\": \"string\",\n            \"amount\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"shipping_info\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          }\n        ]\n      },\n      \"refunds\": {\n        \"refund_amount\": {\n          \"currency_code\": \"<ppaas_common_currency_code_v2>\",\n          \"value\": \"<string>\"\n        },\n        \"transactions\": [\n          {\n            \"method\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"type\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"refund_id\": \"string\",\n            \"refund_date\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"amount\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          {\n            \"method\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"type\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"refund_id\": \"string\",\n            \"refund_date\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"amount\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          }\n        ]\n      },\n      \"links\": [\n        {\n          \"href\": \"string\",\n          \"rel\": \"string\",\n          \"method\": \"GET\"\n        },\n        {\n          \"href\": \"string\",\n          \"rel\": \"string\",\n          \"method\": \"POST\"\n        }\n      ]\n    }\n  ],\n  \"links\": [\n    {\n      \"href\": \"string\",\n      \"rel\": \"string\",\n      \"method\": \"HEAD\"\n    },\n    {\n      \"href\": \"string\",\n      \"rel\": \"string\",\n      \"method\": \"POST\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "c9f0b468-8843-41a1-a8f9-99704c1029a7",
+              "name": "Invalid request.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "invoicing",
+                    "search-invoices"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "page",
+                      "value": "1"
+                    },
+                    {
+                      "key": "page_size",
+                      "value": "20"
+                    },
+                    {
+                      "key": "total_required",
+                      "value": "false"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"total_amount_range\": {\n    \"lower_amount\": {\n      \"currency_code\": \"USD\",\n      \"value\": \"50.00\"\n    },\n    \"upper_amount\": {\n      \"currency_code\": \"USD\",\n      \"value\": \"50.00\"\n    }\n  },\n  \"invoice_date_range\": {\n    \"start\": \"2018-06-01\",\n    \"end\": \"2018-06-21\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"name\": \"INVALID_REQUEST\",\n  \"message\": \"Request is not well-formed, syntactically incorrect, or violates schema.\",\n  \"details\": [\n    {\n      \"issue\": \"INVALID_INTEGER_MAX_VALUE\",\n      \"field\": \"string\",\n      \"value\": \"string\",\n      \"location\": \"body\",\n      \"description\": \"Value exceeds max value.\"\n    },\n    {\n      \"issue\": \"INVALID_INTEGER_MAX_VALUE\",\n      \"field\": \"string\",\n      \"value\": \"string\",\n      \"location\": \"body\",\n      \"description\": \"Value exceeds max value.\"\n    }\n  ],\n  \"debug_id\": \"string\",\n  \"links\": [\n    {\n      \"href\": \"\\\"_$9\",\n      \"rel\": \"[LhJ\",\n      \"method\": \"HEAD\"\n    },\n    {\n      \"href\": \" W\",\n      \"rel\": \"D|F`~\",\n      \"method\": \"CONNECT\"\n    },\n    {\n      \"href\": \"4f)dT&/<sE\",\n      \"rel\": \"C*/Fax\",\n      \"method\": \"OPTIONS\"\n    },\n    {\n      \"href\": \"u\",\n      \"rel\": \"u\",\n      \"method\": \"DELETE\"\n    },\n    {\n      \"href\": \"Uq\",\n      \"rel\": \"pj)ry#;'tv\",\n      \"method\": \"POST\"\n    },\n    {\n      \"href\": \"sf8@1Gv]JX\",\n      \"rel\": \"Pg;h\",\n      \"method\": \"OPTIONS\"\n    },\n    {\n      \"href\": \"3e**1%HcZ \",\n      \"rel\": \"\",\n      \"method\": \"PATCH\"\n    },\n    {\n      \"href\": \"O:j?xd\",\n      \"rel\": \"ys W%M=(^\",\n      \"method\": \"PUT\"\n    },\n    {\n      \"href\": \"yc\",\n      \"rel\": \"XqO\",\n      \"method\": \"POST\"\n    },\n    {\n      \"href\": \"]\",\n      \"rel\": \"\",\n      \"method\": \"HEAD\"\n    },\n    {\n      \"href\": \"Cv\\\"/\",\n      \"rel\": \"IG)rVWWpTW\",\n      \"method\": \"CONNECT\"\n    },\n    {\n      \"href\": \"3Dlw$>\",\n      \"rel\": \"UDgX!\",\n      \"method\": \"GET\"\n    },\n    {\n      \"href\": \"nOHxvgZx\",\n      \"rel\": \"U!$tjK\",\n      \"method\": \"CONNECT\"\n    },\n    {\n      \"href\": \"o2;f 2v!E\",\n      \"rel\": \"gD|ctc:r*h\",\n      \"method\": \"PUT\"\n    },\n    {\n      \"href\": \"g9jpf7xW#\",\n      \"rel\": \"\",\n      \"method\": \"HEAD\"\n    },\n    {\n      \"href\": \"5<\",\n      \"rel\": \"E}\",\n      \"method\": \"PUT\"\n    },\n    {\n      \"href\": \"6TLl*&\",\n      \"rel\": \"\",\n      \"method\": \"GET\"\n    },\n    {\n      \"href\": \"[VhQ\",\n      \"rel\": \">\",\n      \"method\": \"POST\"\n    },\n    {\n      \"href\": \"7xn91.j8V\",\n      \"rel\": \"~2HU\",\n      \"method\": \"PUT\"\n    },\n    {\n      \"href\": \"]\",\n      \"rel\": \"9MG8\",\n      \"method\": \"PATCH\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "b84771d2-e6bb-474f-9d6a-156097598cee",
+              "name": "Authorization Error.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "invoicing",
+                    "search-invoices"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "page",
+                      "value": "1"
+                    },
+                    {
+                      "key": "page_size",
+                      "value": "20"
+                    },
+                    {
+                      "key": "total_required",
+                      "value": "false"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"total_amount_range\": {\n    \"lower_amount\": {\n      \"currency_code\": \"USD\",\n      \"value\": \"50.00\"\n    },\n    \"upper_amount\": {\n      \"currency_code\": \"USD\",\n      \"value\": \"50.00\"\n    }\n  },\n  \"invoice_date_range\": {\n    \"start\": \"2018-06-01\",\n    \"end\": \"2018-06-21\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"name\": \"NOT_AUTHORIZED\",\n  \"message\": \"Authorization failed due to insufficient permissions.\",\n  \"details\": [\n    {\n      \"issue\": \"string\",\n      \"field\": \"string\",\n      \"value\": \"string\",\n      \"location\": \"body\",\n      \"description\": \"string\"\n    },\n    {\n      \"issue\": \"string\",\n      \"field\": \"string\",\n      \"value\": \"string\",\n      \"location\": \"body\",\n      \"description\": \"string\"\n    }\n  ],\n  \"debug_id\": \"string\",\n  \"links\": [\n    {\n      \"href\": \"W&9GU!u\",\n      \"rel\": \"^ZJ)j8f(\",\n      \"method\": \"OPTIONS\"\n    },\n    {\n      \"href\": \"s<h-NHCE\",\n      \"rel\": \"q5*m8\",\n      \"method\": \"GET\"\n    },\n    {\n      \"href\": \"T|\\\"'DN\",\n      \"rel\": \";\",\n      \"method\": \"GET\"\n    },\n    {\n      \"href\": \"\",\n      \"rel\": \"]`wSZ[Qt\",\n      \"method\": \"HEAD\"\n    },\n    {\n      \"href\": \"mi+HCJ?\\\"\",\n      \"rel\": \"2*.ib8-q\",\n      \"method\": \"DELETE\"\n    },\n    {\n      \"href\": \"@\",\n      \"rel\": \"M^kY[:\",\n      \"method\": \"DELETE\"\n    },\n    {\n      \"href\": \"X#~I~\",\n      \"rel\": \"?M6g^\",\n      \"method\": \"GET\"\n    },\n    {\n      \"href\": \"]4w(xk\",\n      \"rel\": \"7yR|/;\",\n      \"method\": \"PATCH\"\n    },\n    {\n      \"href\": \"N\",\n      \"rel\": \"9zI|zI\",\n      \"method\": \"OPTIONS\"\n    },\n    {\n      \"href\": \"-A\",\n      \"rel\": \"fqfjm:\",\n      \"method\": \"PUT\"\n    },\n    {\n      \"href\": \"eE8-YleyL\",\n      \"rel\": \"\",\n      \"method\": \"POST\"\n    },\n    {\n      \"href\": \",dI24`Z\",\n      \"rel\": \"4\",\n      \"method\": \"OPTIONS\"\n    },\n    {\n      \"href\": \"#/\",\n      \"rel\": \"pZr$\",\n      \"method\": \"OPTIONS\"\n    },\n    {\n      \"href\": \"\",\n      \"rel\": \"]9)[aoOF(\",\n      \"method\": \"PUT\"\n    },\n    {\n      \"href\": \"kiDv\",\n      \"rel\": \"tWUrS>,6eA\",\n      \"method\": \"DELETE\"\n    },\n    {\n      \"href\": \"Cr2/i^2O\",\n      \"rel\": \"YuGRB`H\",\n      \"method\": \"PATCH\"\n    },\n    {\n      \"href\": \"Z]C?|\\\\\",\n      \"rel\": \"\",\n      \"method\": \"PUT\"\n    },\n    {\n      \"href\": \"=DOhf*(6Fs\",\n      \"rel\": \"O\",\n      \"method\": \"HEAD\"\n    },\n    {\n      \"href\": \"U+Apx<\",\n      \"rel\": \" ,dJ[8GP\",\n      \"method\": \"PUT\"\n    },\n    {\n      \"href\": \"\",\n      \"rel\": \"5|-4+\",\n      \"method\": \"CONNECT\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "d24f24e9-9970-4da6-8b4a-de26102951c7",
+              "name": "The default response.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "invoicing",
+                    "search-invoices"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "page",
+                      "value": "1"
+                    },
+                    {
+                      "key": "page_size",
+                      "value": "20"
+                    },
+                    {
+                      "key": "total_required",
+                      "value": "false"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"total_amount_range\": {\n    \"lower_amount\": {\n      \"currency_code\": \"USD\",\n      \"value\": \"50.00\"\n    },\n    \"upper_amount\": {\n      \"currency_code\": \"USD\",\n      \"value\": \"50.00\"\n    }\n  },\n  \"invoice_date_range\": {\n    \"start\": \"2018-06-01\",\n    \"end\": \"2018-06-21\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"name\": \"INVALID_REQUEST\",\n  \"message\": \"Request is not well-formed, syntactically incorrect, or violates schema.\",\n  \"details\": [\n    {\n      \"issue\": \"string\",\n      \"field\": \"string\",\n      \"value\": \"string\",\n      \"location\": \"body\",\n      \"description\": \"string\"\n    },\n    {\n      \"issue\": \"string\",\n      \"field\": \"string\",\n      \"value\": \"string\",\n      \"location\": \"body\",\n      \"description\": \"string\"\n    }\n  ],\n  \"debug_id\": \"string\",\n  \"links\": [\n    {\n      \"href\": \"J>U3DZ>%>=\",\n      \"rel\": \"4Ng<H;v##\",\n      \"method\": \"GET\"\n    },\n    {\n      \"href\": \"pgU\",\n      \"rel\": \">~:\",\n      \"method\": \"PUT\"\n    },\n    {\n      \"href\": \"\",\n      \"rel\": \"/\",\n      \"method\": \"GET\"\n    },\n    {\n      \"href\": \"w.UvI\",\n      \"rel\": \"Q7:UjAH#2\",\n      \"method\": \"OPTIONS\"\n    },\n    {\n      \"href\": \"%j_Ts#N#4\",\n      \"rel\": \"W;UzV/x\",\n      \"method\": \"PUT\"\n    },\n    {\n      \"href\": \"E6oIB\",\n      \"rel\": \"\",\n      \"method\": \"OPTIONS\"\n    },\n    {\n      \"href\": \"#%\",\n      \"rel\": \"tM\",\n      \"method\": \"GET\"\n    },\n    {\n      \"href\": \"Nh|yq9Xe\",\n      \"rel\": \"uq~P(eA\",\n      \"method\": \"CONNECT\"\n    },\n    {\n      \"href\": \"9/h;HrNV8\",\n      \"rel\": \">\",\n      \"method\": \"POST\"\n    },\n    {\n      \"href\": \"t=36=\",\n      \"rel\": \"4Be~{kc-\",\n      \"method\": \"PUT\"\n    },\n    {\n      \"href\": \"^0 C>N;\",\n      \"rel\": \"h{V\",\n      \"method\": \"CONNECT\"\n    },\n    {\n      \"href\": \"\",\n      \"rel\": \"(\",\n      \"method\": \"PUT\"\n    },\n    {\n      \"href\": \"~G\",\n      \"rel\": \"-i_*cx?[\",\n      \"method\": \"POST\"\n    },\n    {\n      \"href\": \"\",\n      \"rel\": \"U66c(\",\n      \"method\": \"POST\"\n    },\n    {\n      \"href\": \"3uDX'\",\n      \"rel\": \"2\",\n      \"method\": \"OPTIONS\"\n    },\n    {\n      \"href\": \"z\",\n      \"rel\": \"\",\n      \"method\": \"PATCH\"\n    },\n    {\n      \"href\": \"~6bHrY\",\n      \"rel\": \"3>t\",\n      \"method\": \"DELETE\"\n    },\n    {\n      \"href\": \"\",\n      \"rel\": \"0V\",\n      \"method\": \"DELETE\"\n    },\n    {\n      \"href\": \"ue}[Qd_/\",\n      \"rel\": \"%`w8KY|E\",\n      \"method\": \"OPTIONS\"\n    },\n    {\n      \"href\": \"dV!\",\n      \"rel\": \" \\\"B)Z53/\",\n      \"method\": \"POST\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api-m.sandbox.paypal.com",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "f3f6f399-1e4f-4327-afeb-55da78987c4a",
+    "name": "Paypal Subscriptions Authorizations Search-Invoices API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "You can use billing plans and subscriptions to create subscriptions that process recurring PayPal payments for physical or digital goods, or services. A plan includes pricing and billing cycle information that defines the amount and frequency of charge for a subscription. You can also define a fixed plan, such as a $5 basic plan or a volume- or graduated-based plan with pricing tiers based on the quantity purchased. For more information, see <a href=\"/docs/subscriptions/\">Subscriptions Overview</a>.",
+      "type": "text/plain"
+    }
+  }
+}

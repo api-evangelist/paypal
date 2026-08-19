@@ -1,0 +1,1109 @@
+{
+  "item": [
+    {
+      "id": "2cb011bf-37f7-4101-8b0b-1977a7b9d21a",
+      "name": "Disputes",
+      "description": {
+        "content": "Use the `/disputes` resource to list disputes, create disputes, show dispute details, and partially a dispute. Normally, an agent at PayPal creates disputes but now you can run test cases in the sandbox that create disputes.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "47fe19fc-929b-4887-88c3-4e907776bdd3",
+          "name": "Paypal List disputes",
+          "request": {
+            "name": "Paypal List disputes",
+            "description": {
+              "content": "Lists disputes with a summary set of details, which shows the <code>dispute_id</code>, <code>reason</code>, <code>status</code>, <code>dispute_state</code>, <code>dispute_life_cycle_stage</code>, <code>dispute_channel</code>, <code>dispute_amount</code>, <code>create_time</code> and <code>update_time</code> fields.<br/><br/>To filter the disputes in the response, specify one or more optional query parameters. To limit the number of disputes in the response, specify the <code>page_size</code> query parameter.<br/><br/>To list multiple disputes, set these query parameters in the request:<ul><li><code>page_size=2</code></li><li><code>start_time</code> instead of <code>disputed_transaction_id</code></li></ul><br/>If the response contains more than two disputes, it lists two disputes and includes a HATEOAS link to the next page of results.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "customer",
+                "disputes"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "start_time",
+                  "value": "Current date and time",
+                  "description": "Filters the disputes in the response by a creation date and time. The start time must be within the last 180 days. Value is in [Internet date and time format](https://tools.ietf.org/html/rfc3339#section-5.6). For example, *`yyyy`*-*`MM`*-*`dd`*`T`*`HH`*:*`mm`*:*`ss`*.*`SSS`*`Z`.<br/><br/>You can specify either but not both the `start_time` and `disputed_transaction_id` query parameters."
+                },
+                {
+                  "disabled": false,
+                  "key": "disputed_transaction_id",
+                  "value": "<string>",
+                  "description": "Filters the disputes in the response by a transaction, by ID.<br/><br/>You can specify either but not both the `start_time` and `disputed_transaction_id` query parameter."
+                },
+                {
+                  "disabled": false,
+                  "key": "page_size",
+                  "value": "10",
+                  "description": "Limits the number of disputes in the response to this value."
+                },
+                {
+                  "disabled": false,
+                  "key": "next_page_token",
+                  "value": "The first page of data",
+                  "description": "The token that describes the next page of results to fetch. The <a href=\"/docs/api/customer-disputes/v1/#disputes_list\">list disputes</a> call returns this token in the HATEOAS links in the response."
+                },
+                {
+                  "disabled": false,
+                  "key": "dispute_state",
+                  "value": "<string>",
+                  "description": "Filters the disputes in the response by a state. Separate multiple values with a comma (`,`). When you specify more than one dispute_state, the response lists disputes that belong to any of the specified dispute_state. (This can only be one of REQUIRED_ACTION,REQUIRED_OTHER_PARTY_ACTION,UNDER_PAYPAL_REVIEW,RESOLVED,OPEN_INQUIRIES,APPEALABLE)"
+                },
+                {
+                  "disabled": false,
+                  "key": "update_time_before",
+                  "value": "<ppaas_date_time_v3>",
+                  "description": "The date and time when the dispute was last updated, in [Internet date and time format](https://tools.ietf.org/html/rfc3339#section-5.6). For example, *`yyyy`*-*`MM`*-*`dd`*`T`*`HH`*:*`mm`*:*`ss`*.*`SSS`*`Z`. update_time_before must be within the last 180 days and the default is the current time."
+                },
+                {
+                  "disabled": false,
+                  "key": "update_time_after",
+                  "value": "<ppaas_date_time_v3>",
+                  "description": "The date and time when the dispute was last updated, in [Internet date and time format](https://tools.ietf.org/html/rfc3339#section-5.6). For example, *`yyyy`*-*`MM`*-*`dd`*`T`*`HH`*:*`mm`*:*`ss`*.*`SSS`*`Z`. update_time_after must be within the last 180 days and the default is the maximum time (180 days) supported."
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "oauth2",
+              "oauth2": [
+                {
+                  "key": "scope",
+                  "value": "https://uri.paypal.com/services/subscriptions"
+                },
+                {
+                  "key": "accessTokenUrl",
+                  "value": "/v1/oauth2/token"
+                },
+                {
+                  "key": "grant_type",
+                  "value": "client_credentials"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "6da5270c-d3e9-4ee6-bfb1-9a3f44fb3608",
+              "name": "A successful request returns the HTTP <code>200 OK</code> status code and a JSON response body that lists disputes with a full or summary set of details. Default is a summary set of details, which shows the <code>dispute_id</code>, <code>reason</code>, <code>status</code>, <code>dispute_amount</code>, <code>create_time</code>, and <code>update_time</code> fields for each dispute.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "customer",
+                    "disputes"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "start_time",
+                      "value": "Current date and time"
+                    },
+                    {
+                      "key": "disputed_transaction_id",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "page_size",
+                      "value": "10"
+                    },
+                    {
+                      "key": "next_page_token",
+                      "value": "The first page of data"
+                    },
+                    {
+                      "key": "dispute_state",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "update_time_before",
+                      "value": "<ppaas_date_time_v3>"
+                    },
+                    {
+                      "key": "update_time_after",
+                      "value": "<ppaas_date_time_v3>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"items\": [\n    {\n      \"dispute_id\": \"g\",\n      \"create_time\": \"8775-10-05T23:46:60+18:80\",\n      \"update_time\": \"7151-08-04t21:05:51-37:51\",\n      \"reason\": \"CANCELED_RECURRING_BILLING\",\n      \"status\": \"WAITING_FOR_SELLER_RESPONSE\",\n      \"dispute_state\": \"OPEN_INQUIRIES\",\n      \"dispute_amount\": {\n        \"currency_code\": \"str\",\n        \"value\": \"1511261933\"\n      },\n      \"dispute_asset\": {\n        \"asset_symbol\": \"BCH\",\n        \"quantity\": \"-6900513123\"\n      },\n      \"dispute_life_cycle_stage\": \"ARBITRATION\",\n      \"dispute_channel\": \"ALERT\",\n      \"buyer_response_due_date\": \"5808-07-31t11:19:60z\",\n      \"seller_response_due_date\": \"1046-10-31,21:53:60-57:55\",\n      \"links\": [\n        {\n          \"href\": \"string\",\n          \"rel\": \"string\",\n          \"method\": \"DELETE\"\n        }\n      ]\n    }\n  ],\n  \"links\": [\n    {\n      \"href\": \"string\",\n      \"rel\": \"string\",\n      \"method\": \"CONNECT\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "005832a6-524d-45d3-a517-9c54b54bd8a4",
+              "name": "The request failed due to a validation error. The request returns the HTTP `400 Bad Request` status code.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "customer",
+                    "disputes"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "start_time",
+                      "value": "Current date and time"
+                    },
+                    {
+                      "key": "disputed_transaction_id",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "page_size",
+                      "value": "10"
+                    },
+                    {
+                      "key": "next_page_token",
+                      "value": "The first page of data"
+                    },
+                    {
+                      "key": "dispute_state",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "update_time_before",
+                      "value": "<ppaas_date_time_v3>"
+                    },
+                    {
+                      "key": "update_time_after",
+                      "value": "<ppaas_date_time_v3>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"name\": \"string\",\n  \"message\": \"string\",\n  \"debug_id\": \"string\",\n  \"information_link\": \"string\",\n  \"details\": [\n    {\n      \"issue\": \"string\",\n      \"field\": \"string\",\n      \"value\": \"string\",\n      \"location\": \"body\",\n      \"description\": \"string\"\n    },\n    {\n      \"issue\": \"string\",\n      \"field\": \"string\",\n      \"value\": \"string\",\n      \"location\": \"body\",\n      \"description\": \"string\"\n    }\n  ],\n  \"links\": [\n    {\n      \"href\": \"string\",\n      \"rel\": \"string\",\n      \"method\": \"OPTIONS\"\n    },\n    {\n      \"href\": \"string\",\n      \"rel\": \"string\",\n      \"method\": \"DELETE\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "c5b86029-470e-4ea9-945a-a970c5a59a14",
+              "name": "The error response.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "customer",
+                    "disputes"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "start_time",
+                      "value": "Current date and time"
+                    },
+                    {
+                      "key": "disputed_transaction_id",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "page_size",
+                      "value": "10"
+                    },
+                    {
+                      "key": "next_page_token",
+                      "value": "The first page of data"
+                    },
+                    {
+                      "key": "dispute_state",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "update_time_before",
+                      "value": "<ppaas_date_time_v3>"
+                    },
+                    {
+                      "key": "update_time_after",
+                      "value": "<ppaas_date_time_v3>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"name\": \"string\",\n  \"message\": \"string\",\n  \"debug_id\": \"string\",\n  \"information_link\": \"string\",\n  \"details\": [\n    {\n      \"issue\": \"string\",\n      \"field\": \"string\",\n      \"value\": \"string\",\n      \"location\": \"body\",\n      \"description\": \"string\"\n    },\n    {\n      \"issue\": \"string\",\n      \"field\": \"string\",\n      \"value\": \"string\",\n      \"location\": \"body\",\n      \"description\": \"string\"\n    }\n  ],\n  \"links\": [\n    {\n      \"href\": \"string\",\n      \"rel\": \"string\",\n      \"method\": \"PUT\"\n    },\n    {\n      \"href\": \"string\",\n      \"rel\": \"string\",\n      \"method\": \"DELETE\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "d1206e6e-58c0-4e33-8d2c-cca55a56e104",
+          "name": "Paypal Show dispute details",
+          "request": {
+            "name": "Paypal Show dispute details",
+            "description": {
+              "content": "Shows details for a dispute, by ID.<blockquote><strong>Note:</strong> The fields that appear in the response depend on the access. For example, if the merchant requests shows dispute details, the customer's email ID does not appear.</blockquote>",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "customer",
+                "disputes",
+                ":id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) The ID of the dispute for which to provide the supporting information."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "oauth2",
+              "oauth2": [
+                {
+                  "key": "scope",
+                  "value": "https://uri.paypal.com/services/subscriptions"
+                },
+                {
+                  "key": "accessTokenUrl",
+                  "value": "/v1/oauth2/token"
+                },
+                {
+                  "key": "grant_type",
+                  "value": "client_credentials"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "ac3925bb-0c7b-4fe1-90af-dc63de9104f1",
+              "name": "A successful request returns the HTTP `200 OK` status code and a JSON response body that shows dispute details.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "customer",
+                    "disputes",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) The ID of the dispute for which to provide the supporting information."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"dispute_id\": \"2pHv3juBsTe\",\n  \"create_time\": \"9676-07-09t21:34:60z\",\n  \"update_time\": \"0629-12-13T04:21:30z\",\n  \"disputed_transactions\": [\n    {\n      \"buyer_transaction_id\": \"ES53U\",\n      \"seller_transaction_id\": \"-KPTFIy\",\n      \"reference_id\": \"k\",\n      \"create_time\": \"3206-09-01T20:26:60Z\",\n      \"transaction_status\": \"CANCELLED\",\n      \"gross_amount\": {\n        \"currency_code\": \"str\",\n        \"value\": \".935513\"\n      },\n      \"gross_asset\": {\n        \"asset_symbol\": \"LTC\",\n        \"quantity\": \".8732\"\n      },\n      \"invoice_number\": \"uJN5a9pf\",\n      \"custom\": \"string\",\n      \"buyer\": {\n        \"name\": \"d6i4'3,j.Tq\"\n      },\n      \"seller\": {\n        \"email\": \"!;Ub#@5z88K!mJu\",\n        \"merchant_id\": \"pvsLPSb6LN7\",\n        \"name\": \"<K4f\"\n      },\n      \"items\": [\n        {\n          \"item_id\": \"nwoB\",\n          \"item_name\": \"string\",\n          \"item_description\": \"string\",\n          \"item_quantity\": \"293749\",\n          \"partner_transaction_id\": \"Ane6Nh6iXiO\",\n          \"reason\": \"UNAUTHORISED\",\n          \"dispute_amount\": {\n            \"currency_code\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"value\": \"1870\"\n          },\n          \"notes\": \"string\",\n          \"item_type\": \"DIGITAL_DOWNLOAD\",\n          \"product_details\": {},\n          \"service_details\": {},\n          \"booking_details\": {},\n          \"digital_download_details\": {},\n          \"cancellation_details\": {},\n          \"agreed_refund_details\": {}\n        }\n      ],\n      \"payment_processor\": {}\n    }\n  ],\n  \"reason\": \"DUPLICATE_TRANSACTION\",\n  \"status\": \"WAITING_FOR_SELLER_RESPONSE\",\n  \"dispute_amount\": {\n    \"currency_code\": \"str\",\n    \"value\": \"36747159\"\n  },\n  \"dispute_asset\": {\n    \"asset_symbol\": \"LTC\",\n    \"quantity\": \"-5\"\n  },\n  \"fee_policy\": {},\n  \"external_reason_code\": \"string\",\n  \"dispute_outcome\": {\n    \"outcome_code\": \"NONE\",\n    \"amount_refunded\": {\n      \"currency_code\": \"str\",\n      \"value\": \"-99693192\"\n    },\n    \"asset_refunded\": {\n      \"asset_symbol\": \"LTC\",\n      \"quantity\": \"760399\"\n    }\n  },\n  \"adjudications\": [\n    {\n      \"type\": \"PAYOUT_TO_SELLER\",\n      \"adjudication_time\": \"6351-12-26t00:53:60Z\",\n      \"reason\": \"SELLER_REFUSED_REFUND\",\n      \"dispute_life_cycle_stage\": \"CHARGEBACK\"\n    }\n  ],\n  \"money_movements\": [\n    {\n      \"affected_party\": \"BUYER\",\n      \"amount\": {\n        \"currency_code\": \"str\",\n        \"value\": \"-73\"\n      },\n      \"asset\": {\n        \"asset_symbol\": \"BCH\",\n        \"quantity\": \"-.65989882580\"\n      },\n      \"initiated_time\": \"9274-11-29t23:23:08.022996103-51:19\",\n      \"type\": \"CREDIT\",\n      \"reason\": \"DISPUTE_SETTLEMENT_FEE\"\n    }\n  ],\n  \"dispute_life_cycle_stage\": \"INQUIRY\",\n  \"dispute_channel\": \"INTERNAL\",\n  \"messages\": [\n    {\n      \"posted_by\": \"SELLER\",\n      \"time_posted\": \"3886-10-03T12:27:21+56:52\",\n      \"content\": \"string\",\n      \"documents\": [\n        {\n          \"name\": \"3uq.VJrzldMcYT\",\n          \"url\": \"https://lXJqISwaGjrrbusGeDClryxiLor.cemoOdTaogxejRq2D9\"\n        }\n      ]\n    }\n  ],\n  \"extensions\": {\n    \"merchant_contacted\": true,\n    \"merchant_contacted_outcome\": \"NO_RESPONSE\",\n    \"merchant_contacted_time\": \"1342-11-30t20:40:60-46:28\",\n    \"merchant_contacted_mode\": \"EMAIL\",\n    \"buyer_contacted_time\": \"9189-10-14,03:02:60+05:04\",\n    \"buyer_contacted_channel\": \"string\",\n    \"billing_dispute_properties\": {\n      \"duplicate_transaction\": {\n        \"received_duplicate\": false,\n        \"original_transaction\": {\n          \"buyer_transaction_id\": \"SKc-JyeqqvP\",\n          \"seller_transaction_id\": \"-bk\",\n          \"reference_id\": \"I5czHA\",\n          \"create_time\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"transaction_status\": \"REFUNDED\",\n          \"gross_amount\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"gross_asset\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"invoice_number\": \"vgyo3\",\n          \"custom\": \"string\",\n          \"buyer\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"seller\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"items\": [\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          ],\n          \"payment_processor\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        }\n      },\n      \"incorrect_transaction_amount\": {\n        \"correct_transaction_amount\": {\n          \"currency_code\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"value\": \"-.641506\"\n        },\n        \"correct_transaction_asset\": {\n          \"asset_symbol\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"quantity\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        },\n        \"correct_transaction_time\": \"7660-02-30,20:00:60z\"\n      },\n      \"payment_by_other_means\": {\n        \"charge_different_from_original\": true,\n        \"received_duplicate\": true,\n        \"payment_method\": \"GIFT_CARD\",\n        \"payment_instrument_suffix\": \"st\"\n      },\n      \"credit_not_processed\": {\n        \"issue_type\": \"SERVICE\",\n        \"expected_refund\": {\n          \"currency_code\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"value\": \"-6264665440.378\"\n        },\n        \"cancellation_details\": {\n          \"cancellation_date\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"cancellation_number\": \"dFNb\",\n          \"cancelled\": false,\n          \"cancellation_mode\": \"PHONE\"\n        },\n        \"product_details\": {\n          \"description\": \"string\",\n          \"product_received\": \"NO\",\n          \"product_received_time\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"expected_delivery_date\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"sub_reasons\": [\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          ],\n          \"purchase_url\": \"https://vQtzRmvqsJfcrxSm.uhooU59Qq5QTtLitE7LDOD+lXU1P27H0R-yuJvtW5fw3+lAnx8vCW19vS0I1ClPOjH40v,D4haMyS\",\n          \"return_details\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        },\n        \"service_details\": {\n          \"description\": \"string\",\n          \"service_started\": \"NO\",\n          \"note\": \"string\",\n          \"sub_reasons\": [\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          ],\n          \"purchase_url\": \"http://TPYuE.zijQ,FYE9fFyzTK5F06D-5vfCG\"\n        },\n        \"agreed_refund_details\": {\n          \"merchant_agreed_refund\": true,\n          \"merchant_agreed_refund_time\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        }\n      },\n      \"canceled_recurring_billing\": {\n        \"expected_refund\": {\n          \"currency_code\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"value\": \"50182038443.7\"\n        },\n        \"cancellation_details\": {\n          \"cancellation_date\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"cancellation_number\": \"HKyex\",\n          \"cancelled\": true,\n          \"cancellation_mode\": \"PHONE\"\n        }\n      }\n    },\n    \"merchandize_dispute_properties\": {\n      \"issue_type\": \"SERVICE\",\n      \"product_details\": {\n        \"description\": \"string\",\n        \"product_received\": \"RETURNED\",\n        \"product_received_time\": \"7052-04-14,21:30:41+07:70\",\n        \"expected_delivery_date\": \"8369-07-30t20:30:60.28754046400+09:69\",\n        \"sub_reasons\": [\n          \"OTHER\",\n          \"OTHER\"\n        ],\n        \"purchase_url\": \"http://RuCqnYCKhTLaSkn.lnI66wZjabpHqfWGv6TngsHE0,RArgFDb7zrKmFGrdHwpH4aoOvrjuwUtObOdreuWACG.oT\",\n        \"return_details\": {\n          \"return_time\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"mode\": \"SHIPPED\",\n          \"receipt\": false,\n          \"return_confirmation_number\": \"PVpm0\",\n          \"returned\": true\n        }\n      },\n      \"service_details\": {\n        \"description\": \"string\",\n        \"service_started\": \"CANCELLED\",\n        \"note\": \"string\",\n        \"sub_reasons\": [\n          \"INCOMPLETE\",\n          \"DAMAGED\"\n        ],\n        \"purchase_url\": \"http://YNYOuZjdHqZIZdRwkwDNZTHrS.awbALMHgju6taDxjdg8hrz8MXRP3SzXAFTle\"\n      },\n      \"cancellation_details\": {\n        \"cancellation_date\": \"2500-05-08t23:50:44Z\",\n        \"cancellation_number\": \"aF\",\n        \"cancelled\": true,\n        \"cancellation_mode\": \"EMAIL\"\n      },\n      \"return_shipping_address\": {\n        \"country_code\": \"C2\",\n        \"address_line_1\": \"string\",\n        \"address_line_2\": \"string\",\n        \"address_line_3\": \"string\",\n        \"admin_area_4\": \"string\",\n        \"admin_area_3\": \"string\",\n        \"admin_area_2\": \"string\",\n        \"admin_area_1\": \"string\",\n        \"postal_code\": \"string\",\n        \"address_details\": {\n          \"street_number\": \"string\",\n          \"street_name\": \"string\",\n          \"street_type\": \"string\",\n          \"delivery_service\": \"string\",\n          \"building_name\": \"string\",\n          \"sub_building\": \"string\"\n        }\n      }\n    }\n  },\n  \"evidences\": [\n    {\n      \"evidence_type\": \"PROOF_OF_ITEM_NOT_RECEIVED\",\n      \"evidence_info\": {\n        \"tracking_info\": [\n          {\n            \"carrier_name\": \"GLOBAL_SKYNET\",\n            \"tracking_number\": \"string\",\n            \"carrier_name_other\": \"string\",\n            \"tracking_url\": \"http://FJwSdweVQtnbQ.gaprguxJbFrUf1LrF4fPs.looJe\"\n          }\n        ],\n        \"refund_ids\": [\n          \"string\"\n        ]\n      },\n      \"documents\": [\n        {\n          \"name\": \" SN Q.XGNcvhVtnQ\",\n          \"url\": \"http://BGWnnlQNAbPvxXlybgLXYzQGrUjeiQn.mpb+zvY9PUZp2ZgITy2MyE4DoToFZLbxDrCbc0swxaGwjxO\"\n        }\n      ],\n      \"notes\": \"string\",\n      \"source\": \"REQUESTED_FROM_SELLER\",\n      \"date\": \"9560-10-31T20:34:60-29:81\",\n      \"item_id\": \"uD5tMkKk\",\n      \"item_type\": \"SERVICE\",\n      \"action_info\": {\n        \"action\": \"PROVIDE_EVIDENCE\",\n        \"response_option\": \"EODMAN_ZYA\",\n        \"mandatory\": true\n      },\n      \"dispute_life_cycle_stage\": \"PRE_ARBITRATION\"\n    }\n  ],\n  \"buyer_response_due_date\": \"3227-04-01T21:58:60.087627-87:21\",\n  \"seller_response_due_date\": \"4110-04-02T22:36:16.930306Z\",\n  \"offer\": {\n    \"buyer_requested_amount\": {\n      \"currency_code\": \"str\",\n      \"value\": \"35658041.25\"\n    },\n    \"seller_offered_amount\": {\n      \"currency_code\": \"str\",\n      \"value\": \"-9150524259\"\n    },\n    \"offer_type\": \"REPLACEMENT_WITHOUT_REFUND\",\n    \"history\": [\n      {\n        \"offer_time\": \"4361-10-30t16:16:60z\",\n        \"actor\": \"SELLER\",\n        \"event_type\": \"PROPOSED\",\n        \"offer_type\": \"REFUND_WITH_RETURN\",\n        \"offer_amount\": {\n          \"currency_code\": \"str\",\n          \"value\": \"-2757206071\"\n        },\n        \"notes\": \"str\",\n        \"dispute_life_cycle_stage\": \"INQUIRY\"\n      }\n    ]\n  },\n  \"refund_details\": {\n    \"allowed_refund_amount\": {\n      \"currency_code\": \"str\",\n      \"value\": \"6\"\n    }\n  },\n  \"communication_details\": {\n    \"email\": \"\\\"@fK;S@Tdf\",\n    \"note\": \"string\",\n    \"time_posted\": \"9996-12-25,02:54:60+07:47\"\n  },\n  \"supporting_info\": [\n    {\n      \"notes\": \"string\",\n      \"documents\": [\n        {\n          \"name\": \"y-Bv vj_.olPmW\",\n          \"url\": \"http://zesHZGewpA.jmglphIR\"\n        }\n      ],\n      \"source\": \"SUBMITTED_BY_BUYER\",\n      \"provided_time\": \"5832-01-03T22:12:60.93098Z\",\n      \"dispute_life_cycle_stage\": \"INQUIRY\"\n    }\n  ],\n  \"allowed_response_options\": {\n    \"acknowledge_return_item\": {\n      \"acknowledgement_types\": [\n        \"ITEM_RECEIVED\"\n      ]\n    },\n    \"accept_claim\": {\n      \"accept_claim_types\": [\n        \"REFUND_WITH_RETURN\"\n      ]\n    },\n    \"make_offer\": {\n      \"offer_types\": [\n        \"REFUND_WITH_RETURN\"\n      ]\n    }\n  },\n  \"links\": [\n    {\n      \"href\": \"string\",\n      \"rel\": \"string\",\n      \"method\": \"GET\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "2bf8674d-251b-44f9-b09d-33c479065bcd",
+              "name": "An internal server error occurred. The request returns the HTTP `500 Internal Server Error` status code.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "customer",
+                    "disputes",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) The ID of the dispute for which to provide the supporting information."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"name\": \"string\",\n  \"message\": \"string\",\n  \"debug_id\": \"string\",\n  \"information_link\": \"string\",\n  \"details\": [\n    {\n      \"issue\": \"string\",\n      \"field\": \"string\",\n      \"value\": \"string\",\n      \"location\": \"body\",\n      \"description\": \"string\"\n    },\n    {\n      \"issue\": \"string\",\n      \"field\": \"string\",\n      \"value\": \"string\",\n      \"location\": \"body\",\n      \"description\": \"string\"\n    }\n  ],\n  \"links\": [\n    {\n      \"href\": \"string\",\n      \"rel\": \"string\",\n      \"method\": \"PUT\"\n    },\n    {\n      \"href\": \"string\",\n      \"rel\": \"string\",\n      \"method\": \"DELETE\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "73b99a95-c59d-439b-bf18-4e06cb74e169",
+              "name": "The error response.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "customer",
+                    "disputes",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) The ID of the dispute for which to provide the supporting information."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"name\": \"string\",\n  \"message\": \"string\",\n  \"debug_id\": \"string\",\n  \"information_link\": \"string\",\n  \"details\": [\n    {\n      \"issue\": \"string\",\n      \"field\": \"string\",\n      \"value\": \"string\",\n      \"location\": \"body\",\n      \"description\": \"string\"\n    },\n    {\n      \"issue\": \"string\",\n      \"field\": \"string\",\n      \"value\": \"string\",\n      \"location\": \"body\",\n      \"description\": \"string\"\n    }\n  ],\n  \"links\": [\n    {\n      \"href\": \"string\",\n      \"rel\": \"string\",\n      \"method\": \"PUT\"\n    },\n    {\n      \"href\": \"string\",\n      \"rel\": \"string\",\n      \"method\": \"DELETE\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "b339e65b-1864-4405-afb9-395727f0912f",
+          "name": "Paypal Partially update dispute",
+          "request": {
+            "name": "Paypal Partially update dispute",
+            "description": {
+              "content": "Partially updates a dispute, by ID. Seller can update the `communication_detail` value or The partner can add the `partner action` information.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "customer",
+                "disputes",
+                ":id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) The ID of the dispute for which to provide the supporting information."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "multipart/form-data"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PATCH",
+            "auth": {
+              "type": "oauth2",
+              "oauth2": [
+                {
+                  "key": "scope",
+                  "value": "https://uri.paypal.com/services/subscriptions"
+                },
+                {
+                  "key": "accessTokenUrl",
+                  "value": "/v1/oauth2/token"
+                },
+                {
+                  "key": "grant_type",
+                  "value": "client_credentials"
+                }
+              ]
+            },
+            "body": {
+              "mode": "formdata",
+              "formdata": [
+                {
+                  "key": "0",
+                  "value": "{\"op\":\"<string>\",\"path\":\"<string>\",\"value\":{},\"from\":\"<string>\"}",
+                  "type": "text",
+                  "description": "undefined"
+                },
+                {
+                  "key": "1",
+                  "value": "{\"op\":\"<string>\",\"path\":\"<string>\",\"value\":{},\"from\":\"<string>\"}",
+                  "type": "text",
+                  "description": "undefined"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "beda4bee-2df0-4665-87e1-ef65e90604b8",
+              "name": "A successfully accepted request returns the HTTP `202 Accepted` status code and a JSON response body that includes a [HATEOAS link](/docs/api/reference/api-responses/#hateoas-links) to the ID of the request. The Clients can choose webhook option as well to receive dispute update notification.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "customer",
+                    "disputes",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) The ID of the dispute for which to provide the supporting information."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "formdata",
+                  "formdata": [
+                    {
+                      "description": {
+                        "content": "undefined",
+                        "type": "text/plain"
+                      },
+                      "key": "0",
+                      "value": "{\"op\":\"<string>\",\"path\":\"<string>\",\"value\":{},\"from\":\"<string>\"}",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "undefined",
+                        "type": "text/plain"
+                      },
+                      "key": "1",
+                      "value": "{\"op\":\"<string>\",\"path\":\"<string>\",\"value\":{},\"from\":\"<string>\"}",
+                      "type": "text"
+                    }
+                  ]
+                }
+              },
+              "status": "Accepted",
+              "code": 202,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"links\": [\n    {\n      \"href\": \"string\",\n      \"rel\": \"string\",\n      \"method\": \"CONNECT\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "939888c3-ed14-483d-b5d7-5bcbd63f09ce",
+              "name": "A successful request returns the HTTP `204 No Content` status code with no JSON response body.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "customer",
+                    "disputes",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) The ID of the dispute for which to provide the supporting information."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "formdata",
+                  "formdata": [
+                    {
+                      "description": {
+                        "content": "undefined",
+                        "type": "text/plain"
+                      },
+                      "key": "0",
+                      "value": "{\"op\":\"<string>\",\"path\":\"<string>\",\"value\":{},\"from\":\"<string>\"}",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "undefined",
+                        "type": "text/plain"
+                      },
+                      "key": "1",
+                      "value": "{\"op\":\"<string>\",\"path\":\"<string>\",\"value\":{},\"from\":\"<string>\"}",
+                      "type": "text"
+                    }
+                  ]
+                }
+              },
+              "status": "No Content",
+              "code": 204,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "0eaa2422-4499-4b4b-9b6d-0f042c1d5bc8",
+              "name": "The request failed due to a validation error. The request returns the HTTP `400 Bad Request` status code.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "customer",
+                    "disputes",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) The ID of the dispute for which to provide the supporting information."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "formdata",
+                  "formdata": [
+                    {
+                      "description": {
+                        "content": "undefined",
+                        "type": "text/plain"
+                      },
+                      "key": "0",
+                      "value": "{\"op\":\"<string>\",\"path\":\"<string>\",\"value\":{},\"from\":\"<string>\"}",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "undefined",
+                        "type": "text/plain"
+                      },
+                      "key": "1",
+                      "value": "{\"op\":\"<string>\",\"path\":\"<string>\",\"value\":{},\"from\":\"<string>\"}",
+                      "type": "text"
+                    }
+                  ]
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"name\": \"string\",\n  \"message\": \"string\",\n  \"debug_id\": \"string\",\n  \"information_link\": \"string\",\n  \"details\": [\n    {\n      \"issue\": \"string\",\n      \"field\": \"string\",\n      \"value\": \"string\",\n      \"location\": \"body\",\n      \"description\": \"string\"\n    },\n    {\n      \"issue\": \"string\",\n      \"field\": \"string\",\n      \"value\": \"string\",\n      \"location\": \"body\",\n      \"description\": \"string\"\n    }\n  ],\n  \"links\": [\n    {\n      \"href\": \"string\",\n      \"rel\": \"string\",\n      \"method\": \"PUT\"\n    },\n    {\n      \"href\": \"string\",\n      \"rel\": \"string\",\n      \"method\": \"DELETE\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "8f903ea0-5833-4366-8a30-6f8d7a372e3c",
+              "name": "The requested action could not be completed. The request returns the HTTP `422 Unprocessable Entity` status code.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "customer",
+                    "disputes",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) The ID of the dispute for which to provide the supporting information."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "formdata",
+                  "formdata": [
+                    {
+                      "description": {
+                        "content": "undefined",
+                        "type": "text/plain"
+                      },
+                      "key": "0",
+                      "value": "{\"op\":\"<string>\",\"path\":\"<string>\",\"value\":{},\"from\":\"<string>\"}",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "undefined",
+                        "type": "text/plain"
+                      },
+                      "key": "1",
+                      "value": "{\"op\":\"<string>\",\"path\":\"<string>\",\"value\":{},\"from\":\"<string>\"}",
+                      "type": "text"
+                    }
+                  ]
+                }
+              },
+              "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+              "code": 422,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"name\": \"string\",\n  \"message\": \"string\",\n  \"debug_id\": \"string\",\n  \"information_link\": \"string\",\n  \"details\": [\n    {\n      \"issue\": \"string\",\n      \"field\": \"string\",\n      \"value\": \"string\",\n      \"location\": \"body\",\n      \"description\": \"string\"\n    },\n    {\n      \"issue\": \"string\",\n      \"field\": \"string\",\n      \"value\": \"string\",\n      \"location\": \"body\",\n      \"description\": \"string\"\n    }\n  ],\n  \"links\": [\n    {\n      \"href\": \"string\",\n      \"rel\": \"string\",\n      \"method\": \"PUT\"\n    },\n    {\n      \"href\": \"string\",\n      \"rel\": \"string\",\n      \"method\": \"DELETE\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "b10af22c-be35-4b73-85c2-516ac04c1662",
+              "name": "An internal server error occurred. The request returns the HTTP `500 Internal Server Error` status code.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "customer",
+                    "disputes",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) The ID of the dispute for which to provide the supporting information."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "formdata",
+                  "formdata": [
+                    {
+                      "description": {
+                        "content": "undefined",
+                        "type": "text/plain"
+                      },
+                      "key": "0",
+                      "value": "{\"op\":\"<string>\",\"path\":\"<string>\",\"value\":{},\"from\":\"<string>\"}",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "undefined",
+                        "type": "text/plain"
+                      },
+                      "key": "1",
+                      "value": "{\"op\":\"<string>\",\"path\":\"<string>\",\"value\":{},\"from\":\"<string>\"}",
+                      "type": "text"
+                    }
+                  ]
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"name\": \"string\",\n  \"message\": \"string\",\n  \"debug_id\": \"string\",\n  \"information_link\": \"string\",\n  \"details\": [\n    {\n      \"issue\": \"string\",\n      \"field\": \"string\",\n      \"value\": \"string\",\n      \"location\": \"body\",\n      \"description\": \"string\"\n    },\n    {\n      \"issue\": \"string\",\n      \"field\": \"string\",\n      \"value\": \"string\",\n      \"location\": \"body\",\n      \"description\": \"string\"\n    }\n  ],\n  \"links\": [\n    {\n      \"href\": \"string\",\n      \"rel\": \"string\",\n      \"method\": \"PUT\"\n    },\n    {\n      \"href\": \"string\",\n      \"rel\": \"string\",\n      \"method\": \"DELETE\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "bc4f37ab-92ce-4941-931c-753f888b7ac4",
+              "name": "The error response.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "customer",
+                    "disputes",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) The ID of the dispute for which to provide the supporting information."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "formdata",
+                  "formdata": [
+                    {
+                      "description": {
+                        "content": "undefined",
+                        "type": "text/plain"
+                      },
+                      "key": "0",
+                      "value": "{\"op\":\"<string>\",\"path\":\"<string>\",\"value\":{},\"from\":\"<string>\"}",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "undefined",
+                        "type": "text/plain"
+                      },
+                      "key": "1",
+                      "value": "{\"op\":\"<string>\",\"path\":\"<string>\",\"value\":{},\"from\":\"<string>\"}",
+                      "type": "text"
+                    }
+                  ]
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"name\": \"string\",\n  \"message\": \"string\",\n  \"debug_id\": \"string\",\n  \"information_link\": \"string\",\n  \"details\": [\n    {\n      \"issue\": \"string\",\n      \"field\": \"string\",\n      \"value\": \"string\",\n      \"location\": \"body\",\n      \"description\": \"string\"\n    },\n    {\n      \"issue\": \"string\",\n      \"field\": \"string\",\n      \"value\": \"string\",\n      \"location\": \"body\",\n      \"description\": \"string\"\n    }\n  ],\n  \"links\": [\n    {\n      \"href\": \"string\",\n      \"rel\": \"string\",\n      \"method\": \"PUT\"\n    },\n    {\n      \"href\": \"string\",\n      \"rel\": \"string\",\n      \"method\": \"DELETE\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api-m.sandbox.paypal.com",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "70cc3130-2a2f-45f2-b132-0fe2b4080746",
+    "name": "Paypal Subscriptions Authorizations Disputes API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "You can use billing plans and subscriptions to create subscriptions that process recurring PayPal payments for physical or digital goods, or services. A plan includes pricing and billing cycle information that defines the amount and frequency of charge for a subscription. You can also define a fixed plan, such as a $5 basic plan or a volume- or graduated-based plan with pricing tiers based on the quantity purchased. For more information, see <a href=\"/docs/subscriptions/\">Subscriptions Overview</a>.",
+      "type": "text/plain"
+    }
+  }
+}

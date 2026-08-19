@@ -1,0 +1,368 @@
+{
+  "item": [
+    {
+      "id": "756485f5-1a9f-4e96-96cd-da1fbd586abc",
+      "name": "Balances",
+      "description": {
+        "content": "Use the `/balances` resource to list balances.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "ad2311ed-3a55-4e10-bd6f-dac350ae4be4",
+          "name": "Paypal List all balances",
+          "request": {
+            "name": "Paypal List all balances",
+            "description": {
+              "content": "List all balances. Specify date time to list balances for that time that appear in the response.<blockquote><strong>Notes:</strong> <ul><li>It takes a maximum of three hours for balances to appear in the list balances call.</li><li>This call lists balances upto the previous three years.</li></ul></blockquote>",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "reporting",
+                "balances"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "as_of_time",
+                  "value": "<string>",
+                  "description": "List balances in the response at the date time provided, will return the last refreshed balance in the system when not provided."
+                },
+                {
+                  "disabled": false,
+                  "key": "currency_code",
+                  "value": "<ppaas_common_currency_code_v2>",
+                  "description": "Filters the transactions in the response by a [three-character ISO-4217 currency code](/api/rest/reference/currency-codes/) for the PayPal transaction currency."
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "oauth2",
+              "oauth2": [
+                {
+                  "key": "scope",
+                  "value": "https://uri.paypal.com/services/subscriptions"
+                },
+                {
+                  "key": "accessTokenUrl",
+                  "value": "/v1/oauth2/token"
+                },
+                {
+                  "key": "grant_type",
+                  "value": "client_credentials"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "6a702274-644d-4ffa-9ad6-03656ba38ce8",
+              "name": "A successful request returns the HTTP `200 OK` status code and a JSON response body that lists balances .",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "reporting",
+                    "balances"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "as_of_time",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "currency_code",
+                      "value": "<ppaas_common_currency_code_v2>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"balances\": [\n    {\n      \"currency\": \"str\",\n      \"total_balance\": {\n        \"currency_code\": \"str\",\n        \"value\": \"816453283\"\n      },\n      \"primary\": true,\n      \"available_balance\": {\n        \"currency_code\": \"str\",\n        \"value\": \"-551315\"\n      },\n      \"withheld_balance\": {\n        \"currency_code\": \"str\",\n        \"value\": \"-.4537068\"\n      }\n    },\n    {\n      \"currency\": \"str\",\n      \"total_balance\": {\n        \"currency_code\": \"str\",\n        \"value\": \"-76583269.3145453\"\n      },\n      \"primary\": false,\n      \"available_balance\": {\n        \"currency_code\": \"str\",\n        \"value\": \"-97679\"\n      },\n      \"withheld_balance\": {\n        \"currency_code\": \"str\",\n        \"value\": \"-67539\"\n      }\n    },\n    {\n      \"currency\": \"str\",\n      \"total_balance\": {\n        \"currency_code\": \"str\",\n        \"value\": \"-4647446216\"\n      },\n      \"primary\": true,\n      \"available_balance\": {\n        \"currency_code\": \"str\",\n        \"value\": \"-1666949.969\"\n      },\n      \"withheld_balance\": {\n        \"currency_code\": \"str\",\n        \"value\": \"51020829.68688436342\"\n      }\n    },\n    {\n      \"currency\": \"str\",\n      \"total_balance\": {\n        \"currency_code\": \"str\",\n        \"value\": \"-.63881018553\"\n      },\n      \"primary\": false,\n      \"available_balance\": {\n        \"currency_code\": \"str\",\n        \"value\": \"95679\"\n      },\n      \"withheld_balance\": {\n        \"currency_code\": \"str\",\n        \"value\": \"-506.4958824\"\n      }\n    },\n    {\n      \"currency\": \"str\",\n      \"total_balance\": {\n        \"currency_code\": \"str\",\n        \"value\": \"21541\"\n      },\n      \"primary\": false,\n      \"available_balance\": {\n        \"currency_code\": \"str\",\n        \"value\": \"297111\"\n      },\n      \"withheld_balance\": {\n        \"currency_code\": \"str\",\n        \"value\": \"-487\"\n      }\n    },\n    {\n      \"currency\": \"str\",\n      \"total_balance\": {\n        \"currency_code\": \"str\",\n        \"value\": \"438650641\"\n      },\n      \"primary\": false,\n      \"available_balance\": {\n        \"currency_code\": \"str\",\n        \"value\": \"627967939\"\n      },\n      \"withheld_balance\": {\n        \"currency_code\": \"str\",\n        \"value\": \".602420821\"\n      }\n    },\n    {\n      \"currency\": \"str\",\n      \"total_balance\": {\n        \"currency_code\": \"str\",\n        \"value\": \".14\"\n      },\n      \"primary\": true,\n      \"available_balance\": {\n        \"currency_code\": \"str\",\n        \"value\": \"-08610623.930\"\n      },\n      \"withheld_balance\": {\n        \"currency_code\": \"str\",\n        \"value\": \"-60481830156.3930585\"\n      }\n    },\n    {\n      \"currency\": \"str\",\n      \"total_balance\": {\n        \"currency_code\": \"str\",\n        \"value\": \"-.45365\"\n      },\n      \"primary\": true,\n      \"available_balance\": {\n        \"currency_code\": \"str\",\n        \"value\": \"46719353\"\n      },\n      \"withheld_balance\": {\n        \"currency_code\": \"str\",\n        \"value\": \"4182\"\n      }\n    },\n    {\n      \"currency\": \"str\",\n      \"total_balance\": {\n        \"currency_code\": \"str\",\n        \"value\": \"30.8784258\"\n      },\n      \"primary\": true,\n      \"available_balance\": {\n        \"currency_code\": \"str\",\n        \"value\": \"796\"\n      },\n      \"withheld_balance\": {\n        \"currency_code\": \"str\",\n        \"value\": \"134\"\n      }\n    },\n    {\n      \"currency\": \"str\",\n      \"total_balance\": {\n        \"currency_code\": \"str\",\n        \"value\": \"-819979.4934707731\"\n      },\n      \"primary\": false,\n      \"available_balance\": {\n        \"currency_code\": \"str\",\n        \"value\": \"-851179782\"\n      },\n      \"withheld_balance\": {\n        \"currency_code\": \"str\",\n        \"value\": \"-8456866347\"\n      }\n    },\n    {\n      \"currency\": \"str\",\n      \"total_balance\": {\n        \"currency_code\": \"str\",\n        \"value\": \"-254198\"\n      },\n      \"primary\": false,\n      \"available_balance\": {\n        \"currency_code\": \"str\",\n        \"value\": \"-.5480347\"\n      },\n      \"withheld_balance\": {\n        \"currency_code\": \"str\",\n        \"value\": \"-162\"\n      }\n    },\n    {\n      \"currency\": \"str\",\n      \"total_balance\": {\n        \"currency_code\": \"str\",\n        \"value\": \"930444.62877524\"\n      },\n      \"primary\": true,\n      \"available_balance\": {\n        \"currency_code\": \"str\",\n        \"value\": \".7461613\"\n      },\n      \"withheld_balance\": {\n        \"currency_code\": \"str\",\n        \"value\": \"-484\"\n      }\n    },\n    {\n      \"currency\": \"str\",\n      \"total_balance\": {\n        \"currency_code\": \"str\",\n        \"value\": \"-36486946377\"\n      },\n      \"primary\": false,\n      \"available_balance\": {\n        \"currency_code\": \"str\",\n        \"value\": \".25325012\"\n      },\n      \"withheld_balance\": {\n        \"currency_code\": \"str\",\n        \"value\": \"-3411\"\n      }\n    },\n    {\n      \"currency\": \"str\",\n      \"total_balance\": {\n        \"currency_code\": \"str\",\n        \"value\": \"-56\"\n      },\n      \"primary\": false,\n      \"available_balance\": {\n        \"currency_code\": \"str\",\n        \"value\": \"2956\"\n      },\n      \"withheld_balance\": {\n        \"currency_code\": \"str\",\n        \"value\": \".81522929\"\n      }\n    },\n    {\n      \"currency\": \"str\",\n      \"total_balance\": {\n        \"currency_code\": \"str\",\n        \"value\": \"-1024\"\n      },\n      \"primary\": false,\n      \"available_balance\": {\n        \"currency_code\": \"str\",\n        \"value\": \"-75224015\"\n      },\n      \"withheld_balance\": {\n        \"currency_code\": \"str\",\n        \"value\": \"219098.929305194\"\n      }\n    },\n    {\n      \"currency\": \"str\",\n      \"total_balance\": {\n        \"currency_code\": \"str\",\n        \"value\": \"82484537\"\n      },\n      \"primary\": true,\n      \"available_balance\": {\n        \"currency_code\": \"str\",\n        \"value\": \"-1386.5996230378\"\n      },\n      \"withheld_balance\": {\n        \"currency_code\": \"str\",\n        \"value\": \"8289\"\n      }\n    },\n    {\n      \"currency\": \"str\",\n      \"total_balance\": {\n        \"currency_code\": \"str\",\n        \"value\": \"-0610906.16970486\"\n      },\n      \"primary\": true,\n      \"available_balance\": {\n        \"currency_code\": \"str\",\n        \"value\": \"-100.34055937645\"\n      },\n      \"withheld_balance\": {\n        \"currency_code\": \"str\",\n        \"value\": \"-22921637766\"\n      }\n    },\n    {\n      \"currency\": \"str\",\n      \"total_balance\": {\n        \"currency_code\": \"str\",\n        \"value\": \"-7522019122\"\n      },\n      \"primary\": true,\n      \"available_balance\": {\n        \"currency_code\": \"str\",\n        \"value\": \"-751101758\"\n      },\n      \"withheld_balance\": {\n        \"currency_code\": \"str\",\n        \"value\": \"-4462388503.40104\"\n      }\n    },\n    {\n      \"currency\": \"str\",\n      \"total_balance\": {\n        \"currency_code\": \"str\",\n        \"value\": \"4475399.58572941\"\n      },\n      \"primary\": true,\n      \"available_balance\": {\n        \"currency_code\": \"str\",\n        \"value\": \"-84\"\n      },\n      \"withheld_balance\": {\n        \"currency_code\": \"str\",\n        \"value\": \"-28.36645\"\n      }\n    },\n    {\n      \"currency\": \"str\",\n      \"total_balance\": {\n        \"currency_code\": \"str\",\n        \"value\": \"-.4715296610\"\n      },\n      \"primary\": true,\n      \"available_balance\": {\n        \"currency_code\": \"str\",\n        \"value\": \"-00.2261\"\n      },\n      \"withheld_balance\": {\n        \"currency_code\": \"str\",\n        \"value\": \"238\"\n      }\n    }\n  ],\n  \"account_id\": \"KTG2BFFDX8EDU\",\n  \"as_of_time\": \"1339-01-25,15:35:60.8631Z\",\n  \"last_refresh_time\": \"3337-11-29t20:06:60.5z\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "72b905f2-7c5d-401d-a47c-7f078cb23c7b",
+              "name": "The request is not well-formed, is syntactically incorrect, or violates schema.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "reporting",
+                    "balances"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "as_of_time",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "currency_code",
+                      "value": "<ppaas_common_currency_code_v2>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"name\": \"INVALID_REQUEST\",\n  \"message\": \"Request is not well-formed, syntactically incorrect, or violates schema.\",\n  \"details\": [\n    {\n      \"issue\": \"string\",\n      \"field\": \"string\",\n      \"value\": \"string\",\n      \"location\": \"body\",\n      \"description\": \"string\"\n    },\n    {\n      \"issue\": \"string\",\n      \"field\": \"string\",\n      \"value\": \"string\",\n      \"location\": \"body\",\n      \"description\": \"string\"\n    }\n  ],\n  \"debug_id\": \"string\",\n  \"links\": [\n    {\n      \"href\": \"5e9$=\",\n      \"rel\": \"\",\n      \"method\": \"GET\"\n    },\n    {\n      \"href\": \"t]l?\",\n      \"rel\": \"\",\n      \"method\": \"DELETE\"\n    },\n    {\n      \"href\": \"\",\n      \"rel\": \"\",\n      \"method\": \"GET\"\n    },\n    {\n      \"href\": \"/>asb\",\n      \"rel\": \"i0\",\n      \"method\": \"GET\"\n    },\n    {\n      \"href\": \";Z^\\\\('tZyY\",\n      \"rel\": \"?cec\",\n      \"method\": \"PUT\"\n    },\n    {\n      \"href\": \"Yvl,\",\n      \"rel\": \"S{NJ9d\",\n      \"method\": \"DELETE\"\n    },\n    {\n      \"href\": \"#p7Q2j\",\n      \"rel\": \";xm`BAIT\",\n      \"method\": \"PUT\"\n    },\n    {\n      \"href\": \"9me+3@\",\n      \"rel\": \"V<FOZ=.\\\"DQ\",\n      \"method\": \"POST\"\n    },\n    {\n      \"href\": \"{>W%BULQ!d\",\n      \"rel\": \"C!|w,\",\n      \"method\": \"PUT\"\n    },\n    {\n      \"href\": \"_aq \",\n      \"rel\": \"h-ZD*,G&Rf\",\n      \"method\": \"DELETE\"\n    },\n    {\n      \"href\": \"|_s!fb%OI$\",\n      \"rel\": \"W\",\n      \"method\": \"POST\"\n    },\n    {\n      \"href\": \"wvb`k\",\n      \"rel\": \"~kLa0\",\n      \"method\": \"POST\"\n    },\n    {\n      \"href\": \"/:~C{O8K^F\",\n      \"rel\": \"wZ\\\\T_\",\n      \"method\": \"PUT\"\n    },\n    {\n      \"href\": \"'!rG:7$[\",\n      \"rel\": \";<p'b2\",\n      \"method\": \"POST\"\n    },\n    {\n      \"href\": \"\",\n      \"rel\": \"MC\",\n      \"method\": \"GET\"\n    },\n    {\n      \"href\": \"'a \",\n      \"rel\": \"S<Y-bQp\",\n      \"method\": \"POST\"\n    },\n    {\n      \"href\": \"1v[W<\",\n      \"rel\": \"sAV}obt\",\n      \"method\": \"POST\"\n    },\n    {\n      \"href\": \"uH6|`\\\"\",\n      \"rel\": \"oq<=\",\n      \"method\": \"PUT\"\n    },\n    {\n      \"href\": \"Kv~>Q!(T\",\n      \"rel\": \"'<Raw% D@\",\n      \"method\": \"GET\"\n    },\n    {\n      \"href\": \"*Vta8\",\n      \"rel\": \"r<9u(mV\",\n      \"method\": \"DELETE\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "ef4cc50d-6e8f-42d6-b093-bfb32991f7c5",
+              "name": "Authorization failed due to insufficient permissions.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "reporting",
+                    "balances"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "as_of_time",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "currency_code",
+                      "value": "<ppaas_common_currency_code_v2>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"name\": \"NOT_AUTHORIZED\",\n  \"message\": \"Authorization failed due to insufficient permissions.\",\n  \"details\": [\n    {\n      \"issue\": \"string\",\n      \"field\": \"string\",\n      \"value\": \"string\",\n      \"location\": \"body\",\n      \"description\": \"string\"\n    },\n    {\n      \"issue\": \"string\",\n      \"field\": \"string\",\n      \"value\": \"string\",\n      \"location\": \"body\",\n      \"description\": \"string\"\n    }\n  ],\n  \"debug_id\": \"string\",\n  \"links\": [\n    {\n      \"href\": \"wO?6\\\"5&`V.\",\n      \"rel\": \"R;w\",\n      \"method\": \"DELETE\"\n    },\n    {\n      \"href\": \"{r4DZ$=|eR\",\n      \"rel\": \"%v8$#+C\",\n      \"method\": \"POST\"\n    },\n    {\n      \"href\": \"{^mK\\\\-\",\n      \"rel\": \"~K\",\n      \"method\": \"DELETE\"\n    },\n    {\n      \"href\": \"jP\",\n      \"rel\": \"^-wj&w>\",\n      \"method\": \"GET\"\n    },\n    {\n      \"href\": \"v63Qv\",\n      \"rel\": \"!c>G}#x/\",\n      \"method\": \"DELETE\"\n    },\n    {\n      \"href\": \"U!C10`\",\n      \"rel\": \"&p\",\n      \"method\": \"POST\"\n    },\n    {\n      \"href\": \"Fz\",\n      \"rel\": \"},\",\n      \"method\": \"GET\"\n    },\n    {\n      \"href\": \"c[rW]%F{G\",\n      \"rel\": \" 8j6SB\",\n      \"method\": \"POST\"\n    },\n    {\n      \"href\": \"O!dr7l*X\",\n      \"rel\": \"8pa9+48ca\",\n      \"method\": \"PATCH\"\n    },\n    {\n      \"href\": \"v\",\n      \"rel\": \"~${U5<.WV]\",\n      \"method\": \"POST\"\n    },\n    {\n      \"href\": \"U \",\n      \"rel\": \"{YtIRENdE\",\n      \"method\": \"POST\"\n    },\n    {\n      \"href\": \"n(|MuKTB[\",\n      \"rel\": \"m\\\"H;-\\\"]y%z\",\n      \"method\": \"PATCH\"\n    },\n    {\n      \"href\": \"9pN;q^\",\n      \"rel\": \"nnK)%pbc\",\n      \"method\": \"POST\"\n    },\n    {\n      \"href\": \"6\",\n      \"rel\": \"F#1&\",\n      \"method\": \"DELETE\"\n    },\n    {\n      \"href\": \"m\",\n      \"rel\": \"xIRmf:\",\n      \"method\": \"POST\"\n    },\n    {\n      \"href\": \"p>4FT*\",\n      \"rel\": \":O<-\",\n      \"method\": \"PUT\"\n    },\n    {\n      \"href\": \"[[]=3u^\",\n      \"rel\": \"\",\n      \"method\": \"DELETE\"\n    },\n    {\n      \"href\": \"A@:\",\n      \"rel\": \"n\\\"&2s8\",\n      \"method\": \"GET\"\n    },\n    {\n      \"href\": \"+\",\n      \"rel\": \"}Y\\\\GIA[T{\",\n      \"method\": \"GET\"\n    },\n    {\n      \"href\": \"AdPN\\\\r[\",\n      \"rel\": \"4\",\n      \"method\": \"POST\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "3c6bd6d0-708a-46f2-ad35-3405e174957e",
+              "name": "An internal server error occurred.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "reporting",
+                    "balances"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "as_of_time",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "currency_code",
+                      "value": "<ppaas_common_currency_code_v2>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"name\": \"INTERNAL_SERVER_ERROR\",\n  \"message\": \"An internal server error occurred.\",\n  \"debug_id\": \"90957fca61718\",\n  \"links\": [\n    {\n      \"href\": \"https://developer.paypal.com/api/orders/v2/#error-INTERNAL_SERVER_ERROR\",\n      \"rel\": \"information_link\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "8510af86-9bd8-406f-81d2-bc682e446d74",
+              "name": "The default response.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "reporting",
+                    "balances"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "as_of_time",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "currency_code",
+                      "value": "<ppaas_common_currency_code_v2>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"name\": \"INVALID_REQUEST\",\n  \"message\": \"Request is not well-formed, syntactically incorrect, or violates schema.\",\n  \"details\": [\n    {\n      \"issue\": \"string\",\n      \"field\": \"string\",\n      \"value\": \"string\",\n      \"location\": \"body\",\n      \"description\": \"string\"\n    },\n    {\n      \"issue\": \"string\",\n      \"field\": \"string\",\n      \"value\": \"string\",\n      \"location\": \"body\",\n      \"description\": \"string\"\n    }\n  ],\n  \"debug_id\": \"string\",\n  \"links\": [\n    {\n      \"href\": \"=Pt@\",\n      \"rel\": \"K4BN'Kq;\",\n      \"method\": \"POST\"\n    },\n    {\n      \"href\": \"j#,M8Q\",\n      \"rel\": \"7|>Q>I\\\"k\",\n      \"method\": \"PATCH\"\n    },\n    {\n      \"href\": \"T^n3/S\",\n      \"rel\": \"D\",\n      \"method\": \"PATCH\"\n    },\n    {\n      \"href\": \"fo4\",\n      \"rel\": \"\",\n      \"method\": \"GET\"\n    },\n    {\n      \"href\": \"\",\n      \"rel\": \"U\",\n      \"method\": \"PATCH\"\n    },\n    {\n      \"href\": \":H.Cy\",\n      \"rel\": \"?Mvuq;$!-\",\n      \"method\": \"GET\"\n    },\n    {\n      \"href\": \"\",\n      \"rel\": \"Tyj)K\",\n      \"method\": \"POST\"\n    },\n    {\n      \"href\": \"MSnR\",\n      \"rel\": \"BB9NA<8l\",\n      \"method\": \"PUT\"\n    },\n    {\n      \"href\": \"(a? Zh+]O\",\n      \"rel\": \"`1%T\",\n      \"method\": \"PUT\"\n    },\n    {\n      \"href\": \"Eq+Erj%6\",\n      \"rel\": \"1?HG0\",\n      \"method\": \"PUT\"\n    },\n    {\n      \"href\": \"g\",\n      \"rel\": \"F`G`1ESz\\\\\",\n      \"method\": \"DELETE\"\n    },\n    {\n      \"href\": \">MflZJ<?E\",\n      \"rel\": \"m7\",\n      \"method\": \"PUT\"\n    },\n    {\n      \"href\": \"]1jFV)=\",\n      \"rel\": \"gEP\",\n      \"method\": \"PUT\"\n    },\n    {\n      \"href\": \"\",\n      \"rel\": \"InC=\",\n      \"method\": \"PATCH\"\n    },\n    {\n      \"href\": \"\",\n      \"rel\": \")V.&\",\n      \"method\": \"GET\"\n    },\n    {\n      \"href\": \"L1m)L`?Jy\",\n      \"rel\": \"U+A _wmh^j\",\n      \"method\": \"PATCH\"\n    },\n    {\n      \"href\": \"9y%46Ia~O\",\n      \"rel\": \"TI\",\n      \"method\": \"GET\"\n    },\n    {\n      \"href\": \"|*$#'#bj\",\n      \"rel\": \"i3>9f^\",\n      \"method\": \"PATCH\"\n    },\n    {\n      \"href\": \"(A _cB#H58\",\n      \"rel\": \"CJChd)\",\n      \"method\": \"PUT\"\n    },\n    {\n      \"href\": \"F+YQ\\\\L!7\",\n      \"rel\": \"eE6\",\n      \"method\": \"POST\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api-m.sandbox.paypal.com",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "846a45ac-d2ca-4452-ab48-12fcbb321897",
+    "name": "Paypal Subscriptions Authorizations Balances API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "You can use billing plans and subscriptions to create subscriptions that process recurring PayPal payments for physical or digital goods, or services. A plan includes pricing and billing cycle information that defines the amount and frequency of charge for a subscription. You can also define a fixed plan, such as a $5 basic plan or a volume- or graduated-based plan with pricing tiers based on the quantity purchased. For more information, see <a href=\"/docs/subscriptions/\">Subscriptions Overview</a>.",
+      "type": "text/plain"
+    }
+  }
+}

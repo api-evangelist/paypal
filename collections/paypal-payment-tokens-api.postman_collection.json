@@ -1,0 +1,1449 @@
+{
+  "item": [
+    {
+      "id": "4084299a-b378-4310-a0c0-0de3a37650e2",
+      "name": "Payment-Tokens",
+      "description": {
+        "content": "Use the `/vault/payment-tokens` resource to create, retrieve, and delete a payment token that may optionally be associated with a customer.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "7b016c0f-5f66-4714-aaa0-c79cd46a673a",
+          "name": "Paypal Create payment token for a given payment source",
+          "request": {
+            "name": "Paypal Create payment token for a given payment source",
+            "description": {
+              "content": "Creates a Payment Token from the given payment source and adds it to the Vault of the associated customer.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v3",
+                "vault",
+                "payment-tokens"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "(Required) The server stores keys for 3 hours.",
+                "key": "PayPal-Request-Id",
+                "value": "<string>"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": {
+              "type": "oauth2",
+              "oauth2": [
+                {
+                  "key": "scope",
+                  "value": "https://uri.paypal.com/services/subscriptions"
+                },
+                {
+                  "key": "accessTokenUrl",
+                  "value": "/v1/oauth2/token"
+                },
+                {
+                  "key": "grant_type",
+                  "value": "client_credentials"
+                }
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"payment_source\": {\n    \"card\": {\n      \"name\": \"<string>\",\n      \"number\": \"<string>\",\n      \"expiry\": \"<string>\",\n      \"security_code\": \"<string>\",\n      \"type\": \"<string>\",\n      \"brand\": \"<string>\",\n      \"billing_address\": {\n        \"country_code\": \"<ppaas_common_country_code_v2>\",\n        \"address_line_1\": \"<string>\",\n        \"address_line_2\": \"<string>\",\n        \"address_line_3\": \"<string>\",\n        \"admin_area_4\": \"<string>\",\n        \"admin_area_3\": \"<string>\",\n        \"admin_area_2\": \"<string>\",\n        \"admin_area_1\": \"<string>\",\n        \"postal_code\": \"<string>\",\n        \"address_details\": {\n          \"street_number\": \"<string>\",\n          \"street_name\": \"<string>\",\n          \"street_type\": \"<string>\",\n          \"delivery_service\": \"<string>\",\n          \"building_name\": \"<string>\",\n          \"sub_building\": \"<string>\"\n        }\n      },\n      \"verification_method\": \"<string>\",\n      \"experience_context\": {\n        \"brand_name\": \"<string>\",\n        \"locale\": \"<ppaas_common_language_v3>\",\n        \"return_url\": \"<uri>\",\n        \"cancel_url\": \"<uri>\",\n        \"shipping_preference\": \"GET_FROM_FILE\",\n        \"vault_instruction\": \"ON_CREATE_PAYMENT_TOKENS\"\n      }\n    },\n    \"token\": {\n      \"id\": \"<string>\",\n      \"type\": \"<string>\",\n      \"attributes\": {}\n    }\n  },\n  \"customer\": {\n    \"id\": \"<string>\"\n  },\n  \"metadata\": {}\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "3210816e-197d-4f02-91c8-d403f8f44341",
+              "name": "Idempotent response for a successful creation of payment token.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v3",
+                    "vault",
+                    "payment-tokens"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) The server stores keys for 3 hours.",
+                    "key": "PayPal-Request-Id",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"payment_source\": {\n    \"token\": {\n      \"id\": \"5C991763VB2781612\",\n      \"type\": \"BILLING_AGREEMENT\"\n    }\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"8kk8451t\",\n  \"customer\": {\n    \"id\": \"customer_4029352050\"\n  },\n  \"payment_source\": {\n    \"card\": {\n      \"last_digits\": \"1111\",\n      \"expiry\": \"2027-02\",\n      \"brand\": \"VISA\",\n      \"name\": \"John Doe\",\n      \"billing_address\": {\n        \"address_line_1\": \"2211 N First Street\",\n        \"address_line_2\": \"17.3.160\",\n        \"admin_area_2\": \"San Jose\",\n        \"admin_area_1\": \"CA\",\n        \"postal_code\": \"95131\",\n        \"country_code\": \"US\"\n      }\n    }\n  },\n  \"links\": [\n    {\n      \"rel\": \"self\",\n      \"href\": \"https://api-m.paypal.com/v3/vault/payment-tokens/8kk8451t\",\n      \"method\": \"GET\",\n      \"encType\": \"application/json\"\n    },\n    {\n      \"rel\": \"delete\",\n      \"href\": \"https://api-m.paypal.com/v3/vault/payment-tokens/8kk8451t\",\n      \"method\": \"DELETE\",\n      \"encType\": \"application/json\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "f1495609-a1c4-4ce0-96de-71f0efe12aa9",
+              "name": "A successful creation of payment token.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v3",
+                    "vault",
+                    "payment-tokens"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) The server stores keys for 3 hours.",
+                    "key": "PayPal-Request-Id",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"payment_source\": {\n    \"token\": {\n      \"id\": \"5C991763VB2781612\",\n      \"type\": \"BILLING_AGREEMENT\"\n    }\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"8kk8451t\",\n  \"customer\": {\n    \"id\": \"customer_4029352050\"\n  },\n  \"payment_source\": {\n    \"card\": {\n      \"last_digits\": \"1111\",\n      \"expiry\": \"2027-02\",\n      \"brand\": \"VISA\",\n      \"name\": \"John Doe\",\n      \"billing_address\": {\n        \"address_line_1\": \"2211 N First Street\",\n        \"address_line_2\": \"17.3.160\",\n        \"admin_area_2\": \"San Jose\",\n        \"admin_area_1\": \"CA\",\n        \"postal_code\": \"95131\",\n        \"country_code\": \"US\"\n      }\n    }\n  },\n  \"links\": [\n    {\n      \"rel\": \"self\",\n      \"href\": \"https://api-m.paypal.com/v3/vault/payment-tokens/8kk8451t\",\n      \"method\": \"GET\",\n      \"encType\": \"application/json\"\n    },\n    {\n      \"rel\": \"delete\",\n      \"href\": \"https://api-m.paypal.com/v3/vault/payment-tokens/8kk8451t\",\n      \"method\": \"DELETE\",\n      \"encType\": \"application/json\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "b56f16dd-f906-4e44-aa6e-af3c7c50fcf7",
+              "name": "Request is not well-formed, syntactically incorrect, or violates schema.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v3",
+                    "vault",
+                    "payment-tokens"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) The server stores keys for 3 hours.",
+                    "key": "PayPal-Request-Id",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"payment_source\": {\n    \"token\": {\n      \"id\": \"5C991763VB2781612\",\n      \"type\": \"BILLING_AGREEMENT\"\n    }\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"name\": \"string\",\n  \"message\": \"string\",\n  \"debug_id\": \"string\",\n  \"information_link\": \"string\",\n  \"details\": [\n    {\n      \"issue\": \"string\",\n      \"field\": \"string\",\n      \"value\": \"string\",\n      \"location\": \"body\",\n      \"description\": \"string\"\n    },\n    {\n      \"issue\": \"string\",\n      \"field\": \"string\",\n      \"value\": \"string\",\n      \"location\": \"body\",\n      \"description\": \"string\"\n    }\n  ],\n  \"links\": [\n    {\n      \"href\": \"string\",\n      \"rel\": \"string\",\n      \"method\": \"OPTIONS\"\n    },\n    {\n      \"href\": \"string\",\n      \"rel\": \"string\",\n      \"method\": \"GET\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "032aa8ce-d33f-4608-9381-bbd0d7f054bd",
+              "name": "Authorization failed due to insufficient permissions.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v3",
+                    "vault",
+                    "payment-tokens"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) The server stores keys for 3 hours.",
+                    "key": "PayPal-Request-Id",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"payment_source\": {\n    \"token\": {\n      \"id\": \"5C991763VB2781612\",\n      \"type\": \"BILLING_AGREEMENT\"\n    }\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"name\": \"string\",\n  \"message\": \"string\",\n  \"debug_id\": \"string\",\n  \"information_link\": \"string\",\n  \"details\": [\n    {\n      \"issue\": \"string\",\n      \"field\": \"string\",\n      \"value\": \"string\",\n      \"location\": \"body\",\n      \"description\": \"string\"\n    },\n    {\n      \"issue\": \"string\",\n      \"field\": \"string\",\n      \"value\": \"string\",\n      \"location\": \"body\",\n      \"description\": \"string\"\n    }\n  ],\n  \"links\": [\n    {\n      \"href\": \"string\",\n      \"rel\": \"string\",\n      \"method\": \"OPTIONS\"\n    },\n    {\n      \"href\": \"string\",\n      \"rel\": \"string\",\n      \"method\": \"PUT\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "dca8d82d-2176-41a0-9d09-9804faa4c529",
+              "name": "Request contains reference to resources that do not exist.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v3",
+                    "vault",
+                    "payment-tokens"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) The server stores keys for 3 hours.",
+                    "key": "PayPal-Request-Id",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"payment_source\": {\n    \"token\": {\n      \"id\": \"5C991763VB2781612\",\n      \"type\": \"BILLING_AGREEMENT\"\n    }\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"name\": \"string\",\n  \"message\": \"string\",\n  \"debug_id\": \"string\",\n  \"information_link\": \"string\",\n  \"details\": [\n    {\n      \"issue\": \"string\",\n      \"field\": \"string\",\n      \"value\": \"string\",\n      \"location\": \"body\",\n      \"description\": \"string\"\n    },\n    {\n      \"issue\": \"string\",\n      \"field\": \"string\",\n      \"value\": \"string\",\n      \"location\": \"body\",\n      \"description\": \"string\"\n    }\n  ],\n  \"links\": [\n    {\n      \"href\": \"string\",\n      \"rel\": \"string\",\n      \"method\": \"OPTIONS\"\n    },\n    {\n      \"href\": \"string\",\n      \"rel\": \"string\",\n      \"method\": \"PUT\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "9bbd9926-6a8e-46e8-ada9-6f44904bf689",
+              "name": "The requested action could not be performed, semantically incorrect, or failed business validation.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v3",
+                    "vault",
+                    "payment-tokens"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) The server stores keys for 3 hours.",
+                    "key": "PayPal-Request-Id",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"payment_source\": {\n    \"token\": {\n      \"id\": \"5C991763VB2781612\",\n      \"type\": \"BILLING_AGREEMENT\"\n    }\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+              "code": 422,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"name\": \"string\",\n  \"message\": \"string\",\n  \"debug_id\": \"string\",\n  \"information_link\": \"string\",\n  \"details\": [\n    {\n      \"issue\": \"string\",\n      \"field\": \"string\",\n      \"value\": \"string\",\n      \"location\": \"body\",\n      \"description\": \"string\"\n    },\n    {\n      \"issue\": \"string\",\n      \"field\": \"string\",\n      \"value\": \"string\",\n      \"location\": \"body\",\n      \"description\": \"string\"\n    }\n  ],\n  \"links\": [\n    {\n      \"href\": \"string\",\n      \"rel\": \"string\",\n      \"method\": \"OPTIONS\"\n    },\n    {\n      \"href\": \"string\",\n      \"rel\": \"string\",\n      \"method\": \"PUT\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "8ecd6951-bb6b-41d5-b73a-7ac7b8552549",
+              "name": "An internal server error has occurred.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v3",
+                    "vault",
+                    "payment-tokens"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) The server stores keys for 3 hours.",
+                    "key": "PayPal-Request-Id",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"payment_source\": {\n    \"token\": {\n      \"id\": \"5C991763VB2781612\",\n      \"type\": \"BILLING_AGREEMENT\"\n    }\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"name\": \"string\",\n  \"message\": \"string\",\n  \"debug_id\": \"string\",\n  \"information_link\": \"string\",\n  \"details\": [\n    {\n      \"issue\": \"string\",\n      \"field\": \"string\",\n      \"value\": \"string\",\n      \"location\": \"body\",\n      \"description\": \"string\"\n    },\n    {\n      \"issue\": \"string\",\n      \"field\": \"string\",\n      \"value\": \"string\",\n      \"location\": \"body\",\n      \"description\": \"string\"\n    }\n  ],\n  \"links\": [\n    {\n      \"href\": \"string\",\n      \"rel\": \"string\",\n      \"method\": \"OPTIONS\"\n    },\n    {\n      \"href\": \"string\",\n      \"rel\": \"string\",\n      \"method\": \"PUT\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "8893c90c-436a-4fbe-87bb-c0f41f0f5e73",
+          "name": "Paypal List all payment tokens",
+          "request": {
+            "name": "Paypal List all payment tokens",
+            "description": {
+              "content": "Returns all payment tokens for a customer.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v3",
+                "vault",
+                "payment-tokens"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "customer_id",
+                  "value": "<string>",
+                  "description": "(Required) A unique identifier representing a specific customer in merchant's/partner's system or records."
+                },
+                {
+                  "disabled": false,
+                  "key": "page_size",
+                  "value": "5",
+                  "description": "A non-negative, non-zero integer indicating the maximum number of results to return at one time."
+                },
+                {
+                  "disabled": false,
+                  "key": "page",
+                  "value": "1",
+                  "description": "A non-negative, non-zero integer representing the page of the results."
+                },
+                {
+                  "disabled": false,
+                  "key": "total_required",
+                  "value": "false",
+                  "description": "A boolean indicating total number of items (total_items) and pages (total_pages) are expected to be returned in the response."
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "oauth2",
+              "oauth2": [
+                {
+                  "key": "scope",
+                  "value": "https://uri.paypal.com/services/subscriptions"
+                },
+                {
+                  "key": "accessTokenUrl",
+                  "value": "/v1/oauth2/token"
+                },
+                {
+                  "key": "grant_type",
+                  "value": "client_credentials"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "b9f9da45-be76-41cb-830f-eafb69bc7ae7",
+              "name": "Successful execution.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v3",
+                    "vault",
+                    "payment-tokens"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "customer_id",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "page_size",
+                      "value": "5"
+                    },
+                    {
+                      "key": "page",
+                      "value": "1"
+                    },
+                    {
+                      "key": "total_required",
+                      "value": "false"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"customer\": {\n    \"id\": \"customer_4029352050\"\n  },\n  \"payment_tokens\": [\n    {\n      \"id\": \"8kk8451t\",\n      \"customer\": {\n        \"id\": \"customer_4029352050\"\n      },\n      \"payment_source\": {\n        \"card\": {\n          \"brand\": \"VISA\",\n          \"last_digits\": \"1111\",\n          \"expiry\": \"2027-02\",\n          \"name\": \"John Doe\",\n          \"billing_address\": {\n            \"address_line_1\": \"2211 N First Street\",\n            \"address_line_2\": \"17.3.160\",\n            \"admin_area_2\": \"San Jose\",\n            \"admin_area_1\": \"CA\",\n            \"postal_code\": \"95131\",\n            \"country_code\": \"US\"\n          }\n        }\n      },\n      \"links\": [\n        {\n          \"rel\": \"self\",\n          \"href\": \"https://api-m.paypal.com/v3/vault/payment-tokens/8kk8451t\",\n          \"method\": \"GET\",\n          \"encType\": \"application/json\"\n        },\n        {\n          \"rel\": \"delete\",\n          \"href\": \"https://api-m.paypal.com/v3/vault/payment-tokens/8kk8451t\",\n          \"method\": \"DELETE\",\n          \"encType\": \"application/json\"\n        }\n      ]\n    },\n    {\n      \"id\": \"fgh6561t\",\n      \"customer\": {\n        \"id\": \"customer_4029352050\"\n      },\n      \"payment_source\": {\n        \"paypal\": {\n          \"description\": \"Description for PayPal to be shown to PayPal payer\",\n          \"email_address\": \"john.doe@example.com\",\n          \"account_id\": \"VYYFH3WJ4JPJQ\",\n          \"shipping\": {\n            \"name\": {\n              \"full_name\": \"John Doe\"\n            },\n            \"address\": {\n              \"address_line_1\": \"2211 N First Street\",\n              \"address_line_2\": \"17.3.160\",\n              \"admin_area_2\": \"San Jose\",\n              \"admin_area_1\": \"CA\",\n              \"postal_code\": \"95131\",\n              \"country_code\": \"US\"\n            }\n          },\n          \"usage_pattern\": \"IMMEDIATE\",\n          \"usage_type\": \"MERCHANT\",\n          \"customer_type\": \"CONSUMER\",\n          \"name\": {\n            \"given_name\": \"John\",\n            \"surname\": \"Doe\"\n          },\n          \"address\": {\n            \"address_line_1\": \"2211 N First Street\",\n            \"address_line_2\": \"17.3.160\",\n            \"admin_area_2\": \"San Jose\",\n            \"admin_area_1\": \"CA\",\n            \"postal_code\": \"95131\",\n            \"country_code\": \"US\"\n          }\n        }\n      },\n      \"links\": [\n        {\n          \"rel\": \"self\",\n          \"href\": \"https://api-m.paypal.com/v3/vault/payment-tokens/fgh6561t\",\n          \"method\": \"GET\",\n          \"encType\": \"application/json\"\n        },\n        {\n          \"rel\": \"delete\",\n          \"href\": \"https://api-m.paypal.com/v3/vault/payment-tokens/fgh6561t\",\n          \"method\": \"DELETE\",\n          \"encType\": \"application/json\"\n        }\n      ]\n    },\n    {\n      \"id\": \"hg654s1t\",\n      \"customer\": {\n        \"id\": \"customer_4029352050\"\n      },\n      \"payment_source\": {\n        \"venmo\": {\n          \"description\": \"Description for Venmo to be shown to Venmo payer\",\n          \"shipping\": {\n            \"name\": {\n              \"full_name\": \"John Doe\"\n            },\n            \"address\": {\n              \"address_line_1\": \"2211 N First Street\",\n              \"address_line_2\": \"17.3.160\",\n              \"admin_area_2\": \"San Jose\",\n              \"admin_area_1\": \"CA\",\n              \"postal_code\": \"95131\",\n              \"country_code\": \"US\"\n            }\n          },\n          \"usage_pattern\": \"IMMEDIATE\",\n          \"usage_type\": \"MERCHANT\",\n          \"customer_type\": \"CONSUMER\",\n          \"email_address\": \"john.doe@example.com\",\n          \"user_name\": \"johndoe\",\n          \"name\": {\n            \"given_name\": \"John\",\n            \"surname\": \"Doe\"\n          },\n          \"account_id\": \"VYYFH3WJ4JPJQ\",\n          \"address\": {\n            \"address_line_1\": \"PayPal\",\n            \"address_line_2\": \"2211 North 1st Street\",\n            \"admin_area_1\": \"CA\",\n            \"admin_area_2\": \"San Jose\",\n            \"postal_code\": \"96112\",\n            \"country_code\": \"US\"\n          }\n        }\n      },\n      \"links\": [\n        {\n          \"rel\": \"self\",\n          \"href\": \"https://api-m.paypal.com/v3/vault/payment-tokens/hg654s1t\",\n          \"method\": \"GET\",\n          \"encType\": \"application/json\"\n        },\n        {\n          \"rel\": \"delete\",\n          \"href\": \"https://api-m.paypal.com/v3/vault/payment-tokens/hg654s1t\",\n          \"method\": \"DELETE\",\n          \"encType\": \"application/json\"\n        }\n      ]\n    }\n  ],\n  \"links\": [\n    {\n      \"rel\": \"self\",\n      \"href\": \"https://api-m.paypal.com/v3/vault/payment-tokens?customer_id=customer_4029352050&page=1&page_size=5&total_required=false\",\n      \"method\": \"GET\",\n      \"encType\": \"application/json\"\n    },\n    {\n      \"rel\": \"first\",\n      \"href\": \"https://api-m.paypal.com/v3/vault/payment-tokens?customer_id=customer_4029352050&page=1&page_size=5&total_required=false\",\n      \"method\": \"GET\",\n      \"encType\": \"application/json\"\n    },\n    {\n      \"rel\": \"last\",\n      \"href\": \"https://api-m.paypal.com/v3/vault/payment-tokens?customer_id=customer_4029352050&page=1&page_size=5&total_required=false\",\n      \"method\": \"GET\",\n      \"encType\": \"application/json\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "26faaa4d-3f96-4dcd-9ba4-1603b02eaa2d",
+              "name": "Request is not well-formed, syntactically incorrect, or violates schema.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v3",
+                    "vault",
+                    "payment-tokens"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "customer_id",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "page_size",
+                      "value": "5"
+                    },
+                    {
+                      "key": "page",
+                      "value": "1"
+                    },
+                    {
+                      "key": "total_required",
+                      "value": "false"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"name\": \"string\",\n  \"message\": \"string\",\n  \"debug_id\": \"string\",\n  \"information_link\": \"string\",\n  \"details\": [\n    {\n      \"issue\": \"string\",\n      \"field\": \"string\",\n      \"value\": \"string\",\n      \"location\": \"body\",\n      \"description\": \"string\"\n    },\n    {\n      \"issue\": \"string\",\n      \"field\": \"string\",\n      \"value\": \"string\",\n      \"location\": \"body\",\n      \"description\": \"string\"\n    }\n  ],\n  \"links\": [\n    {\n      \"href\": \"string\",\n      \"rel\": \"string\",\n      \"method\": \"OPTIONS\"\n    },\n    {\n      \"href\": \"string\",\n      \"rel\": \"string\",\n      \"method\": \"PUT\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "3999618f-dca0-4fdf-8d72-60d1a18f7359",
+              "name": "Authorization failed due to insufficient permissions.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v3",
+                    "vault",
+                    "payment-tokens"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "customer_id",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "page_size",
+                      "value": "5"
+                    },
+                    {
+                      "key": "page",
+                      "value": "1"
+                    },
+                    {
+                      "key": "total_required",
+                      "value": "false"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"name\": \"string\",\n  \"message\": \"string\",\n  \"debug_id\": \"string\",\n  \"information_link\": \"string\",\n  \"details\": [\n    {\n      \"issue\": \"string\",\n      \"field\": \"string\",\n      \"value\": \"string\",\n      \"location\": \"body\",\n      \"description\": \"string\"\n    },\n    {\n      \"issue\": \"string\",\n      \"field\": \"string\",\n      \"value\": \"string\",\n      \"location\": \"body\",\n      \"description\": \"string\"\n    }\n  ],\n  \"links\": [\n    {\n      \"href\": \"string\",\n      \"rel\": \"string\",\n      \"method\": \"OPTIONS\"\n    },\n    {\n      \"href\": \"string\",\n      \"rel\": \"string\",\n      \"method\": \"PUT\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "4347ea19-c8dc-4c2e-b8d6-942dd06eaca2",
+              "name": "An internal server error has occurred.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v3",
+                    "vault",
+                    "payment-tokens"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "customer_id",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "page_size",
+                      "value": "5"
+                    },
+                    {
+                      "key": "page",
+                      "value": "1"
+                    },
+                    {
+                      "key": "total_required",
+                      "value": "false"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"name\": \"string\",\n  \"message\": \"string\",\n  \"debug_id\": \"string\",\n  \"information_link\": \"string\",\n  \"details\": [\n    {\n      \"issue\": \"string\",\n      \"field\": \"string\",\n      \"value\": \"string\",\n      \"location\": \"body\",\n      \"description\": \"string\"\n    },\n    {\n      \"issue\": \"string\",\n      \"field\": \"string\",\n      \"value\": \"string\",\n      \"location\": \"body\",\n      \"description\": \"string\"\n    }\n  ],\n  \"links\": [\n    {\n      \"href\": \"string\",\n      \"rel\": \"string\",\n      \"method\": \"OPTIONS\"\n    },\n    {\n      \"href\": \"string\",\n      \"rel\": \"string\",\n      \"method\": \"PUT\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "393be9ab-db59-465e-9cb2-12ae7af3ded8",
+          "name": "Paypal Retrieve a payment token",
+          "request": {
+            "name": "Paypal Retrieve a payment token",
+            "description": {
+              "content": "Returns a readable representation of vaulted payment source associated with the payment token id.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v3",
+                "vault",
+                "payment-tokens",
+                ":id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) ID of the setup token."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "oauth2",
+              "oauth2": [
+                {
+                  "key": "scope",
+                  "value": "https://uri.paypal.com/services/subscriptions"
+                },
+                {
+                  "key": "accessTokenUrl",
+                  "value": "/v1/oauth2/token"
+                },
+                {
+                  "key": "grant_type",
+                  "value": "client_credentials"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "e2c5dc9f-b7a5-4e34-8798-2134ad08902b",
+              "name": "Successful execution.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v3",
+                    "vault",
+                    "payment-tokens",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) ID of the setup token."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"Qci_1\",\n  \"customer\": {\n    \"id\": \"<string>\"\n  },\n  \"payment_source\": {\n    \"card\": {\n      \"name\": \"PQpjUx\",\n      \"last_digits\": \"8649\",\n      \"brand\": \"<string>\",\n      \"expiry\": \"<string>\",\n      \"billing_address\": {},\n      \"verification_status\": \"_YA2\",\n      \"verification\": {\n        \"network_transaction_id\": \"UgQP\",\n        \"time\": \"5782-10-31t23:00:23Z\",\n        \"amount\": {\n          \"currency_code\": \"str\",\n          \"value\": \".093\"\n        },\n        \"processor_response\": {\n          \"avs_code\": \"0\",\n          \"cvv_code\": \"I\",\n          \"response_code\": \"PPBG\",\n          \"payment_advice_code\": \"21\"\n        },\n        \"three_d_secure\": {}\n      }\n    },\n    \"paypal\": {\n      \"description\": \"qy4\",\n      \"shipping\": {\n        \"name\": {\n          \"prefix\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"given_name\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"surname\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"middle_name\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"suffix\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"alternate_full_name\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"full_name\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        },\n        \"type\": \"PICKUP_IN_PERSON\",\n        \"address\": {\n          \"country_code\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"address_line_1\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"address_line_2\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"address_line_3\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"admin_area_4\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"admin_area_3\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"admin_area_2\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"admin_area_1\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"postal_code\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"address_details\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        }\n      },\n      \"permit_multiple_payment_tokens\": false,\n      \"usage_type\": \"2BAULBBI\",\n      \"customer_type\": \"F8FZ\",\n      \"email_address\": \"YP3.N7SD@LnPkA.B0oYjtD.E.mkFV.1c.z.Pzt.4.3.c.g.v-SwYVwE1P\",\n      \"payer_id\": \"9CFFXLHU4P6E4\",\n      \"name\": {\n        \"prefix\": \"string\",\n        \"given_name\": \"string\",\n        \"surname\": \"string\",\n        \"middle_name\": \"string\",\n        \"suffix\": \"string\",\n        \"alternate_full_name\": \"string\",\n        \"full_name\": \"string\"\n      },\n      \"phone\": {\n        \"phone_number\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"phone_type\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        }\n      },\n      \"birth_date\": \"7924-11-30\",\n      \"tax_info\": {\n        \"tax_id\": \"k\",\n        \"tax_id_type\": \"BR_CNPJ\"\n      },\n      \"address\": {\n        \"country_code\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"address_line_1\": \"<string>\",\n        \"address_line_2\": \"<string>\",\n        \"address_line_3\": \"<string>\",\n        \"admin_area_4\": \"<string>\",\n        \"admin_area_3\": \"<string>\",\n        \"admin_area_2\": \"<string>\",\n        \"admin_area_1\": \"<string>\",\n        \"postal_code\": \"<string>\",\n        \"address_details\": {\n          \"street_number\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"street_name\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"street_type\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"delivery_service\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"building_name\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"sub_building\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        }\n      },\n      \"account_id\": \"XR42LWMNMRR2H\",\n      \"phone_number\": {\n        \"country_code\": \"5\",\n        \"national_number\": \" \",\n        \"extension_number\": \"313297304323876\"\n      }\n    },\n    \"venmo\": {\n      \"description\": \"6 o\",\n      \"shipping\": {\n        \"name\": {\n          \"prefix\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"given_name\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"surname\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"middle_name\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"suffix\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"alternate_full_name\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"full_name\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        },\n        \"type\": \"SHIPPING\",\n        \"address\": {\n          \"country_code\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"address_line_1\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"address_line_2\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"address_line_3\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"admin_area_4\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"admin_area_3\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"admin_area_2\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"admin_area_1\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"postal_code\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"address_details\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        }\n      },\n      \"permit_multiple_payment_tokens\": false,\n      \"usage_type\": \"S5E\",\n      \"customer_type\": \"37\",\n      \"email_address\": \"2h|j.4-nT/.VO.eV2gHhC7.bEh!*_.6PFGSoB.U*VI.aPl-QOZ3|#J.B.R2.0^_@e.66Tx.d.x.5.l.m2aMHWw9qg.0q7Janj.K.r.9d71YscHysDK\",\n      \"payer_id\": \"UBERKTR3JGZBD\",\n      \"name\": {\n        \"prefix\": \"string\",\n        \"given_name\": \"string\",\n        \"surname\": \"string\",\n        \"middle_name\": \"string\",\n        \"suffix\": \"string\",\n        \"alternate_full_name\": \"string\",\n        \"full_name\": \"string\"\n      },\n      \"phone\": {\n        \"phone_number\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"phone_type\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        }\n      },\n      \"birth_date\": \"2350-02-08\",\n      \"tax_info\": {\n        \"tax_id\": \"I\",\n        \"tax_id_type\": \"BR_CPF\"\n      },\n      \"address\": {\n        \"country_code\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"address_line_1\": \"<string>\",\n        \"address_line_2\": \"<string>\",\n        \"address_line_3\": \"<string>\",\n        \"admin_area_4\": \"<string>\",\n        \"admin_area_3\": \"<string>\",\n        \"admin_area_2\": \"<string>\",\n        \"admin_area_1\": \"<string>\",\n        \"postal_code\": \"<string>\",\n        \"address_details\": {\n          \"street_number\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"street_name\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"street_type\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"delivery_service\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"building_name\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"sub_building\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        }\n      },\n      \"user_name\": \"Fn2ZW1\"\n    },\n    \"apple_pay\": {\n      \"card\": {\n        \"id\": \"8oI\",\n        \"name\": \"<string>\",\n        \"number\": \"<string>\",\n        \"expiry\": \"<string>\",\n        \"security_code\": \"<string>\",\n        \"last_digits\": \"53\",\n        \"card_type\": \"<string>\",\n        \"type\": \"<string>\",\n        \"brand\": \"<string>\",\n        \"billing_address\": {\n          \"country_code\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"address_line_1\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"address_line_2\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"address_line_3\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"admin_area_4\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"admin_area_3\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"admin_area_2\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"admin_area_1\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"postal_code\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"address_details\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        }\n      }\n    },\n    \"bank\": {\n      \"ach_debit\": {\n        \"verification_status\": \"NOT_VERIFIED\"\n      }\n    }\n  },\n  \"links\": [\n    {\n      \"href\": \"string\",\n      \"rel\": \"string\",\n      \"method\": \"OPTIONS\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "29a787a1-6170-494a-97c9-149a9fe95bd2",
+              "name": "Authorization failed due to insufficient permissions.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v3",
+                    "vault",
+                    "payment-tokens",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) ID of the setup token."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"name\": \"string\",\n  \"message\": \"string\",\n  \"debug_id\": \"string\",\n  \"information_link\": \"string\",\n  \"details\": [\n    {\n      \"issue\": \"string\",\n      \"field\": \"string\",\n      \"value\": \"string\",\n      \"location\": \"body\",\n      \"description\": \"string\"\n    },\n    {\n      \"issue\": \"string\",\n      \"field\": \"string\",\n      \"value\": \"string\",\n      \"location\": \"body\",\n      \"description\": \"string\"\n    }\n  ],\n  \"links\": [\n    {\n      \"href\": \"string\",\n      \"rel\": \"string\",\n      \"method\": \"OPTIONS\"\n    },\n    {\n      \"href\": \"string\",\n      \"rel\": \"string\",\n      \"method\": \"PUT\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "6bb03a62-1808-438c-a965-a0006524ac23",
+              "name": "The specified resource does not exist.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v3",
+                    "vault",
+                    "payment-tokens",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) ID of the setup token."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"name\": \"string\",\n  \"message\": \"string\",\n  \"debug_id\": \"string\",\n  \"information_link\": \"string\",\n  \"details\": [\n    {\n      \"issue\": \"string\",\n      \"field\": \"string\",\n      \"value\": \"string\",\n      \"location\": \"body\",\n      \"description\": \"string\"\n    },\n    {\n      \"issue\": \"string\",\n      \"field\": \"string\",\n      \"value\": \"string\",\n      \"location\": \"body\",\n      \"description\": \"string\"\n    }\n  ],\n  \"links\": [\n    {\n      \"href\": \"string\",\n      \"rel\": \"string\",\n      \"method\": \"OPTIONS\"\n    },\n    {\n      \"href\": \"string\",\n      \"rel\": \"string\",\n      \"method\": \"PUT\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "9eb28995-fc0f-441f-8990-92943eb0210a",
+              "name": "The requested action could not be performed, semantically incorrect, or failed business validation.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v3",
+                    "vault",
+                    "payment-tokens",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) ID of the setup token."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+              "code": 422,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"name\": \"string\",\n  \"message\": \"string\",\n  \"debug_id\": \"string\",\n  \"information_link\": \"string\",\n  \"details\": [\n    {\n      \"issue\": \"string\",\n      \"field\": \"string\",\n      \"value\": \"string\",\n      \"location\": \"body\",\n      \"description\": \"string\"\n    },\n    {\n      \"issue\": \"string\",\n      \"field\": \"string\",\n      \"value\": \"string\",\n      \"location\": \"body\",\n      \"description\": \"string\"\n    }\n  ],\n  \"links\": [\n    {\n      \"href\": \"string\",\n      \"rel\": \"string\",\n      \"method\": \"OPTIONS\"\n    },\n    {\n      \"href\": \"string\",\n      \"rel\": \"string\",\n      \"method\": \"PUT\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "d3f84483-9281-4313-8f70-7919b9668561",
+              "name": "An internal server error has occurred.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v3",
+                    "vault",
+                    "payment-tokens",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) ID of the setup token."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"name\": \"string\",\n  \"message\": \"string\",\n  \"debug_id\": \"string\",\n  \"information_link\": \"string\",\n  \"details\": [\n    {\n      \"issue\": \"string\",\n      \"field\": \"string\",\n      \"value\": \"string\",\n      \"location\": \"body\",\n      \"description\": \"string\"\n    },\n    {\n      \"issue\": \"string\",\n      \"field\": \"string\",\n      \"value\": \"string\",\n      \"location\": \"body\",\n      \"description\": \"string\"\n    }\n  ],\n  \"links\": [\n    {\n      \"href\": \"string\",\n      \"rel\": \"string\",\n      \"method\": \"OPTIONS\"\n    },\n    {\n      \"href\": \"string\",\n      \"rel\": \"string\",\n      \"method\": \"PUT\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "0092c7da-9adb-4b5a-885f-f07a63186fb4",
+          "name": "Paypal Delete payment token",
+          "request": {
+            "name": "Paypal Delete payment token",
+            "description": {
+              "content": "Delete the payment token associated with the payment token id.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v3",
+                "vault",
+                "payment-tokens",
+                ":id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) ID of the setup token."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "DELETE",
+            "auth": {
+              "type": "oauth2",
+              "oauth2": [
+                {
+                  "key": "scope",
+                  "value": "https://uri.paypal.com/services/subscriptions"
+                },
+                {
+                  "key": "accessTokenUrl",
+                  "value": "/v1/oauth2/token"
+                },
+                {
+                  "key": "grant_type",
+                  "value": "client_credentials"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "9ef7cf30-3a88-44cc-942a-810719a5c289",
+              "name": "The server has successfully executed the method, but there is no entity body to return.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v3",
+                    "vault",
+                    "payment-tokens",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) ID of the setup token."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "No Content",
+              "code": 204,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "d7c3a1ac-e435-47ab-8acf-4e5c06694d39",
+              "name": "Request is not well-formed, syntactically incorrect, or violates schema.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v3",
+                    "vault",
+                    "payment-tokens",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) ID of the setup token."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"name\": \"string\",\n  \"message\": \"string\",\n  \"debug_id\": \"string\",\n  \"information_link\": \"string\",\n  \"details\": [\n    {\n      \"issue\": \"string\",\n      \"field\": \"string\",\n      \"value\": \"string\",\n      \"location\": \"body\",\n      \"description\": \"string\"\n    },\n    {\n      \"issue\": \"string\",\n      \"field\": \"string\",\n      \"value\": \"string\",\n      \"location\": \"body\",\n      \"description\": \"string\"\n    }\n  ],\n  \"links\": [\n    {\n      \"href\": \"string\",\n      \"rel\": \"string\",\n      \"method\": \"OPTIONS\"\n    },\n    {\n      \"href\": \"string\",\n      \"rel\": \"string\",\n      \"method\": \"PUT\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "0108f075-fc3f-448e-889a-2435a4814678",
+              "name": "Authorization failed due to insufficient permissions.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v3",
+                    "vault",
+                    "payment-tokens",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) ID of the setup token."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"name\": \"string\",\n  \"message\": \"string\",\n  \"debug_id\": \"string\",\n  \"information_link\": \"string\",\n  \"details\": [\n    {\n      \"issue\": \"string\",\n      \"field\": \"string\",\n      \"value\": \"string\",\n      \"location\": \"body\",\n      \"description\": \"string\"\n    },\n    {\n      \"issue\": \"string\",\n      \"field\": \"string\",\n      \"value\": \"string\",\n      \"location\": \"body\",\n      \"description\": \"string\"\n    }\n  ],\n  \"links\": [\n    {\n      \"href\": \"string\",\n      \"rel\": \"string\",\n      \"method\": \"OPTIONS\"\n    },\n    {\n      \"href\": \"string\",\n      \"rel\": \"string\",\n      \"method\": \"PUT\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "100af878-2377-406d-881a-b9ff2fcfbfcb",
+              "name": "An internal server error has occurred.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v3",
+                    "vault",
+                    "payment-tokens",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) ID of the setup token."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"name\": \"string\",\n  \"message\": \"string\",\n  \"debug_id\": \"string\",\n  \"information_link\": \"string\",\n  \"details\": [\n    {\n      \"issue\": \"string\",\n      \"field\": \"string\",\n      \"value\": \"string\",\n      \"location\": \"body\",\n      \"description\": \"string\"\n    },\n    {\n      \"issue\": \"string\",\n      \"field\": \"string\",\n      \"value\": \"string\",\n      \"location\": \"body\",\n      \"description\": \"string\"\n    }\n  ],\n  \"links\": [\n    {\n      \"href\": \"string\",\n      \"rel\": \"string\",\n      \"method\": \"OPTIONS\"\n    },\n    {\n      \"href\": \"string\",\n      \"rel\": \"string\",\n      \"method\": \"PUT\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api-m.sandbox.paypal.com",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "501623cf-b045-4d9c-8f00-31c8221626ff",
+    "name": "Paypal Subscriptions Authorizations Payment-Tokens API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "You can use billing plans and subscriptions to create subscriptions that process recurring PayPal payments for physical or digital goods, or services. A plan includes pricing and billing cycle information that defines the amount and frequency of charge for a subscription. You can also define a fixed plan, such as a $5 basic plan or a volume- or graduated-based plan with pricing tiers based on the quantity purchased. For more information, see <a href=\"/docs/subscriptions/\">Subscriptions Overview</a>.",
+      "type": "text/plain"
+    }
+  }
+}

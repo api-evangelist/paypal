@@ -1,0 +1,306 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Paypal Subscriptions Authorizations Orders API",
+    "version": "1.6"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Orders",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Paypal Create order",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api-m.sandbox.paypal.com/v2/checkout/orders",
+            "headers": [
+              {
+                "name": "PayPal-Request-Id",
+                "value": ""
+              },
+              {
+                "name": "PayPal-Partner-Attribution-Id",
+                "value": ""
+              },
+              {
+                "name": "PayPal-Client-Metadata-Id",
+                "value": ""
+              },
+              {
+                "name": "Prefer",
+                "value": ""
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "oauth2",
+              "flow": "client_credentials",
+              "accessTokenUrl": "/v1/oauth2/token",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "Creates an order. Merchants and partners can add Level 2 and 3 data to payments to reduce risk and payment processing costs. For more information about processing payments, see <a href=\"https://developer.paypal.com/docs/checkout/advanced/processing/\">checkout</a> or <a href=\"https://developer.paypal.com/docs/multiparty/checkout/advanced/processing/\">multiparty checkout</a>.<blockquote><strong>Note:</strong> For error handling and troubleshooting, see <a href=\"/api/rest/reference/orders/v2/errors"
+        },
+        {
+          "info": {
+            "name": "Paypal Show order details",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api-m.sandbox.paypal.com/v2/checkout/orders/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the order that the tracking information is associated with."
+              },
+              {
+                "name": "fields",
+                "value": "",
+                "type": "query",
+                "description": "A comma-separated list of fields that should be returned for the order. Valid filter field is `payment_source`."
+              }
+            ],
+            "auth": {
+              "type": "oauth2",
+              "flow": "client_credentials",
+              "accessTokenUrl": "/v1/oauth2/token",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "Shows details for an order, by ID.<blockquote><strong>Note:</strong> For error handling and troubleshooting, see <a href=\"/api/rest/reference/orders/v2/errors/#get-order\">Orders v2 errors</a>.</blockquote>"
+        },
+        {
+          "info": {
+            "name": "Paypal Update order",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "https://api-m.sandbox.paypal.com/v2/checkout/orders/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the order that the tracking information is associated with."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "oauth2",
+              "flow": "client_credentials",
+              "accessTokenUrl": "/v1/oauth2/token",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "Updates an order with a `CREATED` or `APPROVED` status. You cannot update an order with the `COMPLETED` status.<br/><br/>To make an update, you must provide a `reference_id`. If you omit this value with an order that contains only one purchase unit, PayPal sets the value to `default` which enables you to use the path: <code>\\\"/purchase_units/@reference_id=='default'/{attribute-or-object}\\\"</code>. Merchants and partners can add Level 2 and 3 data to payments to reduce risk and payment processing"
+        },
+        {
+          "info": {
+            "name": "Paypal Confirm the Order",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api-m.sandbox.paypal.com/v2/checkout/orders/:id/confirm-payment-source",
+            "headers": [
+              {
+                "name": "PayPal-Client-Metadata-Id",
+                "value": ""
+              },
+              {
+                "name": "Prefer",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the order that the tracking information is associated with."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "oauth2",
+              "flow": "client_credentials",
+              "accessTokenUrl": "/v1/oauth2/token",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "Payer confirms their intent to pay for the the Order with the given payment source."
+        },
+        {
+          "info": {
+            "name": "Paypal Authorize payment for order",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api-m.sandbox.paypal.com/v2/checkout/orders/:id/authorize",
+            "headers": [
+              {
+                "name": "PayPal-Request-Id",
+                "value": ""
+              },
+              {
+                "name": "Prefer",
+                "value": ""
+              },
+              {
+                "name": "PayPal-Client-Metadata-Id",
+                "value": ""
+              },
+              {
+                "name": "PayPal-Auth-Assertion",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the order that the tracking information is associated with."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "oauth2",
+              "flow": "client_credentials",
+              "accessTokenUrl": "/v1/oauth2/token",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "Authorizes payment for an order. To successfully authorize payment for an order, the buyer must first approve the order or a valid payment_source must be provided in the request. A buyer can approve the order upon being redirected to the rel:approve URL that was returned in the HATEOAS links in the create order response.<blockquote><strong>Note:</strong> For error handling and troubleshooting, see <a href=\"/api/rest/reference/orders/v2/errors/#authorize-order\">Orders v2 errors</a>.</blockquote>"
+        },
+        {
+          "info": {
+            "name": "Paypal Capture payment for order",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api-m.sandbox.paypal.com/v2/checkout/orders/:id/capture",
+            "headers": [
+              {
+                "name": "PayPal-Request-Id",
+                "value": ""
+              },
+              {
+                "name": "Prefer",
+                "value": ""
+              },
+              {
+                "name": "PayPal-Client-Metadata-Id",
+                "value": ""
+              },
+              {
+                "name": "PayPal-Auth-Assertion",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the order that the tracking information is associated with."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "oauth2",
+              "flow": "client_credentials",
+              "accessTokenUrl": "/v1/oauth2/token",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "Captures payment for an order. To successfully capture payment for an order, the buyer must first approve the order or a valid payment_source must be provided in the request. A buyer can approve the order upon being redirected to the rel:approve URL that was returned in the HATEOAS links in the create order response.<blockquote><strong>Note:</strong> For error handling and troubleshooting, see <a href=\"/api/rest/reference/orders/v2/errors/#capture-order\">Orders v2 errors</a>.</blockquote>"
+        },
+        {
+          "info": {
+            "name": "Paypal Add tracking information for an Order.",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api-m.sandbox.paypal.com/v2/checkout/orders/:id/track",
+            "headers": [
+              {
+                "name": "PayPal-Auth-Assertion",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the order that the tracking information is associated with."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "oauth2",
+              "flow": "client_credentials",
+              "accessTokenUrl": "/v1/oauth2/token",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "Adds tracking information for an Order."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

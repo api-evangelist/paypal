@@ -1,0 +1,114 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Paypal Subscriptions Authorizations Webhooks-Lookup API",
+    "version": "1.6"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Webhooks-Lookup",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Paypal List webhook lookups",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api-m.sandbox.paypal.com/v1/notifications/webhooks-lookup",
+            "auth": {
+              "type": "oauth2",
+              "flow": "client_credentials",
+              "accessTokenUrl": "/v1/oauth2/token",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "Lists webhook lookups."
+        },
+        {
+          "info": {
+            "name": "Paypal Create webhook lookup",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api-m.sandbox.paypal.com/v1/notifications/webhooks-lookup",
+            "auth": {
+              "type": "oauth2",
+              "flow": "client_credentials",
+              "accessTokenUrl": "/v1/oauth2/token",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "Creates a webhook lookup."
+        },
+        {
+          "info": {
+            "name": "Paypal Show webhook lookup details",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api-m.sandbox.paypal.com/v1/notifications/webhooks-lookup/:webhook_lookup_id",
+            "params": [
+              {
+                "name": "webhook_lookup_id",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the webhook lookup to delete."
+              }
+            ],
+            "auth": {
+              "type": "oauth2",
+              "flow": "client_credentials",
+              "accessTokenUrl": "/v1/oauth2/token",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "Shows details for a webhook lookup, by ID."
+        },
+        {
+          "info": {
+            "name": "Paypal Delete webhook lookup",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api-m.sandbox.paypal.com/v1/notifications/webhooks-lookup/:webhook_lookup_id",
+            "params": [
+              {
+                "name": "webhook_lookup_id",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the webhook lookup to delete."
+              }
+            ],
+            "auth": {
+              "type": "oauth2",
+              "flow": "client_credentials",
+              "accessTokenUrl": "/v1/oauth2/token",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "Deletes a webhook lookup, by ID."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

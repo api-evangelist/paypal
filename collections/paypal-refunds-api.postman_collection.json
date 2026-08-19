@@ -1,0 +1,414 @@
+{
+  "item": [
+    {
+      "id": "2ac5a854-9132-4d1e-baa2-112565ada4f6",
+      "name": "Refunds",
+      "description": {
+        "content": "Use the `/refunds` resource to show refund details.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "b629b81d-855e-4e6f-a25e-5c11193c4f53",
+          "name": "Paypal Show refund details",
+          "request": {
+            "name": "Paypal Show refund details",
+            "description": {
+              "content": "Shows details for a refund, by ID.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v2",
+                "payments",
+                "refunds",
+                ":refund_id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "refund_id",
+                  "description": "(Required) The PayPal-generated ID for the refund for which to show details."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "oauth2",
+              "oauth2": [
+                {
+                  "key": "scope",
+                  "value": "https://uri.paypal.com/services/subscriptions"
+                },
+                {
+                  "key": "accessTokenUrl",
+                  "value": "/v1/oauth2/token"
+                },
+                {
+                  "key": "grant_type",
+                  "value": "client_credentials"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "ce002683-e537-4b75-8c76-f24752d070cb",
+              "name": "A successful request returns the HTTP <code>200 OK</code> status code and a JSON response body that shows refund details.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "payments",
+                    "refunds",
+                    ":refund_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "refund_id",
+                      "description": "(Required) The PayPal-generated ID for the refund for which to show details."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"status\": \"PENDING\",\n  \"status_details\": {\n    \"reason\": \"ECHECK\"\n  },\n  \"id\": \"string\",\n  \"amount\": {\n    \"currency_code\": \"str\",\n    \"value\": \"4703811560.8\"\n  },\n  \"invoice_id\": \"string\",\n  \"custom_id\": \"mR0\",\n  \"acquirer_reference_number\": \"jR\",\n  \"note_to_payer\": \"string\",\n  \"seller_payable_breakdown\": {\n    \"gross_amount\": {\n      \"currency_code\": \"str\",\n      \"value\": \"508.95\"\n    },\n    \"paypal_fee\": {\n      \"currency_code\": \"str\",\n      \"value\": \"869283\"\n    },\n    \"paypal_fee_in_receivable_currency\": {\n      \"currency_code\": \"str\",\n      \"value\": \"16.0458398\"\n    },\n    \"net_amount\": {\n      \"currency_code\": \"str\",\n      \"value\": \"-58028.6\"\n    },\n    \"net_amount_in_receivable_currency\": {\n      \"currency_code\": \"str\",\n      \"value\": \"75746556\"\n    },\n    \"platform_fees\": [\n      {\n        \"amount\": {\n          \"currency_code\": \"str\",\n          \"value\": \".923\"\n        },\n        \"payee\": {\n          \"email_address\": \"[\\u0001-\\tx0bx0cx0e-x7f]N\\\\M[\\u0001-\\tx0bx0cx0e-x7f][\\u0001-\\tx0bx0cx0e-x7f]\\\"@[24.188.190.g3EiQkpO9C:[\\u0001-\\tx0bx0cx0e-x7f][\\u0001-\\tx0bx0cx0e-x7f]E[\\u0001-\\tx0bx0cx0e-x7f]]\",\n          \"merchant_id\": \"24XTJRRH5VRXZ\"\n        }\n      }\n    ],\n    \"net_amount_breakdown\": [\n      {\n        \"payable_amount\": {\n          \"currency_code\": \"str\",\n          \"value\": \"-.5747367923\"\n        },\n        \"converted_amount\": {\n          \"currency_code\": \"str\",\n          \"value\": \"183979161\"\n        },\n        \"exchange_rate\": {\n          \"source_currency\": \"str\",\n          \"target_currency\": \"str\",\n          \"value\": \"string\"\n        }\n      },\n      {\n        \"payable_amount\": {\n          \"currency_code\": \"str\",\n          \"value\": \"-586531531.86595993679\"\n        },\n        \"converted_amount\": {\n          \"currency_code\": \"str\",\n          \"value\": \"-79635.9089413\"\n        },\n        \"exchange_rate\": {\n          \"source_currency\": \"str\",\n          \"target_currency\": \"str\",\n          \"value\": \"string\"\n        }\n      }\n    ],\n    \"total_refunded_amount\": {\n      \"currency_code\": \"str\",\n      \"value\": \"-1566304523\"\n    }\n  },\n  \"payer\": {\n    \"email_address\": \"?\\\"@[101.246.2.254]\",\n    \"merchant_id\": \"2Z87ZEFLH49M4\"\n  },\n  \"links\": [\n    {\n      \"href\": \"string\",\n      \"rel\": \"string\",\n      \"method\": \"PUT\"\n    },\n    {\n      \"href\": \"string\",\n      \"rel\": \"string\",\n      \"method\": \"CONNECT\"\n    }\n  ],\n  \"create_time\": \"5968-08-30,23:56:60+85:07\",\n  \"update_time\": \"5480-11-31T21:50:39z\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "e4255c66-a385-492a-92e3-bb4cc3a6f45e",
+              "name": "Authentication failed due to missing authorization header, or invalid authentication credentials.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "payments",
+                    "refunds",
+                    ":refund_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "refund_id",
+                      "description": "(Required) The PayPal-generated ID for the refund for which to show details."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"name\": \"AUTHENTICATION_FAILURE\",\n  \"message\": \"Authentication failed due to missing authorization header, or invalid authentication credentials.\",\n  \"details\": [\n    {\n      \"issue\": \"INVALID_ACCOUNT_STATUS\",\n      \"field\": \"string\",\n      \"value\": \"string\",\n      \"location\": \"body\",\n      \"description\": \"Account validations failed for the user.\"\n    },\n    {\n      \"issue\": \"INVALID_ACCOUNT_STATUS\",\n      \"field\": \"string\",\n      \"value\": \"string\",\n      \"location\": \"body\",\n      \"description\": \"Account validations failed for the user.\"\n    }\n  ],\n  \"debug_id\": \"string\",\n  \"links\": [\n    {\n      \"href\": \"5+\",\n      \"rel\": \"1/)\",\n      \"method\": \"PUT\"\n    },\n    {\n      \"href\": \"i9Fv3}\",\n      \"rel\": \"Y~Pc~\",\n      \"method\": \"GET\"\n    },\n    {\n      \"href\": \"\",\n      \"rel\": \"<u9,]f5\",\n      \"method\": \"POST\"\n    },\n    {\n      \"href\": \"MBR4\\\"!RI^e\",\n      \"rel\": \"Yuf\",\n      \"method\": \"DELETE\"\n    },\n    {\n      \"href\": \"t6jMv\",\n      \"rel\": \"~\",\n      \"method\": \"PATCH\"\n    },\n    {\n      \"href\": \"#,b\\\\Q.b,0\",\n      \"rel\": \"uraD~\",\n      \"method\": \"PUT\"\n    },\n    {\n      \"href\": \"5\",\n      \"rel\": \"S\",\n      \"method\": \"PATCH\"\n    },\n    {\n      \"href\": \"]@!n|)\",\n      \"rel\": \"7r\",\n      \"method\": \"PATCH\"\n    },\n    {\n      \"href\": \"L\",\n      \"rel\": \"Scb*\",\n      \"method\": \"DELETE\"\n    },\n    {\n      \"href\": \"Mxgck\",\n      \"rel\": \"B8(y%9 XPx\",\n      \"method\": \"PATCH\"\n    },\n    {\n      \"href\": \"5gg\",\n      \"rel\": \"q.1?\",\n      \"method\": \"PUT\"\n    },\n    {\n      \"href\": \"3Q((}~X^rT\",\n      \"rel\": \"'In`\\\\TeD7\",\n      \"method\": \"POST\"\n    },\n    {\n      \"href\": \"\",\n      \"rel\": \" ?H\",\n      \"method\": \"DELETE\"\n    },\n    {\n      \"href\": \"8%lj( KR!\",\n      \"rel\": \"9\",\n      \"method\": \"GET\"\n    },\n    {\n      \"href\": \"+0\",\n      \"rel\": \"\",\n      \"method\": \"PATCH\"\n    },\n    {\n      \"href\": \"7kC\",\n      \"rel\": \" \",\n      \"method\": \"PATCH\"\n    },\n    {\n      \"href\": \"#BW)\",\n      \"rel\": \"'g{zz\",\n      \"method\": \"PUT\"\n    },\n    {\n      \"href\": \"#W$4M+\\\\s3e\",\n      \"rel\": \"7Sh\\\\[0'a*7\",\n      \"method\": \"DELETE\"\n    },\n    {\n      \"href\": \"<XsSng\",\n      \"rel\": \"\",\n      \"method\": \"DELETE\"\n    },\n    {\n      \"href\": \"Q[\",\n      \"rel\": \"[\",\n      \"method\": \"GET\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "2e174524-3196-42fc-b0a2-d68fcc7ced19",
+              "name": "The request failed because the caller has insufficient permissions.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "payments",
+                    "refunds",
+                    ":refund_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "refund_id",
+                      "description": "(Required) The PayPal-generated ID for the refund for which to show details."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"name\": \"NOT_AUTHORIZED\",\n  \"message\": \"Authorization failed due to insufficient permissions.\",\n  \"details\": [\n    {\n      \"issue\": \"PERMISSION_DENIED\",\n      \"field\": \"string\",\n      \"value\": \"string\",\n      \"location\": \"body\",\n      \"description\": \"You do not have permission to access or perform operations on this resource.\"\n    },\n    {\n      \"issue\": \"PERMISSION_DENIED\",\n      \"field\": \"string\",\n      \"value\": \"string\",\n      \"location\": \"body\",\n      \"description\": \"You do not have permission to access or perform operations on this resource.\"\n    }\n  ],\n  \"debug_id\": \"string\",\n  \"links\": [\n    {\n      \"href\": \"\\\\\",\n      \"rel\": \"lx\",\n      \"method\": \"POST\"\n    },\n    {\n      \"href\": \"+(0X\",\n      \"rel\": \"p6*e&4=Q\",\n      \"method\": \"PUT\"\n    },\n    {\n      \"href\": \"Ast\",\n      \"rel\": \")7R\",\n      \"method\": \"PUT\"\n    },\n    {\n      \"href\": \"a\\\\&\",\n      \"rel\": \"<MH*EXC\",\n      \"method\": \"POST\"\n    },\n    {\n      \"href\": \"v{\",\n      \"rel\": \"g#_ua;\",\n      \"method\": \"DELETE\"\n    },\n    {\n      \"href\": \"6X+3^@[u]n\",\n      \"rel\": \"/ze\\\"k\",\n      \"method\": \"PATCH\"\n    },\n    {\n      \"href\": \"*T|u\",\n      \"rel\": \"6/o~Br5j;W\",\n      \"method\": \"PATCH\"\n    },\n    {\n      \"href\": \"*T{8\",\n      \"rel\": \"\",\n      \"method\": \"PUT\"\n    },\n    {\n      \"href\": \"vz?\",\n      \"rel\": \"m+\",\n      \"method\": \"GET\"\n    },\n    {\n      \"href\": \"r~py[%`p\",\n      \"rel\": \"NU{A`P\",\n      \"method\": \"POST\"\n    },\n    {\n      \"href\": \"/X\",\n      \"rel\": \"rq\",\n      \"method\": \"POST\"\n    },\n    {\n      \"href\": \"\",\n      \"rel\": \"2\",\n      \"method\": \"GET\"\n    },\n    {\n      \"href\": \"/b\",\n      \"rel\": \"\",\n      \"method\": \"PUT\"\n    },\n    {\n      \"href\": \">v,+e,\",\n      \"rel\": \"[bxA)GqO;\",\n      \"method\": \"PATCH\"\n    },\n    {\n      \"href\": \"\",\n      \"rel\": \"\",\n      \"method\": \"PATCH\"\n    },\n    {\n      \"href\": \"d=f3nI*mQ\",\n      \"rel\": \"\",\n      \"method\": \"PUT\"\n    },\n    {\n      \"href\": \"O>7Lenjq<\",\n      \"rel\": \".L\",\n      \"method\": \"GET\"\n    },\n    {\n      \"href\": \"FEyA]y\",\n      \"rel\": \"\",\n      \"method\": \"GET\"\n    },\n    {\n      \"href\": \"p|)Ad#O72\",\n      \"rel\": \"7\",\n      \"method\": \"DELETE\"\n    },\n    {\n      \"href\": \"\",\n      \"rel\": \"4T78b;\",\n      \"method\": \"DELETE\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "49968f89-84a3-4235-b53a-dbb39bbe5a10",
+              "name": "The request failed because the resource does not exist.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "payments",
+                    "refunds",
+                    ":refund_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "refund_id",
+                      "description": "(Required) The PayPal-generated ID for the refund for which to show details."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"name\": \"RESOURCE_NOT_FOUND\",\n  \"message\": \"The specified resource does not exist.\",\n  \"details\": [\n    {\n      \"issue\": \"INVALID_RESOURCE_ID\",\n      \"field\": \"string\",\n      \"value\": \"string\",\n      \"location\": \"body\",\n      \"description\": \"Specified resource ID does not exist. Please check the resource ID and try again.\"\n    },\n    {\n      \"issue\": \"INVALID_RESOURCE_ID\",\n      \"field\": \"string\",\n      \"value\": \"string\",\n      \"location\": \"body\",\n      \"description\": \"Specified resource ID does not exist. Please check the resource ID and try again.\"\n    }\n  ],\n  \"debug_id\": \"string\",\n  \"links\": [\n    {\n      \"href\": \"BQbE+aq\",\n      \"rel\": \"|d7F2u\",\n      \"method\": \"GET\"\n    },\n    {\n      \"href\": \"5-!1:8*\",\n      \"rel\": \"DV9O <M\",\n      \"method\": \"POST\"\n    },\n    {\n      \"href\": \"bV54\",\n      \"rel\": \"/j\",\n      \"method\": \"PUT\"\n    },\n    {\n      \"href\": \"imybE2D_t\",\n      \"rel\": \"c}]T*)9A\",\n      \"method\": \"DELETE\"\n    },\n    {\n      \"href\": \"tJmT\",\n      \"rel\": \"R/m}*,\",\n      \"method\": \"GET\"\n    },\n    {\n      \"href\": \"]nj[|5\",\n      \"rel\": \"?</\",\n      \"method\": \"POST\"\n    },\n    {\n      \"href\": \"*l>\",\n      \"rel\": \"Itz7upyH\",\n      \"method\": \"PATCH\"\n    },\n    {\n      \"href\": \"6d\",\n      \"rel\": \"q&pd\",\n      \"method\": \"GET\"\n    },\n    {\n      \"href\": \"vT\",\n      \"rel\": \"su^|P\",\n      \"method\": \"GET\"\n    },\n    {\n      \"href\": \"w-\",\n      \"rel\": \".-{O\",\n      \"method\": \"POST\"\n    },\n    {\n      \"href\": \"w5p!_=<\",\n      \"rel\": \"+E\",\n      \"method\": \"PUT\"\n    },\n    {\n      \"href\": \"c@5(ttL%8\",\n      \"rel\": \"!59wS>LN0Y\",\n      \"method\": \"PATCH\"\n    },\n    {\n      \"href\": \"5EVq(B\",\n      \"rel\": \"\",\n      \"method\": \"POST\"\n    },\n    {\n      \"href\": \"\",\n      \"rel\": \"~x#b\",\n      \"method\": \"GET\"\n    },\n    {\n      \"href\": \"e'vMt\",\n      \"rel\": \"~o1H\",\n      \"method\": \"GET\"\n    },\n    {\n      \"href\": \"-Kj}3x\",\n      \"rel\": \"_;xy@\",\n      \"method\": \"POST\"\n    },\n    {\n      \"href\": \"q:D%Z=\",\n      \"rel\": \"`'\",\n      \"method\": \"POST\"\n    },\n    {\n      \"href\": \"H!X!znr1\",\n      \"rel\": \"OS<&\",\n      \"method\": \"PUT\"\n    },\n    {\n      \"href\": \"9,\",\n      \"rel\": \"p7y|>578\",\n      \"method\": \"POST\"\n    },\n    {\n      \"href\": \" w-\",\n      \"rel\": \"gtip.*f%\",\n      \"method\": \"PUT\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "3f2b9765-3cc0-4eb5-9745-f68545e905fb",
+              "name": "The request failed because an internal server error occurred.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "payments",
+                    "refunds",
+                    ":refund_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "refund_id",
+                      "description": "(Required) The PayPal-generated ID for the refund for which to show details."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "872a209f-4cd0-4b5e-a17d-5bc2ac8d5bc9",
+              "name": "The default response.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "payments",
+                    "refunds",
+                    ":refund_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "refund_id",
+                      "description": "(Required) The PayPal-generated ID for the refund for which to show details."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"name\": \"INVALID_REQUEST\",\n  \"message\": \"Request is not well-formed, syntactically incorrect, or violates schema.\",\n  \"details\": [\n    {\n      \"issue\": \"string\",\n      \"field\": \"string\",\n      \"value\": \"string\",\n      \"location\": \"body\",\n      \"description\": \"string\"\n    },\n    {\n      \"issue\": \"string\",\n      \"field\": \"string\",\n      \"value\": \"string\",\n      \"location\": \"body\",\n      \"description\": \"string\"\n    }\n  ],\n  \"debug_id\": \"string\",\n  \"links\": [\n    {\n      \"href\": \"<]H\",\n      \"rel\": \"%&slo \",\n      \"method\": \"PUT\"\n    },\n    {\n      \"href\": \"+\",\n      \"rel\": \"v8Q^.k\",\n      \"method\": \"PUT\"\n    },\n    {\n      \"href\": \"!u4t.%yni\",\n      \"rel\": \"3'-{.1ec\\\\\",\n      \"method\": \"DELETE\"\n    },\n    {\n      \"href\": \"\",\n      \"rel\": \"\\\\}@gv\",\n      \"method\": \"PATCH\"\n    },\n    {\n      \"href\": \"8h'\",\n      \"rel\": \"(c>\",\n      \"method\": \"GET\"\n    },\n    {\n      \"href\": \"O6ogu \",\n      \"rel\": \"Y\",\n      \"method\": \"POST\"\n    },\n    {\n      \"href\": \"QXF\",\n      \"rel\": \"RLJFAI\",\n      \"method\": \"POST\"\n    },\n    {\n      \"href\": \" h445f{&\",\n      \"rel\": \"g!;d1{\",\n      \"method\": \"POST\"\n    },\n    {\n      \"href\": \"\",\n      \"rel\": \"H7\",\n      \"method\": \"POST\"\n    },\n    {\n      \"href\": \"vZ\",\n      \"rel\": \"KBB\",\n      \"method\": \"DELETE\"\n    },\n    {\n      \"href\": \"B ZB,\\\"\",\n      \"rel\": \"W7060ZD\",\n      \"method\": \"PATCH\"\n    },\n    {\n      \"href\": \"DIt^VK\\\"\",\n      \"rel\": \"DeV.{\",\n      \"method\": \"PATCH\"\n    },\n    {\n      \"href\": \".?\",\n      \"rel\": \"{FN+K:0?%D\",\n      \"method\": \"PUT\"\n    },\n    {\n      \"href\": \"Gd\\\"`o\",\n      \"rel\": \"k;@r`RS9&\",\n      \"method\": \"POST\"\n    },\n    {\n      \"href\": \"av77gCHPXl\",\n      \"rel\": \"\",\n      \"method\": \"GET\"\n    },\n    {\n      \"href\": \"&[+mLd\",\n      \"rel\": \"7!Vw>\\\\%[\",\n      \"method\": \"DELETE\"\n    },\n    {\n      \"href\": \"3Ulr[f\",\n      \"rel\": \"7S0\",\n      \"method\": \"PUT\"\n    },\n    {\n      \"href\": \"Wdnwk=OX\",\n      \"rel\": \"\",\n      \"method\": \"GET\"\n    },\n    {\n      \"href\": \"<YUxYBpttU\",\n      \"rel\": \"\",\n      \"method\": \"PUT\"\n    },\n    {\n      \"href\": \"\",\n      \"rel\": \"ER5_ aSN\",\n      \"method\": \"PATCH\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api-m.sandbox.paypal.com",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "5daa07a1-d2f9-4784-bf63-dea166aa3604",
+    "name": "Paypal Subscriptions Authorizations Refunds API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "You can use billing plans and subscriptions to create subscriptions that process recurring PayPal payments for physical or digital goods, or services. A plan includes pricing and billing cycle information that defines the amount and frequency of charge for a subscription. You can also define a fixed plan, such as a $5 basic plan or a volume- or graduated-based plan with pricing tiers based on the quantity purchased. For more information, see <a href=\"/docs/subscriptions/\">Subscriptions Overview</a>.",
+      "type": "text/plain"
+    }
+  }
+}
