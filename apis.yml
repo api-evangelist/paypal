@@ -39,6 +39,17 @@ tags:
 - Commerce
 - Disputes
 - Invoices
+- Order
+- Payments
+- Payouts
+- Subscription
+- Tokens
+- Webhook
+tags_raw:
+- Billing
+- Commerce
+- Disputes
+- Invoices
 - Orders
 - Payments
 - Payouts
@@ -291,6 +302,8 @@ apis:
   description: Use the `/captures` resource to show details for and refund a captured payment.
   humanURL: https://developer.paypal.com/docs/api/subscriptions/v1/
   tags:
+  - Capture
+  tags_raw:
   - Captures
   properties:
   - type: OpenAPI
@@ -502,6 +515,8 @@ apis:
     Use the `/orders` resource to create, update, retrieve, authorize, capture and track orders.
   humanURL: https://developer.paypal.com/docs/api/subscriptions/v1/
   tags:
+  - Order
+  tags_raw:
   - Orders
   properties:
   - type: OpenAPI
@@ -781,6 +796,8 @@ apis:
   description: Use `/products` resource to create and manage products.
   humanURL: https://developer.paypal.com/docs/api/subscriptions/v1/
   tags:
+  - Product
+  tags_raw:
   - Products
   properties:
   - type: OpenAPI
@@ -1060,6 +1077,8 @@ apis:
   description: The Subscriptions API from PayPal — 8 operation(s) for subscriptions.
   humanURL: https://developer.paypal.com/docs/api/subscriptions/v1/
   tags:
+  - Subscription
+  tags_raw:
   - Subscriptions
   properties:
   - type: OpenAPI
@@ -1263,6 +1282,8 @@ apis:
   description: The Transactions API from PayPal — 2 operation(s) for transactions.
   humanURL: https://developer.paypal.com/docs/api/subscriptions/v1/
   tags:
+  - Transaction
+  tags_raw:
   - Transactions
   properties:
   - type: OpenAPI
@@ -1384,6 +1405,8 @@ apis:
     show details for, update, delete, and list event subscriptions for webhooks.
   humanURL: https://developer.paypal.com/docs/api/subscriptions/v1/
   tags:
+  - Webhook
+  tags_raw:
   - Webhooks
   properties:
   - type: OpenAPI
