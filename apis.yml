@@ -16,7 +16,7 @@ deliveryModel:
   source:
   - openapi
   - pricing
-  generated: '2026-08-11'
+  generated: '2026-08-28'
   method: derived
 accessModel:
   pricing: paid
@@ -1562,6 +1562,9 @@ apis:
   - type: Documentation
     url: https://developer.paypal.com/docs/api/payment-tokens/v3/
 common:
+- type: CapabilityMap
+  url: capabilities/paypal-capability-edges.yml
+  name: PayPal Business Capability Map
 - type: Subsidiary
   name: Braintree
   url: https://www.braintreepayments.com/
