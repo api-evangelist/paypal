@@ -2,25 +2,21 @@
   "repo": "paypal",
   "feeds": [
     {
-      "source": "https://newsroom.paypal-corp.com/news?pagetemplate=rss",
-      "feed_url": "https://newsroom.paypal-corp.com/news?pagetemplate=rss",
-      "title": "",
-      "saved": 0,
-      "method": "feed",
-      "nature": "undetermined",
-      "nature_basis": null
-    },
-    {
       "source": "https://newsroom.paypal-corp.com/news",
       "feed_url": "https://newsroom.paypal-corp.com/news?pagetemplate=rss",
       "title": "",
       "saved": 0,
-      "method": "discovered",
-      "nature": "undetermined",
-      "nature_basis": null
+      "method": "discovered"
+    },
+    {
+      "source": "https://newsroom.paypal-corp.com/news?pagetemplate=rss",
+      "feed_url": "https://newsroom.paypal-corp.com/news?pagetemplate=rss",
+      "title": "",
+      "saved": 0,
+      "method": "feed"
     }
   ],
-  "fetched": "2026-08-30T22:33:40Z",
+  "fetched": "2026-09-06T19:17:18Z",
   "post_count": 19,
   "feed_nature": "undetermined",
   "feed_nature_basis": null,
