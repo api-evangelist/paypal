@@ -45,8 +45,8 @@ tags:
 - Subscription
 - Tokens
 - Webhook
-- PayPal
 tags_raw:
+- PayPal
 - Billing
 - Commerce
 - Disputes
@@ -69,6 +69,8 @@ apis:
     authorized payments.
   humanURL: https://developer.paypal.com/docs/api/subscriptions/v1/
   tags:
+  - Authorization
+  tags_raw:
   - Authorizations
   properties:
   - type: OpenAPI
