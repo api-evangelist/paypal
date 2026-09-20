@@ -1,0 +1,63 @@
+# ESTIMATES computed by API Evangelist — not published by the provider. See `note` and `replace_by`.
+generated: '2026-09-20'
+method: estimated
+estimator: 'planning/api-economics/estimate_prices.py — design: ESTIMATION.md'
+note: ESTIMATES, not quotes. Computed by API Evangelist from the prices this provider publishes on https://www.paypal.com/us/business/paypal-business-fees
+  (transcribed in plans/paypal-plans-pricing.yml). Nothing here overrides a published price. Each estimate
+  names the figure it came from, the formula, any assumption, and the field the provider can publish to
+  replace it — publish that and the estimate is retired.
+audience_of_source_pricing: business-product
+pricing_basis: ad-valorem
+estimate_count: 4
+estimates:
+- kind: entry_cost
+  grade: A
+  grade_meaning: quoted — the page states this figure
+  usd_per_month: 5.0
+  meaning: the cheapest published paid tier — a floor on the cost of getting in, NOT the price of the
+    API alone
+  inputs:
+  - file: plans/paypal-plans-pricing.yml
+    plan: Payments Advanced monthly fee
+    price_text: 5.00 USD
+  replace_by: 'API Commons Plans — plans[].entries[] with type: fee, a numeric `price`, `timeFrame: month`
+    and the tier that includes API access stated in `elements`'
+- kind: marginal_cost
+  grade: A
+  grade_meaning: quoted — the page states this figure
+  usd: 0.03
+  per: request
+  formula: quoted price / quoted unit count
+  inputs:
+  - file: plans/paypal-plans-pricing.yml
+    plan: 3D Secure Advanced
+    price_text: 0.03 USD per lookup
+  replace_by: 'API Commons Plans — plans[].entries[] with type: metered, `metric` (request | token | transaction
+    | message), `unit` and a numeric `price`; and FinOps `primaryUnit` + `meters[]`'
+- kind: take_rate
+  grade: A
+  grade_meaning: quoted — the page states this figure
+  percent: 0.49
+  fixed_usd: 0.0
+  cap_usd: null
+  inputs:
+  - file: plans/paypal-plans-pricing.yml
+    plan: Interchange Plus Plus (Advanced Credit and Debit Card Payments)
+    price_text: Interchange Pass-through Costs + 0.49% + fixed fee
+  replace_by: 'API Commons Plans — plans[].entries[] with type: percentage, `price` as "<percent>% + <fixed>"
+    and `cap` where one applies'
+- kind: per_operation_scenarios
+  grade: C
+  grade_meaning: depends on a stated prior — see `priors`
+  formula: 'C3: rate x transaction value + fixed, capped where stated'
+  usd_by_transaction_value:
+    '10': 0.049
+    '100': 0.49
+    '1000': 4.9
+  priors:
+    transaction_value_usd:
+    - 10
+    - 100
+    - 1000
+  replace_by: the same take-rate entry — a published rate makes the scenarios exact arithmetic instead
+    of an estimate
