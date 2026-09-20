@@ -1,0 +1,178 @@
+slug: paypal
+provider: PayPal
+generated_by: planning/capability-mapping/scripts/classify_capabilities.py
+model: claude-opus-5
+frame:
+- Banking & Capital Markets
+min_confidence: 0.7
+capability_model:
+  source: https://github.com/vincentmakes/turbo-ea-capabilities
+  license: CC-BY-4.0
+  attribution: Turbo EA Capabilities by Vincent Verdet — Turbo EA, https://github.com/vincentmakes/turbo-ea-capabilities,
+    CC BY 4.0
+  notice: NOTICE
+edge_count: 16
+edges:
+- tag: Authorizations
+  spec_file: paypal-authorizations-api-openapi.yml
+  capability_id: BC-1340
+  capability_id_l1: BC-1340
+  capability_name: Payments & Card Management
+  confidence: 0.9
+  evidence: POST /v2/payments/authorizations/{authorization_id}/capture  Paypal Capture authorized payment;
+    .../void  Void authorized payment
+  reason: Authorise, capture, reauthorise and void of payment transactions is core payment processing.
+    Sub-capability ambiguous between payment initiation/authorisation and card transaction processing,
+    so L2 withheld.
+- tag: Captures
+  spec_file: paypal-captures-api-openapi.yml
+  capability_id: BC-1340
+  capability_id_l1: BC-1340
+  capability_name: Payments & Card Management
+  confidence: 0.9
+  evidence: GET /v2/payments/captures/{capture_id}  Paypal Show captured payment details; POST .../refund  Paypal
+    Refund captured payment
+  reason: Captured payment retrieval and refunds are payment transaction processing operations. L2 ambiguous
+    between processing and card transaction handling.
+- tag: Billing
+  spec_file: paypal-billing-api-openapi.yml
+  capability_id: BC-4240
+  capability_id_l1: BC-4240
+  capability_name: Subscription Lifecycle Management
+  confidence: 0.85
+  evidence: POST /v1/billing/plans  plans.create  Create plan; POST /v1/billing/subscriptions  subscriptions.create  Create
+    subscription; plans.update-pricing-schemes  Update pricing
+  reason: Full CRUD over recurring billing plans and subscriptions (create, revise, suspend, pricing schemes)
+    = subscription lifecycle management. Spans plan design, provisioning and modification so no single
+    L2.
+- tag: Cancel
+  spec_file: paypal-cancel-api-openapi.yml
+  capability_id: BC-4240.60
+  capability_id_l1: BC-4240
+  capability_name: Cancellation & Termination
+  confidence: 0.85
+  evidence: POST /v1/billing/subscriptions/{id}/cancel  subscriptions.cancel  Cancel subscription (schema
+    subscription_cancel_request)
+  reason: Single operation cancels an active recurring subscription, matching Cancellation & Termination.
+- tag: Subscriptions
+  spec_file: paypal-subscriptions-api-openapi.yml
+  capability_id: BC-4240
+  capability_id_l1: BC-4240
+  capability_name: Subscription Lifecycle Management
+  confidence: 0.85
+  evidence: '"Create subscription", "Revise plan or quantity of subscription", "Suspend subscription",
+    "Cancel subscription", "Activate subscription"'
+  reason: Operations cover the full commercial lifecycle of recurring subscriptions (create, activate,
+    modify, suspend, cancel), which is Subscription Lifecycle Management; spans several L2s so only the
+    L1 is asserted.
+- tag: Revise
+  spec_file: paypal-revise-api-openapi.yml
+  capability_id: BC-4240.40
+  capability_id_l1: BC-4240
+  capability_name: Subscription Modification
+  confidence: 0.82
+  evidence: POST /v1/billing/subscriptions/{id}/revise 'Revise plan or quantity of subscription'; schemas
+    subscription_revise_request, plan_override, billing_cycle_override
+  reason: The operation changes the plan or quantity of an in-life subscription — precisely upgrades/downgrades
+    and seat adjustments on active subscriptions.
+- tag: Activate
+  spec_file: paypal-activate-api-openapi.yml
+  capability_id: BC-4240
+  capability_id_l1: BC-4240
+  capability_name: Subscription Lifecycle Management
+  confidence: 0.8
+  evidence: POST /v1/billing/subscriptions/{id}/activate  subscriptions.activate  Activate subscription;
+    POST /v1/billing/plans/{id}/activate  Activate plan
+  reason: Operations activate recurring billing plans and subscriptions — squarely the SaaS-style subscription
+    commercial lifecycle. Mixed between plan design and subscription provisioning, so no L2 asserted.
+- tag: Invoices
+  spec_file: paypal-invoices-api-openapi.yml
+  capability_id: BC-200.30
+  capability_id_l1: BC-200
+  capability_name: Accounts Receivable Management
+  confidence: 0.8
+  evidence: POST /v2/invoicing/invoices  Paypal Create draft invoice; .../send  Paypal Send invoice; .../remind  Paypal
+    Send invoice reminder; .../payments  Paypal Record payment for invoice
+  reason: Customer invoicing, sending, reminders, payment and refund recording is accounts receivable
+    / customer invoicing, not subscription-specific billing.
+- tag: Suspend
+  spec_file: paypal-suspend-api-openapi.yml
+  capability_id: BC-4240
+  capability_id_l1: BC-4240
+  capability_name: Subscription Lifecycle Management
+  confidence: 0.78
+  evidence: POST /v1/billing/subscriptions/{id}/suspend — "Suspend subscription"; schema "subscription_suspend_request"
+  reason: Single operation performing an in-life state change on an active subscription — clearly subscription
+    lifecycle management, though whether it is modification or termination is ambiguous, so no L2 is asserted.
+- tag: Payouts
+  spec_file: paypal-payouts-api-openapi.yml
+  capability_id: BC-1340.10
+  capability_id_l1: BC-1340
+  capability_name: Payment Initiation Management
+  confidence: 0.75
+  evidence: POST /v1/payments/payouts 'Create batch payout'; schemas create_payout_request, payout_sender_batch_header,
+    payout_currency_conversion
+  reason: The operations capture and submit batches of outbound payment instructions to recipients, which
+    is payment instruction capture, validation and authorisation.
+- tag: Webhooks
+  spec_file: paypal-webhooks-api-openapi.yml
+  capability_id: BC-4270.80
+  capability_id_l1: BC-4270
+  capability_name: Webhook & Event Subscription Management
+  confidence: 0.72
+  evidence: '"Paypal Create webhook", "Paypal List webhooks", "Paypal List event subscriptions for webhook";
+    schemas "webhook", "EventTypeList"'
+  reason: Full CRUD lifecycle over outbound webhook registrations and their event subscriptions, which
+    is exactly Webhook & Event Subscription Management on a developer platform. Still partly technical
+    plumbing, so not maximal confidence.
+- tag: Webhooks-Lookup
+  spec_file: paypal-webhooks-lookup-api-openapi.yml
+  capability_id: BC-4270.80
+  capability_id_l1: BC-4270
+  capability_name: Webhook & Event Subscription Management
+  confidence: 0.72
+  evidence: POST /v1/notifications/webhooks-lookup  Paypal Create webhook lookup; schema "webhooks_lookup",
+    "WebhookLookupList"
+  reason: The operations manage webhook lookup registrations under /v1/notifications — lifecycle of outbound
+    webhook/event subscriptions for API consumers. This is developer-platform plumbing, not a payments
+    business capability, so the honest mapping is webhook & event subscription management.
+- tag: Deactivate
+  spec_file: paypal-deactivate-api-openapi.yml
+  capability_id: BC-4240
+  capability_id_l1: BC-4240
+  capability_name: Subscription Lifecycle Management
+  confidence: 0.7
+  evidence: POST /v1/billing/plans/{id}/deactivate  plans.deactivate  Deactivate plan
+  reason: Deactivating a recurring billing plan is part of the subscription plan/entitlement lifecycle;
+    single generic operation so L2 not asserted.
+- tag: Orders
+  spec_file: paypal-orders-api-openapi.yml
+  capability_id: BC-1340.10
+  capability_id_l1: BC-1340
+  capability_name: Payment Initiation Management
+  confidence: 0.7
+  evidence: POST /v2/checkout/orders  Paypal Create order; POST /v2/checkout/orders/{id}/authorize  Paypal
+    Authorize payment for order; .../capture  Paypal Capture payment for order
+  reason: Checkout order creation with payment authorisation and capture maps to payment instruction capture,
+    validation and authorisation; some overlap with downstream processing.
+- tag: Plans
+  spec_file: paypal-plans-api-openapi.yml
+  capability_id: BC-4240.10
+  capability_id_l1: BC-4240
+  capability_name: Plan & Entitlement Design
+  confidence: 0.7
+  evidence: POST /v1/billing/plans 'Create plan', 'Activate plan', 'Deactivate plan', 'Update pricing';
+    schemas plan, pricing_scheme, payment_preferences, frequency
+  reason: Operations define and manage recurring billing plans with pricing schemes and billing cycles
+    — definition of the plans customers subscribe to. Mapped to plan design rather than rating because
+    the surface is plan definition/lifecycle.
+- tag: Webhooks-Events
+  spec_file: paypal-webhooks-events-api-openapi.yml
+  capability_id: BC-4270.80
+  capability_id_l1: BC-4270
+  capability_name: Webhook & Event Subscription Management
+  confidence: 0.7
+  evidence: '"Paypal List event notifications", "Paypal Show event notification details", "Paypal Resend
+    event notification"'
+  reason: Inspection and redelivery of outbound event notifications is webhook delivery reliability management
+    on the developer platform; no other candidate fits these operations.
