@@ -1174,6 +1174,8 @@ apis:
   - type: Documentation
     url: https://developer.paypal.com/docs/api/payment-tokens/v3/
 common:
+- type: Plans
+  url: plans/paypal-plans-pricing.yml
 - type: CapabilityMap
   url: capabilities/paypal-capability-edges.yml
   name: PayPal Business Capability Map

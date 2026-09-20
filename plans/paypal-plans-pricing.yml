@@ -1,142 +1,166 @@
-specification: API Commons Plans
-specificationVersion: '0.1'
-schema: https://raw.githubusercontent.com/api-evangelist/interface-research/main/schema/api-commons.yml#/$defs/Plans
-provider: PayPal
-providerId: paypal
-created: '2026-05-04'
-# Provenance stamped 2026-08-11: this artifact was written by the API Evangelist
-# bulk sweep dated 2026-05-04, not harvested from the provider. See roadmap#35.
-method: generated
-modified: '2026-05-04'
-reconciled: true
-tags:
-  - Payments
-  - Online Checkout
-description: PayPal merchant fees per channel and product.
+# Pricing transcribed from the provider's own page — see provenance. Numbers are quoted, not derived.
+generated: '2026-09-20'
+method: searched
+source: https://www.paypal.com/us/business/paypal-business-fees
 sources:
-  - https://www.paypal.com/us/business/paypal-business-fees
+- https://www.paypal.com/us/business/paypal-business-fees
+provenance:
+  tool: planning/api-economics/harvest_pricing.py
+  run: 20260920T120546
+  grounding: every price_text was found verbatim in the fetched page text
+audience: business-product
+pricing_basis: ad-valorem
+published: true
+note: US merchant fee schedule covering payment processing, gateway, payouts, disputes and crypto; dominant
+  basis is percentage-of-transaction with fixed per-transaction fees, plus some flat monthly service fees.
+  Only a representative subset of the many fee tables is transcribed.
+plan_count: 26
+currency: USD
 plans:
-  - id: paypal-checkout
-    name: PayPal Checkout (Online)
-    type: usage-based
-    description: 3.49% + $0.49 USD per transaction.
-    entries:
-      - label: Per transaction
-        name: tx
-        type: metered
-        metric: transaction
-        limit: -1
-        timeFrame: usage
-        geo: US
-        unit: 1
-        price: 3.49% + $0.49
-        userMultiplied: false
-    elements:
-      - name: Express Checkout
-      - name: Smart Payment Buttons
-      - name: 200+ markets, 25 currencies
-      - name: Buyer + Seller protection
-  - id: paypal-credit-debit
-    name: Standard Credit/Debit (Online)
-    type: usage-based
-    description: 2.99% + $0.49 USD per transaction.
-    entries:
-      - label: Per transaction
-        name: tx
-        type: metered
-        metric: transaction
-        limit: -1
-        timeFrame: usage
-        geo: US
-        unit: 1
-        price: 2.99% + $0.49
-        userMultiplied: false
-    elements:
-      - name: Hosted card fields
-      - name: Advanced Credit/Debit Card processing
-  - id: paypal-qr
-    name: QR Code Transactions
-    type: usage-based
-    description: 2.29% + $0.09 USD per transaction.
-    entries:
-      - label: Per transaction
-        name: tx
-        type: metered
-        metric: transaction
-        limit: -1
-        timeFrame: usage
-        geo: US
-        unit: 1
-        price: 2.29% + $0.09
-        userMultiplied: false
-    elements:
-      - name: In-person payments via QR
-  - id: paypal-pos-card-present
-    name: POS — Card Present
-    type: usage-based
-    description: 2.29% + $0.09 USD.
-    entries:
-      - label: Per transaction
-        name: tx
-        type: metered
-        metric: transaction
-        limit: -1
-        timeFrame: usage
-        geo: US
-        unit: 1
-        price: 2.29% + $0.09
-        userMultiplied: false
-    elements:
-      - name: Tap/dip/swipe
-      - name: PayPal Zettle hardware
-  - id: paypal-pos-manual
-    name: POS — Manual Card Entry
-    type: usage-based
-    description: 3.49% + $0.09 USD.
-    entries:
-      - label: Per transaction
-        name: tx
-        type: metered
-        metric: transaction
-        limit: -1
-        timeFrame: usage
-        geo: US
-        unit: 1
-        price: 3.49% + $0.09
-        userMultiplied: false
-    elements:
-      - name: Keyed-in transactions
-  - id: paypal-invoicing-ach
-    name: Invoicing — ACH
-    type: usage-based
-    description: 1% (capped at $10) per transaction.
-    entries:
-      - label: Per transaction
-        name: tx
-        type: metered
-        metric: transaction
-        limit: -1
-        timeFrame: usage
-        geo: US
-        unit: 1
-        price: 1% ($10 cap)
-        userMultiplied: false
-    elements:
-      - name: Bank transfer via invoice
-  - id: paypal-international
-    name: International Transactions
-    type: metered
-    description: +1.50% on top of base rate.
-    entries:
-      - label: International surcharge
-        name: intl
-        type: metered
-        metric: transaction
-        limit: -1
-        timeFrame: usage
-        geo: global
-        unit: 1
-        price: +1.50%
-        userMultiplied: false
-    elements:
-      - name: Cross-border surcharge
+- name: PayPal Checkout (domestic commercial transaction)
+  price_text: 3.49% + fixed fee
+  period: per-use
+  unit: transaction
+- name: QR code Transactions
+  price_text: 2.29% + fixed fee
+  price: 2.29
+  period: per-use
+  unit: transaction
+- name: Send/Receive Money for Goods and Services
+  price_text: 2.99%
+  price: 2.99
+  period: per-use
+  unit: transaction
+- name: PayPal Pay Later options
+  price_text: 4.99% + fixed fee
+  price: 4.99
+  period: per-use
+  unit: transaction
+- name: Additional fee for international commercial transactions
+  price_text: 1.50%
+  price: 1.5
+  period: per-use
+  unit: transaction
+- name: Fixed fee, US dollar
+  price_text: 0.49 USD
+  price: 0.49
+  currency: USD
+  period: per-use
+  unit: transaction
+- name: Invoicing Subscription
+  price_text: 14.99 USD per month
+  price: 14.99
+  currency: USD
+  period: month
+  unit: subscription
+- name: Invoicing Pay by Bank (ACH)
+  price_text: 1% (capped at $10.00 per transaction)
+  period: per-use
+  unit: transaction
+- name: Advanced Credit and Debit Card Payments
+  price_text: 2.89% + fixed fee
+  price: 2.89
+  period: per-use
+  unit: transaction
+- name: ACH Services
+  price_text: 0.80% (capped at $5.00 per transaction)
+  period: per-use
+  unit: transaction
+- name: Virtual Terminal
+  price_text: 3.39% + fixed fee
+  price: 3.39
+  period: per-use
+  unit: transaction
+- name: Interchange Plus Plus (Advanced Credit and Debit Card Payments)
+  price_text: Interchange Pass-through Costs + 0.49% + fixed fee
+  price: 0.49
+  period: per-use
+  unit: transaction
+- name: Payments Advanced monthly fee
+  price_text: 5.00 USD
+  price: 5
+  currency: USD
+  period: month
+  unit: account
+- name: Payments Pro monthly fee
+  price_text: 30.00 USD
+  price: 30
+  currency: USD
+  period: month
+  unit: account
+- name: Payflow Pro Transaction
+  price_text: 0.10 USD
+  price: 0.1
+  currency: USD
+  period: per-use
+  unit: transaction
+- name: Payflow Pro monthly fee
+  price_text: 25.00 USD
+  price: 25
+  currency: USD
+  period: month
+  unit: gateway
+- name: Fraud Protection Advanced
+  price_text: 0.07 USD per transaction
+  price: 0.07
+  currency: USD
+  period: per-use
+  unit: transaction
+- name: Account Updater
+  price_text: 0.25 USD per update
+  price: 0.25
+  currency: USD
+  period: per-use
+  unit: update
+- name: Buyer Authentication Service
+  price_text: 10.00 USD per month
+  price: 10
+  currency: USD
+  period: month
+  unit: service
+- name: Network Tokenization
+  price_text: 0.15 USD per token issued
+  price: 0.15
+  currency: USD
+  period: per-use
+  unit: token
+- name: 3D Secure Advanced
+  price_text: 0.03 USD per lookup
+  price: 0.03
+  currency: USD
+  period: per-use
+  unit: lookup
+- name: PayPal Payouts (US, Payouts API)
+  price_text: 0.25 USD
+  price: 0.25
+  currency: USD
+  period: per-use
+  unit: payout
+- name: PayPal Payouts (US)
+  price_text: 2% of total transaction amount
+  price: 2
+  period: per-use
+  unit: payout
+- name: Micropayments (domestic US)
+  price_text: 4.99% + fixed fee
+  price: 4.99
+  period: per-use
+  unit: transaction
+- name: Standard Dispute Fee (US dollar)
+  price_text: 15.00 USD
+  price: 15
+  currency: USD
+  period: per-use
+  unit: dispute
+- name: Pay With Crypto (until July 31, 2026)
+  price_text: 0.99% of transaction amount
+  price: 0.99
+  period: per-use
+  unit: transaction
+rate_limit_statements:
+- Per transaction 25,000.00 USD
+- Per transaction 50,000.00 USD
+- Per day 100,000.00 USD
+- Per week 250,000.00 USD
+- Per month 500,000.00 USD
+- 'Merchant Branded Card Issuing Fees (minimum order: 1,000 cards)'
