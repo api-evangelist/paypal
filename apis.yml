@@ -1174,6 +1174,8 @@ apis:
   - type: Documentation
     url: https://developer.paypal.com/docs/api/payment-tokens/v3/
 common:
+- type: RateLimits
+  url: rate-limits/paypal-rate-limits.yml
 - type: Plans
   url: plans/paypal-plans-pricing.yml
 - type: CapabilityMap
