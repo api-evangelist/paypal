@@ -11,7 +11,7 @@ capability_model:
   attribution: Turbo EA Capabilities by Vincent Verdet — Turbo EA, https://github.com/vincentmakes/turbo-ea-capabilities,
     CC BY 4.0
   notice: NOTICE
-edge_count: 16
+edge_count: 17
 edges:
 - tag: Authorizations
   spec_file: paypal-authorizations-api-openapi.yml
@@ -125,6 +125,20 @@ edges:
   reason: Full CRUD lifecycle over outbound webhook registrations and their event subscriptions, which
     is exactly Webhook & Event Subscription Management on a developer platform. Still partly technical
     plumbing, so not maximal confidence.
+- tag: Webhooks-Event-Types
+  spec_file: paypal-webhooks-event-types-api-openapi.yml
+  capability_id: BC-4270.80
+  capability_id_l1: BC-4270
+  capability_name: Webhook & Event Subscription Management
+  confidence: 0.72
+  evidence: 'GET /v1/notifications/webhooks-event-types  webhooks-event-types.list  Paypal List available
+    events; schemas: EventTypeList, event_type'
+  reason: The operation exposes the catalogue of webhook event types (event schemas) available to integrating
+    developers, which is part of outbound webhook/event subscription management on a public API platform.
+    Mapped to BC-4270.80 rather than any payments capability because the surface describes notification
+    metadata, not money movement. Confidence held moderate because a single read-only 'list event types'
+    call is thin evidence and could equally be viewed as developer documentation plumbing.
+  recovered_from: sweep-20260829T005356Z-edges.json
 - tag: Webhooks-Lookup
   spec_file: paypal-webhooks-lookup-api-openapi.yml
   capability_id: BC-4270.80
