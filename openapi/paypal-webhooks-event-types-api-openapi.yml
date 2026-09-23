@@ -1,8 +1,8 @@
-openapi: 3.0.3
+openapi: 3.2.0
 info:
-  title: Paypal Subscriptions Authorizations Webhooks-Event-Types API
-  description: You can use billing plans and subscriptions to create subscriptions that process recurring PayPal payments for physical or digital goods, or services. A plan includes pricing and billing cycle information that defines the amount and frequency of charge for a subscription. You can also define a fixed plan, such as a $5 basic plan or a volume- or graduated-based plan with pricing tiers based on the quantity purchased. For more information, see <a href="/docs/subscriptions/">Subscriptions Overview</a>.
-  version: '1.6'
+  title: Paypal Webhooks Management Webhooks Event Types API
+  description: The PayPal REST APIs use webhooks for event notification. Webhooks are HTTP callbacks that receive notification messages for events. After you configure a webhook listener for your app, you can create a webhook, which subscribes the webhook listener for your app to events. The notifications namespace contains resource collections for webhooks.
+  version: '1.11'
   contact: {}
 servers:
 - url: https://api-m.sandbox.paypal.com
@@ -16,7 +16,7 @@ paths:
   /v1/notifications/webhooks-event-types:
     get:
       summary: Paypal List available events
-      description: Lists available events to which any webhook can subscribe. For a list of supported events, see [Webhook event names](/docs/api/notifications/webhooks/event-names/).
+      description: Lists available events to which any webhook can subscribe. For a list of supported events, see Webhook event names.
       operationId: webhooks-event-types.list
       responses:
         '200':
@@ -35,40 +35,16 @@ paths:
       - Webhooks-Event-Types
 components:
   schemas:
-    error:
+    EventTypeList:
       type: object
-      title: Error
-      description: The error details.
+      title: Event Type List
+      description: A list of webhook events.
       properties:
-        name:
-          type: string
-          description: The human-readable, unique name of the error.
-        message:
-          type: string
-          description: The message that describes the error.
-        debug_id:
-          type: string
-          description: The PayPal internal ID. Used for correlation purposes.
-        information_link:
-          type: string
-          description: The information link, or URI, that shows detailed information about this error for the developer.
-          readOnly: true
-        details:
+        event_types:
           type: array
-          description: An array of additional details about the error.
+          description: An array of webhook events.
           items:
-            $ref: '#/components/schemas/error_details-2'
-        links:
-          type: array
-          description: An array of request-related [HATEOAS links](/docs/api/reference/api-responses/#hateoas-links).
-          readOnly: true
-          items:
-            $ref: '#/components/schemas/link_description'
-            readOnly: true
-      required:
-      - name
-      - message
-      - debug_id
+            $ref: '#/components/schemas/event_type'
     link_description:
       type: object
       title: Link Description
@@ -121,16 +97,6 @@ components:
             description: The ID for an event type. For example, `1.0` or `2.0`.
       required:
       - name
-    EventTypeList:
-      type: object
-      title: Event Type List
-      description: A list of webhook events.
-      properties:
-        event_types:
-          type: array
-          description: An array of webhook events.
-          items:
-            $ref: '#/components/schemas/event_type'
     error_details-2:
       title: Error Details
       type: object
@@ -154,6 +120,40 @@ components:
           description: The human-readable description for an issue. The description can change over the lifetime of an API, so clients must not depend on this value.
       required:
       - issue
+    error:
+      type: object
+      title: Error
+      description: The error details.
+      properties:
+        name:
+          type: string
+          description: The human-readable, unique name of the error.
+        message:
+          type: string
+          description: The message that describes the error.
+        debug_id:
+          type: string
+          description: The PayPal internal ID. Used for correlation purposes.
+        information_link:
+          type: string
+          description: The information link, or URI, that shows detailed information about this error for the developer.
+          readOnly: true
+        details:
+          type: array
+          description: An array of additional details about the error.
+          items:
+            $ref: '#/components/schemas/error_details-2'
+        links:
+          type: array
+          description: An array of request-related [HATEOAS links](/docs/api/reference/api-responses/#hateoas-links).
+          readOnly: true
+          items:
+            $ref: '#/components/schemas/link_description'
+            readOnly: true
+      required:
+      - name
+      - message
+      - debug_id
   securitySchemes:
     Oauth2:
       type: oauth2
@@ -162,6 +162,7 @@ components:
         clientCredentials:
           tokenUrl: /v1/oauth2/token
           scopes:
-            https://uri.paypal.com/services/subscriptions: Manage plan & subscription
+            https://uri.paypal.com/services/applications/webhooks: Access/update Webhooks.
+            https://uri.paypal.com/services/applications/verify-webhook-signature: Verify Webhook Signature
 externalDocs:
-  url: https://developer.paypal.com/docs/api/subscriptions/v1/
+  url: https://developer.paypal.com/docs/api/webhooks/v1/

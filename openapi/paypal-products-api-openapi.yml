@@ -1,8 +1,8 @@
-openapi: 3.0.3
+openapi: 3.2.0
 info:
-  title: Paypal Subscriptions Authorizations Products API
-  description: You can use billing plans and subscriptions to create subscriptions that process recurring PayPal payments for physical or digital goods, or services. A plan includes pricing and billing cycle information that defines the amount and frequency of charge for a subscription. You can also define a fixed plan, such as a $5 basic plan or a volume- or graduated-based plan with pricing tiers based on the quantity purchased. For more information, see <a href="/docs/subscriptions/">Subscriptions Overview</a>.
-  version: '1.6'
+  title: Paypal Catalog Products API
+  description: Merchants can use the Catalog Products API to create products, which are goods and services.
+  version: '1.0'
   contact: {}
 servers:
 - url: https://api-m.sandbox.paypal.com
@@ -198,7 +198,22 @@ paths:
       - Products
     patch:
       summary: Paypal Update product
-      description: Updates a product, by ID. You can patch these attributes and objects:<table><thead><tr><th>Attribute or object</th><th>Operations</th></tr></thead><tbody><tr><td><code>description</code></td><td>add, replace, remove</td></tr><tr><td><code>category</code></td><td>add, replace, remove</td></tr><tr><td><code>image_url</code></td><td>add, replace, remove</td></tr><tr><td><code>home_url</code></td><td>add, replace, remove</td></tr></tbody></table>
+      description: 'Updates a product, by ID. You can patch these attributes and objects:
+
+
+        Attribute or objectOperations
+
+
+        descriptionadd, replace, remove
+
+
+        categoryadd, replace, remove
+
+
+        image_urladd, replace, remove
+
+
+        home_urladd, replace, remove'
       operationId: products.patch
       responses:
         '204':
@@ -270,358 +285,55 @@ paths:
       tags:
       - Products
 components:
+  parameters:
+    total_required:
+      name: total_required
+      in: query
+      description: Indicates whether to show the total items and total pages in the response.
+      schema:
+        type: boolean
+        default: false
+    paypal_request_id:
+      name: PayPal-Request-Id
+      in: header
+      description: The server stores keys for 72 hours.
+      required: false
+      schema:
+        type: string
+    page:
+      name: page
+      in: query
+      description: A non-zero integer which is the start index of the entire list of items that are returned in the response. So, the combination of `page=1` and `page_size=20` returns the first 20 items. The combination of `page=2` and `page_size=20` returns the next 20 items.
+      schema:
+        type: integer
+        minimum: 1
+        maximum: 100000
+        default: 1
+    page_size:
+      name: page_size
+      in: query
+      description: The number of items to return in the response.
+      schema:
+        type: integer
+        minimum: 1
+        maximum: 20
+        default: 10
+    prefer:
+      name: Prefer
+      in: header
+      description: The preferred server response upon successful completion of the request. Value is:<ul><li><code>return=minimal</code>. The server returns a minimal response to optimize communication between the API caller and the server. A minimal response includes the <code>id</code>, <code>status</code> and HATEOAS links.</li><li><code>return=representation</code>. The server returns a complete resource representation, including the current state of the resource.</li></ul>
+      required: false
+      schema:
+        type: string
+        default: return=minimal
+    product_id:
+      name: product_id
+      in: path
+      required: true
+      description: The product ID.
+      schema:
+        type: string
   schemas:
-    products.patch-400:
-      properties:
-        details:
-          type: array
-          items:
-            anyOf:
-            - title: MISSING_REQUIRED_PARAMETER
-              properties:
-                issue:
-                  type: string
-                  enum:
-                  - MISSING_REQUIRED_PARAMETER
-                description:
-                  type: string
-                  enum:
-                  - A required field is missing.
-            - title: UNSUPPORTED_PATCH_OPERATION
-              properties:
-                issue:
-                  type: string
-                  enum:
-                  - UNSUPPORTED_PATCH_OPERATION
-                description:
-                  type: string
-                  enum:
-                  - The specified patch operation not supported for this field.
-            - title: INVALID_PATCH_PATH
-              properties:
-                issue:
-                  type: string
-                  enum:
-                  - INVALID_PATCH_PATH
-                description:
-                  type: string
-                  enum:
-                  - The specified field cannot be patched.
-            - title: INVALID_PARAMETER_SYNTAX
-              properties:
-                issue:
-                  type: string
-                  enum:
-                  - INVALID_PARAMETER_SYNTAX
-                description:
-                  type: string
-                  enum:
-                  - The value of a field does not conform to the expected format.
-            - title: INVALID_PARAMETER_VALUE
-              properties:
-                issue:
-                  type: string
-                  enum:
-                  - INVALID_PARAMETER_VALUE
-                description:
-                  type: string
-                  enum:
-                  - The value of a field is invalid.
-    error_404:
-      type: object
-      title: Not found Error
-      description: The server has not found anything matching the request URI. This either means that the URI is incorrect or the resource is not available.
-      properties:
-        name:
-          type: string
-          enum:
-          - RESOURCE_NOT_FOUND
-        message:
-          type: string
-          enum:
-          - The specified resource does not exist.
-        details:
-          type: array
-          items:
-            $ref: '#/components/schemas/error_details'
-        debug_id:
-          type: string
-          description: The PayPal internal ID. Used for correlation purposes.
-        links:
-          description: An array of request-related [HATEOAS links](https://en.wikipedia.org/wiki/HATEOAS).
-          type: array
-          minItems: 0
-          maxItems: 10000
-          items:
-            $ref: '#/components/schemas/error_link_description'
-    error_409:
-      type: object
-      title: Resource Conflict Error
-      description: The server has detected a conflict while processing this request.
-      properties:
-        name:
-          type: string
-          enum:
-          - RESOURCE_CONFLICT
-        message:
-          type: string
-          enum:
-          - The server has detected a conflict while processing this request.
-        details:
-          type: array
-          items:
-            $ref: '#/components/schemas/error_details'
-        debug_id:
-          type: string
-          description: The PayPal internal ID. Used for correlation purposes.
-        links:
-          description: An array of request-related [HATEOAS links](https://en.wikipedia.org/wiki/HATEOAS).
-          type: array
-          minItems: 0
-          maxItems: 10000
-          items:
-            $ref: '#/components/schemas/error_link_description'
-    '403':
-      properties:
-        details:
-          type: array
-          items:
-            anyOf:
-            - title: PERMISSION_DENIED
-              properties:
-                issue:
-                  type: string
-                  enum:
-                  - PERMISSION_DENIED
-                description:
-                  type: string
-                  enum:
-                  - You do not have permission to access or perform operations on this resource.
-    link_description:
-      type: object
-      title: Link Description
-      description: The request-related [HATEOAS link](/docs/api/reference/api-responses/#hateoas-links) information.
-      required:
-      - href
-      - rel
-      properties:
-        href:
-          type: string
-          description: The complete target URL. To make the related call, combine the method with this [URI Template-formatted](https://tools.ietf.org/html/rfc6570) link. For pre-processing, include the `$`, `(`, and `)` characters. The `href` is the key HATEOAS component that links a completed call with a subsequent call.
-        rel:
-          type: string
-          description: The [link relation type](https://tools.ietf.org/html/rfc5988#section-4), which serves as an ID for a link that unambiguously describes the semantics of the link. See [Link Relations](https://www.iana.org/assignments/link-relations/link-relations.xhtml).
-        method:
-          type: string
-          description: The HTTP method required to make the related call.
-          enum:
-          - GET
-          - POST
-          - PUT
-          - DELETE
-          - HEAD
-          - CONNECT
-          - OPTIONS
-          - PATCH
-    patch:
-      type: object
-      title: Patch
-      description: The JSON patch object to apply partial updates to resources.
-      properties:
-        op:
-          type: string
-          description: The operation.
-          enum:
-          - add
-          - remove
-          - replace
-          - move
-          - copy
-          - test
-        path:
-          type: string
-          description: The <a href="https://tools.ietf.org/html/rfc6901">JSON Pointer</a> to the target document location at which to complete the operation.
-        value:
-          title: Patch Value
-          description: The value to apply. The <code>remove</code> operation does not require a value.
-        from:
-          type: string
-          description: The <a href="https://tools.ietf.org/html/rfc6901">JSON Pointer</a> to the target document location from which to move the value. Required for the <code>move</code> operation.
-      required:
-      - op
-    error_403:
-      type: object
-      title: Not Authorized Error
-      description: 'The client is not authorized to access this resource, although it may have valid credentials. '
-      properties:
-        name:
-          type: string
-          enum:
-          - NOT_AUTHORIZED
-        message:
-          type: string
-          enum:
-          - Authorization failed due to insufficient permissions.
-        details:
-          type: array
-          items:
-            $ref: '#/components/schemas/error_details'
-        debug_id:
-          type: string
-          description: The PayPal internal ID. Used for correlation purposes.
-        links:
-          description: An array of request-related [HATEOAS links](https://en.wikipedia.org/wiki/HATEOAS).
-          type: array
-          minItems: 0
-          maxItems: 10000
-          items:
-            $ref: '#/components/schemas/error_link_description'
-    error_422:
-      type: object
-      title: Unprocessable Entity Error
-      description: The requested action cannot be performed and may require interaction with APIs or processes outside of the current request. This is distinct from a 500 response in that there are no systemic problems limiting the API from performing the request.
-      properties:
-        name:
-          type: string
-          enum:
-          - UNPROCESSABLE_ENTITY
-        message:
-          type: string
-          enum:
-          - The requested action could not be performed, semantically incorrect, or failed business validation.
-        details:
-          type: array
-          items:
-            $ref: '#/components/schemas/error_details'
-        debug_id:
-          type: string
-          description: The PayPal internal ID. Used for correlation purposes.
-        links:
-          description: An array of request-related [HATEOAS links](https://en.wikipedia.org/wiki/HATEOAS).
-          type: array
-          minItems: 0
-          maxItems: 10000
-          items:
-            $ref: '#/components/schemas/error_link_description'
-    error_details:
-      title: Error Details
-      type: object
-      description: The error details. Required for client-side `4XX` errors.
-      properties:
-        field:
-          type: string
-          description: The field that caused the error. If this field is in the body, set this value to the field's JSON pointer value. Required for client-side errors.
-        value:
-          type: string
-          description: The value of the field that caused the error.
-        location:
-          $ref: '#/components/schemas/error_location'
-        issue:
-          type: string
-          description: The unique, fine-grained application-level error code.
-        description:
-          type: string
-          description: The human-readable description for an issue. The description can change over the lifetime of an API, so clients must not depend on this value.
-      required:
-      - issue
-    products.create-400:
-      properties:
-        details:
-          type: array
-          items:
-            anyOf:
-            - title: INVALID_PARAMETER_SYNTAX
-              properties:
-                issue:
-                  type: string
-                  enum:
-                  - INVALID_PARAMETER_SYNTAX
-                description:
-                  type: string
-                  enum:
-                  - Input identifier must not use system prefix(PROD-).
-            - title: INVALID_PARAMETER_SYNTAX
-              properties:
-                issue:
-                  type: string
-                  enum:
-                  - INVALID_PARAMETER_SYNTAX
-                description:
-                  type: string
-                  enum:
-                  - The value of a field does not conform to the expected format.
-            - title: INVALID_PARAMETER_VALUE
-              properties:
-                issue:
-                  type: string
-                  enum:
-                  - INVALID_PARAMETER_VALUE
-                description:
-                  type: string
-                  enum:
-                  - The value of a field is invalid.
-            - title: MISSING_REQUIRED_PARAMETER
-              properties:
-                issue:
-                  type: string
-                  enum:
-                  - MISSING_REQUIRED_PARAMETER
-                description:
-                  type: string
-                  enum:
-                  - A required field is missing.
-            - title: INVALID_STRING_MIN_LENGTH
-              properties:
-                issue:
-                  type: string
-                  enum:
-                  - INVALID_STRING_MIN_LENGTH
-                description:
-                  type: string
-                  enum:
-                  - The value of a field is too short.
-            - title: INVALID_STRING_MAX_LENGTH
-              properties:
-                issue:
-                  type: string
-                  enum:
-                  - INVALID_STRING_MAX_LENGTH
-                description:
-                  type: string
-                  enum:
-                  - The value of a field is too long.
-    error_link_description:
-      title: Link Description
-      description: The request-related [HATEOAS link](/api/rest/responses/#hateoas-links) information.
-      type: object
-      required:
-      - href
-      - rel
-      properties:
-        href:
-          description: The complete target URL. To make the related call, combine the method with this [URI Template-formatted](https://tools.ietf.org/html/rfc6570) link. For pre-processing, include the `$`, `(`, and `)` characters. The `href` is the key HATEOAS component that links a completed call with a subsequent call.
-          type: string
-          minLength: 0
-          maxLength: 20000
-          pattern: ^.*$
-        rel:
-          description: The [link relation type](https://tools.ietf.org/html/rfc5988#section-4), which serves as an ID for a link that unambiguously describes the semantics of the link. See [Link Relations](https://www.iana.org/assignments/link-relations/link-relations.xhtml).
-          type: string
-          minLength: 0
-          maxLength: 100
-          pattern: ^.*$
-        method:
-          description: The HTTP method required to make the related call.
-          type: string
-          minLength: 3
-          maxLength: 6
-          pattern: ^[A-Z]*$
-          enum:
-          - GET
-          - POST
-          - PUT
-          - DELETE
-          - PATCH
     product_collection_element:
       title: Product Element
       description: The details for a product in the collection response.
@@ -654,6 +366,262 @@ components:
           items:
             $ref: '#/components/schemas/link_description'
             readOnly: true
+    '404':
+      properties:
+        details:
+          type: array
+          items:
+            anyOf:
+            - title: INVALID_RESOURCE_ID
+              properties:
+                issue:
+                  type: string
+                  enum:
+                  - INVALID_RESOURCE_ID
+                description:
+                  type: string
+                  enum:
+                  - Specified resource ID does not exist. Please check the resource ID and try again.
+    '403':
+      properties:
+        details:
+          type: array
+          items:
+            anyOf:
+            - title: PERMISSION_DENIED
+              properties:
+                issue:
+                  type: string
+                  enum:
+                  - PERMISSION_DENIED
+                description:
+                  type: string
+                  enum:
+                  - You do not have permission to access or perform operations on this resource.
+    '422':
+      properties:
+        details:
+          type: array
+          items:
+            anyOf:
+            - title: USER_ACCOUNT_CLOSED
+              properties:
+                issue:
+                  type: string
+                  enum:
+                  - USER_ACCOUNT_CLOSED
+                description:
+                  type: string
+                  enum:
+                  - User account locked or closed.
+            - title: DUPLICATE_RESOURCE_IDENTIFIER
+              properties:
+                issue:
+                  type: string
+                  enum:
+                  - DUPLICATE_RESOURCE_IDENTIFIER
+                description:
+                  type: string
+                  enum:
+                  - Identifier must be unique.
+            - title: COUNTRY_NOT_SUPPORTED
+              properties:
+                issue:
+                  type: string
+                  enum:
+                  - COUNTRY_NOT_SUPPORTED
+                description:
+                  type: string
+                  enum:
+                  - This merchant country is not currently supported.
+    error_location:
+      type: string
+      description: The location of the field that caused the error. Value is `body`, `path`, or `query`.
+      enum:
+      - body
+      - path
+      - query
+      default: body
+    error_409:
+      type: object
+      title: Resource Conflict Error
+      description: The server has detected a conflict while processing this request.
+      properties:
+        name:
+          type: string
+          enum:
+          - RESOURCE_CONFLICT
+        message:
+          type: string
+          enum:
+          - The server has detected a conflict while processing this request.
+        details:
+          type: array
+          items:
+            $ref: '#/components/schemas/error_details'
+        debug_id:
+          type: string
+          description: The PayPal internal ID. Used for correlation purposes.
+        links:
+          description: An array of request-related [HATEOAS links](https://en.wikipedia.org/wiki/HATEOAS).
+          type: array
+          minItems: 0
+          maxItems: 10000
+          items:
+            $ref: '#/components/schemas/error_link_description'
+    date_time:
+      type: string
+      description: The date and time, in [Internet date and time format](https://tools.ietf.org/html/rfc3339#section-5.6). Seconds are required while fractional seconds are optional.<blockquote><strong>Note:</strong> The regular expression provides guidance but does not reject all invalid dates.</blockquote>
+      format: ppaas_date_time_v3
+      minLength: 20
+      maxLength: 64
+      pattern: ^[0-9]{4}-(0[1-9]|1[0-2])-(0[1-9]|[1-2][0-9]|3[0-1])[T,t]([0-1][0-9]|2[0-3]):[0-5][0-9]:([0-5][0-9]|60)([.][0-9]+)?([Zz]|[+-][0-9]{2}:[0-9]{2})$
+    error_500:
+      type: object
+      title: Internal Server Error
+      description: This is either a system or application error, and generally indicates that although the client appeared to provide a correct request, something unexpected has gone wrong on the server.
+      properties:
+        name:
+          type: string
+          enum:
+          - INTERNAL_SERVER_ERROR
+        message:
+          type: string
+          enum:
+          - An internal server error occurred.
+        debug_id:
+          type: string
+          description: The PayPal internal ID. Used for correlation purposes.
+        links:
+          description: An array of request-related [HATEOAS links](https://en.wikipedia.org/wiki/HATEOAS).
+          type: array
+          minItems: 0
+          maxItems: 10000
+          items:
+            $ref: '#/components/schemas/error_link_description'
+      example:
+        name: INTERNAL_SERVER_ERROR
+        message: An internal server error occurred.
+        debug_id: 90957fca61718
+        links:
+        - href: https://developer.paypal.com/api/orders/v2/#error-INTERNAL_SERVER_ERROR
+          rel: information_link
+    error_403:
+      type: object
+      title: Not Authorized Error
+      description: 'The client is not authorized to access this resource, although it may have valid credentials. '
+      properties:
+        name:
+          type: string
+          enum:
+          - NOT_AUTHORIZED
+        message:
+          type: string
+          enum:
+          - Authorization failed due to insufficient permissions.
+        details:
+          type: array
+          items:
+            $ref: '#/components/schemas/error_details'
+        debug_id:
+          type: string
+          description: The PayPal internal ID. Used for correlation purposes.
+        links:
+          description: An array of request-related [HATEOAS links](https://en.wikipedia.org/wiki/HATEOAS).
+          type: array
+          minItems: 0
+          maxItems: 10000
+          items:
+            $ref: '#/components/schemas/error_link_description'
+    '400':
+      properties:
+        details:
+          type: array
+          items:
+            anyOf:
+            - title: INVALID_PARAMETER_VALUE
+              properties:
+                issue:
+                  type: string
+                  enum:
+                  - INVALID_PARAMETER_VALUE
+                description:
+                  type: string
+                  enum:
+                  - The value of a field is invalid.
+    patch:
+      type: object
+      title: Patch
+      description: The JSON patch object to apply partial updates to resources.
+      properties:
+        op:
+          type: string
+          description: The operation.
+          enum:
+          - add
+          - remove
+          - replace
+          - move
+          - copy
+          - test
+        path:
+          type: string
+          description: The <a href="https://tools.ietf.org/html/rfc6901">JSON Pointer</a> to the target document location at which to complete the operation.
+        value:
+          title: Patch Value
+          description: The value to apply. The <code>remove</code> operation does not require a value.
+        from:
+          type: string
+          description: The <a href="https://tools.ietf.org/html/rfc6901">JSON Pointer</a> to the target document location from which to move the value. Required for the <code>move</code> operation.
+      required:
+      - op
+    products.patch-422:
+      properties:
+        details:
+          type: array
+          items:
+            anyOf:
+            - title: USER_ACCOUNT_CLOSED
+              properties:
+                issue:
+                  type: string
+                  enum:
+                  - USER_ACCOUNT_CLOSED
+                description:
+                  type: string
+                  enum:
+                  - User account locked or closed.
+            - title: DUPLICATE_RESOURCE_IDENTIFIER
+              properties:
+                issue:
+                  type: string
+                  enum:
+                  - DUPLICATE_RESOURCE_IDENTIFIER
+                description:
+                  type: string
+                  enum:
+                  - Identifier must be unique.
+    error_details:
+      title: Error Details
+      type: object
+      description: The error details. Required for client-side `4XX` errors.
+      properties:
+        field:
+          type: string
+          description: The field that caused the error. If this field is in the body, set this value to the field's JSON pointer value. Required for client-side errors.
+        value:
+          type: string
+          description: The value of the field that caused the error.
+        location:
+          $ref: '#/components/schemas/error_location'
+        issue:
+          type: string
+          description: The unique, fine-grained application-level error code.
+        description:
+          type: string
+          description: The human-readable description for an issue. The description can change over the lifetime of an API, so clients must not depend on this value.
+      required:
+      - issue
     product:
       title: Product Details
       description: The product details.
@@ -714,50 +682,106 @@ components:
           items:
             $ref: '#/components/schemas/link_description'
             readOnly: true
-    products.patch-422:
+    error_404:
+      type: object
+      title: Not found Error
+      description: The server has not found anything matching the request URI. This either means that the URI is incorrect or the resource is not available.
+      properties:
+        name:
+          type: string
+          enum:
+          - RESOURCE_NOT_FOUND
+        message:
+          type: string
+          enum:
+          - The specified resource does not exist.
+        details:
+          type: array
+          items:
+            $ref: '#/components/schemas/error_details'
+        debug_id:
+          type: string
+          description: The PayPal internal ID. Used for correlation purposes.
+        links:
+          description: An array of request-related [HATEOAS links](https://en.wikipedia.org/wiki/HATEOAS).
+          type: array
+          minItems: 0
+          maxItems: 10000
+          items:
+            $ref: '#/components/schemas/error_link_description'
+    error_415:
+      type: object
+      title: Unsupported Media Type Error
+      description: The server does not support the request payload's media type.
+      properties:
+        name:
+          type: string
+          enum:
+          - UNSUPPORTED_MEDIA_TYPE
+        message:
+          type: string
+          enum:
+          - The server does not support the request payload's media type.
+        details:
+          type: array
+          items:
+            $ref: '#/components/schemas/error_details'
+        debug_id:
+          type: string
+          description: The PayPal internal ID. Used for correlation purposes.
+        links:
+          description: An array of request-related [HATEOAS links](https://en.wikipedia.org/wiki/HATEOAS).
+          type: array
+          minItems: 0
+          maxItems: 10000
+          items:
+            $ref: '#/components/schemas/error_link_description'
+    products.patch-400:
       properties:
         details:
           type: array
           items:
             anyOf:
-            - title: USER_ACCOUNT_CLOSED
+            - title: MISSING_REQUIRED_PARAMETER
               properties:
                 issue:
                   type: string
                   enum:
-                  - USER_ACCOUNT_CLOSED
+                  - MISSING_REQUIRED_PARAMETER
                 description:
                   type: string
                   enum:
-                  - User account locked or closed.
-            - title: DUPLICATE_RESOURCE_IDENTIFIER
+                  - A required field is missing.
+            - title: UNSUPPORTED_PATCH_OPERATION
               properties:
                 issue:
                   type: string
                   enum:
-                  - DUPLICATE_RESOURCE_IDENTIFIER
+                  - UNSUPPORTED_PATCH_OPERATION
                 description:
                   type: string
                   enum:
-                  - Identifier must be unique.
-    error_default:
-      description: The default error response.
-      oneOf:
-      - $ref: '#/components/schemas/error_400'
-      - $ref: '#/components/schemas/error_401'
-      - $ref: '#/components/schemas/error_403'
-      - $ref: '#/components/schemas/error_404'
-      - $ref: '#/components/schemas/error_409'
-      - $ref: '#/components/schemas/error_415'
-      - $ref: '#/components/schemas/error_422'
-      - $ref: '#/components/schemas/error_500'
-      - $ref: '#/components/schemas/error_503'
-    '400':
-      properties:
-        details:
-          type: array
-          items:
-            anyOf:
+                  - The specified patch operation not supported for this field.
+            - title: INVALID_PATCH_PATH
+              properties:
+                issue:
+                  type: string
+                  enum:
+                  - INVALID_PATCH_PATH
+                description:
+                  type: string
+                  enum:
+                  - The specified field cannot be patched.
+            - title: INVALID_PARAMETER_SYNTAX
+              properties:
+                issue:
+                  type: string
+                  enum:
+                  - INVALID_PARAMETER_SYNTAX
+                description:
+                  type: string
+                  enum:
+                  - The value of a field does not conform to the expected format.
             - title: INVALID_PARAMETER_VALUE
               properties:
                 issue:
@@ -768,154 +792,54 @@ components:
                   type: string
                   enum:
                   - The value of a field is invalid.
-    error_location:
-      type: string
-      description: The location of the field that caused the error. Value is `body`, `path`, or `query`.
-      enum:
-      - body
-      - path
-      - query
-      default: body
-    patch_request:
-      type: array
-      title: Patch Request
-      description: An array of JSON patch objects to apply partial updates to resources.
-      items:
-        $ref: '#/components/schemas/patch'
-    '401':
-      properties:
-        details:
-          type: array
-          items:
-            anyOf:
-            - title: INVALID_ACCOUNT_STATUS
-              properties:
-                issue:
-                  type: string
-                  enum:
-                  - INVALID_ACCOUNT_STATUS
-                description:
-                  type: string
-                  enum:
-                  - Account validations failed for the user.
-    product_collection:
-      title: Product Collection
-      description: The list of products, with details.
+    product_request_POST:
+      title: Create Product Request
+      description: The create product request details.
       type: object
       properties:
-        products:
-          type: array
-          description: An array of products.
-          minItems: 1
-          maxItems: 32767
-          items:
-            $ref: '#/components/schemas/product_collection_element'
-        total_items:
-          type: integer
-          description: The total number of items.
-          minimum: 0
-          maximum: 500000000
-        total_pages:
-          type: integer
-          description: The total number of pages.
-          minimum: 0
-          maximum: 100000000
-        links:
-          type: array
-          description: An array of request-related [HATEOAS links](/docs/api/overview/#hateoas-links).
-          readOnly: true
-          items:
-            $ref: '#/components/schemas/link_description'
-            readOnly: true
-    error_503:
-      type: object
-      title: Service Unavailable Error
-      description: The server is temporarily unable to handle the request, for example, because of planned maintenance or downtime.
-      properties:
+        id:
+          type: string
+          description: The ID of the product. You can specify the SKU for the product. If you omit the ID, the system generates it. System-generated IDs have the `PROD-` prefix.
+          minLength: 6
+          maxLength: 50
         name:
           type: string
+          description: The product name.
+          minLength: 1
+          maxLength: 127
+        description:
+          type: string
+          description: The product description.
+          minLength: 1
+          maxLength: 256
+        type:
+          type: string
+          description: The product type. Indicates whether the product is physical or digital goods, or a service.
+          minLength: 1
+          maxLength: 24
+          pattern: ^[A-Z_]+$
+          default: PHYSICAL
           enum:
-          - SERVICE_UNAVAILABLE
-        message:
+          - PHYSICAL
+          - DIGITAL
+          - SERVICE
+        category:
+          $ref: '#/components/schemas/product_category'
+        image_url:
           type: string
-          enum:
-          - Service Unavailable.
-        debug_id:
+          format: uri
+          minLength: 1
+          maxLength: 2000
+          description: The image URL for the product.
+        home_url:
           type: string
-          description: The PayPal internal ID. Used for correlation purposes.
-        links:
-          description: An array of request-related [HATEOAS links](https://en.wikipedia.org/wiki/HATEOAS).
-          type: array
-          minItems: 0
-          maxItems: 10000
-          items:
-            $ref: '#/components/schemas/error_link_description'
-      example:
-        name: SERVICE_UNAVAILABLE
-        message: Service Unavailable.
-        debug_id: 90957fca61718
-        information_link: https://developer.paypal.com/docs/api/orders/v2/#error-SERVICE_UNAVAILABLE
-    error_400:
-      type: object
-      title: Bad Request Error
-      description: Request is not well-formed, syntactically incorrect, or violates schema.
-      properties:
-        name:
-          type: string
-          enum:
-          - INVALID_REQUEST
-        message:
-          type: string
-          enum:
-          - Request is not well-formed, syntactically incorrect, or violates schema.
-        details:
-          type: array
-          items:
-            $ref: '#/components/schemas/error_details'
-        debug_id:
-          type: string
-          description: The PayPal internal ID. Used for correlation purposes.
-        links:
-          description: An array of request-related [HATEOAS links](https://en.wikipedia.org/wiki/HATEOAS).
-          type: array
-          minItems: 0
-          maxItems: 10000
-          items:
-            $ref: '#/components/schemas/error_link_description'
-    date_time:
-      type: string
-      description: The date and time, in [Internet date and time format](https://tools.ietf.org/html/rfc3339#section-5.6). Seconds are required while fractional seconds are optional.<blockquote><strong>Note:</strong> The regular expression provides guidance but does not reject all invalid dates.</blockquote>
-      format: ppaas_date_time_v3
-      minLength: 20
-      maxLength: 64
-      pattern: ^[0-9]{4}-(0[1-9]|1[0-2])-(0[1-9]|[1-2][0-9]|3[0-1])[T,t]([0-1][0-9]|2[0-3]):[0-5][0-9]:([0-5][0-9]|60)([.][0-9]+)?([Zz]|[+-][0-9]{2}:[0-9]{2})$
-    error_401:
-      type: object
-      title: Unauthorized Error
-      description: Authentication failed due to missing Authorization header, or invalid authentication credentials.
-      properties:
-        name:
-          type: string
-          enum:
-          - AUTHENTICATION_FAILURE
-        message:
-          type: string
-          enum:
-          - Authentication failed due to missing authorization header, or invalid authentication credentials.
-        details:
-          type: array
-          items:
-            $ref: '#/components/schemas/error_details'
-        debug_id:
-          type: string
-          description: The PayPal internal ID. Used for correlation purposes.
-        links:
-          description: An array of request-related [HATEOAS links](https://en.wikipedia.org/wiki/HATEOAS).
-          type: array
-          minItems: 0
-          maxItems: 10000
-          items:
-            $ref: '#/components/schemas/error_link_description'
+          format: uri
+          minLength: 1
+          maxLength: 2000
+          description: The home page URL for the product.
+      required:
+      - name
+      - type
     product_category:
       type: string
       description: The product category.
@@ -1370,35 +1294,67 @@ components:
       - WIRE_TRANSFER_AND_MONEY_ORDER
       - WOMEN_ACCESSORY_SPECIALITY
       - WOMEN_CLOTHING
-    '404':
+    '401':
       properties:
         details:
           type: array
           items:
             anyOf:
-            - title: INVALID_RESOURCE_ID
+            - title: INVALID_ACCOUNT_STATUS
               properties:
                 issue:
                   type: string
                   enum:
-                  - INVALID_RESOURCE_ID
+                  - INVALID_ACCOUNT_STATUS
                 description:
                   type: string
                   enum:
-                  - Specified resource ID does not exist. Please check the resource ID and try again.
-    error_415:
+                  - Account validations failed for the user.
+    patch_request:
+      type: array
+      title: Patch Request
+      description: An array of JSON patch objects to apply partial updates to resources.
+      items:
+        $ref: '#/components/schemas/patch'
+    link_description:
       type: object
-      title: Unsupported Media Type Error
-      description: The server does not support the request payload's media type.
+      title: Link Description
+      description: The request-related [HATEOAS link](/docs/api/reference/api-responses/#hateoas-links) information.
+      required:
+      - href
+      - rel
+      properties:
+        href:
+          type: string
+          description: The complete target URL. To make the related call, combine the method with this [URI Template-formatted](https://tools.ietf.org/html/rfc6570) link. For pre-processing, include the `$`, `(`, and `)` characters. The `href` is the key HATEOAS component that links a completed call with a subsequent call.
+        rel:
+          type: string
+          description: The [link relation type](https://tools.ietf.org/html/rfc5988#section-4), which serves as an ID for a link that unambiguously describes the semantics of the link. See [Link Relations](https://www.iana.org/assignments/link-relations/link-relations.xhtml).
+        method:
+          type: string
+          description: The HTTP method required to make the related call.
+          enum:
+          - GET
+          - POST
+          - PUT
+          - DELETE
+          - HEAD
+          - CONNECT
+          - OPTIONS
+          - PATCH
+    error_400:
+      type: object
+      title: Bad Request Error
+      description: Request is not well-formed, syntactically incorrect, or violates schema.
       properties:
         name:
           type: string
           enum:
-          - UNSUPPORTED_MEDIA_TYPE
+          - INVALID_REQUEST
         message:
           type: string
           enum:
-          - The server does not support the request payload's media type.
+          - Request is not well-formed, syntactically incorrect, or violates schema.
         details:
           type: array
           items:
@@ -1413,67 +1369,139 @@ components:
           maxItems: 10000
           items:
             $ref: '#/components/schemas/error_link_description'
-    product_request_POST:
-      title: Create Product Request
-      description: The create product request details.
+    error_422:
       type: object
-      properties:
-        id:
-          type: string
-          description: The ID of the product. You can specify the SKU for the product. If you omit the ID, the system generates it. System-generated IDs have the `PROD-` prefix.
-          minLength: 6
-          maxLength: 50
-        name:
-          type: string
-          description: The product name.
-          minLength: 1
-          maxLength: 127
-        description:
-          type: string
-          description: The product description.
-          minLength: 1
-          maxLength: 256
-        type:
-          type: string
-          description: The product type. Indicates whether the product is physical or digital goods, or a service.
-          minLength: 1
-          maxLength: 24
-          pattern: ^[A-Z_]+$
-          default: PHYSICAL
-          enum:
-          - PHYSICAL
-          - DIGITAL
-          - SERVICE
-        category:
-          $ref: '#/components/schemas/product_category'
-        image_url:
-          type: string
-          format: uri
-          minLength: 1
-          maxLength: 2000
-          description: The image URL for the product.
-        home_url:
-          type: string
-          format: uri
-          minLength: 1
-          maxLength: 2000
-          description: The home page URL for the product.
-      required:
-      - name
-      - type
-    error_500:
-      type: object
-      title: Internal Server Error
-      description: This is either a system or application error, and generally indicates that although the client appeared to provide a correct request, something unexpected has gone wrong on the server.
+      title: Unprocessable Entity Error
+      description: The requested action cannot be performed and may require interaction with APIs or processes outside of the current request. This is distinct from a 500 response in that there are no systemic problems limiting the API from performing the request.
       properties:
         name:
           type: string
           enum:
-          - INTERNAL_SERVER_ERROR
+          - UNPROCESSABLE_ENTITY
         message:
           type: string
           enum:
-          - An internal server error occurred.
+          - The requested action could not be performed, semantically incorrect, or failed business validation.
+        details:
+          type: array
+          items:
+            $ref: '#/components/schemas/error_details'
+        debug_id:
+          type: string
+          description: The PayPal internal ID. Used for correlation purposes.
+        links:
+          description: An array of request-related [HATEOAS links](https://en.wikipedia.org/wiki/HATEOAS).
+          type: array
+          minItems: 0
+          maxItems: 10000
+          items:
+            $ref: '#/components/schemas/error_link_description'
+    products.create-400:
+      properties:
+        details:
+          type: array
+          items:
+            anyOf:
+            - title: INVALID_PARAMETER_SYNTAX
+              properties:
+                issue:
+                  type: string
+                  enum:
+                  - INVALID_PARAMETER_SYNTAX
+                description:
+                  type: string
+                  enum:
+                  - Input identifier must not use system prefix(PROD-).
+            - title: INVALID_PARAMETER_SYNTAX
+              properties:
+                issue:
+                  type: string
+                  enum:
+                  - INVALID_PARAMETER_SYNTAX
+                description:
+                  type: string
+                  enum:
+                  - The value of a field does not conform to the expected format.
+            - title: INVALID_PARAMETER_VALUE
+              properties:
+                issue:
+                  type: string
+                  enum:
+                  - INVALID_PARAMETER_VALUE
+                description:
+                  type: string
+                  enum:
+                  - The value of a field is invalid.
+            - title: MISSING_REQUIRED_PARAMETER
+              properties:
+                issue:
+                  type: string
+                  enum:
+                  - MISSING_REQUIRED_PARAMETER
+                description:
+                  type: string
+                  enum:
+                  - A required field is missing.
+            - title: INVALID_STRING_MIN_LENGTH
+              properties:
+                issue:
+                  type: string
+                  enum:
+                  - INVALID_STRING_MIN_LENGTH
+                description:
+                  type: string
+                  enum:
+                  - The value of a field is too short.
+            - title: INVALID_STRING_MAX_LENGTH
+              properties:
+                issue:
+                  type: string
+                  enum:
+                  - INVALID_STRING_MAX_LENGTH
+                description:
+                  type: string
+                  enum:
+                  - The value of a field is too long.
+    error_401:
+      type: object
+      title: Unauthorized Error
+      description: Authentication failed due to missing Authorization header, or invalid authentication credentials.
+      properties:
+        name:
+          type: string
+          enum:
+          - AUTHENTICATION_FAILURE
+        message:
+          type: string
+          enum:
+          - Authentication failed due to missing authorization header, or invalid authentication credentials.
+        details:
+          type: array
+          items:
+            $ref: '#/components/schemas/error_details'
+        debug_id:
+          type: string
+          description: The PayPal internal ID. Used for correlation purposes.
+        links:
+          description: An array of request-related [HATEOAS links](https://en.wikipedia.org/wiki/HATEOAS).
+          type: array
+          minItems: 0
+          maxItems: 10000
+          items:
+            $ref: '#/components/schemas/error_link_description'
+    error_503:
+      type: object
+      title: Service Unavailable Error
+      description: The server is temporarily unable to handle the request, for example, because of planned maintenance or downtime.
+      properties:
+        name:
+          type: string
+          enum:
+          - SERVICE_UNAVAILABLE
+        message:
+          type: string
+          enum:
+          - Service Unavailable.
         debug_id:
           type: string
           description: The PayPal internal ID. Used for correlation purposes.
@@ -1485,96 +1513,83 @@ components:
           items:
             $ref: '#/components/schemas/error_link_description'
       example:
-        name: INTERNAL_SERVER_ERROR
-        message: An internal server error occurred.
+        name: SERVICE_UNAVAILABLE
+        message: Service Unavailable.
         debug_id: 90957fca61718
-        links:
-        - href: https://developer.paypal.com/api/orders/v2/#error-INTERNAL_SERVER_ERROR
-          rel: information_link
-    '422':
+        information_link: https://developer.paypal.com/docs/api/orders/v2/#error-SERVICE_UNAVAILABLE
+    product_collection:
+      title: Product Collection
+      description: The list of products, with details.
+      type: object
       properties:
-        details:
+        products:
           type: array
+          description: An array of products.
+          minItems: 1
+          maxItems: 32767
           items:
-            anyOf:
-            - title: USER_ACCOUNT_CLOSED
-              properties:
-                issue:
-                  type: string
-                  enum:
-                  - USER_ACCOUNT_CLOSED
-                description:
-                  type: string
-                  enum:
-                  - User account locked or closed.
-            - title: DUPLICATE_RESOURCE_IDENTIFIER
-              properties:
-                issue:
-                  type: string
-                  enum:
-                  - DUPLICATE_RESOURCE_IDENTIFIER
-                description:
-                  type: string
-                  enum:
-                  - Identifier must be unique.
-            - title: COUNTRY_NOT_SUPPORTED
-              properties:
-                issue:
-                  type: string
-                  enum:
-                  - COUNTRY_NOT_SUPPORTED
-                description:
-                  type: string
-                  enum:
-                  - This merchant country is not currently supported.
-  parameters:
-    page_size:
-      name: page_size
-      in: query
-      description: The number of items to return in the response.
-      schema:
-        type: integer
-        minimum: 1
-        maximum: 20
-        default: 10
-    prefer:
-      name: Prefer
-      in: header
-      description: The preferred server response upon successful completion of the request. Value is:<ul><li><code>return=minimal</code>. The server returns a minimal response to optimize communication between the API caller and the server. A minimal response includes the <code>id</code>, <code>status</code> and HATEOAS links.</li><li><code>return=representation</code>. The server returns a complete resource representation, including the current state of the resource.</li></ul>
-      required: false
-      schema:
-        type: string
-        default: return=minimal
-    product_id:
-      name: product_id
-      in: path
-      required: true
-      description: The product ID.
-      schema:
-        type: string
-    page:
-      name: page
-      in: query
-      description: A non-zero integer which is the start index of the entire list of items that are returned in the response. So, the combination of `page=1` and `page_size=20` returns the first 20 items. The combination of `page=2` and `page_size=20` returns the next 20 items.
-      schema:
-        type: integer
-        minimum: 1
-        maximum: 100000
-        default: 1
-    paypal_request_id:
-      name: PayPal-Request-Id
-      in: header
-      description: The server stores keys for 72 hours.
-      required: false
-      schema:
-        type: string
-    total_required:
-      name: total_required
-      in: query
-      description: Indicates whether to show the total items and total pages in the response.
-      schema:
-        type: boolean
-        default: false
+            $ref: '#/components/schemas/product_collection_element'
+        total_items:
+          type: integer
+          description: The total number of items.
+          minimum: 0
+          maximum: 500000000
+        total_pages:
+          type: integer
+          description: The total number of pages.
+          minimum: 0
+          maximum: 100000000
+        links:
+          type: array
+          description: An array of request-related [HATEOAS links](/docs/api/overview/#hateoas-links).
+          readOnly: true
+          items:
+            $ref: '#/components/schemas/link_description'
+            readOnly: true
+    error_link_description:
+      title: Link Description
+      description: The request-related [HATEOAS link](/api/rest/responses/#hateoas-links) information.
+      type: object
+      required:
+      - href
+      - rel
+      properties:
+        href:
+          description: The complete target URL. To make the related call, combine the method with this [URI Template-formatted](https://tools.ietf.org/html/rfc6570) link. For pre-processing, include the `$`, `(`, and `)` characters. The `href` is the key HATEOAS component that links a completed call with a subsequent call.
+          type: string
+          minLength: 0
+          maxLength: 20000
+          pattern: ^.*$
+        rel:
+          description: The [link relation type](https://tools.ietf.org/html/rfc5988#section-4), which serves as an ID for a link that unambiguously describes the semantics of the link. See [Link Relations](https://www.iana.org/assignments/link-relations/link-relations.xhtml).
+          type: string
+          minLength: 0
+          maxLength: 100
+          pattern: ^.*$
+        method:
+          description: The HTTP method required to make the related call.
+          type: string
+          minLength: 3
+          maxLength: 6
+          pattern: ^[A-Z]*$
+          enum:
+          - GET
+          - POST
+          - PUT
+          - DELETE
+          - PATCH
+    error_default:
+      description: The default error response.
+      oneOf:
+      - $ref: '#/components/schemas/error_400'
+      - $ref: '#/components/schemas/error_401'
+      - $ref: '#/components/schemas/error_403'
+      - $ref: '#/components/schemas/error_404'
+      - $ref: '#/components/schemas/error_409'
+      - $ref: '#/components/schemas/error_415'
+      - $ref: '#/components/schemas/error_422'
+      - $ref: '#/components/schemas/error_500'
+      - $ref: '#/components/schemas/error_503'
   responses:
     default:
       description: The default response.
@@ -1590,6 +1605,6 @@ components:
         clientCredentials:
           tokenUrl: /v1/oauth2/token
           scopes:
-            https://uri.paypal.com/services/subscriptions: Manage plan & subscription
+            https://uri.paypal.com/services/subscriptions: Create and manage products
 externalDocs:
-  url: https://developer.paypal.com/docs/api/subscriptions/v1/
+  url: https://developer.paypal.com/docs/api/catalog-products/v1/

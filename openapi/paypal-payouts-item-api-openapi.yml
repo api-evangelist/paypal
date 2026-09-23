@@ -1,8 +1,8 @@
-openapi: 3.0.3
+openapi: 3.2.0
 info:
-  title: Paypal Subscriptions Authorizations Payouts-Item API
-  description: You can use billing plans and subscriptions to create subscriptions that process recurring PayPal payments for physical or digital goods, or services. A plan includes pricing and billing cycle information that defines the amount and frequency of charge for a subscription. You can also define a fixed plan, such as a $5 basic plan or a volume- or graduated-based plan with pricing tiers based on the quantity purchased. For more information, see <a href="/docs/subscriptions/">Subscriptions Overview</a>.
-  version: '1.6'
+  title: Paypal Payouts Payouts Item API
+  description: Use the Payouts API to make payments to multiple PayPal or Venmo recipients. The Payouts API is a fast, convenient way to send commissions, rebates, rewards, and general disbursements. You can send up to 15,000 payments per call. If you integrated the Payouts API before September 1, 2017, you receive transaction reports through Mass Payments Reporting. Otherwise, view reports from your PayPal Business account. The Payouts API uses the ISO 8601 Internet date and time format.
+  version: '1.9'
   contact: {}
 servers:
 - url: https://api-m.sandbox.paypal.com
@@ -16,7 +16,7 @@ paths:
   /v1/payments/payouts-item/{payout_item_id}:
     get:
       summary: Paypal Show payout item details
-      description: Shows details for a payout item, by ID. A <code>payout_item_id</code> helps you identify denied payments. If a payment is denied, you can use the <code>payout_item_id</code> to identify the payment even if it lacks a <code>transaction_id</code>.
+      description: Shows details for a payout item, by ID. A payout_item_id helps you identify denied payments. If a payment is denied, you can use the payout_item_id to identify the payment even if it lacks a transaction_id.
       operationId: payouts-item.get
       responses:
         '200':
@@ -53,7 +53,7 @@ paths:
   /v1/payments/payouts-item/{payout_item_id}/cancel:
     post:
       summary: Paypal Cancel unclaimed payout item
-      description: Cancels an unclaimed payout item, by ID. If no one claims the unclaimed item within 30 days, the API automatically returns the funds to the sender. Use this call to cancel the unclaimed item before the automatic 30-day refund. You can cancel payout items with a <code>transaction_status</code> of <code>UNCLAIMED</code>.
+      description: Cancels an unclaimed payout item, by ID. If no one claims the unclaimed item within 30 days, the API automatically returns the funds to the sender. Use this call to cancel the unclaimed item before the automatic 30-day refund. You can cancel payout items with a transaction_status of UNCLAIMED.
       operationId: payouts-item.cancel
       responses:
         '200':
@@ -95,6 +95,120 @@ paths:
       - Payouts-Item
 components:
   schemas:
+    payout_item_detail:
+      type: object
+      title: Payout Item Detail
+      description: The details for a sender-created payout to a single recipient.
+      properties:
+        recipient_type:
+          $ref: '#/components/schemas/recipient_enum'
+        amount:
+          description: The currency and amount of payout item. Might be an integer for currencies like `JPY` that are not typically fractional or a decimal fraction for currencies like `TND` that are subdivided into thousandths. For the required number of decimal places for a currency code, see [Currency codes - ISO 4217](https://www.iso.org/iso-4217-currency-codes.html).
+          $ref: '#/components/schemas/currency'
+        note:
+          type: string
+          description: The sender-specified note for notifications. Supports up to 4000 ASCII characters and 1000 non-ASCII characters.
+          minLength: 0
+          maxLength: 4000
+          pattern: ^.*$
+        receiver:
+          type: string
+          description: The receiver of the payment. Corresponds to the `recipient_type` value in the request.
+          minLength: 0
+          maxLength: 127
+          pattern: ^.*$
+        sender_item_id:
+          type: string
+          description: A sender-specified ID number. Tracks the payout in an accounting system.
+          minLength: 0
+          maxLength: 63
+          pattern: ^.*$
+        recipient_name:
+          description: The name of the recipient where money is credited. For `UNCLAIMED` payments, the recipient name is populated after the payment is claimed.
+          $ref: '#/components/schemas/name'
+        recipient_wallet:
+          description: The recipient wallet.
+          $ref: '#/components/schemas/recipient_wallet_enum'
+        purpose:
+          description: The purpose of the transaction.
+          $ref: '#/components/schemas/purpose_enum'
+      required:
+      - amount
+      - receiver
+    payout_currency_conversion:
+      type: object
+      title: Currency conversion resource
+      description: The currency conversion resource.
+      properties:
+        from_amount:
+          $ref: '#/components/schemas/currency'
+          description: The amount that is converted from.
+        to_amount:
+          $ref: '#/components/schemas/currency'
+          description: The amount that is converted to.
+        exchange_rate:
+          type: string
+          description: The exchange rate that is applied for this payout.
+          pattern: ^.*$
+          minLength: 0
+          maxLength: 30
+    link_description:
+      type: object
+      title: Link Description
+      description: The request-related [HATEOAS link](/docs/api/reference/api-responses/#hateoas-links) information.
+      required:
+      - href
+      - rel
+      properties:
+        href:
+          type: string
+          description: The complete target URL. To make the related call, combine the method with this [URI Template-formatted](https://tools.ietf.org/html/rfc6570) link. For pre-processing, include the `$`, `(`, and `)` characters. The `href` is the key HATEOAS component that links a completed call with a subsequent call.
+        rel:
+          type: string
+          description: The [link relation type](https://tools.ietf.org/html/rfc5988#section-4), which serves as an ID for a link that unambiguously describes the semantics of the link. See [Link Relations](https://www.iana.org/assignments/link-relations/link-relations.xhtml).
+        method:
+          type: string
+          description: The HTTP method required to make the related call.
+          enum:
+          - GET
+          - POST
+          - PUT
+          - DELETE
+          - HEAD
+          - CONNECT
+          - OPTIONS
+          - PATCH
+    purpose_enum:
+      type: string
+      title: Purpose
+      description: The purpose of the transaction.
+      minLength: 1
+      maxLength: 40
+      pattern: ^[A-Z0-9_]+$
+      enum:
+      - AWARDS
+      - PRIZES
+      - DONATIONS
+      - GOODS
+      - SERVICES
+      - REBATES
+      - CASHBACK
+      - DISCOUNTS
+      - NON_GOODS_OR_SERVICES
+    currency:
+      type: object
+      title: Currency
+      description: The currency and amount for a financial transaction, such as a balance or payment due.
+      properties:
+        currency:
+          type: string
+          description: The [three-character ISO-4217 currency code](/docs/integration/direct/rest/currency-codes/).
+        value:
+          type: string
+          description: The value, which might be:<ul><li>An integer for currencies like `JPY` that are not typically fractional.</li><li>A decimal fraction for currencies like `TND` that are subdivided into thousandths.</li></ul>For the required number of decimal places for a currency code, see [Currency codes - ISO 4217](https://www.iso.org/iso-4217-currency-codes.html).
+      required:
+      - currency
+      - value
     payout_item-2:
       type: object
       title: Payout Item
@@ -162,23 +276,6 @@ components:
       - payout_item_id
       - payout_batch_id
       - payout_item
-    purpose_enum:
-      type: string
-      title: Purpose
-      description: The purpose of the transaction.
-      minLength: 1
-      maxLength: 40
-      pattern: ^[A-Z0-9_]+$
-      enum:
-      - AWARDS
-      - PRIZES
-      - DONATIONS
-      - GOODS
-      - SERVICES
-      - REBATES
-      - CASHBACK
-      - DISCOUNTS
-      - NON_GOODS_OR_SERVICES
     name:
       type: object
       title: Name
@@ -229,6 +326,52 @@ components:
       - BLOCKED
       - REFUNDED
       - REVERSED
+    recipient_enum:
+      title: Recipient type
+      description: The ID type that identifies the payment receiver.
+      type: string
+      minLength: 1
+      maxLength: 36
+      pattern: ^[0-9A-Z_]+$
+      enum:
+      - EMAIL
+      - PHONE
+      - PAYPAL_ID
+    recipient_wallet_enum:
+      title: Recipient wallet
+      description: The wallet where the recipient receives the payout. Payouts to Venmo recipients require a 'note' string and a US mobile phone number.
+      type: string
+      default: PAYPAL
+      minLength: 1
+      maxLength: 36
+      pattern: ^[0-9A-Z_]+$
+      enum:
+      - PAYPAL
+      - VENMO
+      - RECIPIENT_SELECTED
+    error_details-2:
+      title: Error Details
+      type: object
+      description: The error details. Required for client-side `4XX` errors.
+      properties:
+        field:
+          type: string
+          description: The field that caused the error. If this field is in the body, set this value to the field's JSON pointer value. Required for client-side errors.
+        value:
+          type: string
+          description: The value of the field that caused the error.
+        location:
+          type: string
+          description: The location of the field that caused the error. Value is `body`, `path`, or `query`.
+          default: body
+        issue:
+          type: string
+          description: The unique, fine-grained application-level error code.
+        description:
+          type: string
+          description: The human-readable description for an issue. The description can change over the lifetime of an API, so clients must not depend on this value.
+      required:
+      - issue
     error:
       type: object
       title: Error
@@ -263,149 +406,6 @@ components:
       - name
       - message
       - debug_id
-    payout_item_detail:
-      type: object
-      title: Payout Item Detail
-      description: The details for a sender-created payout to a single recipient.
-      properties:
-        recipient_type:
-          $ref: '#/components/schemas/recipient_enum'
-        amount:
-          description: The currency and amount of payout item. Might be an integer for currencies like `JPY` that are not typically fractional or a decimal fraction for currencies like `TND` that are subdivided into thousandths. For the required number of decimal places for a currency code, see [Currency codes - ISO 4217](https://www.iso.org/iso-4217-currency-codes.html).
-          $ref: '#/components/schemas/currency'
-        note:
-          type: string
-          description: The sender-specified note for notifications. Supports up to 4000 ASCII characters and 1000 non-ASCII characters.
-          minLength: 0
-          maxLength: 4000
-          pattern: ^.*$
-        receiver:
-          type: string
-          description: The receiver of the payment. Corresponds to the `recipient_type` value in the request.
-          minLength: 0
-          maxLength: 127
-          pattern: ^.*$
-        sender_item_id:
-          type: string
-          description: A sender-specified ID number. Tracks the payout in an accounting system.
-          minLength: 0
-          maxLength: 63
-          pattern: ^.*$
-        recipient_name:
-          description: The name of the recipient where money is credited. For `UNCLAIMED` payments, the recipient name is populated after the payment is claimed.
-          $ref: '#/components/schemas/name'
-        recipient_wallet:
-          description: The recipient wallet.
-          $ref: '#/components/schemas/recipient_wallet_enum'
-        purpose:
-          description: The purpose of the transaction.
-          $ref: '#/components/schemas/purpose_enum'
-      required:
-      - amount
-      - receiver
-    currency:
-      type: object
-      title: Currency
-      description: The currency and amount for a financial transaction, such as a balance or payment due.
-      properties:
-        currency:
-          type: string
-          description: The [three-character ISO-4217 currency code](/docs/integration/direct/rest/currency-codes/).
-        value:
-          type: string
-          description: The value, which might be:<ul><li>An integer for currencies like `JPY` that are not typically fractional.</li><li>A decimal fraction for currencies like `TND` that are subdivided into thousandths.</li></ul>For the required number of decimal places for a currency code, see [Currency codes - ISO 4217](https://www.iso.org/iso-4217-currency-codes.html).
-      required:
-      - currency
-      - value
-    recipient_wallet_enum:
-      title: Recipient wallet
-      description: The wallet where the recipient receives the payout. Payouts to Venmo recipients require a 'note' string and a US mobile phone number.
-      type: string
-      default: PAYPAL
-      minLength: 1
-      maxLength: 36
-      pattern: ^[0-9A-Z_]+$
-      enum:
-      - PAYPAL
-      - VENMO
-      - RECIPIENT_SELECTED
-    link_description:
-      type: object
-      title: Link Description
-      description: The request-related [HATEOAS link](/docs/api/reference/api-responses/#hateoas-links) information.
-      required:
-      - href
-      - rel
-      properties:
-        href:
-          type: string
-          description: The complete target URL. To make the related call, combine the method with this [URI Template-formatted](https://tools.ietf.org/html/rfc6570) link. For pre-processing, include the `$`, `(`, and `)` characters. The `href` is the key HATEOAS component that links a completed call with a subsequent call.
-        rel:
-          type: string
-          description: The [link relation type](https://tools.ietf.org/html/rfc5988#section-4), which serves as an ID for a link that unambiguously describes the semantics of the link. See [Link Relations](https://www.iana.org/assignments/link-relations/link-relations.xhtml).
-        method:
-          type: string
-          description: The HTTP method required to make the related call.
-          enum:
-          - GET
-          - POST
-          - PUT
-          - DELETE
-          - HEAD
-          - CONNECT
-          - OPTIONS
-          - PATCH
-    payout_currency_conversion:
-      type: object
-      title: Currency conversion resource
-      description: The currency conversion resource.
-      properties:
-        from_amount:
-          $ref: '#/components/schemas/currency'
-          description: The amount that is converted from.
-        to_amount:
-          $ref: '#/components/schemas/currency'
-          description: The amount that is converted to.
-        exchange_rate:
-          type: string
-          description: The exchange rate that is applied for this payout.
-          pattern: ^.*$
-          minLength: 0
-          maxLength: 30
-    recipient_enum:
-      title: Recipient type
-      description: The ID type that identifies the payment receiver.
-      type: string
-      minLength: 1
-      maxLength: 36
-      pattern: ^[0-9A-Z_]+$
-      enum:
-      - EMAIL
-      - PHONE
-      - PAYPAL_ID
-    error_details-2:
-      title: Error Details
-      type: object
-      description: The error details. Required for client-side `4XX` errors.
-      properties:
-        field:
-          type: string
-          description: The field that caused the error. If this field is in the body, set this value to the field's JSON pointer value. Required for client-side errors.
-        value:
-          type: string
-          description: The value of the field that caused the error.
-        location:
-          type: string
-          description: The location of the field that caused the error. Value is `body`, `path`, or `query`.
-          default: body
-        issue:
-          type: string
-          description: The unique, fine-grained application-level error code.
-        description:
-          type: string
-          description: The human-readable description for an issue. The description can change over the lifetime of an API, so clients must not depend on this value.
-      required:
-      - issue
   parameters:
     payout_item_id:
       name: payout_item_id
@@ -425,6 +425,7 @@ components:
         clientCredentials:
           tokenUrl: /v1/oauth2/token
           scopes:
-            https://uri.paypal.com/services/subscriptions: Manage plan & subscription
+            https://uri.paypal.com/payments/payouts: Payout to a list of recipients.
+            https://uri.paypal.com/services/payments/payouts-item/reverse: For reversing a completed payout item.
 externalDocs:
-  url: https://developer.paypal.com/docs/api/subscriptions/v1/
+  url: https://developer.paypal.com/docs/api/payments.payouts-batch/v1/

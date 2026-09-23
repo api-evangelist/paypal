@@ -1,9 +1,9 @@
-openapi: 3.0.3
+openapi: 3.2.0
 info:
-  title: Paypal Subscriptions Authorizations Trackers API
-  description: You can use billing plans and subscriptions to create subscriptions that process recurring PayPal payments for physical or digital goods, or services. A plan includes pricing and billing cycle information that defines the amount and frequency of charge for a subscription. You can also define a fixed plan, such as a $5 basic plan or a volume- or graduated-based plan with pricing tiers based on the quantity purchased. For more information, see <a href="/docs/subscriptions/">Subscriptions Overview</a>.
-  version: '1.6'
+  title: Paypal Trackers API
   contact: {}
+  version: '1.0'
+  description: 'Operations tagged Trackers across 2 of this provider''s published API definitions: paypal-checkout-orders-openapi-original.yml, paypal-shipping-tracking-openapi-original.yml. Each path carries the servers of the definition it was published in.'
 servers:
 - url: https://api-m.sandbox.paypal.com
   description: PayPal Sandbox Environment
@@ -16,7 +16,19 @@ paths:
   /v2/checkout/orders/{id}/trackers/{tracker_id}:
     patch:
       summary: Update or cancel tracking information for a PayPal order
-      description: Updates or cancels the tracking information for a PayPal order, by ID. Updatable attributes or objects:<br/><br/><table><thead><th>Attribute</th><th>Op</th><th>Notes</th></thead><tbody></tr><tr><td><code>items</code></td><td>replace</td><td>Using replace op for <code>items</code> will replace the entire <code>items</code> object with the value sent in request.</td></tr><tr><td><code>notify_payer</code></td><td>replace, add</td><td></td></tr><tr><td><code>status</code></td><td>replace</td><td>Only patching status to CANCELLED is currently supported.</td></tr></tbody></table>
+      description: 'Updates or cancels the tracking information for a PayPal order, by ID. Updatable attributes or objects:
+
+
+        AttributeOpNotes
+
+
+        itemsreplaceUsing replace op for items will replace the entire items object with the value sent in request.
+
+
+        notify_payerreplace, add
+
+
+        statusreplaceOnly patching status to CANCELLED is currently supported.'
       operationId: orders.trackers.patch
       responses:
         '204':
@@ -86,6 +98,11 @@ paths:
         - https://uri.paypal.com/services/payments/payment
       tags:
       - Trackers
+    servers:
+    - url: https://api-m.sandbox.paypal.com
+      description: PayPal Sandbox Environment
+    - url: https://api-m.paypal.com
+      description: PayPal Live Environment
   /v1/shipping/trackers:
     post:
       summary: Add tracking information for PayPal transaction
@@ -137,10 +154,15 @@ paths:
         - https://uri.paypal.com/services/shipping/trackers/read
       tags:
       - Trackers
+    servers:
+    - url: https://api-m.sandbox.paypal.com
+      description: PayPal Sandbox Environment
+    - url: https://api-m.paypal.com
+      description: PayPal Live Environment
   /v1/shipping/trackers/{id}:
     put:
       summary: Update or cancel tracking information for PayPal transaction
-      description: Updates or cancels the tracking information for a PayPal transaction, by ID. To cancel tracking information, call this method and set the status to CANCELLED. For more information, see <a href="/docs/tracking/integrate/#update-or-cancel-tracking-information">Update or cancel tracking information</a>.
+      description: Updates or cancels the tracking information for a PayPal transaction, by ID. To cancel tracking information, call this method and set the status to CANCELLED. For more information, see Update or cancel tracking information.
       operationId: trackers.put
       responses:
         '204':
@@ -188,160 +210,76 @@ paths:
         - https://uri.paypal.com/services/shipping/trackers/read
       tags:
       - Trackers
+    servers:
+    - url: https://api-m.sandbox.paypal.com
+      description: PayPal Sandbox Environment
+    - url: https://api-m.paypal.com
+      description: PayPal Live Environment
 components:
+  parameters:
+    id:
+      name: id
+      in: path
+      description: The ID of the order that the tracking information is associated with.
+      required: true
+      schema:
+        type: string
+        minLength: 1
+        maxLength: 36
+        pattern: ^[A-Z0-9]+$
+    tracker_id:
+      name: tracker_id
+      in: path
+      description: The order tracking ID.
+      required: true
+      schema:
+        type: string
+        minLength: 1
+        maxLength: 36
+        pattern: ^[A-Z0-9]+$
+    id_2:
+      name: id
+      in: path
+      description: The ID of the tracker in the <code><var>transaction_id</var>-<var>tracking_number</var></code> format.
+      required: true
+      schema:
+        type: string
+        minLength: 1
+        maxLength: 100
+        pattern: ^[a-zA-Z0-9-_]*$
+    account_id:
+      name: account_id
+      in: query
+      description: Encrypted PayPal Account ID of the buyer or seller.
+      required: false
+      schema:
+        type: string
+        minLength: 13
+        maxLength: 13
+        pattern: ^[2-9A-HJ-NP-Z]{13}$
+    tracking_number:
+      name: tracking_number
+      in: query
+      description: Filters the tracking information that appears in the response by a tracking number.
+      required: false
+      schema:
+        type: string
+    transaction_id:
+      name: transaction_id
+      in: query
+      description: Filters the tracking information that appears in the response by a PayPal transaction ID.
+      required: true
+      schema:
+        type: string
   schemas:
-    error_404:
-      type: object
-      title: Not found Error
-      description: The server has not found anything matching the request URI. This either means that the URI is incorrect or the resource is not available.
-      properties:
-        name:
-          type: string
-          enum:
-          - RESOURCE_NOT_FOUND
-        message:
-          type: string
-          enum:
-          - The specified resource does not exist.
-        details:
-          type: array
-          items:
-            $ref: '#/components/schemas/error_details'
-        debug_id:
-          type: string
-          description: The PayPal internal ID. Used for correlation purposes.
-        links:
-          description: An array of request-related [HATEOAS links](https://en.wikipedia.org/wiki/HATEOAS).
-          type: array
-          minItems: 0
-          maxItems: 10000
-          items:
-            $ref: '#/components/schemas/error_link_description'
-    tracker:
-      type: object
-      title: Tracker
-      description: The tracking information for a shipment.
-      properties:
-        transaction_id:
-          type: string
-          description: The PayPal transaction ID.
-          minLength: 1
-          maxLength: 50
-          pattern: ^[a-zA-Z0-9]*$
-        tracking_number:
-          type: string
-          description: The tracking number for the shipment.
-          minLength: 1
-          maxLength: 64
-        tracking_number_type:
-          description: The type of tracking number.
-          $ref: '#/components/schemas/tracking_number_type'
-        status:
-          $ref: '#/components/schemas/tracking_status'
-        shipment_date:
-          $ref: '#/components/schemas/date_no_time'
-          description: The date when the shipment occurred, in [Internet date and time format](https://tools.ietf.org/html/rfc3339#section-5.6).
-        carrier:
-          $ref: '#/components/schemas/carrier'
-        carrier_name_other:
-          type: string
-          description: The name of the carrier for the shipment. Provide this value only if the carrier parameter is OTHER.
-          minLength: 1
-          maxLength: 64
-        postage_payment_id:
-          type: string
-          description: The postage payment ID.
-          readOnly: true
-          minLength: 1
-          maxLength: 64
-        notify_buyer:
-          type: boolean
-          description: If true , sends an email notification to the buyer of the PayPal transaction. The email contains the tracking information that was uploaded through the API.
-          default: false
-        quantity:
-          type: integer
-          description: The quantity of items shipped.
-          readOnly: true
-          minimum: 1
-          maximum: 22
-        tracking_number_validated:
-          type: boolean
-          description: Indicates whether the carrier validated the tracking number.
-          readOnly: true
-        last_updated_time:
-          $ref: '#/components/schemas/date_time'
-          description: The date and time when the tracking information was last updated, in [Internet date and time format](https://tools.ietf.org/html/rfc3339#section-5.6).
-        shipment_direction:
-          type: string
-          description: To denote whether the shipment is sent forward to the receiver or returned back.
-          minLength: 1
-          maxLength: 50
-          enum:
-          - FORWARD
-          - RETURN
-        shipment_uploader:
-          readOnly: true
-          type: string
-          description: To denote which party uploaded the shipment tracking info.
-          minLength: 1
-          maxLength: 50
-          enum:
-          - MERCHANT
-          - CONSUMER
-          - PARTNER
-        account_id:
-          type: string
-          description: Encrypted PayPal Account ID of the buyer or seller.
-          readOnly: true
-          minLength: 13
-          maxLength: 13
-          pattern: ^[2-9A-HJ-NP-Z]{13}$
-        tracking_url:
-          type: string
-          format: uri
-          minLength: 1
-          maxLength: 250
-          description: Tracking Link of the shipment.
-        links:
-          type: array
-          description: An array of request-related [HATEOAS links](/docs/api/reference/api-responses/#hateoas-links).
-          readOnly: true
-          items:
-            $ref: '#/components/schemas/link_description'
-            readOnly: true
-      required:
-      - transaction_id
-      - status
-    tracking_status:
+    error_location:
       type: string
-      title: Tracking Status
-      description: The status of the item shipment. For allowed values, see <a href="/docs/tracking/reference/shipping-status/">Shipping Statuses</a>.
-      minLength: 1
-      maxLength: 64
+      description: The location of the field that caused the error. Value is `body`, `path`, or `query`.
       enum:
-      - CANCELLED
-      - DELIVERED
-      - LOCAL_PICKUP
-      - ON_HOLD
-      - SHIPPED
-      - SHIPMENT_CREATED
-      - DROPPED_OFF
-      - IN_TRANSIT
-      - RETURNED
-      - LABEL_PRINTED
-      - ERROR
-      - UNCONFIRMED
-      - PICKUP_FAILED
-      - DELIVERY_DELAYED
-      - DELIVERY_SCHEDULED
-      - DELIVERY_FAILED
-      - INRETURN
-      - IN_PROCESS
-      - NEW
-      - VOID
-      - PROCESSED
-      - NOT_SHIPPED
-      - COMPLETED
+      - body
+      - path
+      - query
+      default: body
     error_409:
       type: object
       title: Resource Conflict Error
@@ -369,140 +307,36 @@ components:
           maxItems: 10000
           items:
             $ref: '#/components/schemas/error_link_description'
-    orders.trackers.patch-422:
-      properties:
-        details:
-          type: array
-          items:
-            anyOf:
-            - title: INVALID_JSON_POINTER_FORMAT
-              properties:
-                issue:
-                  type: string
-                  enum:
-                  - INVALID_JSON_POINTER_FORMAT
-                description:
-                  type: string
-                  enum:
-                  - Path should be a valid [JSON Pointer](https://tools.ietf.org/html/rfc6901) that references a location within the request where the operation is performed.
-            - title: NOT_PATCHABLE
-              properties:
-                issue:
-                  type: string
-                  enum:
-                  - NOT_PATCHABLE
-                description:
-                  type: string
-                  enum:
-                  - Cannot be patched.
-            - title: PATCH_VALUE_REQUIRED
-              properties:
-                issue:
-                  type: string
-                  enum:
-                  - PATCH_VALUE_REQUIRED
-                description:
-                  type: string
-                  enum:
-                  - Specify a `value` for the field being patched.
-            - title: PATCH_PATH_REQUIRED
-              properties:
-                issue:
-                  type: string
-                  enum:
-                  - PATCH_PATH_REQUIRED
-                description:
-                  type: string
-                  enum:
-                  - Specify a `value` for the field in which the operation needs to be performed.
-            - title: ITEM_SKU_MISMATCH
-              properties:
-                issue:
-                  type: string
-                  enum:
-                  - ITEM_SKU_MISMATCH
-                description:
-                  type: string
-                  enum:
-                  - Item sku must match one of the items sku that was provided during order creation.
-    tracker_identifier_collection:
+    error_500:
       type: object
-      title: Tracker Identifier Collection
-      description: The add tracking information for a PayPal transaction response details.
+      title: Internal Server Error
+      description: This is either a system or application error, and generally indicates that although the client appeared to provide a correct request, something unexpected has gone wrong on the server.
       properties:
-        tracker_identifiers:
-          type: array
-          description: An array of tracking IDs.
-          items:
-            $ref: '#/components/schemas/tracker_identifier'
-          minItems: 1
-          maxItems: 100
+        name:
+          type: string
+          enum:
+          - INTERNAL_SERVER_ERROR
+        message:
+          type: string
+          enum:
+          - An internal server error occurred.
+        debug_id:
+          type: string
+          description: The PayPal internal ID. Used for correlation purposes.
         links:
+          description: An array of request-related [HATEOAS links](https://en.wikipedia.org/wiki/HATEOAS).
           type: array
-          description: An array of request-related [HATEOAS links](/docs/api/reference/api-responses/#hateoas-links).
-          readOnly: true
+          minItems: 0
+          maxItems: 10000
           items:
-            $ref: '#/components/schemas/link_description'
-            readOnly: true
-    link_description:
-      type: object
-      title: Link Description
-      description: A request-related [HATEOAS link](/docs/api/reference/api-responses/#hateoas-links).
-      required:
-      - href
-      - rel
-      properties:
-        href:
-          type: string
-          description: The complete target URL. To make the related call, combine the method with this link, in [URI template format](https://tools.ietf.org/html/rfc6570). Include the `$`, `(`, and `)` characters for pre-processing. The `href` is the key HATEOAS component that links a completed call with a subsequent call.
-        rel:
-          type: string
-          description: The [link relation type](https://tools.ietf.org/html/rfc5988#section-4), which serves as an ID for a link that unambiguously describes the semantics of the link. See [Link Relations](https://www.iana.org/assignments/link-relations/link-relations.xhtml).
-        method:
-          type: string
-          description: The HTTP method required to make the related call.
-          enum:
-          - GET
-          - POST
-          - PUT
-          - DELETE
-          - HEAD
-          - CONNECT
-          - OPTIONS
-          - PATCH
-    patch:
-      type: object
-      title: Patch
-      description: The JSON patch object to apply partial updates to resources.
-      properties:
-        op:
-          type: string
-          description: The operation.
-          enum:
-          - add
-          - remove
-          - replace
-          - move
-          - copy
-          - test
-        path:
-          type: string
-          description: The <a href="https://tools.ietf.org/html/rfc6901">JSON Pointer</a> to the target document location at which to complete the operation.
-        value:
-          title: Patch Value
-          description: The value to apply. The <code>remove</code>, <code>copy</code>, and <code>move</code> operations do not require a value. Since <a href="https://www.rfc-editor.org/rfc/rfc69021">JSON Patch</a> allows any type for <code>value</code>, the <code>type</code> property is not specified.
-        from:
-          type: string
-          description: The <a href="https://tools.ietf.org/html/rfc6901">JSON Pointer</a> to the target document location from which to move the value. Required for the <code>move</code> operation.
-      required:
-      - op
-    date_no_time:
-      type: string
-      description: The stand-alone date, in [Internet date and time format](https://tools.ietf.org/html/rfc3339#section-5.6). To represent special legal values, such as a date of birth, you should use dates with no associated time or time-zone data. Whenever possible, use the standard `date_time` type. This regular expression does not validate all dates. For example, February 31 is valid and nothing is known about leap years.
-      format: ppaas_date_notime_v2
-      minLength: 10
-      maxLength: 10
-      pattern: ^[0-9]{4}-(0[1-9]|1[0-2])-(0[1-9]|[1-2][0-9]|3[0-1])$
+            $ref: '#/components/schemas/error_link_description'
+      example:
+        name: INTERNAL_SERVER_ERROR
+        message: An internal server error occurred.
+        debug_id: 90957fca61718
+        links:
+        - href: https://developer.paypal.com/api/orders/v2/#error-INTERNAL_SERVER_ERROR
+          rel: information_link
     error_403:
       type: object
       title: Not Authorized Error
@@ -530,33 +364,32 @@ components:
           maxItems: 10000
           items:
             $ref: '#/components/schemas/error_link_description'
-    error_422:
+    patch:
       type: object
-      title: Unprocessable Entity Error
-      description: The requested action cannot be performed and may require interaction with APIs or processes outside of the current request. This is distinct from a 500 response in that there are no systemic problems limiting the API from performing the request.
+      title: Patch
+      description: The JSON patch object to apply partial updates to resources.
       properties:
-        name:
+        op:
           type: string
+          description: The operation.
           enum:
-          - UNPROCESSABLE_ENTITY
-        message:
+          - add
+          - remove
+          - replace
+          - move
+          - copy
+          - test
+        path:
           type: string
-          enum:
-          - The requested action could not be performed, semantically incorrect, or failed business validation.
-        details:
-          type: array
-          items:
-            $ref: '#/components/schemas/error_details'
-        debug_id:
+          description: The <a href="https://tools.ietf.org/html/rfc6901">JSON Pointer</a> to the target document location at which to complete the operation.
+        value:
+          title: Patch Value
+          description: The value to apply. The <code>remove</code>, <code>copy</code>, and <code>move</code> operations do not require a value. Since <a href="https://www.rfc-editor.org/rfc/rfc69021">JSON Patch</a> allows any type for <code>value</code>, the <code>type</code> property is not specified.
+        from:
           type: string
-          description: The PayPal internal ID. Used for correlation purposes.
-        links:
-          description: An array of request-related [HATEOAS links](https://en.wikipedia.org/wiki/HATEOAS).
-          type: array
-          minItems: 0
-          maxItems: 10000
-          items:
-            $ref: '#/components/schemas/error_link_description'
+          description: The <a href="https://tools.ietf.org/html/rfc6901">JSON Pointer</a> to the target document location from which to move the value. Required for the <code>move</code> operation.
+      required:
+      - op
     error_details:
       title: Error Details
       type: object
@@ -578,124 +411,66 @@ components:
           description: The human-readable description for an issue. The description can change over the lifetime of an API, so clients must not depend on this value.
       required:
       - issue
-    tracker_identifier:
+    error_404:
       type: object
-      title: Tracking Identifier
-      description: The tracking identifiers for a shipment.
+      title: Not found Error
+      description: The server has not found anything matching the request URI. This either means that the URI is incorrect or the resource is not available.
       properties:
-        transaction_id:
+        name:
           type: string
-          description: The PayPal transaction ID.
-          minLength: 1
-          maxLength: 50
-          pattern: ^[a-zA-Z0-9]*$
-        tracking_number:
-          type: string
-          description: The tracking number for the shipment.
-          minLength: 1
-          maxLength: 64
-        links:
-          type: array
-          description: An array of request-related [HATEOAS links](/docs/api/reference/api-responses/#hateoas-links).
-          readOnly: true
-          items:
-            $ref: '#/components/schemas/link_description'
-            readOnly: true
-      required:
-      - transaction_id
-    error_link_description:
-      title: Link Description
-      description: The request-related [HATEOAS link](/api/rest/responses/#hateoas-links) information.
-      type: object
-      required:
-      - href
-      - rel
-      properties:
-        href:
-          description: The complete target URL. To make the related call, combine the method with this [URI Template-formatted](https://tools.ietf.org/html/rfc6570) link. For pre-processing, include the `$`, `(`, and `)` characters. The `href` is the key HATEOAS component that links a completed call with a subsequent call.
-          type: string
-          minLength: 0
-          maxLength: 20000
-          pattern: ^.*$
-        rel:
-          description: The [link relation type](https://tools.ietf.org/html/rfc5988#section-4), which serves as an ID for a link that unambiguously describes the semantics of the link. See [Link Relations](https://www.iana.org/assignments/link-relations/link-relations.xhtml).
-          type: string
-          minLength: 0
-          maxLength: 100
-          pattern: ^.*$
-        method:
-          description: The HTTP method required to make the related call.
-          type: string
-          minLength: 3
-          maxLength: 6
-          pattern: ^[A-Z]*$
           enum:
-          - GET
-          - POST
-          - PUT
-          - DELETE
-          - PATCH
-    tracking_number_type:
-      type: string
-      title: Tracking Number Type
-      description: The tracking number type.
-      minLength: 1
-      maxLength: 64
-      enum:
-      - CARRIER_PROVIDED
-      - E2E_PARTNER_PROVIDED
-    error_default:
-      description: The default error response.
-      oneOf:
-      - $ref: '#/components/schemas/error_400'
-      - $ref: '#/components/schemas/error_401'
-      - $ref: '#/components/schemas/error_403'
-      - $ref: '#/components/schemas/error_404'
-      - $ref: '#/components/schemas/error_409'
-      - $ref: '#/components/schemas/error_415'
-      - $ref: '#/components/schemas/error_422'
-      - $ref: '#/components/schemas/error_500'
-      - $ref: '#/components/schemas/error_503'
-    error_location:
-      type: string
-      description: The location of the field that caused the error. Value is `body`, `path`, or `query`.
-      enum:
-      - body
-      - path
-      - query
-      default: body
+          - RESOURCE_NOT_FOUND
+        message:
+          type: string
+          enum:
+          - The specified resource does not exist.
+        details:
+          type: array
+          items:
+            $ref: '#/components/schemas/error_details'
+        debug_id:
+          type: string
+          description: The PayPal internal ID. Used for correlation purposes.
+        links:
+          description: An array of request-related [HATEOAS links](https://en.wikipedia.org/wiki/HATEOAS).
+          type: array
+          minItems: 0
+          maxItems: 10000
+          items:
+            $ref: '#/components/schemas/error_link_description'
+    error_415:
+      type: object
+      title: Unsupported Media Type Error
+      description: The server does not support the request payload's media type.
+      properties:
+        name:
+          type: string
+          enum:
+          - UNSUPPORTED_MEDIA_TYPE
+        message:
+          type: string
+          enum:
+          - The server does not support the request payload's media type.
+        details:
+          type: array
+          items:
+            $ref: '#/components/schemas/error_details'
+        debug_id:
+          type: string
+          description: The PayPal internal ID. Used for correlation purposes.
+        links:
+          description: An array of request-related [HATEOAS links](https://en.wikipedia.org/wiki/HATEOAS).
+          type: array
+          minItems: 0
+          maxItems: 10000
+          items:
+            $ref: '#/components/schemas/error_link_description'
     patch_request:
       type: array
       title: Patch Request
       description: An array of JSON patch objects to apply partial updates to resources.
       items:
         $ref: '#/components/schemas/patch'
-    link_description-2:
-      type: object
-      title: Link Description
-      description: The request-related [HATEOAS link](/docs/api/reference/api-responses/#hateoas-links) information.
-      required:
-      - href
-      - rel
-      properties:
-        href:
-          type: string
-          description: The complete target URL. To make the related call, combine the method with this [URI Template-formatted](https://tools.ietf.org/html/rfc6570) link. For pre-processing, include the `$`, `(`, and `)` characters. The `href` is the key HATEOAS component that links a completed call with a subsequent call.
-        rel:
-          type: string
-          description: The [link relation type](https://tools.ietf.org/html/rfc5988#section-4), which serves as an ID for a link that unambiguously describes the semantics of the link. See [Link Relations](https://www.iana.org/assignments/link-relations/link-relations.xhtml).
-        method:
-          type: string
-          description: The HTTP method required to make the related call.
-          enum:
-          - GET
-          - POST
-          - PUT
-          - DELETE
-          - HEAD
-          - CONNECT
-          - OPTIONS
-          - PATCH
     orders.trackers.patch-403:
       properties:
         details:
@@ -712,68 +487,22 @@ components:
                   type: string
                   enum:
                   - You do not have permission to access or perform operations on this resource.
-    error:
-      type: object
-      title: Error
-      description: The error details.
+    orders.trackers.patch-404:
       properties:
-        name:
-          type: string
-          description: The human-readable, unique name of the error.
-        message:
-          type: string
-          description: The message that describes the error.
-        debug_id:
-          type: string
-          description: The PayPal internal ID. Used for correlation purposes.
-        information_link:
-          type: string
-          description: The information link, or URI, that shows detailed information about this error for the developer.
-          readOnly: true
         details:
           type: array
-          description: An array of additional details about the error.
           items:
-            $ref: '#/components/schemas/error_details-2'
-        links:
-          type: array
-          description: An array of request-related [HATEOAS links](/docs/api/reference/api-responses/#hateoas-links).
-          readOnly: true
-          items:
-            $ref: '#/components/schemas/link_description-2'
-            readOnly: true
-      required:
-      - name
-      - message
-      - debug_id
-    error_503:
-      type: object
-      title: Service Unavailable Error
-      description: The server is temporarily unable to handle the request, for example, because of planned maintenance or downtime.
-      properties:
-        name:
-          type: string
-          enum:
-          - SERVICE_UNAVAILABLE
-        message:
-          type: string
-          enum:
-          - Service Unavailable.
-        debug_id:
-          type: string
-          description: The PayPal internal ID. Used for correlation purposes.
-        links:
-          description: An array of request-related [HATEOAS links](https://en.wikipedia.org/wiki/HATEOAS).
-          type: array
-          minItems: 0
-          maxItems: 10000
-          items:
-            $ref: '#/components/schemas/error_link_description'
-      example:
-        name: SERVICE_UNAVAILABLE
-        message: Service Unavailable.
-        debug_id: 90957fca61718
-        information_link: https://developer.paypal.com/docs/api/orders/v2/#error-SERVICE_UNAVAILABLE
+            anyOf:
+            - title: TRACKER_ID_NOT_FOUND
+              properties:
+                issue:
+                  type: string
+                  enum:
+                  - TRACKER_ID_NOT_FOUND
+                description:
+                  type: string
+                  enum:
+                  - Specified tracker ID does not exist. Check the tracker ID and try again.
     error_400:
       type: object
       title: Bad Request Error
@@ -787,6 +516,33 @@ components:
           type: string
           enum:
           - Request is not well-formed, syntactically incorrect, or violates schema.
+        details:
+          type: array
+          items:
+            $ref: '#/components/schemas/error_details'
+        debug_id:
+          type: string
+          description: The PayPal internal ID. Used for correlation purposes.
+        links:
+          description: An array of request-related [HATEOAS links](https://en.wikipedia.org/wiki/HATEOAS).
+          type: array
+          minItems: 0
+          maxItems: 10000
+          items:
+            $ref: '#/components/schemas/error_link_description'
+    error_422:
+      type: object
+      title: Unprocessable Entity Error
+      description: The requested action cannot be performed and may require interaction with APIs or processes outside of the current request. This is distinct from a 500 response in that there are no systemic problems limiting the API from performing the request.
+      properties:
+        name:
+          type: string
+          enum:
+          - UNPROCESSABLE_ENTITY
+        message:
+          type: string
+          enum:
+          - The requested action could not be performed, semantically incorrect, or failed business validation.
         details:
           type: array
           items:
@@ -867,29 +623,6 @@ components:
                   type: string
                   enum:
                   - The request JSON is not well formed.
-    error_details-2:
-      title: Error Details
-      type: object
-      description: The error details. Required for client-side `4XX` errors.
-      properties:
-        field:
-          type: string
-          description: The field that caused the error. If this field is in the body, set this value to the field's JSON pointer value. Required for client-side errors.
-        value:
-          type: string
-          description: The value of the field that caused the error.
-        location:
-          type: string
-          description: The location of the field that caused the error. Value is `body`, `path`, or `query`.
-          default: body
-        issue:
-          type: string
-          description: The unique, fine-grained application-level error code.
-        description:
-          type: string
-          description: The human-readable description for an issue. The description can change over the lifetime of an API, so clients must not depend on this value.
-      required:
-      - issue
     error_401:
       type: object
       title: Unauthorized Error
@@ -917,81 +650,19 @@ components:
           maxItems: 10000
           items:
             $ref: '#/components/schemas/error_link_description'
-    tracker_collection:
+    error_503:
       type: object
-      title: Tracker Collection
-      description: The add tracking information for one or more transactions response details.
-      properties:
-        trackers:
-          type: array
-          description: An array of tracking information for shipments.
-          items:
-            $ref: '#/components/schemas/tracker'
-          minItems: 1
-          maxItems: 20
-        links:
-          type: array
-          description: An array of request-related [HATEOAS links](/docs/api/reference/api-responses/#hateoas-links).
-          readOnly: true
-          items:
-            $ref: '#/components/schemas/link_description'
-            readOnly: true
-    error_415:
-      type: object
-      title: Unsupported Media Type Error
-      description: The server does not support the request payload's media type.
+      title: Service Unavailable Error
+      description: The server is temporarily unable to handle the request, for example, because of planned maintenance or downtime.
       properties:
         name:
           type: string
           enum:
-          - UNSUPPORTED_MEDIA_TYPE
+          - SERVICE_UNAVAILABLE
         message:
           type: string
           enum:
-          - The server does not support the request payload's media type.
-        details:
-          type: array
-          items:
-            $ref: '#/components/schemas/error_details'
-        debug_id:
-          type: string
-          description: The PayPal internal ID. Used for correlation purposes.
-        links:
-          description: An array of request-related [HATEOAS links](https://en.wikipedia.org/wiki/HATEOAS).
-          type: array
-          minItems: 0
-          maxItems: 10000
-          items:
-            $ref: '#/components/schemas/error_link_description'
-    orders.trackers.patch-404:
-      properties:
-        details:
-          type: array
-          items:
-            anyOf:
-            - title: TRACKER_ID_NOT_FOUND
-              properties:
-                issue:
-                  type: string
-                  enum:
-                  - TRACKER_ID_NOT_FOUND
-                description:
-                  type: string
-                  enum:
-                  - Specified tracker ID does not exist. Check the tracker ID and try again.
-    error_500:
-      type: object
-      title: Internal Server Error
-      description: This is either a system or application error, and generally indicates that although the client appeared to provide a correct request, something unexpected has gone wrong on the server.
-      properties:
-        name:
-          type: string
-          enum:
-          - INTERNAL_SERVER_ERROR
-        message:
-          type: string
-          enum:
-          - An internal server error occurred.
+          - Service Unavailable.
         debug_id:
           type: string
           description: The PayPal internal ID. Used for correlation purposes.
@@ -1003,19 +674,140 @@ components:
           items:
             $ref: '#/components/schemas/error_link_description'
       example:
-        name: INTERNAL_SERVER_ERROR
-        message: An internal server error occurred.
+        name: SERVICE_UNAVAILABLE
+        message: Service Unavailable.
         debug_id: 90957fca61718
-        links:
-        - href: https://developer.paypal.com/api/orders/v2/#error-INTERNAL_SERVER_ERROR
-          rel: information_link
-    date_time:
+        information_link: https://developer.paypal.com/docs/api/orders/v2/#error-SERVICE_UNAVAILABLE
+    error_link_description:
+      title: Link Description
+      description: The request-related [HATEOAS link](/api/rest/responses/#hateoas-links) information.
+      type: object
+      required:
+      - href
+      - rel
+      properties:
+        href:
+          description: The complete target URL. To make the related call, combine the method with this [URI Template-formatted](https://tools.ietf.org/html/rfc6570) link. For pre-processing, include the `$`, `(`, and `)` characters. The `href` is the key HATEOAS component that links a completed call with a subsequent call.
+          type: string
+          minLength: 0
+          maxLength: 20000
+          pattern: ^.*$
+        rel:
+          description: The [link relation type](https://tools.ietf.org/html/rfc5988#section-4), which serves as an ID for a link that unambiguously describes the semantics of the link. See [Link Relations](https://www.iana.org/assignments/link-relations/link-relations.xhtml).
+          type: string
+          minLength: 0
+          maxLength: 100
+          pattern: ^.*$
+        method:
+          description: The HTTP method required to make the related call.
+          type: string
+          minLength: 3
+          maxLength: 6
+          pattern: ^[A-Z]*$
+          enum:
+          - GET
+          - POST
+          - PUT
+          - DELETE
+          - PATCH
+    error_default:
+      description: The default error response.
+      oneOf:
+      - $ref: '#/components/schemas/error_400'
+      - $ref: '#/components/schemas/error_401'
+      - $ref: '#/components/schemas/error_403'
+      - $ref: '#/components/schemas/error_404'
+      - $ref: '#/components/schemas/error_409'
+      - $ref: '#/components/schemas/error_415'
+      - $ref: '#/components/schemas/error_422'
+      - $ref: '#/components/schemas/error_500'
+      - $ref: '#/components/schemas/error_503'
+    orders.trackers.patch-422:
+      properties:
+        details:
+          type: array
+          items:
+            anyOf:
+            - title: INVALID_JSON_POINTER_FORMAT
+              properties:
+                issue:
+                  type: string
+                  enum:
+                  - INVALID_JSON_POINTER_FORMAT
+                description:
+                  type: string
+                  enum:
+                  - Path should be a valid [JSON Pointer](https://tools.ietf.org/html/rfc6901) that references a location within the request where the operation is performed.
+            - title: NOT_PATCHABLE
+              properties:
+                issue:
+                  type: string
+                  enum:
+                  - NOT_PATCHABLE
+                description:
+                  type: string
+                  enum:
+                  - Cannot be patched.
+            - title: PATCH_VALUE_REQUIRED
+              properties:
+                issue:
+                  type: string
+                  enum:
+                  - PATCH_VALUE_REQUIRED
+                description:
+                  type: string
+                  enum:
+                  - Specify a `value` for the field being patched.
+            - title: PATCH_PATH_REQUIRED
+              properties:
+                issue:
+                  type: string
+                  enum:
+                  - PATCH_PATH_REQUIRED
+                description:
+                  type: string
+                  enum:
+                  - Specify a `value` for the field in which the operation needs to be performed.
+            - title: ITEM_SKU_MISMATCH
+              properties:
+                issue:
+                  type: string
+                  enum:
+                  - ITEM_SKU_MISMATCH
+                description:
+                  type: string
+                  enum:
+                  - Item sku must match one of the items sku that was provided during order creation.
+    tracking_status:
       type: string
-      description: The date and time, in [Internet date and time format](https://tools.ietf.org/html/rfc3339#section-5.6). Seconds are required while fractional seconds are optional.<blockquote><strong>Note:</strong> The regular expression provides guidance but does not reject all invalid dates.</blockquote>
-      format: ppaas_date_time_v3
-      minLength: 20
+      title: Tracking Status
+      description: The status of the item shipment. For allowed values, see <a href="/docs/tracking/reference/shipping-status/">Shipping Statuses</a>.
+      minLength: 1
       maxLength: 64
-      pattern: ^[0-9]{4}-(0[1-9]|1[0-2])-(0[1-9]|[1-2][0-9]|3[0-1])[T,t]([0-1][0-9]|2[0-3]):[0-5][0-9]:([0-5][0-9]|60)([.][0-9]+)?([Zz]|[+-][0-9]{2}:[0-9]{2})$
+      enum:
+      - CANCELLED
+      - DELIVERED
+      - LOCAL_PICKUP
+      - ON_HOLD
+      - SHIPPED
+      - SHIPMENT_CREATED
+      - DROPPED_OFF
+      - IN_TRANSIT
+      - RETURNED
+      - LABEL_PRINTED
+      - ERROR
+      - UNCONFIRMED
+      - PICKUP_FAILED
+      - DELIVERY_DELAYED
+      - DELIVERY_SCHEDULED
+      - DELIVERY_FAILED
+      - INRETURN
+      - IN_PROCESS
+      - NEW
+      - VOID
+      - PROCESSED
+      - NOT_SHIPPED
+      - COMPLETED
     carrier:
       type: string
       title: Carrier
@@ -1840,67 +1632,296 @@ components:
       - ZJS_EXPRESS
       - ZTO_EXPRESS
       - ZYLLEM
-  parameters:
-    account_id:
-      name: account_id
-      in: query
-      description: Encrypted PayPal Account ID of the buyer or seller.
-      required: false
-      schema:
-        type: string
-        minLength: 13
-        maxLength: 13
-        pattern: ^[2-9A-HJ-NP-Z]{13}$
-    tracking_number:
-      name: tracking_number
-      in: query
-      description: Filters the tracking information that appears in the response by a tracking number.
-      required: false
-      schema:
-        type: string
-    tracker_id:
-      name: tracker_id
-      in: path
-      description: The order tracking ID.
-      required: true
-      schema:
-        type: string
-        minLength: 1
-        maxLength: 36
-        pattern: ^[A-Z0-9]+$
-    id_2:
-      name: id
-      in: path
-      description: The ID of the tracker in the <code><var>transaction_id</var>-<var>tracking_number</var></code> format.
-      required: true
-      schema:
-        type: string
-        minLength: 1
-        maxLength: 100
-        pattern: ^[a-zA-Z0-9-_]*$
-    id:
-      name: id
-      in: path
-      description: The ID of the order that the tracking information is associated with.
-      required: true
-      schema:
-        type: string
-        minLength: 1
-        maxLength: 36
-        pattern: ^[A-Z0-9]+$
-    transaction_id:
-      name: transaction_id
-      in: query
-      description: Filters the tracking information that appears in the response by a PayPal transaction ID.
-      required: true
-      schema:
-        type: string
-  requestBodies:
+    link_description:
+      type: object
+      title: Link Description
+      description: A request-related [HATEOAS link](/docs/api/reference/api-responses/#hateoas-links).
+      required:
+      - href
+      - rel
+      properties:
+        href:
+          type: string
+          description: The complete target URL. To make the related call, combine the method with this link, in [URI template format](https://tools.ietf.org/html/rfc6570). Include the `$`, `(`, and `)` characters for pre-processing. The `href` is the key HATEOAS component that links a completed call with a subsequent call.
+        rel:
+          type: string
+          description: The [link relation type](https://tools.ietf.org/html/rfc5988#section-4), which serves as an ID for a link that unambiguously describes the semantics of the link. See [Link Relations](https://www.iana.org/assignments/link-relations/link-relations.xhtml).
+        method:
+          type: string
+          description: The HTTP method required to make the related call.
+          enum:
+          - GET
+          - POST
+          - PUT
+          - DELETE
+          - HEAD
+          - CONNECT
+          - OPTIONS
+          - PATCH
+    date_time:
+      type: string
+      description: The date and time, in [Internet date and time format](https://tools.ietf.org/html/rfc3339#section-5.6). Seconds are required while fractional seconds are optional.<blockquote><strong>Note:</strong> The regular expression provides guidance but does not reject all invalid dates.</blockquote>
+      format: ppaas_date_time_v3
+      minLength: 20
+      maxLength: 64
+      pattern: ^[0-9]{4}-(0[1-9]|1[0-2])-(0[1-9]|[1-2][0-9]|3[0-1])[T,t]([0-1][0-9]|2[0-3]):[0-5][0-9]:([0-5][0-9]|60)([.][0-9]+)?([Zz]|[+-][0-9]{2}:[0-9]{2})$
+    date_no_time:
+      type: string
+      description: The stand-alone date, in [Internet date and time format](https://tools.ietf.org/html/rfc3339#section-5.6). To represent special legal values, such as a date of birth, you should use dates with no associated time or time-zone data. Whenever possible, use the standard `date_time` type. This regular expression does not validate all dates. For example, February 31 is valid and nothing is known about leap years.
+      format: ppaas_date_notime_v2
+      minLength: 10
+      maxLength: 10
+      pattern: ^[0-9]{4}-(0[1-9]|1[0-2])-(0[1-9]|[1-2][0-9]|3[0-1])$
+    tracker:
+      type: object
+      title: Tracker
+      description: The tracking information for a shipment.
+      properties:
+        transaction_id:
+          type: string
+          description: The PayPal transaction ID.
+          minLength: 1
+          maxLength: 50
+          pattern: ^[a-zA-Z0-9]*$
+        tracking_number:
+          type: string
+          description: The tracking number for the shipment.
+          minLength: 1
+          maxLength: 64
+        tracking_number_type:
+          description: The type of tracking number.
+          $ref: '#/components/schemas/tracking_number_type'
+        status:
+          $ref: '#/components/schemas/tracking_status'
+        shipment_date:
+          $ref: '#/components/schemas/date_no_time'
+          description: The date when the shipment occurred, in [Internet date and time format](https://tools.ietf.org/html/rfc3339#section-5.6).
+        carrier:
+          $ref: '#/components/schemas/carrier'
+        carrier_name_other:
+          type: string
+          description: The name of the carrier for the shipment. Provide this value only if the carrier parameter is OTHER.
+          minLength: 1
+          maxLength: 64
+        postage_payment_id:
+          type: string
+          description: The postage payment ID.
+          readOnly: true
+          minLength: 1
+          maxLength: 64
+        notify_buyer:
+          type: boolean
+          description: If true , sends an email notification to the buyer of the PayPal transaction. The email contains the tracking information that was uploaded through the API.
+          default: false
+        quantity:
+          type: integer
+          description: The quantity of items shipped.
+          readOnly: true
+          minimum: 1
+          maximum: 22
+        tracking_number_validated:
+          type: boolean
+          description: Indicates whether the carrier validated the tracking number.
+          readOnly: true
+        last_updated_time:
+          $ref: '#/components/schemas/date_time'
+          description: The date and time when the tracking information was last updated, in [Internet date and time format](https://tools.ietf.org/html/rfc3339#section-5.6).
+        shipment_direction:
+          type: string
+          description: To denote whether the shipment is sent forward to the receiver or returned back.
+          minLength: 1
+          maxLength: 50
+          enum:
+          - FORWARD
+          - RETURN
+        shipment_uploader:
+          readOnly: true
+          type: string
+          description: To denote which party uploaded the shipment tracking info.
+          minLength: 1
+          maxLength: 50
+          enum:
+          - MERCHANT
+          - CONSUMER
+          - PARTNER
+        account_id:
+          type: string
+          description: Encrypted PayPal Account ID of the buyer or seller.
+          readOnly: true
+          minLength: 13
+          maxLength: 13
+          pattern: ^[2-9A-HJ-NP-Z]{13}$
+        tracking_url:
+          type: string
+          format: uri
+          minLength: 1
+          maxLength: 250
+          description: Tracking Link of the shipment.
+        links:
+          type: array
+          description: An array of request-related [HATEOAS links](/docs/api/reference/api-responses/#hateoas-links).
+          readOnly: true
+          items:
+            $ref: '#/components/schemas/link_description'
+            readOnly: true
+      required:
+      - transaction_id
+      - status
+    tracker_identifier_collection:
+      type: object
+      title: Tracker Identifier Collection
+      description: The add tracking information for a PayPal transaction response details.
+      properties:
+        tracker_identifiers:
+          type: array
+          description: An array of tracking IDs.
+          items:
+            $ref: '#/components/schemas/tracker_identifier'
+          minItems: 1
+          maxItems: 100
+        links:
+          type: array
+          description: An array of request-related [HATEOAS links](/docs/api/reference/api-responses/#hateoas-links).
+          readOnly: true
+          items:
+            $ref: '#/components/schemas/link_description'
+            readOnly: true
+    link_description-2:
+      type: object
+      title: Link Description
+      description: The request-related [HATEOAS link](/docs/api/reference/api-responses/#hateoas-links) information.
+      required:
+      - href
+      - rel
+      properties:
+        href:
+          type: string
+          description: The complete target URL. To make the related call, combine the method with this [URI Template-formatted](https://tools.ietf.org/html/rfc6570) link. For pre-processing, include the `$`, `(`, and `)` characters. The `href` is the key HATEOAS component that links a completed call with a subsequent call.
+        rel:
+          type: string
+          description: The [link relation type](https://tools.ietf.org/html/rfc5988#section-4), which serves as an ID for a link that unambiguously describes the semantics of the link. See [Link Relations](https://www.iana.org/assignments/link-relations/link-relations.xhtml).
+        method:
+          type: string
+          description: The HTTP method required to make the related call.
+          enum:
+          - GET
+          - POST
+          - PUT
+          - DELETE
+          - HEAD
+          - CONNECT
+          - OPTIONS
+          - PATCH
+    tracking_number_type:
+      type: string
+      title: Tracking Number Type
+      description: The tracking number type.
+      minLength: 1
+      maxLength: 64
+      enum:
+      - CARRIER_PROVIDED
+      - E2E_PARTNER_PROVIDED
+    tracker_identifier:
+      type: object
+      title: Tracking Identifier
+      description: The tracking identifiers for a shipment.
+      properties:
+        transaction_id:
+          type: string
+          description: The PayPal transaction ID.
+          minLength: 1
+          maxLength: 50
+          pattern: ^[a-zA-Z0-9]*$
+        tracking_number:
+          type: string
+          description: The tracking number for the shipment.
+          minLength: 1
+          maxLength: 64
+        links:
+          type: array
+          description: An array of request-related [HATEOAS links](/docs/api/reference/api-responses/#hateoas-links).
+          readOnly: true
+          items:
+            $ref: '#/components/schemas/link_description'
+            readOnly: true
+      required:
+      - transaction_id
     tracker_collection:
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/tracker_collection'
+      type: object
+      title: Tracker Collection
+      description: The add tracking information for one or more transactions response details.
+      properties:
+        trackers:
+          type: array
+          description: An array of tracking information for shipments.
+          items:
+            $ref: '#/components/schemas/tracker'
+          minItems: 1
+          maxItems: 20
+        links:
+          type: array
+          description: An array of request-related [HATEOAS links](/docs/api/reference/api-responses/#hateoas-links).
+          readOnly: true
+          items:
+            $ref: '#/components/schemas/link_description'
+            readOnly: true
+    error_details-2:
+      title: Error Details
+      type: object
+      description: The error details. Required for client-side `4XX` errors.
+      properties:
+        field:
+          type: string
+          description: The field that caused the error. If this field is in the body, set this value to the field's JSON pointer value. Required for client-side errors.
+        value:
+          type: string
+          description: The value of the field that caused the error.
+        location:
+          type: string
+          description: The location of the field that caused the error. Value is `body`, `path`, or `query`.
+          default: body
+        issue:
+          type: string
+          description: The unique, fine-grained application-level error code.
+        description:
+          type: string
+          description: The human-readable description for an issue. The description can change over the lifetime of an API, so clients must not depend on this value.
+      required:
+      - issue
+    error:
+      type: object
+      title: Error
+      description: The error details.
+      properties:
+        name:
+          type: string
+          description: The human-readable, unique name of the error.
+        message:
+          type: string
+          description: The message that describes the error.
+        debug_id:
+          type: string
+          description: The PayPal internal ID. Used for correlation purposes.
+        information_link:
+          type: string
+          description: The information link, or URI, that shows detailed information about this error for the developer.
+          readOnly: true
+        details:
+          type: array
+          description: An array of additional details about the error.
+          items:
+            $ref: '#/components/schemas/error_details-2'
+        links:
+          type: array
+          description: An array of request-related [HATEOAS links](/docs/api/reference/api-responses/#hateoas-links).
+          readOnly: true
+          items:
+            $ref: '#/components/schemas/link_description-2'
+            readOnly: true
+      required:
+      - name
+      - message
+      - debug_id
   responses:
     default:
       description: The default response.
@@ -1908,6 +1929,12 @@ components:
         application/json:
           schema:
             $ref: '#/components/schemas/error_default'
+  requestBodies:
+    tracker_collection:
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/tracker_collection'
   securitySchemes:
     Oauth2:
       type: oauth2
@@ -1916,6 +1943,10 @@ components:
         clientCredentials:
           tokenUrl: /v1/oauth2/token
           scopes:
-            https://uri.paypal.com/services/subscriptions: Manage plan & subscription
-externalDocs:
-  url: https://developer.paypal.com/docs/api/subscriptions/v1/
+            https://uri.paypal.com/services/payments/payment: Manage payments and checkout workflow.
+            https://uri.paypal.com/services/payments/payment/reference-transaction: Permission to initiate reference transaction
+            https://uri.paypal.com/services/payments/initiatepayment: Initiates payments and checkout workflows.
+            https://uri.paypal.com/services/payments/orders/client-side-integration: Allows client-side integration on Create, Get, Patch, Authorize & Capture Order endpoints.
+x-refined-from:
+- paypal-checkout-orders-openapi-original.yml
+- paypal-shipping-tracking-openapi-original.yml

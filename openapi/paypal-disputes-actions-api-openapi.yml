@@ -1,8 +1,8 @@
-openapi: 3.0.3
+openapi: 3.2.0
 info:
-  title: Paypal Subscriptions Authorizations Disputes-Actions API
-  description: You can use billing plans and subscriptions to create subscriptions that process recurring PayPal payments for physical or digital goods, or services. A plan includes pricing and billing cycle information that defines the amount and frequency of charge for a subscription. You can also define a fixed plan, such as a $5 basic plan or a volume- or graduated-based plan with pricing tiers based on the quantity purchased. For more information, see <a href="/docs/subscriptions/">Subscriptions Overview</a>.
-  version: '1.6'
+  title: Paypal Disputes Disputes Actions API
+  description: Occasionally, something goes wrong with a customer's order.
+  version: '1.10'
   contact: {}
 servers:
 - url: https://api-m.sandbox.paypal.com
@@ -10,13 +10,18 @@ servers:
 - url: https://api-m.paypal.com
   description: PayPal Live Environment
 tags:
-- name: Disputes-Actions
-  description: Use the `/disputes` resource with a dispute ID and an action to:<ul><li>Accept a claim.</li><li>Accept an offer to resolve a dispute.</li><li>Acknowledge the return of an item related to a dispute.</li><li>Settle a dispute.</li><li>Appeal a dispute.</li><li>Cancel a dispute.</li><li>Change the reason for a dispute.</li><li>Deny an offer to resolve dispute.</li><li>Escalate a dispute to a claim.</li><li>Make an offer to resolve a dispute.</li><li>Make an offer to resolve a dispute.</li><li>Provide evidence for a dispute.</li><li>Provide supporting information for dispute.</li><li>In the sandbox, update the dispute status.</li><li>Send a message about a dispute to the other party in the dispute.</li><ul>
+- name: Disputes Actions
+  description: 'Use the `/disputes` resource with a dispute ID and an action to:
+
+
+    Accept a claim.'
 paths:
   /v1/customer/disputes/{id}/provide-evidence:
     post:
       summary: Paypal Provide evidence
-      description: Provides evidence for a dispute, by ID. A merchant can provide evidence for disputes with the <code>WAITING_FOR_SELLER_RESPONSE</code> status while customers can provide evidence for disputes with the <code>WAITING_FOR_BUYER_RESPONSE</code> status. Evidence can be a proof of delivery or proof of refund document or notes, which can include logs. A proof of delivery document includes a tracking number while a proof of refund document includes a refund ID. For other evidence type, notes and documents can be given. Evidences requested from you can be found by checking the type of evidence for the corresponding source under the evidence section of the <a href="/docs/api/customer-disputes/v1/#disputes_get">show dispute details</a> response. The source will be <code>REQUESTED_FROM_SELLER</code> for evidences requested from the merchant while it will be <code>REQUESTED_FROM_BUYER</code> for evidences requested from the customer. For constraints and rules regarding documents, see <a href="/docs/integration/direct/customer-disputes/integration-guide/#documents">documents</a>.<br/>To make this request, specify the evidence in the JSON request body and use the <code>provide-evidence</code> link in the <a href="/docs/api/reference/api-responses/#hateoas-links/">HATEOAS links</a> of the <a href="/docs/api/customer-disputes/v1/#disputes_get">show dispute details</a> response. In case the link is not present in the response, you can't provide evidence for the dispute. For information about dispute reasons, see <a href="/docs/integration/direct/customer-disputes/integration-guide/#dispute-reasons">dispute reasons</a>.
+      description: 'Provides evidence for a dispute, by ID. A merchant can provide evidence for disputes with the WAITING_FOR_SELLER_RESPONSE status while customers can provide evidence for disputes with the WAITING_FOR_BUYER_RESPONSE status. Evidence can be a proof of delivery or proof of refund document or notes, which can include logs. A proof of delivery document includes a tracking number while a proof of refund document includes a refund ID. For other evidence type, notes and documents can be given. Evidences requested from you can be found by checking the type of evidence for the corresponding source under the evidence section of the show dispute details response. The source will be REQUESTED_FROM_SELLER for evidences requested from the merchant while it will be REQUESTED_FROM_BUYER for evidences requested from the customer. For constraints and rules regarding documents, see documents.
+
+        To make this request, specify the evidence in the JSON request body and use the provide-evidence link in the HATEOAS links of the show dispute details response. In case the link is not present in the response, you can''t provide evidence for the dispute. For information about dispute reasons, see dispute reasons.'
       operationId: disputes.provide-evidence
       responses:
         '200':
@@ -49,11 +54,13 @@ paths:
       - Oauth2:
         - https://uri.paypal.com/services/disputes/update-partner
       tags:
-      - Disputes-Actions
+      - Disputes Actions
   /v1/customer/disputes/{id}/appeal:
     post:
       summary: Paypal Appeal dispute
-      description: Appeals a dispute, by ID. To appeal a dispute, use the <code>appeal</code> link in the <a href="/docs/api/reference/api-responses/#hateoas-links/">HATEOAS links</a> from the show dispute details response. If this link does not appear, you cannot appeal the dispute. Submit new evidence as a document or notes in the JSON request body. For constraints and rules regarding documents, see <a href="/docs/integration/direct/customer-disputes/integration-guide/#documents">documents</a>.<br/>To make this request, specify the dispute ID in the URI and specify the evidence in the JSON request body. For information about dispute reasons, see <a href="/docs/integration/direct/customer-disputes/integration-guide/#dispute-reasons">dispute reasons</a>.
+      description: 'Appeals a dispute, by ID. To appeal a dispute, use the appeal link in the HATEOAS links from the show dispute details response. If this link does not appear, you cannot appeal the dispute. Submit new evidence as a document or notes in the JSON request body. For constraints and rules regarding documents, see documents.
+
+        To make this request, specify the dispute ID in the URI and specify the evidence in the JSON request body. For information about dispute reasons, see dispute reasons.'
       operationId: disputes.appeal
       responses:
         '200':
@@ -84,11 +91,11 @@ paths:
       - Oauth2:
         - https://uri.paypal.com/services/disputes/update-buyer
       tags:
-      - Disputes-Actions
+      - Disputes Actions
   /v1/customer/disputes/{id}/accept-claim:
     post:
       summary: Paypal Accept claim
-      description: Accepts liability for a claim, by ID. When you accept liability for a claim, the dispute closes in the customer’s favor and PayPal automatically refunds money to the customer from the merchant's account. Allowed accept_claim_type values for the request is available in dispute details <a href="/docs/api/customer-disputes/v1/#definition-allowed_response_options">allowed response options</a> object.
+      description: Accepts liability for a claim, by ID. When you accept liability for a claim, the dispute closes in the customer’s favor and PayPal automatically refunds money to the customer from the merchant's account. Allowed accept_claim_type values for the request is available in dispute details allowed response options object.
       operationId: disputes.accept-claim
       responses:
         '200':
@@ -125,11 +132,11 @@ paths:
       - Oauth2:
         - https://uri.paypal.com/services/disputes/update-seller
       tags:
-      - Disputes-Actions
+      - Disputes Actions
   /v1/customer/disputes/{id}/adjudicate:
     post:
       summary: Paypal Settle dispute
-      description: <blockquote><strong>Important:</strong> This method is for sandbox use only.</blockquote> Settles a dispute in either the customer's or merchant's favor. Merchants can make this call in the sandbox to complete end-to-end dispute resolution testing, which mimics the dispute resolution that PayPal agents normally complete. To make this call, the dispute <code>status</code> must be <code>UNDER_REVIEW</code> and <code>adjudicate</code> link  should be available in the <a href="/docs/api/customer-disputes/v1/#disputes_get!c=200&path=links&t=response/">HATEOAS links</a> of the <a href="/docs/api/customer-disputes/v1/#disputes_get">show dispute details</a> response.
+      description: 'Important: This method is for sandbox use only. Settles a dispute in either the customer''s or merchant''s favor. Merchants can make this call in the sandbox to complete end-to-end dispute resolution testing, which mimics the dispute resolution that PayPal agents normally complete. To make this call, the dispute status must be UNDER_REVIEW and adjudicate link should be available in the HATEOAS links of the show dispute details response.'
       operationId: disputes.adjudicate
       responses:
         '200':
@@ -188,11 +195,32 @@ paths:
       - Oauth2:
         - https://uri.paypal.com/services/disputes/update-buyer
       tags:
-      - Disputes-Actions
+      - Disputes Actions
   /v1/customer/disputes/{id}/require-evidence:
     post:
       summary: Paypal Update dispute status
-      description: <blockquote><strong>Important:</strong> This method is for sandbox use only.</blockquote> Updates the status of a dispute, by ID, from <code>UNDER_REVIEW</code> to either:<ul><li><code>WAITING_FOR_BUYER_RESPONSE</code></li><li><code>WAITING_FOR_SELLER_RESPONSE</code></li></ul>This status change enables either the customer or merchant to submit evidence for the dispute. To make this call, the dispute <code>status</code> must be <code>UNDER_REVIEW</code> and <code>require-evidence</code> link  should be available in the <a href="/docs/api/customer-disputes/v1/#disputes_get!c=200&path=links&t=response/">HATEOAS links</a> of the <a href="/docs/api/customer-disputes/v1/#disputes_get">show dispute details</a> response. Specify an <code>action</code> value in the JSON request body to indicate whether the status change enables the customer or merchant to submit evidence:<table><thead><tr align="left"><th>If <code>action</code> is</th><th>The <code>status</code> updates to</th></tr></thead><tbody><tr><td><code>BUYER_EVIDENCE</code></td><td> <code>WAITING_FOR_BUYER_RESPONSE</code></td></tr><tr><td><code>SELLER_EVIDENCE</code></td><td> <code>WAITING_FOR_SELLER_RESPONSE</code></td></tr></tbody></table>.
+      description: 'Important: This method is for sandbox use only. Updates the status of a dispute, by ID, from UNDER_REVIEW to either:
+
+
+        WAITING_FOR_BUYER_RESPONSE
+
+
+        WAITING_FOR_SELLER_RESPONSE
+
+
+        This status change enables either the customer or merchant to submit evidence for the dispute. To make this call, the dispute status must be UNDER_REVIEW and require-evidence link should be available in the HATEOAS links of the show dispute details response. Specify an action value in the JSON request body to indicate whether the status change enables the customer or merchant to submit evidence:
+
+
+        If action isThe status updates to
+
+
+        BUYER_EVIDENCE WAITING_FOR_BUYER_RESPONSE
+
+
+        SELLER_EVIDENCE WAITING_FOR_SELLER_RESPONSE
+
+
+        .'
       operationId: disputes.require-evidence
       responses:
         '200':
@@ -252,7 +280,7 @@ paths:
       - Oauth2:
         - https://uri.paypal.com/services/disputes/update-buyer
       tags:
-      - Disputes-Actions
+      - Disputes Actions
   /v1/customer/disputes/{id}/escalate:
     post:
       summary: Paypal Escalate dispute to claim
@@ -315,11 +343,11 @@ paths:
       - Oauth2:
         - https://uri.paypal.com/services/disputes/update-buyer
       tags:
-      - Disputes-Actions
+      - Disputes Actions
   /v1/customer/disputes/{id}/send-message:
     post:
       summary: Paypal Send message about dispute to other party
-      description: Sends a message about a dispute, by ID, to the other party in the dispute. Merchants and customers can only send messages if the `dispute_life_cycle_stage` value is `INQUIRY`. For constraints and rules regarding documents that can be attached as part of the message, see <a href="/docs/integration/direct/customer-disputes/integration-guide/#documents">documents</a>. To send a message, use the <code>send-message</code> link in the <a href="/docs/api/reference/api-responses/#hateoas-links/">HATEOAS links</a> of the <a href="/docs/api/customer-disputes/v1/#disputes_get">show dispute details</a> response and specify the message in the JSON request body. In case the link is not present in the response you can't send a message on the dispute.
+      description: Sends a message about a dispute, by ID, to the other party in the dispute. Merchants and customers can only send messages if the `dispute_life_cycle_stage` value is `INQUIRY`. For constraints and rules regarding documents that can be attached as part of the message, see documents. To send a message, use the send-message link in the HATEOAS links of the show dispute details response and specify the message in the JSON request body. In case the link is not present in the response you can't send a message on the dispute.
       operationId: disputes.send-message
       responses:
         '200':
@@ -370,11 +398,11 @@ paths:
       - Oauth2:
         - https://uri.paypal.com/services/disputes/update-buyer
       tags:
-      - Disputes-Actions
+      - Disputes Actions
   /v1/customer/disputes/{id}/make-offer:
     post:
       summary: Paypal Make offer to resolve dispute
-      description: Makes an offer to the other party to resolve a dispute, by ID. To make this call, the stage in the dispute lifecycle must be `INQUIRY`. If the customer accepts the offer, PayPal automatically makes a refund. Allowed offer_type values for the request is available in dispute details <a href="/docs/api/customer-disputes/v1/#definition-allowed_response_options">allowed response options</a> object.
+      description: Makes an offer to the other party to resolve a dispute, by ID. To make this call, the stage in the dispute lifecycle must be `INQUIRY`. If the customer accepts the offer, PayPal automatically makes a refund. Allowed offer_type values for the request is available in dispute details allowed response options object.
       operationId: disputes.make-offer
       responses:
         '200':
@@ -437,7 +465,7 @@ paths:
       - Oauth2:
         - https://uri.paypal.com/services/disputes/update-buyer
       tags:
-      - Disputes-Actions
+      - Disputes Actions
   /v1/customer/disputes/{id}/accept-offer:
     post:
       summary: Paypal Accept offer to resolve dispute
@@ -504,7 +532,7 @@ paths:
       - Oauth2:
         - https://uri.paypal.com/services/disputes/update-buyer
       tags:
-      - Disputes-Actions
+      - Disputes Actions
   /v1/customer/disputes/{id}/deny-offer:
     post:
       summary: Paypal Deny offer to resolve dispute
@@ -565,11 +593,11 @@ paths:
       - Oauth2:
         - https://uri.paypal.com/services/disputes/update-buyer
       tags:
-      - Disputes-Actions
+      - Disputes Actions
   /v1/customer/disputes/{id}/acknowledge-return-item:
     post:
       summary: Paypal Acknowledge returned item
-      description: Acknowledges that the customer returned an item for a dispute, by ID. A merchant can make this request for disputes with the `MERCHANDISE_OR_SERVICE_NOT_AS_DESCRIBED` reason. Allowed acknowledgement_type values for the request is available in dispute details <a href="/docs/api/customer-disputes/v1/#definition-allowed_response_options">allowed response options</a> object. For constraints and rules regarding documents, see <a href="/docs/integration/direct/customer-disputes/integration-guide/#documents">documents</a>.
+      description: Acknowledges that the customer returned an item for a dispute, by ID. A merchant can make this request for disputes with the `MERCHANDISE_OR_SERVICE_NOT_AS_DESCRIBED` reason. Allowed acknowledgement_type values for the request is available in dispute details allowed response options object. For constraints and rules regarding documents, see documents.
       operationId: disputes.acknowledge-return-item
       responses:
         '200':
@@ -618,11 +646,13 @@ paths:
       - Oauth2:
         - https://uri.paypal.com/services/disputes/update-seller
       tags:
-      - Disputes-Actions
+      - Disputes Actions
   /v1/customer/disputes/{id}/provide-supporting-info:
     post:
       summary: Paypal Provide supporting information for dispute
-      description: Provides supporting information for a dispute, by ID. A merchant or buyer can make this request for disputes if they find the `provide-supporting-info` link in the HATEOAS links in the list disputes response. The party can provide the supporting information to PayPal to defend themselves only when the `dispute_life_cycle_stage` is `CHARGEBACK`, `PRE_ARBITRATION`, or `ARBITRATION`. They can provide a note that describes their part with details or upload any supporting documents to support their side. For constraints and rules regarding documents, see <a href="/docs/integration/direct/customer-disputes/integration-guide/#documents">documents</a>.<br/>To make this request, specify the dispute ID in the URI and specify the notes in the JSON request body. This method differs from the provide evidence method which supports only multipart request, where PayPal asks the concerned party for evidence.
+      description: 'Provides supporting information for a dispute, by ID. A merchant or buyer can make this request for disputes if they find the `provide-supporting-info` link in the HATEOAS links in the list disputes response. The party can provide the supporting information to PayPal to defend themselves only when the `dispute_life_cycle_stage` is `CHARGEBACK`, `PRE_ARBITRATION`, or `ARBITRATION`. They can provide a note that describes their part with details or upload any supporting documents to support their side. For constraints and rules regarding documents, see documents.
+
+        To make this request, specify the dispute ID in the URI and specify the notes in the JSON request body. This method differs from the provide evidence method which supports only multipart request, where PayPal asks the concerned party for evidence.'
       operationId: disputes.provide-supporting-info
       responses:
         '200':
@@ -679,46 +709,27 @@ paths:
         - https://uri.paypal.com/services/disputes/update-buyer
         - https://uri.paypal.com/services/disputes/update-partner
       tags:
-      - Disputes-Actions
+      - Disputes Actions
 components:
+  parameters:
+    id:
+      name: id
+      in: path
+      description: The ID of the dispute for which to provide the supporting information.
+      required: true
+      schema:
+        type: string
+        minLength: 1
+        maxLength: 255
+        pattern: ^[A-Za-z0-9-]+$
   schemas:
-    offer_type:
+    country_code:
       type: string
-      minLength: 1
-      maxLength: 255
-      pattern: ^[0-9A-Z_]+$
-      title: Offer Type
-      description: The merchant-proposed offer type for the dispute.
-      enum:
-      - REFUND
-      - REFUND_WITH_RETURN
-      - REFUND_WITH_REPLACEMENT
-      - REPLACEMENT_WITHOUT_REFUND
-    accept_offer:
-      type: object
-      title: Accept Offer Request
-      description: A customer request to accept the offer made by the merchant.
-      properties:
-        note:
-          type: string
-          minLength: 1
-          maxLength: 2000
-          description: The customer notes about accepting of offer. PayPal can but the merchant cannot view these notes.
-    buyer_escalation_reason: {}
-    escalate:
-      type: object
-      title: Escalate Claim Request
-      description: A merchant request to escalate a dispute, by ID, to a PayPal claim.
-      properties:
-        note:
-          type: string
-          minLength: 1
-          maxLength: 2000
-          description: The notes about the escalation of the dispute to a claim.
-        buyer_escalation_reason:
-          $ref: '#/components/schemas/buyer_escalation_reason'
-      required:
-      - note
+      description: The [two-character ISO 3166-1 code](/docs/api/reference/country-codes/) that identifies the country or region.<blockquote><strong>Note:</strong> The country code for Great Britain is <code>GB</code> and not <code>UK</code> as used in the top-level domain names for that country. Use the `C2` country code for China worldwide for comparable uncontrolled price (CUP) method, bank card, and cross-border transactions.</blockquote>
+      format: ppaas_common_country_code_v2
+      maxLength: 2
+      minLength: 2
+      pattern: ^([A-Z]{2}|C2)$
     address_portable:
       type: object
       title: Portable Postal Address (Medium-Grained)
@@ -789,13 +800,159 @@ components:
               maxLength: 100
       required:
       - country_code
-    country_code:
+    currency_code:
+      description: The [three-character ISO-4217 currency code](/docs/api/reference/currency-codes/) that identifies the currency.
       type: string
-      description: The [two-character ISO 3166-1 code](/docs/api/reference/country-codes/) that identifies the country or region.<blockquote><strong>Note:</strong> The country code for Great Britain is <code>GB</code> and not <code>UK</code> as used in the top-level domain names for that country. Use the `C2` country code for China worldwide for comparable uncontrolled price (CUP) method, bank card, and cross-border transactions.</blockquote>
-      format: ppaas_common_country_code_v2
-      maxLength: 2
-      minLength: 2
-      pattern: ^([A-Z]{2}|C2)$
+      format: ppaas_common_currency_code_v2
+      minLength: 3
+      maxLength: 3
+    accept_offer:
+      type: object
+      title: Accept Offer Request
+      description: A customer request to accept the offer made by the merchant.
+      properties:
+        note:
+          type: string
+          minLength: 1
+          maxLength: 2000
+          description: The customer notes about accepting of offer. PayPal can but the merchant cannot view these notes.
+    deny_offer:
+      type: object
+      title: Deny Offer Request
+      description: A customer request to deny the offer made by the merchant.
+      properties:
+        note:
+          type: string
+          minLength: 1
+          maxLength: 2000
+          description: The customer notes about the denial of offer. PayPal can but the merchant cannot view these notes.
+      required:
+      - note
+    link_description:
+      type: object
+      title: Link Description
+      description: The request-related [HATEOAS link](/docs/api/reference/api-responses/#hateoas-links) information.
+      required:
+      - href
+      - rel
+      properties:
+        href:
+          type: string
+          description: The complete target URL. To make the related call, combine the method with this [URI Template-formatted](https://tools.ietf.org/html/rfc6570) link. For pre-processing, include the `$`, `(`, and `)` characters. The `href` is the key HATEOAS component that links a completed call with a subsequent call.
+        rel:
+          type: string
+          description: The [link relation type](https://tools.ietf.org/html/rfc5988#section-4), which serves as an ID for a link that unambiguously describes the semantics of the link. See [Link Relations](https://www.iana.org/assignments/link-relations/link-relations.xhtml).
+        method:
+          type: string
+          description: The HTTP method required to make the related call.
+          enum:
+          - GET
+          - POST
+          - PUT
+          - DELETE
+          - HEAD
+          - CONNECT
+          - OPTIONS
+          - PATCH
+    money:
+      type: object
+      title: Money
+      description: The currency and amount for a financial transaction, such as a balance or payment due.
+      properties:
+        currency_code:
+          $ref: '#/components/schemas/currency_code'
+        value:
+          type: string
+          description: The value, which might be:<ul><li>An integer for currencies like `JPY` that are not typically fractional.</li><li>A decimal fraction for currencies like `TND` that are subdivided into thousandths.</li></ul>For the required number of decimal places for a currency code, see [Currency Codes](/docs/api/reference/currency-codes/).
+          maxLength: 32
+          pattern: ^((-?[0-9]+)|(-?([0-9]+)?[.][0-9]+))$
+      required:
+      - currency_code
+      - value
+    offer_type:
+      type: string
+      minLength: 1
+      maxLength: 255
+      pattern: ^[0-9A-Z_]+$
+      title: Offer Type
+      description: The merchant-proposed offer type for the dispute.
+      enum:
+      - REFUND
+      - REFUND_WITH_RETURN
+      - REFUND_WITH_REPLACEMENT
+      - REPLACEMENT_WITHOUT_REFUND
+    make_offer:
+      type: object
+      title: Make Offer Request
+      description: A merchant request to make an offer to resolve a dispute.
+      properties:
+        note:
+          type: string
+          minLength: 1
+          maxLength: 2000
+          description: The merchant's notes about the offer.
+        offer_amount:
+          description: The amount proposed to resolve the dispute.
+          $ref: '#/components/schemas/money'
+        return_shipping_address:
+          description: The return address for the item. Required when the customer must return an item to the merchant for the <code>MERCHANDISE_OR_SERVICE_NOT_AS_DESCRIBED</code> dispute reason, especially if the refund amount is less than the dispute amount.
+          $ref: '#/components/schemas/address_portable'
+        invoice_id:
+          type: string
+          minLength: 1
+          maxLength: 127
+          description: The merchant-provided ID of the invoice for the refund. This optional value maps the refund to an invoice ID in the merchant's system.
+          pattern: ^[A-Za-z0-9:\-|]+$
+        offer_type:
+          $ref: '#/components/schemas/offer_type'
+      required:
+      - note
+      - offer_type
+    escalate:
+      type: object
+      title: Escalate Claim Request
+      description: A merchant request to escalate a dispute, by ID, to a PayPal claim.
+      properties:
+        note:
+          type: string
+          minLength: 1
+          maxLength: 2000
+          description: The notes about the escalation of the dispute to a claim.
+        buyer_escalation_reason:
+          $ref: '#/components/schemas/buyer_escalation_reason'
+      required:
+      - note
+    buyer_escalation_reason: {}
+    require_evidence:
+      type: object
+      title: Require Evidence Request
+      description: Sandbox only. Updates the state of a dispute, by ID, to either <code>WAITING_FOR_BUYER_RESPONSE</code> or <code>WAITING_FOR_SELLER_RESPONSE</code>. This state change enables either the customer or merchant to submit evidence for the dispute. Specify an <code>action</code> value in the JSON request body to indicate whether the state change enables the customer or merchant to submit evidence.
+      properties:
+        action:
+          type: string
+          minLength: 1
+          maxLength: 255
+          pattern: ^[0-9A-Z_]+$
+          description: The action. Indicates whether the state change enables the customer or merchant to submit evidence.
+          enum:
+          - BUYER_EVIDENCE
+          - SELLER_EVIDENCE
+      required:
+      - action
+    subsequent_action:
+      title: Subsequent Action
+      type: object
+      description: The subsequent action.
+      properties:
+        links:
+          type: array
+          minItems: 1
+          maxItems: 10
+          description: An array of request-related [HATEOAS links](/docs/api/reference/api-responses/#hateoas-links/).
+          readOnly: true
+          items:
+            $ref: '#/components/schemas/link_description'
+            readOnly: true
     adjudicate:
       type: object
       title: Settle Request
@@ -812,6 +969,29 @@ components:
           - SELLER_FAVOR
       required:
       - adjudication_outcome
+    error_details-2:
+      title: Error Details
+      type: object
+      description: The error details. Required for client-side `4XX` errors.
+      properties:
+        field:
+          type: string
+          description: The field that caused the error. If this field is in the body, set this value to the field's JSON pointer value. Required for client-side errors.
+        value:
+          type: string
+          description: The value of the field that caused the error.
+        location:
+          type: string
+          description: The location of the field that caused the error. Value is `body`, `path`, or `query`.
+          default: body
+        issue:
+          type: string
+          description: The unique, fine-grained application-level error code.
+        description:
+          type: string
+          description: The human-readable description for an issue. The description can change over the lifetime of an API, so clients must not depend on this value.
+      required:
+      - issue
     error:
       type: object
       title: Error
@@ -846,145 +1026,6 @@ components:
       - name
       - message
       - debug_id
-    make_offer:
-      type: object
-      title: Make Offer Request
-      description: A merchant request to make an offer to resolve a dispute.
-      properties:
-        note:
-          type: string
-          minLength: 1
-          maxLength: 2000
-          description: The merchant's notes about the offer.
-        offer_amount:
-          description: The amount proposed to resolve the dispute.
-          $ref: '#/components/schemas/money'
-        return_shipping_address:
-          description: The return address for the item. Required when the customer must return an item to the merchant for the <code>MERCHANDISE_OR_SERVICE_NOT_AS_DESCRIBED</code> dispute reason, especially if the refund amount is less than the dispute amount.
-          $ref: '#/components/schemas/address_portable'
-        invoice_id:
-          type: string
-          minLength: 1
-          maxLength: 127
-          description: The merchant-provided ID of the invoice for the refund. This optional value maps the refund to an invoice ID in the merchant's system.
-          pattern: ^[A-Za-z0-9:\-|]+$
-        offer_type:
-          $ref: '#/components/schemas/offer_type'
-      required:
-      - note
-      - offer_type
-    subsequent_action:
-      title: Subsequent Action
-      type: object
-      description: The subsequent action.
-      properties:
-        links:
-          type: array
-          minItems: 1
-          maxItems: 10
-          description: An array of request-related [HATEOAS links](/docs/api/reference/api-responses/#hateoas-links/).
-          readOnly: true
-          items:
-            $ref: '#/components/schemas/link_description'
-            readOnly: true
-    link_description:
-      type: object
-      title: Link Description
-      description: The request-related [HATEOAS link](/docs/api/reference/api-responses/#hateoas-links) information.
-      required:
-      - href
-      - rel
-      properties:
-        href:
-          type: string
-          description: The complete target URL. To make the related call, combine the method with this [URI Template-formatted](https://tools.ietf.org/html/rfc6570) link. For pre-processing, include the `$`, `(`, and `)` characters. The `href` is the key HATEOAS component that links a completed call with a subsequent call.
-        rel:
-          type: string
-          description: The [link relation type](https://tools.ietf.org/html/rfc5988#section-4), which serves as an ID for a link that unambiguously describes the semantics of the link. See [Link Relations](https://www.iana.org/assignments/link-relations/link-relations.xhtml).
-        method:
-          type: string
-          description: The HTTP method required to make the related call.
-          enum:
-          - GET
-          - POST
-          - PUT
-          - DELETE
-          - HEAD
-          - CONNECT
-          - OPTIONS
-          - PATCH
-    require_evidence:
-      type: object
-      title: Require Evidence Request
-      description: Sandbox only. Updates the state of a dispute, by ID, to either <code>WAITING_FOR_BUYER_RESPONSE</code> or <code>WAITING_FOR_SELLER_RESPONSE</code>. This state change enables either the customer or merchant to submit evidence for the dispute. Specify an <code>action</code> value in the JSON request body to indicate whether the state change enables the customer or merchant to submit evidence.
-      properties:
-        action:
-          type: string
-          minLength: 1
-          maxLength: 255
-          pattern: ^[0-9A-Z_]+$
-          description: The action. Indicates whether the state change enables the customer or merchant to submit evidence.
-          enum:
-          - BUYER_EVIDENCE
-          - SELLER_EVIDENCE
-      required:
-      - action
-    currency_code:
-      description: The [three-character ISO-4217 currency code](/docs/api/reference/currency-codes/) that identifies the currency.
-      type: string
-      format: ppaas_common_currency_code_v2
-      minLength: 3
-      maxLength: 3
-    deny_offer:
-      type: object
-      title: Deny Offer Request
-      description: A customer request to deny the offer made by the merchant.
-      properties:
-        note:
-          type: string
-          minLength: 1
-          maxLength: 2000
-          description: The customer notes about the denial of offer. PayPal can but the merchant cannot view these notes.
-      required:
-      - note
-    money:
-      type: object
-      title: Money
-      description: The currency and amount for a financial transaction, such as a balance or payment due.
-      properties:
-        currency_code:
-          $ref: '#/components/schemas/currency_code'
-        value:
-          type: string
-          description: The value, which might be:<ul><li>An integer for currencies like `JPY` that are not typically fractional.</li><li>A decimal fraction for currencies like `TND` that are subdivided into thousandths.</li></ul>For the required number of decimal places for a currency code, see [Currency Codes](/docs/api/reference/currency-codes/).
-          maxLength: 32
-          pattern: ^((-?[0-9]+)|(-?([0-9]+)?[.][0-9]+))$
-      required:
-      - currency_code
-      - value
-    error_details-2:
-      title: Error Details
-      type: object
-      description: The error details. Required for client-side `4XX` errors.
-      properties:
-        field:
-          type: string
-          description: The field that caused the error. If this field is in the body, set this value to the field's JSON pointer value. Required for client-side errors.
-        value:
-          type: string
-          description: The value of the field that caused the error.
-        location:
-          type: string
-          description: The location of the field that caused the error. Value is `body`, `path`, or `query`.
-          default: body
-        issue:
-          type: string
-          description: The unique, fine-grained application-level error code.
-        description:
-          type: string
-          description: The human-readable description for an issue. The description can change over the lifetime of an API, so clients must not depend on this value.
-      required:
-      - issue
   requestBodies:
     evidences:
       content:
@@ -996,17 +1037,6 @@ components:
                 description: A file with evidence.
                 type: string
                 format: binary
-  parameters:
-    id:
-      name: id
-      in: path
-      description: The ID of the dispute for which to provide the supporting information.
-      required: true
-      schema:
-        type: string
-        minLength: 1
-        maxLength: 255
-        pattern: ^[A-Za-z0-9-]+$
   securitySchemes:
     Oauth2:
       type: oauth2
@@ -1015,6 +1045,16 @@ components:
         clientCredentials:
           tokenUrl: /v1/oauth2/token
           scopes:
-            https://uri.paypal.com/services/subscriptions: Manage plan & subscription
+            https://uri.paypal.com/services/disputes/read-seller: This privilege allows client to read and search a disputes of a merchant but gets only a limited and allowed set of fields back .
+            https://uri.paypal.com/services/disputes/read-buyer: This privilege allows client to read and search disputes but returns a limited and allowed set of fields back.
+            https://uri.paypal.com/services/disputes/read-ebay: This privilege allows client to read and search a disputes of an user but gets only a limited and allowed set of fields back to ebay.
+            https://uri.paypal.com/services/disputes/read: This privilege allows client to read and search a dispute of an user with all fields.
+            https://uri.paypal.com/services/disputes/webhooks: This privilege allows webhook platform to read a dispute event
+            https://uri.paypal.com/services/disputes/create: This privilege allows client to validate eligibility and create a dispute on his transaction(s).
+            https://uri.paypal.com/services/disputes/update-seller: This privilege allows client to update a dispute (Merchant actions).
+            https://uri.paypal.com/services/disputes/update-buyer: This privilege allows client to update a dispute (customer actions).
+            https://uri.paypal.com/services/referred-disputes/readwrite: This privilege allows client to read and update a referred dispute.
+            https://uri.paypal.com/services/disputes/read-partner: This privilege allows client to read and search disputes but returns a limited and allowed set of fields back.
+            https://uri.paypal.com/services/disputes/update-partner: This privilege allows client to update a dispute (Partner actions).
 externalDocs:
-  url: https://developer.paypal.com/docs/api/subscriptions/v1/
+  url: https://developer.paypal.com/docs/api/customer-disputes/v1/

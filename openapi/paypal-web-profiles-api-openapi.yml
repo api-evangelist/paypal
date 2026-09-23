@@ -1,8 +1,8 @@
-openapi: 3.0.3
+openapi: 3.2.0
 info:
-  title: Paypal Subscriptions Authorizations Web-Profiles API
-  description: You can use billing plans and subscriptions to create subscriptions that process recurring PayPal payments for physical or digital goods, or services. A plan includes pricing and billing cycle information that defines the amount and frequency of charge for a subscription. You can also define a fixed plan, such as a $5 basic plan or a volume- or graduated-based plan with pricing tiers based on the quantity purchased. For more information, see <a href="/docs/subscriptions/">Subscriptions Overview</a>.
-  version: '1.6'
+  title: Paypal Payment Experience Web Profiles API
+  description: Use the Payment Experience API to create seamless payment experience profiles. For information about how to create a PayPal payment with a web experience profile, see Web experience profiles.
+  version: '1.3'
   contact: {}
 servers:
 - url: https://api-m.sandbox.paypal.com
@@ -217,7 +217,62 @@ paths:
       tags:
       - Web-Profiles
 components:
+  parameters:
+    id:
+      name: id
+      in: path
+      description: The ID of the profile to delete.
+      required: true
+      schema:
+        type: string
+    paypal_request_id:
+      name: PayPal-Request-Id
+      in: header
+      description: The server stores keys for three hours.
+      required: true
+      schema:
+        type: string
   schemas:
+    patch_request:
+      type: array
+      title: Patch Request
+      description: An array of JSON patch objects to apply partial updates to resources.
+      items:
+        $ref: '#/components/schemas/patch'
+    web_profile_list:
+      type: array
+      title: Web Profile List
+      description: An array of web profiles.
+      minItems: 1
+      maxItems: 20
+      items:
+        $ref: '#/components/schemas/web_profile'
+    patch:
+      type: object
+      title: Patch
+      description: The JSON patch object to apply partial updates to resources.
+      properties:
+        op:
+          type: string
+          description: The operation.
+          enum:
+          - add
+          - remove
+          - replace
+          - move
+          - copy
+          - test
+        path:
+          type: string
+          description: The <a href="https://tools.ietf.org/html/rfc6901">JSON Pointer</a> to the target document location at which to complete the operation.
+        value:
+          title: Patch Value
+          description: The value to apply. The <code>remove</code> operation does not require a value.
+        from:
+          type: string
+          description: The <a href="https://tools.ietf.org/html/rfc6901">JSON Pointer</a> to the target document location from which to move the value. Required for the <code>move</code> operation.
+      required:
+      - op
     web_profile:
       type: object
       description: A payment web experience profile.
@@ -308,6 +363,20 @@ components:
               minLength: 2
               maxLength: 5
               description: 'The locale of pages that the PayPal payment experience displays. A valid value is `AU`, `AT`, `BE`, `BR`, `CA`, `CH`, `CN`, `DE`, `ES`, `GB`, `FR`, `IT`, `NL`, `PL`, `PT`, `RU`, or `US`. A 5-character code is also valid for languages in these countries: `da_DK`, `he_IL`, `id_ID`, `ja_JP`, `no_NO`, `pt_BR`, `ru_RU`, `sv_SE`, `th_TH`, `zh_CN`, `zh_HK`, or `zh_TW`.'
+    error_details-2:
+      type: object
+      title: Error Details
+      description: The error details. Required for client-side `4XX` errors.
+      properties:
+        field:
+          type: string
+          description: The name of the field that caused the error.
+        issue:
+          type: string
+          description: The reason for the error.
+      required:
+      - field
+      - issue
     error:
       type: object
       title: Error
@@ -339,75 +408,6 @@ components:
       - name
       - message
       - information_link
-    web_profile_list:
-      type: array
-      title: Web Profile List
-      description: An array of web profiles.
-      minItems: 1
-      maxItems: 20
-      items:
-        $ref: '#/components/schemas/web_profile'
-    patch:
-      type: object
-      title: Patch
-      description: The JSON patch object to apply partial updates to resources.
-      properties:
-        op:
-          type: string
-          description: The operation.
-          enum:
-          - add
-          - remove
-          - replace
-          - move
-          - copy
-          - test
-        path:
-          type: string
-          description: The <a href="https://tools.ietf.org/html/rfc6901">JSON Pointer</a> to the target document location at which to complete the operation.
-        value:
-          title: Patch Value
-          description: The value to apply. The <code>remove</code> operation does not require a value.
-        from:
-          type: string
-          description: The <a href="https://tools.ietf.org/html/rfc6901">JSON Pointer</a> to the target document location from which to move the value. Required for the <code>move</code> operation.
-      required:
-      - op
-    patch_request:
-      type: array
-      title: Patch Request
-      description: An array of JSON patch objects to apply partial updates to resources.
-      items:
-        $ref: '#/components/schemas/patch'
-    error_details-2:
-      type: object
-      title: Error Details
-      description: The error details. Required for client-side `4XX` errors.
-      properties:
-        field:
-          type: string
-          description: The name of the field that caused the error.
-        issue:
-          type: string
-          description: The reason for the error.
-      required:
-      - field
-      - issue
-  parameters:
-    id:
-      name: id
-      in: path
-      description: The ID of the profile to delete.
-      required: true
-      schema:
-        type: string
-    paypal_request_id:
-      name: PayPal-Request-Id
-      in: header
-      description: The server stores keys for three hours.
-      required: true
-      schema:
-        type: string
   requestBodies:
     web_profile:
       content:
@@ -422,6 +422,7 @@ components:
         clientCredentials:
           tokenUrl: /v1/oauth2/token
           scopes:
-            https://uri.paypal.com/services/subscriptions: Manage plan & subscription
+            https://uri.paypal.com/services/payments/payment: New special privileged scope available for payment and manage payment experience profiles. Available to internal clients only.
+            https://uri.paypal.com/services/payments/realtimepayment: Permission to do any real-time payment and manage-payment experience profiles with support for sale, authorize, and order intents.
 externalDocs:
-  url: https://developer.paypal.com/docs/api/subscriptions/v1/
+  url: https://developer.paypal.com/docs/api/payment-experience/v1/
