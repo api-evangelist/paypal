@@ -46,6 +46,7 @@ tags:
 - Subscription
 - Tokens
 - Webhook
+- Agentic Commerce
 tags_raw:
 - PayPal
 - Billing
@@ -58,6 +59,7 @@ tags_raw:
 - Subscriptions
 - Tokens
 - Webhooks
+- Agentic Commerce
 created: '2024-04-14'
 modified: '2026-05-30'
 url: https://raw.githubusercontent.com/api-evangelist/paypal/refs/heads/main/apis.yml
@@ -78,8 +80,6 @@ apis:
     url: openapi/paypal-authorizations-api-openapi.yml
   - type: Documentation
     url: https://developer.paypal.com/docs/api/subscriptions/v1/
-  - type: GraphQL
-    url: graphql/paypal-graphql.md
   - type: Documentation
     url: https://developer.paypal.com/docs/api/catalog-products/v1/
   - type: Documentation
@@ -117,8 +117,6 @@ apis:
     url: openapi/paypal-balances-api-openapi.yml
   - type: Documentation
     url: https://developer.paypal.com/docs/api/subscriptions/v1/
-  - type: GraphQL
-    url: graphql/paypal-graphql.md
   - type: Documentation
     url: https://developer.paypal.com/docs/api/catalog-products/v1/
   - type: Documentation
@@ -156,8 +154,6 @@ apis:
     url: openapi/paypal-billing-api-openapi.yml
   - type: Documentation
     url: https://developer.paypal.com/docs/api/subscriptions/v1/
-  - type: GraphQL
-    url: graphql/paypal-graphql.md
   - type: Documentation
     url: https://developer.paypal.com/docs/api/catalog-products/v1/
   - type: Documentation
@@ -197,8 +193,6 @@ apis:
     url: openapi/paypal-captures-api-openapi.yml
   - type: Documentation
     url: https://developer.paypal.com/docs/api/subscriptions/v1/
-  - type: GraphQL
-    url: graphql/paypal-graphql.md
   - type: Documentation
     url: https://developer.paypal.com/docs/api/catalog-products/v1/
   - type: Documentation
@@ -243,8 +237,6 @@ apis:
     url: openapi/paypal-disputes-actions-api-openapi.yml
   - type: Documentation
     url: https://developer.paypal.com/docs/api/subscriptions/v1/
-  - type: GraphQL
-    url: graphql/paypal-graphql.md
   - type: Documentation
     url: https://developer.paypal.com/docs/api/catalog-products/v1/
   - type: Documentation
@@ -285,8 +277,6 @@ apis:
     url: openapi/paypal-disputes-api-openapi.yml
   - type: Documentation
     url: https://developer.paypal.com/docs/api/subscriptions/v1/
-  - type: GraphQL
-    url: graphql/paypal-graphql.md
   - type: Documentation
     url: https://developer.paypal.com/docs/api/catalog-products/v1/
   - type: Documentation
@@ -329,8 +319,6 @@ apis:
     url: openapi/paypal-invoices-api-openapi.yml
   - type: Documentation
     url: https://developer.paypal.com/docs/api/subscriptions/v1/
-  - type: GraphQL
-    url: graphql/paypal-graphql.md
   - type: Documentation
     url: https://developer.paypal.com/docs/api/catalog-products/v1/
   - type: Documentation
@@ -371,8 +359,6 @@ apis:
     url: openapi/paypal-orders-api-openapi.yml
   - type: Documentation
     url: https://developer.paypal.com/docs/api/subscriptions/v1/
-  - type: GraphQL
-    url: graphql/paypal-graphql.md
   - type: Documentation
     url: https://developer.paypal.com/docs/api/catalog-products/v1/
   - type: Documentation
@@ -410,8 +396,6 @@ apis:
     url: openapi/paypal-partner-referrals-api-openapi.yml
   - type: Documentation
     url: https://developer.paypal.com/docs/api/subscriptions/v1/
-  - type: GraphQL
-    url: graphql/paypal-graphql.md
   - type: Documentation
     url: https://developer.paypal.com/docs/api/catalog-products/v1/
   - type: Documentation
@@ -451,8 +435,6 @@ apis:
     url: openapi/paypal-payment-tokens-api-openapi.yml
   - type: Documentation
     url: https://developer.paypal.com/docs/api/subscriptions/v1/
-  - type: GraphQL
-    url: graphql/paypal-graphql.md
   - type: Documentation
     url: https://developer.paypal.com/docs/api/catalog-products/v1/
   - type: Documentation
@@ -493,8 +475,6 @@ apis:
     url: openapi/paypal-payouts-api-openapi.yml
   - type: Documentation
     url: https://developer.paypal.com/docs/api/subscriptions/v1/
-  - type: GraphQL
-    url: graphql/paypal-graphql.md
   - type: Documentation
     url: https://developer.paypal.com/docs/api/catalog-products/v1/
   - type: Documentation
@@ -533,8 +513,6 @@ apis:
     url: openapi/paypal-payouts-item-api-openapi.yml
   - type: Documentation
     url: https://developer.paypal.com/docs/api/subscriptions/v1/
-  - type: GraphQL
-    url: graphql/paypal-graphql.md
   - type: Documentation
     url: https://developer.paypal.com/docs/api/catalog-products/v1/
   - type: Documentation
@@ -574,8 +552,6 @@ apis:
     url: openapi/paypal-products-api-openapi.yml
   - type: Documentation
     url: https://developer.paypal.com/docs/api/subscriptions/v1/
-  - type: GraphQL
-    url: graphql/paypal-graphql.md
   - type: Documentation
     url: https://developer.paypal.com/docs/api/catalog-products/v1/
   - type: Documentation
@@ -613,8 +589,6 @@ apis:
     url: openapi/paypal-refunds-api-openapi.yml
   - type: Documentation
     url: https://developer.paypal.com/docs/api/subscriptions/v1/
-  - type: GraphQL
-    url: graphql/paypal-graphql.md
   - type: Documentation
     url: https://developer.paypal.com/docs/api/catalog-products/v1/
   - type: Documentation
@@ -653,8 +627,6 @@ apis:
     url: openapi/paypal-search-invoices-api-openapi.yml
   - type: Documentation
     url: https://developer.paypal.com/docs/api/subscriptions/v1/
-  - type: GraphQL
-    url: graphql/paypal-graphql.md
   - type: Documentation
     url: https://developer.paypal.com/docs/api/catalog-products/v1/
   - type: Documentation
@@ -693,8 +665,6 @@ apis:
     url: openapi/paypal-setup-tokens-api-openapi.yml
   - type: Documentation
     url: https://developer.paypal.com/docs/api/subscriptions/v1/
-  - type: GraphQL
-    url: graphql/paypal-graphql.md
   - type: Documentation
     url: https://developer.paypal.com/docs/api/catalog-products/v1/
   - type: Documentation
@@ -736,8 +706,6 @@ apis:
     url: openapi/paypal-simulate-event-api-openapi.yml
   - type: Documentation
     url: https://developer.paypal.com/docs/api/subscriptions/v1/
-  - type: GraphQL
-    url: graphql/paypal-graphql.md
   - type: Documentation
     url: https://developer.paypal.com/docs/api/catalog-products/v1/
   - type: Documentation
@@ -781,8 +749,6 @@ apis:
     url: openapi/paypal-templates-api-openapi.yml
   - type: Documentation
     url: https://developer.paypal.com/docs/api/subscriptions/v1/
-  - type: GraphQL
-    url: graphql/paypal-graphql.md
   - type: Documentation
     url: https://developer.paypal.com/docs/api/catalog-products/v1/
   - type: Documentation
@@ -821,8 +787,6 @@ apis:
     url: openapi/paypal-trackers-api-openapi.yml
   - type: Documentation
     url: https://developer.paypal.com/docs/api/subscriptions/v1/
-  - type: GraphQL
-    url: graphql/paypal-graphql.md
   - type: Documentation
     url: https://developer.paypal.com/docs/api/catalog-products/v1/
   - type: Documentation
@@ -861,8 +825,6 @@ apis:
     url: openapi/paypal-trackers-batch-api-openapi.yml
   - type: Documentation
     url: https://developer.paypal.com/docs/api/subscriptions/v1/
-  - type: GraphQL
-    url: graphql/paypal-graphql.md
   - type: Documentation
     url: https://developer.paypal.com/docs/api/catalog-products/v1/
   - type: Documentation
@@ -902,8 +864,6 @@ apis:
     url: openapi/paypal-transactions-api-openapi.yml
   - type: Documentation
     url: https://developer.paypal.com/docs/api/subscriptions/v1/
-  - type: GraphQL
-    url: graphql/paypal-graphql.md
   - type: Documentation
     url: https://developer.paypal.com/docs/api/catalog-products/v1/
   - type: Documentation
@@ -941,8 +901,6 @@ apis:
     url: openapi/paypal-verify-webhook-signature-api-openapi.yml
   - type: Documentation
     url: https://developer.paypal.com/docs/api/subscriptions/v1/
-  - type: GraphQL
-    url: graphql/paypal-graphql.md
   - type: Documentation
     url: https://developer.paypal.com/docs/api/catalog-products/v1/
   - type: Documentation
@@ -982,8 +940,6 @@ apis:
     url: openapi/paypal-web-profiles-api-openapi.yml
   - type: Documentation
     url: https://developer.paypal.com/docs/api/subscriptions/v1/
-  - type: GraphQL
-    url: graphql/paypal-graphql.md
   - type: Documentation
     url: https://developer.paypal.com/docs/api/catalog-products/v1/
   - type: Documentation
@@ -1025,8 +981,6 @@ apis:
     url: openapi/paypal-webhooks-api-openapi.yml
   - type: Documentation
     url: https://developer.paypal.com/docs/api/subscriptions/v1/
-  - type: GraphQL
-    url: graphql/paypal-graphql.md
   - type: Documentation
     url: https://developer.paypal.com/docs/api/catalog-products/v1/
   - type: Documentation
@@ -1065,8 +1019,6 @@ apis:
     url: openapi/paypal-webhooks-event-types-api-openapi.yml
   - type: Documentation
     url: https://developer.paypal.com/docs/api/subscriptions/v1/
-  - type: GraphQL
-    url: graphql/paypal-graphql.md
   - type: Documentation
     url: https://developer.paypal.com/docs/api/catalog-products/v1/
   - type: Documentation
@@ -1105,8 +1057,6 @@ apis:
     url: openapi/paypal-webhooks-events-api-openapi.yml
   - type: Documentation
     url: https://developer.paypal.com/docs/api/subscriptions/v1/
-  - type: GraphQL
-    url: graphql/paypal-graphql.md
   - type: Documentation
     url: https://developer.paypal.com/docs/api/catalog-products/v1/
   - type: Documentation
@@ -1145,8 +1095,6 @@ apis:
     url: openapi/paypal-webhooks-lookup-api-openapi.yml
   - type: Documentation
     url: https://developer.paypal.com/docs/api/subscriptions/v1/
-  - type: GraphQL
-    url: graphql/paypal-graphql.md
   - type: Documentation
     url: https://developer.paypal.com/docs/api/catalog-products/v1/
   - type: Documentation
