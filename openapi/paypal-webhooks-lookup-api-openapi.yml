@@ -153,39 +153,6 @@ components:
           - CONNECT
           - OPTIONS
           - PATCH
-    WebhookLookupList:
-      type: object
-      title: Webhook Lookup List
-      description: A list of webhook lookups.
-      properties:
-        webhooks_lookups:
-          type: array
-          description: An array of webhook lookups.
-          items:
-            $ref: '#/components/schemas/webhooks_lookup'
-    error_details-2:
-      title: Error Details
-      type: object
-      description: The error details. Required for client-side `4XX` errors.
-      properties:
-        field:
-          type: string
-          description: The field that caused the error. If this field is in the body, set this value to the field's JSON pointer value. Required for client-side errors.
-        value:
-          type: string
-          description: The value of the field that caused the error.
-        location:
-          type: string
-          description: The location of the field that caused the error. Value is `body`, `path`, or `query`.
-          default: body
-        issue:
-          type: string
-          description: The unique, fine-grained application-level error code.
-        description:
-          type: string
-          description: The human-readable description for an issue. The description can change over the lifetime of an API, so clients must not depend on this value.
-      required:
-      - issue
     error:
       type: object
       title: Error
@@ -220,6 +187,39 @@ components:
       - name
       - message
       - debug_id
+    WebhookLookupList:
+      type: object
+      title: Webhook Lookup List
+      description: A list of webhook lookups.
+      properties:
+        webhooks_lookups:
+          type: array
+          description: An array of webhook lookups.
+          items:
+            $ref: '#/components/schemas/webhooks_lookup'
+    error_details-2:
+      title: Error Details
+      type: object
+      description: The error details. Required for client-side `4XX` errors.
+      properties:
+        field:
+          type: string
+          description: The field that caused the error. If this field is in the body, set this value to the field's JSON pointer value. Required for client-side errors.
+        value:
+          type: string
+          description: The value of the field that caused the error.
+        location:
+          type: string
+          description: The location of the field that caused the error. Value is `body`, `path`, or `query`.
+          default: body
+        issue:
+          type: string
+          description: The unique, fine-grained application-level error code.
+        description:
+          type: string
+          description: The human-readable description for an issue. The description can change over the lifetime of an API, so clients must not depend on this value.
+      required:
+      - issue
   parameters:
     webhook_lookup_id:
       name: webhook_lookup_id

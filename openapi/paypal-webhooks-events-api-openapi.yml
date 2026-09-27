@@ -99,18 +99,17 @@ paths:
       - Webhooks Events
 components:
   schemas:
-    event_resend:
-      type: object
-      title: Event Resend
-      description: Resends a webhook event notification, by ID.
-      properties:
-        webhook_ids:
-          type: array
-          maxItems: 500
-          description: An array of webhook account IDs.
-          items:
-            type: string
-            description: The ID of the webhook event notification to resend.
+    resource_version:
+      title: Resource Version
+      description: The resource version in the webhook notification.
+      type: string
+      pattern: ^([0-9]+.[0-9]+)$
+    event_version:
+      type: string
+      title: Event Version
+      description: The event version in the webhook notification.
+      deprecated: true
+      pattern: ^([0-9]+.[0-9]+)$
     link_description:
       type: object
       title: Link Description
@@ -137,12 +136,40 @@ components:
           - CONNECT
           - OPTIONS
           - PATCH
-    event_version:
-      type: string
-      title: Event Version
-      description: The event version in the webhook notification.
-      deprecated: true
-      pattern: ^([0-9]+.[0-9]+)$
+    error:
+      type: object
+      title: Error
+      description: The error details.
+      properties:
+        name:
+          type: string
+          description: The human-readable, unique name of the error.
+        message:
+          type: string
+          description: The message that describes the error.
+        debug_id:
+          type: string
+          description: The PayPal internal ID. Used for correlation purposes.
+        information_link:
+          type: string
+          description: The information link, or URI, that shows detailed information about this error for the developer.
+          readOnly: true
+        details:
+          type: array
+          description: An array of additional details about the error.
+          items:
+            $ref: '#/components/schemas/error_details-2'
+        links:
+          type: array
+          description: An array of request-related [HATEOAS links](/docs/api/reference/api-responses/#hateoas-links).
+          readOnly: true
+          items:
+            $ref: '#/components/schemas/link_description'
+            readOnly: true
+      required:
+      - name
+      - message
+      - debug_id
     event:
       type: object
       title: Event
@@ -186,30 +213,6 @@ components:
           items:
             $ref: '#/components/schemas/link_description'
             readOnly: true
-    resource_version:
-      title: Resource Version
-      description: The resource version in the webhook notification.
-      type: string
-      pattern: ^([0-9]+.[0-9]+)$
-    EventList:
-      type: object
-      title: Event List
-      description: A list of webhooks events.
-      properties:
-        events:
-          type: array
-          description: An array of webhooks events.
-          items:
-            $ref: '#/components/schemas/event'
-        count:
-          type: integer
-          description: The number of items in each range of results. Note that the response might have fewer items than the requested `page_size` value.
-        links:
-          type: array
-          description: An array of request-related [HATEOAS links](/docs/api/reference/api-responses/#hateoas-links).
-          readOnly: true
-          items:
-            $ref: '#/components/schemas/link_description'
     error_details-2:
       title: Error Details
       type: object
@@ -233,45 +236,42 @@ components:
           description: The human-readable description for an issue. The description can change over the lifetime of an API, so clients must not depend on this value.
       required:
       - issue
-    error:
+    event_resend:
       type: object
-      title: Error
-      description: The error details.
+      title: Event Resend
+      description: Resends a webhook event notification, by ID.
       properties:
-        name:
-          type: string
-          description: The human-readable, unique name of the error.
-        message:
-          type: string
-          description: The message that describes the error.
-        debug_id:
-          type: string
-          description: The PayPal internal ID. Used for correlation purposes.
-        information_link:
-          type: string
-          description: The information link, or URI, that shows detailed information about this error for the developer.
-          readOnly: true
-        details:
+        webhook_ids:
           type: array
-          description: An array of additional details about the error.
+          maxItems: 500
+          description: An array of webhook account IDs.
           items:
-            $ref: '#/components/schemas/error_details-2'
+            type: string
+            description: The ID of the webhook event notification to resend.
+    EventList:
+      type: object
+      title: Event List
+      description: A list of webhooks events.
+      properties:
+        events:
+          type: array
+          description: An array of webhooks events.
+          items:
+            $ref: '#/components/schemas/event'
+        count:
+          type: integer
+          description: The number of items in each range of results. Note that the response might have fewer items than the requested `page_size` value.
         links:
           type: array
           description: An array of request-related [HATEOAS links](/docs/api/reference/api-responses/#hateoas-links).
           readOnly: true
           items:
             $ref: '#/components/schemas/link_description'
-            readOnly: true
-      required:
-      - name
-      - message
-      - debug_id
   parameters:
-    transaction_id:
-      name: transaction_id
+    event_type:
+      name: event_type
       in: query
-      description: Filters the response to a single transaction, by ID.
+      description: Filters the response to a single event.
       schema:
         type: string
     page_size:
@@ -281,6 +281,24 @@ components:
       schema:
         type: integer
         default: 10
+    start_time:
+      name: start_time
+      in: query
+      description: 'Filters the webhook event notifications in the response to those created on or after this date and time and on or before the `end_time` value. Both values are in [Internet date and time format](https://tools.ietf.org/html/rfc3339#section-5.6) format. Example: `start_time=2013-03-06T11:00:00Z`.'
+      schema:
+        type: string
+    end_time:
+      name: end_time
+      in: query
+      description: 'Filters the webhook event notifications in the response to those created on or after the `start_time` and on or before this date and time. Both values are in [Internet date and time format](https://tools.ietf.org/html/rfc3339#section-5.6) format. Example: `end_time=2013-03-06T11:00:00Z`.'
+      schema:
+        type: string
+    transaction_id:
+      name: transaction_id
+      in: query
+      description: Filters the response to a single transaction, by ID.
+      schema:
+        type: string
     event_id:
       name: event_id
       in: path
@@ -290,24 +308,6 @@ components:
         type: string
         maxLength: 50
         pattern: ^[a-zA-Z0-9]+$
-    end_time:
-      name: end_time
-      in: query
-      description: 'Filters the webhook event notifications in the response to those created on or after the `start_time` and on or before this date and time. Both values are in [Internet date and time format](https://tools.ietf.org/html/rfc3339#section-5.6) format. Example: `end_time=2013-03-06T11:00:00Z`.'
-      schema:
-        type: string
-    event_type:
-      name: event_type
-      in: query
-      description: Filters the response to a single event.
-      schema:
-        type: string
-    start_time:
-      name: start_time
-      in: query
-      description: 'Filters the webhook event notifications in the response to those created on or after this date and time and on or before the `end_time` value. Both values are in [Internet date and time format](https://tools.ietf.org/html/rfc3339#section-5.6) format. Example: `start_time=2013-03-06T11:00:00Z`.'
-      schema:
-        type: string
   securitySchemes:
     Oauth2:
       type: oauth2
