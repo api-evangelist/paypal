@@ -217,13 +217,66 @@ paths:
       tags:
       - Web-Profiles
 components:
-  requestBodies:
-    web_profile:
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/web_profile'
   schemas:
+    error_details-2:
+      type: object
+      title: Error Details
+      description: The error details. Required for client-side `4XX` errors.
+      properties:
+        field:
+          type: string
+          description: The name of the field that caused the error.
+        issue:
+          type: string
+          description: The reason for the error.
+      required:
+      - field
+      - issue
+    patch_request:
+      type: array
+      title: Patch Request
+      description: An array of JSON patch objects to apply partial updates to resources.
+      items:
+        $ref: '#/components/schemas/patch'
+    web_profile_list:
+      type: array
+      title: Web Profile List
+      description: An array of web profiles.
+      minItems: 1
+      maxItems: 20
+      items:
+        $ref: '#/components/schemas/web_profile'
+    error:
+      type: object
+      title: Error
+      description: The error information.
+      properties:
+        name:
+          type: string
+          description: The human-readable, unique name of the error.
+          readOnly: true
+        debug_id:
+          type: string
+          description: The PayPal internal ID. Used for correlation purposes.
+          readOnly: true
+        message:
+          type: string
+          description: The message that describes the error.
+          readOnly: true
+        information_link:
+          type: string
+          description: The URI to detailed information related to this error for the developer.
+          readOnly: true
+        details:
+          type: array
+          description: An array of additional details for the error.
+          readOnly: true
+          items:
+            $ref: '#/components/schemas/error_details-2'
+      required:
+      - name
+      - message
+      - information_link
     web_profile:
       type: object
       description: A payment web experience profile.
@@ -340,77 +393,24 @@ components:
           description: The <a href="https://tools.ietf.org/html/rfc6901">JSON Pointer</a> to the target document location from which to move the value. Required for the <code>move</code> operation.
       required:
       - op
-    patch_request:
-      type: array
-      title: Patch Request
-      description: An array of JSON patch objects to apply partial updates to resources.
-      items:
-        $ref: '#/components/schemas/patch'
-    error:
-      type: object
-      title: Error
-      description: The error information.
-      properties:
-        name:
-          type: string
-          description: The human-readable, unique name of the error.
-          readOnly: true
-        debug_id:
-          type: string
-          description: The PayPal internal ID. Used for correlation purposes.
-          readOnly: true
-        message:
-          type: string
-          description: The message that describes the error.
-          readOnly: true
-        information_link:
-          type: string
-          description: The URI to detailed information related to this error for the developer.
-          readOnly: true
-        details:
-          type: array
-          description: An array of additional details for the error.
-          readOnly: true
-          items:
-            $ref: '#/components/schemas/error_details-2'
-      required:
-      - name
-      - message
-      - information_link
-    web_profile_list:
-      type: array
-      title: Web Profile List
-      description: An array of web profiles.
-      minItems: 1
-      maxItems: 20
-      items:
-        $ref: '#/components/schemas/web_profile'
-    error_details-2:
-      type: object
-      title: Error Details
-      description: The error details. Required for client-side `4XX` errors.
-      properties:
-        field:
-          type: string
-          description: The name of the field that caused the error.
-        issue:
-          type: string
-          description: The reason for the error.
-      required:
-      - field
-      - issue
+  requestBodies:
+    web_profile:
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/web_profile'
   parameters:
-    paypal_request_id:
-      name: PayPal-Request-Id
-      in: header
-      description: The server stores keys for three hours.
-      required: true
-      schema:
-        type: string
     id:
       name: id
       in: path
       description: The ID of the profile to delete.
+      required: true
+      schema:
+        type: string
+    paypal_request_id:
+      name: PayPal-Request-Id
+      in: header
+      description: The server stores keys for three hours.
       required: true
       schema:
         type: string

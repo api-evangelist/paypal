@@ -172,25 +172,56 @@ paths:
       tags:
       - Webhooks
 components:
-  parameters:
-    webhook_id:
-      name: webhook_id
-      in: path
-      description: The ID of the webhook for which to list subscriptions.
-      required: true
-      schema:
-        type: string
-    anchor_type:
-      name: anchor_type
-      in: query
-      description: Filters the webhooks in the response by an `anchor_id` entity type.
-      schema:
-        type: string
-        enum:
-        - APPLICATION
-        - ACCOUNT
-        default: APPLICATION
   schemas:
+    error_details-2:
+      title: Error Details
+      type: object
+      description: The error details. Required for client-side `4XX` errors.
+      properties:
+        field:
+          type: string
+          description: The field that caused the error. If this field is in the body, set this value to the field's JSON pointer value. Required for client-side errors.
+        value:
+          type: string
+          description: The value of the field that caused the error.
+        location:
+          type: string
+          description: The location of the field that caused the error. Value is `body`, `path`, or `query`.
+          default: body
+        issue:
+          type: string
+          description: The unique, fine-grained application-level error code.
+        description:
+          type: string
+          description: The human-readable description for an issue. The description can change over the lifetime of an API, so clients must not depend on this value.
+      required:
+      - issue
+    WebhookList:
+      type: object
+      title: Webhook List
+      description: A list of webhooks.
+      properties:
+        webhooks:
+          type: array
+          description: An array of webhooks.
+          items:
+            $ref: '#/components/schemas/webhook'
+    patch_request:
+      type: array
+      title: Patch Request
+      description: An array of JSON patch objects to apply partial updates to resources.
+      items:
+        $ref: '#/components/schemas/patch'
+    EventTypeList:
+      type: object
+      title: Event Type List
+      description: A list of webhook events.
+      properties:
+        event_types:
+          type: array
+          description: An array of webhook events.
+          items:
+            $ref: '#/components/schemas/event_type'
     event_type:
       type: object
       title: Event Type
@@ -249,32 +280,6 @@ components:
       required:
       - url
       - event_types
-    patch:
-      type: object
-      title: Patch
-      description: The JSON patch object to apply partial updates to resources.
-      properties:
-        op:
-          type: string
-          description: The operation.
-          enum:
-          - add
-          - remove
-          - replace
-          - move
-          - copy
-          - test
-        path:
-          type: string
-          description: The <a href="https://tools.ietf.org/html/rfc6901">JSON Pointer</a> to the target document location at which to complete the operation.
-        value:
-          title: Patch Value
-          description: The value to apply. The <code>remove</code> operation does not require a value.
-        from:
-          type: string
-          description: The <a href="https://tools.ietf.org/html/rfc6901">JSON Pointer</a> to the target document location from which to move the value. Required for the <code>move</code> operation.
-      required:
-      - op
     link_description:
       type: object
       title: Link Description
@@ -301,12 +306,6 @@ components:
           - CONNECT
           - OPTIONS
           - PATCH
-    patch_request:
-      type: array
-      title: Patch Request
-      description: An array of JSON patch objects to apply partial updates to resources.
-      items:
-        $ref: '#/components/schemas/patch'
     error:
       type: object
       title: Error
@@ -341,49 +340,50 @@ components:
       - name
       - message
       - debug_id
-    EventTypeList:
+    patch:
       type: object
-      title: Event Type List
-      description: A list of webhook events.
+      title: Patch
+      description: The JSON patch object to apply partial updates to resources.
       properties:
-        event_types:
-          type: array
-          description: An array of webhook events.
-          items:
-            $ref: '#/components/schemas/event_type'
-    error_details-2:
-      title: Error Details
-      type: object
-      description: The error details. Required for client-side `4XX` errors.
-      properties:
-        field:
+        op:
           type: string
-          description: The field that caused the error. If this field is in the body, set this value to the field's JSON pointer value. Required for client-side errors.
+          description: The operation.
+          enum:
+          - add
+          - remove
+          - replace
+          - move
+          - copy
+          - test
+        path:
+          type: string
+          description: The <a href="https://tools.ietf.org/html/rfc6901">JSON Pointer</a> to the target document location at which to complete the operation.
         value:
+          title: Patch Value
+          description: The value to apply. The <code>remove</code> operation does not require a value.
+        from:
           type: string
-          description: The value of the field that caused the error.
-        location:
-          type: string
-          description: The location of the field that caused the error. Value is `body`, `path`, or `query`.
-          default: body
-        issue:
-          type: string
-          description: The unique, fine-grained application-level error code.
-        description:
-          type: string
-          description: The human-readable description for an issue. The description can change over the lifetime of an API, so clients must not depend on this value.
+          description: The <a href="https://tools.ietf.org/html/rfc6901">JSON Pointer</a> to the target document location from which to move the value. Required for the <code>move</code> operation.
       required:
-      - issue
-    WebhookList:
-      type: object
-      title: Webhook List
-      description: A list of webhooks.
-      properties:
-        webhooks:
-          type: array
-          description: An array of webhooks.
-          items:
-            $ref: '#/components/schemas/webhook'
+      - op
+  parameters:
+    webhook_id:
+      name: webhook_id
+      in: path
+      description: The ID of the webhook for which to list subscriptions.
+      required: true
+      schema:
+        type: string
+    anchor_type:
+      name: anchor_type
+      in: query
+      description: Filters the webhooks in the response by an `anchor_id` entity type.
+      schema:
+        type: string
+        enum:
+        - APPLICATION
+        - ACCOUNT
+        default: APPLICATION
   securitySchemes:
     Oauth2:
       type: oauth2

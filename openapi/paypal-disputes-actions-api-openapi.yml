@@ -712,69 +712,6 @@ paths:
       - Disputes Actions
 components:
   schemas:
-    make_offer:
-      type: object
-      title: Make Offer Request
-      description: A merchant request to make an offer to resolve a dispute.
-      properties:
-        note:
-          type: string
-          minLength: 1
-          maxLength: 2000
-          description: The merchant's notes about the offer.
-        offer_amount:
-          description: The amount proposed to resolve the dispute.
-          $ref: '#/components/schemas/money'
-        return_shipping_address:
-          description: The return address for the item. Required when the customer must return an item to the merchant for the <code>MERCHANDISE_OR_SERVICE_NOT_AS_DESCRIBED</code> dispute reason, especially if the refund amount is less than the dispute amount.
-          $ref: '#/components/schemas/address_portable'
-        invoice_id:
-          type: string
-          minLength: 1
-          maxLength: 127
-          description: The merchant-provided ID of the invoice for the refund. This optional value maps the refund to an invoice ID in the merchant's system.
-          pattern: ^[A-Za-z0-9:\-|]+$
-        offer_type:
-          $ref: '#/components/schemas/offer_type'
-      required:
-      - note
-      - offer_type
-    deny_offer:
-      type: object
-      title: Deny Offer Request
-      description: A customer request to deny the offer made by the merchant.
-      properties:
-        note:
-          type: string
-          minLength: 1
-          maxLength: 2000
-          description: The customer notes about the denial of offer. PayPal can but the merchant cannot view these notes.
-      required:
-      - note
-    buyer_escalation_reason: {}
-    require_evidence:
-      type: object
-      title: Require Evidence Request
-      description: Sandbox only. Updates the state of a dispute, by ID, to either <code>WAITING_FOR_BUYER_RESPONSE</code> or <code>WAITING_FOR_SELLER_RESPONSE</code>. This state change enables either the customer or merchant to submit evidence for the dispute. Specify an <code>action</code> value in the JSON request body to indicate whether the state change enables the customer or merchant to submit evidence.
-      properties:
-        action:
-          type: string
-          minLength: 1
-          maxLength: 255
-          pattern: ^[0-9A-Z_]+$
-          description: The action. Indicates whether the state change enables the customer or merchant to submit evidence.
-          enum:
-          - BUYER_EVIDENCE
-          - SELLER_EVIDENCE
-      required:
-      - action
-    country_code:
-      type: string
-      description: The [two-character ISO 3166-1 code](/docs/api/reference/country-codes/) that identifies the country or region.<blockquote><strong>Note:</strong> The country code for Great Britain is <code>GB</code> and not <code>UK</code> as used in the top-level domain names for that country. Use the `C2` country code for China worldwide for comparable uncontrolled price (CUP) method, bank card, and cross-border transactions.</blockquote>
-      format: ppaas_common_country_code_v2
-      maxLength: 2
-      minLength: 2
-      pattern: ^([A-Z]{2}|C2)$
     accept_offer:
       type: object
       title: Accept Offer Request
@@ -785,20 +722,48 @@ components:
           minLength: 1
           maxLength: 2000
           description: The customer notes about accepting of offer. PayPal can but the merchant cannot view these notes.
-    escalate:
+    offer_type:
+      type: string
+      minLength: 1
+      maxLength: 255
+      pattern: ^[0-9A-Z_]+$
+      title: Offer Type
+      description: The merchant-proposed offer type for the dispute.
+      enum:
+      - REFUND
+      - REFUND_WITH_RETURN
+      - REFUND_WITH_REPLACEMENT
+      - REPLACEMENT_WITHOUT_REFUND
+    country_code:
+      type: string
+      description: The [two-character ISO 3166-1 code](/docs/api/reference/country-codes/) that identifies the country or region.<blockquote><strong>Note:</strong> The country code for Great Britain is <code>GB</code> and not <code>UK</code> as used in the top-level domain names for that country. Use the `C2` country code for China worldwide for comparable uncontrolled price (CUP) method, bank card, and cross-border transactions.</blockquote>
+      format: ppaas_common_country_code_v2
+      maxLength: 2
+      minLength: 2
+      pattern: ^([A-Z]{2}|C2)$
+    error_details-2:
+      title: Error Details
       type: object
-      title: Escalate Claim Request
-      description: A merchant request to escalate a dispute, by ID, to a PayPal claim.
+      description: The error details. Required for client-side `4XX` errors.
       properties:
-        note:
+        field:
           type: string
-          minLength: 1
-          maxLength: 2000
-          description: The notes about the escalation of the dispute to a claim.
-        buyer_escalation_reason:
-          $ref: '#/components/schemas/buyer_escalation_reason'
+          description: The field that caused the error. If this field is in the body, set this value to the field's JSON pointer value. Required for client-side errors.
+        value:
+          type: string
+          description: The value of the field that caused the error.
+        location:
+          type: string
+          description: The location of the field that caused the error. Value is `body`, `path`, or `query`.
+          default: body
+        issue:
+          type: string
+          description: The unique, fine-grained application-level error code.
+        description:
+          type: string
+          description: The human-readable description for an issue. The description can change over the lifetime of an API, so clients must not depend on this value.
       required:
-      - note
+      - issue
     address_portable:
       type: object
       title: Portable Postal Address (Medium-Grained)
@@ -869,6 +834,66 @@ components:
               maxLength: 100
       required:
       - country_code
+    deny_offer:
+      type: object
+      title: Deny Offer Request
+      description: A customer request to deny the offer made by the merchant.
+      properties:
+        note:
+          type: string
+          minLength: 1
+          maxLength: 2000
+          description: The customer notes about the denial of offer. PayPal can but the merchant cannot view these notes.
+      required:
+      - note
+    escalate:
+      type: object
+      title: Escalate Claim Request
+      description: A merchant request to escalate a dispute, by ID, to a PayPal claim.
+      properties:
+        note:
+          type: string
+          minLength: 1
+          maxLength: 2000
+          description: The notes about the escalation of the dispute to a claim.
+        buyer_escalation_reason:
+          $ref: '#/components/schemas/buyer_escalation_reason'
+      required:
+      - note
+    buyer_escalation_reason: {}
+    currency_code:
+      description: The [three-character ISO-4217 currency code](/docs/api/reference/currency-codes/) that identifies the currency.
+      type: string
+      format: ppaas_common_currency_code_v2
+      minLength: 3
+      maxLength: 3
+    make_offer:
+      type: object
+      title: Make Offer Request
+      description: A merchant request to make an offer to resolve a dispute.
+      properties:
+        note:
+          type: string
+          minLength: 1
+          maxLength: 2000
+          description: The merchant's notes about the offer.
+        offer_amount:
+          description: The amount proposed to resolve the dispute.
+          $ref: '#/components/schemas/money'
+        return_shipping_address:
+          description: The return address for the item. Required when the customer must return an item to the merchant for the <code>MERCHANDISE_OR_SERVICE_NOT_AS_DESCRIBED</code> dispute reason, especially if the refund amount is less than the dispute amount.
+          $ref: '#/components/schemas/address_portable'
+        invoice_id:
+          type: string
+          minLength: 1
+          maxLength: 127
+          description: The merchant-provided ID of the invoice for the refund. This optional value maps the refund to an invoice ID in the merchant's system.
+          pattern: ^[A-Za-z0-9:\-|]+$
+        offer_type:
+          $ref: '#/components/schemas/offer_type'
+      required:
+      - note
+      - offer_type
     link_description:
       type: object
       title: Link Description
@@ -895,6 +920,22 @@ components:
           - CONNECT
           - OPTIONS
           - PATCH
+    require_evidence:
+      type: object
+      title: Require Evidence Request
+      description: Sandbox only. Updates the state of a dispute, by ID, to either <code>WAITING_FOR_BUYER_RESPONSE</code> or <code>WAITING_FOR_SELLER_RESPONSE</code>. This state change enables either the customer or merchant to submit evidence for the dispute. Specify an <code>action</code> value in the JSON request body to indicate whether the state change enables the customer or merchant to submit evidence.
+      properties:
+        action:
+          type: string
+          minLength: 1
+          maxLength: 255
+          pattern: ^[0-9A-Z_]+$
+          description: The action. Indicates whether the state change enables the customer or merchant to submit evidence.
+          enum:
+          - BUYER_EVIDENCE
+          - SELLER_EVIDENCE
+      required:
+      - action
     error:
       type: object
       title: Error
@@ -945,24 +986,6 @@ components:
           - SELLER_FAVOR
       required:
       - adjudication_outcome
-    offer_type:
-      type: string
-      minLength: 1
-      maxLength: 255
-      pattern: ^[0-9A-Z_]+$
-      title: Offer Type
-      description: The merchant-proposed offer type for the dispute.
-      enum:
-      - REFUND
-      - REFUND_WITH_RETURN
-      - REFUND_WITH_REPLACEMENT
-      - REPLACEMENT_WITHOUT_REFUND
-    currency_code:
-      description: The [three-character ISO-4217 currency code](/docs/api/reference/currency-codes/) that identifies the currency.
-      type: string
-      format: ppaas_common_currency_code_v2
-      minLength: 3
-      maxLength: 3
     subsequent_action:
       title: Subsequent Action
       type: object
@@ -977,29 +1000,6 @@ components:
           items:
             $ref: '#/components/schemas/link_description'
             readOnly: true
-    error_details-2:
-      title: Error Details
-      type: object
-      description: The error details. Required for client-side `4XX` errors.
-      properties:
-        field:
-          type: string
-          description: The field that caused the error. If this field is in the body, set this value to the field's JSON pointer value. Required for client-side errors.
-        value:
-          type: string
-          description: The value of the field that caused the error.
-        location:
-          type: string
-          description: The location of the field that caused the error. Value is `body`, `path`, or `query`.
-          default: body
-        issue:
-          type: string
-          description: The unique, fine-grained application-level error code.
-        description:
-          type: string
-          description: The human-readable description for an issue. The description can change over the lifetime of an API, so clients must not depend on this value.
-      required:
-      - issue
     money:
       type: object
       title: Money
@@ -1015,17 +1015,6 @@ components:
       required:
       - currency_code
       - value
-  parameters:
-    id:
-      name: id
-      in: path
-      description: The ID of the dispute for which to provide the supporting information.
-      required: true
-      schema:
-        type: string
-        minLength: 1
-        maxLength: 255
-        pattern: ^[A-Za-z0-9-]+$
   requestBodies:
     evidences:
       content:
@@ -1037,6 +1026,17 @@ components:
                 description: A file with evidence.
                 type: string
                 format: binary
+  parameters:
+    id:
+      name: id
+      in: path
+      description: The ID of the dispute for which to provide the supporting information.
+      required: true
+      schema:
+        type: string
+        minLength: 1
+        maxLength: 255
+        pattern: ^[A-Za-z0-9-]+$
   securitySchemes:
     Oauth2:
       type: oauth2
