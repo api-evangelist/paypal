@@ -47,6 +47,7 @@ tags:
 - Tokens
 - Webhook
 - Agentic Commerce
+- Payment Processing
 tags_raw:
 - PayPal
 - Billing
@@ -60,6 +61,7 @@ tags_raw:
 - Tokens
 - Webhooks
 - Agentic Commerce
+- Payment Processing
 created: '2024-04-14'
 modified: '2026-05-30'
 url: https://raw.githubusercontent.com/api-evangelist/paypal/refs/heads/main/apis.yml
