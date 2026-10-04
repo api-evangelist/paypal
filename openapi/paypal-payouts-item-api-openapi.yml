@@ -95,6 +95,54 @@ paths:
       - Payouts-Item
 components:
   schemas:
+    error:
+      type: object
+      title: Error
+      description: The error details.
+      properties:
+        name:
+          type: string
+          description: The human-readable, unique name of the error.
+        message:
+          type: string
+          description: The message that describes the error.
+        debug_id:
+          type: string
+          description: The PayPal internal ID. Used for correlation purposes.
+        information_link:
+          type: string
+          description: The information link, or URI, that shows detailed information about this error for the developer.
+          readOnly: true
+        details:
+          type: array
+          description: An array of additional details about the error.
+          items:
+            $ref: '#/components/schemas/error_details-2'
+        links:
+          type: array
+          description: An array of request-related [HATEOAS links](/docs/api/reference/api-responses/#hateoas-links).
+          readOnly: true
+          items:
+            $ref: '#/components/schemas/link_description'
+            readOnly: true
+      required:
+      - name
+      - message
+      - debug_id
+    currency:
+      type: object
+      title: Currency
+      description: The currency and amount for a financial transaction, such as a balance or payment due.
+      properties:
+        currency:
+          type: string
+          description: The [three-character ISO-4217 currency code](/docs/integration/direct/rest/currency-codes/).
+        value:
+          type: string
+          description: The value, which might be:<ul><li>An integer for currencies like `JPY` that are not typically fractional.</li><li>A decimal fraction for currencies like `TND` that are subdivided into thousandths.</li></ul>For the required number of decimal places for a currency code, see [Currency codes - ISO 4217](https://www.iso.org/iso-4217-currency-codes.html).
+      required:
+      - currency
+      - value
     payout_item-2:
       type: object
       title: Payout Item
@@ -162,29 +210,6 @@ components:
       - payout_item_id
       - payout_batch_id
       - payout_item
-    error_details-2:
-      title: Error Details
-      type: object
-      description: The error details. Required for client-side `4XX` errors.
-      properties:
-        field:
-          type: string
-          description: The field that caused the error. If this field is in the body, set this value to the field's JSON pointer value. Required for client-side errors.
-        value:
-          type: string
-          description: The value of the field that caused the error.
-        location:
-          type: string
-          description: The location of the field that caused the error. Value is `body`, `path`, or `query`.
-          default: body
-        issue:
-          type: string
-          description: The unique, fine-grained application-level error code.
-        description:
-          type: string
-          description: The human-readable description for an issue. The description can change over the lifetime of an API, so clients must not depend on this value.
-      required:
-      - issue
     recipient_wallet_enum:
       title: Recipient wallet
       description: The wallet where the recipient receives the payout. Payouts to Venmo recipients require a 'note' string and a US mobile phone number.
@@ -214,6 +239,23 @@ components:
       - CASHBACK
       - DISCOUNTS
       - NON_GOODS_OR_SERVICES
+    transaction_enum:
+      title: Transaction status
+      description: The item transaction status.<blockquote><strong>Note:</strong> For <code>POST/v1/payments/payouts-item/{payout_item_id}/cancel</code>, the only possible <code>transaction_status</code> value is <code>RETURNED</code>.</blockquote>
+      type: string
+      minLength: 1
+      maxLength: 36
+      pattern: ^[0-9A-Z_]+$
+      enum:
+      - SUCCESS
+      - FAILED
+      - PENDING
+      - UNCLAIMED
+      - RETURNED
+      - ONHOLD
+      - BLOCKED
+      - REFUNDED
+      - REVERSED
     recipient_enum:
       title: Recipient type
       description: The ID type that identifies the payment receiver.
@@ -298,23 +340,46 @@ components:
       required:
       - amount
       - receiver
-    transaction_enum:
-      title: Transaction status
-      description: The item transaction status.<blockquote><strong>Note:</strong> For <code>POST/v1/payments/payouts-item/{payout_item_id}/cancel</code>, the only possible <code>transaction_status</code> value is <code>RETURNED</code>.</blockquote>
-      type: string
-      minLength: 1
-      maxLength: 36
-      pattern: ^[0-9A-Z_]+$
-      enum:
-      - SUCCESS
-      - FAILED
-      - PENDING
-      - UNCLAIMED
-      - RETURNED
-      - ONHOLD
-      - BLOCKED
-      - REFUNDED
-      - REVERSED
+    payout_currency_conversion:
+      type: object
+      title: Currency conversion resource
+      description: The currency conversion resource.
+      properties:
+        from_amount:
+          $ref: '#/components/schemas/currency'
+          description: The amount that is converted from.
+        to_amount:
+          $ref: '#/components/schemas/currency'
+          description: The amount that is converted to.
+        exchange_rate:
+          type: string
+          description: The exchange rate that is applied for this payout.
+          pattern: ^.*$
+          minLength: 0
+          maxLength: 30
+    error_details-2:
+      title: Error Details
+      type: object
+      description: The error details. Required for client-side `4XX` errors.
+      properties:
+        field:
+          type: string
+          description: The field that caused the error. If this field is in the body, set this value to the field's JSON pointer value. Required for client-side errors.
+        value:
+          type: string
+          description: The value of the field that caused the error.
+        location:
+          type: string
+          description: The location of the field that caused the error. Value is `body`, `path`, or `query`.
+          default: body
+        issue:
+          type: string
+          description: The unique, fine-grained application-level error code.
+        description:
+          type: string
+          description: The human-readable description for an issue. The description can change over the lifetime of an API, so clients must not depend on this value.
+      required:
+      - issue
     link_description:
       type: object
       title: Link Description
@@ -341,71 +406,6 @@ components:
           - CONNECT
           - OPTIONS
           - PATCH
-    payout_currency_conversion:
-      type: object
-      title: Currency conversion resource
-      description: The currency conversion resource.
-      properties:
-        from_amount:
-          $ref: '#/components/schemas/currency'
-          description: The amount that is converted from.
-        to_amount:
-          $ref: '#/components/schemas/currency'
-          description: The amount that is converted to.
-        exchange_rate:
-          type: string
-          description: The exchange rate that is applied for this payout.
-          pattern: ^.*$
-          minLength: 0
-          maxLength: 30
-    error:
-      type: object
-      title: Error
-      description: The error details.
-      properties:
-        name:
-          type: string
-          description: The human-readable, unique name of the error.
-        message:
-          type: string
-          description: The message that describes the error.
-        debug_id:
-          type: string
-          description: The PayPal internal ID. Used for correlation purposes.
-        information_link:
-          type: string
-          description: The information link, or URI, that shows detailed information about this error for the developer.
-          readOnly: true
-        details:
-          type: array
-          description: An array of additional details about the error.
-          items:
-            $ref: '#/components/schemas/error_details-2'
-        links:
-          type: array
-          description: An array of request-related [HATEOAS links](/docs/api/reference/api-responses/#hateoas-links).
-          readOnly: true
-          items:
-            $ref: '#/components/schemas/link_description'
-            readOnly: true
-      required:
-      - name
-      - message
-      - debug_id
-    currency:
-      type: object
-      title: Currency
-      description: The currency and amount for a financial transaction, such as a balance or payment due.
-      properties:
-        currency:
-          type: string
-          description: The [three-character ISO-4217 currency code](/docs/integration/direct/rest/currency-codes/).
-        value:
-          type: string
-          description: The value, which might be:<ul><li>An integer for currencies like `JPY` that are not typically fractional.</li><li>A decimal fraction for currencies like `TND` that are subdivided into thousandths.</li></ul>For the required number of decimal places for a currency code, see [Currency codes - ISO 4217](https://www.iso.org/iso-4217-currency-codes.html).
-      required:
-      - currency
-      - value
   parameters:
     payout_item_id:
       name: payout_item_id

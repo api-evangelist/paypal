@@ -297,6 +297,110 @@ paths:
         - https://uri.paypal.com/services/payments/payment/authcapture
 components:
   schemas:
+    '400':
+      properties:
+        details:
+          type: array
+          items:
+            anyOf:
+            - title: INVALID_PARAMETER_VALUE
+              properties:
+                issue:
+                  type: string
+                  enum:
+                  - INVALID_PARAMETER_VALUE
+                description:
+                  type: string
+                  enum:
+                  - The value of a field is invalid.
+            - title: MISSING_REQUIRED_PARAMETER
+              properties:
+                issue:
+                  type: string
+                  enum:
+                  - MISSING_REQUIRED_PARAMETER
+                description:
+                  type: string
+                  enum:
+                  - A required field / parameter is missing.
+            - title: INVALID_STRING_LENGTH
+              properties:
+                issue:
+                  type: string
+                  enum:
+                  - INVALID_STRING_LENGTH
+                description:
+                  type: string
+                  enum:
+                  - The value of a field is either too short or too long.
+            - title: INVALID_STRING_MAX_LENGTH
+              properties:
+                issue:
+                  type: string
+                  enum:
+                  - INVALID_STRING_MAX_LENGTH
+                description:
+                  type: string
+                  enum:
+                  - The value of a field is too long.
+            - title: INVALID_PARAMETER_SYNTAX
+              properties:
+                issue:
+                  type: string
+                  enum:
+                  - INVALID_PARAMETER_SYNTAX
+                description:
+                  type: string
+                  enum:
+                  - The value of a field does not conform to the expected format.
+    error_location:
+      type: string
+      description: The location of the field that caused the error. Value is `body`, `path`, or `query`.
+      enum:
+      - body
+      - path
+      - query
+      default: body
+    authorization_status_details:
+      title: Auhorization Status Details
+      description: The details of the authorized payment status.
+      type: object
+      properties:
+        reason:
+          description: The reason why the authorized status is `PENDING`.
+          type: string
+          minLength: 1
+          maxLength: 24
+          pattern: ^[A-Z_]+$
+          enum:
+          - PENDING_REVIEW
+    error_401:
+      type: object
+      title: Unauthorized Error
+      description: Authentication failed due to missing Authorization header, or invalid authentication credentials.
+      properties:
+        name:
+          type: string
+          enum:
+          - AUTHENTICATION_FAILURE
+        message:
+          type: string
+          enum:
+          - Authentication failed due to missing authorization header, or invalid authentication credentials.
+        details:
+          type: array
+          items:
+            $ref: '#/components/schemas/error_details'
+        debug_id:
+          type: string
+          description: The PayPal internal ID. Used for correlation purposes.
+        links:
+          description: An array of request-related [HATEOAS links](https://en.wikipedia.org/wiki/HATEOAS).
+          type: array
+          minItems: 0
+          maxItems: 10000
+          items:
+            $ref: '#/components/schemas/error_link_description'
     authorizations.reauthorize-422:
       properties:
         details:
@@ -433,110 +537,19 @@ components:
                   type: string
                   enum:
                   - The currency specified during reauthorization should be the same as the currency specified in the original authorization. Please check the currency of the authorization for which you are trying to reauthorize and try again.
-    exchange_rate:
-      description: The exchange rate that determines the amount to convert from one currency to another currency.
+    error_422:
       type: object
-      title: Exchange Rate
-      properties:
-        source_currency:
-          description: The source currency from which to convert an amount.
-          $ref: '#/components/schemas/currency_code'
-        target_currency:
-          description: The target currency to which to convert an amount.
-          $ref: '#/components/schemas/currency_code'
-        value:
-          description: The target currency amount. Equivalent to one unit of the source currency. Formatted as integer or decimal value with one to 15 digits to the right of the decimal point.
-          type: string
-      readOnly: true
-    error_503:
-      type: object
-      title: Service Unavailable Error
-      description: The server is temporarily unable to handle the request, for example, because of planned maintenance or downtime.
+      title: Unprocessable Entity Error
+      description: The requested action cannot be performed and may require interaction with APIs or processes outside of the current request. This is distinct from a 500 response in that there are no systemic problems limiting the API from performing the request.
       properties:
         name:
           type: string
           enum:
-          - SERVICE_UNAVAILABLE
+          - UNPROCESSABLE_ENTITY
         message:
           type: string
           enum:
-          - Service Unavailable.
-        debug_id:
-          type: string
-          description: The PayPal internal ID. Used for correlation purposes.
-        links:
-          description: An array of request-related [HATEOAS links](https://en.wikipedia.org/wiki/HATEOAS).
-          type: array
-          minItems: 0
-          maxItems: 10000
-          items:
-            $ref: '#/components/schemas/error_link_description'
-      example:
-        name: SERVICE_UNAVAILABLE
-        message: Service Unavailable.
-        debug_id: 90957fca61718
-        information_link: https://developer.paypal.com/docs/api/orders/v2/#error-SERVICE_UNAVAILABLE
-    error_link_description:
-      title: Link Description
-      description: The request-related [HATEOAS link](/api/rest/responses/#hateoas-links) information.
-      type: object
-      required:
-      - href
-      - rel
-      properties:
-        href:
-          description: The complete target URL. To make the related call, combine the method with this [URI Template-formatted](https://tools.ietf.org/html/rfc6570) link. For pre-processing, include the `$`, `(`, and `)` characters. The `href` is the key HATEOAS component that links a completed call with a subsequent call.
-          type: string
-          minLength: 0
-          maxLength: 20000
-          pattern: ^.*$
-        rel:
-          description: The [link relation type](https://tools.ietf.org/html/rfc5988#section-4), which serves as an ID for a link that unambiguously describes the semantics of the link. See [Link Relations](https://www.iana.org/assignments/link-relations/link-relations.xhtml).
-          type: string
-          minLength: 0
-          maxLength: 100
-          pattern: ^.*$
-        method:
-          description: The HTTP method required to make the related call.
-          type: string
-          minLength: 3
-          maxLength: 6
-          pattern: ^[A-Z]*$
-          enum:
-          - GET
-          - POST
-          - PUT
-          - DELETE
-          - PATCH
-    '404':
-      properties:
-        details:
-          type: array
-          items:
-            anyOf:
-            - title: INVALID_RESOURCE_ID
-              properties:
-                issue:
-                  type: string
-                  enum:
-                  - INVALID_RESOURCE_ID
-                description:
-                  type: string
-                  enum:
-                  - Specified resource ID does not exist. Please check the resource ID and try again.
-    error_404:
-      type: object
-      title: Not found Error
-      description: The server has not found anything matching the request URI. This either means that the URI is incorrect or the resource is not available.
-      properties:
-        name:
-          type: string
-          enum:
-          - RESOURCE_NOT_FOUND
-        message:
-          type: string
-          enum:
-          - The specified resource does not exist.
+          - The requested action could not be performed, semantically incorrect, or failed business validation.
         details:
           type: array
           items:
@@ -551,62 +564,129 @@ components:
           maxItems: 10000
           items:
             $ref: '#/components/schemas/error_link_description'
-    '400':
+    supplementary_purchase_data:
+      type: object
+      title: Capture Identifier
+      description: The capture identification-related fields. Includes the invoice ID, custom ID, note to payer, and soft descriptor.
+      properties:
+        invoice_id:
+          description: The API caller-provided external invoice number for this order. Appears in both the payer's transaction history and the emails that the payer receives.
+          type: string
+          maxLength: 127
+          minLength: 1
+          pattern: ^.{1,127}$
+        note_to_payer:
+          type: string
+          description: An informational note about this settlement. Appears in both the payer's transaction history and the emails that the payer receives.
+          maxLength: 255
+          minLength: 1
+          pattern: ^.{1,255}$
+    platform_fee:
+      type: object
+      title: Platform Fee
+      description: The platform or partner fee, commission, or brokerage fee that is associated with the transaction. Not a separate or isolated transaction leg from the external perspective. The platform fee is limited in scope and is always associated with the original payment for the purchase unit.
+      properties:
+        amount:
+          description: The fee for this transaction.
+          $ref: '#/components/schemas/money'
+        payee:
+          description: The recipient of the fee for this transaction. If you omit this value, the default is the API caller.
+          $ref: '#/components/schemas/payee_base'
+      required:
+      - amount
+    error_500:
+      type: object
+      title: Internal Server Error
+      description: This is either a system or application error, and generally indicates that although the client appeared to provide a correct request, something unexpected has gone wrong on the server.
+      properties:
+        name:
+          type: string
+          enum:
+          - INTERNAL_SERVER_ERROR
+        message:
+          type: string
+          enum:
+          - An internal server error occurred.
+        debug_id:
+          type: string
+          description: The PayPal internal ID. Used for correlation purposes.
+        links:
+          description: An array of request-related [HATEOAS links](https://en.wikipedia.org/wiki/HATEOAS).
+          type: array
+          minItems: 0
+          maxItems: 10000
+          items:
+            $ref: '#/components/schemas/error_link_description'
+      example:
+        name: INTERNAL_SERVER_ERROR
+        message: An internal server error occurred.
+        debug_id: 90957fca61718
+        links:
+        - href: https://developer.paypal.com/api/orders/v2/#error-INTERNAL_SERVER_ERROR
+          rel: information_link
+    error_415:
+      type: object
+      title: Unsupported Media Type Error
+      description: The server does not support the request payload's media type.
+      properties:
+        name:
+          type: string
+          enum:
+          - UNSUPPORTED_MEDIA_TYPE
+        message:
+          type: string
+          enum:
+          - The server does not support the request payload's media type.
+        details:
+          type: array
+          items:
+            $ref: '#/components/schemas/error_details'
+        debug_id:
+          type: string
+          description: The PayPal internal ID. Used for correlation purposes.
+        links:
+          description: An array of request-related [HATEOAS links](https://en.wikipedia.org/wiki/HATEOAS).
+          type: array
+          minItems: 0
+          maxItems: 10000
+          items:
+            $ref: '#/components/schemas/error_link_description'
+    '401':
       properties:
         details:
           type: array
           items:
             anyOf:
-            - title: INVALID_PARAMETER_VALUE
+            - title: INVALID_ACCOUNT_STATUS
               properties:
                 issue:
                   type: string
                   enum:
-                  - INVALID_PARAMETER_VALUE
+                  - INVALID_ACCOUNT_STATUS
                 description:
                   type: string
                   enum:
-                  - The value of a field is invalid.
-            - title: MISSING_REQUIRED_PARAMETER
-              properties:
-                issue:
-                  type: string
-                  enum:
-                  - MISSING_REQUIRED_PARAMETER
-                description:
-                  type: string
-                  enum:
-                  - A required field / parameter is missing.
-            - title: INVALID_STRING_LENGTH
-              properties:
-                issue:
-                  type: string
-                  enum:
-                  - INVALID_STRING_LENGTH
-                description:
-                  type: string
-                  enum:
-                  - The value of a field is either too short or too long.
-            - title: INVALID_STRING_MAX_LENGTH
-              properties:
-                issue:
-                  type: string
-                  enum:
-                  - INVALID_STRING_MAX_LENGTH
-                description:
-                  type: string
-                  enum:
-                  - The value of a field is too long.
-            - title: INVALID_PARAMETER_SYNTAX
-              properties:
-                issue:
-                  type: string
-                  enum:
-                  - INVALID_PARAMETER_SYNTAX
-                description:
-                  type: string
-                  enum:
-                  - The value of a field does not conform to the expected format.
+                  - Account validations failed for the user.
+    authorization_status:
+      type: object
+      title: Authorization Status
+      description: The status fields for an authorized payment.
+      properties:
+        status:
+          description: The status for the authorized payment.
+          type: string
+          readOnly: true
+          enum:
+          - CREATED
+          - CAPTURED
+          - DENIED
+          - PARTIALLY_CAPTURED
+          - VOIDED
+          - PENDING
+        status_details:
+          description: The details of the authorized order pending status.
+          readOnly: true
+          $ref: '#/components/schemas/authorization_status_details'
     payment_instruction:
       type: object
       title: Payment Instruction
@@ -634,86 +714,179 @@ components:
           maxLength: 4000
           minLength: 1
           pattern: ^.*$
-    '409':
+    link_description:
+      type: object
+      title: Link Description
+      description: The request-related [HATEOAS link](/api/rest/responses/#hateoas-links) information.
+      required:
+      - href
+      - rel
       properties:
+        href:
+          type: string
+          description: The complete target URL. To make the related call, combine the method with this [URI Template-formatted](https://tools.ietf.org/html/rfc6570) link. For pre-processing, include the `$`, `(`, and `)` characters. The `href` is the key HATEOAS component that links a completed call with a subsequent call.
+        rel:
+          type: string
+          description: The [link relation type](https://tools.ietf.org/html/rfc5988#section-4), which serves as an ID for a link that unambiguously describes the semantics of the link. See [Link Relations](https://www.iana.org/assignments/link-relations/link-relations.xhtml).
+        method:
+          type: string
+          description: The HTTP method required to make the related call.
+          enum:
+          - GET
+          - POST
+          - PUT
+          - DELETE
+          - HEAD
+          - CONNECT
+          - OPTIONS
+          - PATCH
+    capture:
+      type: object
+      title: Capture
+      description: A captured payment.
+      allOf:
+      - $ref: '#/components/schemas/capture_status'
+      - properties:
+          id:
+            description: The PayPal-generated ID for the captured payment.
+            type: string
+            readOnly: true
+          amount:
+            description: The amount for this captured payment.
+            $ref: '#/components/schemas/money'
+            readOnly: true
+          invoice_id:
+            description: The API caller-provided external invoice number for this order. Appears in both the payer's transaction history and the emails that the payer receives.
+            type: string
+            readOnly: true
+          custom_id:
+            type: string
+            description: The API caller-provided external ID. Used to reconcile API caller-initiated transactions with PayPal transactions. Appears in transaction and settlement reports.
+            maxLength: 127
+          network_transaction_reference:
+            $ref: '#/components/schemas/network_transaction_reference'
+          seller_protection:
+            $ref: '#/components/schemas/seller_protection'
+            readOnly: true
+          final_capture:
+            description: Indicates whether you can make additional captures against the authorized payment. Set to `true` if you do not intend to capture additional payments against the authorization. Set to `false` if you intend to capture additional payments against the authorization.
+            type: boolean
+            default: false
+            readOnly: true
+          seller_receivable_breakdown:
+            $ref: '#/components/schemas/seller_receivable_breakdown'
+            readOnly: true
+          disbursement_mode:
+            $ref: '#/components/schemas/disbursement_mode'
+          links:
+            description: An array of related [HATEOAS links](/docs/api/reference/api-responses/#hateoas-links).
+            type: array
+            readOnly: true
+            items:
+              $ref: '#/components/schemas/link_description'
+          processor_response:
+            description: An object that provides additional processor information for a direct credit card transaction.
+            $ref: '#/components/schemas/processor_response'
+      - $ref: '#/components/schemas/activity_timestamps'
+    network_transaction_reference:
+      type: object
+      title: Network Transaction Reference
+      description: Reference values used by the card network to identify a transaction.
+      properties:
+        id:
+          type: string
+          minLength: 9
+          maxLength: 36
+          pattern: ^[a-zA-Z0-9-]+$
+          description: Transaction reference id returned by the scheme. For Visa and Amex, this is the "Tran id" field in response. For MasterCard, this is the "BankNet reference id" field in response. For Discover, this is the "NRID" field in response. The pattern we expect for this field from Visa/Amex/CB/Discover is numeric, Mastercard/BNPP is alphanumeric and Paysecure is alphanumeric with special character -.
+        date:
+          type: string
+          minLength: 4
+          maxLength: 4
+          pattern: ^[0-9]+$
+          description: The date that the transaction was authorized by the scheme. This field may not be returned for all networks. MasterCard refers to this field as "BankNet reference date.
+        network:
+          description: Name of the card network through which the transaction was routed.
+          $ref: '#/components/schemas/card_brand'
+        acquirer_reference_number:
+          type: string
+          description: Reference ID issued for the card transaction. This ID can be used to track the transaction across processors, card brands and issuing banks.
+          minLength: 1
+          maxLength: 36
+          pattern: ^[a-zA-Z0-9]+$
+      required:
+      - id
+    exchange_rate:
+      description: The exchange rate that determines the amount to convert from one currency to another currency.
+      type: object
+      title: Exchange Rate
+      properties:
+        source_currency:
+          description: The source currency from which to convert an amount.
+          $ref: '#/components/schemas/currency_code'
+        target_currency:
+          description: The target currency to which to convert an amount.
+          $ref: '#/components/schemas/currency_code'
+        value:
+          description: The target currency amount. Equivalent to one unit of the source currency. Formatted as integer or decimal value with one to 15 digits to the right of the decimal point.
+          type: string
+      readOnly: true
+    currency_code:
+      description: The [three-character ISO-4217 currency code](/api/rest/reference/currency-codes/) that identifies the currency.
+      type: string
+      format: ppaas_common_currency_code_v2
+      minLength: 3
+      maxLength: 3
+    error_409:
+      type: object
+      title: Resource Conflict Error
+      description: The server has detected a conflict while processing this request.
+      properties:
+        name:
+          type: string
+          enum:
+          - RESOURCE_CONFLICT
+        message:
+          type: string
+          enum:
+          - The server has detected a conflict while processing this request.
         details:
           type: array
           items:
-            anyOf:
-            - title: PREVIOUS_REQUEST_IN_PROGRESS
-              properties:
-                issue:
-                  type: string
-                  enum:
-                  - PREVIOUS_REQUEST_IN_PROGRESS
-                description:
-                  type: string
-                  enum:
-                  - A previous request on this resource is currently in progress. Please wait for sometime and try again. It is best to space out the initial and the subsequent request(s) to avoid receiving this error.
-    seller_receivable_breakdown:
-      type: object
-      title: Seller Receivable Breakdown
-      description: The detailed breakdown of the capture activity. This is not available for transactions that are in pending state.
-      properties:
-        gross_amount:
-          description: The amount for this captured payment in the currency of the transaction.
-          $ref: '#/components/schemas/money'
-        paypal_fee:
-          description: The applicable fee for this captured payment in the currency of the transaction.
-          $ref: '#/components/schemas/money'
-        paypal_fee_in_receivable_currency:
-          description: The applicable fee for this captured payment in the receivable currency. Returned only in cases the fee is charged in the receivable currency. Example 'CNY'.
-          $ref: '#/components/schemas/money'
-        net_amount:
-          description: The net amount that the payee receives for this captured payment in their PayPal account. The net amount is computed as <code>gross_amount</code> minus the <code>paypal_fee</code> minus the <code>platform_fees</code>.
-          $ref: '#/components/schemas/money'
-        receivable_amount:
-          description: The net amount that is credited to the payee's PayPal account. Returned only when the currency of the captured payment is different from the currency of the PayPal account where the payee wants to credit the funds. The amount is computed as <code>net_amount</code> times <code>exchange_rate</code>.
-          $ref: '#/components/schemas/money'
-        exchange_rate:
-          description: The exchange rate that determines the amount that is credited to the payee's PayPal account. Returned when the currency of the captured payment is different from the currency of the PayPal account where the payee wants to credit the funds.
-          $ref: '#/components/schemas/exchange_rate'
-        platform_fees:
+            $ref: '#/components/schemas/error_details'
+        debug_id:
+          type: string
+          description: The PayPal internal ID. Used for correlation purposes.
+        links:
+          description: An array of request-related [HATEOAS links](https://en.wikipedia.org/wiki/HATEOAS).
           type: array
-          description: An array of platform or partner fees, commissions, or brokerage fees that associated with the captured payment.
           minItems: 0
-          maxItems: 1
+          maxItems: 10000
           items:
-            $ref: '#/components/schemas/platform_fee'
-      required:
-      - gross_amount
-    error_details:
-      title: Error Details
+            $ref: '#/components/schemas/error_link_description'
+    related_ids:
       type: object
-      description: The error details. Required for client-side `4XX` errors.
+      title: Related Identifiers
+      description: Identifiers related to a specific resource.
       properties:
-        field:
+        order_id:
           type: string
-          description: The field that caused the error. If this field is in the body, set this value to the field's JSON pointer value. Required for client-side errors.
-        value:
+          description: Order ID related to the resource.
+          minLength: 1
+          maxLength: 20
+          pattern: ^[A-Z0-9]+$
+        authorization_id:
           type: string
-          description: The value of the field that caused the error.
-        location:
-          $ref: '#/components/schemas/error_location'
-        issue:
+          description: Authorization ID related to the resource.
+          minLength: 1
+          maxLength: 20
+          pattern: ^[A-Z0-9]+$
+        capture_id:
           type: string
-          description: The unique, fine-grained application-level error code.
-        description:
-          type: string
-          description: The human-readable description for an issue. The description can change over the lifetime of an API, so clients must not depend on this value.
-      required:
-      - issue
-    disbursement_mode:
-      type: string
-      title: Disbursement Mode
-      description: The funds that are held on behalf of the merchant.
-      default: INSTANT
-      minLength: 1
-      maxLength: 16
-      pattern: ^[A-Z_]+$
-      enum:
-      - INSTANT
-      - DELAYED
+          description: Capture ID related to the resource.
+          minLength: 1
+          maxLength: 20
+          pattern: ^[A-Z0-9]+$
     authorization-2:
       type: object
       title: Authorization
@@ -729,71 +902,15 @@ components:
             description: The details associated with the merchant for this transaction.
             $ref: '#/components/schemas/payee_base'
             readOnly: true
-    platform_fee:
+    supplementary_data:
+      title: Supplementary Data
       type: object
-      title: Platform Fee
-      description: The platform or partner fee, commission, or brokerage fee that is associated with the transaction. Not a separate or isolated transaction leg from the external perspective. The platform fee is limited in scope and is always associated with the original payment for the purchase unit.
+      description: The supplementary data.
       properties:
-        amount:
-          description: The fee for this transaction.
-          $ref: '#/components/schemas/money'
-        payee:
-          description: The recipient of the fee for this transaction. If you omit this value, the default is the API caller.
-          $ref: '#/components/schemas/payee_base'
-      required:
-      - amount
-    date_time:
-      type: string
-      description: The date and time, in [Internet date and time format](https://tools.ietf.org/html/rfc3339#section-5.6). Seconds are required while fractional seconds are optional.<blockquote><strong>Note:</strong> The regular expression provides guidance but does not reject all invalid dates.</blockquote>
-      format: ppaas_date_time_v3
-      minLength: 20
-      maxLength: 64
-      pattern: ^[0-9]{4}-(0[1-9]|1[0-2])-(0[1-9]|[1-2][0-9]|3[0-1])[T,t]([0-1][0-9]|2[0-3]):[0-5][0-9]:([0-5][0-9]|60)([.][0-9]+)?([Zz]|[+-][0-9]{2}:[0-9]{2})$
-    currency_code:
-      description: The [three-character ISO-4217 currency code](/api/rest/reference/currency-codes/) that identifies the currency.
-      type: string
-      format: ppaas_common_currency_code_v2
-      minLength: 3
-      maxLength: 3
-    card_brand:
-      type: string
-      title: Card Brand
-      description: The card network or brand. Applies to credit, debit, gift, and payment cards.
-      minLength: 1
-      maxLength: 255
-      pattern: ^[A-Z_]+$
-      enum:
-      - VISA
-      - MASTERCARD
-      - DISCOVER
-      - AMEX
-      - SOLO
-      - JCB
-      - STAR
-      - DELTA
-      - SWITCH
-      - MAESTRO
-      - CB_NATIONALE
-      - CONFIGOGA
-      - CONFIDIS
-      - ELECTRON
-      - CETELEM
-      - CHINA_UNION_PAY
-    capture-2:
-      type: object
-      title: Capture
-      description: A captured payment.
-      allOf:
-      - $ref: '#/components/schemas/capture'
-      - properties:
-          supplementary_data:
-            description: An object that provides supplementary/additional data related to a payment transaction.
-            readOnly: true
-            $ref: '#/components/schemas/supplementary_data'
-          payee:
-            description: The details associated with the merchant for this transaction.
-            $ref: '#/components/schemas/payee_base'
-            readOnly: true
+        related_ids:
+          description: Identifiers related to a specific resource.
+          readOnly: true
+          $ref: '#/components/schemas/related_ids'
     authorization:
       type: object
       title: Authorization
@@ -833,112 +950,142 @@ components:
             items:
               $ref: '#/components/schemas/link_description'
       - $ref: '#/components/schemas/activity_timestamps'
-    error_500:
-      type: object
-      title: Internal Server Error
-      description: This is either a system or application error, and generally indicates that although the client appeared to provide a correct request, something unexpected has gone wrong on the server.
+    disbursement_mode:
+      type: string
+      title: Disbursement Mode
+      description: The funds that are held on behalf of the merchant.
+      default: INSTANT
+      minLength: 1
+      maxLength: 16
+      pattern: ^[A-Z_]+$
+      enum:
+      - INSTANT
+      - DELAYED
+    authorizations.void-422:
       properties:
-        name:
-          type: string
-          enum:
-          - INTERNAL_SERVER_ERROR
-        message:
-          type: string
-          enum:
-          - An internal server error occurred.
-        debug_id:
-          type: string
-          description: The PayPal internal ID. Used for correlation purposes.
-        links:
-          description: An array of request-related [HATEOAS links](https://en.wikipedia.org/wiki/HATEOAS).
-          type: array
-          minItems: 0
-          maxItems: 10000
-          items:
-            $ref: '#/components/schemas/error_link_description'
-      example:
-        name: INTERNAL_SERVER_ERROR
-        message: An internal server error occurred.
-        debug_id: 90957fca61718
-        links:
-        - href: https://developer.paypal.com/api/orders/v2/#error-INTERNAL_SERVER_ERROR
-          rel: information_link
-    error_403:
-      type: object
-      title: Not Authorized Error
-      description: 'The client is not authorized to access this resource, although it may have valid credentials. '
-      properties:
-        name:
-          type: string
-          enum:
-          - NOT_AUTHORIZED
-        message:
-          type: string
-          enum:
-          - Authorization failed due to insufficient permissions.
         details:
           type: array
           items:
-            $ref: '#/components/schemas/error_details'
-        debug_id:
+            anyOf:
+            - title: PREVIOUSLY_CAPTURED
+              properties:
+                issue:
+                  type: string
+                  enum:
+                  - PREVIOUSLY_CAPTURED
+                description:
+                  type: string
+                  enum:
+                  - Authorization has been previously captured and hence cannot be voided.
+            - title: PREVIOUSLY_VOIDED
+              properties:
+                issue:
+                  type: string
+                  enum:
+                  - PREVIOUSLY_VOIDED
+                description:
+                  type: string
+                  enum:
+                  - Authorization has been previously voided and hence cannot be voided again.
+            - title: CANNOT_BE_VOIDED
+              properties:
+                issue:
+                  type: string
+                  enum:
+                  - CANNOT_BE_VOIDED
+                description:
+                  type: string
+                  enum:
+                  - A reauthorization cannot be voided. Please void the original parent authorization.
+    money:
+      type: object
+      title: Money
+      description: The currency and amount for a financial transaction, such as a balance or payment due.
+      properties:
+        currency_code:
+          $ref: '#/components/schemas/currency_code'
+        value:
           type: string
-          description: The PayPal internal ID. Used for correlation purposes.
-        links:
-          description: An array of request-related [HATEOAS links](https://en.wikipedia.org/wiki/HATEOAS).
+          description: The value, which might be:<ul><li>An integer for currencies like `JPY` that are not typically fractional.</li><li>A decimal fraction for currencies like `TND` that are subdivided into thousandths.</li></ul>For the required number of decimal places for a currency code, see [Currency Codes](/api/rest/reference/currency-codes/).
+          maxLength: 32
+          pattern: ^((-?[0-9]+)|(-?([0-9]+)?[.][0-9]+))$
+      required:
+      - currency_code
+      - value
+    capture-2:
+      type: object
+      title: Capture
+      description: A captured payment.
+      allOf:
+      - $ref: '#/components/schemas/capture'
+      - properties:
+          supplementary_data:
+            description: An object that provides supplementary/additional data related to a payment transaction.
+            readOnly: true
+            $ref: '#/components/schemas/supplementary_data'
+          payee:
+            description: The details associated with the merchant for this transaction.
+            $ref: '#/components/schemas/payee_base'
+            readOnly: true
+    capture_request:
+      title: Capture Request
+      type: object
+      description: Captures either a portion or the full authorized amount of an authorized payment.
+      allOf:
+      - $ref: '#/components/schemas/supplementary_purchase_data'
+      - properties:
+          amount:
+            description: The amount to capture. To capture a portion of the full authorized amount, specify an amount. If amount is not specified, the full authorized amount is captured. The amount must be a positive number and in the same currency as the authorization against which the payment is being captured.
+            $ref: '#/components/schemas/money'
+          invoice_id:
+            description: The API caller-provided external invoice number for this order. Appears in both the payer's transaction history and the emails that the payer receives.
+            type: string
+            maxLength: 127
+          final_capture:
+            description: Indicates whether you can make additional captures against the authorized payment. Set to `true` if you do not intend to capture additional payments against the authorization. Set to `false` if you intend to capture additional payments against the authorization.
+            type: boolean
+            default: false
+          payment_instruction:
+            $ref: '#/components/schemas/payment_instruction'
+          note_to_payer:
+            description: An informational note about this settlement. Appears in both the payer's transaction history and the emails that the payer receives.
+            type: string
+            maxLength: 255
+          soft_descriptor:
+            description: The payment descriptor on the payer's account statement.
+            type: string
+            maxLength: 22
+    account_id:
+      type: string
+      title: PayPal Account Identifier
+      description: The account identifier for a PayPal account.
+      format: ppaas_payer_id_v3
+      minLength: 13
+      maxLength: 13
+      pattern: ^[2-9A-HJ-NP-Z]{13}$
+    '409':
+      properties:
+        details:
           type: array
-          minItems: 0
-          maxItems: 10000
           items:
-            $ref: '#/components/schemas/error_link_description'
-    error_default:
-      description: The default error response.
-      oneOf:
-      - $ref: '#/components/schemas/error_400'
-      - $ref: '#/components/schemas/error_401'
-      - $ref: '#/components/schemas/error_403'
-      - $ref: '#/components/schemas/error_404'
-      - $ref: '#/components/schemas/error_409'
-      - $ref: '#/components/schemas/error_415'
-      - $ref: '#/components/schemas/error_422'
-      - $ref: '#/components/schemas/error_500'
-      - $ref: '#/components/schemas/error_503'
-    supplementary_purchase_data:
-      type: object
-      title: Capture Identifier
-      description: The capture identification-related fields. Includes the invoice ID, custom ID, note to payer, and soft descriptor.
-      properties:
-        invoice_id:
-          description: The API caller-provided external invoice number for this order. Appears in both the payer's transaction history and the emails that the payer receives.
-          type: string
-          maxLength: 127
-          minLength: 1
-          pattern: ^.{1,127}$
-        note_to_payer:
-          type: string
-          description: An informational note about this settlement. Appears in both the payer's transaction history and the emails that the payer receives.
-          maxLength: 255
-          minLength: 1
-          pattern: ^.{1,255}$
-    authorization_status:
-      type: object
-      title: Authorization Status
-      description: The status fields for an authorized payment.
-      properties:
-        status:
-          description: The status for the authorized payment.
-          type: string
-          readOnly: true
-          enum:
-          - CREATED
-          - CAPTURED
-          - DENIED
-          - PARTIALLY_CAPTURED
-          - VOIDED
-          - PENDING
-        status_details:
-          description: The details of the authorized order pending status.
-          readOnly: true
-          $ref: '#/components/schemas/authorization_status_details'
+            anyOf:
+            - title: PREVIOUS_REQUEST_IN_PROGRESS
+              properties:
+                issue:
+                  type: string
+                  enum:
+                  - PREVIOUS_REQUEST_IN_PROGRESS
+                description:
+                  type: string
+                  enum:
+                  - A previous request on this resource is currently in progress. Please wait for sometime and try again. It is best to space out the initial and the subsequent request(s) to avoid receiving this error.
+    email:
+      type: string
+      description: The internationalized email address.<blockquote><strong>Note:</strong> Up to 64 characters are allowed before and 255 characters are allowed after the <code>@</code> sign. However, the generally accepted maximum length for an email address is 254 characters. The pattern verifies that an unquoted <code>@</code> sign exists.</blockquote>
+      format: merchant_common_email_address_v2
+      maxLength: 254
+      minLength: 3
+      pattern: (?:[a-zA-Z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-zA-Z0-9!#$%&'*+/=?^_`{|}~-]+)*|(?:[\x01-\x08\x0b\x0c\x0e-\x1f\x21\x23-\x5b\x5d-\x7f]|\[\x01-\x09\x0b\x0c\x0e-\x7f])*")@(?:(?:[a-zA-Z0-9](?:[a-zA-Z0-9-]*[a-zA-Z0-9])?\.)+[a-zA-Z0-9](?:[a-zA-Z0-9-]*[a-zA-Z0-9])?|\[(?:(?:(2(5[0-5]|[0-4][0-9])|1[0-9][0-9]|[1-9]?[0-9]))\.){3}(?:(2(5[0-5]|[0-4][0-9])|1[0-9][0-9]|[1-9]?[0-9])|[a-zA-Z0-9-]*[a-zA-Z0-9]:(?:[\x01-\x08\x0b\x0c\x0e-\x1f\x21-\x5a\x53-\x7f]|\[\x01-\x09\x0b\x0c\x0e-\x7f])+)\])
     '422':
       properties:
         details:
@@ -1125,82 +1272,212 @@ components:
                   type: string
                   enum:
                   - Payee account is restricted.
-    capture:
+    date_time:
+      type: string
+      description: The date and time, in [Internet date and time format](https://tools.ietf.org/html/rfc3339#section-5.6). Seconds are required while fractional seconds are optional.<blockquote><strong>Note:</strong> The regular expression provides guidance but does not reject all invalid dates.</blockquote>
+      format: ppaas_date_time_v3
+      minLength: 20
+      maxLength: 64
+      pattern: ^[0-9]{4}-(0[1-9]|1[0-2])-(0[1-9]|[1-2][0-9]|3[0-1])[T,t]([0-1][0-9]|2[0-3]):[0-5][0-9]:([0-5][0-9]|60)([.][0-9]+)?([Zz]|[+-][0-9]{2}:[0-9]{2})$
+    error_400:
       type: object
-      title: Capture
-      description: A captured payment.
-      allOf:
-      - $ref: '#/components/schemas/capture_status'
-      - properties:
-          id:
-            description: The PayPal-generated ID for the captured payment.
-            type: string
-            readOnly: true
-          amount:
-            description: The amount for this captured payment.
-            $ref: '#/components/schemas/money'
-            readOnly: true
-          invoice_id:
-            description: The API caller-provided external invoice number for this order. Appears in both the payer's transaction history and the emails that the payer receives.
-            type: string
-            readOnly: true
-          custom_id:
-            type: string
-            description: The API caller-provided external ID. Used to reconcile API caller-initiated transactions with PayPal transactions. Appears in transaction and settlement reports.
-            maxLength: 127
-          network_transaction_reference:
-            $ref: '#/components/schemas/network_transaction_reference'
-          seller_protection:
-            $ref: '#/components/schemas/seller_protection'
-            readOnly: true
-          final_capture:
-            description: Indicates whether you can make additional captures against the authorized payment. Set to `true` if you do not intend to capture additional payments against the authorization. Set to `false` if you intend to capture additional payments against the authorization.
-            type: boolean
-            default: false
-            readOnly: true
-          seller_receivable_breakdown:
-            $ref: '#/components/schemas/seller_receivable_breakdown'
-            readOnly: true
-          disbursement_mode:
-            $ref: '#/components/schemas/disbursement_mode'
-          links:
-            description: An array of related [HATEOAS links](/docs/api/reference/api-responses/#hateoas-links).
-            type: array
-            readOnly: true
-            items:
-              $ref: '#/components/schemas/link_description'
-          processor_response:
-            description: An object that provides additional processor information for a direct credit card transaction.
-            $ref: '#/components/schemas/processor_response'
-      - $ref: '#/components/schemas/activity_timestamps'
-    network_transaction_reference:
-      type: object
-      title: Network Transaction Reference
-      description: Reference values used by the card network to identify a transaction.
+      title: Bad Request Error
+      description: Request is not well-formed, syntactically incorrect, or violates schema.
       properties:
-        id:
+        name:
           type: string
-          minLength: 9
-          maxLength: 36
-          pattern: ^[a-zA-Z0-9-]+$
-          description: Transaction reference id returned by the scheme. For Visa and Amex, this is the "Tran id" field in response. For MasterCard, this is the "BankNet reference id" field in response. For Discover, this is the "NRID" field in response. The pattern we expect for this field from Visa/Amex/CB/Discover is numeric, Mastercard/BNPP is alphanumeric and Paysecure is alphanumeric with special character -.
-        date:
+          enum:
+          - INVALID_REQUEST
+        message:
           type: string
-          minLength: 4
-          maxLength: 4
-          pattern: ^[0-9]+$
-          description: The date that the transaction was authorized by the scheme. This field may not be returned for all networks. MasterCard refers to this field as "BankNet reference date.
-        network:
-          description: Name of the card network through which the transaction was routed.
-          $ref: '#/components/schemas/card_brand'
-        acquirer_reference_number:
+          enum:
+          - Request is not well-formed, syntactically incorrect, or violates schema.
+        details:
+          type: array
+          items:
+            $ref: '#/components/schemas/error_details'
+        debug_id:
           type: string
-          description: Reference ID issued for the card transaction. This ID can be used to track the transaction across processors, card brands and issuing banks.
-          minLength: 1
-          maxLength: 36
-          pattern: ^[a-zA-Z0-9]+$
+          description: The PayPal internal ID. Used for correlation purposes.
+        links:
+          description: An array of request-related [HATEOAS links](https://en.wikipedia.org/wiki/HATEOAS).
+          type: array
+          minItems: 0
+          maxItems: 10000
+          items:
+            $ref: '#/components/schemas/error_link_description'
+    error_link_description:
+      title: Link Description
+      description: The request-related [HATEOAS link](/api/rest/responses/#hateoas-links) information.
+      type: object
       required:
-      - id
+      - href
+      - rel
+      properties:
+        href:
+          description: The complete target URL. To make the related call, combine the method with this [URI Template-formatted](https://tools.ietf.org/html/rfc6570) link. For pre-processing, include the `$`, `(`, and `)` characters. The `href` is the key HATEOAS component that links a completed call with a subsequent call.
+          type: string
+          minLength: 0
+          maxLength: 20000
+          pattern: ^.*$
+        rel:
+          description: The [link relation type](https://tools.ietf.org/html/rfc5988#section-4), which serves as an ID for a link that unambiguously describes the semantics of the link. See [Link Relations](https://www.iana.org/assignments/link-relations/link-relations.xhtml).
+          type: string
+          minLength: 0
+          maxLength: 100
+          pattern: ^.*$
+        method:
+          description: The HTTP method required to make the related call.
+          type: string
+          minLength: 3
+          maxLength: 6
+          pattern: ^[A-Z]*$
+          enum:
+          - GET
+          - POST
+          - PUT
+          - DELETE
+          - PATCH
+    payee_base:
+      type: object
+      title: Merchant Base
+      description: The details for the merchant who receives the funds and fulfills the order. The merchant is also known as the payee.
+      properties:
+        email_address:
+          description: The email address of merchant.
+          $ref: '#/components/schemas/email'
+        merchant_id:
+          description: The encrypted PayPal account ID of the merchant.
+          $ref: '#/components/schemas/account_id'
+    error_403:
+      type: object
+      title: Not Authorized Error
+      description: 'The client is not authorized to access this resource, although it may have valid credentials. '
+      properties:
+        name:
+          type: string
+          enum:
+          - NOT_AUTHORIZED
+        message:
+          type: string
+          enum:
+          - Authorization failed due to insufficient permissions.
+        details:
+          type: array
+          items:
+            $ref: '#/components/schemas/error_details'
+        debug_id:
+          type: string
+          description: The PayPal internal ID. Used for correlation purposes.
+        links:
+          description: An array of request-related [HATEOAS links](https://en.wikipedia.org/wiki/HATEOAS).
+          type: array
+          minItems: 0
+          maxItems: 10000
+          items:
+            $ref: '#/components/schemas/error_link_description'
+    card_brand:
+      type: string
+      title: Card Brand
+      description: The card network or brand. Applies to credit, debit, gift, and payment cards.
+      minLength: 1
+      maxLength: 255
+      pattern: ^[A-Z_]+$
+      enum:
+      - VISA
+      - MASTERCARD
+      - DISCOVER
+      - AMEX
+      - SOLO
+      - JCB
+      - STAR
+      - DELTA
+      - SWITCH
+      - MAESTRO
+      - CB_NATIONALE
+      - CONFIGOGA
+      - CONFIDIS
+      - ELECTRON
+      - CETELEM
+      - CHINA_UNION_PAY
+    authorizations.reauthorize-400:
+      properties:
+        details:
+          type: array
+          items:
+            anyOf:
+            - title: MISSING_REQUIRED_PARAMETER
+              properties:
+                issue:
+                  type: string
+                  enum:
+                  - MISSING_REQUIRED_PARAMETER
+                description:
+                  type: string
+                  enum:
+                  - A required field / parameter is missing.
+            - title: INVALID_STRING_LENGTH
+              properties:
+                issue:
+                  type: string
+                  enum:
+                  - INVALID_STRING_LENGTH
+                description:
+                  type: string
+                  enum:
+                  - The value of a field is either too short or too long.
+            - title: INVALID_STRING_MAX_LENGTH
+              properties:
+                issue:
+                  type: string
+                  enum:
+                  - INVALID_STRING_MAX_LENGTH
+                description:
+                  type: string
+                  enum:
+                  - The value of a field is too long.
+            - title: INVALID_PARAMETER_SYNTAX
+              properties:
+                issue:
+                  type: string
+                  enum:
+                  - INVALID_PARAMETER_SYNTAX
+                description:
+                  type: string
+                  enum:
+                  - The value of a field does not conform to the expected format.
+    seller_receivable_breakdown:
+      type: object
+      title: Seller Receivable Breakdown
+      description: The detailed breakdown of the capture activity. This is not available for transactions that are in pending state.
+      properties:
+        gross_amount:
+          description: The amount for this captured payment in the currency of the transaction.
+          $ref: '#/components/schemas/money'
+        paypal_fee:
+          description: The applicable fee for this captured payment in the currency of the transaction.
+          $ref: '#/components/schemas/money'
+        paypal_fee_in_receivable_currency:
+          description: The applicable fee for this captured payment in the receivable currency. Returned only in cases the fee is charged in the receivable currency. Example 'CNY'.
+          $ref: '#/components/schemas/money'
+        net_amount:
+          description: The net amount that the payee receives for this captured payment in their PayPal account. The net amount is computed as <code>gross_amount</code> minus the <code>paypal_fee</code> minus the <code>platform_fees</code>.
+          $ref: '#/components/schemas/money'
+        receivable_amount:
+          description: The net amount that is credited to the payee's PayPal account. Returned only when the currency of the captured payment is different from the currency of the PayPal account where the payee wants to credit the funds. The amount is computed as <code>net_amount</code> times <code>exchange_rate</code>.
+          $ref: '#/components/schemas/money'
+        exchange_rate:
+          description: The exchange rate that determines the amount that is credited to the payee's PayPal account. Returned when the currency of the captured payment is different from the currency of the PayPal account where the payee wants to credit the funds.
+          $ref: '#/components/schemas/exchange_rate'
+        platform_fees:
+          type: array
+          description: An array of platform or partner fees, commissions, or brokerage fees that associated with the captured payment.
+          minItems: 0
+          maxItems: 1
+          items:
+            $ref: '#/components/schemas/platform_fee'
+      required:
+      - gross_amount
     '403':
       properties:
         details:
@@ -1217,29 +1494,69 @@ components:
                   type: string
                   enum:
                   - You do not have permission to access or perform operations on this resource.
-    related_ids:
+    activity_timestamps:
       type: object
-      title: Related Identifiers
-      description: Identifiers related to a specific resource.
+      description: The date and time stamps that are common to authorized payment, captured payment, and refund transactions.
+      title: Transaction Date and Time Stamps
       properties:
-        order_id:
+        create_time:
+          description: The date and time when the transaction occurred, in [Internet date and time format](https://tools.ietf.org/html/rfc3339#section-5.6).
+          readOnly: true
+          $ref: '#/components/schemas/date_time'
+        update_time:
+          description: The date and time when the transaction was last updated, in [Internet date and time format](https://tools.ietf.org/html/rfc3339#section-5.6).
+          readOnly: true
+          $ref: '#/components/schemas/date_time'
+    seller_protection:
+      type: object
+      description: The level of protection offered as defined by [PayPal Seller Protection for Merchants](https://www.paypal.com/us/webapps/mpp/security/seller-protection).
+      title: Seller Protection
+      properties:
+        status:
           type: string
-          description: Order ID related to the resource.
-          minLength: 1
-          maxLength: 20
-          pattern: ^[A-Z0-9]+$
-        authorization_id:
+          description: Indicates whether the transaction is eligible for seller protection. For information, see [PayPal Seller Protection for Merchants](https://www.paypal.com/us/webapps/mpp/security/seller-protection).
+          readOnly: true
+          enum:
+          - ELIGIBLE
+          - PARTIALLY_ELIGIBLE
+          - NOT_ELIGIBLE
+        dispute_categories:
+          type: array
+          description: An array of conditions that are covered for the transaction.
+          items:
+            type: string
+            description: The condition that is covered for the transaction.
+            enum:
+            - ITEM_NOT_RECEIVED
+            - UNAUTHORIZED_TRANSACTION
+          readOnly: true
+    error_404:
+      type: object
+      title: Not found Error
+      description: The server has not found anything matching the request URI. This either means that the URI is incorrect or the resource is not available.
+      properties:
+        name:
           type: string
-          description: Authorization ID related to the resource.
-          minLength: 1
-          maxLength: 20
-          pattern: ^[A-Z0-9]+$
-        capture_id:
+          enum:
+          - RESOURCE_NOT_FOUND
+        message:
           type: string
-          description: Capture ID related to the resource.
-          minLength: 1
-          maxLength: 20
-          pattern: ^[A-Z0-9]+$
+          enum:
+          - The specified resource does not exist.
+        details:
+          type: array
+          items:
+            $ref: '#/components/schemas/error_details'
+        debug_id:
+          type: string
+          description: The PayPal internal ID. Used for correlation purposes.
+        links:
+          description: An array of request-related [HATEOAS links](https://en.wikipedia.org/wiki/HATEOAS).
+          type: array
+          minItems: 0
+          maxItems: 10000
+          items:
+            $ref: '#/components/schemas/error_link_description'
     reauthorize_request:
       title: Reauthorize Request
       type: object
@@ -1248,19 +1565,41 @@ components:
         amount:
           description: The amount to reauthorize for an authorized payment.
           $ref: '#/components/schemas/money'
-    authorization_status_details:
-      title: Auhorization Status Details
-      description: The details of the authorized payment status.
+    capture_status_details:
+      title: Capture Status Details
+      description: The details of the captured payment status.
       type: object
       properties:
         reason:
-          description: The reason why the authorized status is `PENDING`.
+          description: The reason why the captured payment status is `PENDING` or `DENIED`.
           type: string
           minLength: 1
-          maxLength: 24
+          maxLength: 64
           pattern: ^[A-Z_]+$
           enum:
+          - BUYER_COMPLAINT
+          - CHARGEBACK
+          - ECHECK
+          - INTERNATIONAL_WITHDRAWAL
+          - OTHER
           - PENDING_REVIEW
+          - RECEIVING_PREFERENCE_MANDATES_MANUAL_ACTION
+          - REFUNDED
+          - TRANSACTION_APPROVED_AWAITING_FUNDING
+          - UNILATERAL
+          - VERIFICATION_REQUIRED
+    error_default:
+      description: The default error response.
+      oneOf:
+      - $ref: '#/components/schemas/error_400'
+      - $ref: '#/components/schemas/error_401'
+      - $ref: '#/components/schemas/error_403'
+      - $ref: '#/components/schemas/error_404'
+      - $ref: '#/components/schemas/error_409'
+      - $ref: '#/components/schemas/error_415'
+      - $ref: '#/components/schemas/error_422'
+      - $ref: '#/components/schemas/error_500'
+      - $ref: '#/components/schemas/error_503'
     processor_response:
       type: object
       title: Processor Response
@@ -1482,77 +1821,27 @@ components:
           - '02'
           - '03'
           - '21'
-    authorizations.void-422:
-      properties:
-        details:
-          type: array
-          items:
-            anyOf:
-            - title: PREVIOUSLY_CAPTURED
-              properties:
-                issue:
-                  type: string
-                  enum:
-                  - PREVIOUSLY_CAPTURED
-                description:
-                  type: string
-                  enum:
-                  - Authorization has been previously captured and hence cannot be voided.
-            - title: PREVIOUSLY_VOIDED
-              properties:
-                issue:
-                  type: string
-                  enum:
-                  - PREVIOUSLY_VOIDED
-                description:
-                  type: string
-                  enum:
-                  - Authorization has been previously voided and hence cannot be voided again.
-            - title: CANNOT_BE_VOIDED
-              properties:
-                issue:
-                  type: string
-                  enum:
-                  - CANNOT_BE_VOIDED
-                description:
-                  type: string
-                  enum:
-                  - A reauthorization cannot be voided. Please void the original parent authorization.
-    error_401:
+    error_details:
+      title: Error Details
       type: object
-      title: Unauthorized Error
-      description: Authentication failed due to missing Authorization header, or invalid authentication credentials.
+      description: The error details. Required for client-side `4XX` errors.
       properties:
-        name:
+        field:
           type: string
-          enum:
-          - AUTHENTICATION_FAILURE
-        message:
+          description: The field that caused the error. If this field is in the body, set this value to the field's JSON pointer value. Required for client-side errors.
+        value:
           type: string
-          enum:
-          - Authentication failed due to missing authorization header, or invalid authentication credentials.
-        details:
-          type: array
-          items:
-            $ref: '#/components/schemas/error_details'
-        debug_id:
+          description: The value of the field that caused the error.
+        location:
+          $ref: '#/components/schemas/error_location'
+        issue:
           type: string
-          description: The PayPal internal ID. Used for correlation purposes.
-        links:
-          description: An array of request-related [HATEOAS links](https://en.wikipedia.org/wiki/HATEOAS).
-          type: array
-          minItems: 0
-          maxItems: 10000
-          items:
-            $ref: '#/components/schemas/error_link_description'
-    account_id:
-      type: string
-      title: PayPal Account Identifier
-      description: The account identifier for a PayPal account.
-      format: ppaas_payer_id_v3
-      minLength: 13
-      maxLength: 13
-      pattern: ^[2-9A-HJ-NP-Z]{13}$
+          description: The unique, fine-grained application-level error code.
+        description:
+          type: string
+          description: The human-readable description for an issue. The description can change over the lifetime of an API, so clients must not depend on this value.
+      required:
+      - issue
     capture_status:
       type: object
       title: Capture Status
@@ -1573,67 +1862,35 @@ components:
           description: The details of the captured payment status.
           readOnly: true
           $ref: '#/components/schemas/capture_status_details'
-    money:
-      type: object
-      title: Money
-      description: The currency and amount for a financial transaction, such as a balance or payment due.
-      properties:
-        currency_code:
-          $ref: '#/components/schemas/currency_code'
-        value:
-          type: string
-          description: The value, which might be:<ul><li>An integer for currencies like `JPY` that are not typically fractional.</li><li>A decimal fraction for currencies like `TND` that are subdivided into thousandths.</li></ul>For the required number of decimal places for a currency code, see [Currency Codes](/api/rest/reference/currency-codes/).
-          maxLength: 32
-          pattern: ^((-?[0-9]+)|(-?([0-9]+)?[.][0-9]+))$
-      required:
-      - currency_code
-      - value
-    '401':
+    '404':
       properties:
         details:
           type: array
           items:
             anyOf:
-            - title: INVALID_ACCOUNT_STATUS
+            - title: INVALID_RESOURCE_ID
               properties:
                 issue:
                   type: string
                   enum:
-                  - INVALID_ACCOUNT_STATUS
+                  - INVALID_RESOURCE_ID
                 description:
                   type: string
                   enum:
-                  - Account validations failed for the user.
-    activity_timestamps:
+                  - Specified resource ID does not exist. Please check the resource ID and try again.
+    error_503:
       type: object
-      description: The date and time stamps that are common to authorized payment, captured payment, and refund transactions.
-      title: Transaction Date and Time Stamps
-      properties:
-        create_time:
-          description: The date and time when the transaction occurred, in [Internet date and time format](https://tools.ietf.org/html/rfc3339#section-5.6).
-          readOnly: true
-          $ref: '#/components/schemas/date_time'
-        update_time:
-          description: The date and time when the transaction was last updated, in [Internet date and time format](https://tools.ietf.org/html/rfc3339#section-5.6).
-          readOnly: true
-          $ref: '#/components/schemas/date_time'
-    error_400:
-      type: object
-      title: Bad Request Error
-      description: Request is not well-formed, syntactically incorrect, or violates schema.
+      title: Service Unavailable Error
+      description: The server is temporarily unable to handle the request, for example, because of planned maintenance or downtime.
       properties:
         name:
           type: string
           enum:
-          - INVALID_REQUEST
+          - SERVICE_UNAVAILABLE
         message:
           type: string
           enum:
-          - Request is not well-formed, syntactically incorrect, or violates schema.
-        details:
-          type: array
-          items:
-            $ref: '#/components/schemas/error_details'
+          - Service Unavailable.
         debug_id:
           type: string
           description: The PayPal internal ID. Used for correlation purposes.
@@ -1644,283 +1901,12 @@ components:
           maxItems: 10000
           items:
             $ref: '#/components/schemas/error_link_description'
-    capture_request:
-      title: Capture Request
-      type: object
-      description: Captures either a portion or the full authorized amount of an authorized payment.
-      allOf:
-      - $ref: '#/components/schemas/supplementary_purchase_data'
-      - properties:
-          amount:
-            description: The amount to capture. To capture a portion of the full authorized amount, specify an amount. If amount is not specified, the full authorized amount is captured. The amount must be a positive number and in the same currency as the authorization against which the payment is being captured.
-            $ref: '#/components/schemas/money'
-          invoice_id:
-            description: The API caller-provided external invoice number for this order. Appears in both the payer's transaction history and the emails that the payer receives.
-            type: string
-            maxLength: 127
-          final_capture:
-            description: Indicates whether you can make additional captures against the authorized payment. Set to `true` if you do not intend to capture additional payments against the authorization. Set to `false` if you intend to capture additional payments against the authorization.
-            type: boolean
-            default: false
-          payment_instruction:
-            $ref: '#/components/schemas/payment_instruction'
-          note_to_payer:
-            description: An informational note about this settlement. Appears in both the payer's transaction history and the emails that the payer receives.
-            type: string
-            maxLength: 255
-          soft_descriptor:
-            description: The payment descriptor on the payer's account statement.
-            type: string
-            maxLength: 22
-    error_location:
-      type: string
-      description: The location of the field that caused the error. Value is `body`, `path`, or `query`.
-      enum:
-      - body
-      - path
-      - query
-      default: body
-    error_415:
-      type: object
-      title: Unsupported Media Type Error
-      description: The server does not support the request payload's media type.
-      properties:
-        name:
-          type: string
-          enum:
-          - UNSUPPORTED_MEDIA_TYPE
-        message:
-          type: string
-          enum:
-          - The server does not support the request payload's media type.
-        details:
-          type: array
-          items:
-            $ref: '#/components/schemas/error_details'
-        debug_id:
-          type: string
-          description: The PayPal internal ID. Used for correlation purposes.
-        links:
-          description: An array of request-related [HATEOAS links](https://en.wikipedia.org/wiki/HATEOAS).
-          type: array
-          minItems: 0
-          maxItems: 10000
-          items:
-            $ref: '#/components/schemas/error_link_description'
-    authorizations.reauthorize-400:
-      properties:
-        details:
-          type: array
-          items:
-            anyOf:
-            - title: MISSING_REQUIRED_PARAMETER
-              properties:
-                issue:
-                  type: string
-                  enum:
-                  - MISSING_REQUIRED_PARAMETER
-                description:
-                  type: string
-                  enum:
-                  - A required field / parameter is missing.
-            - title: INVALID_STRING_LENGTH
-              properties:
-                issue:
-                  type: string
-                  enum:
-                  - INVALID_STRING_LENGTH
-                description:
-                  type: string
-                  enum:
-                  - The value of a field is either too short or too long.
-            - title: INVALID_STRING_MAX_LENGTH
-              properties:
-                issue:
-                  type: string
-                  enum:
-                  - INVALID_STRING_MAX_LENGTH
-                description:
-                  type: string
-                  enum:
-                  - The value of a field is too long.
-            - title: INVALID_PARAMETER_SYNTAX
-              properties:
-                issue:
-                  type: string
-                  enum:
-                  - INVALID_PARAMETER_SYNTAX
-                description:
-                  type: string
-                  enum:
-                  - The value of a field does not conform to the expected format.
-    capture_status_details:
-      title: Capture Status Details
-      description: The details of the captured payment status.
-      type: object
-      properties:
-        reason:
-          description: The reason why the captured payment status is `PENDING` or `DENIED`.
-          type: string
-          minLength: 1
-          maxLength: 64
-          pattern: ^[A-Z_]+$
-          enum:
-          - BUYER_COMPLAINT
-          - CHARGEBACK
-          - ECHECK
-          - INTERNATIONAL_WITHDRAWAL
-          - OTHER
-          - PENDING_REVIEW
-          - RECEIVING_PREFERENCE_MANDATES_MANUAL_ACTION
-          - REFUNDED
-          - TRANSACTION_APPROVED_AWAITING_FUNDING
-          - UNILATERAL
-          - VERIFICATION_REQUIRED
-    email:
-      type: string
-      description: The internationalized email address.<blockquote><strong>Note:</strong> Up to 64 characters are allowed before and 255 characters are allowed after the <code>@</code> sign. However, the generally accepted maximum length for an email address is 254 characters. The pattern verifies that an unquoted <code>@</code> sign exists.</blockquote>
-      format: merchant_common_email_address_v2
-      maxLength: 254
-      minLength: 3
-      pattern: (?:[a-zA-Z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-zA-Z0-9!#$%&'*+/=?^_`{|}~-]+)*|(?:[\x01-\x08\x0b\x0c\x0e-\x1f\x21\x23-\x5b\x5d-\x7f]|\[\x01-\x09\x0b\x0c\x0e-\x7f])*")@(?:(?:[a-zA-Z0-9](?:[a-zA-Z0-9-]*[a-zA-Z0-9])?\.)+[a-zA-Z0-9](?:[a-zA-Z0-9-]*[a-zA-Z0-9])?|\[(?:(?:(2(5[0-5]|[0-4][0-9])|1[0-9][0-9]|[1-9]?[0-9]))\.){3}(?:(2(5[0-5]|[0-4][0-9])|1[0-9][0-9]|[1-9]?[0-9])|[a-zA-Z0-9-]*[a-zA-Z0-9]:(?:[\x01-\x08\x0b\x0c\x0e-\x1f\x21-\x5a\x53-\x7f]|\[\x01-\x09\x0b\x0c\x0e-\x7f])+)\])
-    error_409:
-      type: object
-      title: Resource Conflict Error
-      description: The server has detected a conflict while processing this request.
-      properties:
-        name:
-          type: string
-          enum:
-          - RESOURCE_CONFLICT
-        message:
-          type: string
-          enum:
-          - The server has detected a conflict while processing this request.
-        details:
-          type: array
-          items:
-            $ref: '#/components/schemas/error_details'
-        debug_id:
-          type: string
-          description: The PayPal internal ID. Used for correlation purposes.
-        links:
-          description: An array of request-related [HATEOAS links](https://en.wikipedia.org/wiki/HATEOAS).
-          type: array
-          minItems: 0
-          maxItems: 10000
-          items:
-            $ref: '#/components/schemas/error_link_description'
-    link_description:
-      type: object
-      title: Link Description
-      description: The request-related [HATEOAS link](/api/rest/responses/#hateoas-links) information.
-      required:
-      - href
-      - rel
-      properties:
-        href:
-          type: string
-          description: The complete target URL. To make the related call, combine the method with this [URI Template-formatted](https://tools.ietf.org/html/rfc6570) link. For pre-processing, include the `$`, `(`, and `)` characters. The `href` is the key HATEOAS component that links a completed call with a subsequent call.
-        rel:
-          type: string
-          description: The [link relation type](https://tools.ietf.org/html/rfc5988#section-4), which serves as an ID for a link that unambiguously describes the semantics of the link. See [Link Relations](https://www.iana.org/assignments/link-relations/link-relations.xhtml).
-        method:
-          type: string
-          description: The HTTP method required to make the related call.
-          enum:
-          - GET
-          - POST
-          - PUT
-          - DELETE
-          - HEAD
-          - CONNECT
-          - OPTIONS
-          - PATCH
-    seller_protection:
-      type: object
-      description: The level of protection offered as defined by [PayPal Seller Protection for Merchants](https://www.paypal.com/us/webapps/mpp/security/seller-protection).
-      title: Seller Protection
-      properties:
-        status:
-          type: string
-          description: Indicates whether the transaction is eligible for seller protection. For information, see [PayPal Seller Protection for Merchants](https://www.paypal.com/us/webapps/mpp/security/seller-protection).
-          readOnly: true
-          enum:
-          - ELIGIBLE
-          - PARTIALLY_ELIGIBLE
-          - NOT_ELIGIBLE
-        dispute_categories:
-          type: array
-          description: An array of conditions that are covered for the transaction.
-          items:
-            type: string
-            description: The condition that is covered for the transaction.
-            enum:
-            - ITEM_NOT_RECEIVED
-            - UNAUTHORIZED_TRANSACTION
-          readOnly: true
-    payee_base:
-      type: object
-      title: Merchant Base
-      description: The details for the merchant who receives the funds and fulfills the order. The merchant is also known as the payee.
-      properties:
-        email_address:
-          description: The email address of merchant.
-          $ref: '#/components/schemas/email'
-        merchant_id:
-          description: The encrypted PayPal account ID of the merchant.
-          $ref: '#/components/schemas/account_id'
-    supplementary_data:
-      title: Supplementary Data
-      type: object
-      description: The supplementary data.
-      properties:
-        related_ids:
-          description: Identifiers related to a specific resource.
-          readOnly: true
-          $ref: '#/components/schemas/related_ids'
-    error_422:
-      type: object
-      title: Unprocessable Entity Error
-      description: The requested action cannot be performed and may require interaction with APIs or processes outside of the current request. This is distinct from a 500 response in that there are no systemic problems limiting the API from performing the request.
-      properties:
-        name:
-          type: string
-          enum:
-          - UNPROCESSABLE_ENTITY
-        message:
-          type: string
-          enum:
-          - The requested action could not be performed, semantically incorrect, or failed business validation.
-        details:
-          type: array
-          items:
-            $ref: '#/components/schemas/error_details'
-        debug_id:
-          type: string
-          description: The PayPal internal ID. Used for correlation purposes.
-        links:
-          description: An array of request-related [HATEOAS links](https://en.wikipedia.org/wiki/HATEOAS).
-          type: array
-          minItems: 0
-          maxItems: 10000
-          items:
-            $ref: '#/components/schemas/error_link_description'
-  responses:
-    default:
-      description: The default response.
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/error_default'
+      example:
+        name: SERVICE_UNAVAILABLE
+        message: Service Unavailable.
+        debug_id: 90957fca61718
+        information_link: https://developer.paypal.com/docs/api/orders/v2/#error-SERVICE_UNAVAILABLE
   parameters:
-    paypal_request_id:
-      name: PayPal-Request-Id
-      in: header
-      description: The server stores keys for 45 days.
-      required: false
-      schema:
-        type: string
     authorization_id:
       name: authorization_id
       in: path
@@ -1935,6 +1921,13 @@ components:
       required: false
       schema:
         type: string
+    paypal_request_id:
+      name: PayPal-Request-Id
+      in: header
+      description: The server stores keys for 45 days.
+      required: false
+      schema:
+        type: string
     prefer:
       name: Prefer
       in: header
@@ -1943,6 +1936,13 @@ components:
       schema:
         type: string
         default: return=minimal
+  responses:
+    default:
+      description: The default response.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/error_default'
   securitySchemes:
     Oauth2:
       type: oauth2

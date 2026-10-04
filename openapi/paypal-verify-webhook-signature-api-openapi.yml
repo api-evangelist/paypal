@@ -84,29 +84,102 @@ paths:
       - Verify-Webhook-Signature
 components:
   schemas:
-    error_details-2:
-      title: Error Details
+    event:
       type: object
-      description: The error details. Required for client-side `4XX` errors.
+      title: Event
+      description: A webhook event notification.
       properties:
-        field:
+        id:
           type: string
-          description: The field that caused the error. If this field is in the body, set this value to the field's JSON pointer value. Required for client-side errors.
-        value:
+          description: The ID of the webhook event notification.
+          readOnly: true
+        create_time:
           type: string
-          description: The value of the field that caused the error.
-        location:
+          format: date-time
+          description: The date and time when the webhook event notification was created, in [Internet date and time format](https://tools.ietf.org/html/rfc3339#section-5.6).
+          readOnly: true
+        resource_type:
           type: string
-          description: The location of the field that caused the error. Value is `body`, `path`, or `query`.
-          default: body
-        issue:
+          description: The name of the resource related to the webhook notification event.
+          readOnly: true
+        event_version:
+          $ref: '#/components/schemas/event_version'
+        event_type:
           type: string
-          description: The unique, fine-grained application-level error code.
-        description:
+          description: The event that triggered the webhook event notification.
+          readOnly: true
+        summary:
           type: string
-          description: The human-readable description for an issue. The description can change over the lifetime of an API, so clients must not depend on this value.
+          description: A summary description for the event notification.
+          readOnly: true
+        resource_version:
+          $ref: '#/components/schemas/resource_version'
+        resource:
+          type: object
+          title: Resource
+          description: The resource that triggered the webhook event notification.
+          readOnly: true
+          additionalProperties: true
+        links:
+          type: array
+          description: An array of request-related [HATEOAS links](/docs/api/reference/api-responses/#hateoas-links).
+          readOnly: true
+          items:
+            $ref: '#/components/schemas/link_description'
+            readOnly: true
+    event_version:
+      type: string
+      title: Event Version
+      description: The event version in the webhook notification.
+      deprecated: true
+      pattern: ^([0-9]+.[0-9]+)$
+    error:
+      type: object
+      title: Error
+      description: The error details.
+      properties:
+        name:
+          type: string
+          description: The human-readable, unique name of the error.
+        message:
+          type: string
+          description: The message that describes the error.
+        debug_id:
+          type: string
+          description: The PayPal internal ID. Used for correlation purposes.
+        information_link:
+          type: string
+          description: The information link, or URI, that shows detailed information about this error for the developer.
+          readOnly: true
+        details:
+          type: array
+          description: An array of additional details about the error.
+          items:
+            $ref: '#/components/schemas/error_details-2'
+        links:
+          type: array
+          description: An array of request-related [HATEOAS links](/docs/api/reference/api-responses/#hateoas-links).
+          readOnly: true
+          items:
+            $ref: '#/components/schemas/link_description'
+            readOnly: true
       required:
-      - issue
+      - name
+      - message
+      - debug_id
+    verify_webhook_signature_response:
+      type: object
+      title: Verify Webhook Signature Response
+      description: The verify webhook signature response.
+      properties:
+        verification_status:
+          type: string
+          description: The status of the signature verification.
+          enum:
+          - SUCCESS
+          - FAILURE
+      required:
+      - verification_status
     verify_webhook_signature:
       type: object
       title: Verify Webhook Signature
@@ -152,25 +225,34 @@ components:
       - transmission_time
       - webhook_id
       - webhook_event
-    verify_webhook_signature_response:
-      type: object
-      title: Verify Webhook Signature Response
-      description: The verify webhook signature response.
-      properties:
-        verification_status:
-          type: string
-          description: The status of the signature verification.
-          enum:
-          - SUCCESS
-          - FAILURE
-      required:
-      - verification_status
-    event_version:
+    resource_version:
+      title: Resource Version
+      description: The resource version in the webhook notification.
       type: string
-      title: Event Version
-      description: The event version in the webhook notification.
-      deprecated: true
       pattern: ^([0-9]+.[0-9]+)$
+    error_details-2:
+      title: Error Details
+      type: object
+      description: The error details. Required for client-side `4XX` errors.
+      properties:
+        field:
+          type: string
+          description: The field that caused the error. If this field is in the body, set this value to the field's JSON pointer value. Required for client-side errors.
+        value:
+          type: string
+          description: The value of the field that caused the error.
+        location:
+          type: string
+          description: The location of the field that caused the error. Value is `body`, `path`, or `query`.
+          default: body
+        issue:
+          type: string
+          description: The unique, fine-grained application-level error code.
+        description:
+          type: string
+          description: The human-readable description for an issue. The description can change over the lifetime of an API, so clients must not depend on this value.
+      required:
+      - issue
     link_description:
       type: object
       title: Link Description
@@ -197,88 +279,6 @@ components:
           - CONNECT
           - OPTIONS
           - PATCH
-    event:
-      type: object
-      title: Event
-      description: A webhook event notification.
-      properties:
-        id:
-          type: string
-          description: The ID of the webhook event notification.
-          readOnly: true
-        create_time:
-          type: string
-          format: date-time
-          description: The date and time when the webhook event notification was created, in [Internet date and time format](https://tools.ietf.org/html/rfc3339#section-5.6).
-          readOnly: true
-        resource_type:
-          type: string
-          description: The name of the resource related to the webhook notification event.
-          readOnly: true
-        event_version:
-          $ref: '#/components/schemas/event_version'
-        event_type:
-          type: string
-          description: The event that triggered the webhook event notification.
-          readOnly: true
-        summary:
-          type: string
-          description: A summary description for the event notification.
-          readOnly: true
-        resource_version:
-          $ref: '#/components/schemas/resource_version'
-        resource:
-          type: object
-          title: Resource
-          description: The resource that triggered the webhook event notification.
-          readOnly: true
-          additionalProperties: true
-        links:
-          type: array
-          description: An array of request-related [HATEOAS links](/docs/api/reference/api-responses/#hateoas-links).
-          readOnly: true
-          items:
-            $ref: '#/components/schemas/link_description'
-            readOnly: true
-    error:
-      type: object
-      title: Error
-      description: The error details.
-      properties:
-        name:
-          type: string
-          description: The human-readable, unique name of the error.
-        message:
-          type: string
-          description: The message that describes the error.
-        debug_id:
-          type: string
-          description: The PayPal internal ID. Used for correlation purposes.
-        information_link:
-          type: string
-          description: The information link, or URI, that shows detailed information about this error for the developer.
-          readOnly: true
-        details:
-          type: array
-          description: An array of additional details about the error.
-          items:
-            $ref: '#/components/schemas/error_details-2'
-        links:
-          type: array
-          description: An array of request-related [HATEOAS links](/docs/api/reference/api-responses/#hateoas-links).
-          readOnly: true
-          items:
-            $ref: '#/components/schemas/link_description'
-            readOnly: true
-      required:
-      - name
-      - message
-      - debug_id
-    resource_version:
-      title: Resource Version
-      description: The resource version in the webhook notification.
-      type: string
-      pattern: ^([0-9]+.[0-9]+)$
   securitySchemes:
     Oauth2:
       type: oauth2

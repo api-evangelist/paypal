@@ -217,35 +217,22 @@ paths:
       tags:
       - Web-Profiles
 components:
+  parameters:
+    id:
+      name: id
+      in: path
+      description: The ID of the profile to delete.
+      required: true
+      schema:
+        type: string
+    paypal_request_id:
+      name: PayPal-Request-Id
+      in: header
+      description: The server stores keys for three hours.
+      required: true
+      schema:
+        type: string
   schemas:
-    error_details-2:
-      type: object
-      title: Error Details
-      description: The error details. Required for client-side `4XX` errors.
-      properties:
-        field:
-          type: string
-          description: The name of the field that caused the error.
-        issue:
-          type: string
-          description: The reason for the error.
-      required:
-      - field
-      - issue
-    patch_request:
-      type: array
-      title: Patch Request
-      description: An array of JSON patch objects to apply partial updates to resources.
-      items:
-        $ref: '#/components/schemas/patch'
-    web_profile_list:
-      type: array
-      title: Web Profile List
-      description: An array of web profiles.
-      minItems: 1
-      maxItems: 20
-      items:
-        $ref: '#/components/schemas/web_profile'
     error:
       type: object
       title: Error
@@ -367,6 +354,34 @@ components:
               minLength: 2
               maxLength: 5
               description: 'The locale of pages that the PayPal payment experience displays. A valid value is `AU`, `AT`, `BE`, `BR`, `CA`, `CH`, `CN`, `DE`, `ES`, `GB`, `FR`, `IT`, `NL`, `PL`, `PT`, `RU`, or `US`. A 5-character code is also valid for languages in these countries: `da_DK`, `he_IL`, `id_ID`, `ja_JP`, `no_NO`, `pt_BR`, `ru_RU`, `sv_SE`, `th_TH`, `zh_CN`, `zh_HK`, or `zh_TW`.'
+    patch_request:
+      type: array
+      title: Patch Request
+      description: An array of JSON patch objects to apply partial updates to resources.
+      items:
+        $ref: '#/components/schemas/patch'
+    web_profile_list:
+      type: array
+      title: Web Profile List
+      description: An array of web profiles.
+      minItems: 1
+      maxItems: 20
+      items:
+        $ref: '#/components/schemas/web_profile'
+    error_details-2:
+      type: object
+      title: Error Details
+      description: The error details. Required for client-side `4XX` errors.
+      properties:
+        field:
+          type: string
+          description: The name of the field that caused the error.
+        issue:
+          type: string
+          description: The reason for the error.
+      required:
+      - field
+      - issue
     patch:
       type: object
       title: Patch
@@ -399,21 +414,6 @@ components:
         application/json:
           schema:
             $ref: '#/components/schemas/web_profile'
-  parameters:
-    id:
-      name: id
-      in: path
-      description: The ID of the profile to delete.
-      required: true
-      schema:
-        type: string
-    paypal_request_id:
-      name: PayPal-Request-Id
-      in: header
-      description: The server stores keys for three hours.
-      required: true
-      schema:
-        type: string
   securitySchemes:
     Oauth2:
       type: oauth2

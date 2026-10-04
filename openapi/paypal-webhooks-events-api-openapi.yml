@@ -98,168 +98,7 @@ paths:
       tags:
       - Webhooks Events
 components:
-  parameters:
-    event_id:
-      name: event_id
-      in: path
-      description: The ID of the webhook event notification to resend.
-      required: true
-      schema:
-        type: string
-        maxLength: 50
-        pattern: ^[a-zA-Z0-9]+$
-    transaction_id:
-      name: transaction_id
-      in: query
-      description: Filters the response to a single transaction, by ID.
-      schema:
-        type: string
-    start_time:
-      name: start_time
-      in: query
-      description: 'Filters the webhook event notifications in the response to those created on or after this date and time and on or before the `end_time` value. Both values are in [Internet date and time format](https://tools.ietf.org/html/rfc3339#section-5.6) format. Example: `start_time=2013-03-06T11:00:00Z`.'
-      schema:
-        type: string
-    event_type:
-      name: event_type
-      in: query
-      description: Filters the response to a single event.
-      schema:
-        type: string
-    page_size:
-      name: page_size
-      in: query
-      description: The number of webhook event notifications to return in the response.
-      schema:
-        type: integer
-        default: 10
-    end_time:
-      name: end_time
-      in: query
-      description: 'Filters the webhook event notifications in the response to those created on or after the `start_time` and on or before this date and time. Both values are in [Internet date and time format](https://tools.ietf.org/html/rfc3339#section-5.6) format. Example: `end_time=2013-03-06T11:00:00Z`.'
-      schema:
-        type: string
   schemas:
-    error_details-2:
-      title: Error Details
-      type: object
-      description: The error details. Required for client-side `4XX` errors.
-      properties:
-        field:
-          type: string
-          description: The field that caused the error. If this field is in the body, set this value to the field's JSON pointer value. Required for client-side errors.
-        value:
-          type: string
-          description: The value of the field that caused the error.
-        location:
-          type: string
-          description: The location of the field that caused the error. Value is `body`, `path`, or `query`.
-          default: body
-        issue:
-          type: string
-          description: The unique, fine-grained application-level error code.
-        description:
-          type: string
-          description: The human-readable description for an issue. The description can change over the lifetime of an API, so clients must not depend on this value.
-      required:
-      - issue
-    event_version:
-      type: string
-      title: Event Version
-      description: The event version in the webhook notification.
-      deprecated: true
-      pattern: ^([0-9]+.[0-9]+)$
-    EventList:
-      type: object
-      title: Event List
-      description: A list of webhooks events.
-      properties:
-        events:
-          type: array
-          description: An array of webhooks events.
-          items:
-            $ref: '#/components/schemas/event'
-        count:
-          type: integer
-          description: The number of items in each range of results. Note that the response might have fewer items than the requested `page_size` value.
-        links:
-          type: array
-          description: An array of request-related [HATEOAS links](/docs/api/reference/api-responses/#hateoas-links).
-          readOnly: true
-          items:
-            $ref: '#/components/schemas/link_description'
-    event_resend:
-      type: object
-      title: Event Resend
-      description: Resends a webhook event notification, by ID.
-      properties:
-        webhook_ids:
-          type: array
-          maxItems: 500
-          description: An array of webhook account IDs.
-          items:
-            type: string
-            description: The ID of the webhook event notification to resend.
-    link_description:
-      type: object
-      title: Link Description
-      description: The request-related [HATEOAS link](/docs/api/reference/api-responses/#hateoas-links) information.
-      required:
-      - href
-      - rel
-      properties:
-        href:
-          type: string
-          description: The complete target URL. To make the related call, combine the method with this [URI Template-formatted](https://tools.ietf.org/html/rfc6570) link. For pre-processing, include the `$`, `(`, and `)` characters. The `href` is the key HATEOAS component that links a completed call with a subsequent call.
-        rel:
-          type: string
-          description: The [link relation type](https://tools.ietf.org/html/rfc5988#section-4), which serves as an ID for a link that unambiguously describes the semantics of the link. See [Link Relations](https://www.iana.org/assignments/link-relations/link-relations.xhtml).
-        method:
-          type: string
-          description: The HTTP method required to make the related call.
-          enum:
-          - GET
-          - POST
-          - PUT
-          - DELETE
-          - HEAD
-          - CONNECT
-          - OPTIONS
-          - PATCH
-    error:
-      type: object
-      title: Error
-      description: The error details.
-      properties:
-        name:
-          type: string
-          description: The human-readable, unique name of the error.
-        message:
-          type: string
-          description: The message that describes the error.
-        debug_id:
-          type: string
-          description: The PayPal internal ID. Used for correlation purposes.
-        information_link:
-          type: string
-          description: The information link, or URI, that shows detailed information about this error for the developer.
-          readOnly: true
-        details:
-          type: array
-          description: An array of additional details about the error.
-          items:
-            $ref: '#/components/schemas/error_details-2'
-        links:
-          type: array
-          description: An array of request-related [HATEOAS links](/docs/api/reference/api-responses/#hateoas-links).
-          readOnly: true
-          items:
-            $ref: '#/components/schemas/link_description'
-            readOnly: true
-      required:
-      - name
-      - message
-      - debug_id
     event:
       type: object
       title: Event
@@ -303,11 +142,172 @@ components:
           items:
             $ref: '#/components/schemas/link_description'
             readOnly: true
+    event_version:
+      type: string
+      title: Event Version
+      description: The event version in the webhook notification.
+      deprecated: true
+      pattern: ^([0-9]+.[0-9]+)$
+    error:
+      type: object
+      title: Error
+      description: The error details.
+      properties:
+        name:
+          type: string
+          description: The human-readable, unique name of the error.
+        message:
+          type: string
+          description: The message that describes the error.
+        debug_id:
+          type: string
+          description: The PayPal internal ID. Used for correlation purposes.
+        information_link:
+          type: string
+          description: The information link, or URI, that shows detailed information about this error for the developer.
+          readOnly: true
+        details:
+          type: array
+          description: An array of additional details about the error.
+          items:
+            $ref: '#/components/schemas/error_details-2'
+        links:
+          type: array
+          description: An array of request-related [HATEOAS links](/docs/api/reference/api-responses/#hateoas-links).
+          readOnly: true
+          items:
+            $ref: '#/components/schemas/link_description'
+            readOnly: true
+      required:
+      - name
+      - message
+      - debug_id
+    link_description:
+      type: object
+      title: Link Description
+      description: The request-related [HATEOAS link](/docs/api/reference/api-responses/#hateoas-links) information.
+      required:
+      - href
+      - rel
+      properties:
+        href:
+          type: string
+          description: The complete target URL. To make the related call, combine the method with this [URI Template-formatted](https://tools.ietf.org/html/rfc6570) link. For pre-processing, include the `$`, `(`, and `)` characters. The `href` is the key HATEOAS component that links a completed call with a subsequent call.
+        rel:
+          type: string
+          description: The [link relation type](https://tools.ietf.org/html/rfc5988#section-4), which serves as an ID for a link that unambiguously describes the semantics of the link. See [Link Relations](https://www.iana.org/assignments/link-relations/link-relations.xhtml).
+        method:
+          type: string
+          description: The HTTP method required to make the related call.
+          enum:
+          - GET
+          - POST
+          - PUT
+          - DELETE
+          - HEAD
+          - CONNECT
+          - OPTIONS
+          - PATCH
+    event_resend:
+      type: object
+      title: Event Resend
+      description: Resends a webhook event notification, by ID.
+      properties:
+        webhook_ids:
+          type: array
+          maxItems: 500
+          description: An array of webhook account IDs.
+          items:
+            type: string
+            description: The ID of the webhook event notification to resend.
     resource_version:
       title: Resource Version
       description: The resource version in the webhook notification.
       type: string
       pattern: ^([0-9]+.[0-9]+)$
+    error_details-2:
+      title: Error Details
+      type: object
+      description: The error details. Required for client-side `4XX` errors.
+      properties:
+        field:
+          type: string
+          description: The field that caused the error. If this field is in the body, set this value to the field's JSON pointer value. Required for client-side errors.
+        value:
+          type: string
+          description: The value of the field that caused the error.
+        location:
+          type: string
+          description: The location of the field that caused the error. Value is `body`, `path`, or `query`.
+          default: body
+        issue:
+          type: string
+          description: The unique, fine-grained application-level error code.
+        description:
+          type: string
+          description: The human-readable description for an issue. The description can change over the lifetime of an API, so clients must not depend on this value.
+      required:
+      - issue
+    EventList:
+      type: object
+      title: Event List
+      description: A list of webhooks events.
+      properties:
+        events:
+          type: array
+          description: An array of webhooks events.
+          items:
+            $ref: '#/components/schemas/event'
+        count:
+          type: integer
+          description: The number of items in each range of results. Note that the response might have fewer items than the requested `page_size` value.
+        links:
+          type: array
+          description: An array of request-related [HATEOAS links](/docs/api/reference/api-responses/#hateoas-links).
+          readOnly: true
+          items:
+            $ref: '#/components/schemas/link_description'
+  parameters:
+    event_type:
+      name: event_type
+      in: query
+      description: Filters the response to a single event.
+      schema:
+        type: string
+    transaction_id:
+      name: transaction_id
+      in: query
+      description: Filters the response to a single transaction, by ID.
+      schema:
+        type: string
+    page_size:
+      name: page_size
+      in: query
+      description: The number of webhook event notifications to return in the response.
+      schema:
+        type: integer
+        default: 10
+    end_time:
+      name: end_time
+      in: query
+      description: 'Filters the webhook event notifications in the response to those created on or after the `start_time` and on or before this date and time. Both values are in [Internet date and time format](https://tools.ietf.org/html/rfc3339#section-5.6) format. Example: `end_time=2013-03-06T11:00:00Z`.'
+      schema:
+        type: string
+    event_id:
+      name: event_id
+      in: path
+      description: The ID of the webhook event notification to resend.
+      required: true
+      schema:
+        type: string
+        maxLength: 50
+        pattern: ^[a-zA-Z0-9]+$
+    start_time:
+      name: start_time
+      in: query
+      description: 'Filters the webhook event notifications in the response to those created on or after this date and time and on or before the `end_time` value. Both values are in [Internet date and time format](https://tools.ietf.org/html/rfc3339#section-5.6) format. Example: `start_time=2013-03-06T11:00:00Z`.'
+      schema:
+        type: string
   securitySchemes:
     Oauth2:
       type: oauth2

@@ -63,64 +63,6 @@ paths:
       - Simulate-Event
 components:
   schemas:
-    error_details-2:
-      title: Error Details
-      type: object
-      description: The error details. Required for client-side `4XX` errors.
-      properties:
-        field:
-          type: string
-          description: The field that caused the error. If this field is in the body, set this value to the field's JSON pointer value. Required for client-side errors.
-        value:
-          type: string
-          description: The value of the field that caused the error.
-        location:
-          type: string
-          description: The location of the field that caused the error. Value is `body`, `path`, or `query`.
-          default: body
-        issue:
-          type: string
-          description: The unique, fine-grained application-level error code.
-        description:
-          type: string
-          description: The human-readable description for an issue. The description can change over the lifetime of an API, so clients must not depend on this value.
-      required:
-      - issue
-    simulate_event:
-      type: object
-      title: Simulate Event
-      description: Simulates a mock webhook event.
-      properties:
-        webhook_id:
-          type: string
-          description: The ID of the webhook. If omitted, the URL is required.
-          readOnly: false
-          pattern: ^[a-zA-Z0-9]+$
-          maxLength: 50
-        url:
-          type: string
-          format: uri
-          description: The URL for the webhook endpoint. If omitted, the webhook ID is required.
-          readOnly: false
-          maxLength: 2048
-        event_type:
-          type: string
-          description: The event name. Specify one of the subscribed events. For each request, provide only one event.
-          readOnly: false
-          maxLength: 50
-          pattern: ^[a-zA-Z0-9.]+$
-        resource_version:
-          type: string
-          description: 'The identifier for event type ex: 1.0/2.0 etc.'
-          readOnly: false
-      required:
-      - event_type
-    event_version:
-      type: string
-      title: Event Version
-      description: The event version in the webhook notification.
-      deprecated: true
-      pattern: ^([0-9]+.[0-9]+)$
     event:
       type: object
       title: Event
@@ -164,32 +106,6 @@ components:
           items:
             $ref: '#/components/schemas/link_description'
             readOnly: true
-    link_description:
-      type: object
-      title: Link Description
-      description: The request-related [HATEOAS link](/docs/api/reference/api-responses/#hateoas-links) information.
-      required:
-      - href
-      - rel
-      properties:
-        href:
-          type: string
-          description: The complete target URL. To make the related call, combine the method with this [URI Template-formatted](https://tools.ietf.org/html/rfc6570) link. For pre-processing, include the `$`, `(`, and `)` characters. The `href` is the key HATEOAS component that links a completed call with a subsequent call.
-        rel:
-          type: string
-          description: The [link relation type](https://tools.ietf.org/html/rfc5988#section-4), which serves as an ID for a link that unambiguously describes the semantics of the link. See [Link Relations](https://www.iana.org/assignments/link-relations/link-relations.xhtml).
-        method:
-          type: string
-          description: The HTTP method required to make the related call.
-          enum:
-          - GET
-          - POST
-          - PUT
-          - DELETE
-          - HEAD
-          - CONNECT
-          - OPTIONS
-          - PATCH
     error:
       type: object
       title: Error
@@ -224,11 +140,95 @@ components:
       - name
       - message
       - debug_id
+    event_version:
+      type: string
+      title: Event Version
+      description: The event version in the webhook notification.
+      deprecated: true
+      pattern: ^([0-9]+.[0-9]+)$
+    simulate_event:
+      type: object
+      title: Simulate Event
+      description: Simulates a mock webhook event.
+      properties:
+        webhook_id:
+          type: string
+          description: The ID of the webhook. If omitted, the URL is required.
+          readOnly: false
+          pattern: ^[a-zA-Z0-9]+$
+          maxLength: 50
+        url:
+          type: string
+          format: uri
+          description: The URL for the webhook endpoint. If omitted, the webhook ID is required.
+          readOnly: false
+          maxLength: 2048
+        event_type:
+          type: string
+          description: The event name. Specify one of the subscribed events. For each request, provide only one event.
+          readOnly: false
+          maxLength: 50
+          pattern: ^[a-zA-Z0-9.]+$
+        resource_version:
+          type: string
+          description: 'The identifier for event type ex: 1.0/2.0 etc.'
+          readOnly: false
+      required:
+      - event_type
     resource_version:
       title: Resource Version
       description: The resource version in the webhook notification.
       type: string
       pattern: ^([0-9]+.[0-9]+)$
+    error_details-2:
+      title: Error Details
+      type: object
+      description: The error details. Required for client-side `4XX` errors.
+      properties:
+        field:
+          type: string
+          description: The field that caused the error. If this field is in the body, set this value to the field's JSON pointer value. Required for client-side errors.
+        value:
+          type: string
+          description: The value of the field that caused the error.
+        location:
+          type: string
+          description: The location of the field that caused the error. Value is `body`, `path`, or `query`.
+          default: body
+        issue:
+          type: string
+          description: The unique, fine-grained application-level error code.
+        description:
+          type: string
+          description: The human-readable description for an issue. The description can change over the lifetime of an API, so clients must not depend on this value.
+      required:
+      - issue
+    link_description:
+      type: object
+      title: Link Description
+      description: The request-related [HATEOAS link](/docs/api/reference/api-responses/#hateoas-links) information.
+      required:
+      - href
+      - rel
+      properties:
+        href:
+          type: string
+          description: The complete target URL. To make the related call, combine the method with this [URI Template-formatted](https://tools.ietf.org/html/rfc6570) link. For pre-processing, include the `$`, `(`, and `)` characters. The `href` is the key HATEOAS component that links a completed call with a subsequent call.
+        rel:
+          type: string
+          description: The [link relation type](https://tools.ietf.org/html/rfc5988#section-4), which serves as an ID for a link that unambiguously describes the semantics of the link. See [Link Relations](https://www.iana.org/assignments/link-relations/link-relations.xhtml).
+        method:
+          type: string
+          description: The HTTP method required to make the related call.
+          enum:
+          - GET
+          - POST
+          - PUT
+          - DELETE
+          - HEAD
+          - CONNECT
+          - OPTIONS
+          - PATCH
   securitySchemes:
     Oauth2:
       type: oauth2

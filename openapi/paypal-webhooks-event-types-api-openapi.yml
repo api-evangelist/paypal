@@ -35,29 +35,40 @@ paths:
       - Webhooks-Event-Types
 components:
   schemas:
-    error_details-2:
-      title: Error Details
+    error:
       type: object
-      description: The error details. Required for client-side `4XX` errors.
+      title: Error
+      description: The error details.
       properties:
-        field:
+        name:
           type: string
-          description: The field that caused the error. If this field is in the body, set this value to the field's JSON pointer value. Required for client-side errors.
-        value:
+          description: The human-readable, unique name of the error.
+        message:
           type: string
-          description: The value of the field that caused the error.
-        location:
+          description: The message that describes the error.
+        debug_id:
           type: string
-          description: The location of the field that caused the error. Value is `body`, `path`, or `query`.
-          default: body
-        issue:
+          description: The PayPal internal ID. Used for correlation purposes.
+        information_link:
           type: string
-          description: The unique, fine-grained application-level error code.
-        description:
-          type: string
-          description: The human-readable description for an issue. The description can change over the lifetime of an API, so clients must not depend on this value.
+          description: The information link, or URI, that shows detailed information about this error for the developer.
+          readOnly: true
+        details:
+          type: array
+          description: An array of additional details about the error.
+          items:
+            $ref: '#/components/schemas/error_details-2'
+        links:
+          type: array
+          description: An array of request-related [HATEOAS links](/docs/api/reference/api-responses/#hateoas-links).
+          readOnly: true
+          items:
+            $ref: '#/components/schemas/link_description'
+            readOnly: true
       required:
-      - issue
+      - name
+      - message
+      - debug_id
     EventTypeList:
       type: object
       title: Event Type List
@@ -94,6 +105,29 @@ components:
             description: The ID for an event type. For example, `1.0` or `2.0`.
       required:
       - name
+    error_details-2:
+      title: Error Details
+      type: object
+      description: The error details. Required for client-side `4XX` errors.
+      properties:
+        field:
+          type: string
+          description: The field that caused the error. If this field is in the body, set this value to the field's JSON pointer value. Required for client-side errors.
+        value:
+          type: string
+          description: The value of the field that caused the error.
+        location:
+          type: string
+          description: The location of the field that caused the error. Value is `body`, `path`, or `query`.
+          default: body
+        issue:
+          type: string
+          description: The unique, fine-grained application-level error code.
+        description:
+          type: string
+          description: The human-readable description for an issue. The description can change over the lifetime of an API, so clients must not depend on this value.
+      required:
+      - issue
     link_description:
       type: object
       title: Link Description
@@ -120,40 +154,6 @@ components:
           - CONNECT
           - OPTIONS
           - PATCH
-    error:
-      type: object
-      title: Error
-      description: The error details.
-      properties:
-        name:
-          type: string
-          description: The human-readable, unique name of the error.
-        message:
-          type: string
-          description: The message that describes the error.
-        debug_id:
-          type: string
-          description: The PayPal internal ID. Used for correlation purposes.
-        information_link:
-          type: string
-          description: The information link, or URI, that shows detailed information about this error for the developer.
-          readOnly: true
-        details:
-          type: array
-          description: An array of additional details about the error.
-          items:
-            $ref: '#/components/schemas/error_details-2'
-        links:
-          type: array
-          description: An array of request-related [HATEOAS links](/docs/api/reference/api-responses/#hateoas-links).
-          readOnly: true
-          items:
-            $ref: '#/components/schemas/link_description'
-            readOnly: true
-      required:
-      - name
-      - message
-      - debug_id
   securitySchemes:
     Oauth2:
       type: oauth2
