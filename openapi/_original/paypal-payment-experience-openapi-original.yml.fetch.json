@@ -1,0 +1,12 @@
+{
+ "url": "https://raw.githubusercontent.com/paypal/paypal-rest-api-specifications/HEAD/openapi/payment-experience_web_experience_profiles_v1.json",
+ "requested_url": "https://raw.githubusercontent.com/paypal/paypal-rest-api-specifications/HEAD/openapi/payment-experience_web_experience_profiles_v1.json",
+ "status": 200,
+ "content_type": "text/plain; charset=utf-8",
+ "bytes": 43593,
+ "sha256": "51b0bd6bab29279f86684e446b2152a7ace62583f47ef8106da1ad6172f30a3f",
+ "fetched_at": "2026-10-04",
+ "fetched_by": "APIEvangelist-Harvest/1.0 (+https://apievangelist.com)",
+ "match": "equivalent",
+ "note": "Re-fetched from the provider by verify-openapi-sources.py; the provider's current document describes the same operations (Jaccard 1.0), but the bytes differ, so the archive is an earlier or reformatted copy."
+}

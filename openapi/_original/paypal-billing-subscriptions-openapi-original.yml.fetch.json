@@ -1,0 +1,12 @@
+{
+ "url": "https://raw.githubusercontent.com/paypal/paypal-rest-api-specifications/HEAD/openapi/billing_subscriptions_v1.json",
+ "requested_url": "https://raw.githubusercontent.com/paypal/paypal-rest-api-specifications/HEAD/openapi/billing_subscriptions_v1.json",
+ "status": 200,
+ "content_type": "text/plain; charset=utf-8",
+ "bytes": 307610,
+ "sha256": "ef9d5dd5d81fba9d951c2dba2d76cf958ab1cd9d0a2dc6b8415df7fac5829a8b",
+ "fetched_at": "2026-10-04",
+ "fetched_by": "APIEvangelist-Harvest/1.0 (+https://apievangelist.com)",
+ "match": "equivalent",
+ "note": "Re-fetched from the provider by verify-openapi-sources.py; the provider's current document describes the same operations (Jaccard 1.0), but the bytes differ, so the archive is an earlier or reformatted copy."
+}
