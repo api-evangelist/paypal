@@ -1124,6 +1124,8 @@ apis:
   - type: Documentation
     url: https://developer.paypal.com/docs/api/payment-tokens/v3/
 common:
+- type: FinOps
+  url: finops/paypal-finops.yml
 - type: RateLimits
   url: rate-limits/paypal-rate-limits.yml
 - type: Plans
