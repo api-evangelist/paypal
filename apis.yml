@@ -1214,6 +1214,8 @@ common:
   url: https://developer.paypal.com/llms.txt
 - url: https://newsroom.paypal-corp.com/news
   type: Blog
+- type: SpectralRules
+  url: https://github.com/paypal/paypal-rest-api-specifications/blob/90e8041ffe02d80c452d2b476bedd59a8d219bdc/.spectral.yaml
 maintainers:
 - FN: Kin Lane
   email: kin@apievangelist.com

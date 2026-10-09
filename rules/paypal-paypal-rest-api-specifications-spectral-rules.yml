@@ -1,0 +1,11 @@
+# harvested from https://github.com/paypal/paypal-rest-api-specifications/blob/90e8041ffe02d80c452d2b476bedd59a8d219bdc/.spectral.yaml on 2026-10-09 — a Spectral ruleset published in the provider's own GitHub repository (paypal/paypal-rest-api-specifications); found by GitHub code search, fetched verbatim
+x-method: harvested
+x-stamped: 2026-10-09
+x-source-url: https://github.com/paypal/paypal-rest-api-specifications/blob/90e8041ffe02d80c452d2b476bedd59a8d219bdc/.spectral.yaml
+extends: ["spectral:oas", "spectral:asyncapi"]
+rules:
+  no-$ref-siblings: "off"
+  oas3-valid-media-example: "warn"
+  oas3-valid-schema-example: "warn"
+  oas3-schema: "warn"
+  openapi-tags-uniqueness: "warn"

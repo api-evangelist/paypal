@@ -168,3 +168,225 @@ rate_limit_statements:
 - Per week 250,000.00 USD
 - Per month 500,000.00 USD
 - 'Merchant Branded Card Issuing Fees (minimum order: 1,000 cards)'
+x-canonical:
+  generated: '2026-10-08'
+  vocabulary: all/0-working/economics/plans-canonical.yml
+  models:
+  - hybrid
+  - metered
+  - subscription
+  units:
+  - object
+  - period
+  - request
+  - token
+  - transaction
+  plans:
+  - name: PayPal Checkout (domestic commercial transaction)
+    access: other
+    model: metered
+    model_how: derived
+    units:
+    - transaction
+    periods:
+    - other
+  - name: QR code Transactions
+    access: other
+    model: hybrid
+    model_how: derived
+    units:
+    - transaction
+    periods:
+    - other
+  - name: Send/Receive Money for Goods and Services
+    access: other
+    model: hybrid
+    model_how: derived
+    units:
+    - transaction
+    periods:
+    - other
+  - name: PayPal Pay Later options
+    access: other
+    model: hybrid
+    model_how: derived
+    units:
+    - transaction
+    periods:
+    - other
+  - name: Additional fee for international commercial transactions
+    access: other
+    model: hybrid
+    model_how: derived
+    units:
+    - transaction
+    periods:
+    - other
+  - name: Fixed fee, US dollar
+    access: other
+    model: hybrid
+    model_how: derived
+    units:
+    - transaction
+    periods:
+    - other
+  - name: Invoicing Subscription
+    access: other
+    model: subscription
+    model_how: derived
+    units:
+    - period
+    periods:
+    - month
+  - name: Invoicing Pay by Bank (ACH)
+    access: other
+    model: metered
+    model_how: derived
+    units:
+    - transaction
+    periods:
+    - other
+  - name: Advanced Credit and Debit Card Payments
+    access: other
+    model: hybrid
+    model_how: derived
+    units:
+    - transaction
+    periods:
+    - other
+  - name: ACH Services
+    access: other
+    model: metered
+    model_how: derived
+    units:
+    - transaction
+    periods:
+    - other
+  - name: Virtual Terminal
+    access: other
+    model: hybrid
+    model_how: derived
+    units:
+    - transaction
+    periods:
+    - other
+  - name: Interchange Plus Plus (Advanced Credit and Debit Card Payments)
+    access: other
+    model: hybrid
+    model_how: derived
+    units:
+    - transaction
+    periods:
+    - other
+  - name: Payments Advanced monthly fee
+    access: other
+    model: hybrid
+    model_how: derived
+    units:
+    - object
+    periods:
+    - month
+  - name: Payments Pro monthly fee
+    access: other
+    model: hybrid
+    model_how: derived
+    units:
+    - object
+    periods:
+    - month
+  - name: Payflow Pro Transaction
+    access: other
+    model: hybrid
+    model_how: derived
+    units:
+    - transaction
+    periods:
+    - other
+  - name: Payflow Pro monthly fee
+    access: other
+    model: subscription
+    model_how: derived
+    units:
+    - other
+    periods:
+    - month
+  - name: Fraud Protection Advanced
+    access: other
+    model: hybrid
+    model_how: derived
+    units:
+    - transaction
+    periods:
+    - other
+  - name: Account Updater
+    access: other
+    model: subscription
+    model_how: derived
+    units:
+    - other
+    periods:
+    - other
+  - name: Buyer Authentication Service
+    access: other
+    model: hybrid
+    model_how: derived
+    units:
+    - object
+    periods:
+    - month
+  - name: Network Tokenization
+    access: other
+    model: hybrid
+    model_how: derived
+    units:
+    - token
+    periods:
+    - other
+  - name: 3D Secure Advanced
+    access: other
+    model: hybrid
+    model_how: derived
+    units:
+    - request
+    periods:
+    - other
+  - name: PayPal Payouts (US, Payouts API)
+    access: other
+    model: subscription
+    model_how: derived
+    units:
+    - other
+    periods:
+    - other
+  - name: PayPal Payouts (US)
+    access: other
+    model: subscription
+    model_how: derived
+    units:
+    - other
+    periods:
+    - other
+  - name: Micropayments (domestic US)
+    access: other
+    model: hybrid
+    model_how: derived
+    units:
+    - transaction
+    periods:
+    - other
+  - name: Standard Dispute Fee (US dollar)
+    access: other
+    model: subscription
+    model_how: derived
+    units:
+    - other
+    periods:
+    - other
+  - name: Pay With Crypto (until July 31, 2026)
+    access: other
+    model: hybrid
+    model_how: derived
+    units:
+    - transaction
+    periods:
+    - other
