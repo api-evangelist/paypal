@@ -1,0 +1,419 @@
+generated: '2026-10-12'
+method: searched
+source:
+- https://zapier.com/apps/paypal/integrations
+checked:
+- https://zapier.com/apps/paypal/integrations
+summary: null
+marketplace_apps:
+- marketplace: zapier
+  app: paypal
+  url: https://zapier.com/apps/paypal/integrations
+  external_url: https://www.paypal.com/
+  partner_tier: GOLD
+  triggers:
+  - key: billing_plan_webhooks
+    label: Billing Plan Webhooks
+  - key: billing_subscription_webhooks
+    label: Billing Subscription Webhooks
+  - key: canceled_recurring_payment_webhooks
+    label: Canceled Recurring Payment Webhooks
+  - key: failed_payment_webhooks
+    label: Failed Payment Webhooks
+  - key: invoice
+    label: New Invoice
+  - key: payment_capture_webhooks
+    label: Payment Capture Webhooks
+  - key: payment_refund_webhooks
+    label: Payment Refund Webhooks
+  - key: payment_sale_webhooks
+    label: Payment Sale Webhooks
+  - key: recurring_payment_webhooks
+    label: Recurring Payment Webhooks
+  actions:
+  - key: create_invoice
+    label: Create Invoice
+  - key: create_payment
+    label: Create Payment
+  - key: send_invoice
+    label: Send Invoice
+  searches:
+  - key: search_authorized_payment
+    label: Search Authorized Payment
+  - key: search_captured_payment
+    label: Search Captured Payment
+  - key: search_invoice
+    label: Search Invoice
+  - key: search_order
+    label: Search Order
+  - key: search_plan
+    label: Search Plan
+  - key: search_product
+    label: Search Product
+  - key: search_refund
+    label: Search Refund
+  - key: search_subscription
+    label: Search Billing Subscription
+edges:
+- partner_name: Gmail
+  partner: gmail
+  partner_match: name-exact
+  partner_candidate: null
+  type: marketplace
+  marketplace: zapier
+  evidence: https://zapier.com/apps/paypal/integrations/gmail
+  direction: third-party
+  category: Email
+  partner_url: https://mail.google.com/
+- partner_name: Mailchimp
+  partner: mailchimp
+  partner_match: name-exact
+  partner_candidate: null
+  type: marketplace
+  marketplace: zapier
+  evidence: https://zapier.com/apps/paypal/integrations/mailchimp
+  direction: third-party
+  category: Marketing Automation
+  partner_url: https://mailchimp.com/
+- partner_name: ABC Trainerize
+  partner: trainerize
+  partner_match: domain
+  partner_candidate: null
+  type: marketplace
+  marketplace: zapier
+  evidence: https://zapier.com/apps/paypal/integrations/abc-trainerize
+  direction: third-party
+  category: Fitness
+  partner_url: http://www.trainerize.com/
+- partner_name: Google Sheets
+  partner: google-sheets
+  partner_match: name-exact
+  partner_candidate: null
+  type: marketplace
+  marketplace: zapier
+  evidence: https://zapier.com/apps/paypal/integrations/google-sheets
+  direction: third-party
+  category: Google
+  partner_url: http://sheets.google.com/
+- partner_name: Brevo
+  partner: brevo
+  partner_match: name-exact
+  partner_candidate: null
+  type: marketplace
+  marketplace: zapier
+  evidence: https://zapier.com/apps/paypal/integrations/brevo
+  direction: third-party
+  category: Email Newsletters
+  partner_url: https://www.sendinblue.com/?utm_medium=plugin&utm_source=zapier
+- partner_name: HubSpot
+  partner: hubspot
+  partner_match: domain
+  partner_candidate: null
+  type: marketplace
+  marketplace: zapier
+  evidence: https://zapier.com/apps/paypal/integrations/hubspot
+  direction: third-party
+  category: Marketing Automation
+  partner_url: http://www.hubspot.com/
+- partner_name: Telegram
+  partner: telegram
+  partner_match: name-exact
+  partner_candidate: null
+  type: marketplace
+  marketplace: zapier
+  evidence: https://zapier.com/apps/paypal/integrations/telegram
+  direction: third-party
+  category: Phone & SMS
+  partner_url: https://telegram.org/
+- partner_name: Airtable
+  partner: airtable
+  partner_match: domain
+  partner_candidate: null
+  type: marketplace
+  marketplace: zapier
+  evidence: https://zapier.com/apps/paypal/integrations/airtable
+  direction: third-party
+  category: Databases
+  partner_url: https://airtable.com/
+- partner_name: MailerLite
+  partner: mailerlite
+  partner_match: domain
+  partner_candidate: null
+  type: marketplace
+  marketplace: zapier
+  evidence: https://zapier.com/apps/paypal/integrations/mailerlite
+  direction: third-party
+  category: Marketing Automation
+  partner_url: https://www.mailerlite.com/?utm_source=zapier&utm_medium=partner&utm_campaign=profile&utm_term=learn_more&utm_content=integrations
+- partner_name: Wave
+  partner: wave-financial
+  partner_match: domain
+  partner_candidate: null
+  type: marketplace
+  marketplace: zapier
+  evidence: https://zapier.com/apps/paypal/integrations/wave
+  direction: third-party
+  category: Accounting
+  partner_url: https://www.waveapps.com/
+- partner_name: Slack
+  partner: slack
+  partner_match: name-exact
+  partner_candidate: null
+  type: marketplace
+  marketplace: zapier
+  evidence: https://zapier.com/apps/paypal/integrations/slack
+  direction: third-party
+  category: Team Chat
+  partner_url: https://slack.com/
+- partner_name: Discord
+  partner: discord
+  partner_match: name-exact
+  partner_candidate: null
+  type: marketplace
+  marketplace: zapier
+  evidence: https://zapier.com/apps/paypal/integrations/discord
+  direction: third-party
+  category: Team Chat
+  partner_url: https://discordapp.com/
+- partner_name: Zoom
+  partner: zoom
+  partner_match: domain
+  partner_candidate: null
+  type: marketplace
+  marketplace: zapier
+  evidence: https://zapier.com/apps/paypal/integrations/zoom
+  direction: third-party
+  category: Video Conferencing
+  partner_url: https://www.zoom.us/
+- partner_name: ActiveCampaign
+  partner: activecampaign
+  partner_match: domain
+  partner_candidate: null
+  type: marketplace
+  marketplace: zapier
+  evidence: https://zapier.com/apps/paypal/integrations/activecampaign
+  direction: third-party
+  category: Marketing Automation
+  partner_url: https://www.activecampaign.com/?utm_source=unpaid_syndication_website&utm_medium=referral&utm_campaign=zapier_listing
+- partner_name: Flodesk
+  partner: null
+  partner_match: null
+  partner_candidate: null
+  type: marketplace
+  marketplace: zapier
+  evidence: https://zapier.com/apps/paypal/integrations/flodesk
+  direction: third-party
+  category: Email Newsletters
+  partner_url: https://flodesk.com/
+- partner_name: Google Forms
+  partner: google-forms
+  partner_match: name-exact
+  partner_candidate: null
+  type: marketplace
+  marketplace: zapier
+  evidence: https://zapier.com/apps/paypal/integrations/google-forms
+  direction: third-party
+  category: Forms & Surveys
+  partner_url: http://google.com/
+- partner_name: Kit
+  partner: convertkit
+  partner_match: domain
+  partner_candidate: null
+  type: marketplace
+  marketplace: zapier
+  evidence: https://zapier.com/apps/paypal/integrations/kit
+  direction: third-party
+  category: Drip Emails
+  partner_url: https://kit.com/
+- partner_name: Skool
+  partner: skool
+  partner_match: domain
+  partner_candidate: null
+  type: marketplace
+  marketplace: zapier
+  evidence: https://zapier.com/apps/paypal/integrations/skool
+  direction: third-party
+  category: Education
+  partner_url: https://skool.com/
+- partner_name: eBay
+  partner: ebay
+  partner_match: domain
+  partner_candidate: null
+  type: marketplace
+  marketplace: zapier
+  evidence: https://zapier.com/apps/paypal/integrations/ebay
+  direction: third-party
+  category: eCommerce
+  partner_url: https://www.ebay.com/
+- partner_name: Square
+  partner: square
+  partner_match: domain
+  partner_candidate: null
+  type: marketplace
+  marketplace: zapier
+  evidence: https://zapier.com/apps/paypal/integrations/square
+  direction: third-party
+  category: eCommerce
+  partner_url: https://squareup.com/t/cmtp_performance/pr_developers/d_partnerships/p_zapier/?route=
+- partner_name: Shopify
+  partner: shopify
+  partner_match: domain
+  partner_candidate: null
+  type: marketplace
+  marketplace: zapier
+  evidence: https://zapier.com/apps/paypal/integrations/shopify
+  direction: third-party
+  category: eCommerce
+  partner_url: https://www.shopify.com/
+- partner_name: Constant Contact
+  partner: constant-contact
+  partner_match: domain
+  partner_candidate: null
+  type: marketplace
+  marketplace: zapier
+  evidence: https://zapier.com/apps/paypal/integrations/constant-contact
+  direction: third-party
+  category: Email Newsletters
+  partner_url: http://www.constantcontact.com/signup.jsp?pn=zapier
+- partner_name: Base44
+  partner: null
+  partner_match: null
+  partner_candidate: null
+  type: marketplace
+  marketplace: zapier
+  evidence: https://zapier.com/apps/paypal/integrations/base44
+  direction: third-party
+  category: AI Assistants
+  partner_url: https://base44.com/
+- partner_name: QuickBooks Online
+  partner: null
+  partner_match: null
+  partner_candidate: null
+  type: marketplace
+  marketplace: zapier
+  evidence: https://zapier.com/apps/paypal/integrations/quickbooks
+  direction: third-party
+  category: Accounting
+  partner_url: http://intuit.com/
+- partner_name: Notion
+  partner: notion
+  partner_match: name-exact
+  partner_candidate: null
+  type: marketplace
+  marketplace: zapier
+  evidence: https://zapier.com/apps/paypal/integrations/notion
+  direction: third-party
+  category: Task Management
+  partner_url: https://www.notion.so/
+- partner_name: monday.com
+  partner: null
+  partner_match: null
+  partner_candidate: null
+  type: marketplace
+  marketplace: zapier
+  evidence: https://zapier.com/apps/paypal/integrations/monday
+  direction: third-party
+  category: Project Management
+  partner_url: https://monday.com/
+- partner_name: Xero
+  partner: xero
+  partner_match: name-exact
+  partner_candidate: null
+  type: marketplace
+  marketplace: zapier
+  evidence: https://zapier.com/apps/paypal/integrations/xero
+  direction: third-party
+  category: Accounting
+  partner_url: https://xero5440.partnerlinks.io/uvwuuwrxyoi8
+- partner_name: Bloomerang
+  partner: bloomerang
+  partner_match: name-exact
+  partner_candidate: null
+  type: marketplace
+  marketplace: zapier
+  evidence: https://zapier.com/apps/paypal/integrations/bloomerang
+  direction: third-party
+  category: Fundraising
+  partner_url: https://bloomerang.co/
+- partner_name: Circle
+  partner: circle-community
+  partner_match: domain
+  partner_candidate: null
+  type: marketplace
+  marketplace: zapier
+  evidence: https://zapier.com/apps/paypal/integrations/circle
+  direction: third-party
+  category: CRM (Customer Relationship Management)
+  partner_url: https://circle.so/
+- partner_name: Microsoft Outlook
+  partner: microsoft-outlook
+  partner_match: name-exact
+  partner_candidate: null
+  type: marketplace
+  marketplace: zapier
+  evidence: https://zapier.com/apps/paypal/integrations/microsoft-outlook
+  direction: third-party
+  category: Calendar
+  partner_url: https://outlook.live.com/
+templates:
+- title: Add rows to Google Sheets spreadsheets for new PayPal sales
+  url: https://zapier.com/apps/google-sheets/integrations/paypal/61/add-rows-to-google-sheets-spreadsheets-for-new-paypal-sales
+  apps:
+  - paypal
+  - google-sheets
+- title: Share new PayPal sales in Slack
+  url: https://zapier.com/apps/paypal/integrations/slack/1472/share-new-paypal-sales-in-slack
+  apps:
+  - paypal
+  - slack
+- title: Add new PayPal customers to Mailchimp
+  url: https://zapier.com/apps/mailchimp/integrations/paypal/224/add-new-paypal-customers-to-mailchimp
+  apps:
+  - paypal
+  - mailchimp
+- title: Search for or create Salesforce contacts and create new opportunities from PayPal sales
+  url: https://zapier.com/apps/paypal/integrations/salesforce/18083/search-for-or-create-salesforce-contacts-and-create-new-opportunities-from-paypal-sales
+  apps:
+  - paypal
+  - salesforce
+- title: Send emails in Gmail with new PayPal sales
+  url: https://zapier.com/apps/gmail/integrations/paypal/757/send-emails-in-gmail-with-new-paypal-sales
+  apps:
+  - paypal
+  - gmail
+- title: Create donations and and update constituents in Boomerang from new successful sales in PayPal
+  url: https://zapier.com/apps/bloomerang/integrations/paypal/116904/create-donations-and-and-update-constituents-in-boomerang-from-new-successful-sales-in-paypal
+  apps:
+  - paypal
+  - bloomerang
+- title: Add new PayPal customers to ActiveCampaign as contacts
+  url: https://zapier.com/apps/activecampaign/integrations/paypal/1828/add-new-paypal-customers-to-activecampaign-as-contacts
+  apps:
+  - paypal
+  - activecampaign
+- title: Log new PayPal transactions to Google Sheets spreadsheets
+  url: https://zapier.com/apps/google-sheets/integrations/paypal/2843/log-new-paypal-transactions-to-google-sheets-spreadsheets
+  apps:
+  - paypal
+  - google-sheets
+- title: Add new PayPal customers to Brevo contacts
+  url: https://zapier.com/apps/brevo/integrations/paypal/3299/add-new-paypal-customers-to-brevo-contacts
+  apps:
+  - paypal
+  - brevo
+- title: Send a webhook when you have a new PayPal sale
+  url: https://zapier.com/apps/paypal/integrations/webhook/1748/send-a-webhook-when-you-have-a-new-paypal-sale
+  apps:
+  - paypal
+  - webhook
+- title: Create new Xero invoices for new PayPal sales
+  url: https://zapier.com/apps/paypal/integrations/xero/2122/create-new-xero-invoices-for-new-paypal-sales
+  apps:
+  - paypal
+  - xero
+- title: Turn new PayPal merchant transactions into Mailchimp subscriptions
+  url: https://zapier.com/apps/mailchimp/integrations/paypal/66677/turn-new-paypal-merchant-transactions-into-mailchimp-subscriptions
+  apps:
+  - paypal
+  - mailchimp
+template_total: 683
