@@ -5,9 +5,11 @@ source:
 - https://n8n.io/integrations/paypal/
 - https://composio.dev/toolkits/paypal
 checked:
+- https://api.cdr.gov.au/cdr-register/v1/all/data-holders/brands/summary
 - https://composio.dev/toolkits/paypal
 - https://monid.ai/tools/paypal
 - https://n8n.io/integrations/paypal/
+- https://www.openbanking.org.uk/regulated-providers/paypal-uk-ltd/
 - https://www.paypal.com/us/webapps/mpp/partner-directory
 - https://zapier.com/apps/paypal/integrations
 summary: null
@@ -774,6 +776,40 @@ edges:
     value: paypal
     property: schemas.PostSetupIntentsRequest.payment_method_data
     detected_by: detect-payment-method-edges.py
+    detected: '2026-10-12'
+- partner_name: Consumer Data Right
+  partner: null
+  type: contract
+  channel: regulator-register
+  relationship: standard-participant
+  direction: partner-built
+  evidence: https://api.cdr.gov.au/cdr-register/v1/all/data-holders/brands/summary
+  contract_reference:
+    register: CDR Register (Australia, ACCC)
+    spec_file: null
+    role: data-holder
+    registered_name: PayPal Australia
+    register_id: ebcbaeb6-539f-ec11-a82c-000d3a8830d6
+    matched_domain: paypal.com
+    api_families: null
+    detected_by: sweep-standard-registers.py
+    detected: '2026-10-12'
+- partner_name: UK Open Banking
+  partner: null
+  type: contract
+  channel: regulator-register
+  relationship: standard-participant
+  direction: partner-built
+  evidence: https://www.openbanking.org.uk/regulated-providers/paypal-uk-ltd/
+  contract_reference:
+    register: UK Open Banking regulated providers (OBL directory)
+    spec_file: null
+    role: Third Party Providers
+    registered_name: PayPal UK Ltd
+    register_id: https://register.fca.org.uk/s/firm?id=0014G000039G482QAC
+    matched_domain: paypal.com
+    api_families: null
+    detected_by: sweep-standard-registers.py
     detected: '2026-10-12'
 templates:
 - title: Add rows to Google Sheets spreadsheets for new PayPal sales

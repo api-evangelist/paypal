@@ -440,3 +440,43 @@
     detected: '2026-10-12'
   arazzo: paypal-stripe-preconfig.yml
   status: arazzo
+- slug: paypal-consumer-data-right
+  label: Consumer Data Right
+  partner_name: Consumer Data Right
+  type: contract
+  channel: regulator-register
+  evidence: https://api.cdr.gov.au/cdr-register/v1/all/data-holders/brands/summary
+  source: edge
+  relationship: standard-participant
+  contract_reference:
+    register: CDR Register (Australia, ACCC)
+    spec_file: null
+    role: data-holder
+    registered_name: PayPal Australia
+    register_id: ebcbaeb6-539f-ec11-a82c-000d3a8830d6
+    matched_domain: paypal.com
+    api_families: null
+    detected_by: sweep-standard-registers.py
+    detected: '2026-10-12'
+  status: not-a-workflow
+  arazzo: null
+- slug: paypal-uk-open-banking
+  label: UK Open Banking
+  partner_name: UK Open Banking
+  type: contract
+  channel: regulator-register
+  evidence: https://www.openbanking.org.uk/regulated-providers/paypal-uk-ltd/
+  source: edge
+  relationship: standard-participant
+  contract_reference:
+    register: UK Open Banking regulated providers (OBL directory)
+    spec_file: null
+    role: Third Party Providers
+    registered_name: PayPal UK Ltd
+    register_id: https://register.fca.org.uk/s/firm?id=0014G000039G482QAC
+    matched_domain: paypal.com
+    api_families: null
+    detected_by: sweep-standard-registers.py
+    detected: '2026-10-12'
+  status: not-a-workflow
+  arazzo: null
