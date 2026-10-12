@@ -370,7 +370,6 @@
   arazzo: null
 - slug: paypal-monday-com
   label: monday.com
-  partner: monday-com
   partner_name: monday.com
   category: Project Management
   type: marketplace
@@ -378,7 +377,7 @@
   channel: ipaas-usage
   evidence: https://zapier.com/apps/paypal/integrations/monday
   source: edge
-  status: pending-generation
+  status: pending-partner-spec
   arazzo: null
 - slug: paypal-circle
   label: Circle
@@ -478,5 +477,31 @@
     api_families: null
     detected_by: sweep-standard-registers.py
     detected: '2026-10-12'
+  status: not-a-workflow
+  arazzo: null
+- slug: paypal-nydfs-new-york
+  label: NYDFS (New York)
+  partner_name: NYDFS (New York)
+  type: contract
+  channel: regulator-register
+  evidence: https://www.dfs.ny.gov/apps_and_licensing/virtual_currency_businesses
+  source: edge
+  relationship: standard-participant
+  contract_reference:
+    register: NYDFS virtual currency licensees
+    spec_file: null
+    register_snapshot: https://web.archive.org/web/20261010154817/https://www.dfs.ny.gov/apps_and_licensing/virtual_currency_businesses
+    registered_name: PayPal Digital, Inc.
+    role: limited-purpose-trust-charter
+    granted: 2024-05
+    evidence: https://www.paypal.com/us/legalhub/paypal/cryptocurrencies-tnc
+    matched_by: verified-legal-name
+    detected_by: sweep-crypto.py
+    detected: '2026-10-13'
+    other_registrations:
+    - registered_name: PayPal, Inc.
+      role: bitlicense+money-transmitter
+      granted: 2022-06
+      evidence: https://www.paypal.com/us/webapps/mpp/licenses
   status: not-a-workflow
   arazzo: null
