@@ -15,6 +15,7 @@ checked:
 - https://www.openbanking.org.uk/regulated-providers/paypal-uk-ltd/
 - https://www.paypal.com/us/webapps/mpp/partner-directory
 - https://zapier.com/apps/paypal/integrations
+- xero/integrations/xero-integration-edges.yml
 summary: null
 marketplace_apps:
 - marketplace: zapier
@@ -839,6 +840,24 @@ edges:
       evidence: https://www.paypal.com/us/webapps/mpp/licenses
   detected_by: sweep-crypto.py
   first_seen: '2026-10-14'
+- partner_name: Visual Studio Code Marketplace
+  partner: vs-code-marketplace
+  partner_match: aggregator
+  type: marketplace
+  marketplace: vscode
+  channel: partner-built
+  relationship: platform-app
+  direction: third-party
+  evidence: https://marketplace.visualstudio.com/publishers/PayPal
+  listing_count: 1
+  apps:
+  - PayPal
+  publisher_name: PayPal
+  badges:
+  - Verified publisher
+  - Verified domain
+  detected_by: sweep-devtools.py
+  detected: '2026-10-14'
 - partner_name: IAB Europe TCF Global Vendor List
   partner: null
   partner_match: domain
@@ -881,24 +900,23 @@ edges:
     detected: '2026-10-14'
   detected_by: sweep-adtech.py
   detected: '2026-10-14'
-- partner_name: Visual Studio Code Marketplace
-  partner: vs-code-marketplace
-  partner_match: aggregator
+- partner_name: Xero (own)
+  partner: xero
+  partner_match: mirror
+  mirror_match: domain
   type: marketplace
-  marketplace: vscode
-  channel: partner-built
   relationship: platform-app
   direction: third-party
-  evidence: https://marketplace.visualstudio.com/publishers/PayPal
-  listing_count: 1
+  channel: partner-built
+  marketplace: own
+  evidence: https://apps.xero.com/us/app/paypal
+  mirror_of: xero/integrations/xero-integration-edges.yml
   apps:
   - PayPal
-  publisher_name: PayPal
-  badges:
-  - Verified publisher
-  - Verified domain
-  detected_by: sweep-devtools.py
+  listing_count: 1
   detected: '2026-10-14'
+  detected_by: mirror-platform-listings.py
+  category: Payments
 templates:
 - title: Add rows to Google Sheets spreadsheets for new PayPal sales
   url: https://zapier.com/apps/google-sheets/integrations/paypal/61/add-rows-to-google-sheets-spreadsheets-for-new-paypal-sales

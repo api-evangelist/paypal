@@ -505,6 +505,18 @@
       evidence: https://www.paypal.com/us/webapps/mpp/licenses
   status: not-a-workflow
   arazzo: null
+- slug: paypal-visual-studio-code-marketplace
+  label: Visual Studio Code Marketplace
+  partner: vs-code-marketplace
+  partner_name: Visual Studio Code Marketplace
+  type: marketplace
+  marketplace: vscode
+  channel: partner-built
+  evidence: https://marketplace.visualstudio.com/publishers/PayPal
+  source: edge
+  relationship: platform-app
+  status: not-a-workflow
+  arazzo: null
 - slug: paypal-iab-europe-tcf-global-vendor-list
   label: IAB Europe TCF Global Vendor List
   partner_name: IAB Europe TCF Global Vendor List
@@ -547,14 +559,15 @@
     detected: '2026-10-14'
   status: not-a-workflow
   arazzo: null
-- slug: paypal-visual-studio-code-marketplace
-  label: Visual Studio Code Marketplace
-  partner: vs-code-marketplace
-  partner_name: Visual Studio Code Marketplace
+- slug: paypal-xero-own
+  label: Xero (own)
+  partner: xero
+  partner_name: Xero (own)
+  category: Payments
   type: marketplace
-  marketplace: vscode
+  marketplace: own
   channel: partner-built
-  evidence: https://marketplace.visualstudio.com/publishers/PayPal
+  evidence: https://apps.xero.com/us/app/paypal
   source: edge
   relationship: platform-app
   status: not-a-workflow
