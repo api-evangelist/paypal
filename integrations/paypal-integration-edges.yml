@@ -829,14 +829,14 @@ edges:
     evidence: https://www.paypal.com/us/legalhub/paypal/cryptocurrencies-tnc
     matched_by: verified-legal-name
     detected_by: sweep-crypto.py
-    detected: '2026-10-13'
+    detected: '2026-10-14'
     other_registrations:
     - registered_name: PayPal, Inc.
       role: bitlicense+money-transmitter
       granted: 2022-06
       evidence: https://www.paypal.com/us/webapps/mpp/licenses
   detected_by: sweep-crypto.py
-  first_seen: '2026-10-13'
+  first_seen: '2026-10-14'
 templates:
 - title: Add rows to Google Sheets spreadsheets for new PayPal sales
   url: https://zapier.com/apps/google-sheets/integrations/paypal/61/add-rows-to-google-sheets-spreadsheets-for-new-paypal-sales

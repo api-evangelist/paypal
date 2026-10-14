@@ -497,7 +497,7 @@
     evidence: https://www.paypal.com/us/legalhub/paypal/cryptocurrencies-tnc
     matched_by: verified-legal-name
     detected_by: sweep-crypto.py
-    detected: '2026-10-13'
+    detected: '2026-10-14'
     other_registrations:
     - registered_name: PayPal, Inc.
       role: bitlicense+money-transmitter
