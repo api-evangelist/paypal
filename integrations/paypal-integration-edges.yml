@@ -9,6 +9,7 @@ checked:
 - https://composio.dev/toolkits/paypal
 - https://monid.ai/tools/paypal
 - https://n8n.io/integrations/paypal/
+- https://vendor-list.consensu.org/v3/vendor-list.json
 - https://www.dfs.ny.gov/apps_and_licensing/virtual_currency_businesses
 - https://www.openbanking.org.uk/regulated-providers/paypal-uk-ltd/
 - https://www.paypal.com/us/webapps/mpp/partner-directory
@@ -837,6 +838,48 @@ edges:
       evidence: https://www.paypal.com/us/webapps/mpp/licenses
   detected_by: sweep-crypto.py
   first_seen: '2026-10-14'
+- partner_name: IAB Europe TCF Global Vendor List
+  partner: null
+  partner_match: domain
+  type: contract
+  channel: standard-directory
+  relationship: standard-participant
+  direction: partner-built
+  evidence: https://vendor-list.consensu.org/v3/vendor-list.json
+  contract_reference:
+    register: IAB Europe TCF Global Vendor List
+    spec_file: null
+    role: tcf-vendor
+    registered_name: 'PayPal Inc. '
+    register_id: '1523'
+    products:
+    - 'PayPal Inc. '
+    matched_domain: paypal.com
+    api_families:
+    - feature-1
+    - feature-2
+    - feature-3
+    - purpose-1
+    - purpose-10
+    - purpose-11
+    - purpose-2
+    - purpose-3
+    - purpose-4
+    - purpose-5
+    - purpose-6
+    - purpose-7
+    - purpose-8
+    - purpose-9
+    - special-feature-1
+    - special-feature-2
+    - special-purpose-1
+    - special-purpose-2
+    - special-purpose-3
+    api_families_basis: TCF purposes, special purposes, features and special features declared on the registration
+    detected_by: sweep-adtech.py
+    detected: '2026-10-14'
+  detected_by: sweep-adtech.py
+  detected: '2026-10-14'
 templates:
 - title: Add rows to Google Sheets spreadsheets for new PayPal sales
   url: https://zapier.com/apps/google-sheets/integrations/paypal/61/add-rows-to-google-sheets-spreadsheets-for-new-paypal-sales
