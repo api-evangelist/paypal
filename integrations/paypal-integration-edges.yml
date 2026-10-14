@@ -10,6 +10,8 @@ checked:
 - https://marketplace.visualstudio.com/vscode
 - https://monid.ai/tools/paypal
 - https://n8n.io/integrations/paypal/
+- https://registry.financialdataexchange.org/
+- https://registry.modelcontextprotocol.io/v0/servers
 - https://vendor-list.consensu.org/v3/vendor-list.json
 - https://www.dfs.ny.gov/apps_and_licensing/virtual_currency_businesses
 - https://www.openbanking.org.uk/regulated-providers/paypal-uk-ltd/
@@ -917,6 +919,62 @@ edges:
   detected: '2026-10-14'
   detected_by: mirror-platform-listings.py
   category: Payments
+- partner_name: FDX (Financial Data Exchange)
+  partner: fdx
+  type: contract
+  channel: standard-directory
+  relationship: standard-participant
+  direction: partner-built
+  evidence: https://registry.financialdataexchange.org/
+  contract_reference:
+    register: FDX Registry
+    standard: FDX API
+    spec_file: null
+    register_api: https://registry.financialdataexchange.org/fdxregistryapi/organizations/search/listingTags
+    role: data-recipient
+    member_type: MEMBER
+    registered_name: PayPal
+    register_id: 141
+    registered_website: www.paypal.com
+    country: United States
+    fdx_version: null
+    matched_by: domain:paypal.com
+    detected_by: sweep-fdx.py
+    detected: '2026-10-14'
+  detected_by: sweep-fdx.py
+  first_seen: '2026-10-14'
+- partner_name: MCP Registry
+  partner: mcp
+  partner_match: register
+  type: register
+  channel: standard-directory
+  relationship: standard-participant
+  direction: partner-built
+  evidence: https://registry.modelcontextprotocol.io/v0/servers?search=com.paypal.mcp
+  contract_reference:
+    register: registry.modelcontextprotocol.io
+    spec_file: null
+    role: mcp-server-listing
+    registered_name: com.paypal.mcp/mcp
+    register_id: com.paypal.mcp/mcp
+    detected_by: sweep-agent-tools.py
+    detected: '2026-10-14'
+  mcp_registry:
+    servers:
+    - com.paypal.mcp/mcp
+    hosted_remote: 1
+    local_package: 0
+    transports:
+      sse: 1
+      streamable-http: 1
+    auth_declared: 1
+    catalog_declared: false
+    namespace_domains:
+    - paypal.com
+  matched_by:
+  - namespace-domain
+  detected_by: sweep-agent-tools.py
+  first_seen: '2026-10-14'
 templates:
 - title: Add rows to Google Sheets spreadsheets for new PayPal sales
   url: https://zapier.com/apps/google-sheets/integrations/paypal/61/add-rows-to-google-sheets-spreadsheets-for-new-paypal-sales
