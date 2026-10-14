@@ -7,6 +7,7 @@ source:
 checked:
 - https://api.cdr.gov.au/cdr-register/v1/all/data-holders/brands/summary
 - https://composio.dev/toolkits/paypal
+- https://marketplace.visualstudio.com/vscode
 - https://monid.ai/tools/paypal
 - https://n8n.io/integrations/paypal/
 - https://vendor-list.consensu.org/v3/vendor-list.json
@@ -879,6 +880,24 @@ edges:
     detected_by: sweep-adtech.py
     detected: '2026-10-14'
   detected_by: sweep-adtech.py
+  detected: '2026-10-14'
+- partner_name: Visual Studio Code Marketplace
+  partner: vs-code-marketplace
+  partner_match: aggregator
+  type: marketplace
+  marketplace: vscode
+  channel: partner-built
+  relationship: platform-app
+  direction: third-party
+  evidence: https://marketplace.visualstudio.com/publishers/PayPal
+  listing_count: 1
+  apps:
+  - PayPal
+  publisher_name: PayPal
+  badges:
+  - Verified publisher
+  - Verified domain
+  detected_by: sweep-devtools.py
   detected: '2026-10-14'
 templates:
 - title: Add rows to Google Sheets spreadsheets for new PayPal sales
