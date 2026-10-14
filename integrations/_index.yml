@@ -439,46 +439,6 @@
     detected: '2026-10-12'
   arazzo: paypal-stripe-preconfig.yml
   status: arazzo
-- slug: paypal-consumer-data-right
-  label: Consumer Data Right
-  partner_name: Consumer Data Right
-  type: contract
-  channel: regulator-register
-  evidence: https://api.cdr.gov.au/cdr-register/v1/all/data-holders/brands/summary
-  source: edge
-  relationship: standard-participant
-  contract_reference:
-    register: CDR Register (Australia, ACCC)
-    spec_file: null
-    role: data-holder
-    registered_name: PayPal Australia
-    register_id: ebcbaeb6-539f-ec11-a82c-000d3a8830d6
-    matched_domain: paypal.com
-    api_families: null
-    detected_by: sweep-standard-registers.py
-    detected: '2026-10-12'
-  status: not-a-workflow
-  arazzo: null
-- slug: paypal-uk-open-banking
-  label: UK Open Banking
-  partner_name: UK Open Banking
-  type: contract
-  channel: regulator-register
-  evidence: https://www.openbanking.org.uk/regulated-providers/paypal-uk-ltd/
-  source: edge
-  relationship: standard-participant
-  contract_reference:
-    register: UK Open Banking regulated providers (OBL directory)
-    spec_file: null
-    role: Third Party Providers
-    registered_name: PayPal UK Ltd
-    register_id: https://register.fca.org.uk/s/firm?id=0014G000039G482QAC
-    matched_domain: paypal.com
-    api_families: null
-    detected_by: sweep-standard-registers.py
-    detected: '2026-10-12'
-  status: not-a-workflow
-  arazzo: null
 - slug: paypal-nydfs-new-york
   label: NYDFS (New York)
   partner_name: NYDFS (New York)
@@ -515,6 +475,91 @@
   evidence: https://marketplace.visualstudio.com/publishers/PayPal
   source: edge
   relationship: platform-app
+  status: not-a-workflow
+  arazzo: null
+- slug: paypal-mcp-registry
+  label: MCP Registry
+  partner: mcp
+  partner_name: MCP Registry
+  type: register
+  channel: standard-directory
+  evidence: https://registry.modelcontextprotocol.io/v0/servers?search=com.paypal.mcp
+  source: edge
+  relationship: standard-participant
+  contract_reference:
+    register: registry.modelcontextprotocol.io
+    spec_file: null
+    role: mcp-server-listing
+    registered_name: com.paypal.mcp/mcp
+    register_id: com.paypal.mcp/mcp
+    detected_by: sweep-agent-tools.py
+    detected: '2026-10-14'
+  status: not-a-workflow
+  arazzo: null
+- slug: paypal-consumer-data-right
+  label: Consumer Data Right
+  partner_name: Consumer Data Right
+  type: contract
+  channel: regulator-register
+  evidence: https://api.cdr.gov.au/cdr-register/v1/all/data-holders/brands/summary
+  source: edge
+  relationship: standard-participant
+  contract_reference:
+    register: CDR Register (Australia, ACCC)
+    spec_file: null
+    role: data-holder
+    registered_name: PayPal Australia
+    register_id: ebcbaeb6-539f-ec11-a82c-000d3a8830d6
+    matched_domain: paypal.com
+    api_families: null
+    detected_by: sweep-standard-registers.py
+    detected: '2026-10-14'
+  status: not-a-workflow
+  arazzo: null
+- slug: paypal-uk-open-banking
+  label: UK Open Banking
+  partner_name: UK Open Banking
+  type: contract
+  channel: regulator-register
+  evidence: https://www.openbanking.org.uk/regulated-providers/paypal-uk-ltd/
+  source: edge
+  relationship: standard-participant
+  contract_reference:
+    register: UK Open Banking regulated providers (OBL directory)
+    spec_file: null
+    role: Third Party Providers
+    registered_name: PayPal UK Ltd
+    register_id: https://register.fca.org.uk/s/firm?id=0014G000039G482QAC
+    matched_domain: paypal.com
+    api_families: null
+    detected_by: sweep-standard-registers.py
+    detected: '2026-10-14'
+  status: not-a-workflow
+  arazzo: null
+- slug: paypal-fdx-financial-data-exchange
+  label: FDX (Financial Data Exchange)
+  partner: fdx
+  partner_name: FDX (Financial Data Exchange)
+  type: contract
+  channel: standard-directory
+  evidence: https://registry.financialdataexchange.org/
+  source: edge
+  relationship: standard-participant
+  contract_reference:
+    register: FDX Registry
+    standard: FDX API
+    spec_file: null
+    register_api: https://registry.financialdataexchange.org/fdxregistryapi/organizations/search/listingTags
+    role: data-recipient
+    member_type: MEMBER
+    registered_name: PayPal
+    register_id: 141
+    registered_website: www.paypal.com
+    country: United States
+    fdx_version: null
+    matched_by: domain:paypal.com
+    detected_by: sweep-fdx.py
+    detected: '2026-10-14'
   status: not-a-workflow
   arazzo: null
 - slug: paypal-iab-europe-tcf-global-vendor-list
@@ -570,31 +615,5 @@
   evidence: https://apps.xero.com/us/app/paypal
   source: edge
   relationship: platform-app
-  status: not-a-workflow
-  arazzo: null
-- slug: paypal-fdx-financial-data-exchange
-  label: FDX (Financial Data Exchange)
-  partner: fdx
-  partner_name: FDX (Financial Data Exchange)
-  type: contract
-  channel: standard-directory
-  evidence: https://registry.financialdataexchange.org/
-  source: edge
-  relationship: standard-participant
-  contract_reference:
-    register: FDX Registry
-    standard: FDX API
-    spec_file: null
-    register_api: https://registry.financialdataexchange.org/fdxregistryapi/organizations/search/listingTags
-    role: data-recipient
-    member_type: MEMBER
-    registered_name: PayPal
-    register_id: 141
-    registered_website: www.paypal.com
-    country: United States
-    fdx_version: null
-    matched_by: domain:paypal.com
-    detected_by: sweep-fdx.py
-    detected: '2026-10-14'
   status: not-a-workflow
   arazzo: null
