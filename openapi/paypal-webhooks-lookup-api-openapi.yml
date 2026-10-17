@@ -105,6 +105,16 @@ paths:
       - Webhooks-Lookup
 components:
   schemas:
+    WebhookLookupList:
+      type: object
+      title: Webhook Lookup List
+      description: A list of webhook lookups.
+      properties:
+        webhooks_lookups:
+          type: array
+          description: An array of webhook lookups.
+          items:
+            $ref: '#/components/schemas/webhooks_lookup'
     error:
       type: object
       title: Error
@@ -139,16 +149,32 @@ components:
       - name
       - message
       - debug_id
-    WebhookLookupList:
+    link_description:
       type: object
-      title: Webhook Lookup List
-      description: A list of webhook lookups.
+      title: Link Description
+      description: The request-related [HATEOAS link](/docs/api/reference/api-responses/#hateoas-links) information.
+      required:
+      - href
+      - rel
       properties:
-        webhooks_lookups:
-          type: array
-          description: An array of webhook lookups.
-          items:
-            $ref: '#/components/schemas/webhooks_lookup'
+        href:
+          type: string
+          description: The complete target URL. To make the related call, combine the method with this [URI Template-formatted](https://tools.ietf.org/html/rfc6570) link. For pre-processing, include the `$`, `(`, and `)` characters. The `href` is the key HATEOAS component that links a completed call with a subsequent call.
+        rel:
+          type: string
+          description: The [link relation type](https://tools.ietf.org/html/rfc5988#section-4), which serves as an ID for a link that unambiguously describes the semantics of the link. See [Link Relations](https://www.iana.org/assignments/link-relations/link-relations.xhtml).
+        method:
+          type: string
+          description: The HTTP method required to make the related call.
+          enum:
+          - GET
+          - POST
+          - PUT
+          - DELETE
+          - HEAD
+          - CONNECT
+          - OPTIONS
+          - PATCH
     webhooks_lookup:
       type: object
       title: Webhook Lookup
@@ -194,32 +220,6 @@ components:
           description: The human-readable description for an issue. The description can change over the lifetime of an API, so clients must not depend on this value.
       required:
       - issue
-    link_description:
-      type: object
-      title: Link Description
-      description: The request-related [HATEOAS link](/docs/api/reference/api-responses/#hateoas-links) information.
-      required:
-      - href
-      - rel
-      properties:
-        href:
-          type: string
-          description: The complete target URL. To make the related call, combine the method with this [URI Template-formatted](https://tools.ietf.org/html/rfc6570) link. For pre-processing, include the `$`, `(`, and `)` characters. The `href` is the key HATEOAS component that links a completed call with a subsequent call.
-        rel:
-          type: string
-          description: The [link relation type](https://tools.ietf.org/html/rfc5988#section-4), which serves as an ID for a link that unambiguously describes the semantics of the link. See [Link Relations](https://www.iana.org/assignments/link-relations/link-relations.xhtml).
-        method:
-          type: string
-          description: The HTTP method required to make the related call.
-          enum:
-          - GET
-          - POST
-          - PUT
-          - DELETE
-          - HEAD
-          - CONNECT
-          - OPTIONS
-          - PATCH
   parameters:
     webhook_lookup_id:
       name: webhook_lookup_id

@@ -69,16 +69,6 @@ components:
       - name
       - message
       - debug_id
-    EventTypeList:
-      type: object
-      title: Event Type List
-      description: A list of webhook events.
-      properties:
-        event_types:
-          type: array
-          description: An array of webhook events.
-          items:
-            $ref: '#/components/schemas/event_type'
     event_type:
       type: object
       title: Event Type
@@ -105,29 +95,6 @@ components:
             description: The ID for an event type. For example, `1.0` or `2.0`.
       required:
       - name
-    error_details-2:
-      title: Error Details
-      type: object
-      description: The error details. Required for client-side `4XX` errors.
-      properties:
-        field:
-          type: string
-          description: The field that caused the error. If this field is in the body, set this value to the field's JSON pointer value. Required for client-side errors.
-        value:
-          type: string
-          description: The value of the field that caused the error.
-        location:
-          type: string
-          description: The location of the field that caused the error. Value is `body`, `path`, or `query`.
-          default: body
-        issue:
-          type: string
-          description: The unique, fine-grained application-level error code.
-        description:
-          type: string
-          description: The human-readable description for an issue. The description can change over the lifetime of an API, so clients must not depend on this value.
-      required:
-      - issue
     link_description:
       type: object
       title: Link Description
@@ -154,6 +121,39 @@ components:
           - CONNECT
           - OPTIONS
           - PATCH
+    EventTypeList:
+      type: object
+      title: Event Type List
+      description: A list of webhook events.
+      properties:
+        event_types:
+          type: array
+          description: An array of webhook events.
+          items:
+            $ref: '#/components/schemas/event_type'
+    error_details-2:
+      title: Error Details
+      type: object
+      description: The error details. Required for client-side `4XX` errors.
+      properties:
+        field:
+          type: string
+          description: The field that caused the error. If this field is in the body, set this value to the field's JSON pointer value. Required for client-side errors.
+        value:
+          type: string
+          description: The value of the field that caused the error.
+        location:
+          type: string
+          description: The location of the field that caused the error. Value is `body`, `path`, or `query`.
+          default: body
+        issue:
+          type: string
+          description: The unique, fine-grained application-level error code.
+        description:
+          type: string
+          description: The human-readable description for an issue. The description can change over the lifetime of an API, so clients must not depend on this value.
+      required:
+      - issue
   securitySchemes:
     Oauth2:
       type: oauth2

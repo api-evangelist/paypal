@@ -60,108 +60,6 @@ paths:
       - Trackers-Batch
 components:
   schemas:
-    date_time:
-      type: string
-      description: The date and time, in [Internet date and time format](https://tools.ietf.org/html/rfc3339#section-5.6). Seconds are required while fractional seconds are optional.<blockquote><strong>Note:</strong> The regular expression provides guidance but does not reject all invalid dates.</blockquote>
-      format: ppaas_date_time_v3
-      minLength: 20
-      maxLength: 64
-      pattern: ^[0-9]{4}-(0[1-9]|1[0-2])-(0[1-9]|[1-2][0-9]|3[0-1])[T,t]([0-1][0-9]|2[0-3]):[0-5][0-9]:([0-5][0-9]|60)([.][0-9]+)?([Zz]|[+-][0-9]{2}:[0-9]{2})$
-    tracker_collection:
-      type: object
-      title: Tracker Collection
-      description: The add tracking information for one or more transactions response details.
-      properties:
-        trackers:
-          type: array
-          description: An array of tracking information for shipments.
-          items:
-            $ref: '#/components/schemas/tracker'
-          minItems: 1
-          maxItems: 20
-        links:
-          type: array
-          description: An array of request-related [HATEOAS links](/docs/api/reference/api-responses/#hateoas-links).
-          readOnly: true
-          items:
-            $ref: '#/components/schemas/link_description'
-            readOnly: true
-    date_no_time:
-      type: string
-      description: The stand-alone date, in [Internet date and time format](https://tools.ietf.org/html/rfc3339#section-5.6). To represent special legal values, such as a date of birth, you should use dates with no associated time or time-zone data. Whenever possible, use the standard `date_time` type. This regular expression does not validate all dates. For example, February 31 is valid and nothing is known about leap years.
-      format: ppaas_date_notime_v2
-      minLength: 10
-      maxLength: 10
-      pattern: ^[0-9]{4}-(0[1-9]|1[0-2])-(0[1-9]|[1-2][0-9]|3[0-1])$
-    error:
-      type: object
-      title: Error
-      description: The error details.
-      properties:
-        name:
-          type: string
-          description: The human-readable, unique name of the error.
-        message:
-          type: string
-          description: The message that describes the error.
-        debug_id:
-          type: string
-          description: The PayPal internal ID. Used for correlation purposes.
-        information_link:
-          type: string
-          description: The information link, or URI, that shows detailed information about this error for the developer.
-          readOnly: true
-        details:
-          type: array
-          description: An array of additional details about the error.
-          items:
-            $ref: '#/components/schemas/error_details-2'
-        links:
-          type: array
-          description: An array of request-related [HATEOAS links](/docs/api/reference/api-responses/#hateoas-links).
-          readOnly: true
-          items:
-            $ref: '#/components/schemas/link_description-2'
-            readOnly: true
-      required:
-      - name
-      - message
-      - debug_id
-    tracking_number_type:
-      type: string
-      title: Tracking Number Type
-      description: The tracking number type.
-      minLength: 1
-      maxLength: 64
-      enum:
-      - CARRIER_PROVIDED
-      - E2E_PARTNER_PROVIDED
-    link_description-2:
-      type: object
-      title: Link Description
-      description: The request-related [HATEOAS link](/docs/api/reference/api-responses/#hateoas-links) information.
-      required:
-      - href
-      - rel
-      properties:
-        href:
-          type: string
-          description: The complete target URL. To make the related call, combine the method with this [URI Template-formatted](https://tools.ietf.org/html/rfc6570) link. For pre-processing, include the `$`, `(`, and `)` characters. The `href` is the key HATEOAS component that links a completed call with a subsequent call.
-        rel:
-          type: string
-          description: The [link relation type](https://tools.ietf.org/html/rfc5988#section-4), which serves as an ID for a link that unambiguously describes the semantics of the link. See [Link Relations](https://www.iana.org/assignments/link-relations/link-relations.xhtml).
-        method:
-          type: string
-          description: The HTTP method required to make the related call.
-          enum:
-          - GET
-          - POST
-          - PUT
-          - DELETE
-          - HEAD
-          - CONNECT
-          - OPTIONS
-          - PATCH
     carrier:
       type: string
       title: Carrier
@@ -986,6 +884,66 @@ components:
       - ZJS_EXPRESS
       - ZTO_EXPRESS
       - ZYLLEM
+    date_no_time:
+      type: string
+      description: The stand-alone date, in [Internet date and time format](https://tools.ietf.org/html/rfc3339#section-5.6). To represent special legal values, such as a date of birth, you should use dates with no associated time or time-zone data. Whenever possible, use the standard `date_time` type. This regular expression does not validate all dates. For example, February 31 is valid and nothing is known about leap years.
+      format: ppaas_date_notime_v2
+      minLength: 10
+      maxLength: 10
+      pattern: ^[0-9]{4}-(0[1-9]|1[0-2])-(0[1-9]|[1-2][0-9]|3[0-1])$
+    error:
+      type: object
+      title: Error
+      description: The error details.
+      properties:
+        name:
+          type: string
+          description: The human-readable, unique name of the error.
+        message:
+          type: string
+          description: The message that describes the error.
+        debug_id:
+          type: string
+          description: The PayPal internal ID. Used for correlation purposes.
+        information_link:
+          type: string
+          description: The information link, or URI, that shows detailed information about this error for the developer.
+          readOnly: true
+        details:
+          type: array
+          description: An array of additional details about the error.
+          items:
+            $ref: '#/components/schemas/error_details-2'
+        links:
+          type: array
+          description: An array of request-related [HATEOAS links](/docs/api/reference/api-responses/#hateoas-links).
+          readOnly: true
+          items:
+            $ref: '#/components/schemas/link_description-2'
+            readOnly: true
+      required:
+      - name
+      - message
+      - debug_id
+    tracker_collection:
+      type: object
+      title: Tracker Collection
+      description: The add tracking information for one or more transactions response details.
+      properties:
+        trackers:
+          type: array
+          description: An array of tracking information for shipments.
+          items:
+            $ref: '#/components/schemas/tracker'
+          minItems: 1
+          maxItems: 20
+        links:
+          type: array
+          description: An array of request-related [HATEOAS links](/docs/api/reference/api-responses/#hateoas-links).
+          readOnly: true
+          items:
+            $ref: '#/components/schemas/link_description'
+            readOnly: true
     tracker_identifier:
       type: object
       title: Tracking Identifier
@@ -1037,6 +995,69 @@ components:
           items:
             $ref: '#/components/schemas/link_description'
             readOnly: true
+    date_time:
+      type: string
+      description: The date and time, in [Internet date and time format](https://tools.ietf.org/html/rfc3339#section-5.6). Seconds are required while fractional seconds are optional.<blockquote><strong>Note:</strong> The regular expression provides guidance but does not reject all invalid dates.</blockquote>
+      format: ppaas_date_time_v3
+      minLength: 20
+      maxLength: 64
+      pattern: ^[0-9]{4}-(0[1-9]|1[0-2])-(0[1-9]|[1-2][0-9]|3[0-1])[T,t]([0-1][0-9]|2[0-3]):[0-5][0-9]:([0-5][0-9]|60)([.][0-9]+)?([Zz]|[+-][0-9]{2}:[0-9]{2})$
+    tracking_status:
+      type: string
+      title: Tracking Status
+      description: The status of the item shipment. For allowed values, see <a href="/docs/tracking/reference/shipping-status/">Shipping Statuses</a>.
+      minLength: 1
+      maxLength: 64
+      enum:
+      - CANCELLED
+      - DELIVERED
+      - LOCAL_PICKUP
+      - ON_HOLD
+      - SHIPPED
+      - SHIPMENT_CREATED
+      - DROPPED_OFF
+      - IN_TRANSIT
+      - RETURNED
+      - LABEL_PRINTED
+      - ERROR
+      - UNCONFIRMED
+      - PICKUP_FAILED
+      - DELIVERY_DELAYED
+      - DELIVERY_SCHEDULED
+      - DELIVERY_FAILED
+      - INRETURN
+      - IN_PROCESS
+      - NEW
+      - VOID
+      - PROCESSED
+      - NOT_SHIPPED
+      - COMPLETED
+    link_description:
+      type: object
+      title: Link Description
+      description: A request-related [HATEOAS link](/docs/api/reference/api-responses/#hateoas-links).
+      required:
+      - href
+      - rel
+      properties:
+        href:
+          type: string
+          description: The complete target URL. To make the related call, combine the method with this link, in [URI template format](https://tools.ietf.org/html/rfc6570). Include the `$`, `(`, and `)` characters for pre-processing. The `href` is the key HATEOAS component that links a completed call with a subsequent call.
+        rel:
+          type: string
+          description: The [link relation type](https://tools.ietf.org/html/rfc5988#section-4), which serves as an ID for a link that unambiguously describes the semantics of the link. See [Link Relations](https://www.iana.org/assignments/link-relations/link-relations.xhtml).
+        method:
+          type: string
+          description: The HTTP method required to make the related call.
+          enum:
+          - GET
+          - POST
+          - PUT
+          - DELETE
+          - HEAD
+          - CONNECT
+          - OPTIONS
+          - PATCH
     tracker:
       type: object
       title: Tracker
@@ -1132,36 +1153,32 @@ components:
       required:
       - transaction_id
       - status
-    tracking_status:
-      type: string
-      title: Tracking Status
-      description: The status of the item shipment. For allowed values, see <a href="/docs/tracking/reference/shipping-status/">Shipping Statuses</a>.
-      minLength: 1
-      maxLength: 64
-      enum:
-      - CANCELLED
-      - DELIVERED
-      - LOCAL_PICKUP
-      - ON_HOLD
-      - SHIPPED
-      - SHIPMENT_CREATED
-      - DROPPED_OFF
-      - IN_TRANSIT
-      - RETURNED
-      - LABEL_PRINTED
-      - ERROR
-      - UNCONFIRMED
-      - PICKUP_FAILED
-      - DELIVERY_DELAYED
-      - DELIVERY_SCHEDULED
-      - DELIVERY_FAILED
-      - INRETURN
-      - IN_PROCESS
-      - NEW
-      - VOID
-      - PROCESSED
-      - NOT_SHIPPED
-      - COMPLETED
+    link_description-2:
+      type: object
+      title: Link Description
+      description: The request-related [HATEOAS link](/docs/api/reference/api-responses/#hateoas-links) information.
+      required:
+      - href
+      - rel
+      properties:
+        href:
+          type: string
+          description: The complete target URL. To make the related call, combine the method with this [URI Template-formatted](https://tools.ietf.org/html/rfc6570) link. For pre-processing, include the `$`, `(`, and `)` characters. The `href` is the key HATEOAS component that links a completed call with a subsequent call.
+        rel:
+          type: string
+          description: The [link relation type](https://tools.ietf.org/html/rfc5988#section-4), which serves as an ID for a link that unambiguously describes the semantics of the link. See [Link Relations](https://www.iana.org/assignments/link-relations/link-relations.xhtml).
+        method:
+          type: string
+          description: The HTTP method required to make the related call.
+          enum:
+          - GET
+          - POST
+          - PUT
+          - DELETE
+          - HEAD
+          - CONNECT
+          - OPTIONS
+          - PATCH
     error_details-2:
       title: Error Details
       type: object
@@ -1185,32 +1202,15 @@ components:
           description: The human-readable description for an issue. The description can change over the lifetime of an API, so clients must not depend on this value.
       required:
       - issue
-    link_description:
-      type: object
-      title: Link Description
-      description: A request-related [HATEOAS link](/docs/api/reference/api-responses/#hateoas-links).
-      required:
-      - href
-      - rel
-      properties:
-        href:
-          type: string
-          description: The complete target URL. To make the related call, combine the method with this link, in [URI template format](https://tools.ietf.org/html/rfc6570). Include the `$`, `(`, and `)` characters for pre-processing. The `href` is the key HATEOAS component that links a completed call with a subsequent call.
-        rel:
-          type: string
-          description: The [link relation type](https://tools.ietf.org/html/rfc5988#section-4), which serves as an ID for a link that unambiguously describes the semantics of the link. See [Link Relations](https://www.iana.org/assignments/link-relations/link-relations.xhtml).
-        method:
-          type: string
-          description: The HTTP method required to make the related call.
-          enum:
-          - GET
-          - POST
-          - PUT
-          - DELETE
-          - HEAD
-          - CONNECT
-          - OPTIONS
-          - PATCH
+    tracking_number_type:
+      type: string
+      title: Tracking Number Type
+      description: The tracking number type.
+      minLength: 1
+      maxLength: 64
+      enum:
+      - CARRIER_PROVIDED
+      - E2E_PARTNER_PROVIDED
   requestBodies:
     tracker_collection:
       content:

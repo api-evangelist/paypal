@@ -94,7 +94,30 @@ paths:
       tags:
       - Payouts-Item
 components:
+  parameters:
+    payout_item_id:
+      name: payout_item_id
+      in: path
+      description: The ID of the payout item to cancel.
+      required: true
+      schema:
+        type: string
+        minLength: 1
+        maxLength: 32
+        pattern: ^.*$
   schemas:
+    recipient_wallet_enum:
+      title: Recipient wallet
+      description: The wallet where the recipient receives the payout. Payouts to Venmo recipients require a 'note' string and a US mobile phone number.
+      type: string
+      default: PAYPAL
+      minLength: 1
+      maxLength: 36
+      pattern: ^[0-9A-Z_]+$
+      enum:
+      - PAYPAL
+      - VENMO
+      - RECIPIENT_SELECTED
     error:
       type: object
       title: Error
@@ -129,20 +152,6 @@ components:
       - name
       - message
       - debug_id
-    currency:
-      type: object
-      title: Currency
-      description: The currency and amount for a financial transaction, such as a balance or payment due.
-      properties:
-        currency:
-          type: string
-          description: The [three-character ISO-4217 currency code](/docs/integration/direct/rest/currency-codes/).
-        value:
-          type: string
-          description: The value, which might be:<ul><li>An integer for currencies like `JPY` that are not typically fractional.</li><li>A decimal fraction for currencies like `TND` that are subdivided into thousandths.</li></ul>For the required number of decimal places for a currency code, see [Currency codes - ISO 4217](https://www.iso.org/iso-4217-currency-codes.html).
-      required:
-      - currency
-      - value
     payout_item-2:
       type: object
       title: Payout Item
@@ -210,63 +219,49 @@ components:
       - payout_item_id
       - payout_batch_id
       - payout_item
-    recipient_wallet_enum:
-      title: Recipient wallet
-      description: The wallet where the recipient receives the payout. Payouts to Venmo recipients require a 'note' string and a US mobile phone number.
-      type: string
-      default: PAYPAL
-      minLength: 1
-      maxLength: 36
-      pattern: ^[0-9A-Z_]+$
-      enum:
-      - PAYPAL
-      - VENMO
-      - RECIPIENT_SELECTED
-    purpose_enum:
-      type: string
-      title: Purpose
-      description: The purpose of the transaction.
-      minLength: 1
-      maxLength: 40
-      pattern: ^[A-Z0-9_]+$
-      enum:
-      - AWARDS
-      - PRIZES
-      - DONATIONS
-      - GOODS
-      - SERVICES
-      - REBATES
-      - CASHBACK
-      - DISCOUNTS
-      - NON_GOODS_OR_SERVICES
-    transaction_enum:
-      title: Transaction status
-      description: The item transaction status.<blockquote><strong>Note:</strong> For <code>POST/v1/payments/payouts-item/{payout_item_id}/cancel</code>, the only possible <code>transaction_status</code> value is <code>RETURNED</code>.</blockquote>
-      type: string
-      minLength: 1
-      maxLength: 36
-      pattern: ^[0-9A-Z_]+$
-      enum:
-      - SUCCESS
-      - FAILED
-      - PENDING
-      - UNCLAIMED
-      - RETURNED
-      - ONHOLD
-      - BLOCKED
-      - REFUNDED
-      - REVERSED
-    recipient_enum:
-      title: Recipient type
-      description: The ID type that identifies the payment receiver.
-      type: string
-      minLength: 1
-      maxLength: 36
-      pattern: ^[0-9A-Z_]+$
-      enum:
-      - EMAIL
-      - PHONE
-      - PAYPAL_ID
+    payout_currency_conversion:
+      type: object
+      title: Currency conversion resource
+      description: The currency conversion resource.
+      properties:
+        from_amount:
+          $ref: '#/components/schemas/currency'
+          description: The amount that is converted from.
+        to_amount:
+          $ref: '#/components/schemas/currency'
+          description: The amount that is converted to.
+        exchange_rate:
+          type: string
+          description: The exchange rate that is applied for this payout.
+          pattern: ^.*$
+          minLength: 0
+          maxLength: 30
+    link_description:
+      type: object
+      title: Link Description
+      description: The request-related [HATEOAS link](/docs/api/reference/api-responses/#hateoas-links) information.
+      required:
+      - href
+      - rel
+      properties:
+        href:
+          type: string
+          description: The complete target URL. To make the related call, combine the method with this [URI Template-formatted](https://tools.ietf.org/html/rfc6570) link. For pre-processing, include the `$`, `(`, and `)` characters. The `href` is the key HATEOAS component that links a completed call with a subsequent call.
+        rel:
+          type: string
+          description: The [link relation type](https://tools.ietf.org/html/rfc5988#section-4), which serves as an ID for a link that unambiguously describes the semantics of the link. See [Link Relations](https://www.iana.org/assignments/link-relations/link-relations.xhtml).
+        method:
+          type: string
+          description: The HTTP method required to make the related call.
+          enum:
+          - GET
+          - POST
+          - PUT
+          - DELETE
+          - HEAD
+          - CONNECT
+          - OPTIONS
+          - PATCH
     name:
       type: object
       title: Name
@@ -300,6 +295,17 @@ components:
           type: string
           description: When the party is a person, the party's full name.
           maxLength: 300
+    recipient_enum:
+      title: Recipient type
+      description: The ID type that identifies the payment receiver.
+      type: string
+      minLength: 1
+      maxLength: 36
+      pattern: ^[0-9A-Z_]+$
+      enum:
+      - EMAIL
+      - PHONE
+      - PAYPAL_ID
     payout_item_detail:
       type: object
       title: Payout Item Detail
@@ -340,23 +346,6 @@ components:
       required:
       - amount
       - receiver
-    payout_currency_conversion:
-      type: object
-      title: Currency conversion resource
-      description: The currency conversion resource.
-      properties:
-        from_amount:
-          $ref: '#/components/schemas/currency'
-          description: The amount that is converted from.
-        to_amount:
-          $ref: '#/components/schemas/currency'
-          description: The amount that is converted to.
-        exchange_rate:
-          type: string
-          description: The exchange rate that is applied for this payout.
-          pattern: ^.*$
-          minLength: 0
-          maxLength: 30
     error_details-2:
       title: Error Details
       type: object
@@ -380,43 +369,54 @@ components:
           description: The human-readable description for an issue. The description can change over the lifetime of an API, so clients must not depend on this value.
       required:
       - issue
-    link_description:
+    transaction_enum:
+      title: Transaction status
+      description: The item transaction status.<blockquote><strong>Note:</strong> For <code>POST/v1/payments/payouts-item/{payout_item_id}/cancel</code>, the only possible <code>transaction_status</code> value is <code>RETURNED</code>.</blockquote>
+      type: string
+      minLength: 1
+      maxLength: 36
+      pattern: ^[0-9A-Z_]+$
+      enum:
+      - SUCCESS
+      - FAILED
+      - PENDING
+      - UNCLAIMED
+      - RETURNED
+      - ONHOLD
+      - BLOCKED
+      - REFUNDED
+      - REVERSED
+    purpose_enum:
+      type: string
+      title: Purpose
+      description: The purpose of the transaction.
+      minLength: 1
+      maxLength: 40
+      pattern: ^[A-Z0-9_]+$
+      enum:
+      - AWARDS
+      - PRIZES
+      - DONATIONS
+      - GOODS
+      - SERVICES
+      - REBATES
+      - CASHBACK
+      - DISCOUNTS
+      - NON_GOODS_OR_SERVICES
+    currency:
       type: object
-      title: Link Description
-      description: The request-related [HATEOAS link](/docs/api/reference/api-responses/#hateoas-links) information.
-      required:
-      - href
-      - rel
+      title: Currency
+      description: The currency and amount for a financial transaction, such as a balance or payment due.
       properties:
-        href:
+        currency:
           type: string
-          description: The complete target URL. To make the related call, combine the method with this [URI Template-formatted](https://tools.ietf.org/html/rfc6570) link. For pre-processing, include the `$`, `(`, and `)` characters. The `href` is the key HATEOAS component that links a completed call with a subsequent call.
-        rel:
+          description: The [three-character ISO-4217 currency code](/docs/integration/direct/rest/currency-codes/).
+        value:
           type: string
-          description: The [link relation type](https://tools.ietf.org/html/rfc5988#section-4), which serves as an ID for a link that unambiguously describes the semantics of the link. See [Link Relations](https://www.iana.org/assignments/link-relations/link-relations.xhtml).
-        method:
-          type: string
-          description: The HTTP method required to make the related call.
-          enum:
-          - GET
-          - POST
-          - PUT
-          - DELETE
-          - HEAD
-          - CONNECT
-          - OPTIONS
-          - PATCH
-  parameters:
-    payout_item_id:
-      name: payout_item_id
-      in: path
-      description: The ID of the payout item to cancel.
-      required: true
-      schema:
-        type: string
-        minLength: 1
-        maxLength: 32
-        pattern: ^.*$
+          description: The value, which might be:<ul><li>An integer for currencies like `JPY` that are not typically fractional.</li><li>A decimal fraction for currencies like `TND` that are subdivided into thousandths.</li></ul>For the required number of decimal places for a currency code, see [Currency codes - ISO 4217](https://www.iso.org/iso-4217-currency-codes.html).
+      required:
+      - currency
+      - value
   securitySchemes:
     Oauth2:
       type: oauth2

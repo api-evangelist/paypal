@@ -218,13 +218,6 @@ paths:
       - Web-Profiles
 components:
   parameters:
-    id:
-      name: id
-      in: path
-      description: The ID of the profile to delete.
-      required: true
-      schema:
-        type: string
     paypal_request_id:
       name: PayPal-Request-Id
       in: header
@@ -232,38 +225,20 @@ components:
       required: true
       schema:
         type: string
+    id:
+      name: id
+      in: path
+      description: The ID of the profile to delete.
+      required: true
+      schema:
+        type: string
   schemas:
-    error:
-      type: object
-      title: Error
-      description: The error information.
-      properties:
-        name:
-          type: string
-          description: The human-readable, unique name of the error.
-          readOnly: true
-        debug_id:
-          type: string
-          description: The PayPal internal ID. Used for correlation purposes.
-          readOnly: true
-        message:
-          type: string
-          description: The message that describes the error.
-          readOnly: true
-        information_link:
-          type: string
-          description: The URI to detailed information related to this error for the developer.
-          readOnly: true
-        details:
-          type: array
-          description: An array of additional details for the error.
-          readOnly: true
-          items:
-            $ref: '#/components/schemas/error_details-2'
-      required:
-      - name
-      - message
-      - information_link
+    patch_request:
+      type: array
+      title: Patch Request
+      description: An array of JSON patch objects to apply partial updates to resources.
+      items:
+        $ref: '#/components/schemas/patch'
     web_profile:
       type: object
       description: A payment web experience profile.
@@ -354,34 +329,37 @@ components:
               minLength: 2
               maxLength: 5
               description: 'The locale of pages that the PayPal payment experience displays. A valid value is `AU`, `AT`, `BE`, `BR`, `CA`, `CH`, `CN`, `DE`, `ES`, `GB`, `FR`, `IT`, `NL`, `PL`, `PT`, `RU`, or `US`. A 5-character code is also valid for languages in these countries: `da_DK`, `he_IL`, `id_ID`, `ja_JP`, `no_NO`, `pt_BR`, `ru_RU`, `sv_SE`, `th_TH`, `zh_CN`, `zh_HK`, or `zh_TW`.'
-    patch_request:
-      type: array
-      title: Patch Request
-      description: An array of JSON patch objects to apply partial updates to resources.
-      items:
-        $ref: '#/components/schemas/patch'
-    web_profile_list:
-      type: array
-      title: Web Profile List
-      description: An array of web profiles.
-      minItems: 1
-      maxItems: 20
-      items:
-        $ref: '#/components/schemas/web_profile'
-    error_details-2:
+    error:
       type: object
-      title: Error Details
-      description: The error details. Required for client-side `4XX` errors.
+      title: Error
+      description: The error information.
       properties:
-        field:
+        name:
           type: string
-          description: The name of the field that caused the error.
-        issue:
+          description: The human-readable, unique name of the error.
+          readOnly: true
+        debug_id:
           type: string
-          description: The reason for the error.
+          description: The PayPal internal ID. Used for correlation purposes.
+          readOnly: true
+        message:
+          type: string
+          description: The message that describes the error.
+          readOnly: true
+        information_link:
+          type: string
+          description: The URI to detailed information related to this error for the developer.
+          readOnly: true
+        details:
+          type: array
+          description: An array of additional details for the error.
+          readOnly: true
+          items:
+            $ref: '#/components/schemas/error_details-2'
       required:
-      - field
-      - issue
+      - name
+      - message
+      - information_link
     patch:
       type: object
       title: Patch
@@ -408,6 +386,28 @@ components:
           description: The <a href="https://tools.ietf.org/html/rfc6901">JSON Pointer</a> to the target document location from which to move the value. Required for the <code>move</code> operation.
       required:
       - op
+    web_profile_list:
+      type: array
+      title: Web Profile List
+      description: An array of web profiles.
+      minItems: 1
+      maxItems: 20
+      items:
+        $ref: '#/components/schemas/web_profile'
+    error_details-2:
+      type: object
+      title: Error Details
+      description: The error details. Required for client-side `4XX` errors.
+      properties:
+        field:
+          type: string
+          description: The name of the field that caused the error.
+        issue:
+          type: string
+          description: The reason for the error.
+      required:
+      - field
+      - issue
   requestBodies:
     web_profile:
       content:
