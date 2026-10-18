@@ -740,7 +740,7 @@
       type: source
       lapsed: false
       cloud: true
-  status: pending-generation
+  status: not-a-workflow
   arazzo: null
 - slug: paypal-fivetran
   label: Fivetran
@@ -766,7 +766,7 @@
     - connectors/applications/paypal
     vendor_link: https://paypal.com/
     builder: Fivetran
-  status: pending-generation
+  status: not-a-workflow
   arazzo: null
 - slug: paypal-meltano
   label: Meltano
@@ -802,5 +802,5 @@
     - silver
     - unknown
     builder: 'community (Meltano Hub variant maintainers: airbyte, epoch8, milk-bar, yoast)'
-  status: pending-partner-spec
+  status: not-a-workflow
   arazzo: null
