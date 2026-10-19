@@ -804,3 +804,30 @@
     builder: 'community (Meltano Hub variant maintainers: airbyte, epoch8, milk-bar, yoast)'
   status: not-a-workflow
   arazzo: null
+- slug: paypal-mas-financial-institutions-directory
+  label: MAS Financial Institutions Directory
+  partner_name: MAS Financial Institutions Directory
+  category: open finance (Singapore)
+  type: register
+  channel: regulator-register
+  evidence: https://eservices.mas.gov.sg/fid
+  source: edge
+  relationship: standard-participant
+  contract_reference:
+    register: MAS Financial Institutions Directory
+    spec_file: null
+    standard: MAS licensing (Banking Act / Payment Services Act, Singapore)
+    role: licensed-participant
+    registrations:
+    - registered_name: PAYPAL PTE. LTD.
+      licences:
+      - Major Payment Institution
+      matched_domain: paypal.com
+      matched_by: domain
+      evidence: https://eservices.mas.gov.sg/fid/institution/detail/1488-PAYPAL-PTE-LTD
+      register_id: 1488-PAYPAL-PTE-LTD
+    signal_note: 'participation only: a regulator licence; no API conformance is published by this register'
+    detected_by: sweep-gulf-asean-open-finance.py
+    detected: '2026-10-18'
+  status: not-a-workflow
+  arazzo: null
