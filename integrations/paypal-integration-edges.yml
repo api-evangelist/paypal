@@ -33,6 +33,10 @@ checked:
 - https://zapier.com/apps/paypal/integrations
 - woocommerce/integrations/woocommerce-integration-edges.yml
 - xero/integrations/xero-integration-edges.yml
+- https://kantarainitiative.org/trust-status-list/
+- https://msb.fincen.gov/
+- https://www.access-dvs-register.service.gov.uk/register/download-register
+- https://listings.pcisecuritystandards.org/assessors_and_solutions
 summary: null
 marketplace_apps:
 - marketplace: zapier
@@ -981,6 +985,76 @@ edges:
   direction: third-party
   category: Calendar
   partner_url: https://outlook.live.com/
+- partner_name: FinCEN (MSB registration)
+  partner: null
+  partner_match: register-name
+  type: contract
+  channel: regulator-register
+  relationship: standard-participant
+  direction: partner-built
+  evidence: https://msb.fincen.gov/
+  category: Money services business
+  contract_reference:
+    register: FinCEN MSB Registrant Search (msb.fincen.gov, full list export)
+    spec_file: null
+    standard: FinCEN MSB registration (US Bank Secrecy Act)
+    role: fincen-msb-registrant
+    registered_name: PayPal, Inc.
+    dba_name: null
+    register_id: PayPal, Inc.
+    matched_domain: null
+    matched_by: register-name
+    identity: 'register-name: register-name ''paypal'' = paypal; no wikidata P856'
+    identity_source: register-name
+    msb_activities:
+    - 409 money transmitter
+    - 414 provider of prepaid access
+    states_of_activity: 56
+    received_date: 07/17/2025
+    signal_note: 'participation only: an MSB registration is not a licence or a certification; activities and states
+      are context, never counted'
+    detected_by: sweep-regtech-aml.py
+    detected: '2026-10-20'
+    identity_note: register gave only the name; exact normalised match to the repo's apis.yml name, one repo, Wikidata
+      P856 not contradicting (Kin 2026-10-20 decision 2)
+  detected_by: sweep-regtech-aml.py
+  first_seen: '2026-10-20'
+- partner_name: PCI Security Standards Council (program listings)
+  partner: null
+  partner_match: register
+  type: register
+  channel: standard-directory
+  relationship: standard-participant
+  direction: partner-built
+  evidence: https://www.pcisecuritystandards.org/assessors_and_solutions/point_to_point_encryption_solutions/
+  category: Payment security validation
+  contract_reference:
+    register: PCI SSC program listings (listings.pcisecuritystandards.org / pcisecuritystandards.org)
+    spec_file: null
+    standard: PCI SSC
+    role: pci-validated-vendor
+    registered_name: PayPal Inc
+    website: https://www.paypal.com
+    matched_domain: paypal.com
+    matched_by: domain
+    identity_source: the vendor website on the PCI SSC listing (no lookup)
+    certified_products:
+    - product: PCI P2PE Solution
+      lapsed: false
+      latest_expiry: '2029-07-13'
+      listed: 2
+    - product: PCI P2PE Application
+      lapsed: false
+      latest_expiry: '2028-01-15'
+      listed: 4
+    signal_note: one certified_products entry per PCI SSC program (Secure Software, PA-DSS, P2PE solution / component
+      / application, 3DS SDK, SPoC, CPoC, MPoC, PTS device, Secure SLC); lapsed = every listed product in that program
+      is past its expiry / reassessment date or marked expired; `listed` is context only. List Access Agreement
+      accepted on Kin's instruction 2026-10-20
+    detected_by: sweep-compliance-assurance.py
+    detected: '2026-10-20'
+  detected_by: sweep-compliance-assurance.py
+  first_seen: '2026-10-20'
 templates:
 - title: Add rows to Google Sheets spreadsheets for new PayPal sales
   url: https://zapier.com/apps/google-sheets/integrations/paypal/61/add-rows-to-google-sheets-spreadsheets-for-new-paypal-sales
