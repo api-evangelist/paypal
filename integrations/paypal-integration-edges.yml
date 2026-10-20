@@ -37,6 +37,7 @@ checked:
 - https://msb.fincen.gov/
 - https://www.access-dvs-register.service.gov.uk/register/download-register
 - https://listings.pcisecuritystandards.org/assessors_and_solutions
+- https://www.emvco.com/approved-products-search/?type=approved-products&sub_type=acceptance_device
 summary: null
 marketplace_apps:
 - marketplace: zapier
@@ -1054,6 +1055,42 @@ edges:
     detected_by: sweep-compliance-assurance.py
     detected: '2026-10-20'
   detected_by: sweep-compliance-assurance.py
+  first_seen: '2026-10-20'
+- partner_name: 'EMVCo (Approved Products: acceptance devices)'
+  partner: null
+  partner_match: register-name
+  type: register
+  channel: standard-directory
+  relationship: standard-participant
+  direction: partner-built
+  evidence: https://www.emvco.com/approved-products/pp-emvlp-reader-version-1-0/
+  category: Card acceptance type approval
+  contract_reference:
+    register: EMVCo Approved Products, Acceptance Device (emvco.com/approved-products-search)
+    standard: EMVCo
+    spec_file: null
+    role: emvco-approved-acceptance-device-vendor
+    registered_name: PayPal Inc.
+    register_id: https://www.emvco.com/approved-products/pp-emvlp-reader-version-1-0/
+    matched_domain: null
+    matched_by: register-name
+    identity_source: register-name
+    identity_note: register-name 'paypal' = paypal; no wikidata P856
+    certified_products:
+    - product: EMVCo L1 Contact IFMs
+      approval_type: L1 Contact IFMs
+      lapsed: true
+      latest_valid_to: '2024-04-30'
+    - product: EMVCo L2 Contact Kernels
+      approval_type: L2 Contact Kernels
+      lapsed: true
+      latest_valid_to: '2024-09-11'
+    signal_note: certified_products = one entry per EMVCo acceptance-device approval TYPE (L1 contact IFM, L1 contactless
+      PCD, L2 contact kernel, contactless product, C-8 kernel, terminal ESD); lapsed = every approval of that type
+      is past its valid-to date; approval / product / version counts are never recorded or counted
+    detected_by: sweep-emv-card-terminals.py
+    detected: '2026-10-20'
+  detected_by: sweep-emv-card-terminals.py
   first_seen: '2026-10-20'
 templates:
 - title: Add rows to Google Sheets spreadsheets for new PayPal sales
