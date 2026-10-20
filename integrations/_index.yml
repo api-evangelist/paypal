@@ -15,6 +15,7 @@
   evidence: https://zapier.com/apps/google-sheets/integrations/paypal/61/add-rows-to-google-sheets-spreadsheets-for-new-paypal-sales
   template: https://zapier.com/apps/google-sheets/integrations/paypal/61/add-rows-to-google-sheets-spreadsheets-for-new-paypal-sales
   source: template
+  relationship: ipaas-bridge
   status: pending-generation
   arazzo: null
 - slug: paypal-share-new-paypal-sales-in-slack
@@ -29,6 +30,7 @@
   evidence: https://zapier.com/apps/paypal/integrations/slack/1472/share-new-paypal-sales-in-slack
   template: https://zapier.com/apps/paypal/integrations/slack/1472/share-new-paypal-sales-in-slack
   source: template
+  relationship: ipaas-bridge
   status: pending-generation
   arazzo: null
 - slug: paypal-add-new-paypal-customers-to-mailchimp
@@ -43,6 +45,7 @@
   evidence: https://zapier.com/apps/mailchimp/integrations/paypal/224/add-new-paypal-customers-to-mailchimp
   template: https://zapier.com/apps/mailchimp/integrations/paypal/224/add-new-paypal-customers-to-mailchimp
   source: template
+  relationship: ipaas-bridge
   status: pending-generation
   arazzo: null
 - slug: paypal-send-emails-in-gmail-with-new-paypal-sales
@@ -57,6 +60,7 @@
   evidence: https://zapier.com/apps/gmail/integrations/paypal/757/send-emails-in-gmail-with-new-paypal-sales
   template: https://zapier.com/apps/gmail/integrations/paypal/757/send-emails-in-gmail-with-new-paypal-sales
   source: template
+  relationship: ipaas-bridge
   status: pending-partner-spec
   arazzo: null
 - slug: paypal-create-donations-and-and-update-constituents-in-boomerang-from-new-successful-sales
@@ -71,6 +75,7 @@
   evidence: https://zapier.com/apps/bloomerang/integrations/paypal/116904/create-donations-and-and-update-constituents-in-boomerang-from-new-successful-sales-in-paypal
   template: https://zapier.com/apps/bloomerang/integrations/paypal/116904/create-donations-and-and-update-constituents-in-boomerang-from-new-successful-sales-in-paypal
   source: template
+  relationship: ipaas-bridge
   status: pending-generation
   arazzo: null
 - slug: paypal-add-new-paypal-customers-to-activecampaign-as-contacts
@@ -85,6 +90,7 @@
   evidence: https://zapier.com/apps/activecampaign/integrations/paypal/1828/add-new-paypal-customers-to-activecampaign-as-contacts
   template: https://zapier.com/apps/activecampaign/integrations/paypal/1828/add-new-paypal-customers-to-activecampaign-as-contacts
   source: template
+  relationship: ipaas-bridge
   status: pending-generation
   arazzo: null
 - slug: paypal-log-new-paypal-transactions-to-google-sheets-spreadsheets
@@ -99,6 +105,7 @@
   evidence: https://zapier.com/apps/google-sheets/integrations/paypal/2843/log-new-paypal-transactions-to-google-sheets-spreadsheets
   template: https://zapier.com/apps/google-sheets/integrations/paypal/2843/log-new-paypal-transactions-to-google-sheets-spreadsheets
   source: template
+  relationship: ipaas-bridge
   status: pending-generation
   arazzo: null
 - slug: paypal-add-new-paypal-customers-to-brevo-contacts
@@ -113,6 +120,7 @@
   evidence: https://zapier.com/apps/brevo/integrations/paypal/3299/add-new-paypal-customers-to-brevo-contacts
   template: https://zapier.com/apps/brevo/integrations/paypal/3299/add-new-paypal-customers-to-brevo-contacts
   source: template
+  relationship: ipaas-bridge
   status: pending-generation
   arazzo: null
 - slug: paypal-create-new-xero-invoices-for-new-paypal-sales
@@ -127,6 +135,7 @@
   evidence: https://zapier.com/apps/paypal/integrations/xero/2122/create-new-xero-invoices-for-new-paypal-sales
   template: https://zapier.com/apps/paypal/integrations/xero/2122/create-new-xero-invoices-for-new-paypal-sales
   source: template
+  relationship: ipaas-bridge
   status: pending-generation
   arazzo: null
 - slug: paypal-turn-new-paypal-merchant-transactions-into-mailchimp-subscriptions
@@ -141,266 +150,7 @@
   evidence: https://zapier.com/apps/mailchimp/integrations/paypal/66677/turn-new-paypal-merchant-transactions-into-mailchimp-subscriptions
   template: https://zapier.com/apps/mailchimp/integrations/paypal/66677/turn-new-paypal-merchant-transactions-into-mailchimp-subscriptions
   source: template
-  status: pending-generation
-  arazzo: null
-- slug: paypal-abc-trainerize
-  label: ABC Trainerize
-  partner: trainerize
-  partner_name: ABC Trainerize
-  category: Fitness
-  type: marketplace
-  marketplace: zapier
-  channel: ipaas-usage
-  evidence: https://zapier.com/apps/paypal/integrations/abc-trainerize
-  source: edge
-  status: pending-generation
-  arazzo: null
-- slug: paypal-hubspot
-  label: HubSpot
-  partner: hubspot
-  partner_name: HubSpot
-  category: Marketing Automation
-  type: marketplace
-  marketplace: zapier
-  channel: ipaas-usage
-  evidence: https://zapier.com/apps/paypal/integrations/hubspot
-  source: edge
-  status: pending-generation
-  arazzo: null
-- slug: paypal-telegram
-  label: Telegram
-  partner: telegram
-  partner_name: Telegram
-  category: Phone & SMS
-  type: marketplace
-  marketplace: zapier
-  channel: ipaas-usage
-  evidence: https://zapier.com/apps/paypal/integrations/telegram
-  source: edge
-  status: pending-generation
-  arazzo: null
-- slug: paypal-airtable
-  label: Airtable
-  partner: airtable
-  partner_name: Airtable
-  category: Databases
-  type: marketplace
-  marketplace: zapier
-  channel: ipaas-usage
-  evidence: https://zapier.com/apps/paypal/integrations/airtable
-  source: edge
-  status: pending-generation
-  arazzo: null
-- slug: paypal-mailerlite
-  label: MailerLite
-  partner: mailerlite
-  partner_name: MailerLite
-  category: Marketing Automation
-  type: marketplace
-  marketplace: zapier
-  channel: ipaas-usage
-  evidence: https://zapier.com/apps/paypal/integrations/mailerlite
-  source: edge
-  status: pending-generation
-  arazzo: null
-- slug: paypal-wave
-  label: Wave
-  partner: wave-financial
-  partner_name: Wave
-  category: Accounting
-  type: marketplace
-  marketplace: zapier
-  channel: ipaas-usage
-  evidence: https://zapier.com/apps/paypal/integrations/wave
-  source: edge
-  status: pending-partner-spec
-  arazzo: null
-- slug: paypal-discord
-  label: Discord
-  partner: discord
-  partner_name: Discord
-  category: Team Chat
-  type: marketplace
-  marketplace: zapier
-  channel: ipaas-usage
-  evidence: https://zapier.com/apps/paypal/integrations/discord
-  source: edge
-  status: pending-generation
-  arazzo: null
-- slug: paypal-zoom
-  label: Zoom
-  partner: zoom
-  partner_name: Zoom
-  category: Video Conferencing
-  type: marketplace
-  marketplace: zapier
-  channel: ipaas-usage
-  evidence: https://zapier.com/apps/paypal/integrations/zoom
-  source: edge
-  status: pending-generation
-  arazzo: null
-- slug: paypal-flodesk
-  label: Flodesk
-  partner_name: Flodesk
-  category: Email Newsletters
-  type: marketplace
-  marketplace: zapier
-  channel: ipaas-usage
-  evidence: https://zapier.com/apps/paypal/integrations/flodesk
-  source: edge
-  status: pending-partner-spec
-  arazzo: null
-- slug: paypal-google-forms
-  label: Google Forms
-  partner: google-forms
-  partner_name: Google Forms
-  category: Forms & Surveys
-  type: marketplace
-  marketplace: zapier
-  channel: ipaas-usage
-  evidence: https://zapier.com/apps/paypal/integrations/google-forms
-  source: edge
-  status: pending-generation
-  arazzo: null
-- slug: paypal-kit
-  label: Kit
-  partner: convertkit
-  partner_name: Kit
-  category: Drip Emails
-  type: marketplace
-  marketplace: zapier
-  channel: ipaas-usage
-  evidence: https://zapier.com/apps/paypal/integrations/kit
-  source: edge
-  status: pending-generation
-  arazzo: null
-- slug: paypal-skool
-  label: Skool
-  partner: skool
-  partner_name: Skool
-  category: Education
-  type: marketplace
-  marketplace: zapier
-  channel: ipaas-usage
-  evidence: https://zapier.com/apps/paypal/integrations/skool
-  source: edge
-  status: pending-partner-spec
-  arazzo: null
-- slug: paypal-ebay
-  label: eBay
-  partner: ebay
-  partner_name: eBay
-  category: eCommerce
-  type: marketplace
-  marketplace: zapier
-  channel: ipaas-usage
-  evidence: https://zapier.com/apps/paypal/integrations/ebay
-  source: edge
-  status: pending-generation
-  arazzo: null
-- slug: paypal-square
-  label: Square
-  partner: square
-  partner_name: Square
-  category: eCommerce
-  type: marketplace
-  marketplace: zapier
-  channel: ipaas-usage
-  evidence: https://zapier.com/apps/paypal/integrations/square
-  source: edge
-  status: pending-generation
-  arazzo: null
-- slug: paypal-shopify
-  label: Shopify
-  partner: shopify
-  partner_name: Shopify
-  category: eCommerce
-  type: marketplace
-  marketplace: zapier
-  channel: ipaas-usage
-  evidence: https://zapier.com/apps/paypal/integrations/shopify
-  source: edge
-  status: pending-generation
-  arazzo: null
-- slug: paypal-constant-contact
-  label: Constant Contact
-  partner: constant-contact
-  partner_name: Constant Contact
-  category: Email Newsletters
-  type: marketplace
-  marketplace: zapier
-  channel: ipaas-usage
-  evidence: https://zapier.com/apps/paypal/integrations/constant-contact
-  source: edge
-  status: pending-generation
-  arazzo: null
-- slug: paypal-base44
-  label: Base44
-  partner_name: Base44
-  category: AI Assistants
-  type: marketplace
-  marketplace: zapier
-  channel: ipaas-usage
-  evidence: https://zapier.com/apps/paypal/integrations/base44
-  source: edge
-  status: pending-partner-spec
-  arazzo: null
-- slug: paypal-quickbooks-online
-  label: QuickBooks Online
-  partner_name: QuickBooks Online
-  category: Accounting
-  type: marketplace
-  marketplace: zapier
-  channel: ipaas-usage
-  evidence: https://zapier.com/apps/paypal/integrations/quickbooks
-  source: edge
-  status: pending-partner-spec
-  arazzo: null
-- slug: paypal-notion
-  label: Notion
-  partner: notion
-  partner_name: Notion
-  category: Task Management
-  type: marketplace
-  marketplace: zapier
-  channel: ipaas-usage
-  evidence: https://zapier.com/apps/paypal/integrations/notion
-  source: edge
-  status: pending-generation
-  arazzo: null
-- slug: paypal-monday-com
-  label: monday.com
-  partner_name: monday.com
-  category: Project Management
-  type: marketplace
-  marketplace: zapier
-  channel: ipaas-usage
-  evidence: https://zapier.com/apps/paypal/integrations/monday
-  source: edge
-  status: pending-partner-spec
-  arazzo: null
-- slug: paypal-circle
-  label: Circle
-  partner: circle-community
-  partner_name: Circle
-  category: CRM (Customer Relationship Management)
-  type: marketplace
-  marketplace: zapier
-  channel: ipaas-usage
-  evidence: https://zapier.com/apps/paypal/integrations/circle
-  source: edge
-  status: pending-generation
-  arazzo: null
-- slug: paypal-microsoft-outlook
-  label: Microsoft Outlook
-  partner: microsoft-outlook
-  partner_name: Microsoft Outlook
-  category: Calendar
-  type: marketplace
-  marketplace: zapier
-  channel: ipaas-usage
-  evidence: https://zapier.com/apps/paypal/integrations/microsoft-outlook
-  source: edge
+  relationship: ipaas-bridge
   status: pending-generation
   arazzo: null
 - slug: paypal-justt
@@ -830,4 +580,288 @@
     sources: true
     builder: Pipedream repo (component)
   status: not-a-workflow
+  arazzo: null
+- slug: paypal-abc-trainerize
+  label: ABC Trainerize
+  partner: trainerize
+  partner_name: ABC Trainerize
+  category: Fitness
+  type: marketplace
+  marketplace: zapier
+  channel: ipaas-usage
+  evidence: https://zapier.com/apps/paypal/integrations/abc-trainerize
+  source: edge
+  relationship: ipaas-bridge
+  status: pending-generation
+  arazzo: null
+- slug: paypal-hubspot
+  label: HubSpot
+  partner: hubspot
+  partner_name: HubSpot
+  category: Marketing Automation
+  type: marketplace
+  marketplace: zapier
+  channel: ipaas-usage
+  evidence: https://zapier.com/apps/paypal/integrations/hubspot
+  source: edge
+  relationship: ipaas-bridge
+  status: pending-generation
+  arazzo: null
+- slug: paypal-telegram
+  label: Telegram
+  partner: telegram
+  partner_name: Telegram
+  category: Phone & SMS
+  type: marketplace
+  marketplace: zapier
+  channel: ipaas-usage
+  evidence: https://zapier.com/apps/paypal/integrations/telegram
+  source: edge
+  relationship: ipaas-bridge
+  status: pending-generation
+  arazzo: null
+- slug: paypal-airtable
+  label: Airtable
+  partner: airtable
+  partner_name: Airtable
+  category: Databases
+  type: marketplace
+  marketplace: zapier
+  channel: ipaas-usage
+  evidence: https://zapier.com/apps/paypal/integrations/airtable
+  source: edge
+  relationship: ipaas-bridge
+  status: pending-generation
+  arazzo: null
+- slug: paypal-mailerlite
+  label: MailerLite
+  partner: mailerlite
+  partner_name: MailerLite
+  category: Marketing Automation
+  type: marketplace
+  marketplace: zapier
+  channel: ipaas-usage
+  evidence: https://zapier.com/apps/paypal/integrations/mailerlite
+  source: edge
+  relationship: ipaas-bridge
+  status: pending-generation
+  arazzo: null
+- slug: paypal-wave
+  label: Wave
+  partner: wave-financial
+  partner_name: Wave
+  category: Accounting
+  type: marketplace
+  marketplace: zapier
+  channel: ipaas-usage
+  evidence: https://zapier.com/apps/paypal/integrations/wave
+  source: edge
+  relationship: ipaas-bridge
+  status: pending-partner-spec
+  arazzo: null
+- slug: paypal-discord
+  label: Discord
+  partner: discord
+  partner_name: Discord
+  category: Team Chat
+  type: marketplace
+  marketplace: zapier
+  channel: ipaas-usage
+  evidence: https://zapier.com/apps/paypal/integrations/discord
+  source: edge
+  relationship: ipaas-bridge
+  status: pending-generation
+  arazzo: null
+- slug: paypal-zoom
+  label: Zoom
+  partner: zoom
+  partner_name: Zoom
+  category: Video Conferencing
+  type: marketplace
+  marketplace: zapier
+  channel: ipaas-usage
+  evidence: https://zapier.com/apps/paypal/integrations/zoom
+  source: edge
+  relationship: ipaas-bridge
+  status: pending-generation
+  arazzo: null
+- slug: paypal-flodesk
+  label: Flodesk
+  partner_name: Flodesk
+  category: Email Newsletters
+  type: marketplace
+  marketplace: zapier
+  channel: ipaas-usage
+  evidence: https://zapier.com/apps/paypal/integrations/flodesk
+  source: edge
+  relationship: ipaas-bridge
+  status: pending-partner-spec
+  arazzo: null
+- slug: paypal-google-forms
+  label: Google Forms
+  partner: google-forms
+  partner_name: Google Forms
+  category: Forms & Surveys
+  type: marketplace
+  marketplace: zapier
+  channel: ipaas-usage
+  evidence: https://zapier.com/apps/paypal/integrations/google-forms
+  source: edge
+  relationship: ipaas-bridge
+  status: pending-generation
+  arazzo: null
+- slug: paypal-kit
+  label: Kit
+  partner: convertkit
+  partner_name: Kit
+  category: Drip Emails
+  type: marketplace
+  marketplace: zapier
+  channel: ipaas-usage
+  evidence: https://zapier.com/apps/paypal/integrations/kit
+  source: edge
+  relationship: ipaas-bridge
+  status: pending-generation
+  arazzo: null
+- slug: paypal-skool
+  label: Skool
+  partner: skool
+  partner_name: Skool
+  category: Education
+  type: marketplace
+  marketplace: zapier
+  channel: ipaas-usage
+  evidence: https://zapier.com/apps/paypal/integrations/skool
+  source: edge
+  relationship: ipaas-bridge
+  status: pending-partner-spec
+  arazzo: null
+- slug: paypal-ebay
+  label: eBay
+  partner: ebay
+  partner_name: eBay
+  category: eCommerce
+  type: marketplace
+  marketplace: zapier
+  channel: ipaas-usage
+  evidence: https://zapier.com/apps/paypal/integrations/ebay
+  source: edge
+  relationship: ipaas-bridge
+  status: pending-generation
+  arazzo: null
+- slug: paypal-shopify
+  label: Shopify
+  partner: shopify
+  partner_name: Shopify
+  category: eCommerce
+  type: marketplace
+  marketplace: zapier
+  channel: ipaas-usage
+  evidence: https://zapier.com/apps/paypal/integrations/shopify
+  source: edge
+  relationship: ipaas-bridge
+  status: pending-generation
+  arazzo: null
+- slug: paypal-square
+  label: Square
+  partner: square
+  partner_name: Square
+  category: eCommerce
+  type: marketplace
+  marketplace: zapier
+  channel: ipaas-usage
+  evidence: https://zapier.com/apps/paypal/integrations/square
+  source: edge
+  relationship: ipaas-bridge
+  status: pending-generation
+  arazzo: null
+- slug: paypal-constant-contact
+  label: Constant Contact
+  partner: constant-contact
+  partner_name: Constant Contact
+  category: Email Newsletters
+  type: marketplace
+  marketplace: zapier
+  channel: ipaas-usage
+  evidence: https://zapier.com/apps/paypal/integrations/constant-contact
+  source: edge
+  relationship: ipaas-bridge
+  status: pending-generation
+  arazzo: null
+- slug: paypal-base44
+  label: Base44
+  partner_name: Base44
+  category: AI Assistants
+  type: marketplace
+  marketplace: zapier
+  channel: ipaas-usage
+  evidence: https://zapier.com/apps/paypal/integrations/base44
+  source: edge
+  relationship: ipaas-bridge
+  status: pending-partner-spec
+  arazzo: null
+- slug: paypal-notion
+  label: Notion
+  partner: notion
+  partner_name: Notion
+  category: Task Management
+  type: marketplace
+  marketplace: zapier
+  channel: ipaas-usage
+  evidence: https://zapier.com/apps/paypal/integrations/notion
+  source: edge
+  relationship: ipaas-bridge
+  status: pending-generation
+  arazzo: null
+- slug: paypal-quickbooks-online
+  label: QuickBooks Online
+  partner: quickbooks
+  partner_name: QuickBooks Online
+  category: Accounting
+  type: marketplace
+  marketplace: zapier
+  channel: ipaas-usage
+  evidence: https://zapier.com/apps/paypal/integrations/quickbooks
+  source: edge
+  relationship: ipaas-bridge
+  status: pending-partner-spec
+  arazzo: null
+- slug: paypal-monday-com
+  label: monday.com
+  partner: monday-com
+  partner_name: monday.com
+  category: Project Management
+  type: marketplace
+  marketplace: zapier
+  channel: ipaas-usage
+  evidence: https://zapier.com/apps/paypal/integrations/monday
+  source: edge
+  relationship: ipaas-bridge
+  status: pending-generation
+  arazzo: null
+- slug: paypal-circle
+  label: Circle
+  partner: circle-community
+  partner_name: Circle
+  category: CRM (Customer Relationship Management)
+  type: marketplace
+  marketplace: zapier
+  channel: ipaas-usage
+  evidence: https://zapier.com/apps/paypal/integrations/circle
+  source: edge
+  relationship: ipaas-bridge
+  status: pending-generation
+  arazzo: null
+- slug: paypal-microsoft-outlook
+  label: Microsoft Outlook
+  partner: microsoft-outlook
+  partner_name: Microsoft Outlook
+  category: Calendar
+  type: marketplace
+  marketplace: zapier
+  channel: ipaas-usage
+  evidence: https://zapier.com/apps/paypal/integrations/microsoft-outlook
+  source: edge
+  relationship: ipaas-bridge
+  status: pending-generation
   arazzo: null
