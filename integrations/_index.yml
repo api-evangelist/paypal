@@ -309,32 +309,6 @@
     detected: '2026-10-14'
   status: not-a-workflow
   arazzo: null
-- slug: paypal-woocommerce-own
-  label: WooCommerce (own)
-  partner: woocommerce
-  partner_name: WooCommerce (own)
-  category: extension
-  type: marketplace
-  marketplace: own
-  channel: partner-built
-  evidence: https://woocommerce.com/products/woocommerce-paypal-payments/
-  source: edge
-  relationship: platform-app
-  status: not-a-workflow
-  arazzo: null
-- slug: paypal-xero-own
-  label: Xero (own)
-  partner: xero
-  partner_name: Xero (own)
-  category: Payments
-  type: marketplace
-  marketplace: own
-  channel: partner-built
-  evidence: https://apps.xero.com/us/app/paypal
-  source: edge
-  relationship: platform-app
-  status: not-a-workflow
-  arazzo: null
 - slug: paypal-mcp-registry
   label: MCP Registry
   partner: mcp
@@ -969,5 +943,82 @@
       is past its valid-to date; approval / product / version counts are never recorded or counted
     detected_by: sweep-emv-card-terminals.py
     detected: '2026-10-20'
+  status: not-a-workflow
+  arazzo: null
+- slug: paypal-mach-alliance
+  label: MACH Alliance
+  partner_name: MACH Alliance
+  category: composable (MACH) commerce alliance membership
+  type: register
+  channel: standard-directory
+  evidence: https://machalliance.org/members/paypal
+  source: edge
+  relationship: standard-participant
+  contract_reference:
+    register: MACH Alliance members directory (machalliance.org/members)
+    standard: MACH Alliance (Microservices, API-first, Cloud-native SaaS, Headless)
+    spec_file: null
+    role: mach-member
+    registered_name: PayPal
+    register_id: paypal
+    register_category: Supporters
+    register_country: US
+    matched_domain: paypal.com
+    matched_by: domain
+    signal_note: 'participation only: Alliance membership (collaborator / supporter); listing is not conformance'
+    detected_by: sweep-mach-headless-commerce.py
+    detected: '2026-10-20'
+  status: not-a-workflow
+  arazzo: null
+- slug: paypal-woocommerce-own
+  label: WooCommerce (own)
+  partner: woocommerce
+  partner_name: WooCommerce (own)
+  category: extension
+  type: marketplace
+  marketplace: own
+  channel: partner-built
+  evidence: https://woocommerce.com/products/woocommerce-paypal-payments/
+  source: edge
+  relationship: platform-app
+  status: not-a-workflow
+  arazzo: null
+- slug: paypal-xero-own
+  label: Xero (own)
+  partner: xero
+  partner_name: Xero (own)
+  category: Payments
+  type: marketplace
+  marketplace: own
+  channel: partner-built
+  evidence: https://apps.xero.com/us/app/paypal
+  source: edge
+  relationship: platform-app
+  status: not-a-workflow
+  arazzo: null
+- slug: paypal-bigcommerce-own
+  label: BigCommerce (own)
+  partner: bigcommerce
+  partner_name: BigCommerce (own)
+  category: Payments & Security, Payment Processors & Gateways
+  type: marketplace
+  marketplace: own
+  channel: partner-built
+  evidence: https://www.bigcommerce.com/apps/paypal-checkout/
+  source: edge
+  relationship: platform-app
+  status: not-a-workflow
+  arazzo: null
+- slug: paypal-salesforce-commerce-cloud-own
+  label: Salesforce Commerce Cloud (own)
+  partner: salesforce-commerce-cloud
+  partner_name: Salesforce Commerce Cloud (own)
+  category: paymentsProcessing, eCommerce
+  type: marketplace
+  marketplace: own
+  channel: partner-built
+  evidence: https://appexchange.salesforce.com/appxListingDetail?listingId=a0N3A00000FMiRdUAL
+  source: edge
+  relationship: platform-app
   status: not-a-workflow
   arazzo: null

@@ -38,6 +38,15 @@ checked:
 - https://www.access-dvs-register.service.gov.uk/register/download-register
 - https://listings.pcisecuritystandards.org/assessors_and_solutions
 - https://www.emvco.com/approved-products-search/?type=approved-products&sub_type=acceptance_device
+- https://appexchange.salesforce.com/explore/business-needs?category=commerce
+- https://commercetools.com/partners
+- https://machalliance.org/members
+- https://marketplace.commercetools.com
+- https://printify.com/integrations/
+- https://www.bigcommerce.com/apps/
+- https://www.printful.com/integrations
+- bigcommerce/integrations/bigcommerce-integration-edges.yml
+- salesforce-commerce-cloud/integrations/salesforce-commerce-cloud-integration-edges.yml
 summary: null
 marketplace_apps:
 - marketplace: zapier
@@ -333,42 +342,6 @@ edges:
     detected: '2026-10-14'
   detected_by: sweep-adtech.py
   detected: '2026-10-14'
-- partner_name: WooCommerce (own)
-  partner: woocommerce
-  partner_match: mirror
-  mirror_match: domain
-  type: marketplace
-  relationship: platform-app
-  direction: third-party
-  channel: partner-built
-  marketplace: own
-  evidence: https://woocommerce.com/products/woocommerce-paypal-payments/
-  mirror_of: woocommerce/integrations/woocommerce-integration-edges.yml
-  apps:
-  - PayPal Payments
-  listing_count: 1
-  detected: '2026-10-15'
-  detected_by: mirror-platform-listings.py
-  category: extension
-  publisher_verified:
-  - Woo quality badge
-- partner_name: Xero (own)
-  partner: xero
-  partner_match: mirror
-  mirror_match: domain
-  type: marketplace
-  relationship: platform-app
-  direction: third-party
-  channel: partner-built
-  marketplace: own
-  evidence: https://apps.xero.com/us/app/paypal
-  mirror_of: xero/integrations/xero-integration-edges.yml
-  apps:
-  - PayPal
-  listing_count: 1
-  detected: '2026-10-14'
-  detected_by: mirror-platform-listings.py
-  category: Payments
 - partner_name: MCP Registry
   partner: mcp
   partner_match: register
@@ -1092,6 +1065,106 @@ edges:
     detected: '2026-10-20'
   detected_by: sweep-emv-card-terminals.py
   first_seen: '2026-10-20'
+- partner_name: MACH Alliance
+  partner: null
+  partner_match: register
+  type: register
+  channel: standard-directory
+  relationship: standard-participant
+  direction: partner-built
+  evidence: https://machalliance.org/members/paypal
+  category: composable (MACH) commerce alliance membership
+  contract_reference:
+    register: MACH Alliance members directory (machalliance.org/members)
+    standard: MACH Alliance (Microservices, API-first, Cloud-native SaaS, Headless)
+    spec_file: null
+    role: mach-member
+    registered_name: PayPal
+    register_id: paypal
+    register_category: Supporters
+    register_country: US
+    matched_domain: paypal.com
+    matched_by: domain
+    signal_note: 'participation only: Alliance membership (collaborator / supporter); listing is not conformance'
+    detected_by: sweep-mach-headless-commerce.py
+    detected: '2026-10-20'
+  detected_by: sweep-mach-headless-commerce.py
+  first_seen: '2026-10-20'
+- partner_name: WooCommerce (own)
+  partner: woocommerce
+  partner_match: mirror
+  mirror_match: domain
+  type: marketplace
+  relationship: platform-app
+  direction: third-party
+  channel: partner-built
+  marketplace: own
+  evidence: https://woocommerce.com/products/woocommerce-paypal-payments/
+  mirror_of: woocommerce/integrations/woocommerce-integration-edges.yml
+  apps:
+  - PayPal Payments
+  listing_count: 1
+  detected: '2026-10-15'
+  detected_by: mirror-platform-listings.py
+  category: extension
+  publisher_verified:
+  - Woo quality badge
+- partner_name: Xero (own)
+  partner: xero
+  partner_match: mirror
+  mirror_match: domain
+  type: marketplace
+  relationship: platform-app
+  direction: third-party
+  channel: partner-built
+  marketplace: own
+  evidence: https://apps.xero.com/us/app/paypal
+  mirror_of: xero/integrations/xero-integration-edges.yml
+  apps:
+  - PayPal
+  listing_count: 1
+  detected: '2026-10-14'
+  detected_by: mirror-platform-listings.py
+  category: Payments
+- partner_name: BigCommerce (own)
+  partner: bigcommerce
+  partner_match: mirror
+  mirror_match: domain
+  type: marketplace
+  relationship: platform-app
+  direction: third-party
+  channel: partner-built
+  marketplace: own
+  evidence: https://www.bigcommerce.com/apps/paypal-checkout/
+  mirror_of: bigcommerce/integrations/bigcommerce-integration-edges.yml
+  apps:
+  - PayPal Checkout
+  listing_count: 1
+  detected: '2026-10-20'
+  detected_by: mirror-platform-listings.py
+  category: Payments & Security, Payment Processors & Gateways
+- partner_name: Salesforce Commerce Cloud (own)
+  partner: salesforce-commerce-cloud
+  partner_match: mirror
+  mirror_match: domain
+  type: marketplace
+  relationship: platform-app
+  direction: third-party
+  channel: partner-built
+  marketplace: own
+  evidence: https://appexchange.salesforce.com/appxListingDetail?listingId=a0N3A00000FMiRdUAL
+  mirror_of: salesforce-commerce-cloud/integrations/salesforce-commerce-cloud-integration-edges.yml
+  apps:
+  - PayPal Enterprise Payments for B2C Commerce - SFRA (previously Braintree)
+  - PayPal Complete Payments for B2C Commerce - SFRA
+  - PayPal B2B Commerce Connector
+  - Braintree & PayPal Payflow Gateway for Billing
+  - PayPal B2B Commerce Lightning Edition
+  - PayPal Braintree B2B LWR Commerce Connector
+  listing_count: 6
+  detected: '2026-10-20'
+  detected_by: mirror-platform-listings.py
+  category: paymentsProcessing, eCommerce
 templates:
 - title: Add rows to Google Sheets spreadsheets for new PayPal sales
   url: https://zapier.com/apps/google-sheets/integrations/paypal/61/add-rows-to-google-sheets-spreadsheets-for-new-paypal-sales
