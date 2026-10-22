@@ -69,6 +69,12 @@ checked:
 - https://www.payments.ca/payment-resources/directories?field_directory_type=10
 - https://www.payments.ca/payment-resources/directories?field_directory_type=13
 - https://www.payments.ca/payment-resources/directories?field_directory_type=14
+- https://github.com/raycast/extensions/tree/84f9ac51336a8c69f70974a75bc067c0feae3658/extensions
+- https://www.raycast.com/api/v1/store_listings
+- https://dadosabertos.bcb.gov.br/api/3/action/package_show?id=relacao-de-instituicoes-em-funcionamento-no-pais
+- https://olinda.bcb.gov.br/olinda/servico/BcBase/versao/v2/odata/
+- https://olinda.bcb.gov.br/olinda/servico/Informes_ListaTarifasPorInstituicaoFinanceira/versao/v1/odata/
+- https://olinda.bcb.gov.br/olinda/servico/Instituicoes_em_funcionamento/versao/v1/odata/
 summary: null
 marketplace_apps:
 - marketplace: zapier
@@ -1322,6 +1328,83 @@ edges:
     detected_by: sweep-canada-rpaa-psp-registry.py
     detected: '2026-10-22'
   detected_by: sweep-canada-rpaa-psp-registry.py
+  first_seen: '2026-10-22'
+- partner_name: Raycast
+  partner: raycast
+  partner_match: domain
+  partner_url: https://www.raycast.com
+  partner_domain: raycast.com
+  type: marketplace
+  marketplace: raycast-store
+  channel: connector-listing
+  relationship: connector-coverage
+  evidence: https://www.raycast.com/ethananderstandable/paypal-invoices
+  app: PayPal Invoices
+  category: Raycast Store extension (community wrapper)
+  listing_count: 1
+  contract_reference:
+    register: Raycast Store (raycast/extensions monorepo + store_listings JSON)
+    spec_file: null
+    role: raycast-community-wrapper
+    builder: community
+    authors:
+    - ethananderstandable
+    matched_domain: paypal.com
+    matched_by: domain
+    monorepo_commit: 84f9ac51336a8c69f70974a75bc067c0feae3658
+    listings:
+    - title: PayPal Invoices
+      store_url: https://www.raycast.com/ethananderstandable/paypal-invoices
+      installs: 15
+      categories:
+      - Finance
+      source: https://github.com/raycast/extensions/tree/84f9ac51336a8c69f70974a75bc067c0feae3658/extensions/paypal-invoices/
+      author: ethananderstandable
+    categories:
+    - Finance
+    identity_note: the extension's own source calls a host on the product's domain AND its title / package name
+      passes partner_link's name check; built by Raycast community developers, not the vendor
+    signal_note: 'coverage: Raycast''s store reaches the product through community-built extensions; one edge per
+      (product, store); install / listing counts are context, never counted'
+    detected_by: sweep-raycast-store-extensions.py
+    detected: '2026-10-22'
+  detected_by: sweep-raycast-store-extensions.py
+  first_seen: '2026-10-22'
+  direction: partner-built
+- partner_name: Banco Central do Brasil authorized payment institutions (Instituições de Pagamento)
+  partner: null
+  partner_match: register
+  type: register
+  channel: regulator-register
+  relationship: standard-participant
+  direction: partner-built
+  evidence: https://www.bcb.gov.br/estabilidadefinanceira/relacao_instituicoes_funcionamento
+  category: Brazil BCB-authorized payment institution (IP)
+  contract_reference:
+    register: Banco Central do Brasil authorized payment institutions (Instituições de Pagamento)
+    spec_file: null
+    standard: null
+    role: authorized-payment-institution
+    institution_class: fintech
+    registrations:
+    - registered_name: PAYPAL DO BRASIL INSTITUIÇÃO DE PAGAMENTO LTDA.
+      register_status: authorized-active
+      register_country: BR
+      register_id: CNPJ 10878448
+      segment: Instituição de Pagamento
+      matched_domain: paypal.com
+      matched_by: domain
+      evidence_url: https://www.bcb.gov.br/estabilidadefinanceira/relacao_instituicoes_funcionamento
+      licences:
+      - Instituição de Pagamento
+      situation: Autorizada em Atividade
+      tariff_list_confirmed: true
+      domain_source: filed-website
+    signal_note: 'participation only: a Banco Central do Brasil authorisation to operate; no API conformance is
+      published by this register'
+    detected_by: sweep-brazil-bcb-authorized-institutions.py
+    detected: '2026-10-22'
+  detected_by: sweep-brazil-bcb-authorized-institutions.py
   first_seen: '2026-10-22'
 templates:
 - title: Add rows to Google Sheets spreadsheets for new PayPal sales
