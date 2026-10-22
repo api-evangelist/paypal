@@ -64,6 +64,11 @@ checked:
 - https://www.sequoiacap.com/our-companies/
 - https://www.sequoiacap.com/sitemap.xml
 - adobe-commerce/integrations/adobe-commerce-integration-edges.yml
+- https://www.bankofcanada.ca/core-functions/retail-payments-supervision/psp-registry/
+- https://www.bankofcanada.ca/rps-api/cif2/accounts/list
+- https://www.payments.ca/payment-resources/directories?field_directory_type=10
+- https://www.payments.ca/payment-resources/directories?field_directory_type=13
+- https://www.payments.ca/payment-resources/directories?field_directory_type=14
 summary: null
 marketplace_apps:
 - marketplace: zapier
@@ -1250,6 +1255,74 @@ edges:
   detected: '2026-10-22'
   detected_by: mirror-platform-listings.py
   category: Adobe Commerce Marketplace extension
+- partner_name: Bank of Canada RPAA registry of payment service providers
+  partner: null
+  partner_match: register
+  type: register
+  channel: regulator-register
+  relationship: standard-participant
+  direction: partner-built
+  evidence: https://www.bankofcanada.ca/core-functions/retail-payments-supervision/psp-registry/
+  category: Canadian retail payment activities (RPAA) PSP registration
+  contract_reference:
+    register: Bank of Canada RPAA registry of payment service providers
+    spec_file: null
+    standard: null
+    role: registered-psp
+    registrations:
+    - registered_name: PayPal Canada Co.
+      register_status: registered
+      register_country: CA
+      register_id: 5104c564-5798-ef11-8a69-6045bd6034d0
+      matched_domain: paypal.ca
+      matched_by: domain+local-verified
+      evidence_url: https://www.bankofcanada.ca/core-functions/retail-payments-supervision/psp-registry/psp-registry-details/?account_id=5104c564-5798-ef11-8a69-6045bd6034d0
+      licences:
+      - RPAA registered PSP
+      brand: PayPal
+      registration_date: '2026-01-15'
+      head_office_country: Canada
+      trade_names:
+      - Xoom
+      - Braintree
+      - Braintree
+      - Hyperwallet
+      - Braintree
+      - Hyperwallet
+      - Hyperwallet
+      - Xoom
+      - Xoom
+      - Hyperwallet
+      - Braintree
+      - Xoom
+      has_violations: false
+    - registered_name: PayPal Pte. Ltd.
+      register_status: registered
+      register_country: SG
+      register_id: 2518c8ec-f39b-ef11-8a6a-6045bd610b33
+      matched_domain: paypal.sg
+      matched_by: domain+local-verified
+      evidence_url: https://www.bankofcanada.ca/core-functions/retail-payments-supervision/psp-registry/psp-registry-details/?account_id=2518c8ec-f39b-ef11-8a6a-6045bd610b33
+      licences:
+      - RPAA registered PSP
+      brand: PayPal
+      registration_date: '2026-01-20'
+      head_office_country: Singapore
+      trade_names:
+      - Braintree
+      - Xoom
+      - Hyperwallet
+      payment_functions:
+      - Authorization or Transmission, Reception or Facilitation of an instruction in relation to an electronic
+        funds transfer
+      - Clearing or settlement services
+      has_violations: false
+    signal_note: 'participation only: a regulator registration / payment-system membership; no API conformance is
+      published by this register'
+    detected_by: sweep-canada-rpaa-psp-registry.py
+    detected: '2026-10-22'
+  detected_by: sweep-canada-rpaa-psp-registry.py
+  first_seen: '2026-10-22'
 templates:
 - title: Add rows to Google Sheets spreadsheets for new PayPal sales
   url: https://zapier.com/apps/google-sheets/integrations/paypal/61/add-rows-to-google-sheets-spreadsheets-for-new-paypal-sales
