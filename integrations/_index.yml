@@ -1021,71 +1021,6 @@
     detected: '2026-10-21'
   status: not-a-workflow
   arazzo: null
-- slug: paypal-woocommerce-own
-  label: WooCommerce (own)
-  partner: woocommerce
-  partner_name: WooCommerce (own)
-  category: extension
-  type: marketplace
-  marketplace: own
-  channel: partner-built
-  evidence: https://woocommerce.com/products/woocommerce-paypal-payments/
-  source: edge
-  relationship: platform-app
-  status: not-a-workflow
-  arazzo: null
-- slug: paypal-xero-own
-  label: Xero (own)
-  partner: xero
-  partner_name: Xero (own)
-  category: Payments
-  type: marketplace
-  marketplace: own
-  channel: partner-built
-  evidence: https://apps.xero.com/us/app/paypal
-  source: edge
-  relationship: platform-app
-  status: not-a-workflow
-  arazzo: null
-- slug: paypal-bigcommerce-own
-  label: BigCommerce (own)
-  partner: bigcommerce
-  partner_name: BigCommerce (own)
-  category: Payments & Security, Payment Processors & Gateways
-  type: marketplace
-  marketplace: own
-  channel: partner-built
-  evidence: https://www.bigcommerce.com/apps/paypal-checkout/
-  source: edge
-  relationship: platform-app
-  status: not-a-workflow
-  arazzo: null
-- slug: paypal-salesforce-commerce-cloud-own
-  label: Salesforce Commerce Cloud (own)
-  partner: salesforce-commerce-cloud
-  partner_name: Salesforce Commerce Cloud (own)
-  category: paymentsProcessing, eCommerce
-  type: marketplace
-  marketplace: own
-  channel: partner-built
-  evidence: https://appexchange.salesforce.com/appxListingDetail?listingId=a0N3A00000FMiRdUAL
-  source: edge
-  relationship: platform-app
-  status: not-a-workflow
-  arazzo: null
-- slug: paypal-adobe-commerce-own
-  label: Adobe Commerce (own)
-  partner: adobe-commerce
-  partner_name: Adobe Commerce (own)
-  category: Adobe Commerce Marketplace extension
-  type: marketplace
-  marketplace: own
-  channel: partner-built
-  evidence: https://commercemarketplace.adobe.com/paypal-module-subscription.html
-  source: edge
-  relationship: platform-app
-  status: not-a-workflow
-  arazzo: null
 - slug: paypal-bank-of-canada-rpaa-registry-of-payment-service-providers
   label: Bank of Canada RPAA registry of payment service providers
   partner_name: Bank of Canada RPAA registry of payment service providers
@@ -1226,5 +1161,83 @@
       published by this register'
     detected_by: sweep-brazil-bcb-authorized-institutions.py
     detected: '2026-10-22'
+  status: not-a-workflow
+  arazzo: null
+- slug: paypal-woocommerce-own
+  label: WooCommerce (own)
+  partner: woocommerce
+  partner_name: WooCommerce (own)
+  category: extension
+  type: marketplace
+  marketplace: own
+  channel: partner-built
+  evidence: https://woocommerce.com/products/woocommerce-paypal-payments/
+  source: edge
+  relationship: platform-app
+  status: not-a-workflow
+  arazzo: null
+- slug: paypal-xero-own
+  label: Xero (own)
+  partner: xero
+  partner_name: Xero (own)
+  category: Payments
+  type: marketplace
+  marketplace: own
+  channel: partner-built
+  evidence: https://apps.xero.com/us/app/paypal
+  source: edge
+  relationship: platform-app
+  status: not-a-workflow
+  arazzo: null
+- slug: paypal-bigcommerce-own
+  label: BigCommerce (own)
+  partner: bigcommerce
+  partner_name: BigCommerce (own)
+  category: Payments & Security, Payment Processors & Gateways
+  type: marketplace
+  marketplace: own
+  channel: partner-built
+  evidence: https://www.bigcommerce.com/apps/paypal-checkout/
+  source: edge
+  relationship: platform-app
+  status: not-a-workflow
+  arazzo: null
+- slug: paypal-salesforce-commerce-cloud-own
+  label: Salesforce Commerce Cloud (own)
+  partner: salesforce-commerce-cloud
+  partner_name: Salesforce Commerce Cloud (own)
+  category: paymentsProcessing, eCommerce
+  type: marketplace
+  marketplace: own
+  channel: partner-built
+  evidence: https://appexchange.salesforce.com/appxListingDetail?listingId=a0N3A00000FMiRdUAL
+  source: edge
+  relationship: platform-app
+  status: not-a-workflow
+  arazzo: null
+- slug: paypal-adobe-commerce-own
+  label: Adobe Commerce (own)
+  partner: adobe-commerce
+  partner_name: Adobe Commerce (own)
+  category: Adobe Commerce Marketplace extension
+  type: marketplace
+  marketplace: own
+  channel: partner-built
+  evidence: https://commercemarketplace.adobe.com/paypal-module-subscription.html
+  source: edge
+  relationship: platform-app
+  status: not-a-workflow
+  arazzo: null
+- slug: paypal-drupal-own
+  label: Drupal (own)
+  partner: drupal
+  partner_name: Drupal (own)
+  category: Drupal contributed module
+  type: marketplace
+  marketplace: own
+  channel: partner-built
+  evidence: https://www.drupal.org/project/paypal_marketing_solutions
+  source: edge
+  relationship: platform-app
   status: not-a-workflow
   arazzo: null
