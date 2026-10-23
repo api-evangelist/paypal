@@ -1551,3 +1551,9 @@ components:
             https://uri.paypal.com/services/invoicing/internal: Manage invoice resource internal clients.
 externalDocs:
   url: https://developer.paypal.com/docs/api/invoicing/v2/
+x-provenance:
+  method: harvested
+  publisher: PayPal
+  source: https://raw.githubusercontent.com/paypal/paypal-rest-api-specifications/HEAD/openapi/invoicing_v2.json
+  note: split by refine-openapis from the provider's own published document, verified by fetch (openapi/_original/*.fetch.json);
+    stamped by stamp-openapi-provenance.py (roadmap#793)

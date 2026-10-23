@@ -3293,3 +3293,9 @@ components:
             https://uri.paypal.com/services/disputes/update-partner: This privilege allows client to update a dispute (Partner actions).
 externalDocs:
   url: https://developer.paypal.com/docs/api/customer-disputes/v1/
+x-provenance:
+  method: harvested
+  publisher: PayPal
+  source: https://raw.githubusercontent.com/paypal/paypal-rest-api-specifications/HEAD/openapi/customer_disputes_v1.json
+  note: split by refine-openapis from the provider's own published document, verified by fetch (openapi/_original/*.fetch.json);
+    stamped by stamp-openapi-provenance.py (roadmap#793)

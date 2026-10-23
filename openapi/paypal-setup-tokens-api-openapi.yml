@@ -1234,3 +1234,9 @@ components:
             https://uri.paypal.com/services/vault/customers/readwrite: Permission to create/update customer information.
 externalDocs:
   url: https://developer.paypal.com/docs/api/vault/v3/
+x-provenance:
+  method: harvested
+  publisher: PayPal
+  source: https://raw.githubusercontent.com/paypal/paypal-rest-api-specifications/HEAD/openapi/vault_payment_tokens_v3.json
+  note: split by refine-openapis from the provider's own published document, verified by fetch (openapi/_original/*.fetch.json);
+    stamped by stamp-openapi-provenance.py (roadmap#793)

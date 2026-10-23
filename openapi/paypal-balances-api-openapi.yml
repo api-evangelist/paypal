@@ -494,3 +494,9 @@ components:
             https://uri.paypal.com/services/reporting/balances/read: List Balances
 externalDocs:
   url: https://developer.paypal.com/docs/integration/direct/transaction-search/
+x-provenance:
+  method: harvested
+  publisher: PayPal
+  source: https://raw.githubusercontent.com/paypal/paypal-rest-api-specifications/HEAD/openapi/reporting_transactions_v1.json
+  note: split by refine-openapis from the provider's own published document, verified by fetch (openapi/_original/*.fetch.json);
+    stamped by stamp-openapi-provenance.py (roadmap#793)

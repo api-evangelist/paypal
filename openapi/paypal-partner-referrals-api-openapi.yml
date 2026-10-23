@@ -2323,3 +2323,9 @@ components:
             https://uri.paypal.com/services/customer/partner-referrals: Manage referral data shared by Partner with PayPal. To be used by only internal apps
 externalDocs:
   url: https://developer.paypal.com/docs/platforms/seller-onboarding/before-payment/
+x-provenance:
+  method: harvested
+  publisher: PayPal
+  source: https://raw.githubusercontent.com/paypal/paypal-rest-api-specifications/HEAD/openapi/customer_partner_referrals_v2.json
+  note: split by refine-openapis from the provider's own published document, verified by fetch (openapi/_original/*.fetch.json);
+    stamped by stamp-openapi-provenance.py (roadmap#793)

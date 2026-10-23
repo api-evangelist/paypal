@@ -396,3 +396,9 @@ components:
             https://uri.paypal.com/services/applications/verify-webhook-signature: Verify Webhook Signature
 externalDocs:
   url: https://developer.paypal.com/docs/api/webhooks/v1/
+x-provenance:
+  method: harvested
+  publisher: PayPal
+  source: https://raw.githubusercontent.com/paypal/paypal-rest-api-specifications/HEAD/openapi/notifications_webhooks_v1.json
+  note: split by refine-openapis from the provider's own published document, verified by fetch (openapi/_original/*.fetch.json);
+    stamped by stamp-openapi-provenance.py (roadmap#793)

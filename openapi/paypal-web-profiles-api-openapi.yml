@@ -426,3 +426,9 @@ components:
             https://uri.paypal.com/services/payments/realtimepayment: Permission to do any real-time payment and manage-payment experience profiles with support for sale, authorize, and order intents.
 externalDocs:
   url: https://developer.paypal.com/docs/api/payment-experience/v1/
+x-provenance:
+  method: harvested
+  publisher: PayPal
+  source: https://raw.githubusercontent.com/paypal/paypal-rest-api-specifications/HEAD/openapi/payment-experience_web_experience_profiles_v1.json
+  note: split by refine-openapis from the provider's own published document, verified by fetch (openapi/_original/*.fetch.json);
+    stamped by stamp-openapi-provenance.py (roadmap#793)
