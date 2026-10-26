@@ -1,0 +1,341 @@
+# PayPal (paypal)
+
+<!-- API-EVANGELIST-PROVENANCE:BEGIN -->
+> ### About this repository
+>
+> **This is not our API.** This repository is an independent, third-party profile of a company's
+> **publicly available** API surface, maintained by [API Evangelist](https://apievangelist.com).
+> API Evangelist does not operate, host, resell, or support this company's APIs, and is not
+> affiliated with or endorsed by the company unless stated on the profile.
+>
+> **Where the information came from.** Everything here is assembled from material a member of the
+> public can reach with a browser and no credentials — the company's own website, developer portal
+> and documentation, the specifications it publishes for public use (OpenAPI, AsyncAPI, JSON Schema,
+> `apis.json`, `llms.txt` and similar), its public repositories, and its public status, pricing and
+> changelog pages. **Nothing here is obtained by breaching a system, defeating an access control, or
+> using credentials of any kind.**
+>
+> **The rating is an independent assessment.** The Kin Score and Agent Readiness rating are
+> independently calculated scores of a company's *public* API artifacts, produced by API Evangelist
+> against a published rubric. They are not certifications, endorsements, security assessments, or
+> audits, and they score published artifacts — not the quality, safety, or security of the software.
+>
+> **Corrections, re-scores, and removal are free.** No partnership, contract, or purchase is
+> required, and you do not need to justify the request.
+>
+> - **Something wrong?** Open an issue on this repository, or email
+>   [info@apievangelist.com](mailto:info@apievangelist.com).
+> - **Published something new?** Ask for a re-score and we will re-run the rating.
+> - **Want the listing taken down?** Say so and we will honor it. The profile is reduced to your
+>   company name, a factual description, and a link to your own site, and the company is recorded as
+>   **unrated** — never scored zero for having asked.
+>
+> **Response times.** Acknowledgement within **one business day**; removal or restriction within
+> **two business days**; corrections and re-scores within **five business days**.
+>
+> **Not from the company, and here with a question?** You are welcome here — we would rather be the
+> front line and point you the right way than have a good report go nowhere. What this repository
+> can answer is narrow, though, so it is worth knowing who you are actually looking for:
+>
+> - **A question about how the API works, an account, billing, or a bug in the service** — that is
+>   the company's own support, not us. We profile this API; we do not operate it and cannot see
+>   your account.
+> - **A bug in an open-source project we only catalog** — file it on that project's own repository.
+>   This has happened with a real and correct bug report that reached us instead of the people who
+>   could fix it, which helped nobody.
+> - **Anything about this listing itself** — the description, the tags, the rating, a missing or
+>   wrong artifact — is ours. Open an issue here.
+> - **Not sure, or something general about API Evangelist or APIs.io** — open an issue on the
+>   [APIs.io Inbox](https://github.com/api-search/inbox) and we will route it.
+>
+> **This repository contains no software, and we will never ask you to download anything.** There is
+> no build, release, installer, or binary here — only text and machine-readable API descriptions, so
+> there is nothing here that can be "corrupt" or need "repairing". Any issue, comment, or email
+> claiming otherwise and offering a download link is not from us and is hostile. Do not follow the
+> link; it is a lure. Report it to GitHub and, if you like, tell us at
+> [info@apievangelist.com](mailto:info@apievangelist.com) so we can take it down.
+>
+> **On a security or compliance team?** Email
+> [info@apievangelist.com](mailto:info@apievangelist.com) with *security* in the subject line and
+> you will get a person, not a form. We will tell you exactly which public URLs this profile was
+> built from so your team can see the same surface we did, and we will take the listing down on
+> request while you work through it.
+>
+> Full detail: **[Where this data comes from](https://apievangelist.com/about/where-our-data-comes-from)**
+<!-- API-EVANGELIST-PROVENANCE:END -->
+
+PayPal is a global online payment system that lets individuals and businesses send and receive money electronically. PayPal exposes a broad surface of REST APIs covering payments, orders, subscriptions, invoicing, payouts, disputes, payment tokens, shipping tracking, transaction reporting, partner referrals, payment experience, and webhook notifications.
+
+**APIs.json:** [https://raw.githubusercontent.com/api-evangelist/paypal/refs/heads/main/apis.yml](https://raw.githubusercontent.com/api-evangelist/paypal/refs/heads/main/apis.yml)
+
+## Scope
+
+- **Position:** Consuming
+- **Access:** 3rd-Party
+
+## Tags
+
+- Billing
+- Commerce
+- Disputes
+- Invoices
+- Orders
+- Payments
+- Payouts
+- Subscriptions
+- Tokens
+- Webhooks
+
+## Timestamps
+
+- **Created:** 2024-04-14
+- **Modified:** 2026-05-30
+
+## APIs
+
+### PayPal Billing Subscriptions API
+
+The PayPal Billing Subscriptions API enables businesses to create and manage subscription plans, activate, suspend, cancel, capture, and revise customer subscriptions, and track recurring payments.
+
+- **Human URL:** [https://developer.paypal.com/docs/api/subscriptions/v1/](https://developer.paypal.com/docs/api/subscriptions/v1/)
+
+#### Tags
+
+- Activate
+- Billing
+- Cancel
+- Capture
+- Plans
+- Subscriptions
+- Suspend
+- Transactions
+
+#### Properties
+
+- [Documentation](https://developer.paypal.com/docs/api/subscriptions/v1/)
+- [OpenAPI](openapi/paypal-billing-subscriptions-openapi-original.yml) — [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
+
+### PayPal Catalog Products API
+
+The PayPal Catalog Products API lets merchants create and manage product definitions used across orders, subscriptions, and invoicing.
+
+- **Human URL:** [https://developer.paypal.com/docs/api/catalog-products/v1/](https://developer.paypal.com/docs/api/catalog-products/v1/)
+
+#### Tags
+
+- Catalog
+- Products
+
+#### Properties
+
+- [Documentation](https://developer.paypal.com/docs/api/catalog-products/v1/)
+- [OpenAPI](openapi/paypal-catalog-products-openapi-original.yml) — [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
+
+### PayPal Orders API
+
+The PayPal Orders API lets merchants create, update, authorize, capture, and manage orders for accepting payments through PayPal Checkout.
+
+- **Human URL:** [https://developer.paypal.com/docs/api/orders/v2/](https://developer.paypal.com/docs/api/orders/v2/)
+
+#### Tags
+
+- Checkout
+- Orders
+- Payments
+
+#### Properties
+
+- [Documentation](https://developer.paypal.com/docs/api/orders/v2/)
+- [OpenAPI](openapi/paypal-checkout-orders-openapi-original.yml) — [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
+
+### PayPal Customer Disputes API
+
+The PayPal Customer Disputes API allows merchants to retrieve, respond to, escalate, and settle disputes raised on transactions, including providing evidence and managing dispute lifecycles.
+
+- **Human URL:** [https://developer.paypal.com/docs/disputes/integration-guide/](https://developer.paypal.com/docs/disputes/integration-guide/)
+
+#### Tags
+
+- Disputes
+- Evidence
+- Resolution
+
+#### Properties
+
+- [Documentation](https://developer.paypal.com/docs/disputes/integration-guide/)
+- [OpenAPI](openapi/paypal-customer-disputes-openapi-original.yml) — [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
+
+### PayPal Partner Referrals API
+
+The PayPal Partner Referrals API enables platforms and marketplaces to onboard merchants onto PayPal, generate referral links, and track partner account creation status.
+
+- **Human URL:** [https://developer.paypal.com/docs/api/partner-referrals/v1/](https://developer.paypal.com/docs/api/partner-referrals/v1/)
+
+#### Tags
+
+- Onboarding
+- Partner
+- Referrals
+
+#### Properties
+
+- [Documentation](https://developer.paypal.com/docs/api/partner-referrals/v1/)
+- [OpenAPI](openapi/paypal-customer-partner-referrals-openapi-original.yml) — [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
+
+### PayPal Invoicing API
+
+The PayPal Invoicing API allows merchants to create, send, schedule, track, and manage invoices, including reminders and payment status.
+
+- **Human URL:** [https://developer.paypal.com/docs/api/invoicing/v2/](https://developer.paypal.com/docs/api/invoicing/v2/)
+
+#### Tags
+
+- Billing
+- Invoices
+- Payments
+
+#### Properties
+
+- [Documentation](https://developer.paypal.com/docs/api/invoicing/v2/)
+- [OpenAPI](openapi/paypal-invoicing-openapi-original.yml) — [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
+
+### PayPal Notification Webhooks API
+
+The PayPal Notification Webhooks API lets developers subscribe to and manage webhook event notifications for payments, refunds, disputes, and other PayPal account activity.
+
+- **Human URL:** [https://developer.paypal.com/api/rest/webhooks/](https://developer.paypal.com/api/rest/webhooks/)
+
+#### Tags
+
+- Events
+- Notifications
+- Webhooks
+
+#### Properties
+
+- [Documentation](https://developer.paypal.com/api/rest/webhooks/)
+- [OpenAPI](openapi/paypal-notification-webhooks-openapi-original.yml) — [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
+- [AsyncAPI](openapi/paypal-webhooks-asyncapi-original.yml) — [AsyncAPI Specification](https://www.asyncapi.com/docs/reference/specification/latest)
+
+### PayPal Payment Experience API
+
+The PayPal Payment Experience API lets merchants create web experience profiles to customize the look, feel, and flow of PayPal checkout pages.
+
+- **Human URL:** [https://developer.paypal.com/docs/payment-experience/](https://developer.paypal.com/docs/payment-experience/)
+
+#### Tags
+
+- Checkout
+- Customization
+- Experience
+
+#### Properties
+
+- [Documentation](https://developer.paypal.com/docs/payment-experience/)
+- [OpenAPI](openapi/paypal-payment-experience-openapi-original.yml) — [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
+
+### PayPal Payments API
+
+The PayPal Payments API lets businesses authorize, capture, refund, void, and reauthorize payments, supporting credit and debit cards as well as PayPal and Venmo wallets.
+
+- **Human URL:** [https://developer.paypal.com/api/rest/](https://developer.paypal.com/api/rest/)
+
+#### Tags
+
+- Authorizations
+- Captures
+- Payments
+- Refunds
+
+#### Properties
+
+- [Documentation](https://developer.paypal.com/api/rest/)
+- [OpenAPI](openapi/paypal-payments-openapi-original.yml) — [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
+
+### PayPal Payouts API
+
+The PayPal Payouts API lets businesses send mass payments to multiple recipients with a single API call, useful for marketplaces, affiliates, rewards programs, and contractor payouts.
+
+- **Human URL:** [https://developer.paypal.com/docs/api/payments.payouts-batch/v1/](https://developer.paypal.com/docs/api/payments.payouts-batch/v1/)
+
+#### Tags
+
+- Mass Pay
+- Payouts
+- Transfers
+
+#### Properties
+
+- [Documentation](https://developer.paypal.com/docs/api/payments.payouts-batch/v1/)
+- [OpenAPI](openapi/paypal-payouts-openapi-original.yml) — [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
+
+### PayPal Transaction Search (Reporting) API
+
+The PayPal Transaction Search API provides access to historical transaction details, balances, and account activity for reporting, reconciliation, and accounting use cases.
+
+- **Human URL:** [https://developer.paypal.com/docs/api/transaction-search/v1/](https://developer.paypal.com/docs/api/transaction-search/v1/)
+
+#### Tags
+
+- Reconciliation
+- Reporting
+- Transactions
+
+#### Properties
+
+- [Documentation](https://developer.paypal.com/docs/api/transaction-search/v1/)
+- [OpenAPI](openapi/paypal-reporting-transactions-openapi-original.yml) — [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
+
+### PayPal Shipping Tracking API
+
+The PayPal Shipping Tracking API lets merchants attach, update, and retrieve tracking information on PayPal transactions for faster dispute resolution and improved buyer transparency.
+
+- **Human URL:** [https://developer.paypal.com/docs/tracking/tracking-api/](https://developer.paypal.com/docs/tracking/tracking-api/)
+
+#### Tags
+
+- Carriers
+- Shipping
+- Tracking
+
+#### Properties
+
+- [Documentation](https://developer.paypal.com/docs/tracking/tracking-api/)
+- [OpenAPI](openapi/paypal-shipping-tracking-openapi-original.yml) — [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
+
+### PayPal Vault Payment Tokens API
+
+The PayPal Vault Payment Tokens API lets merchants securely store and reuse customer payment instruments as tokens for repeat billing and one-click checkout flows.
+
+- **Human URL:** [https://developer.paypal.com/docs/api/payment-tokens/v3/](https://developer.paypal.com/docs/api/payment-tokens/v3/)
+
+#### Tags
+
+- Tokens
+- Vault
+- Wallet
+
+#### Properties
+
+- [Documentation](https://developer.paypal.com/docs/api/payment-tokens/v3/)
+- [OpenAPI](openapi/paypal-vault-payment-tokens-openapi-original.yml) — [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
+
+## Common Properties
+
+- [GitHub Organization](https://github.com/paypal)
+- [LinkedIn](https://www.linkedin.com/company/paypal)
+- [Website](https://www.paypal.com)
+- [Developer  Portal](https://developer.paypal.com)
+- [Documentation](https://developer.paypal.com/api/rest/)
+- [Authentication](https://developer.paypal.com/api/rest/authentication/)
+- [Status Page](https://www.paypal-status.com/)
+- [Pricing](https://www.paypal.com/us/business/paypal-business-fees)
+- [Terms of Service](https://www.paypal.com/us/legalhub/useragreement-full)
+- [Privacy Policy](https://www.paypal.com/us/legalhub/privacy-full)
+- [Features](undefined)
+- [L L Ms Txt](https://developer.paypal.com/llms.txt)
+
+## Maintainers
+
+**FN:** Kin Lane
+**Email:** kin@apievangelist.com
